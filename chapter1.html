@@ -52,8 +52,32 @@
   margin-bottom: 10px; /* Espacio entre términos */
   line-height: 1.6;
 }
+/* Margen para el contenedor de la actividad del quiz */
 .quiz-activity-container {
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
+}
+/* Estilos para el feedback dinámico en cada opción */
+.quiz-option {
+  position: relative; /* Necesario para posicionar el feedback */
+}
+.option-feedback {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.correct-answer .option-feedback {
+  color: #155724;
+}
+.incorrect-answer .option-feedback {
+  color: #721c24;
+}
+.missed-answer .option-feedback {
+  color: #856404;
 }
 </style>
 </head>
@@ -226,7 +250,7 @@
             <div class="quiz-options-list">
               <div class="quiz-option">
                 <input type="checkbox" id="q1-a" name="q1" value="a">
-                <label for="q1-a">a. ... a set of practices and habits that you can cultivate every day. (Correct)</label>
+                <label for="q1-a">a. ... a set of practices and habits that you can cultivate every day.</label>
               </div>
               <div class="quiz-option">
                 <input type="checkbox" id="q1-b" name="q1" value="b">
@@ -242,7 +266,7 @@
               </div>
               <div class="quiz-option">
                 <input type="checkbox" id="q1-e" name="q1" value="e">
-                <label for="q1-e">e. ... how we feel about the time we spend online. (Correct)</label>
+                <label for="q1-e">e. ... how we feel about the time we spend online.</label>
               </div>
               <div class="quiz-option">
                 <input type="checkbox" id="q1-f" name="q1" value="f">

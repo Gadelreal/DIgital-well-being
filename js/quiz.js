@@ -42,8 +42,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const correctAnswersDigitalWellbeing = ["a", "e"]
 
-  let userAnswersChapter1 = {}
-  let quizCompletedChapter1 = false
+  const userAnswersChapter1 = {}
+  const quizCompletedChapter1 = false
 
   // Function to save quiz state to localStorage:
   function saveQuizState(quizId, state) {
@@ -113,207 +113,109 @@ document.addEventListener("DOMContentLoaded", () => {
   // Handler for the Chapter 1 Well-being Quiz
   const wellbeingQuizForm = document.getElementById("wellbeing-quiz")
   if (wellbeingQuizForm) {
-    const feedbackElement = document.getElementById("wellbeing-quiz-feedback")
-    const submitButton = wellbeingQuizForm.querySelector(".quiz-submit-btn")
-
     wellbeingQuizForm.addEventListener("submit", (event) => {
       event.preventDefault()
+      showWellbeingQuizFeedback(wellbeingQuizForm, correctAnswersDigitalWellbeing)
+    })
+  }
 
-      const form = event.target
-      const submitBtn = form.querySelector(".quiz-submit-btn")
-      const feedbackDiv = document.getElementById("wellbeing-quiz-feedback")
+  function showWellbeingQuizFeedback(form, correctAnswers) {
+    const checkboxes = form.querySelectorAll('input[type="checkbox"]')
+    const feedbackDiv = document.getElementById("wellbeing-quiz-feedback")
+    const submitBtn = form.querySelector(".quiz-submit-btn")
 
-      // Get all checkboxes
-      const checkboxes = form.querySelectorAll('input[type="checkbox"]')
-      const correctAnswers = ["a", "e"] // Correct answers
+    checkboxes.forEach((checkbox) => {
+      const option = checkbox.closest(".quiz-option")
+      const value = checkbox.value
+      const isChecked = checkbox.checked
+      const isCorrect = correctAnswers.includes(value)
 
-      // Check answers and provide visual feedback
-      checkboxes.forEach((checkbox) => {
-        const option = checkbox.closest(".quiz-option")
-        const value = checkbox.value
-        const isChecked = checkbox.checked
-        const isCorrect = correctAnswers.includes(value)
-
-        // Remove previous feedback classes
-        option.classList.remove("correct-answer", "incorrect-answer", "missed-answer")
-
-        if (isChecked && isCorrect) {
-          // Correct answer selected
-          option.classList.add("correct-answer")
-          announceToScreenReader(`${FEEDBACK_MESSAGES.CORRECT_ANSWER}: ${checkbox.nextElementSibling.textContent}`)
-        } else if (isChecked && !isCorrect) {
-          // Incorrect answer selected
-          option.classList.add("incorrect-answer")
-          announceToScreenReader(`${FEEDBACK_MESSAGES.INCORRECT_ANSWER}: ${checkbox.nextElementSibling.textContent}`)
-        } else if (!isChecked && isCorrect) {
-          // Correct answer not selected
-          option.classList.add("missed-answer")
-        }
-      })
-
-      // Show feedback section
-      if (feedbackDiv) {
-        feedbackDiv.style.display = "block"
-        feedbackDiv.scrollIntoView({ behavior: "smooth", block: "nearest" })
+      // Limpiar feedback anterior
+      option.classList.remove("correct-answer", "incorrect-answer", "missed-answer")
+      const existingFeedback = option.querySelector(".option-feedback")
+      if (existingFeedback) {
+        existingFeedback.remove()
       }
 
-      // Update submit button
-      submitBtn.textContent = FEEDBACK_MESSAGES.SUBMITTED
-      submitBtn.disabled = true
+      // Crear nuevo span para el feedback
+      const feedbackSpan = document.createElement("span")
+      feedbackSpan.className = "option-feedback"
 
-      // Add reset button
-      addResetButton(form)
-
-      // Save completion state
-      saveQuizCompletion()
-
-      // Announce completion to screen readers
-      announceToScreenReader("Quiz completed. Review your answers and feedback above.")
+      if (isChecked && isCorrect) {
+        option.classList.add("correct-answer")
+        feedbackSpan.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> (Correct)'
+        option.appendChild(feedbackSpan)
+      } else if (isChecked && !isCorrect) {
+        option.classList.add("incorrect-answer")
+        feedbackSpan.innerHTML = '<i class="fas fa-times" aria-hidden="true"></i> (Incorrect)'
+        option.appendChild(feedbackSpan)
+      } else if (!isChecked && isCorrect) {
+        option.classList.add("missed-answer")
+        feedbackSpan.innerHTML = '<i class="fas fa-info-circle" aria-hidden="true"></i> (Correct)'
+        option.appendChild(feedbackSpan)
+      }
     })
 
-    // Load and restore previous quiz state on page load
-    const savedState = loadQuizState("wellbeing")
-    if (savedState) {
-      userAnswersChapter1 = savedState.userAnswers || {}
-      quizCompletedChapter1 = savedState.completed || false
-      restoreQuizVisualState(savedState)
+    if (feedbackDiv) {
+      feedbackDiv.style.display = "block"
+      feedbackDiv.scrollIntoView({ behavior: "smooth", block: "nearest" })
+    }
+
+    if (submitBtn) {
+      submitBtn.disabled = true
+      submitBtn.textContent = "Submitted"
+    }
+
+    addResetButton(form)
+  }
+
+  function addResetButton(form) {
+    if (form.querySelector(".quiz-reset-btn")) return
+
+    const submitBtn = form.querySelector(".quiz-submit-btn")
+    const resetBtn = document.createElement("button")
+    resetBtn.type = "button"
+    resetBtn.className = "quiz-reset-btn quiz-submit-btn"
+    resetBtn.innerHTML = '<i class="fas fa-redo" aria-hidden="true"></i> Reset Activity'
+    resetBtn.style.marginLeft = "1rem"
+    resetBtn.style.backgroundColor = "#6c757d"
+
+    resetBtn.addEventListener("click", () => {
+      resetWellbeingQuiz(form)
+    })
+
+    if (submitBtn && submitBtn.parentNode) {
+      submitBtn.parentNode.insertBefore(resetBtn, submitBtn.nextSibling)
     }
   }
 
-  // Function to reset the wellbeing quiz
   function resetWellbeingQuiz(form) {
-    // Clear all checkboxes
     const checkboxes = form.querySelectorAll('input[type="checkbox"]')
+    const feedbackDiv = document.getElementById("wellbeing-quiz-feedback")
+    const submitBtn = form.querySelector(".quiz-submit-btn:not(.quiz-reset-btn)")
+    const resetBtn = form.querySelector(".quiz-reset-btn")
+
     checkboxes.forEach((checkbox) => {
       checkbox.checked = false
       const option = checkbox.closest(".quiz-option")
       option.classList.remove("correct-answer", "incorrect-answer", "missed-answer")
+      const existingFeedback = option.querySelector(".option-feedback")
+      if (existingFeedback) {
+        existingFeedback.remove()
+      }
     })
 
-    // Hide feedback
-    const feedbackDiv = document.getElementById("wellbeing-quiz-feedback")
     if (feedbackDiv) {
       feedbackDiv.style.display = "none"
     }
 
-    // Reset submit button
-    const submitBtn = form.querySelector(".quiz-submit-btn:not(.quiz-reset-btn)")
     if (submitBtn) {
-      submitBtn.textContent = "Submit"
       submitBtn.disabled = false
-      submitBtn.style.backgroundColor = ""
-      submitBtn.style.cursor = ""
+      submitBtn.textContent = "Submit"
     }
 
-    // Remove reset button
-    const resetBtn = form.querySelector(".quiz-reset-btn")
     if (resetBtn) {
       resetBtn.remove()
-    }
-
-    // Clear saved state
-    clearQuizState("wellbeing")
-
-    // Remove all visual feedback from options
-    const quizOptions = form.querySelectorAll(".quiz-option")
-    quizOptions.forEach((option) => {
-      option.classList.remove("correct", "incorrect", "missed")
-      const feedback = option.querySelector(".option-feedback")
-      if (feedback) {
-        feedback.remove()
-      }
-    })
-
-    // Scroll back to quiz
-    form.scrollIntoView({ behavior: "smooth", block: "start" })
-
-    // Announce reset to screen readers
-    announceToScreenReader("Quiz has been reset. You can now select your answers again.")
-  }
-
-  function saveQuizCompletion() {
-    localStorage.setItem("wellbeing-quiz-completed", "true")
-  }
-
-  function clearQuizState(quizId) {
-    localStorage.removeItem(`quiz_${quizId}`)
-  }
-
-  function announceToScreenReader(message) {
-    // Create a temporary element for screen reader announcements
-    const announcement = document.createElement("div")
-    announcement.setAttribute("aria-live", "polite")
-    announcement.setAttribute("aria-atomic", "true")
-    announcement.className = "sr-only"
-    announcement.textContent = message
-
-    document.body.appendChild(announcement)
-
-    // Remove after announcement
-    setTimeout(() => {
-      document.body.removeChild(announcement)
-    }, 1000)
-  }
-
-  function addResetButton(quizId) {
-    const form = document.getElementById(quizId)
-    if (!form) return
-
-    // Check if reset button already exists
-    if (form.querySelector(".quiz-reset-btn")) return
-
-    const resetBtn = document.createElement("button")
-    resetBtn.type = "button"
-    resetBtn.className = "quiz-reset-btn"
-    resetBtn.innerHTML = '<i class="fas fa-redo" aria-hidden="true"></i> Reset Activity'
-    resetBtn.style.cssText = `
-      background-color: #6c757d;
-      color: white;
-      border: 2px solid #6c757d;
-      padding: 12px 24px;
-      font-size: 16px;
-      font-weight: bold;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-left: 10px;
-      transition: all 0.3s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    `
-
-    resetBtn.addEventListener("mouseenter", () => {
-      resetBtn.style.backgroundColor = "#5a6268"
-      resetBtn.style.borderColor = "#5a6268"
-    })
-
-    resetBtn.addEventListener("mouseleave", () => {
-      resetBtn.style.backgroundColor = "#6c757d"
-      resetBtn.style.borderColor = "#6c757d"
-    })
-
-    resetBtn.addEventListener("click", () => {
-      if (quizId === "wellbeing-quiz") {
-        resetWellbeingQuiz(form)
-      } else if (quizId === "metacognition-quiz") {
-        resetMetacognitionQuiz(form)
-      } else if (quizId === "reflection-quiz") {
-        resetReflectionQuiz(form)
-      } else if (quizId === "digital-habits-quiz") {
-        resetDigitalHabitsQuiz(form)
-      } else if (quizId === "values-quiz") {
-        resetValuesQuiz(form)
-      } else if (quizId === "goals-quiz") {
-        resetGoalsQuiz(form)
-      } else if (quizId === "practice-quiz") {
-        resetPracticeQuiz(form)
-      }
-    })
-
-    // Insert after submit button
-    const submitBtn = form.querySelector('button[type="submit"]')
-    if (submitBtn && submitBtn.parentNode) {
-      submitBtn.parentNode.insertBefore(resetBtn, submitBtn.nextSibling)
     }
   }
 
@@ -660,61 +562,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Initialize all quiz functionality
-  const initializeWellbeingQuiz = () => {
-    const form = document.getElementById("wellbeing-quiz")
-    if (!form) return
-
-    form.addEventListener("submit", (event) => {
-      event.preventDefault()
-      const submitBtn = form.querySelector(".quiz-submit-btn")
-      const feedbackDiv = document.getElementById("wellbeing-quiz-feedback")
-
-      const checkboxes = form.querySelectorAll('input[type="checkbox"]')
-      const correctAnswers = ["a", "e"]
-
-      checkboxes.forEach((checkbox) => {
-        const option = checkbox.closest(".quiz-option")
-        const value = checkbox.value
-        const isChecked = checkbox.checked
-        const isCorrect = correctAnswers.includes(value)
-
-        option.classList.remove("correct-answer", "incorrect-answer", "missed-answer")
-
-        if (isChecked && isCorrect) {
-          option.classList.add("correct-answer")
-          announceToScreenReader(`${FEEDBACK_MESSAGES.CORRECT_ANSWER}: ${checkbox.nextElementSibling.textContent}`)
-        } else if (isChecked && !isCorrect) {
-          option.classList.add("incorrect-answer")
-          announceToScreenReader(`${FEEDBACK_MESSAGES.INCORRECT_ANSWER}: ${checkbox.nextElementSibling.textContent}`)
-        } else if (!isChecked && isCorrect) {
-          option.classList.add("missed-answer")
-        }
-      })
-
-      if (feedbackDiv) {
-        feedbackDiv.style.display = "block"
-        feedbackDiv.scrollIntoView({ behavior: "smooth", block: "nearest" })
-      }
-
-      submitBtn.textContent = FEEDBACK_MESSAGES.SUBMITTED
-      submitBtn.disabled = true
-
-      addResetButton(form)
-
-      saveQuizCompletion()
-
-      announceToScreenReader("Quiz completed. Review your answers and feedback above.")
-    })
-
-    const savedState = loadQuizState("wellbeing")
-    if (savedState) {
-      userAnswersChapter1 = savedState.userAnswers || {}
-      quizCompletedChapter1 = savedState.completed || false
-      restoreQuizVisualState(savedState)
-    }
-  }
-
-  initializeWellbeingQuiz()
   initializeMetacognitionQuiz()
   initializeReflectionQuiz()
   initializeDigitalHabitsQuiz()
@@ -724,8 +571,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Export functions for use in other scripts
   window.QuizManager = {
-    initializeWellbeingQuiz,
-    resetWellbeingQuiz,
     initializeMetacognitionQuiz,
     initializeReflectionQuiz,
     initializeDigitalHabitsQuiz,
