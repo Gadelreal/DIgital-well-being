@@ -206,9 +206,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Reset submit button
-    const submitBtn = form.querySelector(".quiz-submit-btn")
-    submitBtn.textContent = "Submit"
-    submitBtn.disabled = false
+    const submitBtn = form.querySelector(".quiz-submit-btn:not(.quiz-reset-btn)")
+    if (submitBtn) {
+      submitBtn.textContent = "Submit"
+      submitBtn.disabled = false
+    }
 
     // Remove reset button
     const resetBtn = form.querySelector(".quiz-reset-btn")
@@ -256,14 +258,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const resetBtn = document.createElement("button")
     resetBtn.type = "button"
     resetBtn.className = "quiz-reset-btn quiz-submit-btn"
-    resetBtn.textContent = FEEDBACK_MESSAGES.RESET
-    resetBtn.style.marginLeft = "1rem"
-    resetBtn.style.backgroundColor = "#6c757d"
+    resetBtn.innerHTML = '<i class="fas fa-redo" aria-hidden="true"></i> Reset Activity'
+    resetBtn.style.cssText = `
+    margin-left: 1rem;
+    background-color: #6c757d;
+    border: 1px solid #6c757d;
+  `
 
     resetBtn.addEventListener("click", () => {
       resetWellbeingQuiz(form)
     })
 
+    // Insert the reset button after the submit button
     submitBtn.parentNode.insertBefore(resetBtn, submitBtn.nextSibling)
   }
 
