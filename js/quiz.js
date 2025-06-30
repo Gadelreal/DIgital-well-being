@@ -214,14 +214,15 @@ document.addEventListener("DOMContentLoaded", () => {
   if (wellbeingQuizContainer) {
     const resetButtonContainer = document.createElement("div")
     resetButtonContainer.style.cssText = `
-    text-align: center;
-    margin-top: 1rem;
-    padding-top: 1rem;
-  `
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding-top: 1rem;
+`
 
     const resetButton = document.createElement("button")
     resetButton.className = "quiz-submit-btn"
-    resetButton.innerHTML = '<i class="fas fa-redo" aria-hidden="true"></i> Reset Quiz'
+    resetButton.innerHTML = '<i class="fas fa-redo" aria-hidden="true"></i> Reset Activity'
     resetButton.style.cssText = `
     background-color: #6c757d;
     margin-left: 10px;
@@ -376,15 +377,16 @@ document.addEventListener("DOMContentLoaded", () => {
     if (quizContainer) {
       const resetButtonContainer = document.createElement("div")
       resetButtonContainer.style.cssText = `
-        text-align: center;
-        margin-top: 2rem;
-        padding-top: 1rem;
-        border-top: 2px solid #e0e0e0;
-      `
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding-top: 1rem;
+  border-top: 2px solid #e0e0e0;
+`
 
       const resetButton = document.createElement("button")
       resetButton.className = "save-button"
-      resetButton.innerHTML = '<i class="fas fa-redo" aria-hidden="true"></i> Reset Quiz'
+      resetButton.innerHTML = '<i class="fas fa-redo" aria-hidden="true"></i> Reset Activity'
       resetButton.style.cssText = `
         background-color: #6c757d;
         border: none;
