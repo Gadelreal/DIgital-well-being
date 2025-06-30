@@ -210,6 +210,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (submitBtn) {
       submitBtn.textContent = "Submit"
       submitBtn.disabled = false
+      submitBtn.style.backgroundColor = ""
+      submitBtn.style.cursor = ""
     }
 
     // Remove reset button
@@ -220,6 +222,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Clear saved state
     clearQuizState()
+
+    // Remove all visual feedback from options
+    const quizOptions = form.querySelectorAll(".quiz-option")
+    quizOptions.forEach((option) => {
+      option.classList.remove("correct", "incorrect", "missed")
+      const feedback = option.querySelector(".option-feedback")
+      if (feedback) {
+        feedback.remove()
+      }
+    })
+
+    // Scroll back to quiz
+    form.scrollIntoView({ behavior: "smooth", block: "start" })
 
     // Announce reset to screen readers
     announceToScreenReader("Quiz has been reset. You can now select your answers again.")
@@ -264,6 +279,16 @@ document.addEventListener("DOMContentLoaded", () => {
     background-color: #6c757d;
     border: 1px solid #6c757d;
   `
+
+    resetBtn.addEventListener("mouseenter", () => {
+      resetBtn.style.backgroundColor = "#5a6268"
+      resetBtn.style.borderColor = "#5a6268"
+    })
+
+    resetBtn.addEventListener("mouseleave", () => {
+      resetBtn.style.backgroundColor = "#6c757d"
+      resetBtn.style.borderColor = "#6c757d"
+    })
 
     resetBtn.addEventListener("click", () => {
       resetWellbeingQuiz(form)
@@ -470,5 +495,37 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     announceToScreenReader("Quiz submitted successfully.")
+  }
+
+  // Additional quiz utilities
+  function saveQuizProgress(quizId, answers) {
+    try {
+      const progress = {
+        answers: answers,
+        timestamp: new Date().toISOString(),
+        completed: true,
+      }
+      localStorage.setItem(`quiz_${quizId}`, JSON.stringify(progress))
+    } catch (error) {
+      console.warn("Could not save quiz progress:", error)
+    }
+  }
+
+  function loadQuizProgress(quizId) {
+    try {
+      const saved = localStorage.getItem(`quiz_${quizId}`)
+      return saved ? JSON.parse(saved) : null
+    } catch (error) {
+      console.warn("Could not load quiz progress:", error)
+      return null
+    }
+  }
+
+  // Export functions for use in other scripts
+  window.QuizManager = {
+    initializeWellbeingQuiz: () => {}, // Placeholder for initializeWellbeingQuiz
+    resetWellbeingQuiz,
+    saveQuizProgress,
+    loadQuizProgress,
   }
 })
