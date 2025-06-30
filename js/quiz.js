@@ -46,32 +46,23 @@ document.addEventListener("DOMContentLoaded", () => {
   let quizCompletedChapter1 = false
 
   // Function to save quiz state to localStorage:
-  function saveQuizState() {
-    const form = document.getElementById("wellbeing-quiz")
-    if (!form) return
-
-    const state = {}
-    const checkboxes = form.querySelectorAll('input[type="checkbox"]')
-
-    checkboxes.forEach((checkbox) => {
-      state[checkbox.id] = checkbox.checked
-    })
-
-    localStorage.setItem("wellbeing-quiz-state", JSON.stringify(state))
+  function saveQuizState(quizId, state) {
+    try {
+      localStorage.setItem(`quiz_${quizId}`, JSON.stringify(state))
+    } catch (e) {
+      console.warn("Could not save quiz state to localStorage:", e)
+    }
   }
 
   // Function to load quiz state from localStorage:
-  function loadQuizState() {
-    const savedState = localStorage.getItem("wellbeing-quiz-state")
-    if (savedState) {
-      try {
-        return JSON.parse(savedState)
-      } catch (e) {
-        console.error("Error parsing saved quiz state:", e)
-        return null
-      }
+  function loadQuizState(quizId) {
+    try {
+      const saved = localStorage.getItem(`quiz_${quizId}`)
+      return saved ? JSON.parse(saved) : null
+    } catch (e) {
+      console.warn("Could not load quiz state from localStorage:", e)
+      return null
     }
-    return null
   }
 
   // Function to restore the quiz visual state:
@@ -134,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Get all checkboxes
       const checkboxes = form.querySelectorAll('input[type="checkbox"]')
-      const correctAnswers = ["a", "e"] // Correct answers for wellbeing quiz
+      const correctAnswers = ["a", "e"] // Correct answers
 
       // Check answers and provide visual feedback
       checkboxes.forEach((checkbox) => {
@@ -181,7 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 
     // Load and restore previous quiz state on page load
-    const savedState = loadQuizState()
+    const savedState = loadQuizState("wellbeing")
     if (savedState) {
       userAnswersChapter1 = savedState.userAnswers || {}
       quizCompletedChapter1 = savedState.completed || false
@@ -221,7 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Clear saved state
-    clearQuizState()
+    clearQuizState("wellbeing")
 
     // Remove all visual feedback from options
     const quizOptions = form.querySelectorAll(".quiz-option")
@@ -244,9 +235,8 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("wellbeing-quiz-completed", "true")
   }
 
-  function clearQuizState() {
-    localStorage.removeItem("wellbeing-quiz-state")
-    localStorage.removeItem("wellbeing-quiz-completed")
+  function clearQuizState(quizId) {
+    localStorage.removeItem(`quiz_${quizId}`)
   }
 
   function announceToScreenReader(message) {
@@ -521,9 +511,81 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  // Function to initialize the wellbeing quiz
+  function initializeWellbeingQuiz() {
+    const wellbeingQuizForm = document.getElementById("wellbeing-quiz")
+    if (wellbeingQuizForm) {
+      const feedbackElement = document.getElementById("wellbeing-quiz-feedback")
+      const submitButton = wellbeingQuizForm.querySelector(".quiz-submit-btn")
+
+      wellbeingQuizForm.addEventListener("submit", (event) => {
+        event.preventDefault()
+
+        const form = event.target
+        const submitBtn = form.querySelector(".quiz-submit-btn")
+        const feedbackDiv = document.getElementById("wellbeing-quiz-feedback")
+
+        // Get all checkboxes
+        const checkboxes = form.querySelectorAll('input[type="checkbox"]')
+        const correctAnswers = ["a", "e"] // Correct answers
+
+        // Check answers and provide visual feedback
+        checkboxes.forEach((checkbox) => {
+          const option = checkbox.closest(".quiz-option")
+          const value = checkbox.value
+          const isChecked = checkbox.checked
+          const isCorrect = correctAnswers.includes(value)
+
+          // Remove previous feedback classes
+          option.classList.remove("correct-answer", "incorrect-answer", "missed-answer")
+
+          if (isChecked && isCorrect) {
+            // Correct answer selected
+            option.classList.add("correct-answer")
+            announceToScreenReader(`${FEEDBACK_MESSAGES.CORRECT_ANSWER}: ${checkbox.nextElementSibling.textContent}`)
+          } else if (isChecked && !isCorrect) {
+            // Incorrect answer selected
+            option.classList.add("incorrect-answer")
+            announceToScreenReader(`${FEEDBACK_MESSAGES.INCORRECT_ANSWER}: ${checkbox.nextElementSibling.textContent}`)
+          } else if (!isChecked && isCorrect) {
+            // Correct answer not selected
+            option.classList.add("missed-answer")
+          }
+        })
+
+        // Show feedback section
+        if (feedbackDiv) {
+          feedbackDiv.style.display = "block"
+          feedbackDiv.scrollIntoView({ behavior: "smooth", block: "nearest" })
+        }
+
+        // Update submit button
+        submitBtn.textContent = FEEDBACK_MESSAGES.SUBMITTED
+        submitBtn.disabled = true
+
+        // Add reset button
+        addResetButton(form)
+
+        // Save completion state
+        saveQuizCompletion()
+
+        // Announce completion to screen readers
+        announceToScreenReader("Quiz completed. Review your answers and feedback above.")
+      })
+
+      // Load and restore previous quiz state on page load
+      const savedState = loadQuizState("wellbeing")
+      if (savedState) {
+        userAnswersChapter1 = savedState.userAnswers || {}
+        quizCompletedChapter1 = savedState.completed || false
+        restoreQuizVisualState(savedState)
+      }
+    }
+  }
+
   // Export functions for use in other scripts
   window.QuizManager = {
-    initializeWellbeingQuiz: () => {}, // Placeholder for initializeWellbeingQuiz
+    initializeWellbeingQuiz,
     resetWellbeingQuiz,
     saveQuizProgress,
     loadQuizProgress,
