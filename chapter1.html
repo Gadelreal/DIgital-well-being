@@ -223,11 +223,13 @@
 .accordion-trigger:hover {
   background-color: #e9ecef;
   color: var(--primary-color-dark);
+  text-decoration: none; /* Eliminar subrayado en hover */
 }
 
 .accordion-trigger:focus {
   outline: var(--focus-outline-width) solid var(--focus-outline-color);
   outline-offset: 2px;
+  text-decoration: none; /* Eliminar subrayado en focus */
 }
 
 .accordion-trigger[aria-expanded="true"] {
@@ -237,6 +239,7 @@
 
 .accordion-trigger[aria-expanded="true"]:hover {
   background-color: var(--primary-color-dark);
+  text-decoration: none; /* Eliminar subrayado cuando está expandido */
 }
 
 .accordion-title {
@@ -250,15 +253,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: bold;
   transition: transform 0.3s ease;
   flex-shrink: 0;
   margin-left: 1rem;
-}
-
-.accordion-trigger[aria-expanded="true"] .accordion-icon {
-  transform: rotate(45deg);
+  font-family: monospace; /* Para asegurar que + y - tengan el mismo ancho */
 }
 
 .accordion-panel {
@@ -1496,9 +1496,13 @@ document.addEventListener('DOMContentLoaded', function() {
   const accordionTriggers = document.querySelectorAll('.accordion-trigger');
   
   accordionTriggers.forEach(trigger => {
+    // Inicializar el icono
+    const icon = trigger.querySelector('.accordion-icon');
+    icon.textContent = '+';
+    
     trigger.addEventListener('click', function() {
       const panel = document.getElementById(this.getAttribute('aria-controls'));
-      const icon = this.querySelector('.accordion-icon');
+      const currentIcon = this.querySelector('.accordion-icon');
       const isExpanded = this.getAttribute('aria-expanded') === 'true';
       
       // Close all other accordions
@@ -1516,11 +1520,11 @@ document.addEventListener('DOMContentLoaded', function() {
       if (isExpanded) {
         this.setAttribute('aria-expanded', 'false');
         panel.hidden = true;
-        icon.textContent = '+';
+        currentIcon.textContent = '+';
       } else {
         this.setAttribute('aria-expanded', 'true');
         panel.hidden = false;
-        icon.textContent = '−';
+        currentIcon.textContent = '−';
       }
     });
     
