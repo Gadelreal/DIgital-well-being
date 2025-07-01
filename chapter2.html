@@ -230,10 +230,10 @@
         
         <p><strong>You can download the editable template to complete your responses.</strong> This way, you can track your awareness and progress over time.</p>
         
-        <button class="download-template-button" onclick="downloadDigitalHabitsAuditTemplate()" aria-label="Download Digital Habits Audit template">
+        <a href="#" class="download-template-button" onclick="downloadDigitalHabitsAuditTemplate()" aria-label="Download editable template for digital habits audit activity">
           <i class="fas fa-download" aria-hidden="true"></i>
           <strong>Download the editable template here</strong>
-        </button>
+        </a>
         
         <div id="download-feedback-habits-audit" class="download-feedback" style="display: none;">
           <i class="fas fa-check-circle" aria-hidden="true"></i>
@@ -327,10 +327,10 @@
         
         <p><strong>You can download the editable template to complete your responses.</strong> This way, you can track your insights and progress.</p>
         
-        <button class="download-template-button" onclick="downloadDigitalTriggersTemplate()" aria-label="Download Digital Triggers template">
+        <a href="#" class="download-template-button" onclick="downloadDigitalTriggersTemplate()" aria-label="Download editable template for digital triggers activity">
           <i class="fas fa-download" aria-hidden="true"></i>
           <strong>Download the editable template here</strong>
-        </button>
+        </a>
         
         <div id="download-feedback-triggers" class="download-feedback" style="display: none;">
           <i class="fas fa-check-circle" aria-hidden="true"></i>
@@ -644,11 +644,15 @@ Center for Health and Well-Being`;
   document.body.removeChild(a);
   window.URL.revokeObjectURL(url);
   
-  // Show feedback
-  const feedback = document.getElementById('download-feedback-habits-audit');
-  feedback.style.display = 'block';
+  // Show feedback to user
+  const button = event.target.closest('.download-template-button');
+  const originalText = button.innerHTML;
+  button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> Template Downloaded!';
+  button.style.backgroundColor = '#28a745';
+  
   setTimeout(() => {
-    feedback.style.display = 'none';
+    button.innerHTML = originalText;
+    button.style.backgroundColor = '';
   }, 3000);
 }
 
@@ -771,11 +775,15 @@ Center for Health and Well-Being`;
   document.body.removeChild(a);
   window.URL.revokeObjectURL(url);
   
-  // Show feedback
-  const feedback = document.getElementById('download-feedback-triggers');
-  feedback.style.display = 'block';
+  // Show feedback to user
+  const button = event.target.closest('.download-template-button');
+  const originalText = button.innerHTML;
+  button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> Template Downloaded!';
+  button.style.backgroundColor = '#28a745';
+  
   setTimeout(() => {
-    feedback.style.display = 'none';
+    button.innerHTML = originalText;
+    button.style.backgroundColor = '';
   }, 3000);
 }
 
