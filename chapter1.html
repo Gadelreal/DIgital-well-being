@@ -179,6 +179,73 @@
     margin-bottom: 1.5rem; /* Maintain bottom margin on mobile */
   }
 }
+
+/* Estilos para los acordeones */
+.accordion-container {
+  margin-top: 20px;
+}
+
+.accordion-item {
+  border: 1px solid #e0e0e0;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.accordion-header {
+  margin: 0;
+}
+
+.accordion-trigger {
+  background-color: #f9f9f9;
+  color: #333;
+  cursor: pointer;
+  padding: 1rem;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: background-color 0.3s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.accordion-trigger:hover {
+  background-color: #f0f0f0;
+}
+
+.accordion-trigger[aria-expanded="true"] {
+  background-color: #e9ecef;
+}
+
+.accordion-icon {
+  width: 20px;
+  height: 20px;
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23333"%3E%3Cpath d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14l-6-6z"/%3E%3C/svg%3E');
+  background-size: cover;
+  transition: transform 0.3s ease;
+}
+
+.accordion-trigger[aria-expanded="true"] .accordion-icon {
+  transform: rotate(180deg);
+}
+
+.accordion-description {
+  padding: 0 1rem 1rem;
+  margin: 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.accordion-panel {
+  padding: 0;
+}
+
+.accordion-panel-inner {
+  padding: 1rem;
+  color: #555;
+}
 </style>
 </head>
 <body>
@@ -643,6 +710,165 @@
         <p>By recognizing and leveraging our personal strengths, we can set realistic digital goals, build resilience through challenges, and create habits that align with our authentic selves—while practicing self-kindness throughout the lifelong journey of change.</p>
         <p>Your personal strengths are powerful allies in your journey toward healthier digital habits. By building awareness of your unique strengths—like creativity, perspective, or prudence—you can approach your goals with greater confidence, resilience, and authenticity.</p>
         <p>Remember: meaningful change requires self-kindness, patience, and a willingness to learn and adjust over time.</p>
+      </div>
+    </section>
+    
+    <section class="lesson-section no-borders">
+      <h2>Character Strengths applied to Digital Well-being</h2>
+      <p>As we strive to build healthier digital habits, our character strengths can serve as powerful tools for reflection, action, and growth. By applying strengths such as curiosity, self-regulation, perseverance, and gratitude, we can navigate our digital lives with greater intention and purpose.</p>
+      
+      <p>This section explores how specific character strengths can support digital well-being across different dimensions of life—mind, body, and soul. Use these insights to identify which strengths resonate most with you and how you can apply them to create a more balanced and meaningful relationship with technology.</p>
+      
+      <div class="accordion-container">
+        <div class="accordion-item">
+          <h3 class="accordion-header">
+            <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-perspective">
+              Perspective
+              <span class="accordion-icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <p class="accordion-description">Reflect on how technology shapes your life holistically (mind, body, and soul).</p>
+          <div class="accordion-panel" id="accordion-panel-perspective" hidden>
+            <div class="accordion-panel-inner">
+              <p>Use Perspective to reflect on whether your digital habits align with your values.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3 class="accordion-header">
+            <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-judgment">
+              Judgment/Critical Thinking
+              <span class="accordion-icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <p class="accordion-description">Evaluate how digital habits impact your well-being.</p>
+          <div class="accordion-panel" id="accordion-panel-judgment" hidden>
+            <div class="accordion-panel-inner">
+              <p>Apply Judgment to recognize which digital behaviors support or hinder your well-being.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3 class="accordion-header">
+            <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-curiosity">
+              Curiosity
+              <span class="accordion-icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <p class="accordion-description">Explore new ways to engage with technology that align with your purpose.</p>
+          <div class="accordion-panel" id="accordion-panel-curiosity" hidden>
+            <div class="accordion-panel-inner">
+              <p>Tap into Curiosity to explore new mindful tech habits, such as using focus apps or scheduling device-free time.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3 class="accordion-header">
+            <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-self-regulation">
+              Self-Regulation
+              <span class="accordion-icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <p class="accordion-description">Create structure around digital use, such as setting screen-time limits.</p>
+          <div class="accordion-panel" id="accordion-panel-self-regulation" hidden>
+            <div class="accordion-panel-inner">
+              <p>Use Self-Regulation to set up a habit tracker for screen-time reduction.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3 class="accordion-header">
+            <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-prudence">
+              Prudence
+              <span class="accordion-icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <p class="accordion-description">Plan intentional technology use to enhance productivity rather than distraction.</p>
+          <div class="accordion-panel" id="accordion-panel-prudence" hidden>
+            <div class="accordion-panel-inner">
+              <p>Apply Prudence to intentionally design your digital environment (e.g., rearrange app icons to reduce distractions).</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3 class="accordion-header">
+            <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-perseverance">
+              Perseverance
+              <span class="accordion-icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <p class="accordion-description">Stick to habit changes like reducing social media time or improving sleep hygiene.</p>
+          <div class="accordion-panel" id="accordion-panel-perseverance" hidden>
+            <div class="accordion-panel-inner">
+              <p>Use Perseverance when implementing new habits like device-free mornings.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3 class="accordion-header">
+            <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-love-learning">
+              Love of Learning
+              <span class="accordion-icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <p class="accordion-description">Understand the neuroscience of attention and how digital behaviors impact cognition.</p>
+          <div class="accordion-panel" id="accordion-panel-love-learning" hidden>
+            <div class="accordion-panel-inner">
+              <p>Leverage Love of Learning to understand how digital habits shape cognitive function.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3 class="accordion-header">
+            <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-gratitude">
+              Gratitude
+              <span class="accordion-icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <p class="accordion-description">Acknowledge the benefits of digital tools while striving for balance.</p>
+          <div class="accordion-panel" id="accordion-panel-gratitude" hidden>
+            <div class="accordion-panel-inner">
+              <p>Use Gratitude to reflect on how technology enriches your life.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3 class="accordion-header">
+            <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-leadership">
+              Leadership
+              <span class="accordion-icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <p class="accordion-description">Share insights with others and promote mindful digital habits in your community.</p>
+          <div class="accordion-panel" id="accordion-panel-leadership" hidden>
+            <div class="accordion-panel-inner">
+              <p>Practice Leadership by mentoring others in digital well-being strategies.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3 class="accordion-header">
+            <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-bravery">
+              Bravery
+              <span class="accordion-icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <p class="accordion-description">Be open about challenges in managing digital use and seek solutions.</p>
+          <div class="accordion-panel" id="accordion-panel-bravery" hidden>
+            <div class="accordion-panel-inner">
+              <p>Use Bravery to openly discuss struggles and celebrate progress.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
     
@@ -1193,6 +1419,36 @@ Digital Well-Being Course - IE University
     button.style.backgroundColor = '';
   }, 3000);
 }
+
+// Accordion functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const accordionTriggers = document.querySelectorAll('.accordion-trigger');
+  
+  accordionTriggers.forEach(trigger => {
+    trigger.addEventListener('click', function() {
+      const panel = document.getElementById(this.getAttribute('aria-controls'));
+      const isExpanded = this.getAttribute('aria-expanded') === 'true';
+      
+      // Close all other accordions
+      accordionTriggers.forEach(otherTrigger => {
+        if (otherTrigger !== this) {
+          const otherPanel = document.getElementById(otherTrigger.getAttribute('aria-controls'));
+          otherTrigger.setAttribute('aria-expanded', 'false');
+          otherPanel.hidden = true;
+        }
+      });
+      
+      // Toggle current accordion
+      if (isExpanded) {
+        this.setAttribute('aria-expanded', 'false');
+        panel.hidden = true;
+      } else {
+        this.setAttribute('aria-expanded', 'true');
+        panel.hidden = false;
+      }
+    });
+  });
+});
 </script>
 </body>
 </html>
