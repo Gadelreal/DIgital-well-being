@@ -26,173 +26,167 @@ document.addEventListener("DOMContentLoaded", () => {
     RESET: "Reset Activity",
   }
 
-  // Configuración del quiz
+  // Configuración del quiz - respuestas correctas
   const correctAnswersDigitalWellbeing = ["a", "e"]
 
-  // Initialize quiz functionality
-  initializeWellbeingQuiz()
-
-  function initializeWellbeingQuiz() {
-    const form = document.getElementById("wellbeing-quiz")
-    if (!form) return
-
-    form.addEventListener("submit", (e) => {
-      e.preventDefault()
-      showWellbeingQuizFeedback()
+  // Handler for the Chapter 1 Well-being Quiz
+  const wellbeingQuizForm = document.getElementById("wellbeing-quiz")
+  if (wellbeingQuizForm) {
+    wellbeingQuizForm.addEventListener("submit", (event) => {
+      event.preventDefault()
+      showWellbeingQuizFeedback(wellbeingQuizForm, correctAnswersDigitalWellbeing)
     })
   }
 
-  function showWellbeingQuizFeedback() {
-    const form = document.getElementById("wellbeing-quiz")
-    const feedback = document.getElementById("wellbeing-quiz-feedback")
+  function showWellbeingQuizFeedback(form, correctAnswers) {
+    const checkboxes = form.querySelectorAll('input[type="checkbox"]')
+    const feedbackDiv = document.getElementById("wellbeing-quiz-feedback")
     const submitBtn = form.querySelector(".quiz-submit-btn")
 
-    // Get all checkboxes
-    const checkboxes = form.querySelectorAll('input[type="checkbox"]')
-    const selectedValues = []
-
-    checkboxes.forEach((checkbox) => {
-      if (checkbox.checked) {
-        selectedValues.push(checkbox.value)
-      }
-    })
-
-    // Clear any existing feedback first
+    // Limpiar feedback anterior primero
     checkboxes.forEach((checkbox) => {
       const option = checkbox.closest(".quiz-option")
       const existingFeedback = option.querySelector(".option-feedback")
       if (existingFeedback) {
         existingFeedback.remove()
       }
-      // Remove existing classes
+      // Remover clases existentes
       option.classList.remove("correct-answer", "incorrect-answer", "missed-answer")
     })
 
-    // Show feedback for each option
+    // Mostrar feedback para cada opción
     checkboxes.forEach((checkbox) => {
       const option = checkbox.closest(".quiz-option")
       const value = checkbox.value
-      const isCorrect = correctAnswersDigitalWellbeing.includes(value)
-      const isSelected = checkbox.checked
+      const isChecked = checkbox.checked
+      const isCorrect = correctAnswers.includes(value)
 
-      // Create feedback span
+      // Crear nuevo span para el feedback
       const feedbackSpan = document.createElement("span")
       feedbackSpan.className = "option-feedback"
 
-      if (isSelected && isCorrect) {
-        // Selected and correct
+      if (isChecked && isCorrect) {
+        // Seleccionada y correcta
         option.classList.add("correct-answer")
         feedbackSpan.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> (Correct)'
-      } else if (isSelected && !isCorrect) {
-        // Selected but incorrect
+        option.appendChild(feedbackSpan)
+      } else if (isChecked && !isCorrect) {
+        // Seleccionada pero incorrecta
         option.classList.add("incorrect-answer")
         feedbackSpan.innerHTML = '<i class="fas fa-times" aria-hidden="true"></i> (Incorrect)'
-      } else if (!isSelected && isCorrect) {
-        // Not selected but correct
+        option.appendChild(feedbackSpan)
+      } else if (!isChecked && isCorrect) {
+        // No seleccionada pero correcta
         option.classList.add("missed-answer")
-        feedbackSpan.innerHTML = '<i class="fas fa-exclamation-triangle" aria-hidden="true"></i> (Correct)'
-      }
-
-      // Add feedback span to option if there's feedback to show
-      if (feedbackSpan.innerHTML) {
+        feedbackSpan.innerHTML = '<i class="fas fa-info-circle" aria-hidden="true"></i> (Correct)'
         option.appendChild(feedbackSpan)
       }
     })
 
-    // Disable form elements
+    // Deshabilitar checkboxes
     checkboxes.forEach((checkbox) => {
       checkbox.disabled = true
     })
-    submitBtn.disabled = true
 
-    // Show main feedback
-    feedback.style.display = "block"
-
-    // Add reset button
-    addResetButton()
-
-    // Scroll to feedback
-    feedback.scrollIntoView({ behavior: "smooth", block: "nearest" })
-  }
-
-  function addResetButton() {
-    const form = document.getElementById("wellbeing-quiz")
-    const submitBtn = form.querySelector(".quiz-submit-btn")
-
-    // Check if reset button already exists
-    if (form.querySelector(".quiz-reset-btn")) {
-      return
+    // Mostrar feedback principal
+    if (feedbackDiv) {
+      feedbackDiv.style.display = "block"
+      feedbackDiv.scrollIntoView({ behavior: "smooth", block: "nearest" })
     }
 
+    // Cambiar botón submit
+    if (submitBtn) {
+      submitBtn.disabled = true
+      submitBtn.textContent = FEEDBACK_MESSAGES.SUBMITTED
+    }
+
+    // Añadir botón reset
+    addResetButton(form)
+  }
+
+  function addResetButton(form) {
+    // Verificar si ya existe el botón reset
+    if (form.querySelector(".quiz-reset-btn")) return
+
+    const submitBtn = form.querySelector(".quiz-submit-btn")
     const resetBtn = document.createElement("button")
     resetBtn.type = "button"
     resetBtn.className = "quiz-reset-btn"
-    resetBtn.innerHTML = '<i class="fas fa-redo" aria-hidden="true"></i> Reset Activity'
+    resetBtn.innerHTML = '<i class="fas fa-redo" aria-hidden="true"></i> ' + FEEDBACK_MESSAGES.RESET
 
-    // Style the reset button
+    // Estilar el botón reset
     resetBtn.style.cssText = `
-        background-color: #6c757d;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        padding: 0.75rem 1.5rem;
-        font-size: 1rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: background-color 0.3s, opacity 0.3s;
-        margin-left: 1rem;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
+      background-color: #6c757d;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s, opacity 0.3s;
+      margin-left: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
     `
 
-    resetBtn.addEventListener("click", resetWellbeingQuiz)
+    resetBtn.addEventListener("click", () => {
+      resetWellbeingQuiz(form)
+    })
+
     resetBtn.addEventListener("mouseover", function () {
       this.style.backgroundColor = "#5a6268"
     })
+
     resetBtn.addEventListener("mouseout", function () {
       this.style.backgroundColor = "#6c757d"
     })
 
-    // Insert after submit button
-    submitBtn.parentNode.insertBefore(resetBtn, submitBtn.nextSibling)
+    // Insertar después del botón submit
+    if (submitBtn && submitBtn.parentNode) {
+      submitBtn.parentNode.insertBefore(resetBtn, submitBtn.nextSibling)
+    }
   }
 
-  function resetWellbeingQuiz() {
-    const form = document.getElementById("wellbeing-quiz")
-    const feedback = document.getElementById("wellbeing-quiz-feedback")
+  function resetWellbeingQuiz(form) {
+    const checkboxes = form.querySelectorAll('input[type="checkbox"]')
+    const feedbackDiv = document.getElementById("wellbeing-quiz-feedback")
     const submitBtn = form.querySelector(".quiz-submit-btn")
     const resetBtn = form.querySelector(".quiz-reset-btn")
 
-    // Reset form
-    form.reset()
-
-    // Re-enable form elements
-    const checkboxes = form.querySelectorAll('input[type="checkbox"]')
+    // Resetear formulario
     checkboxes.forEach((checkbox) => {
+      checkbox.checked = false
       checkbox.disabled = false
-    })
-    submitBtn.disabled = false
 
-    // Remove visual feedback from options
-    checkboxes.forEach((checkbox) => {
       const option = checkbox.closest(".quiz-option")
+      option.classList.remove("correct-answer", "incorrect-answer", "missed-answer")
+
+      // Eliminar feedback visual
       const existingFeedback = option.querySelector(".option-feedback")
       if (existingFeedback) {
         existingFeedback.remove()
       }
-      option.classList.remove("correct-answer", "incorrect-answer", "missed-answer")
     })
 
-    // Hide main feedback
-    feedback.style.display = "none"
+    // Ocultar feedback principal
+    if (feedbackDiv) {
+      feedbackDiv.style.display = "none"
+    }
 
-    // Remove reset button
+    // Restaurar botón submit
+    if (submitBtn) {
+      submitBtn.disabled = false
+      submitBtn.textContent = "Submit"
+    }
+
+    // Remover botón reset
     if (resetBtn) {
       resetBtn.remove()
     }
 
-    // Scroll back to form
+    // Scroll de vuelta al formulario
     form.scrollIntoView({ behavior: "smooth", block: "nearest" })
   }
 
@@ -292,4 +286,3 @@ document.addEventListener("DOMContentLoaded", () => {
     questionElement.appendChild(feedbackElement)
   }
 })
-</merged_code>
