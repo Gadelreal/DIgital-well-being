@@ -63,7 +63,7 @@
 <div class="header-content">
   <div class="header-left">
     <div class="logo-container tiny-logo">
-      <a href="https://www.ie.edu" target="_blank">
+      <a href="https://www.ie.edu" target="_blank" aria-label="IE University website">
         <img src="assets/images/logo-ie.svg" alt="IE University Logo" class="logo" width="120">
       </a>
     </div>
@@ -80,19 +80,20 @@
     </button>
   </div>
 </div>
-<nav class="main-nav hamburger-nav" id="main-nav">
+<nav class="main-nav hamburger-nav" id="main-nav" aria-label="Main navigation">
 <ul>
   <li><a href="index.html">Home</a></li>
   <li><a href="introduction.html">0. Introduction</a></li>
   <li><a href="chapter1.html">1. Well-Being as a Key</a></li>
-  <li><a href="chapter2.html" class="active">2. Digital Habits</a></li>
+  <li><a href="chapter2.html" class="active" aria-current="page">2. Cultivating Awareness</a></li>
   <li><a href="chapter3.html">3. Autonomy and Motivation</a></li>
   <li><a href="chapter4.html">4. Building Resilience</a></li>
   <li><a href="chapter5.html">5. Ownership and Practice</a></li>
   <li><a href="#" id="glossary-menu-link"><i class="fas fa-book" style="color: #000066; margin-right: 0.5rem;" aria-hidden="true"></i>Glossary</a></li>
   <li class="language-selector-menu">
 <span class="menu-separator"></span>
-<a href="chapter2.html" class="active">English</a> | <a href="capitulo2.html">Español</a>
+<span id="language-label" class="sr-only">Select language:</span>
+<a href="chapter2.html" class="active" aria-current="page" aria-labelledby="language-label">English</a> | <a href="capitulo2.html" aria-labelledby="language-label">Español</a>
 </li>
 </ul>
 </nav>
@@ -101,65 +102,62 @@
 <section class="hero-section">
 <div class="hero-content">
   <div class="hero-title-container">
-    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Icon%20HF_2-KTyAlcLeagSNgUhXUTAMc1LUZmhNge.png" alt="Human Flourishing Icon" class="hero-icon">
-    <h1 class="hero-title"><strong>LESSON 2: Digital Habits</strong></h1>
+    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Icon%20HF_2-KTyAlcLeagSNgUhXUTAMc1LUZmhNge.png" alt="Digital Well-Being Icon" class="hero-icon">
+    <h1 class="hero-title"><strong>LESSON 2: Cultivating Awareness</strong></h1>
   </div>
 </div>
 </section>
 
-<main id="main-content">
+<main id="main-content" tabindex="-1">
   <div class="content-aligned-container">
-    <h1><strong>LESSON 2: Digital Habits</strong></h1>
     
-    <!-- 1. Learning Objectives -->
     <section class="lesson-section no-borders">
-      <h2><strong>Lesson 2 Learning Objectives</strong></h2>
-      <p>After this lesson, participants will be able to:</p>
-      
-      <div class="learning-objectives-grid-2x2">
-        <div class="learning-objective-card">
-          <div class="objective-icon" aria-hidden="true">
-            <i class="fas fa-sync-alt"></i>
-          </div>
-          <div class="objective-content">
-            <h4>Habit Loop Understanding</h4>
-            <p>Explain the habit loop and the process of habit formation</p>
-          </div>
-        </div>
-        
-        <div class="learning-objective-card">
-          <div class="objective-icon" aria-hidden="true">
-            <i class="fas fa-heart-pulse"></i>
-          </div>
-          <div class="objective-content">
-            <h4>Digital Impact Assessment</h4>
-            <p>Identify the impact of digital habits on overall well-being</p>
-          </div>
-        </div>
-        
-        <div class="learning-objective-card">
-          <div class="objective-icon" aria-hidden="true">
-            <i class="fas fa-balance-scale"></i>
-          </div>
-          <div class="objective-content">
-            <h4>Science-Based Principles</h4>
-            <p>Apply principles from habit science to promote balance and digital well-being</p>
-          </div>
-        </div>
-        
-        <div class="learning-objective-card">
-          <div class="objective-icon" aria-hidden="true">
-            <i class="fas fa-compass"></i>
-          </div>
-          <div class="objective-content">
-            <h4>Values-Behavior Connection</h4>
-            <p>Understand how behaviors reflect personal values and influence daily experiences</p>
-          </div>
-        </div>
-      </div>
-    </section>
+<h2><strong>Lesson 2 Learning Objectives</strong></h2>
+<p>After this lesson, participants will be able to:</p>
+
+<div class="learning-objectives-grid-2x2">
+  <div class="learning-objective-card">
+    <div class="objective-icon" aria-hidden="true">
+      <i class="fas fa-sync-alt"></i>
+    </div>
+    <div class="objective-content">
+      <h4>Habit Loop Understanding</h4>
+      <p>Explain the habit loop and the process of habit formation</p>
+    </div>
+  </div>
+  
+  <div class="learning-objective-card">
+    <div class="objective-icon" aria-hidden="true">
+      <i class="fas fa-heart-pulse"></i>
+    </div>
+    <div class="objective-content">
+      <h4>Digital Impact Assessment</h4>
+      <p>Identify the impact of digital habits on overall well-being</p>
+    </div>
+  </div>
+  
+  <div class="learning-objective-card">
+    <div class="objective-icon" aria-hidden="true">
+      <i class="fas fa-balance-scale"></i>
+    </div>
+    <div class="objective-content">
+      <h4>Science-Based Principles</h4>
+      <p>Apply principles from habit science to promote balance and digital well-being</p>
+    </div>
+  </div>
+  
+  <div class="learning-objective-card">
+    <div class="objective-icon" aria-hidden="true">
+      <i class="fas fa-compass"></i>
+    </div>
+    <div class="objective-content">
+      <h4>Values-Behavior Connection</h4>
+      <p>Understand how behaviors reflect personal values and influence daily experiences</p>
+    </div>
+  </div>
+</div>
+</section>
     
-    <!-- 2. Breaking the Loop -->
     <section class="lesson-section no-borders">
       <h2><strong>Breaking the Loop</strong></h2>
       
@@ -169,20 +167,21 @@
           class="video-js vjs-ie-skin vjs-big-play-centered" 
           controls 
           preload="auto" 
+          poster="assets/images/human-flourishing-poster.jpg"
           data-video-id="w02v00"
           data-logo="assets/images/logo-ie-small.png"
-          poster="assets/images/human-flourishing-poster.jpg"
+          aria-label="Breaking the Loop video"
         >
           <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w02v00-breaking-the-loop/mp4/w02v00-breaking-the-loop_1080p.mp4" type="video/mp4">
           <p class="vjs-no-js">
             To view this video please enable JavaScript, and consider upgrading to a
             web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
           </p>
+          <track kind="captions" src="captions/breaking-the-loop.vtt" srclang="en" label="English" default>
         </video>
       </div>
     </section>
     
-    <!-- 3. Digital Habits -->
     <section class="lesson-section no-borders">
       <h2><strong>Digital Habits</strong></h2>
       
@@ -192,19 +191,21 @@
           class="video-js vjs-ie-skin vjs-big-play-centered" 
           controls 
           preload="auto" 
+          poster="assets/images/human-flourishing-poster.jpg"
           data-video-id="w02v01"
           data-logo="assets/images/logo-ie-small.png"
-          poster="assets/images/human-flourishing-poster.jpg"
+          aria-label="Digital Habits video"
         >
           <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w02v01-digital-habits/mp4/w02v01-digital-habits_1080p.mp4" type="video/mp4">
           <p class="vjs-no-js">
             To view this video please enable JavaScript, and consider upgrading to a
             web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
           </p>
+          <track kind="captions" src="captions/digital-habits.vtt" srclang="en" label="English" default>
         </video>
       </div>
       
-      <div class="key-point">
+      <div class="key-point" role="note" aria-label="Key point about digital habits">
         <h3><strong>Key Point</strong></h3>
         <p>Understanding the habit loop—<strong>cue, action, and reward</strong>—allows us to recognize the subconscious patterns driving our digital behaviors and gives us the tools to make small, intentional changes that improve our emotional, mental, and physical well-being.</p>
         
@@ -218,8 +219,7 @@
         </ul>
       </div>
     </section>
-    
-    <!-- 4. Activity: Digital Habits Audit -->
+
     <section class="lesson-section no-borders">
       <div class="values-activity-container">
         <h2><strong>Activity: Digital Habits Audit</strong></h2>
@@ -235,8 +235,7 @@
         </a>
       </div>
     </section>
-    
-    <!-- 5. Behavioural Science Applied to Well-being -->
+
     <section class="lesson-section no-borders">
       <h2><strong>Behavioural Science Applied to Well-being</strong></h2>
       
@@ -246,19 +245,21 @@
           class="video-js vjs-ie-skin vjs-big-play-centered" 
           controls 
           preload="auto" 
+          poster="assets/images/human-flourishing-poster.jpg"
           data-video-id="w02v02"
           data-logo="assets/images/logo-ie-small.png"
-          poster="assets/images/human-flourishing-poster.jpg"
+          aria-label="Behavioural Science Applied to Well-being video"
         >
           <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w02v02-behavioural-science-applied-to-well-being/mp4/w02v02-behavioural-science-applied-to-well-being_1080p.mp4" type="video/mp4">
           <p class="vjs-no-js">
             To view this video please enable JavaScript, and consider upgrading to a
             web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
           </p>
+          <track kind="captions" src="captions/behavioural-science.vtt" srclang="en" label="English" default>
         </video>
       </div>
       
-      <div class="key-point">
+      <div class="key-point" role="note" aria-label="Key point about behavioural science">
         <h3><strong>Key Point</strong></h3>
         <p>Effective behavior change happens when you <strong>clearly define the specific habit you want to change</strong>, identify its triggers and rewards, and replace the old behavior with a more productive one—supported by positive reinforcement.</p>
         
@@ -272,8 +273,7 @@
         <p>By replacing an unproductive behavior with a better alternative and rewarding your progress, you set yourself up for lasting change.</p>
       </div>
     </section>
-    
-    <!-- 6. Understanding Your Environment and Identifying Digital Triggers -->
+
     <section class="lesson-section no-borders">
       <h2><strong>Understanding Your Environment and Identifying Digital Triggers</strong></h2>
       
@@ -283,19 +283,21 @@
           class="video-js vjs-ie-skin vjs-big-play-centered" 
           controls 
           preload="auto" 
+          poster="assets/images/human-flourishing-poster.jpg"
           data-video-id="w02v03"
           data-logo="assets/images/logo-ie-small.png"
-          poster="assets/images/human-flourishing-poster.jpg"
+          aria-label="Understanding Your Environment and Identifying Digital Triggers video"
         >
           <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w02v03-understanding-your-environment/mp4/w02v03-understanding-your-environment_1080p.mp4" type="video/mp4">
           <p class="vjs-no-js">
             To view this video please enable JavaScript, and consider upgrading to a
             web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
           </p>
+          <track kind="captions" src="captions/understanding-environment.vtt" srclang="en" label="English" default>
         </video>
       </div>
       
-      <div class="key-point">
+      <div class="key-point" role="note" aria-label="Key point about environment and triggers">
         <h3><strong>Key Point</strong></h3>
         <p>By becoming aware of how our environment, social settings, and energy levels trigger digital habits throughout the day, we can proactively design healthier practices that protect our focus, emotional balance, and overall well-being.</p>
         
@@ -309,8 +311,7 @@
         </ul>
       </div>
     </section>
-    
-    <!-- 7. Activity: Understanding Your Environment and Identifying Your Digital Triggers -->
+
     <section class="lesson-section no-borders">
       <div class="values-activity-container">
         <h2><strong>Activity: Understanding Your Environment and Identifying Your Digital Triggers</strong></h2>
@@ -326,8 +327,7 @@
         </a>
       </div>
     </section>
-    
-    <!-- 8. Evidence-based Practices to Build Healthy Digital Habits -->
+
     <section class="lesson-section no-borders">
       <h2><strong>Evidence-based Practices to Build Healthy Digital Habits</strong></h2>
       
@@ -337,19 +337,21 @@
           class="video-js vjs-ie-skin vjs-big-play-centered" 
           controls 
           preload="auto" 
+          poster="assets/images/human-flourishing-poster.jpg"
           data-video-id="w02v04"
           data-logo="assets/images/logo-ie-small.png"
-          poster="assets/images/human-flourishing-poster.jpg"
+          aria-label="Evidence-based Practices to Build Healthy Digital Habits video"
         >
           <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w02v04-evidence-based-practices/mp4/w02v04-evidence-based-practices_1080p.mp4" type="video/mp4">
           <p class="vjs-no-js">
             To view this video please enable JavaScript, and consider upgrading to a
             web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
           </p>
+          <track kind="captions" src="captions/evidence-based-practices.vtt" srclang="en" label="English" default>
         </video>
       </div>
       
-      <div class="key-point">
+      <div class="key-point" role="note" aria-label="Key point about evidence-based practices">
         <h3><strong>Key Point</strong></h3>
         <p>You can reclaim focus, reduce stress, and build a healthier relationship with technology by applying simple, science-backed strategies like <strong>managing notifications, creating tech-free zones, decluttering your apps, scheduling digital breaks, and keeping your phone out of sight</strong> when it matters most.</p>
         
@@ -368,9 +370,9 @@
       </div>
     </section>
     
-    <div class="navigation-buttons">
-      <a href="chapter1.html" class="nav-button prev"><span class="arrow-left">←</span>Previous</a>
-      <a href="chapter3.html" class="nav-button next">Next<span class="arrow-right">→</span></a>
+    <div class="navigation-buttons" role="navigation" aria-label="Lesson navigation">
+      <a href="chapter1.html" class="nav-button prev"><span class="arrow-left" aria-hidden="true">←</span>Previous</a>
+      <a href="chapter3.html" class="nav-button next">Next<span class="arrow-right" aria-hidden="true">→</span></a>
     </div>
   </div>
 </main>
@@ -496,7 +498,7 @@
             <strong>Notification Management</strong> – Strategies to reduce interruptions and increase focus, such as disabling non-essential alerts.
           </div>
         </div>
-        <div id="glossary-section-p" class="glossary-section">
+        <div id="glossary-section-p" class="glossary-letter-header">
           <h3 class="glossary-letter-header">P</h3>
           <div class="glossary-term">
             <strong>Prefrontal Cortex</strong> – The part of the brain responsible for decision-making and impulse control, which is affected by digital engagement.
@@ -551,230 +553,8 @@
 <script src="js/video-player.js"></script>
 <script src="js/key-points.js"></script>
 <script src="js/reflections.js"></script>
-<script src="js/metacognition.js"></script>
 <script src="js/main.js"></script>
 <script>
-// Download template functions
-function downloadDigitalHabitsAuditTemplate() {
-  const content = `DIGITAL HABITS AUDIT TEMPLATE
-
-Instructions: Use your phone's screen time data to answer these questions honestly. Reflect on your patterns and identify areas for improvement.
-
-SECTION 1: SCREEN TIME ANALYSIS
-1. What is your average daily screen time?
-   Answer: _______________
-
-2. What is your average daily pickup count?
-   Answer: _______________
-
-3. Which day of the week do you use your phone the most?
-   Answer: _______________
-
-4. What time of day do you use your phone the most?
-   Answer: _______________
-
-SECTION 2: APP USAGE RANKING
-List your top 10 most-used apps and the time spent on each:
-
-1. App: _________________ Time: _________________
-2. App: _________________ Time: _________________
-3. App: _________________ Time: _________________
-4. App: _________________ Time: _________________
-5. App: _________________ Time: _________________
-6. App: _________________ Time: _________________
-7. App: _________________ Time: _________________
-8. App: _________________ Time: _________________
-9. App: _________________ Time: _________________
-10. App: _________________ Time: _________________
-
-SECTION 3: REFLECTION QUESTIONS
-1. Which apps are supporting your well-being and goals?
-   ________________________________________________________________
-   ________________________________________________________________
-
-2. Which apps might be detracting from your well-being?
-   ________________________________________________________________
-   ________________________________________________________________
-
-3. What patterns do you notice in your usage?
-   ________________________________________________________________
-   ________________________________________________________________
-
-4. What surprises you about your digital habits?
-   ________________________________________________________________
-   ________________________________________________________________
-
-5. What would you like to change about your digital habits?
-   ________________________________________________________________
-   ________________________________________________________________
-
-SECTION 4: ACTION PLANNING
-Based on your audit, identify 3 specific changes you want to make:
-
-1. ________________________________________________________________
-2. ________________________________________________________________
-3. ________________________________________________________________
-
-Date completed: _______________
-Next review date: _______________
-
----
-Digital Well-Being Course - IE University
-Center for Health and Well-Being`;
-
-  const blob = new Blob([content], { type: 'text/plain' });
-  const url = window.URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'Digital_Habits_Audit_Template.txt';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  window.URL.revokeObjectURL(url);
-  
-  // Show feedback to user
-  const button = event.target.closest('.download-template-button');
-  const originalText = button.innerHTML;
-  button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> Template Downloaded!';
-  button.style.backgroundColor = '#28a745';
-  
-  setTimeout(() => {
-    button.innerHTML = originalText;
-    button.style.backgroundColor = '';
-  }, 3000);
-}
-
-function downloadDigitalTriggersTemplate() {
-  const content = `DIGITAL ENVIRONMENT & TRIGGERS AUDIT TEMPLATE
-
-Instructions: Take a comprehensive look at your digital environment across four key areas. Be honest in your assessment and note areas for improvement.
-
-SECTION 1: PHONE ENVIRONMENT AUDIT
-1. How many apps do you have on your home screen?
-   Answer: _______________
-
-2. Which apps are most easily accessible (first screen, dock)?
-   ________________________________________________________________
-
-3. Do you have notifications enabled for social media apps?
-   □ Yes □ No
-   If yes, which ones: _______________________________________________
-
-4. Where do you typically keep your phone during work/study time?
-   ________________________________________________________________
-
-5. Do you use your phone as an alarm clock?
-   □ Yes □ No
-
-SECTION 2: COMPUTER/WORKSPACE AUDIT
-1. How many browser tabs do you typically have open?
-   Answer: _______________
-
-2. What websites do you visit most frequently during work breaks?
-   ________________________________________________________________
-
-3. Do you have social media bookmarked or easily accessible?
-   □ Yes □ No
-
-4. How organized is your digital workspace (desktop, files)?
-   □ Very organized □ Somewhat organized □ Disorganized
-
-5. What distractions are present in your physical workspace?
-   ________________________________________________________________
-
-SECTION 3: SOCIAL MEDIA HABITS
-1. Which social media platforms do you use daily?
-   ________________________________________________________________
-
-2. What time of day do you typically check social media first?
-   Answer: _______________
-
-3. What emotions or situations trigger social media use?
-   ________________________________________________________________
-
-4. Do you follow accounts that make you feel negative emotions?
-   □ Yes □ No
-   If yes, describe: ____________________________________________
-
-SECTION 4: ENVIRONMENTAL TRIGGERS
-1. In which locations do you use your phone most?
-   ________________________________________________________________
-
-2. What emotions typically trigger device use? (boredom, stress, etc.)
-   ________________________________________________________________
-
-3. What times of day are you most likely to mindlessly scroll?
-   ________________________________________________________________
-
-4. Who or what situations influence your digital habits?
-   ________________________________________________________________
-
-SECTION 5: ENERGY & MOOD PATTERNS
-1. When do you feel most energized during the day?
-   ________________________________________________________________
-
-2. When do you typically experience energy dips?
-   ________________________________________________________________
-
-3. How does your device use change when you're tired or stressed?
-   ________________________________________________________________
-
-4. What activities help restore your energy without screens?
-   ________________________________________________________________
-
-SECTION 6: REFLECTION & ACTION PLANNING
-1. What patterns do you notice in your digital environment?
-   ________________________________________________________________
-   ________________________________________________________________
-
-2. Which environmental factors are supporting your well-being?
-   ________________________________________________________________
-   ________________________________________________________________
-
-3. Which factors are hindering your well-being or focus?
-   ________________________________________________________________
-   ________________________________________________________________
-
-4. What 5 specific changes will you make to your digital environment?
-   1. ____________________________________________________________
-   2. ____________________________________________________________
-   3. ____________________________________________________________
-   4. ____________________________________________________________
-   5. ____________________________________________________________
-
-5. What alternative activities will you use when you feel triggered to use devices mindlessly?
-   ________________________________________________________________
-   ________________________________________________________________
-
-Date completed: _______________
-Next review date: _______________
-
----
-Digital Well-Being Course - IE University
-Center for Health and Well-Being`;
-
-  const blob = new Blob([content], { type: 'text/plain' });
-  const url = window.URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'Digital_Environment_Triggers_Template.txt';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  window.URL.revokeObjectURL(url);
-  
-  // Show feedback to user
-  const button = event.target.closest('.download-template-button');
-  const originalText = button.innerHTML;
-  button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> Template Downloaded!';
-  button.style.backgroundColor = '#28a745';
-  
-  setTimeout(() => {
-    button.innerHTML = originalText;
-    button.style.backgroundColor = '';
-  }, 3000);
-}
-
 // Glossary Modal Functionality
 document.addEventListener('DOMContentLoaded', function() {
   const modal = document.getElementById('glossary-modal');
@@ -843,6 +623,251 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
+
+// Digital Habits Audit Template download functionality
+function downloadDigitalHabitsAuditTemplate() {
+  // Create a simple template content
+  const templateContent = `DIGITAL HABITS AUDIT TEMPLATE
+
+Instructions:
+Use your phone's screen time data to answer these questions honestly. Reflect on your patterns and identify areas for improvement.
+
+SECTION 1: SCREEN TIME ANALYSIS
+1. What is your average daily screen time?
+_________________________________________________
+
+2. What is your average daily pickup count?
+_________________________________________________
+
+3. Which day of the week do you use your phone the most?
+_________________________________________________
+
+4. What time of day do you use your phone the most?
+_________________________________________________
+
+SECTION 2: APP USAGE RANKING
+List your top 10 most-used apps and the time spent on each:
+
+1. App: _________________ Time: _________________
+2. App: _________________ Time: _________________
+3. App: _________________ Time: _________________
+4. App: _________________ Time: _________________
+5. App: _________________ Time: _________________
+6. App: _________________ Time: _________________
+7. App: _________________ Time: _________________
+8. App: _________________ Time: _________________
+9. App: _________________ Time: _________________
+10. App: _________________ Time: _________________
+
+SECTION 3: REFLECTION QUESTIONS
+1. Which apps are supporting your well-being and goals?
+_________________________________________________
+_________________________________________________
+_________________________________________________
+
+2. Which apps might be detracting from your well-being?
+_________________________________________________
+_________________________________________________
+_________________________________________________
+
+3. What patterns do you notice in your usage?
+_________________________________________________
+_________________________________________________
+_________________________________________________
+
+4. What surprises you about your digital habits?
+_________________________________________________
+_________________________________________________
+_________________________________________________
+
+5. What would you like to change about your digital habits?
+_________________________________________________
+_________________________________________________
+_________________________________________________
+
+SECTION 4: ACTION PLANNING
+Based on your audit, identify 3 specific changes you want to make:
+
+1. _________________________________________________
+2. _________________________________________________
+3. _________________________________________________
+
+Date completed: _______________
+Next review date: _______________
+
+---
+Digital Well-Being Course - IE University
+© ${new Date().getFullYear()} IE University. All rights reserved.`;
+
+  // Create and download the file
+  const blob = new Blob([templateContent], { type: 'text/plain' });
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'Digital_Habits_Audit_Template.txt';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  window.URL.revokeObjectURL(url);
+  
+  // Show feedback to user
+  const button = event.target.closest('.download-template-button');
+  const originalText = button.innerHTML;
+  button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> Template Downloaded!';
+  button.style.backgroundColor = '#28a745';
+  
+  setTimeout(() => {
+    button.innerHTML = originalText;
+    button.style.backgroundColor = '';
+  }, 3000);
+}
+
+// Digital Triggers Template download functionality
+function downloadDigitalTriggersTemplate() {
+  // Create digital triggers template content
+  const templateContent = `DIGITAL ENVIRONMENT & TRIGGERS AUDIT TEMPLATE
+
+Instructions:
+Take a comprehensive look at your digital environment across four key areas. Be honest in your assessment and note areas for improvement.
+
+SECTION 1: PHONE ENVIRONMENT AUDIT
+1. How many apps do you have on your home screen?
+_________________________________________________
+
+2. Which apps are most easily accessible (first screen, dock)?
+_________________________________________________
+_________________________________________________
+
+3. Do you have notifications enabled for social media apps?
+□ Yes □ No
+If yes, which ones: ___________________________
+
+4. Where do you typically keep your phone during work/study time?
+_________________________________________________
+
+5. Do you use your phone as an alarm clock?
+□ Yes □ No
+
+SECTION 2: COMPUTER/WORKSPACE AUDIT
+1. How many browser tabs do you typically have open?
+_________________________________________________
+
+2. What websites do you visit most frequently during work breaks?
+_________________________________________________
+_________________________________________________
+
+3. Do you have social media bookmarked or easily accessible?
+□ Yes □ No
+
+4. How organized is your digital workspace (desktop, files)?
+□ Very organized □ Somewhat organized □ Disorganized
+
+5. What distractions are present in your physical workspace?
+_________________________________________________
+_________________________________________________
+
+SECTION 3: SOCIAL MEDIA HABITS
+1. Which social media platforms do you use daily?
+_________________________________________________
+
+2. What time of day do you typically check social media first?
+_________________________________________________
+
+3. What emotions or situations trigger social media use?
+_________________________________________________
+_________________________________________________
+
+4. Do you follow accounts that make you feel negative emotions?
+□ Yes □ No
+If yes, describe: ____________________________
+
+SECTION 4: ENVIRONMENTAL TRIGGERS
+1. In which locations do you use your phone most?
+_________________________________________________
+
+2. What emotions typically trigger device use? (boredom, stress, etc.)
+_________________________________________________
+_________________________________________________
+
+3. What times of day are you most likely to mindlessly scroll?
+_________________________________________________
+
+4. Who or what situations influence your digital habits?
+_________________________________________________
+_________________________________________________
+
+SECTION 5: ENERGY & MOOD PATTERNS
+1. When do you feel most energized during the day?
+_________________________________________________
+
+2. When do you typically experience energy dips?
+_________________________________________________
+
+3. How does your device use change when you're tired or stressed?
+_________________________________________________
+_________________________________________________
+
+4. What activities help restore your energy without screens?
+_________________________________________________
+_________________________________________________
+
+SECTION 6: REFLECTION & ACTION PLANNING
+1. What patterns do you notice in your digital environment?
+_________________________________________________
+_________________________________________________
+_________________________________________________
+
+2. Which environmental factors are supporting your well-being?
+_________________________________________________
+_________________________________________________
+_________________________________________________
+
+3. Which factors are hindering your well-being or focus?
+_________________________________________________
+_________________________________________________
+_________________________________________________
+
+4. What 5 specific changes will you make to your digital environment?
+1. ____________________________________________
+2. ____________________________________________
+3. ____________________________________________
+4. ____________________________________________
+5. ____________________________________________
+
+5. What alternative activities will you use when you feel triggered to use devices mindlessly?
+_________________________________________________
+_________________________________________________
+_________________________________________________
+
+Date completed: _______________
+Next review date: _______________
+
+---
+Digital Well-Being Course - IE University
+© ${new Date().getFullYear()} IE University. All rights reserved.`;
+
+  // Create and download the file
+  const blob = new Blob([templateContent], { type: 'text/plain' });
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'Digital_Environment_Triggers_Template.txt';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  window.URL.revokeObjectURL(url);
+  
+  // Show feedback to user
+  const button = event.target.closest('.download-template-button');
+  const originalText = button.innerHTML;
+  button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> Template Downloaded!';
+  button.style.backgroundColor = '#28a745';
+  
+  setTimeout(() => {
+    button.innerHTML = originalText;
+    button.style.backgroundColor = '';
+  }, 3000);
+}
 </script>
 </body>
 </html>
