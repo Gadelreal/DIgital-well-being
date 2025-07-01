@@ -4232,4 +4232,99 @@ html:focus,
 .quiz-activity-container .quiz-option.missed-answer:hover {
   background-color: inherit !important;
 }
-\`\`\`
+
+/* === Accordion Styles === */
+.accordion-container {
+  margin: 2rem 0;
+}
+
+.accordion-item {
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  padding: 1.5rem;
+}
+
+.accordion-item + .accordion-item {
+    border-top: none;
+}
+
+.accordion-item:first-child {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.accordion-item:last-child {
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.accordion-header {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.accordion-trigger {
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  color: var(--primary-color);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.accordion-trigger:hover, .accordion-trigger:focus {
+  color: var(--primary-color-dark);
+  text-decoration: underline;
+}
+
+.accordion-icon {
+  transition: transform 0.3s ease;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  margin-left: 1rem;
+}
+
+.accordion-icon::before {
+  content: '+';
+}
+
+.accordion-trigger[aria-expanded="true"] .accordion-icon::before {
+  content: '−';
+}
+
+.accordion-description {
+  margin-top: 0.75rem;
+  margin-bottom: 0;
+  color: #333;
+  line-height: 1.6;
+}
+
+.accordion-panel {
+  margin-top: 1rem;
+  overflow: hidden;
+}
+
+.accordion-panel[hidden] {
+    display: none;
+}
+
+.accordion-panel-inner {
+    padding: 1rem;
+    background-color: #f0f8ff; /* A light blue, consistent with other feedback areas */
+    border-left: 4px solid var(--primary-color);
+    border-radius: 4px;
+}
+
+.accordion-panel-inner p {
+    margin-bottom: 0 !important;
+}
