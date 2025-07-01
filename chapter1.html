@@ -79,6 +79,65 @@
 .missed-answer .option-feedback {
   color: #856404;
 }
+
+/* Estilos para la actividad de valores */
+.values-activity-container {
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  padding: 2rem;
+  margin: 2rem 0;
+}
+
+.values-activity-container h2 {
+  margin-top: 0 !important;
+  margin-bottom: 1rem !important;
+}
+
+.values-activity-container p {
+  margin-bottom: 1.5rem;
+  line-height: 1.7;
+}
+
+.download-template-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--primary-color);
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  border: none;
+  cursor: pointer;
+}
+
+.download-template-button:hover {
+  background-color: var(--primary-color-dark);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  text-decoration: none;
+}
+
+.download-template-button i {
+  margin-right: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .values-activity-container {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+
+  .download-template-button {
+    width: 100%;
+    justify-content: center;
+    margin-top: 1.5rem;
+  }
+}
 </style>
 </head>
 <body>
@@ -478,6 +537,24 @@
         </a>
       </div>
     </section>
+
+    <section class="lesson-section no-borders">
+      <div class="values-activity-container">
+        <h2>Activity: Identifying Your Core Values</h2>
+        <p>In a fast-paced digital world, it's easy to lose sight of what really matters to us. Our values—what we believe in and stand for—can serve as a compass to guide our decisions, our goals, and even our digital behavior.</p>
+        
+        <p>This activity invites you to pause and reflect on your personal values by answering the questions below. Take your time to write down your thoughts.</p>
+        
+        <p>You can download the editable template to complete your responses. This way, you'll have a personal record you can revisit throughout your learning journey — and beyond.</p>
+        
+        <p>Once you've answered the questions, review Brené Brown's list of values. Highlight the 10 that resonate most with you and narrow them down to your top 5. Reflect on why these values matter to you and how your digital habits can support them. This will help you track your growth and reflect on how your values align with your digital well-being.</p>
+        
+        <a href="#" class="download-template-button" onclick="downloadTemplate()" aria-label="Download editable template for core values activity">
+          <i class="fas fa-download" aria-hidden="true"></i>
+          Download the editable template here
+        </a>
+      </div>
+    </section>
     
     <div class="navigation-buttons" role="navigation" aria-label="Lesson navigation">
       <a href="introduction.html" class="nav-button prev"><span class="arrow-left" aria-hidden="true">←</span>Previous</a>
@@ -733,6 +810,131 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
+
+// Template download functionality
+function downloadTemplate() {
+  // Create a simple template content
+  const templateContent = `IDENTIFYING YOUR CORE VALUES - TEMPLATE
+
+Instructions:
+In a fast-paced digital world, it's easy to lose sight of what really matters to us. Our values—what we believe in and stand for—can serve as a compass to guide our decisions, our goals, and even our digital behavior.
+
+This activity invites you to pause and reflect on your personal values by answering the questions below. Take your time to write down your thoughts.
+
+REFLECTION QUESTIONS:
+
+1. What matters most to you in life?
+_________________________________________________
+_________________________________________________
+_________________________________________________
+
+2. When you think about your best self, what values do you embody?
+_________________________________________________
+_________________________________________________
+_________________________________________________
+
+3. What principles guide your decisions?
+_________________________________________________
+_________________________________________________
+_________________________________________________
+
+4. What would you want to be remembered for?
+_________________________________________________
+_________________________________________________
+_________________________________________________
+
+5. What values do you want your digital habits to reflect?
+_________________________________________________
+_________________________________________________
+_________________________________________________
+
+BRENÉ BROWN'S VALUES LIST:
+Review the list below and highlight the 10 that resonate most with you, then narrow them down to your top 5.
+
+□ Accountability    □ Achievement      □ Adventure        □ Authenticity
+□ Authority         □ Autonomy         □ Balance          □ Beauty
+□ Boldness          □ Compassion       □ Competency       □ Contribution
+□ Creativity        □ Curiosity        □ Determination    □ Fairness
+□ Faith             □ Fame             □ Family           □ Freedom
+□ Friendship        □ Fun              □ Growth           □ Happiness
+□ Health            □ Honesty          □ Hope             □ Humility
+□ Independence      □ Initiative       □ Integrity        □ Intelligence
+□ Intuition         □ Joy              □ Justice          □ Kindness
+□ Knowledge         □ Leadership       □ Learning         □ Legacy
+□ Leisure           □ Love             □ Loyalty          □ Meaningful Work
+□ Money             □ Nonconformity    □ Optimism         □ Order
+□ Parenting         □ Patience         □ Patriotism       □ Perfection
+□ Popularity        □ Power            □ Purpose          □ Recognition
+□ Religion          □ Reputation       □ Respect          □ Responsibility
+□ Security          □ Self-Respect     □ Service          □ Spirituality
+□ Stability         □ Success          □ Tradition        □ Travel
+□ Wealth            □ Wisdom
+
+MY TOP 5 CORE VALUES:
+
+1. _________________________________________________
+   Why this matters to me: _________________________
+   _________________________________________________
+
+2. _________________________________________________
+   Why this matters to me: _________________________
+   _________________________________________________
+
+3. _________________________________________________
+   Why this matters to me: _________________________
+   _________________________________________________
+
+4. _________________________________________________
+   Why this matters to me: _________________________
+   _________________________________________________
+
+5. _________________________________________________
+   Why this matters to me: _________________________
+   _________________________________________________
+
+REFLECTION ON DIGITAL HABITS:
+
+How can your digital habits support these core values?
+_________________________________________________
+_________________________________________________
+_________________________________________________
+
+What digital behaviors might be conflicting with your values?
+_________________________________________________
+_________________________________________________
+_________________________________________________
+
+What changes would you like to make to better align your digital habits with your values?
+_________________________________________________
+_________________________________________________
+_________________________________________________
+
+---
+Digital Well-Being Course - IE University
+© ${new Date().getFullYear()} IE University. All rights reserved.`;
+
+  // Create and download the file
+  const blob = new Blob([templateContent], { type: 'text/plain' });
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'Core_Values_Template.txt';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  window.URL.revokeObjectURL(url);
+  
+  // Show feedback to user
+  const button = document.querySelector('.download-template-button');
+  const originalText = button.innerHTML;
+  button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> Template Downloaded!';
+  button.style.backgroundColor = '#28a745';
+  
+  setTimeout(() => {
+    button.innerHTML = originalText;
+    button.style.backgroundColor = '';
+  }, 3000);
+}
 </script>
 </body>
 </html>

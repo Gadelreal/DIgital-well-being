@@ -16,148 +16,126 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   })
 
-  // Initialize the wellbeing quiz
-  initializeWellbeingQuiz()
+  // Initialize all quizzes on the page
+  initializeQuizzes()
 })
 
-function initializeWellbeingQuiz() {
-  const form = document.getElementById("wellbeing-quiz")
-  const feedbackDiv = document.getElementById("wellbeing-quiz-feedback")
+function initializeQuizzes() {
+  // Get all quiz forms
+  const quizForms = document.querySelectorAll('form[id$="-quiz"]')
 
-  if (!form || !feedbackDiv) {
-    console.error("Quiz elements not found")
+  quizForms.forEach((form) => {
+    form.addEventListener("submit", handleQuizSubmit)
+  })
+}
+
+function handleQuizSubmit(event) {
+  event.preventDefault()
+
+  const form = event.target
+  const formId = form.id
+  const feedbackId = formId + "-feedback"
+  const feedbackElement = document.getElementById(feedbackId)
+
+  if (!feedbackElement) {
+    console.error("Feedback element not found for quiz:", formId)
     return
   }
 
-  // Correct answers for the wellbeing quiz
-  const correctAnswers = ["a", "e"]
-
-  // Feedback messages
-  const FEEDBACK_MESSAGES = {
-    correct: {
-      a: "Correct! Digital well-being is indeed about daily practices and habits.",
-      e: "Correct! How we feel about our online time is a key aspect of digital well-being.",
-    },
-    incorrect: {
-      b: "Incorrect. Digital well-being isn't about completely avoiding social media.",
-      c: "Incorrect. Technology isn't the enemy - it's about how we use it.",
-      d: "Incorrect. Guilt isn't helpful - awareness and intention are.",
-      f: "Incorrect. Digital well-being is an ongoing practice, not a destination.",
-    },
-    missed: {
-      a: "You missed this one. Digital well-being is about cultivating daily practices.",
-      e: "You missed this one. Our feelings about online time are central to digital well-being.",
-    },
+  // Handle different quiz types
+  if (formId === "wellbeing-quiz") {
+    handleWellbeingQuiz(form, feedbackElement)
   }
+  // Add more quiz handlers here as needed
+}
 
-  form.addEventListener("submit", (e) => {
-    e.preventDefault()
+function handleWellbeingQuiz(form, feedbackElement) {
+  const correctAnswers = ["a", "e"] // Correct answers for the wellbeing quiz
+  const formData = new FormData(form)
+  const selectedAnswers = formData.getAll("q1")
 
-    // Get all checked values
-    const checkedInputs = form.querySelectorAll('input[type="checkbox"]:checked')
-    const selectedAnswers = Array.from(checkedInputs).map((input) => input.value)
-
-    // Clear any existing feedback classes and content
-    const options = form.querySelectorAll(".quiz-option")
-    options.forEach((option) => {
-      option.classList.remove("correct-answer", "incorrect-answer", "missed-answer")
-      const existingFeedback = option.querySelector(".option-feedback")
-      if (existingFeedback) {
-        existingFeedback.remove()
-      }
-    })
-
-    // Disable all inputs
-    const allInputs = form.querySelectorAll('input[type="checkbox"]')
-    allInputs.forEach((input) => {
-      input.disabled = true
-    })
-
-    // Disable submit button
-    const submitBtn = form.querySelector(".quiz-submit-btn")
-    if (submitBtn) {
-      submitBtn.disabled = true
-    }
-
-    // Process each option
-    options.forEach((option) => {
-      const input = option.querySelector('input[type="checkbox"]')
-      const value = input.value
-      const isSelected = selectedAnswers.includes(value)
-      const isCorrect = correctAnswers.includes(value)
-
-      let feedbackText = ""
-      let feedbackClass = ""
-
-      if (isSelected && isCorrect) {
-        // Correct selection
-        option.classList.add("correct-answer")
-        feedbackText = FEEDBACK_MESSAGES.correct[value] || "Correct!"
-        feedbackClass = "correct-answer"
-      } else if (isSelected && !isCorrect) {
-        // Incorrect selection
-        option.classList.add("incorrect-answer")
-        feedbackText = FEEDBACK_MESSAGES.incorrect[value] || "Incorrect."
-        feedbackClass = "incorrect-answer"
-      } else if (!isSelected && isCorrect) {
-        // Missed correct answer
-        option.classList.add("missed-answer")
-        feedbackText = FEEDBACK_MESSAGES.missed[value] || "You missed this correct answer."
-        feedbackClass = "missed-answer"
-      }
-
-      // Add visual feedback to the option
-      if (feedbackText) {
-        const feedbackSpan = document.createElement("span")
-        feedbackSpan.className = `option-feedback ${feedbackClass}`
-        feedbackSpan.textContent = feedbackText
-        option.appendChild(feedbackSpan)
-      }
-    })
-
-    // Show general feedback
-    feedbackDiv.style.display = "block"
-    feedbackDiv.scrollIntoView({ behavior: "smooth", block: "nearest" })
-
-    // Add Try Again button
-    if (!form.querySelector(".quiz-reset-btn")) {
-      const resetBtn = document.createElement("button")
-      resetBtn.type = "button"
-      resetBtn.className = "quiz-submit-btn quiz-reset-btn"
-      resetBtn.textContent = "Try Again"
-      resetBtn.style.marginLeft = "1rem"
-
-      resetBtn.addEventListener("click", () => {
-        // Reset form
-        form.reset()
-
-        // Clear feedback classes and content
-        options.forEach((option) => {
-          option.classList.remove("correct-answer", "incorrect-answer", "missed-answer")
-          const existingFeedback = option.querySelector(".option-feedback")
-          if (existingFeedback) {
-            existingFeedback.remove()
-          }
-        })
-
-        // Re-enable inputs
-        allInputs.forEach((input) => {
-          input.disabled = false
-        })
-
-        // Re-enable submit button
-        if (submitBtn) {
-          submitBtn.disabled = false
-        }
-
-        // Hide feedback
-        feedbackDiv.style.display = "none"
-
-        // Remove reset button
-        resetBtn.remove()
-      })
-
-      submitBtn.parentNode.appendChild(resetBtn)
+  // Clear previous feedback styling
+  const options = form.querySelectorAll(".quiz-option")
+  options.forEach((option) => {
+    option.classList.remove("correct-answer", "incorrect-answer", "missed-answer")
+    // Remove any existing feedback elements
+    const existingFeedback = option.querySelector(".option-feedback")
+    if (existingFeedback) {
+      existingFeedback.remove()
     }
   })
+
+  // Check answers and provide visual feedback
+  options.forEach((option) => {
+    const input = option.querySelector("input")
+    const value = input.value
+    const isSelected = selectedAnswers.includes(value)
+    const isCorrect = correctAnswers.includes(value)
+
+    if (isSelected && isCorrect) {
+      // User selected a correct answer
+      option.classList.add("correct-answer")
+      addOptionFeedback(option, "✓", "correct")
+    } else if (isSelected && !isCorrect) {
+      // User selected an incorrect answer
+      option.classList.add("incorrect-answer")
+      addOptionFeedback(option, "✗", "incorrect")
+    } else if (!isSelected && isCorrect) {
+      // User missed a correct answer
+      option.classList.add("missed-answer")
+      addOptionFeedback(option, "(Correct)", "missed")
+    }
+  })
+
+  // Show the feedback section
+  feedbackElement.style.display = "block"
+  feedbackElement.scrollIntoView({ behavior: "smooth", block: "nearest" })
+
+  // Disable the submit button to prevent resubmission
+  const submitButton = form.querySelector(".quiz-submit-btn")
+  if (submitButton) {
+    submitButton.disabled = true
+    submitButton.textContent = "Submitted"
+  }
+
+  // Announce to screen readers
+  const announcement = document.createElement("div")
+  announcement.setAttribute("aria-live", "polite")
+  announcement.setAttribute("aria-atomic", "true")
+  announcement.className = "sr-only"
+  announcement.textContent = "Quiz submitted. Feedback is now available below the quiz."
+  form.appendChild(announcement)
+
+  // Remove the announcement after a short delay
+  setTimeout(() => {
+    if (announcement.parentNode) {
+      announcement.parentNode.removeChild(announcement)
+    }
+  }, 3000)
+}
+
+function addOptionFeedback(option, text, type) {
+  const feedback = document.createElement("span")
+  feedback.className = "option-feedback"
+  feedback.textContent = text
+
+  // Add appropriate styling based on type
+  if (type === "correct") {
+    feedback.style.color = "#155724"
+  } else if (type === "incorrect") {
+    feedback.style.color = "#721c24"
+  } else if (type === "missed") {
+    feedback.style.color = "#856404"
+  }
+
+  option.appendChild(feedback)
+}
+
+// Export functions for potential use in other scripts
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = {
+    initializeQuizzes,
+    handleQuizSubmit,
+    handleWellbeingQuiz,
+  }
 }
