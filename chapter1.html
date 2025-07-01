@@ -739,10 +739,10 @@
         
         <p>Once you've answered the questions, review Brené Brown's list of values. Reflect on <strong>why these values matter to you and how your digital habits can support them</strong>. Highlight the 10 that resonate most with you and narrow them down to your top 5. This will help you track your growth and reflect on how your values align with your digital well-being.</p>
         
-        <button class="download-template-button" onclick="downloadCoreValuesTemplate()" aria-label="Download editable template for core values activity">
+        <a href="#" class="download-template-button" onclick="downloadCoreValuesTemplate()" aria-label="Download editable template for core values activity">
           <i class="fas fa-download" aria-hidden="true"></i>
           <strong>Download the editable template here</strong>
-        </button>
+        </a>
       </div>
     </section>
 
@@ -757,10 +757,10 @@
         
         <p>We recommend using the SMART goals framework to make your goals specific, measurable, achievable, relevant, and time-bound. Here's an example of a SMART digital goal: <strong>"Reduce my screen time on weekdays by at least one hour".</strong></p>
         
-        <button class="download-template-button" onclick="downloadDigitalGoalsTemplate()" aria-label="Download editable template for digital goals activity">
+        <a href="#" class="download-template-button" onclick="downloadDigitalGoalsTemplate()" aria-label="Download editable template for digital goals activity">
           <i class="fas fa-download" aria-hidden="true"></i>
           <strong>Download the editable template here</strong>
-        </button>
+        </a>
       </div>
     </section>
 
@@ -967,10 +967,10 @@
       <li style="margin-bottom: 0.5rem;"><a href="https://www.viacharacter.org/character-strengths" target="_blank" rel="noopener noreferrer">Learn more about your strengths</a></li>
     </ul>
     
-    <button class="download-template-button" onclick="downloadCharacterStrengthsTemplate()" aria-label="Download editable template for character strengths activity">
+    <a href="#" class="download-template-button" onclick="downloadCharacterStrengthsTemplate()" aria-label="Download editable template for character strengths activity">
       <i class="fas fa-download" aria-hidden="true"></i>
       <strong>Download the editable template here</strong>
-    </button>
+    </a>
   </div>
 </section>
 
@@ -1254,8 +1254,6 @@ document.addEventListener('DOMContentLoaded', function() {
 // Core Values Template download functionality
 function downloadCoreValuesTemplate() {
   // Create a simple template content
-  const templateContent = `IDENTIFYING YOUR CORE  {
-  // Create a simple template content
   const templateContent = `IDENTIFYING YOUR CORE VALUES - TEMPLATE
 
 Instructions:
@@ -1315,24 +1313,25 @@ Review the list below and highlight the 10 that resonate most with you, then nar
 MY TOP 5 CORE VALUES:
 
 1. _________________________________________________
-  Why this matters to me: _________________________
-  _________________________________________________
+   Why this matters to me: _________________________
+   _________________________________________________
 
 2. _________________________________________________
-  Why this matters to me: _________________________
-  _________________________________________________
+   Why this matters to me: _________________________
+   _________________________________________________
 
 3. _________________________________________________
-  Why this matters to me: _________________________
-  _________________________________________________
+   Why this matters to me: _________________________
+   Why this matters to me: _________________________
+   _________________________________________________
 
 4. _________________________________________________
-  Why this matters to me: _________________________
-  _________________________________________________
+   Why this matters to me: _________________________
+   _________________________________________________
 
 5. _________________________________________________
-  Why this matters to me: _________________________
-  _________________________________________________
+   Why this matters to me: _________________________
+   _________________________________________________
 
 REFLECTION ON DIGITAL HABITS:
 
@@ -1369,7 +1368,7 @@ Digital Well-Being Course - IE University
   // Show feedback to user
   const button = event.target.closest('.download-template-button');
   const originalText = button.innerHTML;
-  button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> <strong>Template Downloaded!</strong>';
+  button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> Template Downloaded!';
   button.style.backgroundColor = '#28a745';
   
   setTimeout(() => {
@@ -1537,7 +1536,7 @@ Digital Well-Being Course - IE University
   // Show feedback to user
   const button = event.target.closest('.download-template-button');
   const originalText = button.innerHTML;
-  button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> <strong>Template Downloaded!</strong>';
+  button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> Template Downloaded!';
   button.style.backgroundColor = '#28a745';
   
   setTimeout(() => {
@@ -1565,24 +1564,24 @@ MY TOP CHARACTER STRENGTHS:
 After completing the VIA survey, write down your top 5 character strengths:
 
 1. _________________________________________________
-  Description: ___________________________________
-  _________________________________________________
+   Description: ___________________________________
+   _________________________________________________
 
 2. _________________________________________________
-  Description: ___________________________________
-  _________________________________________________
+   Description: ___________________________________
+   _________________________________________________
 
 3. _________________________________________________
-  Description: ___________________________________
-  _________________________________________________
+   Description: ___________________________________
+   _________________________________________________
 
 4. _________________________________________________
-  Description: ___________________________________
-  _________________________________________________
+   Description: ___________________________________
+   _________________________________________________
 
 5. _________________________________________________
-  Description: ___________________________________
-  _________________________________________________
+   Description: ___________________________________
+   _________________________________________________
 
 REFLECTION QUESTIONS:
 
@@ -1756,7 +1755,7 @@ Digital Well-Being Course - IE University
   // Show feedback to user
   const button = event.target.closest('.download-template-button');
   const originalText = button.innerHTML;
-  button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> <strong>Template Downloaded!</strong>';
+  button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> Template Downloaded!';
   button.style.backgroundColor = '#28a745';
   
   setTimeout(() => {
