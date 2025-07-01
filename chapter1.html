@@ -1251,6 +1251,74 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
+// Quiz functionality for Digital Well-being quiz
+document.addEventListener('DOMContentLoaded', function() {
+  const quizForm = document.getElementById('wellbeing-quiz');
+  const feedbackDiv = document.getElementById('wellbeing-quiz-feedback');
+  
+  if (quizForm && feedbackDiv) {
+    quizForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Get all checked checkboxes
+      const checkedBoxes = quizForm.querySelectorAll('input[type="checkbox"]:checked');
+      const selectedValues = Array.from(checkedBoxes).map(cb => cb.value);
+      
+      // Correct answers are 'a' and 'e'
+      const correctAnswers = ['a', 'e'];
+      
+      // Clear previous feedback styling
+      const allOptions = quizForm.querySelectorAll('.quiz-option');
+      allOptions.forEach(option => {
+        option.classList.remove('correct-answer', 'incorrect-answer', 'missed-answer');
+        const existingFeedback = option.querySelector('.option-feedback');
+        if (existingFeedback) {
+          existingFeedback.remove();
+        }
+      });
+      
+      // Check each option and provide feedback
+      allOptions.forEach(option => {
+        const checkbox = option.querySelector('input[type="checkbox"]');
+        const value = checkbox.value;
+        const isChecked = checkbox.checked;
+        const isCorrect = correctAnswers.includes(value);
+        
+        let feedbackHTML = '';
+        
+        if (isCorrect && isChecked) {
+          // Correct answer selected
+          option.classList.add('correct-answer');
+          feedbackHTML = '<span class="option-feedback"><i class="fas fa-check-circle"></i> Correct!</span>';
+        } else if (isCorrect && !isChecked) {
+          // Correct answer missed
+          option.classList.add('missed-answer');
+          feedbackHTML = '<span class="option-feedback"><i class="fas fa-exclamation-triangle"></i> Missed</span>';
+        } else if (!isCorrect && isChecked) {
+          // Incorrect answer selected
+          option.classList.add('incorrect-answer');
+          feedbackHTML = '<span class="option-feedback"><i class="fas fa-times-circle"></i> Incorrect</span>';
+        }
+        
+        if (feedbackHTML) {
+          option.insertAdjacentHTML('beforeend', feedbackHTML);
+        }
+      });
+      
+      // Show the feedback section
+      feedbackDiv.style.display = 'block';
+      feedbackDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      
+      // Disable the form to prevent resubmission
+      const submitBtn = quizForm.querySelector('button[type="submit"]');
+      if (submitBtn) {
+        submitBtn.textContent = 'Submitted';
+        submitBtn.disabled = true;
+      }
+    });
+  }
+});
+
 // Core Values Template download functionality
 function downloadCoreValuesTemplate() {
   // Create a simple template content
@@ -1322,7 +1390,6 @@ MY TOP 5 CORE VALUES:
 
 3. _________________________________________________
    Why this matters to me: _________________________
-   Why this matters to me: _________________________
    _________________________________________________
 
 4. _________________________________________________
@@ -1368,7 +1435,7 @@ Digital Well-Being Course - IE University
   // Show feedback to user
   const button = event.target.closest('.download-template-button');
   const originalText = button.innerHTML;
-  button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> Template Downloaded!';
+  button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> <strong>Template Downloaded!</strong>';
   button.style.backgroundColor = '#28a745';
   
   setTimeout(() => {
@@ -1536,7 +1603,7 @@ Digital Well-Being Course - IE University
   // Show feedback to user
   const button = event.target.closest('.download-template-button');
   const originalText = button.innerHTML;
-  button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> Template Downloaded!';
+  button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> <strong>Template Downloaded!</strong>';
   button.style.backgroundColor = '#28a745';
   
   setTimeout(() => {
@@ -1755,7 +1822,7 @@ Digital Well-Being Course - IE University
   // Show feedback to user
   const button = event.target.closest('.download-template-button');
   const originalText = button.innerHTML;
-  button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> Template Downloaded!';
+  button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> <strong>Template Downloaded!</strong>';
   button.style.backgroundColor = '#28a745';
   
   setTimeout(() => {
@@ -1764,28 +1831,40 @@ Digital Well-Being Course - IE University
   }, 3000);
 }
 
-// Accordion functionality - Completamente reescrito para eliminar duplicación
+// Accordion functionality
 document.addEventListener('DOMContentLoaded', function() {
   const accordionTriggers = document.querySelectorAll('.accordion-trigger');
   
   accordionTriggers.forEach(trigger => {
     // Inicializar el icono correctamente
     const icon = trigger.querySelector('.accordion-icon');
-    icon.textContent = '+';
+    if (icon) {
+      icon.textContent = '+';
+    }
     
     trigger.addEventListener('click', function() {
-      const panel = document.getElementById(this.getAttribute('aria-controls'));
+      const panelId = this.getAttribute('aria-controls');
+      const panel = document.getElementById(panelId);
       const currentIcon = this.querySelector('.accordion-icon');
       const isExpanded = this.getAttribute('aria-expanded') === 'true';
+      
+      if (!panel || !currentIcon) {
+        console.error('Accordion panel or icon not found:', panelId);
+        return;
+      }
       
       // Cerrar todos los otros acordeones
       accordionTriggers.forEach(otherTrigger => {
         if (otherTrigger !== this) {
-          const otherPanel = document.getElementById(otherTrigger.getAttribute('aria-controls'));
+          const otherPanelId = otherTrigger.getAttribute('aria-controls');
+          const otherPanel = document.getElementById(otherPanelId);
           const otherIcon = otherTrigger.querySelector('.accordion-icon');
-          otherTrigger.setAttribute('aria-expanded', 'false');
-          otherPanel.classList.remove('expanded');
-          otherIcon.textContent = '+';
+          
+          if (otherPanel && otherIcon) {
+            otherTrigger.setAttribute('aria-expanded', 'false');
+            otherPanel.classList.remove('expanded');
+            otherIcon.textContent = '+';
+          }
         }
       });
       
@@ -1811,5 +1890,3 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 </script>
-</body>
-</html>
