@@ -134,6 +134,25 @@
   margin-right: 0.5rem;
 }
 
+/* Estilos para la actividad de metas digitales */
+.digital-goals-activity-container {
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  padding: 2rem;
+  margin: 2rem 0;
+  padding-bottom: 3rem;
+}
+
+.digital-goals-activity-container h2 {
+  margin-top: 0 !important;
+  margin-bottom: 1rem !important;
+}
+
+.digital-goals-activity-container p {
+  margin-bottom: 1.5rem;
+  line-height: 1.7;
+}
+
 @media (max-width: 768px) {
   .quiz-activity-container {
     padding: 1.5rem;
@@ -145,6 +164,12 @@
     padding: 1.5rem;
     margin: 1rem;
     padding-bottom: 2.5rem; /* Maintain extra bottom padding on mobile */
+  }
+
+  .digital-goals-activity-container {
+    padding: 1.5rem;
+    margin: 1rem;
+    padding-bottom: 2.5rem;
   }
 
   .download-template-button {
@@ -565,10 +590,59 @@
         
         <p>Once you've answered the questions, review Brené Brown's list of values. Highlight the 10 that resonate most with you and narrow them down to your top 5. Reflect on why these values matter to you and how your digital habits can support them. This will help you track your growth and reflect on how your values align with your digital well-being.</p>
         
-        <a href="#" class="download-template-button" onclick="downloadTemplate()" aria-label="Download editable template for core values activity">
+        <a href="#" class="download-template-button" onclick="downloadCoreValuesTemplate()" aria-label="Download editable template for core values activity">
           <i class="fas fa-download" aria-hidden="true"></i>
           Download the editable template here
         </a>
+      </div>
+    </section>
+
+    <section class="lesson-section no-borders">
+      <h2>Set Your Digital Goals</h2>
+      
+      <div class="digital-goals-activity-container">
+        <h2>Activity: Set Your Digital Goals</h2>
+        <p>Now that you've reflected on your values and current digital habits, it's time to set your own digital goals. These goals should be meaningful to you and aligned with your personal motivations and core values.</p>
+        
+        <p>You can download the editable template to complete your responses. This way, you'll have a personal record you can revisit throughout your learning journey — and beyond.</p>
+        
+        <p>We recommend using the SMART goals framework to make your goals specific, measurable, achievable, relevant, and time-bound. Here's an example of a SMART digital goal: "Reduce my screen time on weekdays by at least one hour".</p>
+        
+        <a href="#" class="download-template-button" onclick="downloadDigitalGoalsTemplate()" aria-label="Download editable template for digital goals activity">
+          <i class="fas fa-download" aria-hidden="true"></i>
+          Download the editable template here
+        </a>
+      </div>
+    </section>
+
+    <section class="lesson-section no-borders">
+      <h2>Discover Your Character Strengths</h2>
+      
+      <div class="responsive-video">
+        <video 
+          id="character-strengths-video" 
+          class="video-js vjs-ie-skin vjs-big-play-centered" 
+          controls 
+          preload="auto" 
+          poster="assets/images/well-being-poster.png"
+          data-video-id="w01v05"
+          data-logo="assets/images/logo-ie-small.png"
+          aria-label="Using Character Strengths to Achieve Your Digital Goals video"
+        >
+          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w01v05-using-your-character-strenghts/mp4/w01v05-using-your-character-strenghts_1080p.mp4" type="video/mp4">
+          <p class="vjs-no-js">
+            To view this video please enable JavaScript, and consider upgrading to a
+            web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+          </p>
+          <track kind="captions" src="captions/using-character-strengths.vtt" srclang="en" label="English" default>
+        </video>
+      </div>
+      
+      <div class="key-point" role="note" aria-label="Key point about character strengths">
+        <h3>Key Point</h3>
+        <p>By recognizing and leveraging our personal strengths, we can set realistic digital goals, build resilience through challenges, and create habits that align with our authentic selves—while practicing self-kindness throughout the lifelong journey of change.</p>
+        <p>Your personal strengths are powerful allies in your journey toward healthier digital habits. By building awareness of your unique strengths—like creativity, perspective, or prudence—you can approach your goals with greater confidence, resilience, and authenticity.</p>
+        <p>Remember: meaningful change requires self-kindness, patience, and a willingness to learn and adjust over time.</p>
       </div>
     </section>
     
@@ -827,8 +901,8 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-// Template download functionality
-function downloadTemplate() {
+// Core Values Template download functionality
+function downloadCoreValuesTemplate() {
   // Create a simple template content
   const templateContent = `IDENTIFYING YOUR CORE VALUES - TEMPLATE
 
@@ -941,7 +1015,175 @@ Digital Well-Being Course - IE University
   window.URL.revokeObjectURL(url);
   
   // Show feedback to user
-  const button = document.querySelector('.download-template-button');
+  const button = event.target.closest('.download-template-button');
+  const originalText = button.innerHTML;
+  button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> Template Downloaded!';
+  button.style.backgroundColor = '#28a745';
+  
+  setTimeout(() => {
+    button.innerHTML = originalText;
+    button.style.backgroundColor = '';
+  }, 3000);
+}
+
+// Digital Goals Template download functionality
+function downloadDigitalGoalsTemplate() {
+  // Create digital goals template content
+  const templateContent = `SET YOUR DIGITAL GOALS - TEMPLATE
+
+Instructions:
+Now that you've reflected on your values and current digital habits, it's time to set your own digital goals. These goals should be meaningful to you and aligned with your personal motivations and core values.
+
+We recommend using the SMART goals framework to make your goals specific, measurable, achievable, relevant, and time-bound.
+
+SMART GOALS FRAMEWORK:
+- Specific: Clear and well-defined
+- Measurable: Quantifiable progress
+- Achievable: Realistic and attainable
+- Relevant: Aligned with your values and priorities
+- Time-bound: Has a clear deadline
+
+EXAMPLE:
+Instead of: "I want to use my phone less"
+SMART Goal: "Reduce my screen time on weekdays by at least one hour by the end of this month"
+
+YOUR DIGITAL GOALS:
+
+GOAL 1:
+What do you want to achieve?
+_________________________________________________
+_________________________________________________
+
+Make it SMART:
+Specific: ____________________________________
+Measurable: __________________________________
+Achievable: __________________________________
+Relevant: ____________________________________
+Time-bound: __________________________________
+
+Final SMART Goal:
+_________________________________________________
+_________________________________________________
+
+GOAL 2:
+What do you want to achieve?
+_________________________________________________
+_________________________________________________
+
+Make it SMART:
+Specific: ____________________________________
+Measurable: __________________________________
+Achievable: __________________________________
+Relevant: ____________________________________
+Time-bound: __________________________________
+
+Final SMART Goal:
+_________________________________________________
+_________________________________________________
+
+GOAL 3:
+What do you want to achieve?
+_________________________________________________
+_________________________________________________
+
+Make it SMART:
+Specific: ____________________________________
+Measurable: __________________________________
+Achievable: __________________________________
+Relevant: ____________________________________
+Time-bound: __________________________________
+
+Final SMART Goal:
+_________________________________________________
+_________________________________________________
+
+REFLECTION QUESTIONS:
+
+1. How do these goals align with your core values?
+_________________________________________________
+_________________________________________________
+_________________________________________________
+
+2. What obstacles might you face in achieving these goals?
+_________________________________________________
+_________________________________________________
+_________________________________________________
+
+3. What support or resources do you need?
+_________________________________________________
+_________________________________________________
+_________________________________________________
+
+4. How will you track your progress?
+_________________________________________________
+_________________________________________________
+_________________________________________________
+
+5. How will you celebrate when you achieve these goals?
+_________________________________________________
+_________________________________________________
+_________________________________________________
+
+ACTION PLAN:
+
+Goal 1 - Next Steps:
+Week 1: _____________________________________
+Week 2: _____________________________________
+Week 3: _____________________________________
+Week 4: _____________________________________
+
+Goal 2 - Next Steps:
+Week 1: _____________________________________
+Week 2: _____________________________________
+Week 3: _____________________________________
+Week 4: _____________________________________
+
+Goal 3 - Next Steps:
+Week 1: _____________________________________
+Week 2: _____________________________________
+Week 3: _____________________________________
+Week 4: _____________________________________
+
+PROGRESS TRACKING:
+
+Date: _______________
+Progress on Goal 1: ___________________________
+Progress on Goal 2: ___________________________
+Progress on Goal 3: ___________________________
+Challenges faced: _____________________________
+Adjustments needed: ___________________________
+
+Date: _______________
+Progress on Goal 1: ___________________________
+Progress on Goal 2: ___________________________
+Progress on Goal 3: ___________________________
+Challenges faced: _____________________________
+Adjustments needed: ___________________________
+
+Date: _______________
+Progress on Goal 1: ___________________________
+Progress on Goal 2: ___________________________
+Progress on Goal 3: ___________________________
+Challenges faced: _____________________________
+Adjustments needed: ___________________________
+
+---
+Digital Well-Being Course - IE University
+© ${new Date().getFullYear()} IE University. All rights reserved.`;
+
+  // Create and download the file
+  const blob = new Blob([templateContent], { type: 'text/plain' });
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'Digital_Goals_Template.txt';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  window.URL.revokeObjectURL(url);
+  
+  // Show feedback to user
+  const button = event.target.closest('.download-template-button');
   const originalText = button.innerHTML;
   button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> Template Downloaded!';
   button.style.backgroundColor = '#28a745';
