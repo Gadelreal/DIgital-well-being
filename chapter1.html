@@ -180,7 +180,7 @@
   }
 }
 
-/* Estilos para los acordeones - Diseño mejorado */
+/* Estilos para los acordeones - Diseño mejorado con animaciones */
 .accordion-container {
   margin: 2rem 0;
 }
@@ -223,13 +223,13 @@
 .accordion-trigger:hover {
   background-color: #e9ecef;
   color: var(--primary-color-dark);
-  text-decoration: none; /* Eliminar subrayado en hover */
+  text-decoration: none;
 }
 
 .accordion-trigger:focus {
   outline: var(--focus-outline-width) solid var(--focus-outline-color);
   outline-offset: 2px;
-  text-decoration: none; /* Eliminar subrayado en focus */
+  text-decoration: none;
 }
 
 .accordion-trigger[aria-expanded="true"] {
@@ -239,7 +239,7 @@
 
 .accordion-trigger[aria-expanded="true"]:hover {
   background-color: var(--primary-color-dark);
-  text-decoration: none; /* Eliminar subrayado cuando está expandido */
+  text-decoration: none;
 }
 
 .accordion-title {
@@ -258,16 +258,19 @@
   transition: transform 0.3s ease;
   flex-shrink: 0;
   margin-left: 1rem;
-  font-family: monospace; /* Para asegurar que + y - tengan el mismo ancho */
+  font-family: monospace;
 }
 
+/* Animación suave para el panel del acordeón */
 .accordion-panel {
+  max-height: 0;
   overflow: hidden;
-  transition: max-height 0.3s ease;
+  transition: max-height 0.4s ease-out;
 }
 
-.accordion-panel[hidden] {
-  display: none;
+.accordion-panel.expanded {
+  max-height: 500px; /* Altura máxima suficiente para el contenido */
+  transition: max-height 0.4s ease-in;
 }
 
 .accordion-panel-inner {
@@ -305,6 +308,10 @@
   .accordion-icon {
     margin-left: 0.5rem;
   }
+  
+  .accordion-panel.expanded {
+    max-height: 400px; /* Altura reducida para móviles */
+  }
 }
 
 @media (max-width: 480px) {
@@ -315,6 +322,10 @@
   
   .accordion-panel-inner {
     padding: 0.8rem;
+  }
+  
+  .accordion-panel.expanded {
+    max-height: 350px; /* Altura aún más reducida para móviles pequeños */
   }
 }
 </style>
@@ -795,10 +806,10 @@
       <div class="accordion-header">
         <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-perspective">
           <span class="accordion-title">Perspective</span>
-          <span class="accordion-icon" aria-hidden="true">+</span>
+          <span class="accordion-icon" aria-hidden="true"></span>
         </button>
       </div>
-      <div class="accordion-panel" id="accordion-panel-perspective" hidden>
+      <div class="accordion-panel" id="accordion-panel-perspective">
         <div class="accordion-panel-inner">
           <p><strong>Application:</strong> Reflect on how technology shapes your life holistically (mind, body, and soul).</p>
           <p><strong>Practice:</strong> Use Perspective to reflect on whether your digital habits align with your values.</p>
@@ -810,10 +821,10 @@
       <div class="accordion-header">
         <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-judgment">
           <span class="accordion-title">Judgment/Critical Thinking</span>
-          <span class="accordion-icon" aria-hidden="true">+</span>
+          <span class="accordion-icon" aria-hidden="true"></span>
         </button>
       </div>
-      <div class="accordion-panel" id="accordion-panel-judgment" hidden>
+      <div class="accordion-panel" id="accordion-panel-judgment">
         <div class="accordion-panel-inner">
           <p><strong>Application:</strong> Evaluate how digital habits impact your well-being.</p>
           <p><strong>Practice:</strong> Apply Judgment to recognize which digital behaviors support or hinder your well-being.</p>
@@ -825,10 +836,10 @@
       <div class="accordion-header">
         <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-curiosity">
           <span class="accordion-title">Curiosity</span>
-          <span class="accordion-icon" aria-hidden="true">+</span>
+          <span class="accordion-icon" aria-hidden="true"></span>
         </button>
       </div>
-      <div class="accordion-panel" id="accordion-panel-curiosity" hidden>
+      <div class="accordion-panel" id="accordion-panel-curiosity">
         <div class="accordion-panel-inner">
           <p><strong>Application:</strong> Explore new ways to engage with technology that align with your purpose.</p>
           <p><strong>Practice:</strong> Tap into Curiosity to explore new mindful tech habits, such as using focus apps or scheduling device-free time.</p>
@@ -840,10 +851,10 @@
       <div class="accordion-header">
         <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-self-regulation">
           <span class="accordion-title">Self-Regulation</span>
-          <span class="accordion-icon" aria-hidden="true">+</span>
+          <span class="accordion-icon" aria-hidden="true"></span>
         </button>
       </div>
-      <div class="accordion-panel" id="accordion-panel-self-regulation" hidden>
+      <div class="accordion-panel" id="accordion-panel-self-regulation">
         <div class="accordion-panel-inner">
           <p><strong>Application:</strong> Create structure around digital use, such as setting screen-time limits.</p>
           <p><strong>Practice:</strong> Use Self-Regulation to set up a habit tracker for screen-time reduction.</p>
@@ -855,10 +866,10 @@
       <div class="accordion-header">
         <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-prudence">
           <span class="accordion-title">Prudence</span>
-          <span class="accordion-icon" aria-hidden="true">+</span>
+          <span class="accordion-icon" aria-hidden="true"></span>
         </button>
       </div>
-      <div class="accordion-panel" id="accordion-panel-prudence" hidden>
+      <div class="accordion-panel" id="accordion-panel-prudence">
         <div class="accordion-panel-inner">
           <p><strong>Application:</strong> Plan intentional technology use to enhance productivity rather than distraction.</p>
           <p><strong>Practice:</strong> Apply Prudence to intentionally design your digital environment (e.g., rearrange app icons to reduce distractions).</p>
@@ -870,10 +881,10 @@
       <div class="accordion-header">
         <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-perseverance">
           <span class="accordion-title">Perseverance</span>
-          <span class="accordion-icon" aria-hidden="true">+</span>
+          <span class="accordion-icon" aria-hidden="true"></span>
         </button>
       </div>
-      <div class="accordion-panel" id="accordion-panel-perseverance" hidden>
+      <div class="accordion-panel" id="accordion-panel-perseverance">
         <div class="accordion-panel-inner">
           <p><strong>Application:</strong> Stick to habit changes like reducing social media time or improving sleep hygiene.</p>
           <p><strong>Practice:</strong> Use Perseverance when implementing new habits like device-free mornings.</p>
@@ -885,10 +896,10 @@
       <div class="accordion-header">
         <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-love-learning">
           <span class="accordion-title">Love of Learning</span>
-          <span class="accordion-icon" aria-hidden="true">+</span>
+          <span class="accordion-icon" aria-hidden="true"></span>
         </button>
       </div>
-      <div class="accordion-panel" id="accordion-panel-love-learning" hidden>
+      <div class="accordion-panel" id="accordion-panel-love-learning">
         <div class="accordion-panel-inner">
           <p><strong>Application:</strong> Understand the neuroscience of attention and how digital behaviors impact cognition.</p>
           <p><strong>Practice:</strong> Leverage Love of Learning to understand how digital habits shape cognitive function.</p>
@@ -900,10 +911,10 @@
       <div class="accordion-header">
         <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-gratitude">
           <span class="accordion-title">Gratitude</span>
-          <span class="accordion-icon" aria-hidden="true">+</span>
+          <span class="accordion-icon" aria-hidden="true"></span>
         </button>
       </div>
-      <div class="accordion-panel" id="accordion-panel-gratitude" hidden>
+      <div class="accordion-panel" id="accordion-panel-gratitude">
         <div class="accordion-panel-inner">
           <p><strong>Application:</strong> Acknowledge the benefits of digital tools while striving for balance.</p>
           <p><strong>Practice:</strong> Use Gratitude to reflect on how technology enriches your life.</p>
@@ -915,10 +926,10 @@
       <div class="accordion-header">
         <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-leadership">
           <span class="accordion-title">Leadership</span>
-          <span class="accordion-icon" aria-hidden="true">+</span>
+          <span class="accordion-icon" aria-hidden="true"></span>
         </button>
       </div>
-      <div class="accordion-panel" id="accordion-panel-leadership" hidden>
+      <div class="accordion-panel" id="accordion-panel-leadership">
         <div class="accordion-panel-inner">
           <p><strong>Application:</strong> Share insights with others and promote mindful digital habits in your community.</p>
           <p><strong>Practice:</strong> Practice Leadership by mentoring others in digital well-being strategies.</p>
@@ -930,10 +941,10 @@
       <div class="accordion-header">
         <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-bravery">
           <span class="accordion-title">Bravery</span>
-          <span class="accordion-icon" aria-hidden="true">+</span>
+          <span class="accordion-icon" aria-hidden="true"></span>
         </button>
       </div>
-      <div class="accordion-panel" id="accordion-panel-bravery" hidden>
+      <div class="accordion-panel" id="accordion-panel-bravery">
         <div class="accordion-panel-inner">
           <p><strong>Application:</strong> Be open about challenges in managing digital use and seek solutions.</p>
           <p><strong>Practice:</strong> Use Bravery to openly discuss struggles and celebrate progress.</p>
@@ -1491,12 +1502,12 @@ Digital Well-Being Course - IE University
   }, 3000);
 }
 
-// Accordion functionality - Mejorado
+// Accordion functionality - Completamente reescrito para eliminar duplicación
 document.addEventListener('DOMContentLoaded', function() {
   const accordionTriggers = document.querySelectorAll('.accordion-trigger');
   
   accordionTriggers.forEach(trigger => {
-    // Inicializar el icono
+    // Inicializar el icono correctamente
     const icon = trigger.querySelector('.accordion-icon');
     icon.textContent = '+';
     
@@ -1505,30 +1516,30 @@ document.addEventListener('DOMContentLoaded', function() {
       const currentIcon = this.querySelector('.accordion-icon');
       const isExpanded = this.getAttribute('aria-expanded') === 'true';
       
-      // Close all other accordions
+      // Cerrar todos los otros acordeones
       accordionTriggers.forEach(otherTrigger => {
         if (otherTrigger !== this) {
           const otherPanel = document.getElementById(otherTrigger.getAttribute('aria-controls'));
           const otherIcon = otherTrigger.querySelector('.accordion-icon');
           otherTrigger.setAttribute('aria-expanded', 'false');
-          otherPanel.hidden = true;
+          otherPanel.classList.remove('expanded');
           otherIcon.textContent = '+';
         }
       });
       
-      // Toggle current accordion
+      // Alternar el acordeón actual
       if (isExpanded) {
         this.setAttribute('aria-expanded', 'false');
-        panel.hidden = true;
+        panel.classList.remove('expanded');
         currentIcon.textContent = '+';
       } else {
         this.setAttribute('aria-expanded', 'true');
-        panel.hidden = false;
+        panel.classList.add('expanded');
         currentIcon.textContent = '−';
       }
     });
     
-    // Keyboard navigation
+    // Navegación por teclado
     trigger.addEventListener('keydown', function(e) {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
