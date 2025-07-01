@@ -328,6 +328,97 @@
     max-height: 350px; /* Altura aún más reducida para móviles pequeños */
   }
 }
+
+/* Mejorar la interactividad de las opciones del quiz */
+.quiz-option {
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 2px solid transparent;
+}
+
+.quiz-option:hover {
+  background-color: #f8f9fa !important;
+  border-color: #dee2e6;
+  transform: translateY(-1px);
+}
+
+.quiz-option input[type="checkbox"] {
+  cursor: pointer;
+  transform: scale(1.2);
+  margin-right: 1rem;
+  margin-top: 0.25rem;
+}
+
+.quiz-option label {
+  cursor: pointer;
+  user-select: none;
+  display: block;
+  width: 100%;
+}
+
+/* Estados del quiz después del envío */
+.quiz-option.correct-answer {
+  background-color: #d4edda !important;
+  border-color: #c3e6cb !important;
+  color: #155724 !important;
+}
+
+.quiz-option.incorrect-answer {
+  background-color: #f8d7da !important;
+  border-color: #f5c6cb !important;
+  color: #721c24 !important;
+}
+
+.quiz-option.missed-answer {
+  background-color: #fff3cd !important;
+  border-color: #ffeaa7 !important;
+  color: #856404 !important;
+}
+
+.quiz-option.correct-answer:hover,
+.quiz-option.incorrect-answer:hover,
+.quiz-option.missed-answer:hover {
+  transform: none;
+  background-color: inherit !important;
+}
+
+/* Feedback de opciones */
+.option-feedback {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.option-feedback i {
+  font-size: 1.1rem;
+}
+
+/* Botón de reset */
+.quiz-reset-btn {
+  background-color: #007bff !important;
+  border: none;
+}
+
+.quiz-reset-btn:hover {
+  background-color: #0056b3 !important;
+}
+
+/* Checkboxes deshabilitados */
+.quiz-option input[type="checkbox"]:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.quiz-option input[type="checkbox"]:disabled + label {
+  cursor: not-allowed;
+  opacity: 0.8;
+}
 </style>
 </head>
 <body>
@@ -1257,12 +1348,29 @@ document.addEventListener('DOMContentLoaded', function() {
   const feedbackDiv = document.getElementById('wellbeing-quiz-feedback');
   
   if (quizForm && feedbackDiv) {
+    // Add click handlers to quiz options for better UX
+    const quizOptions = quizForm.querySelectorAll('.quiz-option');
+    quizOptions.forEach(option => {
+      option.addEventListener('click', function(e) {
+        // Only toggle if clicking on the option div, not the checkbox or label
+        if (e.target === this) {
+          const checkbox = this.querySelector('input[type="checkbox"]');
+          if (checkbox && !checkbox.disabled) {
+            checkbox.checked = !checkbox.checked;
+          }
+        }
+      });
+    });
+    
     quizForm.addEventListener('submit', function(e) {
       e.preventDefault();
       
-      // Get all checked checkboxes
+      // Get all checkboxes
+      const allCheckboxes = quizForm.querySelectorAll('input[type="checkbox"]');
       const checkedBoxes = quizForm.querySelectorAll('input[type="checkbox"]:checked');
       const selectedValues = Array.from(checkedBoxes).map(cb => cb.value);
+      
+      console.log('Selected values:', selectedValues); // Debug log
       
       // Correct answers are 'a' and 'e'
       const correctAnswers = ['a', 'e'];
@@ -1278,11 +1386,11 @@ document.addEventListener('DOMContentLoaded', function() {
       });
       
       // Check each option and provide feedback
-      allOptions.forEach(option => {
-        const checkbox = option.querySelector('input[type="checkbox"]');
+      allCheckboxes.forEach(checkbox => {
         const value = checkbox.value;
         const isChecked = checkbox.checked;
         const isCorrect = correctAnswers.includes(value);
+        const option = checkbox.closest('.quiz-option');
         
         let feedbackHTML = '';
         
@@ -1303,17 +1411,70 @@ document.addEventListener('DOMContentLoaded', function() {
         if (feedbackHTML) {
           option.insertAdjacentHTML('beforeend', feedbackHTML);
         }
+        
+        // Disable checkbox after submission
+        checkbox.disabled = true;
       });
       
       // Show the feedback section
       feedbackDiv.style.display = 'block';
       feedbackDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       
-      // Disable the form to prevent resubmission
+      // Disable the submit button and change text
       const submitBtn = quizForm.querySelector('button[type="submit"]');
       if (submitBtn) {
         submitBtn.textContent = 'Submitted';
         submitBtn.disabled = true;
+        submitBtn.style.backgroundColor = '#6c757d';
+        submitBtn.style.cursor = 'not-allowed';
+      }
+      
+      // Add a reset button
+      if (!quizForm.querySelector('.quiz-reset-btn')) {
+        const resetBtn = document.createElement('button');
+        resetBtn.type = 'button';
+        resetBtn.className = 'quiz-submit-btn quiz-reset-btn';
+        resetBtn.textContent = 'Try Again';
+        resetBtn.style.marginLeft = '1rem';
+        resetBtn.style.backgroundColor = '#007bff';
+        
+        resetBtn.addEventListener('click', function() {
+          // Reset form
+          quizForm.reset();
+          
+          // Clear all feedback
+          allOptions.forEach(option => {
+            option.classList.remove('correct-answer', 'incorrect-answer', 'missed-answer');
+            const feedback = option.querySelector('.option-feedback');
+            if (feedback) {
+              feedback.remove();
+            }
+          });
+          
+          // Re-enable checkboxes
+          allCheckboxes.forEach(cb => {
+            cb.disabled = false;
+          });
+          
+          // Hide feedback
+          feedbackDiv.style.display = 'none';
+          
+          // Re-enable submit button
+          if (submitBtn) {
+            submitBtn.textContent = 'Submit';
+            submitBtn.disabled = false;
+            submitBtn.style.backgroundColor = '';
+            submitBtn.style.cursor = '';
+          }
+          
+          // Remove reset button
+          this.remove();
+          
+          // Scroll back to quiz
+          quizForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+        
+        submitBtn.parentNode.insertBefore(resetBtn, submitBtn.nextSibling);
       }
     });
   }
