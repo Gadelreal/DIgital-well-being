@@ -55,6 +55,7 @@
 /* Margen para el contenedor de la actividad del quiz */
 .quiz-activity-container {
   margin-bottom: 3rem;
+  padding-bottom: 3rem; /* Add extra bottom padding */
 }
 /* Estilos para el feedback dinámico en cada opción */
 .quiz-option {
@@ -78,6 +79,11 @@
 }
 .missed-answer .option-feedback {
   color: #856404;
+}
+
+/* Add margin below submit button */
+.quiz-submit-btn {
+  margin-bottom: 1.5rem;
 }
 
 /* Estilos para la actividad de valores */
@@ -129,6 +135,12 @@
 }
 
 @media (max-width: 768px) {
+  .quiz-activity-container {
+    padding: 1.5rem;
+    margin: 1rem;
+    padding-bottom: 2.5rem; /* Maintain extra bottom padding on mobile */
+  }
+
   .values-activity-container {
     padding: 1.5rem;
     margin: 1rem;
