@@ -11,14 +11,14 @@
 
 /* Añadir estas variables de contraste mejorado */
 :root {
-  --primary-color: #100929; /* Cambiado de #d6208f a azul oscuro */
-  --primary-color-dark: #100929; /* Versión más oscura del azul para mejor contraste */
+  --primary-color: #DB0086; /* Cambiado de #d6208f a azul oscuro */
+  --primary-color-dark: #DB0086; /* Versión más oscura del azul para mejor contraste */
   --secondary-color: #f5f5f5;
   --text-color: #333;
   --text-color-dark: #222;
-  --link-color: #100929; /* Cambiado de #d6208f a azul oscuro */
+  --link-color: #DB0086; /* Cambiado de #d6208f a azul oscuro */
   --link-hover-color: #000044; /* Cambiado de #b01a75 a azul más oscuro */
-  --focus-outline-color: #100929; /* Cambiado de #d6208f a azul oscuro */
+  --focus-outline-color: #DB0086; /* Cambiado de #d6208f a azul oscuro */
   --focus-outline-width: 3px;
   --key-point-bg: #fce4f0;
   --key-point-border: #f8c2dd;
