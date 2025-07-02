@@ -4226,6 +4226,13 @@ html:focus,
   margin-left: 0.5rem;
 }
 
+/* Asegurar que el hover no interfiera después del submit */
+.quiz-activity-container .quiz-option.correct-answer:hover,
+.quiz-activity-container .quiz-option.incorrect-answer:hover,
+.quiz-activity-container .quiz-option.missed-answer:hover {
+  background-color: inherit !important;
+}
+
 /* === Accordion Styles === */
 .accordion-container {
   margin: 2rem 0;
