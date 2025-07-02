@@ -59,17 +59,22 @@
 }
 /* Estilos para el feedback dinámico en cada opción */
 .quiz-option {
-  position: relative; /* Necesario para posicionar el feedback */
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 2px solid transparent;
+  display: flex;
+  align-items: center;
+  position: relative;
 }
 .option-feedback {
-  position: absolute;
-  right: 15px;
-  top: 50%;
-  transform: translateY(-50%);
+  margin-left: auto;
   font-weight: bold;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  padding-left: 1rem;
 }
 .correct-answer .option-feedback {
   color: #155724;
@@ -330,10 +335,11 @@
 }
 
 /* Mejorar la interactividad de las opciones del quiz */
-.quiz-option {
+.quiz-option label {
   cursor: pointer;
-  transition: all 0.2s ease;
-  border: 2px solid transparent;
+  user-select: none;
+  flex: 1;
+  line-height: 1.5;
 }
 
 .quiz-option:hover {
@@ -347,13 +353,6 @@
   transform: scale(1.2);
   margin-right: 1rem;
   margin-top: 0.25rem;
-}
-
-.quiz-option label {
-  cursor: pointer;
-  user-select: none;
-  display: block;
-  width: 100%;
 }
 
 /* Estados del quiz después del envío */
@@ -383,17 +382,6 @@
 }
 
 /* Feedback de opciones */
-.option-feedback {
-  position: absolute;
-  right: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.9rem;
-}
 
 .option-feedback i {
   font-size: 1.1rem;
