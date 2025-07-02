@@ -1448,12 +1448,12 @@ document.addEventListener('DOMContentLoaded', function() {
           // Hide feedback
           feedbackDiv.style.display = 'none';
           
-          // Re-enable submit button
+          // Re-enable submit button and restore original styling
           if (submitBtn) {
             submitBtn.textContent = 'Submit';
             submitBtn.disabled = false;
-            submitBtn.style.backgroundColor = '';
-            submitBtn.style.cursor = '';
+            submitBtn.style.backgroundColor = 'var(--primary-color)'; // Restore original pink color
+            submitBtn.style.cursor = 'pointer';
           }
           
           // Remove reset button
