@@ -11,14 +11,14 @@
 
 /* Añadir estas variables de contraste mejorado */
 :root {
-  --primary-color: #000066; /* Cambiado de #d6208f a azul oscuro */
-  --primary-color-dark: #000044; /* Versión más oscura del azul para mejor contraste */
+  --primary-color: #DB0086; /* Cambiado de #d6208f a azul oscuro */
+  --primary-color-dark: #DB0086; /* Versión más oscura del azul para mejor contraste */
   --secondary-color: #f5f5f5;
   --text-color: #333;
   --text-color-dark: #222;
-  --link-color: #000066; /* Cambiado de #d6208f a azul oscuro */
+  --link-color: #DB0086; /* Cambiado de #d6208f a azul oscuro */
   --link-hover-color: #000044; /* Cambiado de #b01a75 a azul más oscuro */
-  --focus-outline-color: #000066; /* Cambiado de #d6208f a azul oscuro */
+  --focus-outline-color: #DB0086; /* Cambiado de #d6208f a azul oscuro */
   --focus-outline-width: 3px;
   --key-point-bg: #fce4f0;
   --key-point-border: #f8c2dd;
@@ -1828,7 +1828,7 @@ a:hover {
 /* === INICIO part6.css === */
 /* Estilos para la portada con fondo azul completo (mantener para compatibilidad) */
 .full-blue-cover {
-  background-color: #000066;
+  background-color: #DB0086;
   color: white;
   margin: 0;
   padding: 0;
@@ -1937,7 +1937,7 @@ a:hover {
 
 .full-blue-cover .start-button {
   background-color: white;
-  color: #000066;
+  color: ##DB0086;
   padding: 1rem 2.5rem;
   font-weight: bold;
   transition: all 0.3s ease;
@@ -2780,8 +2780,8 @@ body h2:first-of-type,
 /* Hero Section Styles */
 .hero-section {
   width: 100%;
-  height: 600px;
-  background-image: url("../assets/images/hero-background.png");
+  height: 400px;
+  background-image: url("../assets/images/hero-bg-new.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -3423,9 +3423,9 @@ main {
   box-shadow: none;
   overflow: hidden;
   padding: 1.5rem;
-  border-left: 4px solid #000066;
+  border-left: 4px solid ##DB0086;
   border: 1px solid #e0e0e0;
-  border-left: 4px solid #000066;
+  border-left: 4px solid ##DB0086;
   pointer-events: none; /* Eliminar completamente la interacción */
   cursor: default; /* Cursor por defecto */
 }
@@ -3436,7 +3436,7 @@ main {
 .learning-objective-card:hover {
   outline: none !important;
   border: 1px solid #e0e0e0 !important;
-  border-left: 4px solid #000066 !important;
+  border-left: 4px solid ##DB0086 !important;
   box-shadow: none !important;
   transform: none !important;
 }
@@ -3465,7 +3465,7 @@ main {
 
 .objective-icon i {
   font-size: 1.5rem;
-  color: #000066;
+  color: ##DB0086;
 }
 
 .objective-content {
@@ -3545,7 +3545,7 @@ html:focus,
       display: inline-flex;
       align-items: center;
       padding: 1rem 2rem;
-      background-color: #000066;
+      background-color: ##DB0086;
       color: white;
       text-decoration: none;
       border-radius: 4px;
@@ -3767,7 +3767,7 @@ html:focus,
       top: 0;
       bottom: 0;
       width: 2px;
-      background-color: #000066;
+      background-color: ##DB0086;
       z-index: 1;
     }
 
@@ -3787,7 +3787,7 @@ html:focus,
       top: 0;
       width: 40px;
       height: 40px;
-      background-color: #000066;
+      background-color: ##DB0086;
       color: white;
       border-radius: 50%;
       display: flex;
@@ -3822,7 +3822,7 @@ html:focus,
     }
 
     .timeline-content h4 {
-      color: #000066;
+      color: ##DB0086;
       margin-bottom: 0.8rem;
       font-weight: 600;
       margin-top: 0;
@@ -3940,7 +3940,7 @@ html:focus,
 
     .modal-header h2 {
       margin: 0;
-      color: #000066;
+      color: ##DB0086;
       font-size: 1.5rem;
       font-weight: 600;
     }
@@ -3981,13 +3981,13 @@ html:focus,
     .glossary-term {
       padding: 1rem;
       background-color: #f8f9fa;
-      border-left: 4px solid #000066;
+      border-left: 4px solid ##DB0086;
       border-radius: 0 4px 4px 0;
       line-height: 1.6;
     }
 
     .glossary-term strong {
-      color: #000066;
+      color: ##DB0086;
       font-weight: 600;
     }
 

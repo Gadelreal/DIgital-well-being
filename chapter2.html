@@ -102,7 +102,7 @@
 <section class="hero-section">
 <div class="hero-content">
   <div class="hero-title-container">
-    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Icon%20HF_2-KTyAlcLeagSNgUhXUTAMc1LUZmhNge.png" alt="Digital Well-Being Icon" class="hero-icon">
+    
     <h1 class="hero-title"><strong>LESSON 2: Cultivating Awareness</strong></h1>
   </div>
 </div>
@@ -498,7 +498,7 @@
             <strong>Notification Management</strong> – Strategies to reduce interruptions and increase focus, such as disabling non-essential alerts.
           </div>
         </div>
-        <div id="glossary-section-p" class="glossary-letter-header">
+        <div id="glossary-section-p" class="glossary-section">
           <h3 class="glossary-letter-header">P</h3>
           <div class="glossary-term">
             <strong>Prefrontal Cortex</strong> – The part of the brain responsible for decision-making and impulse control, which is affected by digital engagement.
@@ -548,13 +548,15 @@
   </div>
 </div>
 
-<!-- VideoJS JavaScript -->
-<script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
-<script src="js/video-player.js"></script>
-<script src="js/key-points.js"></script>
-<script src="js/reflections.js"></script>
-<script src="js/main.js"></script>
-<script>
+  <!-- VideoJS JavaScript -->
+  <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
+  <script src="js/video-player.js"></script>
+  <script src="js/key-points.js"></script>
+  <script src="js/reflections.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/logo-checker.js"></script>
+  <script>
 // Glossary Modal Functionality
 document.addEventListener('DOMContentLoaded', function() {
   const modal = document.getElementById('glossary-modal');
@@ -623,251 +625,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
-
-// Digital Habits Audit Template download functionality
-function downloadDigitalHabitsAuditTemplate() {
-  // Create a simple template content
-  const templateContent = `DIGITAL HABITS AUDIT TEMPLATE
-
-Instructions:
-Use your phone's screen time data to answer these questions honestly. Reflect on your patterns and identify areas for improvement.
-
-SECTION 1: SCREEN TIME ANALYSIS
-1. What is your average daily screen time?
-_________________________________________________
-
-2. What is your average daily pickup count?
-_________________________________________________
-
-3. Which day of the week do you use your phone the most?
-_________________________________________________
-
-4. What time of day do you use your phone the most?
-_________________________________________________
-
-SECTION 2: APP USAGE RANKING
-List your top 10 most-used apps and the time spent on each:
-
-1. App: _________________ Time: _________________
-2. App: _________________ Time: _________________
-3. App: _________________ Time: _________________
-4. App: _________________ Time: _________________
-5. App: _________________ Time: _________________
-6. App: _________________ Time: _________________
-7. App: _________________ Time: _________________
-8. App: _________________ Time: _________________
-9. App: _________________ Time: _________________
-10. App: _________________ Time: _________________
-
-SECTION 3: REFLECTION QUESTIONS
-1. Which apps are supporting your well-being and goals?
-_________________________________________________
-_________________________________________________
-_________________________________________________
-
-2. Which apps might be detracting from your well-being?
-_________________________________________________
-_________________________________________________
-_________________________________________________
-
-3. What patterns do you notice in your usage?
-_________________________________________________
-_________________________________________________
-_________________________________________________
-
-4. What surprises you about your digital habits?
-_________________________________________________
-_________________________________________________
-_________________________________________________
-
-5. What would you like to change about your digital habits?
-_________________________________________________
-_________________________________________________
-_________________________________________________
-
-SECTION 4: ACTION PLANNING
-Based on your audit, identify 3 specific changes you want to make:
-
-1. _________________________________________________
-2. _________________________________________________
-3. _________________________________________________
-
-Date completed: _______________
-Next review date: _______________
-
----
-Digital Well-Being Course - IE University
-© ${new Date().getFullYear()} IE University. All rights reserved.`;
-
-  // Create and download the file
-  const blob = new Blob([templateContent], { type: 'text/plain' });
-  const url = window.URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'Digital_Habits_Audit_Template.txt';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  window.URL.revokeObjectURL(url);
-  
-  // Show feedback to user
-  const button = event.target.closest('.download-template-button');
-  const originalText = button.innerHTML;
-  button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> Template Downloaded!';
-  button.style.backgroundColor = '#28a745';
-  
-  setTimeout(() => {
-    button.innerHTML = originalText;
-    button.style.backgroundColor = '';
-  }, 3000);
-}
-
-// Digital Triggers Template download functionality
-function downloadDigitalTriggersTemplate() {
-  // Create digital triggers template content
-  const templateContent = `DIGITAL ENVIRONMENT & TRIGGERS AUDIT TEMPLATE
-
-Instructions:
-Take a comprehensive look at your digital environment across four key areas. Be honest in your assessment and note areas for improvement.
-
-SECTION 1: PHONE ENVIRONMENT AUDIT
-1. How many apps do you have on your home screen?
-_________________________________________________
-
-2. Which apps are most easily accessible (first screen, dock)?
-_________________________________________________
-_________________________________________________
-
-3. Do you have notifications enabled for social media apps?
-□ Yes □ No
-If yes, which ones: ___________________________
-
-4. Where do you typically keep your phone during work/study time?
-_________________________________________________
-
-5. Do you use your phone as an alarm clock?
-□ Yes □ No
-
-SECTION 2: COMPUTER/WORKSPACE AUDIT
-1. How many browser tabs do you typically have open?
-_________________________________________________
-
-2. What websites do you visit most frequently during work breaks?
-_________________________________________________
-_________________________________________________
-
-3. Do you have social media bookmarked or easily accessible?
-□ Yes □ No
-
-4. How organized is your digital workspace (desktop, files)?
-□ Very organized □ Somewhat organized □ Disorganized
-
-5. What distractions are present in your physical workspace?
-_________________________________________________
-_________________________________________________
-
-SECTION 3: SOCIAL MEDIA HABITS
-1. Which social media platforms do you use daily?
-_________________________________________________
-
-2. What time of day do you typically check social media first?
-_________________________________________________
-
-3. What emotions or situations trigger social media use?
-_________________________________________________
-_________________________________________________
-
-4. Do you follow accounts that make you feel negative emotions?
-□ Yes □ No
-If yes, describe: ____________________________
-
-SECTION 4: ENVIRONMENTAL TRIGGERS
-1. In which locations do you use your phone most?
-_________________________________________________
-
-2. What emotions typically trigger device use? (boredom, stress, etc.)
-_________________________________________________
-_________________________________________________
-
-3. What times of day are you most likely to mindlessly scroll?
-_________________________________________________
-
-4. Who or what situations influence your digital habits?
-_________________________________________________
-_________________________________________________
-
-SECTION 5: ENERGY & MOOD PATTERNS
-1. When do you feel most energized during the day?
-_________________________________________________
-
-2. When do you typically experience energy dips?
-_________________________________________________
-
-3. How does your device use change when you're tired or stressed?
-_________________________________________________
-_________________________________________________
-
-4. What activities help restore your energy without screens?
-_________________________________________________
-_________________________________________________
-
-SECTION 6: REFLECTION & ACTION PLANNING
-1. What patterns do you notice in your digital environment?
-_________________________________________________
-_________________________________________________
-_________________________________________________
-
-2. Which environmental factors are supporting your well-being?
-_________________________________________________
-_________________________________________________
-_________________________________________________
-
-3. Which factors are hindering your well-being or focus?
-_________________________________________________
-_________________________________________________
-_________________________________________________
-
-4. What 5 specific changes will you make to your digital environment?
-1. ____________________________________________
-2. ____________________________________________
-3. ____________________________________________
-4. ____________________________________________
-5. ____________________________________________
-
-5. What alternative activities will you use when you feel triggered to use devices mindlessly?
-_________________________________________________
-_________________________________________________
-_________________________________________________
-
-Date completed: _______________
-Next review date: _______________
-
----
-Digital Well-Being Course - IE University
-© ${new Date().getFullYear()} IE University. All rights reserved.`;
-
-  // Create and download the file
-  const blob = new Blob([templateContent], { type: 'text/plain' });
-  const url = window.URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'Digital_Environment_Triggers_Template.txt';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  window.URL.revokeObjectURL(url);
-  
-  // Show feedback to user
-  const button = event.target.closest('.download-template-button');
-  const originalText = button.innerHTML;
-  button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> Template Downloaded!';
-  button.style.backgroundColor = '#28a745';
-  
-  setTimeout(() => {
-    button.innerHTML = originalText;
-    button.style.backgroundColor = '';
-  }, 3000);
-}
 </script>
 </body>
 </html>
