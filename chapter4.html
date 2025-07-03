@@ -1,35 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Digital Well-Being - Chapter 4: Building Resilience</title>
-  <link rel="stylesheet" href="css/styles.css">
-  <!-- Font Awesome para iconos -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- VideoJS CSS -->
-  <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
-  <style>
-    .reading-card-link {
-      text-decoration: none;
-      color: inherit;
-      display: block;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .reading-card-link:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .reading-card-link .reading-link {
-      color: var(--primary-color);
-      font-weight: 600;
-      text-decoration: none;
-    }
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Human Flourishing - Chapter 4</title>
+<link rel="stylesheet" href="./css/styles.css">
+<!-- VideoJS CSS -->
+<link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
+<!-- Font Awesome para iconos -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
 /* Estilos para la navegación A-Z del glosario y las secciones */
 .glossary-az-nav {
   padding: 10px 0;
@@ -75,1009 +55,672 @@
 </style>
 </head>
 <body>
-  <!-- Skip to content link -->
-  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+<!-- Añadir el enlace de saltar al contenido principal al inicio del body -->
+<a href="#main-content" class="skip-to-content">Skip to main content</a>
 
-  <header class="full-width header-full-bottom" role="banner">
-    <div class="header-content">
-      <div class="header-left">
-        <div class="logo-container tiny-logo">
-          <a href="https://www.ie.edu" target="_blank" aria-label="IE University website">
-            <img src="assets/images/logo-ie.svg" alt="IE University Logo" class="logo" width="120">
-          </a>
-        </div>
-        <h2 class="header-title">Digital Well-Being</h2>
-      </div>
-      <div class="header-controls">
-        <button id="mobile-menu-toggle" class="mobile-menu-toggle always-visible" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
-          <div class="hamburger-icon">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-        </button>
-      </div>
+<!-- Modificar la estructura del header para alinear elementos en una línea -->
+<header class="full-width header-full-bottom" role="banner">
+<div class="header-content">
+  <div class="header-left">
+    <div class="logo-container tiny-logo">
+      <a href="https://www.ie.edu" target="_blank" aria-label="IE University website">
+        <img src="assets/images/logo-ie.svg" alt="IE University Logo" class="logo" width="120">
+      </a>
     </div>
-    <nav class="main-nav hamburger-nav" id="main-nav" aria-label="Main navigation">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="introduction.html">0. Introduction</a></li>
-        <li><a href="chapter1.html">1. Well-Being as a Key</a></li>
-        <li><a href="chapter2.html">2. Cultivating Awareness</a></li>
-        <li><a href="chapter3.html">3. Autonomy and Motivation</a></li>
-        <li><a href="chapter4.html" class="active" aria-current="page">4. Building Resilience</a></li>
-        <li><a href="chapter5.html">5. Ownership and Practice</a></li>
-        <li><a href="#" id="glossary-menu-link"><i class="fas fa-book" style="color: #DB0086; margin-right: 0.5rem;" aria-hidden="true"></i>Glossary</a></li>
-        <li class="language-selector-menu">
-          <span class="menu-separator"></span>
-          <span id="language-label" class="sr-only">Select language:</span>
-          <a href="chapter4.html" class="active" aria-current="page" aria-labelledby="language-label">English</a> | <a href="es/capitulo4.html" aria-labelledby="language-label">Español</a>
-        </li>
-      </ul>
-    </nav>
-  </header>
-
-  <section class="hero-section">
-    <div class="hero-content">
-      <div class="hero-title-container">
-        <h1 class="hero-title">Chapter 4: Building Resilience</h1>
+    <h2 class="header-title">Digital Well-Being</h2>
+  </div>
+  <div class="header-controls">
+    <button id="mobile-menu-toggle" class="mobile-menu-toggle always-visible" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
+      <div class="hamburger-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
-    </div>
-  </section>
+    </button>
+  </div>
+</div>
+<nav class="main-nav hamburger-nav" id="main-nav" aria-label="Main navigation">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="introduction.html">0. Introduction</a></li>
+    <li><a href="chapter1.html">1. Well-Being as a Key</a></li>
+    <li><a href="chapter2.html">2. Cultivating Awareness</a></li>
+    <li><a href="chapter3.html">3. Autonomy and Motivation</a></li>
+    <li><a href="chapter4.html" class="active" aria-current="page">4. Building Resilience</a></li>
+    <li><a href="chapter5.html">5. Ownership and Practice</a></li>
+    <li><a href="#" id="glossary-menu-link"><i class="fas fa-book" style="color: #000066; margin-right: 0.5rem;" aria-hidden="true"></i>Glossary</a></li>
+    <li class="language-selector-menu">
+<span class="menu-separator"></span>
+<span id="language-label" class="sr-only">Select language:</span>
+<a href="chapter4.html" class="active" aria-current="page" aria-labelledby="language-label">English</a> | <a href="capitulo4.html" aria-labelledby="language-label">Español</a>
+</li>
+  </ul>
+</nav>
+</header>
 
-  <main id="main-content" tabindex="-1">
-    <div class="content-aligned-container">
+<section class="hero-section">
+<div class="hero-content">
+  <div class="hero-title-container">
+    
+    <h1 class="hero-title">LESSON 4: Building Resilience</h1>
+  </div>
+</div>
+</section>
+
+<main id="main-content" tabindex="-1">
+  <div class="content-aligned-container">
+    <h1>LESSON 4: Building Resilience</h1>
+    <div class="title-separator blue" aria-hidden="true"></div>
+    
+    <!-- 1. Fondo blanco -->
+    <section class="lesson-section no-borders">
+      <h2>Lesson 4 Learning Objectives</h2>
       
-      <section class="lesson-section no-borders">
-        <h2>Learning Objectives</h2>
-        <div class="learning-objectives-grid">
-          <div class="learning-objective-card">
-            <div class="objective-icon">
-              <i class="fas fa-shield-alt" aria-hidden="true"></i>
-            </div>
-            <div class="objective-content">
-              <h4>Understand Digital Resilience</h4>
-              <p>Learn what it means to be resilient in digital environments and why it matters</p>
-            </div>
+      <div class="learning-objectives-grid">
+        <div class="learning-objective-card">
+          <div class="objective-icon" aria-hidden="true">
+            <i class="fas fa-shield-alt"></i>
           </div>
-          
-          <div class="learning-objective-card">
-            <div class="objective-icon">
-              <i class="fas fa-tools" aria-hidden="true"></i>
-            </div>
-            <div class="objective-content">
-              <h4>Develop Coping Strategies</h4>
-              <p>Build practical tools for managing digital overwhelm and stress</p>
-            </div>
-          </div>
-          
-          <div class="learning-objective-card">
-            <div class="objective-icon">
-              <i class="fas fa-heart-broken" aria-hidden="true"></i>
-            </div>
-            <div class="objective-content">
-              <h4>Navigate Digital Challenges</h4>
-              <p>Learn to handle cyberbullying, information overload, and digital fatigue</p>
-            </div>
-          </div>
-          
-          <div class="learning-objective-card">
-            <div class="objective-icon">
-              <i class="fas fa-seedling" aria-hidden="true"></i>
-            </div>
-            <div class="objective-content">
-              <h4>Foster Growth Mindset</h4>
-              <p>Cultivate resilience through continuous learning and adaptation</p>
-            </div>
+          <div class="objective-content">
+            <h4>Understanding Resilience</h4>
+            <p>Understand what resilience is and how it can be cultivated</p>
           </div>
         </div>
-      </section>
-
-      <section class="lesson-section no-borders">
-        <h2>Understanding Digital Resilience</h2>
         
-        <div class="responsive-video">
-          <video 
-            id="resilience-video" 
-            class="video-js vjs-ie-skin vjs-big-play-centered" 
-            controls 
-            preload="auto" 
-            poster="assets/images/human-connection.jpg"
-            data-video-id="c04v01"
-            data-logo="assets/images/logo-ie-small.png"
-            aria-label="Understanding Digital Resilience video"
-          >
-            <source src="https://iep-media.ie.edu/olj/digital-wellbeing/c04v01-understanding-digital-resilience/mp4/c04v01-understanding-digital-resilience_1080p.mp4" type="video/mp4">
-            <p class="vjs-no-js">
-              To view this video please enable JavaScript, and consider upgrading to a
-              web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-            </p>
-            <track kind="captions" src="captions/understanding-digital-resilience.vtt" srclang="en" label="English" default>
-          </video>
+        <div class="learning-objective-card">
+          <div class="objective-icon" aria-hidden="true">
+            <i class="fas fa-brain"></i>
+          </div>
+          <div class="objective-content">
+            <h4>Neuroplasticity</h4>
+            <p>Appreciate the concept of neuroplasticity and how it relates to resilience</p>
+          </div>
         </div>
-      </section>
-
-      <section class="lesson-section no-borders">
-        <h2>The Components of Digital Resilience</h2>
-        <p>Digital resilience involves multiple interconnected skills and mindsets that help you thrive in digital environments while maintaining your well-being.</p>
         
-        <div class="resilience-components">
-          <div class="component-card">
-            <div class="component-icon">
-              <i class="fas fa-brain" aria-hidden="true"></i>
-            </div>
-            <div class="component-content">
-              <h3>Cognitive Flexibility</h3>
-              <p>The ability to adapt your thinking and approach when faced with new digital challenges or changing technology landscapes.</p>
-              <div class="component-examples">
-                <strong>Examples:</strong>
-                <ul>
-                  <li>Learning new platforms without feeling overwhelmed</li>
-                  <li>Adjusting communication styles for different digital contexts</li>
-                  <li>Finding alternative solutions when technology fails</li>
-                  <li>Questioning information sources and thinking critically</li>
-                </ul>
-              </div>
-            </div>
+        <div class="learning-objective-card">
+          <div class="objective-icon" aria-hidden="true">
+            <i class="fas fa-tools"></i>
           </div>
-
-          <div class="component-card">
-            <div class="component-icon">
-              <i class="fas fa-heart" aria-hidden="true"></i>
-            </div>
-            <div class="component-content">
-              <h3>Emotional Regulation</h3>
-              <p>Managing your emotional responses to digital experiences, from frustration with technology to social media comparison.</p>
-              <div class="component-examples">
-                <strong>Examples:</strong>
-                <ul>
-                  <li>Staying calm when technology doesn't work as expected</li>
-                  <li>Not taking online criticism personally</li>
-                  <li>Managing F.O.M.O. (Fear of Missing Out)</li>
-                  <li>Recognizing and addressing digital anxiety</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="component-card">
-            <div class="component-icon">
-              <i class="fas fa-users" aria-hidden="true"></i>
-            </div>
-            <div class="component-content">
-              <h3>Social Resilience</h3>
-              <p>Maintaining healthy relationships and social connections despite the challenges of digital communication.</p>
-              <div class="component-examples">
-                <strong>Examples:</strong>
-                <ul>
-                  <li>Building genuine connections online</li>
-                  <li>Handling conflicts in digital spaces constructively</li>
-                  <li>Seeking support when facing digital challenges</li>
-                  <li>Maintaining empathy in online interactions</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="component-card">
-            <div class="component-icon">
-              <i class="fas fa-battery-three-quarters" aria-hidden="true"></i>
-            </div>
-            <div class="component-content">
-              <h3>Energy Management</h3>
-              <p>Recognizing and managing your digital energy levels to prevent burnout and maintain sustainable technology use.</p>
-              <div class="component-examples">
-                <strong>Examples:</strong>
-                <ul>
-                  <li>Taking regular breaks from screens</li>
-                  <li>Recognizing signs of digital fatigue</li>
-                  <li>Balancing stimulating and calming digital activities</li>
-                  <li>Creating restorative offline routines</li>
-                </ul>
-              </div>
-            </div>
+          <div class="objective-content">
+            <h4>Practical Strategies</h4>
+            <p>Develop practical strategies for building resilience in daily life</p>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
+    
+    <!-- 2. Fondo gris -->
+    <section class="lesson-section no-borders">
+<h2>What Is Resilience?</h2>
 
-      <section class="lesson-section no-borders">
-        <h2>Resilience Assessment</h2>
-        <p>Evaluate your current level of digital resilience across different areas. This assessment will help you identify strengths and areas for growth.</p>
-        
-        <div class="resilience-assessment">
-          <div class="assessment-category">
-            <h3>Cognitive Flexibility</h3>
-            <div class="assessment-questions">
-              <div class="assessment-question">
-                <p>When I encounter a new digital tool or platform, I:</p>
-                <div class="assessment-options">
-                  <label class="assessment-option">
-                    <input type="radio" name="cognitive-1" value="1">
-                    <span class="radiomark"></span>
-                    Feel overwhelmed and avoid using it
-                  </label>
-                  <label class="assessment-option">
-                    <input type="radio" name="cognitive-1" value="2">
-                    <span class="radiomark"></span>
-                    Struggle but eventually figure it out
-                  </label>
-                  <label class="assessment-option">
-                    <input type="radio" name="cognitive-1" value="3">
-                    <span class="radiomark"></span>
-                    Approach it with curiosity and patience
-                  </label>
-                  <label class="assessment-option">
-                    <input type="radio" name="cognitive-1" value="4">
-                    <span class="radiomark"></span>
-                    Enjoy learning and adapting to new tools
-                  </label>
-                </div>
-              </div>
+<div class="responsive-video">
+  <video 
+    id="resilience-video" 
+    class="video-js vjs-ie-skin vjs-big-play-centered" 
+    controls 
+    preload="auto" 
+    data-video-id="w4v01"
+    data-logo="assets/images/logo-ie-small.png"
+    aria-label="What Is Resilience? video"
+  >
+    <source src="https://iep-media.ie.edu/olj/human-flourishing/w4v01-what-is-resilience/mp4/w4v01-what-is-resilience_1080p.mp4" type="video/mp4">
+    <p class="vjs-no-js">
+      To view this video please enable JavaScript, and consider upgrading to a
+      web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+    </p>
+    <track kind="captions" src="captions/what-is-resilience.vtt" srclang="en" label="English" default>
+  </video>
+</div>
 
-              <div class="assessment-question">
-                <p>When technology doesn't work as expected, I:</p>
-                <div class="assessment-options">
-                  <label class="assessment-option">
-                    <input type="radio" name="cognitive-2" value="1">
-                    <span class="radiomark"></span>
-                    Get frustrated and give up quickly
-                  </label>
-                  <label class="assessment-option">
-                    <input type="radio" name="cognitive-2" value="2">
-                    <span class="radiomark"></span>
-                    Try a few things but get discouraged
-                  </label>
-                  <label class="assessment-option">
-                    <input type="radio" name="cognitive-2" value="3">
-                    <span class="radiomark"></span>
-                    Persist and try different approaches
-                  </label>
-                  <label class="assessment-option">
-                    <input type="radio" name="cognitive-2" value="4">
-                    <span class="radiomark"></span>
-                    Stay calm and systematically troubleshoot
-                  </label>
-                </div>
-              </div>
-            </div>
-          </div>
+<div class="key-point" role="note" aria-label="Key point about resilience">
+  <h3>Key Point</h3>
+  <p>Resilience is the ability to bounce back from adversity, adapt to challenges, and 
+  grow stronger through difficult experiences. It's not about avoiding stress or hardship, 
+  but rather developing the skills and mindset to navigate them effectively.</p>
+</div>
+</section>
+    
+    <!-- 3. Fondo blanco -->
+    <section class="lesson-section no-borders">
 
-          <div class="assessment-category">
-            <h3>Emotional Regulation</h3>
-            <div class="assessment-questions">
-              <div class="assessment-question">
-                <p>When I see others' highlight reels on social media, I:</p>
-                <div class="assessment-options">
-                  <label class="assessment-option">
-                    <input type="radio" name="emotional-1" value="1">
-                    <span class="radiomark"></span>
-                    Feel inadequate and compare myself negatively
-                  </label>
-                  <label class="assessment-option">
-                    <input type="radio" name="emotional-1" value="2">
-                    <span class="radiomark"></span>
-                    Sometimes feel envious but try to move on
-                  </label>
-                  <label class="assessment-option">
-                    <input type="radio" name="emotional-1" value="3">
-                    <span class="radiomark"></span>
-                    Remind myself that it's not the full picture
-                  </label>
-                  <label class="assessment-option">
-                    <input type="radio" name="emotional-1" value="4">
-                    <span class="radiomark"></span>
-                    Feel genuinely happy for others' successes
-                  </label>
-                </div>
-              </div>
-
-              <div class="assessment-question">
-                <p>When I receive negative feedback or criticism online, I:</p>
-                <div class="assessment-options">
-                  <label class="assessment-option">
-                    <input type="radio" name="emotional-2" value="1">
-                    <span class="radiomark"></span>
-                    Take it very personally and feel hurt for days
-                  </label>
-                  <label class="assessment-option">
-                    <input type="radio" name="emotional-2" value="2">
-                    <span class="radiomark"></span>
-                    Feel upset but recover within a day
-                  </label>
-                  <label class="assessment-option">
-                    <input type="radio" name="emotional-2" value="3">
-                    <span class="radiomark"></span>
-                    Consider if there's valid feedback to learn from
-                  </label>
-                  <label class="assessment-option">
-                    <input type="radio" name="emotional-2" value="4">
-                    <span class="radiomark"></span>
-                    Stay objective and don't let it affect my self-worth
-                  </label>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="assessment-category">
-            <h3>Energy Management</h3>
-            <div class="assessment-questions">
-              <div class="assessment-question">
-                <p>I recognize when I need a break from digital devices:</p>
-                <div class="assessment-options">
-                  <label class="assessment-option">
-                    <input type="radio" name="energy-1" value="1">
-                    <span class="radiomark"></span>
-                    Rarely, I usually push through fatigue
-                  </label>
-                  <label class="assessment-option">
-                    <input type="radio" name="energy-1" value="2">
-                    <span class="radiomark"></span>
-                    Sometimes, but I don't always act on it
-                  </label>
-                  <label class="assessment-option">
-                    <input type="radio" name="energy-1" value="3">
-                    <span class="radiomark"></span>
-                    Usually, and I try to take breaks when needed
-                  </label>
-                  <label class="assessment-option">
-                    <input type="radio" name="energy-1" value="4">
-                    <span class="radiomark"></span>
-                    Always, and I proactively manage my digital energy
-                  </label>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <button id="calculate-resilience" class="resilience-calculate-btn">Calculate My Resilience Score</button>
-          
-          <div id="resilience-results" class="resilience-results" style="display: none;">
-            <h3>Your Digital Resilience Profile</h3>
-            <div id="resilience-scores" class="resilience-scores"></div>
-            <div id="resilience-feedback" class="resilience-feedback"></div>
-            <div id="resilience-recommendations" class="resilience-recommendations"></div>
+  
+    <h2>Reading</h2>
+    <p>Please complete the following reading:</p>
+    
+    <div class="reading-cards">
+      <div class="reading-card">
+        <div class="reading-card-content">
+          <h3>Building Resilience</h3>
+          <p>Explore evidence-based strategies for developing resilience and learn how to strengthen your ability to cope with life's challenges and bounce back from setbacks.</p>
+          <div class="reading-card-footer">
+            <a href="https://www.apa.org/topics/resilience" target="_blank" class="reading-link" aria-label="Read APA article on Building Resilience (opens in new tab)">
+              Read Article
+              <span class="reading-arrow" aria-hidden="true">→</span>
+            </a>
           </div>
         </div>
-      </section>
-
-      <section class="lesson-section no-borders">
-        <h2>Building Your Resilience Toolkit</h2>
-        <p>Develop practical strategies and techniques to strengthen your digital resilience across all areas of your life.</p>
-        
-        <div class="toolkit-container">
-          <div class="toolkit-section">
-            <h3><i class="fas fa-brain" aria-hidden="true"></i> Cognitive Flexibility Tools</h3>
-            <div class="tool-cards">
-              <div class="tool-card">
-                <h4>The Learning Mindset</h4>
-                <p>Approach new digital challenges with curiosity rather than fear. Ask "What can I learn from this?" instead of "Why is this so hard?"</p>
-                <div class="tool-practice">
-                  <strong>Practice:</strong> When facing a new digital tool, spend 5 minutes exploring without pressure to master it immediately.
-                </div>
-              </div>
-              
-              <div class="tool-card">
-                <h4>Multiple Solutions Thinking</h4>
-                <p>Train yourself to think of several ways to accomplish digital tasks. This builds mental flexibility and reduces frustration.</p>
-                <div class="tool-practice">
-                  <strong>Practice:</strong> For any digital task, brainstorm 3 different ways to accomplish it before starting.
-                </div>
-              </div>
-              
-              <div class="tool-card">
-                <h4>Perspective Taking</h4>
-                <p>Consider different viewpoints when interpreting digital communications or online content. This reduces misunderstandings and conflicts.</p>
-                <div class="tool-practice">
-                  <strong>Practice:</strong> Before reacting to something online, ask "What else could this mean?" or "What might this person be going through?"
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="toolkit-section">
-            <h3><i class="fas fa-heart" aria-hidden="true"></i> Emotional Regulation Tools</h3>
-            <div class="tool-cards">
-              <div class="tool-card">
-                <h4>The Digital Pause</h4>
-                <p>Before responding to emotionally charged digital content, take a pause to check in with your emotions and choose your response.</p>
-                <div class="tool-practice">
-                  <strong>Practice:</strong> Count to 10 and take three deep breaths before responding to anything that triggers strong emotions online.
-                </div>
-              </div>
-              
-              <div class="tool-card">
-                <h4>Emotional Labeling</h4>
-                <p>Name your emotions when using digital devices. This simple practice helps regulate emotional responses and increases self-awareness.</p>
-                <div class="tool-practice">
-                  <strong>Practice:</strong> When you notice strong emotions while using technology, say to yourself: "I'm feeling [emotion] right now."
-                </div>
-              </div>
-              
-              <div class="tool-card">
-                <h4>Reality Check Questions</h4>
-                <p>Use specific questions to challenge negative thoughts triggered by digital experiences.</p>
-                <div class="tool-practice">
-                  <strong>Questions to ask:</strong> "Is this thought helpful?" "What evidence supports/contradicts this?" "How will this matter in a year?"
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="toolkit-section">
-            <h3><i class="fas fa-battery-three-quarters" aria-hidden="true"></i> Energy Management Tools</h3>
-            <div class="tool-cards">
-              <div class="tool-card">
-                <h4>Digital Energy Audit</h4>
-                <p>Regularly assess which digital activities energize you versus which ones drain you, then adjust your usage accordingly.</p>
-                <div class="tool-practice">
-                  <strong>Practice:</strong> Keep a simple log for one week noting your energy levels before and after different digital activities.
-                </div>
-              </div>
-              
-              <div class="tool-card">
-                <h4>Restorative Breaks</h4>
-                <p>Build in regular breaks that truly restore your energy, not just different forms of digital stimulation.</p>
-                <div class="tool-practice">
-                  <strong>Practice:</strong> Every 90 minutes of screen time, take a 10-minute break involving physical movement or nature.
-                </div>
-              </div>
-              
-              <div class="tool-card">
-                <h4>Energy Boundaries</h4>
-                <p>Set clear limits on energy-draining digital activities and protect time for energy-giving ones.</p>
-                <div class="tool-practice">
-                  <strong>Practice:</strong> Identify your most energy-draining digital activity and set a daily time limit for it.
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="lesson-section no-borders">
-        <h2>Handling Digital Challenges</h2>
-        <p>Learn specific strategies for common digital challenges that can impact your well-being and resilience.</p>
-        
-        <div class="challenges-container">
-          <div class="challenge-card">
-            <div class="challenge-icon">
-              <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
-            </div>
-            <div class="challenge-content">
-              <h3>Information Overload</h3>
-              <p>When the constant stream of information becomes overwhelming and affects your ability to focus or make decisions.</p>
-              <div class="challenge-strategies">
-                <h4>Strategies:</h4>
-                <ul>
-                  <li><strong>Curate your inputs:</strong> Unsubscribe from unnecessary newsletters and unfollow accounts that don't add value</li>
-                  <li><strong>Set information boundaries:</strong> Designate specific times for news consumption</li>
-                  <li><strong>Practice selective attention:</strong> Focus on information that's actionable or truly important to you</li>
-                  <li><strong>Use the "need to know" filter:</strong> Ask yourself if you really need this information right now</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="challenge-card">
-            <div class="challenge-icon">
-              <i class="fas fa-user-slash" aria-hidden="true"></i>
-            </div>
-            <div class="challenge-content">
-              <h3>Cyberbullying and Online Harassment</h3>
-              <p>Dealing with negative, hostile, or abusive behavior in digital spaces.</p>
-              <div class="challenge-strategies">
-                <h4>Strategies:</h4>
-                <ul>
-                  <li><strong>Don't engage:</strong> Avoid responding to trolls or harassers, as it often escalates the situation</li>
-                  <li><strong>Document and report:</strong> Take screenshots and use platform reporting tools</li>
-                  <li><strong>Seek support:</strong> Talk to trusted friends, family, or professionals about your experience</li>
-                  <li><strong>Use blocking tools:</strong> Don't hesitate to block or mute accounts that are harmful to your well-being</li>
-                  <li><strong>Remember it's not about you:</strong> Online harassment often reflects the harasser's issues, not your worth</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="challenge-card">
-            <div class="challenge-icon">
-              <i class="fas fa-tired" aria-hidden="true"></i>
-            </div>
-            <div class="challenge-content">
-              <h3>Digital Fatigue</h3>
-              <p>Physical and mental exhaustion from excessive screen time and digital stimulation.</p>
-              <div class="challenge-strategies">
-                <h4>Strategies:</h4>
-                <ul>
-                  <li><strong>Follow the 20-20-20 rule:</strong> Every 20 minutes, look at something 20 feet away for 20 seconds</li>
-                  <li><strong>Adjust your environment:</strong> Optimize lighting, screen brightness, and ergonomics</li>
-                  <li><strong>Take micro-breaks:</strong> Brief pauses throughout the day can prevent fatigue buildup</li>
-                  <li><strong>Practice digital sunset:</strong> Stop using stimulating devices 1-2 hours before bed</li>
-                  <li><strong>Engage in offline restoration:</strong> Spend time in nature, exercise, or practice mindfulness</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="challenge-card">
-            <div class="challenge-icon">
-              <i class="fas fa-balance-scale" aria-hidden="true"></i>
-            </div>
-            <div class="challenge-content">
-              <h3>Social Comparison</h3>
-              <p>Feeling inadequate when comparing your life to others' curated online presentations.</p>
-              <div class="challenge-strategies">
-                <h4>Strategies:</h4>
-                <ul>
-                  <li><strong>Remember the highlight reel effect:</strong> People share their best moments, not their struggles</li>
-                  <li><strong>Practice gratitude:</strong> Focus on what you're thankful for in your own life</li>
-                  <li><strong>Limit comparison triggers:</strong> Unfollow accounts that consistently make you feel bad about yourself</li>
-                  <li><strong>Share authentically:</strong> Be genuine in your own posts to encourage authentic connections</li>
-                  <li><strong>Focus on your journey:</strong> Compare yourself to who you were yesterday, not to others</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="lesson-section no-borders">
-        <h2>Resources for Building Resilience</h2>
-        <p>Access these resources to continue developing your digital resilience skills and support your well-being journey.</p>
-        
-        <div class="reading-cards">
-          <a href="assets/documents/resilience-toolkit.pdf" target="_blank" class="reading-card reading-card-link" aria-label="Download Digital Resilience Toolkit (opens in new tab)">
-            <div class="reading-card-content">
-              <h3><strong>Digital Resilience Toolkit</strong></h3>
-              <p>A comprehensive collection of exercises, strategies, and resources for building resilience in digital environments.</p>
-              <div class="reading-card-footer">
-                <span class="reading-link">
-                  <i class="fas fa-download" aria-hidden="true"></i>
-                  Download PDF
-                  <span class="reading-arrow" aria-hidden="true">→</span>
-                </span>
-              </div>
-            </div>
-          </a>
-
-          <a href="assets/documents/stress-management-guide.pdf" target="_blank" class="reading-card reading-card-link" aria-label="Download Digital Stress Management Guide (opens in new tab)">
-            <div class="reading-card-content">
-              <h3><strong>Digital Stress Management</strong></h3>
-              <p>Practical techniques for managing stress and anxiety related to technology use and digital overwhelm.</p>
-              <div class="reading-card-footer">
-                <span class="reading-link">
-                  <i class="fas fa-download" aria-hidden="true"></i>
-                  Download PDF
-                  <span class="reading-arrow" aria-hidden="true">→</span>
-                </span>
-              </div>
-            </div>
-          </a>
-
-          <a href="https://www.apa.org/science/about/psa/2017/10/stress-digital-age" target="_blank" class="reading-card reading-card-link" aria-label="Visit APA Digital Age Stress Research (opens in new tab)">
-            <div class="reading-card-content">
-              <h3><strong>Research on Digital Age Stress</strong></h3>
-              <p>Scientific insights from the American Psychological Association on stress and resilience in the digital age.</p>
-              <div class="reading-card-footer">
-                <span class="reading-link">
-                  Visit Research
-                  <span class="reading-arrow" aria-hidden="true">→</span>
-                </span>
-              </div>
-            </div>
-          </a>
-        </div>
-      </section>
-
-      <section class="lesson-section no-borders">
-        <h2>Key Takeaways</h2>
-        <div class="key-points-container">
-          <div class="key-point">
-            <div class="key-point-icon">
-              <i class="fas fa-shield-alt" aria-hidden="true"></i>
-            </div>
-            <div class="key-point-content">
-              <h4>Resilience is Learnable</h4>
-              <p>Digital resilience isn't a fixed trait—it's a set of skills you can develop and strengthen over time with practice.</p>
-            </div>
-          </div>
-          
-          <div class="key-point">
-            <div class="key-point-icon">
-              <i class="fas fa-tools" aria-hidden="true"></i>
-            </div>
-            <div class="key-point-content">
-              <h4>Multiple Tools for Multiple Challenges</h4>
-              <p>Different digital challenges require different resilience tools. Build a diverse toolkit to handle various situations.</p>
-            </div>
-          </div>
-          
-          <div class="key-point">
-            <div class="key-point-icon">
-              <i class="fas fa-battery-three-quarters" aria-hidden="true"></i>
-            </div>
-            <div class="key-point-content">
-              <h4>Energy Management is Key</h4>
-              <p>Managing your digital energy levels prevents burnout and maintains your capacity for resilient responses to challenges.</p>
-            </div>
-          </div>
-          
-          <div class="key-point">
-            <div class="key-point-icon">
-              <i class="fas fa-seedling" aria-hidden="true"></i>
-            </div>
-            <div class="key-point-content">
-              <h4>Growth Through Challenges</h4>
-              <p>Digital challenges, while difficult, can be opportunities for growth and building stronger resilience skills.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div class="navigation-buttons" role="navigation" aria-label="Lesson navigation">
-        <a href="chapter3.html" class="nav-button prev"><span class="arrow-left" aria-hidden="true">←</span>Previous</a>
-        <a href="chapter5.html" class="nav-button next">Next<span class="arrow-right" aria-hidden="true">→</span></a>
       </div>
     </div>
-  </main>
+  
 
-  <footer role="contentinfo">
-    <div class="footer-content">
-      <p class="copyright">&copy; <span id="current-year"></span> IE University. All rights reserved.</p>
+</section>
+    
+    <!-- 4. Fondo gris -->
+    <section class="lesson-section no-borders">
+<h2>Activity: Reflecting on Your Resilience</h2>
+<p>Take some time to reflect on your own experiences with resilience. Consider the 
+following questions and write down your thoughts in your journal or notebook:</p>
+
+<div class="reflection-questions-grid">
+  <div class="reflection-question-card">
+    <div class="question-number">1</div>
+    <div class="question-text">
+      <strong>Think of a time when you faced a significant challenge or setback. How did you respond?</strong>
     </div>
-  </footer>
+  </div>
+  
+  <div class="reflection-question-card">
+    <div class="question-number">2</div>
+    <div class="question-text">
+      <strong>What strategies or resources helped you get through that difficult time?</strong>
+    </div>
+  </div>
+  
+  <div class="reflection-question-card">
+    <div class="question-number">3</div>
+    <div class="question-text">
+      <strong>What did you learn about yourself from that experience?</strong>
+    </div>
+  </div>
+  
+  <div class="reflection-question-card">
+    <div class="question-number">4</div>
+    <div class="question-text">
+      <strong>How has that experience shaped how you approach challenges today?</strong>
+    </div>
+  </div>
+  
+  <div class="reflection-question-card">
+    <div class="question-number">5</div>
+    <div class="question-text">
+      <strong>What are some areas where you'd like to build more resilience?</strong>
+    </div>
+  </div>
+</div>
+</section>
+    
+    <!-- 5. Fondo blanco -->
+    <section class="lesson-section no-borders">
 
-  <!-- Glossary Modal -->
-  <div id="glossary-modal" class="modal" role="dialog" aria-labelledby="glossary-modal-title" aria-hidden="true">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 id="glossary-modal-title">Glossary of Digital Well-being Concepts</h2>
-        <button class="modal-close" aria-label="Close glossary">&times;</button>
+  
+    <h2>Neuroplasticity and Resilience</h2>
+    
+    <div class="responsive-video">
+      <video 
+        id="neuroplasticity-video" 
+        class="video-js vjs-ie-skin vjs-big-play-centered" 
+        controls 
+        preload="auto" 
+        data-video-id="w4v02"
+        data-logo="assets/images/logo-ie-small.png"
+        aria-label="Neuroplasticity and Resilience video"
+      >
+        <source src="https://iep-media.ie.edu/olj/human-flourishing/w4v02-neuroplasticity-and-resilience/mp4/w4v02-neuroplasticity-and-resilience_1080p.mp4" type="video/mp4">
+        <p class="vjs-no-js">
+          To view this video please enable JavaScript, and consider upgrading to a
+          web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+        </p>
+        <track kind="captions" src="captions/neuroplasticity-and-resilience.vtt" srclang="en" label="English" default>
+      </video>
+    </div>
+    
+    <div class="key-point" role="note" aria-label="Key point about neuroplasticity">
+      <h3>Key Point</h3>
+      <p>Neuroplasticity is the brain's ability to reorganize and form new neural connections 
+      throughout life. This means that resilience can be developed and strengthened through 
+      practice, just like building a muscle. Our brains can literally rewire themselves to 
+      become more resilient.</p>
+    </div>
+  
+
+</section>
+    
+    <!-- 6. Fondo gris -->
+    <section class="lesson-section no-borders">
+      <h2>Strategies for Building Resilience</h2>
+      
+      <div class="responsive-video">
+        <video 
+          id="strategies-video" 
+          class="video-js vjs-ie-skin vjs-big-play-centered" 
+          controls 
+          preload="auto" 
+          data-video-id="w4v03"
+          data-logo="assets/images/logo-ie-small.png"
+          aria-label="Strategies for Building Resilience video"
+        >
+          <source src="https://iep-media.ie.edu/olj/human-flourishing/w4v03-strategies-for-building-resilience/mp4/w4v03-strategies-for-building-resilience_1080p.mp4" type="video/mp4">
+          <p class="vjs-no-js">
+            To view this video please enable JavaScript, and consider upgrading to a
+            web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+          </p>
+          <track kind="captions" src="captions/strategies-for-building-resilience.vtt" srclang="en" label="English" default>
+        </video>
       </div>
-      <div class="modal-body">
-        <nav class="glossary-az-nav" aria-label="Glossary A-Z Navigation">
-          <a href="#glossary-section-a">A</a>
-          <a href="#glossary-section-b">B</a>
-          <a href="#glossary-section-c">C</a>
-          <a href="#glossary-section-d">D</a>
-          <a href="#glossary-section-e">E</a>
-          <a href="#glossary-section-f">F</a>
-          <a href="#glossary-section-h">H</a>
-          <a href="#glossary-section-m">M</a>
-          <a href="#glossary-section-n">N</a>
-          <a href="#glossary-section-p">P</a>
-          <a href="#glossary-section-r">R</a>
-          <a href="#glossary-section-s">S</a>
-          <a href="#glossary-section-t">T</a>
-          <a href="#glossary-section-w">W</a>
-        </nav>
-        <div class="glossary-terms">
-          <div id="glossary-section-a" class="glossary-section">
-            <h3 class="glossary-letter-header">A</h3>
-            <div class="glossary-term">
-              <strong>Accountability Buddy</strong> – A supportive partner who helps track progress and encourages consistency in digital well-being goals.
-            </div>
-            <div class="glossary-term">
-              <strong>Attention Management</strong> – The practice of consciously directing focus in a digital environment to enhance productivity and cognitive health.
-            </div>
-            <div class="glossary-term">
-              <strong>Autonomy (Self-Determination Theory)</strong> – The ability to make choices about digital engagement that align with personal values and goals.
-            </div>
-          </div>
-          <div id="glossary-section-b" class="glossary-section">
-            <h3 class="glossary-letter-header">B</h3>
-            <div class="glossary-term">
-              <strong>Brain Cognition</strong> – The way the brain processes information, impacted by digital habits such as screen time and multitasking.
-            </div>
-            <div class="glossary-term">
-              <strong>Behavioral Science</strong> – The study of how people form digital habits and how technology influences decision-making.
-            </div>
-          </div>
-          <div id="glossary-section-c" class="glossary-section">
-            <h3 class="glossary-letter-header">C</h3>
-            <div class="glossary-term">
-              <strong>Character Strengths</strong> – Personal strengths (e.g., curiosity, self-regulation) that can be leveraged to cultivate healthy digital habits.
-            </div>
-            <div class="glossary-term">
-              <strong>Cognitive Load</strong> – The mental effort required to process information, which can be impacted by excessive screen time or multitasking.
-            </div>
-            <div class="glossary-term">
-              <strong>Core Values</strong> – Fundamental beliefs that guide digital habits and decision-making.
-            </div>
-          </div>
-          <div id="glossary-section-d" class="glossary-section">
-            <h3 class="glossary-letter-header">D</h3>
-            <div class="glossary-term">
-              <strong>Digital Detox</strong> – A period of time spent without digital devices to reset habits and improve well-being.
-            </div>
-            <div class="glossary-term">
-              <strong>Digital Flourishing</strong> – Thriving in a digital environment by balancing technology use with personal and professional well-being.
-            </div>
-            <div class="glossary-term">
-              <strong>Digital Goals</strong> – Personalized objectives for improving one's digital habits, often using the SMART (Specific, Measurable, Achievable, Relevant, Time-bound) framework.
-            </div>
-            <div class="glossary-term">
-              <strong>Digital Habit Audit</strong> – A self-assessment to track technology use and identify areas for improvement.
-            </div>
-            <div class="glossary-term">
-              <strong>Digital Minimalism</strong> – A philosophy advocating for intentional and purposeful use of technology to enhance well-being.
-            </div>
-          </div>
-          <div id="glossary-section-e" class="glossary-section">
-            <h3 class="glossary-letter-header">E</h3>
-            <div class="glossary-term">
-              <strong>Empathy and Technology</strong> – The relationship between digital interactions and emotional intelligence, including how technology can impact social connections.
-            </div>
-            <div class="glossary-term">
-              <strong>Energy Management</strong> – Strategies to prevent digital fatigue and optimize energy levels in a tech-heavy world.
-            </div>
-          </div>
-          <div id="glossary-section-f" class="glossary-section">
-            <h3 class="glossary-letter-header">F</h3>
-            <div class="glossary-term">
-              <strong>Focus & Productivity</strong> – The ability to maintain attention and effectiveness in work and life, often challenged by digital distractions.
-            </div>
-            <div class="glossary-term">
-              <strong>Flourishing (Well-being Theory)</strong> – The state of thriving in multiple aspects of life, including physical, mental, emotional, and digital well-being.
-            </div>
-          </div>
-          <div id="glossary-section-h" class="glossary-section">
-            <h3 class="glossary-letter-header">H</h3>
-            <div class="glossary-term">
-              <strong>Habit Loop</strong> – A framework for understanding habit formation, consisting of cue, routine, and reward, applicable to digital behaviors.
-            </div>
-          </div>
-          <div id="glossary-section-m" class="glossary-section">
-            <h3 class="glossary-letter-header">M</h3>
-            <div class="glossary-term">
-              <strong>Mindfulness in Technology Use</strong> – Practicing present-moment awareness to create intentional and balanced digital interactions.
-            </div>
-            <div class="glossary-term">
-              <strong>Motivation (Self-Determination Theory)</strong> – Internal and external factors that influence engagement with technology, including autonomy, competence, and relatedness.
-            </div>
-          </div>
-          <div id="glossary-section-n" class="glossary-section">
-            <h3 class="glossary-letter-header">N</h3>
-            <div class="glossary-term">
-              <strong>Notification Management</strong> – Strategies to reduce interruptions and increase focus, such as disabling non-essential alerts.
-            </div>
-          </div>
-          <div id="glossary-section-p" class="glossary-section">
-            <h3 class="glossary-letter-header">P</h3>
-            <div class="glossary-term">
-              <strong>Prefrontal Cortex</strong> – The part of the brain responsible for decision-making and impulse control, which is affected by digital engagement.
-            </div>
-            <div class="glossary-term">
-              <strong>Psychological Safety and Technology</strong> – The impact of digital environments on emotional well-being and security.
-            </div>
-          </div>
-          <div id="glossary-section-r" class="glossary-section">
-            <h3 class="glossary-letter-header">R</h3>
-            <div class="glossary-term">
-              <strong>Reflection Practice</strong> – Periodic self-check-ins to assess digital habits and their alignment with personal values.
+    </section>
+    
+    <!-- 7. Fondo blanco -->
+    <section class="lesson-section no-borders">
+
+  
+    <h2>Activity: Building Your Resilience Toolkit</h2>
+    <p>Based on what you've learned about resilience, create your personal resilience toolkit. 
+    Choose at least 3-5 strategies from the list below that resonate with you and commit to 
+    practicing them regularly:</p>
+    
+    <div class="learning-objectives-grid">
+      <div class="learning-objective-card">
+        <div class="objective-icon" aria-hidden="true">
+          <i class="fas fa-users"></i>
+        </div>
+        <div class="objective-content">
+          <h4>Build Strong Relationships</h4>
+          <p>Cultivate supportive connections with family, friends, and community members who can provide emotional support during difficult times.</p>
+        </div>
+      </div>
+      
+      <div class="learning-objective-card">
+        <div class="objective-icon" aria-hidden="true">
+          <i class="fas fa-eye"></i>
+        </div>
+        <div class="objective-content">
+          <h4>Practice Perspective-Taking</h4>
+          <p>Try to see challenges from different angles and look for opportunities for growth and learning in difficult situations.</p>
+        </div>
+      </div>
+      
+      <div class="learning-objective-card">
+        <div class="objective-icon" aria-hidden="true">
+          <i class="fas fa-heart"></i>
+        </div>
+        <div class="objective-content">
+          <h4>Develop Self-Compassion</h4>
+          <p>Treat yourself with kindness and understanding during tough times, rather than being overly critical or harsh.</p>
+        </div>
+      </div>
+      
+      <div class="learning-objective-card">
+        <div class="objective-icon" aria-hidden="true">
+          <i class="fas fa-bullseye"></i>
+        </div>
+        <div class="objective-content">
+          <h4>Set Realistic Goals</h4>
+          <p>Break down large challenges into smaller, manageable steps and celebrate progress along the way.</p>
+        </div>
+      </div>
+      
+      <div class="learning-objective-card">
+        <div class="objective-icon" aria-hidden="true">
+          <i class="fas fa-running"></i>
+        </div>
+        <div class="objective-content">
+          <h4>Take Care of Your Physical Health</h4>
+          <p>Maintain regular exercise, healthy eating habits, and adequate sleep to support your mental resilience.</p>
+        </div>
+      </div>
+      
+      <div class="learning-objective-card">
+        <div class="objective-icon" aria-hidden="true">
+          <i class="fas fa-leaf"></i>
+        </div>
+        <div class="objective-content">
+          <h4>Practice Mindfulness</h4>
+          <p>Develop present-moment awareness through meditation, deep breathing, or other mindfulness practices.</p>
+        </div>
+      </div>
+      
+      <div class="learning-objective-card">
+        <div class="objective-icon" aria-hidden="true">
+          <i class="fas fa-lightbulb"></i>
+        </div>
+        <div class="objective-content">
+          <h4>Embrace Learning</h4>
+          <p>View challenges as opportunities to develop new skills and gain valuable experience.</p>
+        </div>
+      </div>
+      
+      <div class="learning-objective-card">
+        <div class="objective-icon" aria-hidden="true">
+          <i class="fas fa-hands-helping"></i>
+        </div>
+        <div class="objective-content">
+          <h4>Help Others</h4>
+          <p>Engage in acts of service or volunteer work, which can provide perspective and build a sense of purpose.</p>
+        </div>
+      </div>
+    </div>
+    
+    <p><strong>Reflection Questions:</strong></p>
+    <ul>
+      <li>Which strategies do you already use naturally?</li>
+      <li>Which ones would you like to develop further?</li>
+      <li>How can you incorporate these practices into your daily routine?</li>
+      <li>Who in your life can support you in building resilience?</li>
+    </ul>
+  
+
+</section>
+    
+    <!-- 8. Fondo gris -->
+    <section class="lesson-section no-borders">
+      <h2>Reading</h2>
+      <p>Please complete the following reading:</p>
+      
+      <div class="reading-cards">
+        <div class="reading-card">
+          <div class="reading-card-content">
+            <h3>The Science of Resilience: Why Some Children Can Thrive Despite Adversity</h3>
+            <p>Discover the latest research on resilience and learn about the factors that help some individuals not just survive but thrive in the face of significant challenges and adversity.</p>
+            <div class="reading-card-footer">
+              <a href="https://www.scientificamerican.com/article/the-science-of-resilience/" target="_blank" class="reading-link" aria-label="Read Scientific American article on resilience (opens in new tab)">
+                Read Article
+                <span class="reading-arrow" aria-hidden="true">→</span>
+              </a>
             </div>
           </div>
-          <div id="glossary-section-s" class="glossary-section">
-            <h3 class="glossary-letter-header">S</h3>
-            <div class="glossary-term">
-              <strong>Screen Time Awareness</strong> – Conscious tracking of time spent on digital devices to maintain a balanced lifestyle.
-            </div>
-            <div class="glossary-term">
-              <strong>Self-Regulation</strong> – The ability to control impulses and make mindful choices in digital interactions.
-            </div>
-            <div class="glossary-term">
-              <strong>Social Media Hygiene</strong> – Practices for maintaining a healthy relationship with social platforms, including curating content and setting boundaries.
-            </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- 9. Fondo blanco -->
+    <section class="lesson-section no-borders">
+
+  
+    <h2>Closing Meditation: Lesson 4</h2>
+    
+    <div class="responsive-video">
+      <video 
+        id="closing-meditation-video" 
+        class="video-js vjs-ie-skin vjs-big-play-centered" 
+        controls 
+        preload="auto" 
+        data-video-id="w7v04"
+        data-logo="assets/images/logo-ie-small.png"
+        aria-label="Building Inner Strength meditation video"
+      >
+        <source src="https://iep-media.ie.edu/olj/human-flourishing/w7v04-building-inner-strength/mp4/w7v04-building-inner-strength_1080p.mp4" type="video/mp4">
+        <p class="vjs-no-js">
+          To view this video please enable JavaScript, and consider upgrading to a
+          web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+        </p>
+        <track kind="captions" src="captions/building-inner-strength.vtt" srclang="en" label="English" default>
+      </video>
+    </div>
+    
+    <div class="key-point" role="note" aria-label="Key point about meditation for resilience">
+      <h3>Key Point</h3>
+      <p>This guided meditation helps us connect with our inner strength and resilience. 
+      Regular meditation practice can help build the mental and emotional resources we need 
+      to navigate life's challenges with greater ease and confidence.</p>
+    </div>
+  
+
+</section>
+    
+    <div class="navigation-buttons" role="navigation" aria-label="Lesson navigation">
+      <a href="chapter3.html" class="nav-button prev"><span class="arrow-left" aria-hidden="true">←</span>Previous</a>
+      <a href="chapter5.html" class="nav-button next">Next<span class="arrow-right" aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</main>
+
+<footer role="contentinfo">
+<div class="footer-content">
+  <p class="copyright">&copy; <span id="current-year"></span> IE University. All rights reserved.</p>
+</div>
+</footer>
+
+<!-- Glossary Modal -->
+<div id="glossary-modal" class="modal" role="dialog" aria-labelledby="glossary-modal-title" aria-hidden="true">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 id="glossary-modal-title">Glossary of Digital Well-being Concepts</h2>
+      <button class="modal-close" aria-label="Close glossary">&times;</button>
+    </div>
+    <div class="modal-body">
+      <nav class="glossary-az-nav" aria-label="Glossary A-Z Navigation">
+        <a href="#glossary-section-a">A</a>
+        <a href="#glossary-section-b">B</a>
+        <a href="#glossary-section-c">C</a>
+        <a href="#glossary-section-d">D</a>
+        <a href="#glossary-section-e">E</a>
+        <a href="#glossary-section-f">F</a>
+        <a href="#glossary-section-h">H</a>
+        <a href="#glossary-section-m">M</a>
+        <a href="#glossary-section-n">N</a>
+        <a href="#glossary-section-p">P</a>
+        <a href="#glossary-section-r">R</a>
+        <a href="#glossary-section-s">S</a>
+        <a href="#glossary-section-t">T</a>
+        <a href="#glossary-section-w">W</a>
+      </nav>
+      <div class="glossary-terms">
+        <div id="glossary-section-a" class="glossary-section">
+          <h3 class="glossary-letter-header">A</h3>
+          <div class="glossary-term">
+            <strong>Accountability Buddy</strong> – A supportive partner who helps track progress and encourages consistency in digital well-being goals.
           </div>
-          <div id="glossary-section-t" class="glossary-section">
-            <h3 class="glossary-letter-header">T</h3>
-            <div class="glossary-term">
-              <strong>Tech-Life Balance</strong> – The intentional effort to harmonize technology use with overall well-being.
-            </div>
-            <div class="glossary-term">
-              <strong>Triggers in Digital Use</strong> – Environmental or psychological cues that prompt certain digital habits, such as checking the phone out of boredom.
-            </div>
-            <div class="glossary-term">
-              <strong>Two-Edge Effect of Technology</strong> – The concept that digital tools can both enhance and hinder well-being, depending on usage patterns.
-            </div>
+          <div class="glossary-term">
+            <strong>Attention Management</strong> – The practice of consciously directing focus in a digital environment to enhance productivity and cognitive health.
           </div>
-          <div id="glossary-section-w" class="glossary-section">
-            <h3 class="glossary-letter-header">W</h3>
-            <div class="glossary-term">
-              <strong>Willpower and Digital Use</strong> – The ability to resist distractions and build positive technology habits.
-            </div>
+          <div class="glossary-term">
+            <strong>Autonomy (Self-Determination Theory)</strong> – The ability to make choices about digital engagement that align with personal values and goals.
+          </div>
+        </div>
+        <div id="glossary-section-b" class="glossary-section">
+          <h3 class="glossary-letter-header">B</h3>
+          <div class="glossary-term">
+            <strong>Brain Cognition</strong> – The way the brain processes information, impacted by digital habits such as screen time and multitasking.
+          </div>
+          <div class="glossary-term">
+            <strong>Behavioral Science</strong> – The study of how people form digital habits and how technology influences decision-making.
+          </div>
+        </div>
+        <div id="glossary-section-c" class="glossary-section">
+          <h3 class="glossary-letter-header">C</h3>
+          <div class="glossary-term">
+            <strong>Character Strengths</strong> – Personal strengths (e.g., curiosity, self-regulation) that can be leveraged to cultivate healthy digital habits.
+          </div>
+          <div class="glossary-term">
+            <strong>Cognitive Load</strong> – The mental effort required to process information, which can be impacted by excessive screen time or multitasking.
+          </div>
+          <div class="glossary-term">
+            <strong>Core Values</strong> – Fundamental beliefs that guide digital habits and decision-making.
+          </div>
+        </div>
+        <div id="glossary-section-d" class="glossary-section">
+          <h3 class="glossary-letter-header">D</h3>
+          <div class="glossary-term">
+            <strong>Digital Detox</strong> – A period of time spent without digital devices to reset habits and improve well-being.
+          </div>
+          <div class="glossary-term">
+            <strong>Digital Flourishing</strong> – Thriving in a digital environment by balancing technology use with personal and professional well-being.
+          </div>
+          <div class="glossary-term">
+            <strong>Digital Goals</strong> – Personalized objectives for improving one's digital habits, often using the SMART (Specific, Measurable, Achievable, Relevant, Time-bound) framework.
+          </div>
+          <div class="glossary-term">
+            <strong>Digital Habit Audit</strong> – A self-assessment to track technology use and identify areas for improvement.
+          </div>
+          <div class="glossary-term">
+            <strong>Digital Minimalism</strong> – A philosophy advocating for intentional and purposeful use of technology to enhance well-being.
+          </div>
+        </div>
+        <div id="glossary-section-e" class="glossary-section">
+          <h3 class="glossary-letter-header">E</h3>
+          <div class="glossary-term">
+            <strong>Empathy and Technology</strong> – The relationship between digital interactions and emotional intelligence, including how technology can impact social connections.
+          </div>
+          <div class="glossary-term">
+            <strong>Energy Management</strong> – Strategies to prevent digital fatigue and optimize energy levels in a tech-heavy world.
+          </div>
+        </div>
+        <div id="glossary-section-f" class="glossary-section">
+          <h3 class="glossary-letter-header">F</h3>
+          <div class="glossary-term">
+            <strong>Focus & Productivity</strong> – The ability to maintain attention and effectiveness in work and life, often challenged by digital distractions.
+          </div>
+          <div class="glossary-term">
+            <strong>Flourishing (Well-being Theory)</strong> – The state of thriving in multiple aspects of life, including physical, mental, emotional, and digital well-being.
+          </div>
+        </div>
+        <div id="glossary-section-h" class="glossary-section">
+          <h3 class="glossary-letter-header">H</h3>
+          <div class="glossary-term">
+            <strong>Habit Loop</strong> – A framework for understanding habit formation, consisting of cue, routine, and reward, applicable to digital behaviors.
+          </div>
+        </div>
+        <div id="glossary-section-m" class="glossary-section">
+          <h3 class="glossary-letter-header">M</h3>
+          <div class="glossary-term">
+            <strong>Mindfulness in Technology Use</strong> – Practicing present-moment awareness to create intentional and balanced digital interactions.
+          </div>
+          <div class="glossary-term">
+            <strong>Motivation (Self-Determination Theory)</strong> – Internal and external factors that influence engagement with technology, including autonomy, competence, and relatedness.
+          </div>
+        </div>
+        <div id="glossary-section-n" class="glossary-section">
+          <h3 class="glossary-letter-header">N</h3>
+          <div class="glossary-term">
+            <strong>Notification Management</strong> – Strategies to reduce interruptions and increase focus, such as disabling non-essential alerts.
+          </div>
+        </div>
+        <div id="glossary-section-p" class="glossary-section">
+          <h3 class="glossary-letter-header">P</h3>
+          <div class="glossary-term">
+            <strong>Prefrontal Cortex</strong> – The part of the brain responsible for decision-making and impulse control, which is affected by digital engagement.
+          </div>
+          <div class="glossary-term">
+            <strong>Psychological Safety and Technology</strong> – The impact of digital environments on emotional well-being and security.
+          </div>
+        </div>
+        <div id="glossary-section-r" class="glossary-section">
+          <h3 class="glossary-letter-header">R</h3>
+          <div class="glossary-term">
+            <strong>Reflection Practice</strong> – Periodic self-check-ins to assess digital habits and their alignment with personal values.
+          </div>
+        </div>
+        <div id="glossary-section-s" class="glossary-section">
+          <h3 class="glossary-letter-header">S</h3>
+          <div class="glossary-term">
+            <strong>Screen Time Awareness</strong> – Conscious tracking of time spent on digital devices to maintain a balanced lifestyle.
+          </div>
+          <div class="glossary-term">
+            <strong>Self-Regulation</strong> – The ability to control impulses and make mindful choices in digital interactions.
+          </div>
+          <div class="glossary-term">
+            <strong>Social Media Hygiene</strong> – Practices for maintaining a healthy relationship with social platforms, including curating content and setting boundaries.
+          </div>
+        </div>
+        <div id="glossary-section-t" class="glossary-section">
+          <h3 class="glossary-letter-header">T</h3>
+          <div class="glossary-term">
+            <strong>Tech-Life Balance</strong> – The intentional effort to harmonize technology use with overall well-being.
+          </div>
+          <div class="glossary-term">
+            <strong>Triggers in Digital Use</strong> – Environmental or psychological cues that prompt certain digital habits, such as checking the phone out of boredom.
+          </div>
+          <div class="glossary-term">
+            <strong>Two-Edge Effect of Technology</strong> – The concept that digital tools can both enhance and hinder well-being, depending on usage patterns.
+          </div>
+        </div>
+        <div id="glossary-section-w" class="glossary-section">
+          <h3 class="glossary-letter-header">W</h3>
+          <div class="glossary-term">
+            <strong>Willpower and Digital Use</strong> – The ability to resist distractions and build positive technology habits.
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- VideoJS JavaScript -->
-  <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
-  <script src="js/video-player.js"></script>
-  <script src="js/key-points.js"></script>
-  <script src="js/main.js"></script>
-  <script>
-    // Glossary Modal Functionality
-    document.addEventListener('DOMContentLoaded', function() {
-      const modal = document.getElementById('glossary-modal');
-      const menuLink = document.getElementById('glossary-menu-link');
-      const closeBtn = modal.querySelector('.modal-close');
+<!-- VideoJS JavaScript -->
+<script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
+<script src="js/video-player.js"></script>
+<script src="js/key-points.js"></script>
+<script src="js/reflections.js"></script>
+<script src="js/main.js"></script>
+<script>
+// Glossary Modal Functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const modal = document.getElementById('glossary-modal');
+  const openBtn = document.getElementById('open-glossary');
+  const menuLink = document.getElementById('glossary-menu-link');
+  const closeBtn = modal.querySelector('.modal-close');
 
-      function openModal() {
-        modal.style.display = 'block';
-        modal.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
-        const firstFocusableElement = modal.querySelector('.modal-close, .glossary-az-nav a');
-        if (firstFocusableElement) {
-          firstFocusableElement.focus();
-        }
-      }
+  function openModal() {
+    modal.style.display = 'block';
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    const firstFocusableElement = modal.querySelector('.modal-close, .glossary-az-nav a');
+    if (firstFocusableElement) {
+        firstFocusableElement.focus();
+    }
+  }
 
-      function closeModal() {
-        modal.style.display = 'none';
-        modal.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = 'auto';
-        if (document.activeElement === closeBtn || modal.contains(document.activeElement)) {
-          if (menuLink && menuLink === document.lastActiveElement) menuLink.focus();
-        }
-        document.lastActiveElement = null;
-      }
+  function closeModal() {
+    modal.style.display = 'none';
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = 'auto';
+    if (document.activeElement === closeBtn || modal.contains(document.activeElement)) {
+        if (openBtn && openBtn === document.lastActiveElement) openBtn.focus();
+        else if (menuLink && menuLink === document.lastActiveElement) menuLink.focus();
+    }
+    document.lastActiveElement = null;
+  }
+  
+  document.lastActiveElement = null;
 
-      document.lastActiveElement = null;
-
-      if (menuLink) {
-        menuLink.addEventListener('click', function(e) {
-          e.preventDefault();
-          document.lastActiveElement = this;
-          openModal();
-          const mainNav = document.getElementById('main-nav');
-          const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-          if (mainNav && mainNav.classList.contains('active')) {
-            mainNav.classList.remove('active');
-            mobileMenuToggle.classList.remove('active');
-            mobileMenuToggle.setAttribute('aria-expanded', 'false');
-          }
-        });
-      }
-
-      if (closeBtn) {
-        closeBtn.addEventListener('click', closeModal);
-      }
-
-      modal.addEventListener('click', function(e) {
-        if (e.target === modal) {
-          closeModal();
-        }
-      });
-
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && modal.style.display === 'block') {
-          closeModal();
-        }
-      });
+  if (openBtn) {
+    openBtn.addEventListener('click', function() {
+        document.lastActiveElement = this;
+        openModal();
     });
-
-    // Resilience Assessment functionality
-    document.addEventListener('DOMContentLoaded', function() {
-      const calculateBtn = document.getElementById('calculate-resilience');
-      const resultsDiv = document.getElementById('resilience-results');
-      const scoresDiv = document.getElementById('resilience-scores');
-      const feedbackDiv = document.getElementById('resilience-feedback');
-      const recommendationsDiv = document.getElementById('resilience-recommendations');
-
-      if (calculateBtn) {
-        calculateBtn.addEventListener('click', function() {
-          // Get all answers
-          const cognitiveAnswers = [
-            document.querySelector('input[name="cognitive-1"]:checked'),
-            document.querySelector('input[name="cognitive-2"]:checked')
-          ];
-          
-          const emotionalAnswers = [
-            document.querySelector('input[name="emotional-1"]:checked'),
-            document.querySelector('input[name="emotional-2"]:checked')
-          ];
-          
-          const energyAnswers = [
-            document.querySelector('input[name="energy-1"]:checked')
-          ];
-
-          // Check if all questions are answered
-          const allAnswers = [...cognitiveAnswers, ...emotionalAnswers, ...energyAnswers];
-          if (allAnswers.some(answer => !answer)) {
-            alert('Please answer all questions to calculate your resilience score.');
-            return;
-          }
-
-          // Calculate scores
-          const cognitiveScore = cognitiveAnswers.reduce((sum, answer) => sum + parseInt(answer.value), 0);
-          const emotionalScore = emotionalAnswers.reduce((sum, answer) => sum + parseInt(answer.value), 0);
-          const energyScore = energyAnswers.reduce((sum, answer) => sum + parseInt(answer.value), 0);
-
-          // Convert to percentages
-          const cognitivePercent = Math.round((cognitiveScore / 8) * 100);
-          const emotionalPercent = Math.round((emotionalScore / 8) * 100);
-          const energyPercent = Math.round((energyScore / 4) * 100);
-          const overallPercent = Math.round((cognitivePercent + emotionalPercent + energyPercent) / 3);
-
-          // Display scores
-          scoresDiv.innerHTML = `
-            <div class="score-breakdown">
-              <div class="score-item">
-                <h4>Cognitive Flexibility</h4>
-                <div class="score-bar">
-                  <div class="score-fill" style="width: ${cognitivePercent}%"></div>
-                </div>
-                <span class="score-value">${cognitivePercent}%</span>
-              </div>
-              <div class="score-item">
-                <h4>Emotional Regulation</h4>
-                <div class="score-bar">
-                  <div class="score-fill" style="width: ${emotionalPercent}%"></div>
-                </div>
-                <span class="score-value">${emotionalPercent}%</span>
-              </div>
-              <div class="score-item">
-                <h4>Energy Management</h4>
-                <div class="score-bar">
-                  <div class="score-fill" style="width: ${energyPercent}%"></div>
-                </div>
-                <span class="score-value">${energyPercent}%</span>
-              </div>
-              <div class="score-item overall">
-                <h4>Overall Resilience</h4>
-                <div class="score-circle">${overallPercent}%</div>
-              </div>
-            </div>
-          `;
-
-          // Generate feedback
-          let feedback = '';
-          let recommendations = '<h4>Your Personalized Action Plan:</h4><ul>';
-
-          if (overallPercent >= 80) {
-            feedback = '<p class="score-excellent">Excellent! You demonstrate strong digital resilience across multiple areas.</p>';
-            recommendations += '<li>Continue practicing your current strategies</li>';
-            recommendations += '<li>Consider mentoring others in digital resilience</li>';
-            recommendations += '<li>Stay updated on new digital challenges and solutions</li>';
-          } else if (overallPercent >= 60) {
-            feedback = '<p class="score-good">Good! You have solid digital resilience with some areas for growth.</p>';
-            recommendations += '<li>Focus on your lowest-scoring area for improvement</li>';
-            recommendations += '<li>Practice the specific tools provided in this chapter</li>';
-            recommendations += '<li>Set up regular check-ins to monitor your progress</li>';
-          } else if (overallPercent >= 40) {
-            feedback = '<p class="score-moderate">Moderate. Building your digital resilience will significantly benefit your well-being.</p>';
-            recommendations += '<li>Start with one resilience tool and practice it daily</li>';
-            recommendations += '<li>Focus on energy management as a foundation</li>';
-            recommendations += '<li>Consider seeking support from friends or professionals</li>';
-          } else {
-            feedback = '<p class="score-needs-work">Your digital resilience could use strengthening. This is a great opportunity for growth.</p>';
-            recommendations += '<li>Begin with basic energy management techniques</li>';
-            recommendations += '<li>Practice the digital pause before reacting to challenges</li>';
-            recommendations += '<li>Consider a digital detox to reset your relationship with technology</li>';
-            recommendations += '<li>Seek support from trusted friends or mental health professionals</li>';
-          }
-
-          // Add specific recommendations based on lowest scores
-          const scores = [
-            { name: 'Cognitive Flexibility', score: cognitivePercent, tips: ['Practice the learning mindset', 'Try multiple solutions thinking', 'Approach new tools with curiosity'] },
-            { name: 'Emotional Regulation', score: emotionalPercent, tips: ['Use the digital pause technique', 'Practice emotional labeling', 'Ask reality check questions'] },
-            { name: 'Energy Management', score: energyPercent, tips: ['Conduct a digital energy audit', 'Take regular restorative breaks', 'Set energy boundaries'] }
-          ];
-
-          const lowestScore = scores.reduce((min, current) => current.score < min.score ? current : min);
-          recommendations += `<li><strong>Priority focus (${lowestScore.name}):</strong> ${lowestScore.tips.join(', ')}</li>`;
-          recommendations += '</ul>';
-
-          feedbackDiv.innerHTML = feedback;
-          recommendationsDiv.innerHTML = recommendations;
-          resultsDiv.style.display = 'block';
-          resultsDiv.scrollIntoView({ behavior: 'smooth' });
-        });
+  }
+  
+  if (menuLink) {
+    menuLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.lastActiveElement = this;
+      openModal();
+      const mainNav = document.getElementById('main-nav');
+      const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+      if (mainNav && mainNav.classList.contains('active')) {
+        mainNav.classList.remove('active');
+        mobileMenuToggle.classList.remove('active');
+        mobileMenuToggle.setAttribute('aria-expanded', 'false');
       }
     });
-  </script>
+  }
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeModal);
+  }
+
+  modal.addEventListener('click', function(e) {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && modal.style.display === 'block') {
+      closeModal();
+    }
+  });
+});
+</script>
 </body>
 </html>
