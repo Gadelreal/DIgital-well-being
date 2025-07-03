@@ -177,6 +177,17 @@
   border: 1px solid #ffeaa7;
 }
 
+@media (max-width: 768px) {
+  .attention-question {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .dropdown-container {
+    min-width: auto;
+  }
+}
+
 /* Multiple Choice Test Styles */
 .multiple-choice-test {
   margin-top: 2rem;
@@ -272,21 +283,6 @@
   background-color: #f8d7da;
   color: #721c24;
   border: 1px solid #f5c6cb;
-}
-
-@media (max-width: 768px) {
-  .attention-question {
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  .dropdown-container {
-    min-width: auto;
-  }
-  
-  .quiz-question {
-    padding: 1rem;
-  }
 }
 </style>
 </head>
@@ -585,187 +581,230 @@
   
         <p style="margin-top: 1rem;">Small changes in digital habits can make a big difference for a sharper, healthier mind.</p>
       </div>
+      
+    
     </section>
     
     <!-- 7. Fondo blanco -->
-    <section class="lesson-section no-borders">
-      <h2>Multiple Choice Test</h2>
-      <p>Test your understanding of attention, cognition, and digital habits with this interactive quiz. Select the best answer for each question.</p>
-      
-      <div class="multiple-choice-test">
-        <!-- Question 1 -->
-        <div class="quiz-question" data-question="1">
-          <div class="question-text">1. What is the primary function of selective attention?</div>
-          <ul class="quiz-options">
-            <li class="quiz-option" data-option="a" data-correct="false">
-              <label class="option-label">
-                <span class="option-letter">A.</span>
-                <span class="option-text">To process multiple streams of information simultaneously</span>
-              </label>
-              <div class="option-feedback incorrect-feedback">
-                This describes divided attention, not selective attention. Selective attention involves focusing on one specific stimulus while filtering out others.
-              </div>
-            </li>
-            <li class="quiz-option" data-option="b" data-correct="true">
-              <label class="option-label">
-                <span class="option-letter">B.</span>
-                <span class="option-text">To focus on specific stimuli while filtering out irrelevant information</span>
-              </label>
-              <div class="option-feedback correct-feedback">
-                Correct! Selective attention allows us to concentrate on important information while ignoring distractions, which is crucial for effective cognitive functioning.
-              </div>
-            </li>
-            <li class="quiz-option" data-option="c" data-correct="false">
-              <label class="option-label">
-                <span class="option-letter">C.</span>
-                <span class="option-text">To maintain focus for extended periods of time</span>
-              </label>
-              <div class="option-feedback incorrect-feedback">
-                This describes sustained attention. Selective attention is about choosing what to focus on, not how long to maintain that focus.
-              </div>
-            </li>
-            <li class="quiz-option" data-option="d" data-correct="false">
-              <label class="option-label">
-                <span class="option-letter">D.</span>
-                <span class="option-text">To switch between different tasks efficiently</span>
-              </label>
-              <div class="option-feedback incorrect-feedback">
-                This describes alternating attention or task-switching. Selective attention is about filtering and focusing, not switching between tasks.
-              </div>
-            </li>
-          </ul>
-        </div>
+<section class="lesson-section no-borders">
+  <h2>Activity: Check Your Understanding About Cognitive Functions</h2>
+  <p>This short multiple choice test is designed to help you apply what you've learned in a practical way. It's not graded, so don't worry about getting everything right.</p>
+  <p>Use it as a tool to check your understanding and reflect on the key concepts from this lesson. Feel free to go back and review the material as needed — this is part of your learning journey!</p>
+  
+  <div class="multiple-choice-test">
+    <!-- Question 1 -->
+    <div class="quiz-question" data-question="1">
+      <div class="question-text">1. What part of the brain is responsible for automatic reactions, like looking at your phone when it buzzes?</div>
+      <ul class="quiz-options">
+        <li class="quiz-option" data-option="a" data-correct="false">
+          <label class="option-label">
+            <span class="option-letter">a.</span>
+            <span class="option-text">Limbic System</span>
+          </label>
+          <div class="option-feedback incorrect-feedback">
+            Incorrect. Remember that while the limbic system and prefrontal cortex are involved in emotions and decision-making, the brainstem governs reflexive behaviors like these.
+          </div>
+        </li>
+        <li class="quiz-option" data-option="b" data-correct="false">
+          <label class="option-label">
+            <span class="option-letter">b.</span>
+            <span class="option-text">Hippocampus</span>
+          </label>
+          <div class="option-feedback incorrect-feedback">
+            Incorrect. Remember that while the limbic system and prefrontal cortex are involved in emotions and decision-making, the brainstem governs reflexive behaviors like these.
+          </div>
+        </li>
+        <li class="quiz-option" data-option="c" data-correct="true">
+          <label class="option-label">
+            <span class="option-letter">c.</span>
+            <span class="option-text">Brainstem</span>
+          </label>
+          <div class="option-feedback correct-feedback">
+            Correct. The brainstem is responsible for automatic, instinctive reactions, like reflexively looking at your phone when it buzzes. It controls involuntary processes, making it difficult to resist immediate responses to notifications.
+          </div>
+        </li>
+        <li class="quiz-option" data-option="d" data-correct="false">
+          <label class="option-label">
+            <span class="option-letter">d.</span>
+            <span class="option-text">Prefrontal Cortex</span>
+          </label>
+          <div class="option-feedback incorrect-feedback">
+            Incorrect. Remember that while the limbic system and prefrontal cortex are involved in emotions and decision-making, the brainstem governs reflexive behaviors like these.
+          </div>
+        </li>
+      </ul>
+    </div>
 
-        <!-- Question 2 -->
-        <div class="quiz-question" data-question="2">
-          <div class="question-text">2. How do digital notifications primarily affect our cognitive functions?</div>
-          <ul class="quiz-options">
-            <li class="quiz-option" data-option="a" data-correct="false">
-              <label class="option-label">
-                <span class="option-letter">A.</span>
-                <span class="option-text">They improve our multitasking abilities</span>
-              </label>
-              <div class="option-feedback incorrect-feedback">
-                Research shows that constant notifications actually impair our ability to focus and reduce cognitive performance rather than improving multitasking.
-              </div>
-            </li>
-            <li class="quiz-option" data-option="b" data-correct="true">
-              <label class="option-label">
-                <span class="option-letter">B.</span>
-                <span class="option-text">They fragment our attention and reduce sustained focus</span>
-              </label>
-              <div class="option-feedback correct-feedback">
-                Correct! Digital notifications interrupt our attention, making it difficult to maintain deep focus and leading to cognitive fragmentation and reduced productivity.
-              </div>
-            </li>
-            <li class="quiz-option" data-option="c" data-correct="false">
-              <label class="option-label">
-                <span class="option-letter">C.</span>
-                <span class="option-text">They have no significant impact on cognition</span>
-              </label>
-              <div class="option-feedback incorrect-feedback">
-                This is incorrect. Research clearly demonstrates that digital notifications have significant negative impacts on attention, memory, and cognitive performance.
-              </div>
-            </li>
-            <li class="quiz-option" data-option="d" data-correct="false">
-              <label class="option-label">
-                <span class="option-letter">D.</span>
-                <span class="option-text">They only affect memory, not attention</span>
-              </label>
-              <div class="option-feedback incorrect-feedback">
-                Notifications primarily affect attention systems, though they can indirectly impact memory through attention disruption. The primary effect is on attention, not memory alone.
-              </div>
-            </li>
-          </ul>
-        </div>
+    <!-- Question 2 -->
+    <div class="quiz-question" data-question="2">
+      <div class="question-text">2. Which part of the brain releases dopamine when you receive a notification or 'like'?</div>
+      <ul class="quiz-options">
+        <li class="quiz-option" data-option="a" data-correct="false">
+          <label class="option-label">
+            <span class="option-letter">a.</span>
+            <span class="option-text">Brainstem</span>
+          </label>
+          <div class="option-feedback incorrect-feedback">
+            Incorrect. Keep in mind that while other brain regions play important roles in behavior, it's the limbic system that triggers the "feel-good" chemical dopamine in response to social media interactions.
+          </div>
+        </li>
+        <li class="quiz-option" data-option="b" data-correct="true">
+          <label class="option-label">
+            <span class="option-text">Limbic System</span>
+          </label>
+          <div class="option-feedback correct-feedback">
+            Correct. The limbic system is responsible for processing rewards and emotions. When you get a like or notification, your brain releases dopamine, reinforcing the urge to check your phone repeatedly.
+          </div>
+        </li>
+        <li class="quiz-option" data-option="c" data-correct="false">
+          <label class="option-label">
+            <span class="option-letter">c.</span>
+            <span class="option-text">Hippocampus</span>
+          </label>
+          <div class="option-feedback incorrect-feedback">
+            Incorrect. Keep in mind that while other brain regions play important roles in behavior, it's the limbic system that triggers the "feel-good" chemical dopamine in response to social media interactions.
+          </div>
+        </li>
+        <li class="quiz-option" data-option="d" data-correct="false">
+          <label class="option-label">
+            <span class="option-letter">d.</span>
+            <span class="option-text">Prefrontal Cortex</span>
+          </label>
+          <div class="option-feedback incorrect-feedback">
+            Incorrect. Keep in mind that while other brain regions play important roles in behavior, it's the limbic system that triggers the "feel-good" chemical dopamine in response to social media interactions.
+          </div>
+        </li>
+      </ul>
+    </div>
 
-        <!-- Question 3 -->
-        <div class="quiz-question" data-question="3">
-          <div class="question-text">3. What is the most effective strategy for protecting cognitive health in a digital environment?</div>
-          <ul class="quiz-options">
-            <li class="quiz-option" data-option="a" data-correct="false">
-              <label class="option-label">
-                <span class="option-letter">A.</span>
-                <span class="option-text">Using as many devices as possible to stay connected</span>
-              </label>
-              <div class="option-feedback incorrect-feedback">
-                Using multiple devices simultaneously increases cognitive load and attention fragmentation, which is detrimental to cognitive health.
-              </div>
-            </li>
-            <li class="quiz-option" data-option="b" data-correct="false">
-              <label class="option-label">
-                <span class="option-letter">B.</span>
-                <span class="option-text">Checking notifications immediately when they arrive</span>
-              </label>
-              <div class="option-feedback incorrect-feedback">
-                Immediate response to notifications disrupts focus and creates a pattern of constant interruption that harms cognitive function.
-              </div>
-            </li>
-            <li class="quiz-option" data-option="c" data-correct="true">
-              <label class="option-label">
-                <span class="option-letter">C.</span>
-                <span class="option-text">Taking regular breaks and managing notification settings</span>
-              </label>
-              <div class="option-feedback correct-feedback">
-                Correct! Regular breaks allow the brain to process and recharge, while managing notifications helps maintain sustained attention and reduces cognitive fragmentation.
-              </div>
-            </li>
-            <li class="quiz-option" data-option="d" data-correct="false">
-              <label class="option-label">
-                <span class="option-letter">D.</span>
-                <span class="option-text">Avoiding all digital technology completely</span>
-              </label>
-              <div class="option-feedback incorrect-feedback">
-                Complete avoidance is neither practical nor necessary. The goal is mindful, intentional use of technology rather than complete elimination.
-              </div>
-            </li>
-          </ul>
-        </div>
+    <!-- Question 3 -->
+    <div class="quiz-question" data-question="3">
+      <div class="question-text">3. What happens to the hippocampus when you binge-watch or scroll endlessly?</div>
+      <ul class="quiz-options">
+        <li class="quiz-option" data-option="a" data-correct="false">
+          <label class="option-label">
+            <span class="option-letter">a.</span>
+            <span class="option-text">It releases dopamine.</span>
+          </label>
+          <div class="option-feedback incorrect-feedback">
+            Incorrect. Remember that while dopamine release and decision-making involve different brain areas, the hippocampus struggles with excessive information, leading to poor memory recall.
+          </div>
+        </li>
+        <li class="quiz-option" data-option="b" data-correct="false">
+          <label class="option-label">
+            <span class="option-text">It helps you make decisions.</span>
+          </label>
+          <div class="option-feedback incorrect-feedback">
+            Incorrect. Remember that while dopamine release and decision-making involve different brain areas, the hippocampus struggles with excessive information, leading to poor memory recall.
+          </div>
+        </li>
+        <li class="quiz-option" data-option="c" data-correct="true">
+          <label class="option-label">
+            <span class="option-letter">c.</span>
+            <span class="option-text">It gets overloaded, making it hard to remember what you saw.</span>
+          </label>
+          <div class="option-feedback correct-feedback">
+            Correct. The hippocampus is responsible for memory formation. When we binge-watch or scroll for long periods, it gets overloaded, making it harder to retain information.
+          </div>
+        </li>
+        <li class="quiz-option" data-option="d" data-correct="false">
+          <label class="option-label">
+            <span class="option-letter">d.</span>
+            <span class="option-text">It controls automatic reactions.</span>
+          </label>
+          <div class="option-feedback incorrect-feedback">
+            Incorrect. Remember that while dopamine release and decision-making involve different brain areas, the hippocampus struggles with excessive information, leading to poor memory recall.
+          </div>
+        </li>
+      </ul>
+    </div>
 
-        <!-- Question 4 -->
-        <div class="quiz-question" data-question="4">
-          <div class="question-text">4. Which type of attention is most challenged by social media use?</div>
-          <ul class="quiz-options">
-            <li class="quiz-option" data-option="a" data-correct="true">
-              <label class="option-label">
-                <span class="option-letter">A.</span>
-                <span class="option-text">Sustained attention</span>
-              </label>
-              <div class="option-feedback correct-feedback">
-                Correct! Social media platforms are designed to capture and fragment attention through rapid content changes, making it difficult to maintain sustained focus on any single item.
-              </div>
-            </li>
-            <li class="quiz-option" data-option="b" data-correct="false">
-              <label class="option-label">
-                <span class="option-letter">B.</span>
-                <span class="option-text">Selective attention</span>
-              </label>
-              <div class="option-feedback incorrect-feedback">
-                While social media can affect selective attention, the primary challenge is to sustained attention due to the rapid, constantly changing nature of social media content.
-              </div>
-            </li>
-            <li class="quiz-option" data-option="c" data-correct="false">
-              <label class="option-label">
-                <span class="option-letter">C.</span>
-                <span class="option-text">Divided attention</span>
-              </label>
-              <div class="option-feedback incorrect-feedback">
-                Divided attention involves processing multiple streams simultaneously. Social media primarily challenges our ability to sustain focus, not divide it.
-              </div>
-            </li>
-            <li class="quiz-option" data-option="d" data-correct="false">
-              <label class="option-label">
-                <span class="option-letter">D.</span>
-                <span class="option-text">Alternating attention</span>
-              </label>
-              <div class="option-feedback incorrect-feedback">
-                Alternating attention involves switching between tasks. Social media's main challenge is maintaining sustained focus, not task-switching abilities.
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </section>
+    <!-- Question 4 -->
+    <div class="quiz-question" data-question="4">
+      <div class="question-text">4. Which part of the brain is involved in decision-making and self-control?</div>
+      <ul class="quiz-options">
+        <li class="quiz-option" data-option="a" data-correct="false">
+          <label class="option-label">
+            <span class="option-letter">a.</span>
+            <span class="option-text">Brainstem</span>
+          </label>
+          <div class="option-feedback incorrect-feedback">
+            Incorrect. Note that while the limbic system controls emotions and the brainstem handles automatic reactions, the prefrontal cortex is what helps us regulate our technology use consciously.
+          </div>
+        </li>
+        <li class="quiz-option" data-option="b" data-correct="false">
+          <label class="option-label">
+            <span class="option-text">Limbic System</span>
+          </label>
+          <div class="option-feedback incorrect-feedback">
+            Incorrect. Note that while the limbic system controls emotions and the brainstem handles automatic reactions, the prefrontal cortex is what helps us regulate our technology use consciously.
+          </div>
+        </li>
+        <li class="quiz-option" data-option="c" data-correct="false">
+          <label class="option-label">
+            <span class="option-letter">c.</span>
+            <span class="option-text">Hippocampus</span>
+          </label>
+          <div class="option-feedback incorrect-feedback">
+            Incorrect. Note that while the limbic system controls emotions and the brainstem handles automatic reactions, the prefrontal cortex is what helps us regulate our technology use consciously.
+          </div>
+        </li>
+        <li class="quiz-option" data-option="d" data-correct="true">
+          <label class="option-label">
+            <span class="option-letter">d.</span>
+            <span class="option-text">Prefrontal Cortex</span>
+          </label>
+          <div class="option-feedback correct-feedback">
+            Correct. The prefrontal cortex helps with rational thinking, impulse control, and decision-making. It allows us to resist urges, like the impulse to check our phones unnecessarily.
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Question 5 -->
+    <div class="quiz-question" data-question="5">
+      <div class="question-text">5. What is one strategy to help the prefrontal cortex maintain control over technology use?</div>
+      <ul class="quiz-options">
+        <li class="quiz-option" data-option="a" data-correct="false">
+          <label class="option-label">
+            <span class="option-letter">a.</span>
+            <span class="option-text">Increase screen time.</span>
+          </label>
+          <div class="option-feedback incorrect-feedback">
+            Incorrect. Remember that strategies like increasing screen time or keeping apps easily accessible make it harder for the prefrontal cortex to regulate behavior.
+          </div>
+        </li>
+        <li class="quiz-option" data-option="b" data-correct="true">
+          <label class="option-label">
+            <span class="option-letter">b.</span>
+            <span class="option-text">Turn off notifications.</span>
+          </label>
+          <div class="option-feedback correct-feedback">
+            Correct. Turning off notifications reduces distractions, giving your prefrontal cortex more control over when and how you check your phone. This helps prevent automatic, impulsive checking.
+          </div>
+        </li>
+        <li class="quiz-option" data-option="c" data-correct="false">
+          <label class="option-label">
+            <span class="option-letter">c.</span>
+            <span class="option-text">Follow more social media accounts.</span>
+          </label>
+          <div class="option-feedback incorrect-feedback">
+            Incorrect. Remember that strategies like increasing screen time or keeping apps easily accessible make it harder for the prefrontal cortex to regulate behavior.
+          </div>
+        </li>
+        <li class="quiz-option" data-option="d" data-correct="false">
+          <label class="option-label">
+            <span class="option-letter">d.</span>
+            <span class="option-text">Keep all apps on the home screen.</span>
+          </label>
+          <div class="option-feedback incorrect-feedback">
+            Incorrect. Remember that strategies like increasing screen time or keeping apps easily accessible make it harder for the prefrontal cortex to regulate behavior.
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
     
     <div class="navigation-buttons" role="navigation" aria-label="Lesson navigation">
       <a href="chapter2.html" class="nav-button prev"><span class="arrow-left" aria-hidden="true">←</span>Previous</a>
