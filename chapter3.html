@@ -57,6 +57,134 @@
   font-family: 'Rubik', sans-serif;
   font-weight: 300;
 }
+/* Attention Activity Styles */
+.attention-activity {
+  margin-top: 2rem;
+}
+
+.attention-question {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #fafafa;
+}
+
+.definition-text {
+  flex: 2;
+}
+
+.definition-text p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.dropdown-container {
+  flex: 1;
+  min-width: 250px;
+}
+
+.dropdown-container label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.attention-dropdown {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  background-color: white;
+  cursor: pointer;
+}
+
+.attention-dropdown:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(0, 0, 102, 0.2);
+}
+
+.feedback {
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 4px;
+  font-weight: bold;
+  min-height: 1.5rem;
+}
+
+.feedback.correct {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.feedback.incorrect {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.activity-results {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.check-answers-btn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.check-answers-btn:hover {
+  background-color: #000055;
+}
+
+.check-answers-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.overall-feedback {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.overall-feedback.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.overall-feedback.partial {
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeaa7;
+}
+
+@media (max-width: 768px) {
+  .attention-question {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .dropdown-container {
+    min-width: auto;
+  }
+}
 </style>
 </head>
 <body>
@@ -236,6 +364,88 @@
         </div>
       </div>
     </section>
+    
+    <!-- 5. Fondo blanco -->
+<section class="lesson-section no-borders">
+  <h2>Activity: Types of Attention</h2>
+  <p>Let's explore different types of attention and how they help us manage focus in our daily lives.</p>
+  <p>Read each definition carefully, then select the correct type of attention from the dropdown menu to match each definition. This activity will help you better understand how your attention works — a key step in building healthier and more mindful digital habits.</p>
+  
+  <div class="attention-activity">
+    <div class="attention-question" data-correct="selective">
+      <div class="definition-text">
+        <p><strong>Definition:</strong> The ability to concentrate on a specific task or stimulus while ignoring distractions. For example, focusing on reading a book in a noisy environment.</p>
+      </div>
+      <div class="dropdown-container">
+        <label for="attention-1">Type of Attention:</label>
+        <select id="attention-1" class="attention-dropdown">
+          <option value="">Select type...</option>
+          <option value="selective">Selective Attention</option>
+          <option value="sustained">Sustained Attention</option>
+          <option value="divided">Divided Attention</option>
+          <option value="alternating">Alternating Attention</option>
+        </select>
+        <div class="feedback" id="feedback-1"></div>
+      </div>
+    </div>
+
+    <div class="attention-question" data-correct="sustained">
+      <div class="definition-text">
+        <p><strong>Definition:</strong> The skill of maintaining focus on a task or activity for an extended period, such as studying, driving, or completing a work project.</p>
+      </div>
+      <div class="dropdown-container">
+        <label for="attention-2">Type of Attention:</label>
+        <select id="attention-2" class="attention-dropdown">
+          <option value="">Select type...</option>
+          <option value="selective">Selective Attention</option>
+          <option value="sustained">Sustained Attention</option>
+          <option value="divided">Divided Attention</option>
+          <option value="alternating">Alternating Attention</option>
+        </select>
+        <div class="feedback" id="feedback-2"></div>
+      </div>
+    </div>
+
+    <div class="attention-question" data-correct="divided">
+      <div class="definition-text">
+        <p><strong>Definition:</strong> The capacity to be aware of multiple elements in your surroundings at the same time, staying alert and recognizing relevant stimuli in a situation.</p>
+      </div>
+      <div class="dropdown-container">
+        <label for="attention-3">Type of Attention:</label>
+        <select id="attention-3" class="attention-dropdown">
+          <option value="">Select type...</option>
+          <option value="selective">Selective Attention</option>
+          <option value="sustained">Sustained Attention</option>
+          <option value="divided">Divided Attention</option>
+          <option value="alternating">Alternating Attention</option>
+        </select>
+        <div class="feedback" id="feedback-3"></div>
+      </div>
+    </div>
+
+    <div class="attention-question" data-correct="alternating">
+      <div class="definition-text">
+        <p><strong>Definition:</strong> The ability to switch focus between different tasks or activities, also known as multitasking. For example, shifting attention between cooking and texting based on what requires immediate focus.</p>
+      </div>
+      <div class="dropdown-container">
+        <label for="attention-4">Type of Attention:</label>
+        <select id="attention-4" class="attention-dropdown">
+          <option value="">Select type...</option>
+          <option value="selective">Selective Attention</option>
+          <option value="sustained">Sustained Attention</option>
+          <option value="divided">Divided Attention</option>
+          <option value="alternating">Alternating Attention</option>
+        </select>
+        <div class="feedback" id="feedback-4"></div>
+      </div>
+    </div>
+
+    <div class="activity-results">
+      <button id="check-answers" class="check-answers-btn">Check Answers</button>
+      <div id="overall-feedback" class="overall-feedback"></div>
+    </div>
+  </div>
+</section>
     
     <div class="navigation-buttons" role="navigation" aria-label="Lesson navigation">
       <a href="chapter2.html" class="nav-button prev"><span class="arrow-left" aria-hidden="true">←</span>Previous</a>
@@ -489,6 +699,55 @@ document.addEventListener('DOMContentLoaded', function() {
       closeModal();
     }
   });
+});
+
+// Attention Activity Functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const checkAnswersBtn = document.getElementById('check-answers');
+  const overallFeedback = document.getElementById('overall-feedback');
+  
+  if (checkAnswersBtn) {
+    checkAnswersBtn.addEventListener('click', function() {
+      checkAttentionAnswers();
+    });
+  }
+  
+  function checkAttentionAnswers() {
+    const questions = document.querySelectorAll('.attention-question');
+    let correctCount = 0;
+    let totalQuestions = questions.length;
+    
+    questions.forEach((question, index) => {
+      const correctAnswer = question.dataset.correct;
+      const dropdown = question.querySelector('.attention-dropdown');
+      const feedback = question.querySelector('.feedback');
+      const selectedValue = dropdown.value;
+      
+      if (selectedValue === correctAnswer) {
+        feedback.textContent = '✓ Correct!';
+        feedback.className = 'feedback correct';
+        correctCount++;
+      } else if (selectedValue === '') {
+        feedback.textContent = 'Please select an answer';
+        feedback.className = 'feedback incorrect';
+      } else {
+        feedback.textContent = '✗ Incorrect. Try again!';
+        feedback.className = 'feedback incorrect';
+      }
+    });
+    
+    // Show overall feedback
+    if (correctCount === totalQuestions) {
+      overallFeedback.textContent = `Excellent! You got all ${totalQuestions} questions correct! 🎉`;
+      overallFeedback.className = 'overall-feedback success';
+    } else {
+      overallFeedback.textContent = `You got ${correctCount} out of ${totalQuestions} correct. Review the incorrect answers and try again.`;
+      overallFeedback.className = 'overall-feedback partial';
+    }
+    
+    // Scroll to feedback
+    overallFeedback.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
 });
 </script>
 </body>
