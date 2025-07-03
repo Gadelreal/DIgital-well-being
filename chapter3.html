@@ -177,6 +177,103 @@
   border: 1px solid #ffeaa7;
 }
 
+/* Multiple Choice Test Styles */
+.multiple-choice-test {
+  margin-top: 2rem;
+}
+
+.quiz-question {
+  margin-bottom: 2.5rem;
+  padding: 1.5rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #fafafa;
+}
+
+.question-text {
+  font-weight: bold;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.quiz-options {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.quiz-option {
+  margin-bottom: 0.75rem;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.quiz-option:hover {
+  background-color: #f8f9fa;
+  border-color: #bbb;
+}
+
+.quiz-option.selected {
+  border-color: var(--primary-color);
+  background-color: #e8f0fe;
+}
+
+.quiz-option.correct {
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
+
+.quiz-option.incorrect {
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+
+.option-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.option-letter {
+  font-weight: bold;
+  min-width: 20px;
+}
+
+.option-text {
+  flex: 1;
+}
+
+.option-feedback {
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  display: none;
+}
+
+.option-feedback.show {
+  display: block;
+}
+
+.option-feedback.correct-feedback {
+  background-color: #d1f2eb;
+  color: #0c5460;
+  border: 1px solid #b8daff;
+}
+
+.option-feedback.incorrect-feedback {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
 @media (max-width: 768px) {
   .attention-question {
     flex-direction: column;
@@ -185,6 +282,10 @@
   
   .dropdown-container {
     min-width: auto;
+  }
+  
+  .quiz-question {
+    padding: 1rem;
   }
 }
 </style>
@@ -484,8 +585,186 @@
   
         <p style="margin-top: 1rem;">Small changes in digital habits can make a big difference for a sharper, healthier mind.</p>
       </div>
-      
+    </section>
     
+    <!-- 7. Fondo blanco -->
+    <section class="lesson-section no-borders">
+      <h2>Multiple Choice Test</h2>
+      <p>Test your understanding of attention, cognition, and digital habits with this interactive quiz. Select the best answer for each question.</p>
+      
+      <div class="multiple-choice-test">
+        <!-- Question 1 -->
+        <div class="quiz-question" data-question="1">
+          <div class="question-text">1. What is the primary function of selective attention?</div>
+          <ul class="quiz-options">
+            <li class="quiz-option" data-option="a" data-correct="false">
+              <label class="option-label">
+                <span class="option-letter">A.</span>
+                <span class="option-text">To process multiple streams of information simultaneously</span>
+              </label>
+              <div class="option-feedback incorrect-feedback">
+                This describes divided attention, not selective attention. Selective attention involves focusing on one specific stimulus while filtering out others.
+              </div>
+            </li>
+            <li class="quiz-option" data-option="b" data-correct="true">
+              <label class="option-label">
+                <span class="option-letter">B.</span>
+                <span class="option-text">To focus on specific stimuli while filtering out irrelevant information</span>
+              </label>
+              <div class="option-feedback correct-feedback">
+                Correct! Selective attention allows us to concentrate on important information while ignoring distractions, which is crucial for effective cognitive functioning.
+              </div>
+            </li>
+            <li class="quiz-option" data-option="c" data-correct="false">
+              <label class="option-label">
+                <span class="option-letter">C.</span>
+                <span class="option-text">To maintain focus for extended periods of time</span>
+              </label>
+              <div class="option-feedback incorrect-feedback">
+                This describes sustained attention. Selective attention is about choosing what to focus on, not how long to maintain that focus.
+              </div>
+            </li>
+            <li class="quiz-option" data-option="d" data-correct="false">
+              <label class="option-label">
+                <span class="option-letter">D.</span>
+                <span class="option-text">To switch between different tasks efficiently</span>
+              </label>
+              <div class="option-feedback incorrect-feedback">
+                This describes alternating attention or task-switching. Selective attention is about filtering and focusing, not switching between tasks.
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="quiz-question" data-question="2">
+          <div class="question-text">2. How do digital notifications primarily affect our cognitive functions?</div>
+          <ul class="quiz-options">
+            <li class="quiz-option" data-option="a" data-correct="false">
+              <label class="option-label">
+                <span class="option-letter">A.</span>
+                <span class="option-text">They improve our multitasking abilities</span>
+              </label>
+              <div class="option-feedback incorrect-feedback">
+                Research shows that constant notifications actually impair our ability to focus and reduce cognitive performance rather than improving multitasking.
+              </div>
+            </li>
+            <li class="quiz-option" data-option="b" data-correct="true">
+              <label class="option-label">
+                <span class="option-letter">B.</span>
+                <span class="option-text">They fragment our attention and reduce sustained focus</span>
+              </label>
+              <div class="option-feedback correct-feedback">
+                Correct! Digital notifications interrupt our attention, making it difficult to maintain deep focus and leading to cognitive fragmentation and reduced productivity.
+              </div>
+            </li>
+            <li class="quiz-option" data-option="c" data-correct="false">
+              <label class="option-label">
+                <span class="option-letter">C.</span>
+                <span class="option-text">They have no significant impact on cognition</span>
+              </label>
+              <div class="option-feedback incorrect-feedback">
+                This is incorrect. Research clearly demonstrates that digital notifications have significant negative impacts on attention, memory, and cognitive performance.
+              </div>
+            </li>
+            <li class="quiz-option" data-option="d" data-correct="false">
+              <label class="option-label">
+                <span class="option-letter">D.</span>
+                <span class="option-text">They only affect memory, not attention</span>
+              </label>
+              <div class="option-feedback incorrect-feedback">
+                Notifications primarily affect attention systems, though they can indirectly impact memory through attention disruption. The primary effect is on attention, not memory alone.
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="quiz-question" data-question="3">
+          <div class="question-text">3. What is the most effective strategy for protecting cognitive health in a digital environment?</div>
+          <ul class="quiz-options">
+            <li class="quiz-option" data-option="a" data-correct="false">
+              <label class="option-label">
+                <span class="option-letter">A.</span>
+                <span class="option-text">Using as many devices as possible to stay connected</span>
+              </label>
+              <div class="option-feedback incorrect-feedback">
+                Using multiple devices simultaneously increases cognitive load and attention fragmentation, which is detrimental to cognitive health.
+              </div>
+            </li>
+            <li class="quiz-option" data-option="b" data-correct="false">
+              <label class="option-label">
+                <span class="option-letter">B.</span>
+                <span class="option-text">Checking notifications immediately when they arrive</span>
+              </label>
+              <div class="option-feedback incorrect-feedback">
+                Immediate response to notifications disrupts focus and creates a pattern of constant interruption that harms cognitive function.
+              </div>
+            </li>
+            <li class="quiz-option" data-option="c" data-correct="true">
+              <label class="option-label">
+                <span class="option-letter">C.</span>
+                <span class="option-text">Taking regular breaks and managing notification settings</span>
+              </label>
+              <div class="option-feedback correct-feedback">
+                Correct! Regular breaks allow the brain to process and recharge, while managing notifications helps maintain sustained attention and reduces cognitive fragmentation.
+              </div>
+            </li>
+            <li class="quiz-option" data-option="d" data-correct="false">
+              <label class="option-label">
+                <span class="option-letter">D.</span>
+                <span class="option-text">Avoiding all digital technology completely</span>
+              </label>
+              <div class="option-feedback incorrect-feedback">
+                Complete avoidance is neither practical nor necessary. The goal is mindful, intentional use of technology rather than complete elimination.
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Question 4 -->
+        <div class="quiz-question" data-question="4">
+          <div class="question-text">4. Which type of attention is most challenged by social media use?</div>
+          <ul class="quiz-options">
+            <li class="quiz-option" data-option="a" data-correct="true">
+              <label class="option-label">
+                <span class="option-letter">A.</span>
+                <span class="option-text">Sustained attention</span>
+              </label>
+              <div class="option-feedback correct-feedback">
+                Correct! Social media platforms are designed to capture and fragment attention through rapid content changes, making it difficult to maintain sustained focus on any single item.
+              </div>
+            </li>
+            <li class="quiz-option" data-option="b" data-correct="false">
+              <label class="option-label">
+                <span class="option-letter">B.</span>
+                <span class="option-text">Selective attention</span>
+              </label>
+              <div class="option-feedback incorrect-feedback">
+                While social media can affect selective attention, the primary challenge is to sustained attention due to the rapid, constantly changing nature of social media content.
+              </div>
+            </li>
+            <li class="quiz-option" data-option="c" data-correct="false">
+              <label class="option-label">
+                <span class="option-letter">C.</span>
+                <span class="option-text">Divided attention</span>
+              </label>
+              <div class="option-feedback incorrect-feedback">
+                Divided attention involves processing multiple streams simultaneously. Social media primarily challenges our ability to sustain focus, not divide it.
+              </div>
+            </li>
+            <li class="quiz-option" data-option="d" data-correct="false">
+              <label class="option-label">
+                <span class="option-letter">D.</span>
+                <span class="option-text">Alternating attention</span>
+              </label>
+              <div class="option-feedback incorrect-feedback">
+                Alternating attention involves switching between tasks. Social media's main challenge is maintaining sustained focus, not task-switching abilities.
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
     </section>
     
     <div class="navigation-buttons" role="navigation" aria-label="Lesson navigation">
@@ -789,6 +1068,42 @@ document.addEventListener('DOMContentLoaded', function() {
     // Scroll to feedback
     overallFeedback.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
+});
+
+// Multiple Choice Test Functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const quizOptions = document.querySelectorAll('.quiz-option');
+  
+  quizOptions.forEach(option => {
+    option.addEventListener('click', function() {
+      const question = this.closest('.quiz-question');
+      const questionNumber = question.dataset.question;
+      const selectedOption = this.dataset.option;
+      const isCorrect = this.dataset.correct === 'true';
+      
+      // Remove previous selections and feedback in this question
+      const allOptionsInQuestion = question.querySelectorAll('.quiz-option');
+      allOptionsInQuestion.forEach(opt => {
+        opt.classList.remove('selected', 'correct', 'incorrect');
+        const feedback = opt.querySelector('.option-feedback');
+        feedback.classList.remove('show');
+      });
+      
+      // Mark this option as selected
+      this.classList.add('selected');
+      
+      // Show appropriate styling and feedback
+      if (isCorrect) {
+        this.classList.add('correct');
+      } else {
+        this.classList.add('incorrect');
+      }
+      
+      // Show feedback for the selected option
+      const feedback = this.querySelector('.option-feedback');
+      feedback.classList.add('show');
+    });
+  });
 });
 </script>
 </body>
