@@ -52,6 +52,193 @@
   margin-bottom: 10px; /* Espacio entre términos */
   line-height: 1.6;
 }
+
+/* Estilos para las actividades con plantillas descargables */
+.values-activity-container {
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  padding: 2rem;
+  margin: 2rem 0;
+  border-radius: 0;
+}
+
+.download-template-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--primary-color);
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-top: 1.5rem;
+}
+
+.download-template-button:hover {
+  background-color: var(--primary-color-dark);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  text-decoration: none;
+}
+
+.download-template-button i {
+  margin-right: 0.5rem;
+}
+
+/* Estilos para las herramientas numeradas */
+.tools-list {
+  counter-reset: tool-counter;
+  margin: 2rem 0;
+}
+
+.tool-item {
+  counter-increment: tool-counter;
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  border-left: 4px solid var(--primary-color);
+}
+
+.tool-item::before {
+  content: counter(tool-counter);
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  background-color: var(--primary-color);
+  color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.tool-item h4 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.tool-description {
+  margin-bottom: 1rem;
+  font-style: italic;
+  color: #666;
+}
+
+/* Estilos para la evaluación */
+.assessment-container {
+  background-color: #f0f8ff;
+  border: 2px solid var(--primary-color);
+  padding: 2rem;
+  margin: 2rem 0;
+  border-radius: 8px;
+}
+
+.assessment-step {
+  margin-bottom: 2rem;
+}
+
+.assessment-step h4 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.scale-question {
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+}
+
+.scale-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.scale-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-width: 80px;
+}
+
+.scale-option input[type="radio"] {
+  margin-bottom: 0.5rem;
+  width: 20px;
+  height: 20px;
+}
+
+.scale-option label {
+  font-size: 0.8rem;
+  color: #666;
+  cursor: pointer;
+}
+
+.reflection-textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 1rem;
+  resize: vertical;
+  margin-top: 1rem;
+}
+
+.download-response-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--primary-color);
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  border: none;
+  cursor: pointer;
+}
+
+.download-response-button:hover {
+  background-color: var(--primary-color-dark);
+  color: white;
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .scale-options {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .scale-option {
+    flex-direction: row;
+    min-width: auto;
+    width: 100%;
+    justify-content: flex-start;
+  }
+  
+  .scale-option input[type="radio"] {
+    margin-right: 1rem;
+    margin-bottom: 0;
+  }
+}
 </style>
 </head>
 <body>
@@ -85,11 +272,11 @@
   <li><a href="index.html">Home</a></li>
   <li><a href="introduction.html">0. Introduction</a></li>
   <li><a href="chapter1.html">1. Well-Being as a Key</a></li>
-  <li><a href="chapter2.html" class="active" aria-current="page">2. Cultivating Awareness</a></li>
+  <li><a href="chapter2.html" class="active" aria-current="page">2. Digital Habits</a></li>
   <li><a href="chapter3.html">3. Autonomy and Motivation</a></li>
   <li><a href="chapter4.html">4. Building Resilience</a></li>
   <li><a href="chapter5.html">5. Ownership and Practice</a></li>
-  <li><a href="#" id="glossary-menu-link"><i class="fas fa-book" style="color: #000066; margin-right: 0.5rem;" aria-hidden="true"></i>Glossary</a></li>
+  <li><a href="#" id="glossary-menu-link"><i class="fas fa-book" style="color: #DB0086; margin-right: 0.5rem;" aria-hidden="true"></i>Glossary</a></li>
   <li class="language-selector-menu">
 <span class="menu-separator"></span>
 <span id="language-label" class="sr-only">Select language:</span>
@@ -102,8 +289,7 @@
 <section class="hero-section">
 <div class="hero-content">
   <div class="hero-title-container">
-    
-    <h1 class="hero-title"><strong>LESSON 2: Cultivating Awareness</strong></h1>
+    <h1 class="hero-title"><strong>LESSON 2: Digital Habits</strong></h1>
   </div>
 </div>
 </section>
@@ -209,7 +395,7 @@
         <h3><strong>Key Point</strong></h3>
         <p>Understanding the habit loop—<strong>cue, action, and reward</strong>—allows us to recognize the subconscious patterns driving our digital behaviors and gives us the tools to make small, intentional changes that improve our emotional, mental, and physical well-being.</p>
         
-        <p>Every digital behavior follows a pattern: a cue triggers an action, which leads to a reward. By analyzing your digital habits through this lens, you can uncover the emotional drivers behind your actions and make thoughtful adjustments that better support your well-being.</p>
+        <p>Every digital behavior follows a pattern: a <em>cue</em> triggers an <em>action</em>, which leads to a <em>reward</em>. By analyzing your digital habits through this lens, you can uncover the emotional drivers behind your actions and make thoughtful adjustments that better support your well-being.</p>
         
         <p><strong>Start by observing:</strong></p>
         <ul>
@@ -225,7 +411,7 @@
         <h2><strong>Activity: Digital Habits Audit</strong></h2>
         <p>Let's take a closer look at your current digital habits. This <strong>Digital Habits Audit</strong> will help you reflect on how much time you spend on your phone and which apps you use most often.</p>
         
-        <p>Answer each question honestly using the screen time data from your phone. Then, rank the apps you use the most and reflect on your patterns.</p>
+        <p><strong>Answer each question honestly</strong> using the screen time data from your phone. Then, rank the apps you use the most and reflect on your patterns.</p>
         
         <p><strong>You can download the editable template to complete your responses.</strong> This way, you can track your awareness and progress over time.</p>
         
@@ -263,7 +449,7 @@
         <h3><strong>Key Point</strong></h3>
         <p>Effective behavior change happens when you <strong>clearly define the specific habit you want to change</strong>, identify its triggers and rewards, and replace the old behavior with a more productive one—supported by positive reinforcement.</p>
         
-        <p>Changing behavior isn't just about willpower—it's about understanding the habit loop.</p>
+        <p>Changing behavior isn't just about willpower—it's about understanding the <em>habit loop</em>.</p>
         <ul>
           <li><strong>Be specific:</strong> Identify the exact behavior you want to change.</li>
           <li><strong>Recognize triggers:</strong> What situations, people, or feelings prompt the behavior?</li>
@@ -367,6 +553,265 @@
         </ul>
         
         <p>Every small step helps build a more balanced, intentional digital life.</p>
+      </div>
+    </section>
+
+    <section class="lesson-section no-borders">
+      <h2><strong>Tools and Evidence-based Practices That Will Help You Build Healthy Digital Habits</strong></h2>
+      
+      <div class="tools-list">
+        <div class="tool-item">
+          <h4><strong>Defining Specific Email and Social Media Checking Times</strong></h4>
+          <p>Opening your email inbox or social media accounts is time and energy-consuming. Doing it constantly highly influences your productivity, attention, and general well-being. When checking for new messages, you shift your focus, get overwhelmed by all the new information, increase stress levels, and get mentally distracted.</p>
+          <p class="tool-description"><strong>The Tool:</strong> Schedule a daily limited number of times to check your email & social media accounts. Set specific times throughout the day to open your inboxes and check your social media notifications. That way, you make more intentional use of your time and avoid constant distractions.</p>
+        </div>
+
+        <div class="tool-item">
+          <h4><strong>Controlling Technology Usage with a Phone Drawer or Pouch</strong></h4>
+          <p>The environment surrounding us directly affects our behaviors and habits. Just from having our phones in sight, we lose focus, and our cognitive availability worsens. Automatically, we tend to get distracted.</p>
+          <p class="tool-description"><strong>The Tool:</strong> Use a phone pouch or choose a drawer to leave your phone in while working or studying. This way, picking up your phone becomes an active and intentional decision, forcing you to think twice. This Tool will help you save time from distraction and commit to more meaningful work. It is a visual reminder to focus on what truly matters and escape the urge to become distracted.</p>
+        </div>
+
+        <div class="tool-item">
+          <h4><strong>Changing your Devices Screen to Grayscale</strong></h4>
+          <p>Designers conceive smartphones that optimize the user experience. Within that framework, colors play a major role in making the experience highly satisfying and addictive. Our brains are attracted to bright and shiny things, making colors play an important role in making you stick to your screens.</p>
+          <p class="tool-description"><strong>The Tool:</strong> For the next week, activate the grayscale mode on your phone. You will force your smartphone to display everything in shades of gray, blocking the visual elements that generate addiction. It will make your phone less engaging to use, encouraging a more meaningful use.</p>
+        </div>
+
+        <div class="tool-item">
+          <h4><strong>Turning off Phone Notifications</strong></h4>
+          <p>Notifications' job is to grab your attention and inform you of incoming information. Their core purpose is to catch your attention, independent of what you are doing. However, knowing everything at all times comes with a cost. Notifications make you lose focus, get distracted, and generate addiction.</p>
+          <p class="tool-description"><strong>The Tool:</strong> Open your phone settings and turn off your notifications for the week. You will see how you gain control over your phone instead of viceversa. It will help decrease your stress and anxiety levels, the feeling of being overwhelmed, and increase your productivity and focus. You will feel more calm, in control, present, and conscious about your Digital Habits.</p>
+        </div>
+
+        <div class="tool-item">
+          <h4><strong>Establishing No-Phone Zones</strong></h4>
+          <p>It is our new reality - our phones have become part of our routines and are one of our major daily time-consumers. Being constantly online can increase stress, anxiety, loneliness, and sleep deprivation. Using your devices for insignificant matters decreases our connection to ourselves, others, the world, and reality.</p>
+          <p class="tool-description"><strong>The Tool:</strong> Choose places in your home or office to unplug from technology. You can choose a bedroom, kitchen, lunch area, or terrace. Don't take your devices there. Allow yourself to reconnect with and be present in the activities and world surrounding you.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="lesson-section no-borders">
+      <div class="values-activity-container">
+        <h2><strong>Activity: Tools and Practices to Build Healthy Digital Habits</strong></h2>
+        
+        <p><strong>Time to put your digital goals into action!</strong></p>
+        
+        <p>After exploring the tools before, choose at least two of them to try out this week. These small changes can have a big impact. Experimenting is encouraged — find what works best for you.</p>
+        
+        <p>Once you've selected your tools, reflect briefly on why you chose them.</p>
+        
+        <p>Then, use the Daily Tracker to mark each day you successfully used each tool. This simple practice can help build momentum and keep you motivated!</p>
+        
+        <p><strong>You can download the editable template to complete your responses.</strong> This way, you can track your insights and progress.</p>
+        
+        <a href="#" class="download-template-button" onclick="downloadToolsTemplate()" aria-label="Download editable template for tools and practices activity">
+          <i class="fas fa-download" aria-hidden="true"></i>
+          <strong>Download the editable template here</strong>
+        </a>
+      </div>
+    </section>
+
+    <section class="lesson-section no-borders">
+      <h2><strong>Readings</strong></h2>
+      
+      <div class="reading-cards">
+        <a href="https://www.ie.edu/impactskillstoolkit/tool/strengthen-your-willpower/" target="_blank" class="reading-card reading-card-clickable" aria-label="Visit Strengthen your Willpower resource (opens in new tab)">
+          <div class="reading-card-content">
+            <h3><strong>Strengthen your Willpower!</strong></h3>
+            <p>Like all muscles in the body, willpower can be strengthened with the right practice. Try 10 practical and effective ways to strengthen your self-control, focus and perseverance.</p>
+            <div class="reading-card-footer">
+              <span class="reading-link">
+                Visit Resource
+                <span class="reading-arrow" aria-hidden="true">→</span>
+              </span>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://www.idrlabs.com/willpower/test.php" target="_blank" class="reading-card reading-card-clickable" aria-label="Visit Willpower Test (opens in new tab)">
+          <div class="reading-card-content">
+            <h3><strong>Willpower Test!</strong></h3>
+            <p>Though modern research on personality suggests that some people are born with stronger willpower, self-control, fortitude, resilience, and the ability to delay gratification, it does not mean one's willpower cannot be developed. What is your willpower like? Try this test and discover more about yourself!</p>
+            <div class="reading-card-footer">
+              <span class="reading-link">
+                Take Test
+                <span class="reading-arrow" aria-hidden="true">→</span>
+              </span>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://www.ie.edu/impactskillstoolkit/tool/habit-hacking/" target="_blank" class="reading-card reading-card-clickable" aria-label="Visit Habit Hacking resource (opens in new tab)">
+          <div class="reading-card-content">
+            <h3><strong>Habit Hacking!</strong></h3>
+            <p>Understanding the science of behaviors and how they link to meaning and emotion is key. Consider the reward we get from behaviors and how this links to emotion and meaning. Apply the habit loop to analyze the three elements always present; cue, routine and reward.</p>
+            <div class="reading-card-footer">
+              <span class="reading-link">
+                Visit Resource
+                <span class="reading-arrow" aria-hidden="true">→</span>
+              </span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="lesson-section no-borders">
+      <div class="assessment-container">
+        <h2><strong>End of Lesson Assessment: Touchpoint I</strong></h2>
+        
+        <p><strong>Let's pause and reflect on your journey so far.</strong></p>
+        
+        <p>This quick check-in is designed to help you measure your progress and notice any positive changes. Use the scale from 1 to 5 to indicate how much you agree with each statement (1 = completely disagree, 5 = completely agree).</p>
+        
+        <p>After completing the scale, take a moment to reflect in writing. Your responses will be saved and available for download at the end of the course so you can see how far you've come.</p>
+        
+        <div class="assessment-step">
+          <h4><strong>Step 1:</strong> <strong>Indicate how much you agree with each statement</strong> <em>(1 = completely disagree, 5 = completely agree).</em></h4>
+          
+          <div class="scale-question">
+            <p><strong>I have decreased my screen time.</strong></p>
+            <div class="scale-options">
+              <div class="scale-option">
+                <input type="radio" id="q1-1" name="question1" value="1">
+                <label for="q1-1">1-Completely disagree</label>
+              </div>
+              <div class="scale-option">
+                <input type="radio" id="q1-2" name="question1" value="2">
+                <label for="q1-2">2</label>
+              </div>
+              <div class="scale-option">
+                <input type="radio" id="q1-3" name="question1" value="3">
+                <label for="q1-3">3</label>
+              </div>
+              <div class="scale-option">
+                <input type="radio" id="q1-4" name="question1" value="4">
+                <label for="q1-4">4</label>
+              </div>
+              <div class="scale-option">
+                <input type="radio" id="q1-5" name="question1" value="5">
+                <label for="q1-5">5-Completely agree</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="scale-question">
+            <p><strong>I have stuck to my Digital Goals.</strong></p>
+            <div class="scale-options">
+              <div class="scale-option">
+                <input type="radio" id="q2-1" name="question2" value="1">
+                <label for="q2-1">1-Completely disagree</label>
+              </div>
+              <div class="scale-option">
+                <input type="radio" id="q2-2" name="question2" value="2">
+                <label for="q2-2">2</label>
+              </div>
+              <div class="scale-option">
+                <input type="radio" id="q2-3" name="question2" value="3">
+                <label for="q2-3">3</label>
+              </div>
+              <div class="scale-option">
+                <input type="radio" id="q2-4" name="question2" value="4">
+                <label for="q2-4">4</label>
+              </div>
+              <div class="scale-option">
+                <input type="radio" id="q2-5" name="question2" value="5">
+                <label for="q2-5">5-Completely agree</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="scale-question">
+            <p><strong>I am closer to where I want to be.</strong></p>
+            <div class="scale-options">
+              <div class="scale-option">
+                <input type="radio" id="q3-1" name="question3" value="1">
+                <label for="q3-1">1-Completely disagree</label>
+              </div>
+              <div class="scale-option">
+                <input type="radio" id="q3-2" name="question3" value="2">
+                <label for="q3-2">2</label>
+              </div>
+              <div class="scale-option">
+                <input type="radio" id="q3-3" name="question3" value="3">
+                <label for="q3-3">3</label>
+              </div>
+              <div class="scale-option">
+                <input type="radio" id="q3-4" name="question3" value="4">
+                <label for="q3-4">4</label>
+              </div>
+              <div class="scale-option">
+                <input type="radio" id="q3-5" name="question3" value="5">
+                <label for="q3-5">5-Completely agree</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="scale-question">
+            <p><strong>I have made more conscious use of my digital devices.</strong></p>
+            <div class="scale-options">
+              <div class="scale-option">
+                <input type="radio" id="q4-1" name="question4" value="1">
+                <label for="q4-1">1-Completely disagree</label>
+              </div>
+              <div class="scale-option">
+                <input type="radio" id="q4-2" name="question4" value="2">
+                <label for="q4-2">2</label>
+              </div>
+              <div class="scale-option">
+                <input type="radio" id="q4-3" name="question4" value="3">
+                <label for="q4-3">3</label>
+              </div>
+              <div class="scale-option">
+                <input type="radio" id="q4-4" name="question4" value="4">
+                <label for="q4-4">4</label>
+              </div>
+              <div class="scale-option">
+                <input type="radio" id="q4-5" name="question4" value="5">
+                <label for="q4-5">5-Completely agree</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="scale-question">
+            <p><strong>I feel better about my use of digital devices.</strong></p>
+            <div class="scale-options">
+              <div class="scale-option">
+                <input type="radio" id="q5-1" name="question5" value="1">
+                <label for="q5-1">1-Completely disagree</label>
+              </div>
+              <div class="scale-option">
+                <input type="radio" id="q5-2" name="question5" value="2">
+                <label for="q5-2">2</label>
+              </div>
+              <div class="scale-option">
+                <input type="radio" id="q5-3" name="question5" value="3">
+                <label for="q5-3">3</label>
+              </div>
+              <div class="scale-option">
+                <input type="radio" id="q5-4" name="question5" value="4">
+                <label for="q5-4">4</label>
+              </div>
+              <div class="scale-option">
+                <input type="radio" id="q5-5" name="question5" value="5">
+                <label for="q5-5">5-Completely agree</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="assessment-step">
+          <h4><strong>Step 2:</strong> <strong>Take a moment to reflect by responding the question below</strong></h4>
+          <p>How do you feel after completing the first two lessons of this course? Have you noticed any differences in your general well-being?</p>
+          <textarea class="reflection-textarea" id="reflection-response" placeholder="Write your reflection here..."></textarea>
+          
+          <button class="download-response-button" onclick="downloadAssessmentResponse()">
+            <i class="fas fa-download" aria-hidden="true"></i>
+            Download my response
+          </button>
+        </div>
       </div>
     </section>
     
@@ -625,6 +1070,62 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
+
+// Template download functions
+function downloadDigitalHabitsAuditTemplate() {
+  // Placeholder function for downloading digital habits audit template
+  alert('Digital Habits Audit template download would be implemented here');
+}
+
+function downloadDigitalTriggersTemplate() {
+  // Placeholder function for downloading digital triggers template
+  alert('Digital Triggers template download would be implemented here');
+}
+
+function downloadToolsTemplate() {
+  // Placeholder function for downloading tools template
+  alert('Tools and Practices template download would be implemented here');
+}
+
+function downloadAssessmentResponse() {
+  // Get all form responses
+  const responses = {
+    screenTime: document.querySelector('input[name="question1"]:checked')?.value || '',
+    digitalGoals: document.querySelector('input[name="question2"]:checked')?.value || '',
+    closerToGoal: document.querySelector('input[name="question3"]:checked')?.value || '',
+    consciousUse: document.querySelector('input[name="question4"]:checked')?.value || '',
+    feelBetter: document.querySelector('input[name="question5"]:checked')?.value || '',
+    reflection: document.getElementById('reflection-response').value || ''
+  };
+  
+  // Create downloadable content
+  const content = `Digital Well-being Assessment - Chapter 2 Touchpoint I
+Date: ${new Date().toLocaleDateString()}
+
+SCALE RESPONSES (1 = completely disagree, 5 = completely agree):
+1. I have decreased my screen time: ${responses.screenTime}
+2. I have stuck to my Digital Goals: ${responses.digitalGoals}
+3. I am closer to where I want to be: ${responses.closerToGoal}
+4. I have made more conscious use of my digital devices: ${responses.consciousUse}
+5. I feel better about my use of digital devices: ${responses.feelBetter}
+
+REFLECTION:
+How do you feel after completing the first two lessons of this course? Have you noticed any differences in your general well-being?
+
+${responses.reflection}
+`;
+
+  // Create and download file
+  const blob = new Blob([content], { type: 'text/plain' });
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'Chapter2_Assessment_Response.txt';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  window.URL.revokeObjectURL(url);
+}
 </script>
 </body>
 </html>
