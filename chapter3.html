@@ -347,6 +347,106 @@
   color: #555;
   line-height: 1.4;
 }
+
+/* Reflection Styles */
+.reflection-container {
+  margin-top: 2rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 1.5rem;
+  border: 1px solid #e0e0e0;
+}
+
+.reflection-question {
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.reflection-textarea {
+  width: 100%;
+  min-height: 150px;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  line-height: 1.5;
+  resize: vertical;
+  margin-bottom: 1rem;
+}
+
+.reflection-textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(0, 0, 102, 0.1);
+}
+
+.reflection-save-btn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.reflection-save-btn:hover {
+  background-color: #000055;
+}
+
+.reflection-feedback {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  display: none;
+}
+
+.reflection-feedback.show {
+  display: block;
+}
+
+.reflection-feedback.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+/* Reading List Styles */
+.reading-list {
+  margin-top: 1.5rem;
+}
+
+.reading-list-item {
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.reading-list-item:before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--primary-color);
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+.reading-list-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.reading-list-link:hover,
+.reading-list-link:focus {
+  text-decoration: underline;
+  color: #000055;
+}
 </style>
 </head>
 <body>
@@ -1024,12 +1124,108 @@
           <i class="fas fa-sad-tear infographic-icon"></i>
           <div class="infographic-text">
             <span class="stat">56%</span>
-            <span class="description">of teens feel lonely, anxious, or upset when they don’t have their phones with them.</span>
+            <span class="description">of teens feel lonely, anxious, or upset when they don't have their phones with them.</span>
           </div>
         </li>
       </ul>
     </div>
   </div>
+</section>
+
+<!-- 10. Fondo gris -->
+<section class="lesson-section no-borders">
+  <h2>Reading</h2>
+  <p>If you would like to learn more about these smartphone addiction statistics, you may read the following article:</p>
+  
+  <div class="reading-cards">
+    <div class="reading-card">
+      <div class="reading-card-content">
+        <h3>90 Smartphone Addiction Statistics You Must See: 2024 Usage and Data Analysis</h3>
+        <p>Explore comprehensive data on smartphone usage patterns, addiction trends, and their impact on daily life and productivity.</p>
+        <div class="reading-card-footer">
+          <a href="https://financesonline.com/smartphone-addiction-statistics/#:~:text=Delving%20deeper%2C%20a%20user%20clicks,up%20(BankMyCell%2C%202021)" target="_blank" class="reading-link" aria-label="Read article: 90 Smartphone Addiction Statistics (opens in new tab)">
+            Read Article
+            <span class="reading-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 11. Fondo blanco -->
+<section class="lesson-section no-borders">
+  <h2>The Impact of Technology on Our Sleep Health</h2>
+
+  <div class="responsive-video">
+    <video 
+      id="sleep-health-video" 
+      class="video-js vjs-ie-skin vjs-big-play-centered" 
+      controls 
+      preload="auto" 
+      data-video-id="w03v04"
+      data-logo="assets/images/logo-ie-small.png"
+      aria-label="The Impact of Technology on Our Sleep Health video"
+    >
+      <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w03v04-the-impact-of-technology-in-our-sleep-health/mp4/w03v04-the-impact-of-technology-in-our-sleep-health_1080p.mp4" type="video/mp4">
+      <p class="vjs-no-js">
+        To view this video please enable JavaScript, and consider upgrading to a
+        web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+      </p>
+      <track kind="captions" src="captions/sleep-health.vtt" srclang="en" label="English" default>
+    </video>
+  </div>
+  
+  <div class="key-point" role="note" aria-label="Key point about technology and sleep health">
+    <h3>Key Point</h3>
+    <p>Our digital habits—especially around screen use before bed and upon waking—can disrupt sleep quality and mental restoration; by aligning technology use with our body's natural rhythms, we support deeper rest, better focus, and long-term well-being.</p>
+
+    <p style="margin-top: 1rem;">Sleep is essential to mental clarity, emotional balance, and physical health.</p>
+
+    <p style="margin-top: 1rem;">Digital habits—like late-night scrolling or checking phones first thing in the morning—can interfere with natural melatonin production and sleep cycles.</p>
+
+    <p style="margin-top: 1rem;"><strong>To support better rest:</strong></p>
+
+    <ul style="margin-top: 0.5rem; line-height: 1.8;">
+      <li>Limit screen time at least 30–60 minutes before bed.</li>
+      <li>Use dim or night mode to reduce blue light exposure.</li>
+      <li>Create a calming evening routine—just like an alarm wakes you up, set a signal that helps you wind down.</li>
+      <li>Give yourself a tech-free buffer in the morning to start the day with clarity and intention.</li>
+    </ul>
+  </div>
+  
+  <div class="reflection-container">
+    <div class="reflection-question">Reflection Question:</div>
+    <p>Take a moment to reflect and write your response to the question below.</p>
+    <p><strong>What three practices would you like to adopt to enjoy a more peaceful rest?</strong></p>
+    
+    <textarea id="sleep-reflection" class="reflection-textarea" placeholder="Type your reflection here..."></textarea>
+    
+    <button id="save-reflection" class="reflection-save-btn">Save Reflection</button>
+    
+    <div id="reflection-feedback" class="reflection-feedback"></div>
+  </div>
+</section>
+
+<!-- 12. Fondo gris -->
+<section class="lesson-section no-borders">
+  <h2>Additional Readings</h2>
+  <p>Explore these resources to deepen your understanding of attention, focus, and the impact of technology on cognitive health:</p>
+  
+  <ul class="reading-list">
+    <li class="reading-list-item">
+      <a href="https://www.ie.edu/impactskillstoolkit/tool/attention-and-focus-framework/" target="_blank" class="reading-list-link">Attention and Focus Framework</a>
+    </li>
+    <li class="reading-list-item">
+      <a href="https://www.frontiersin.org/journals/psychiatry/articles/10.3389/fpsyt.2022.993555/full" target="_blank" class="reading-list-link">University Freshmen's Excessive Smartphone Use and Psychological Safety During the COVID-19 Pandemic</a>
+    </li>
+    <li class="reading-list-item">
+      <a href="https://ics.uci.edu/~gmark/chi08-mark.pdf" target="_blank" class="reading-list-link">The Cost of Interrupted Work: More Speed and Stress</a>
+    </li>
+    <li class="reading-list-item">
+      <a href="https://www.sleepfoundation.org/how-sleep-works/sleep-and-social-media" target="_blank" class="reading-list-link">Sleep and Social Media</a>
+    </li>
+  </ul>
 </section>
     
     <div class="navigation-buttons" role="navigation" aria-label="Lesson navigation">
@@ -1369,6 +1565,50 @@ document.addEventListener('DOMContentLoaded', function() {
       feedback.classList.add('show');
     });
   });
+});
+
+// Reflection Functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const saveReflectionBtn = document.getElementById('save-reflection');
+  const reflectionTextarea = document.getElementById('sleep-reflection');
+  const reflectionFeedback = document.getElementById('reflection-feedback');
+  
+  if (saveReflectionBtn) {
+    saveReflectionBtn.addEventListener('click', function() {
+      const reflectionText = reflectionTextarea.value.trim();
+      
+      if (reflectionText) {
+        // Save to localStorage for persistence
+        localStorage.setItem('sleepReflection', reflectionText);
+        
+        // Show success feedback
+        reflectionFeedback.textContent = 'Your reflection has been saved successfully!';
+        reflectionFeedback.className = 'reflection-feedback success show';
+        
+        // Hide feedback after 3 seconds
+        setTimeout(() => {
+          reflectionFeedback.classList.remove('show');
+        }, 3000);
+      } else {
+        // Show error feedback
+        reflectionFeedback.textContent = 'Please write your reflection before saving.';
+        reflectionFeedback.className = 'reflection-feedback incorrect-feedback show';
+        
+        // Hide feedback after 3 seconds
+        setTimeout(() => {
+          reflectionFeedback.classList.remove('show');
+        }, 3000);
+      }
+    });
+  }
+  
+  // Load saved reflection if exists
+  if (reflectionTextarea) {
+    const savedReflection = localStorage.getItem('sleepReflection');
+    if (savedReflection) {
+      reflectionTextarea.value = savedReflection;
+    }
+  }
 });
 </script>
 </body>
