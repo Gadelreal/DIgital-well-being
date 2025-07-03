@@ -58,32 +58,14 @@
   padding-bottom: 3rem; /* Add extra bottom padding */
 }
 /* Estilos para el feedback dinámico en cada opción */
-/* Enhanced quiz option styles */
 .quiz-option {
   cursor: pointer;
-  transition: all 0.3s ease;
-  border: 2px solid #ddd;
+  transition: all 0.2s ease;
+  border: 2px solid transparent;
   display: flex;
   align-items: center;
   position: relative;
-  border-radius: 6px;
-  margin-bottom: 0.8rem;
-  background-color: white;
 }
-
-.quiz-option:hover:not(.correct-answer):not(.incorrect-answer):not(.missed-answer) {
-  background-color: #f8f9fa !important;
-  border-color: var(--primary-color);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.quiz-option.selected {
-  background-color: #e3f2fd !important;
-  border-color: var(--primary-color) !important;
-}
-
-/* Enhanced feedback styles */
 .option-feedback {
   margin-left: auto;
   font-weight: bold;
@@ -93,216 +75,15 @@
   font-size: 0.9rem;
   flex-shrink: 0;
   padding-left: 1rem;
-  animation: fadeInSlide 0.5s ease;
 }
-
-@keyframes fadeInSlide {
-  from {
-    opacity: 0;
-    transform: translateX(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+.correct-answer .option-feedback {
+  color: #155724;
 }
-
-/* Enhanced quiz states */
-.quiz-option.correct-answer {
-  background-color: #d4edda !important;
-  border-color: #c3e6cb !important;
-  color: #155724 !important;
-  animation: correctPulse 0.6s ease;
+.incorrect-answer .option-feedback {
+  color: #721c24;
 }
-
-.quiz-option.incorrect-answer {
-  background-color: #f8d7da !important;
-  border-color: #f5c6cb !important;
-  color: #721c24 !important;
-  animation: incorrectShake 0.6s ease;
-}
-
-.quiz-option.missed-answer {
-  background-color: #fff3cd !important;
-  border-color: #ffeaa7 !important;
-  color: #856404 !important;
-  animation: missedGlow 0.8s ease;
-}
-
-@keyframes correctPulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.02); }
-  100% { transform: scale(1); }
-}
-
-@keyframes incorrectShake {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-5px); }
-  75% { transform: translateX(5px); }
-}
-
-@keyframes missedGlow {
-  0%, 100% { box-shadow: 0 0 0 rgba(255, 193, 7, 0); }
-  50% { box-shadow: 0 0 20px rgba(255, 193, 7, 0.3); }
-}
-
-/* Enhanced button styles */
-.quiz-submit-btn {
-  margin-bottom: 1.5rem;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.quiz-submit-btn:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.quiz-submit-btn:active:not(:disabled) {
-  transform: translateY(0);
-}
-
-.quiz-reset-btn {
-  background-color: var(--primary-color) !important;
-  border: none;
-  animation: slideInRight 0.5s ease;
-}
-
-@keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.quiz-reset-btn:hover {
-  background-color: var(--primary-color-dark) !important;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-/* Enhanced feedback section */
-.quiz-feedback {
-  margin-top: 2rem;
-  padding: 1.5rem;
-  border-radius: 8px;
-  background: linear-gradient(135deg, #f0f8ff 0%, #e6f3ff 100%);
-  border: 1px solid #bde0fe;
-  line-height: 1.7;
-  position: relative;
-  overflow: hidden;
-  animation: slideInDown 0.5s ease;
-}
-
-.quiz-feedback::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--primary-color), #007bff);
-}
-
-@keyframes slideInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Enhanced checkbox styling */
-.quiz-option input[type="checkbox"] {
-  cursor: pointer;
-  transform: scale(1.3);
-  margin-right: 1rem;
-  margin-top: 0.25rem;
-  accent-color: var(--primary-color);
-  transition: transform 0.2s ease;
-}
-
-.quiz-option input[type="checkbox"]:hover {
-  transform: scale(1.4);
-}
-
-.quiz-option input[type="checkbox"]:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-  transform: scale(1.3);
-}
-
-/* Enhanced label styling */
-.quiz-option label {
-  cursor: pointer;
-  user-select: none;
-  flex: 1;
-  line-height: 1.5;
-  transition: color 0.3s ease;
-}
-
-.quiz-option:hover label {
-  color: var(--primary-color);
-}
-
-.quiz-option input[type="checkbox"]:disabled + label {
-  cursor: not-allowed;
-  opacity: 0.8;
-}
-
-/* Loading state for submit button */
-.quiz-submit-btn.loading {
-  pointer-events: none;
-}
-
-.quiz-submit-btn.loading::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 20px;
-  height: 20px;
-  margin: -10px 0 0 -10px;
-  border: 2px solid transparent;
-  border-top: 2px solid #fff;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* Responsive improvements */
-@media (max-width: 768px) {
-  .quiz-option {
-    padding: 0.8rem;
-    margin-bottom: 0.6rem;
-  }
-  
-  .option-feedback {
-    font-size: 0.8rem;
-    padding-left: 0.5rem;
-  }
-  
-  .quiz-submit-btn, .quiz-reset-btn {
-    width: 100%;
-    margin-bottom: 1rem;
-  }
-  
-  .quiz-reset-btn {
-    margin-left: 0 !important;
-    margin-top: 0.5rem;
-  }
+.missed-answer .option-feedback {
+  color: #856404;
 }
 
 /* Add margin below submit button */
@@ -1550,52 +1331,22 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-// Enhanced Quiz functionality for Digital Well-being quiz
+// Quiz functionality for Digital Well-being quiz
 document.addEventListener('DOMContentLoaded', function() {
   const quizForm = document.getElementById('wellbeing-quiz');
   const feedbackDiv = document.getElementById('wellbeing-quiz-feedback');
   
   if (quizForm && feedbackDiv) {
-    // Enhanced click handlers for quiz options
+    // Add click handlers to quiz options for better UX
     const quizOptions = quizForm.querySelectorAll('.quiz-option');
     quizOptions.forEach(option => {
-      // Add visual selection state
-      const checkbox = option.querySelector('input[type="checkbox"]');
-      
-      // Update visual state when checkbox changes
-      checkbox.addEventListener('change', function() {
-        if (this.checked) {
-          option.classList.add('selected');
-        } else {
-          option.classList.remove('selected');
-        }
-      });
-      
-      // Make entire option clickable
       option.addEventListener('click', function(e) {
-        if (e.target === this || e.target.tagName === 'LABEL') {
+        // Only toggle if clicking on the option div, not the checkbox or label
+        if (e.target === this) {
           const checkbox = this.querySelector('input[type="checkbox"]');
           if (checkbox && !checkbox.disabled) {
             checkbox.checked = !checkbox.checked;
-            checkbox.dispatchEvent(new Event('change'));
           }
-        }
-      });
-      
-      // Enhanced hover effects
-      option.addEventListener('mouseenter', function() {
-        if (!this.classList.contains('correct-answer') && 
-            !this.classList.contains('incorrect-answer') && 
-            !this.classList.contains('missed-answer')) {
-          this.style.transform = 'translateY(-2px)';
-        }
-      });
-      
-      option.addEventListener('mouseleave', function() {
-        if (!this.classList.contains('correct-answer') && 
-            !this.classList.contains('incorrect-answer') && 
-            !this.classList.contains('missed-answer')) {
-          this.style.transform = 'translateY(0)';
         }
       });
     });
@@ -1603,253 +1354,120 @@ document.addEventListener('DOMContentLoaded', function() {
     quizForm.addEventListener('submit', function(e) {
       e.preventDefault();
       
-      const submitBtn = this.querySelector('.quiz-submit-btn');
+      // Get all checkboxes
+      const allCheckboxes = quizForm.querySelectorAll('input[type="checkbox"]');
+      const checkedBoxes = quizForm.querySelectorAll('input[type="checkbox"]:checked');
+      const selectedValues = Array.from(checkedBoxes).map(cb => cb.value);
       
-      // Add loading state
-      submitBtn.classList.add('loading');
-      submitBtn.textContent = 'Processing...';
+      console.log('Selected values:', selectedValues); // Debug log
       
-      // Simulate processing time for better UX
-      setTimeout(() => {
-        handleQuizSubmission();
-      }, 800);
+      // Correct answers are 'a' and 'e'
+      const correctAnswers = ['a', 'e'];
       
-      function handleQuizSubmission() {
-        // Get all checkboxes
-        const allCheckboxes = quizForm.querySelectorAll('input[type="checkbox"]');
-        const checkedBoxes = quizForm.querySelectorAll('input[type="checkbox"]:checked');
-        const selectedValues = Array.from(checkedBoxes).map(cb => cb.value);
+      // Clear previous feedback styling
+      const allOptions = quizForm.querySelectorAll('.quiz-option');
+      allOptions.forEach(option => {
+        option.classList.remove('correct-answer', 'incorrect-answer', 'missed-answer');
+        const existingFeedback = option.querySelector('.option-feedback');
+        if (existingFeedback) {
+          existingFeedback.remove();
+        }
+      });
+      
+      // Check each option and provide feedback
+      allCheckboxes.forEach(checkbox => {
+        const value = checkbox.value;
+        const isChecked = checkbox.checked;
+        const isCorrect = correctAnswers.includes(value);
+        const option = checkbox.closest('.quiz-option');
         
-        // Correct answers are 'a' and 'e'
-        const correctAnswers = ['a', 'e'];
+        let feedbackHTML = '';
         
-        // Clear previous feedback styling
-        const allOptions = quizForm.querySelectorAll('.quiz-option');
-        allOptions.forEach(option => {
-          option.classList.remove('correct-answer', 'incorrect-answer', 'missed-answer', 'selected');
-          const existingFeedback = option.querySelector('.option-feedback');
-          if (existingFeedback) {
-            existingFeedback.remove();
-          }
-        });
+        if (isCorrect && isChecked) {
+          // Correct answer selected
+          option.classList.add('correct-answer');
+          feedbackHTML = '<span class="option-feedback"><i class="fas fa-check-circle"></i> Correct!</span>';
+        } else if (isCorrect && !isChecked) {
+          // Correct answer missed
+          option.classList.add('missed-answer');
+          feedbackHTML = '<span class="option-feedback"><i class="fas fa-exclamation-triangle"></i> Missed</span>';
+        } else if (!isCorrect && isChecked) {
+          // Incorrect answer selected
+          option.classList.add('incorrect-answer');
+          feedbackHTML = '<span class="option-feedback"><i class="fas fa-times-circle"></i> Incorrect</span>';
+        }
         
-        // Process each option with enhanced feedback
-        allCheckboxes.forEach(checkbox => {
-          const value = checkbox.value;
-          const isChecked = checkbox.checked;
-          const isCorrect = correctAnswers.includes(value);
-          const option = checkbox.closest('.quiz-option');
-          
-          let feedbackHTML = '';
-          let feedbackClass = '';
-          
-          if (isCorrect && isChecked) {
-            // Correct answer selected
-            feedbackClass = 'correct-answer';
-            feedbackHTML = '<span class="option-feedback"><i class="fas fa-check-circle"></i> Correct!</span>';
-          } else if (isCorrect && !isChecked) {
-            // Correct answer missed
-            feedbackClass = 'missed-answer';
-            feedbackHTML = '<span class="option-feedback"><i class="fas fa-exclamation-triangle"></i> You missed this one</span>';
-          } else if (!isCorrect && isChecked) {
-            // Incorrect answer selected
-            feedbackClass = 'incorrect-answer';
-            feedbackHTML = '<span class="option-feedback"><i class="fas fa-times-circle"></i> Incorrect</span>';
-          }
-          
-          if (feedbackClass) {
-            // Add class with slight delay for animation
-            setTimeout(() => {
-              option.classList.add(feedbackClass);
-            }, 100);
-          }
-          
-          if (feedbackHTML) {
-            setTimeout(() => {
-              option.insertAdjacentHTML('beforeend', feedbackHTML);
-            }, 300);
-          }
-          
-          // Disable checkbox after submission
-          checkbox.disabled = true;
-        });
+        if (feedbackHTML) {
+          option.insertAdjacentHTML('beforeend', feedbackHTML);
+        }
         
-        // Show the feedback section with animation
-        setTimeout(() => {
-          feedbackDiv.style.display = 'block';
-          feedbackDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }, 500);
-        
-        // Update submit button
-        submitBtn.classList.remove('loading');
+        // Disable checkbox after submission
+        checkbox.disabled = true;
+      });
+      
+      // Show the feedback section
+      feedbackDiv.style.display = 'block';
+      feedbackDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      
+      // Disable the submit button and change text
+      const submitBtn = quizForm.querySelector('button[type="submit"]');
+      if (submitBtn) {
         submitBtn.textContent = 'Submitted';
         submitBtn.disabled = true;
         submitBtn.style.backgroundColor = '#6c757d';
         submitBtn.style.cursor = 'not-allowed';
-        
-        // Add enhanced reset button
-        if (!quizForm.querySelector('.quiz-reset-btn')) {
-          setTimeout(() => {
-            const resetBtn = document.createElement('button');
-            resetBtn.type = 'button';
-            resetBtn.className = 'quiz-submit-btn quiz-reset-btn';
-            resetBtn.innerHTML = '<i class="fas fa-redo"></i> Try Again';
-            resetBtn.style.marginLeft = '1rem';
-            
-            resetBtn.addEventListener('click', function() {
-              resetQuizWithAnimation();
-            });
-            
-            submitBtn.parentNode.insertBefore(resetBtn, submitBtn.nextSibling);
-          }, 800);
-        }
-        
-        // Add completion sound effect (optional)
-        playCompletionSound();
       }
-    });
-    
-    function resetQuizWithAnimation() {
-      const submitBtn = quizForm.querySelector('.quiz-submit-btn');
-      const resetBtn = quizForm.querySelector('.quiz-reset-btn');
-      const allOptions = quizForm.querySelectorAll('.quiz-option');
-      const allCheckboxes = quizForm.querySelectorAll('input[type="checkbox"]');
       
-      // Animate out feedback
-      allOptions.forEach((option, index) => {
-        setTimeout(() => {
-          option.classList.remove('correct-answer', 'incorrect-answer', 'missed-answer');
-          const feedback = option.querySelector('.option-feedback');
-          if (feedback) {
-            feedback.style.animation = 'fadeOut 0.3s ease';
-            setTimeout(() => feedback.remove(), 300);
-          }
-        }, index * 50);
-      });
-      
-      // Reset form after animation
-      setTimeout(() => {
-        quizForm.reset();
+      // Add a reset button
+      if (!quizForm.querySelector('.quiz-reset-btn')) {
+        const resetBtn = document.createElement('button');
+        resetBtn.type = 'button';
+        resetBtn.className = 'quiz-submit-btn quiz-reset-btn';
+        resetBtn.textContent = 'Try Again';
+        resetBtn.style.marginLeft = '1rem';
+        resetBtn.style.backgroundColor = '#007bff';
         
-        // Re-enable checkboxes
-        allCheckboxes.forEach(cb => {
-          cb.disabled = false;
+        resetBtn.addEventListener('click', function() {
+          // Reset form
+          quizForm.reset();
+          
+          // Clear all feedback
+          allOptions.forEach(option => {
+            option.classList.remove('correct-answer', 'incorrect-answer', 'missed-answer');
+            const feedback = option.querySelector('.option-feedback');
+            if (feedback) {
+              feedback.remove();
+            }
+          });
+          
+          // Re-enable checkboxes
+          allCheckboxes.forEach(cb => {
+            cb.disabled = false;
+          });
+          
+          // Hide feedback
+          feedbackDiv.style.display = 'none';
+          
+          // Re-enable submit button and restore original styling
+          if (submitBtn) {
+            submitBtn.textContent = 'Submit';
+            submitBtn.disabled = false;
+            submitBtn.style.backgroundColor = 'var(--primary-color)'; // Restore primary color
+            submitBtn.style.cursor = 'pointer';
+          }
+          
+          // Remove reset button
+          this.remove();
+          
+          // Scroll back to quiz
+          quizForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
         
-        // Hide feedback
-        feedbackDiv.style.display = 'none';
-        
-        // Reset submit button
-        submitBtn.textContent = 'Submit';
-        submitBtn.disabled = false;
-        submitBtn.style.backgroundColor = '';
-        submitBtn.style.cursor = '';
-        
-        // Remove reset button
-        if (resetBtn) {
-          resetBtn.style.animation = 'fadeOut 0.3s ease';
-          setTimeout(() => resetBtn.remove(), 300);
-        }
-        
-        // Scroll back to quiz
-        quizForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        
-        // Show success message
-        showTemporaryMessage('Quiz reset! You can try again.', 'success');
-      }, 500);
-    }
-    
-    function playCompletionSound() {
-      // Create a subtle completion sound using Web Audio API
-      try {
-        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        const oscillator = audioContext.createOscillator();
-        const gainNode = audioContext.createGain();
-        
-        oscillator.connect(gainNode);
-        gainNode.connect(audioContext.destination);
-        
-        oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
-        oscillator.frequency.setValueAtTime(1000, audioContext.currentTime + 0.1);
-        
-        gainNode.gain.setValueAtTime(0, audioContext.currentTime);
-        gainNode.gain.linearRampToValueAtTime(0.1, audioContext.currentTime + 0.01);
-        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.2);
-        
-        oscillator.start(audioContext.currentTime);
-        oscillator.stop(audioContext.currentTime + 0.2);
-      } catch (e) {
-        // Fallback: no sound if Web Audio API is not supported
-        console.log('Audio feedback not available');
+        submitBtn.parentNode.insertBefore(resetBtn, submitBtn.nextSibling);
       }
-    }
-    
-    function showTemporaryMessage(message, type = 'info') {
-      const messageDiv = document.createElement('div');
-      messageDiv.textContent = message;
-      messageDiv.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        padding: 1rem 1.5rem;
-        background-color: ${type === 'success' ? '#d4edda' : '#d1ecf1'};
-        color: ${type === 'success' ? '#155724' : '#0c5460'};
-        border: 1px solid ${type === 'success' ? '#c3e6cb' : '#bee5eb'};
-        border-radius: 4px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        z-index: 1000;
-        animation: slideInRight 0.3s ease;
-      `;
-      
-      document.body.appendChild(messageDiv);
-      
-      setTimeout(() => {
-        messageDiv.style.animation = 'slideOutRight 0.3s ease';
-        setTimeout(() => {
-          if (messageDiv.parentNode) {
-            messageDiv.parentNode.removeChild(messageDiv);
-          }
-        }, 300);
-      }, 3000);
-    }
+    });
   }
 });
-
-// Add CSS animations for temporary messages
-const style = document.createElement('style');
-style.textContent = `
-  @keyframes slideInRight {
-    from {
-      opacity: 0;
-      transform: translateX(100%);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-  
-  @keyframes slideOutRight {
-    from {
-      opacity: 1;
-      transform: translateX(0);
-    }
-    to {
-      opacity: 0;
-      transform: translateX(100%);
-    }
-  }
-  
-  @keyframes fadeOut {
-    from {
-      opacity: 1;
-    }
-    to {
-      opacity: 0;
-    }
-  }
-`;
-document.head.appendChild(style);
 
 // Core Values Template download functionality
 function downloadCoreValuesTemplate() {
@@ -1921,6 +1539,7 @@ MY TOP 5 CORE VALUES:
    _________________________________________________
 
 3. _________________________________________________
+   Why this matters to me: _________________________
    Why this matters to me: _________________________
    _________________________________________________
 
