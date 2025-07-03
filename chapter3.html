@@ -347,106 +347,6 @@
   color: #555;
   line-height: 1.4;
 }
-
-/* Reflection Styles */
-.reflection-container {
-  margin-top: 2rem;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  padding: 1.5rem;
-  border: 1px solid #e0e0e0;
-}
-
-.reflection-question {
-  font-weight: bold;
-  font-size: 1.1rem;
-  margin-bottom: 1rem;
-  color: #333;
-}
-
-.reflection-textarea {
-  width: 100%;
-  min-height: 150px;
-  padding: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 1rem;
-  line-height: 1.5;
-  resize: vertical;
-  margin-bottom: 1rem;
-}
-
-.reflection-textarea:focus {
-  outline: none;
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 2px rgba(0, 0, 102, 0.1);
-}
-
-.reflection-save-btn {
-  background-color: var(--primary-color);
-  color: white;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.reflection-save-btn:hover {
-  background-color: #000055;
-}
-
-.reflection-feedback {
-  margin-top: 1rem;
-  padding: 0.75rem;
-  border-radius: 4px;
-  font-size: 0.9rem;
-  display: none;
-}
-
-.reflection-feedback.show {
-  display: block;
-}
-
-.reflection-feedback.success {
-  background-color: #d4edda;
-  color: #155724;
-  border: 1px solid #c3e6cb;
-}
-
-/* Reading List Styles */
-.reading-list {
-  margin-top: 1.5rem;
-}
-
-.reading-list-item {
-  margin-bottom: 1rem;
-  padding-left: 1.5rem;
-  position: relative;
-}
-
-.reading-list-item:before {
-  content: "•";
-  position: absolute;
-  left: 0;
-  color: var(--primary-color);
-  font-size: 1.2rem;
-  line-height: 1.5;
-}
-
-.reading-list-link {
-  color: var(--primary-color);
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.2s ease;
-}
-
-.reading-list-link:hover,
-.reading-list-link:focus {
-  text-decoration: underline;
-  color: #000055;
-}
 </style>
 </head>
 <body>
@@ -1197,17 +1097,31 @@
 
 <!-- 12. Fondo gris -->
 <section class="lesson-section no-borders">
-  <h2>Reflection Question</h2>
-  <p>Take a moment to reflect and write your response to the question below.</p>
-  
-  <div class="reflection-container">
-    <div class="reflection-question">What three practices would you like to adopt to enjoy a more peaceful rest?</div>
+  <div class="reflection-exercise">
+    <h2><strong>Reflection Question</strong></h2>
+    <p><strong>Take a moment to reflect and write your response to the question below.</strong></p>
     
-    <textarea id="sleep-reflection" class="reflection-textarea" placeholder="Type your reflection here..."></textarea>
-    
-    <button id="save-reflection" class="reflection-save-btn">Save Reflection</button>
-    
-    <div id="reflection-feedback" class="reflection-feedback"></div>
+    <div class="reflection-question">
+      <h3>What three practices would you like to adopt to enjoy a more peaceful rest?</h3>
+      <textarea 
+        id="sleep-reflection" 
+        class="reflection-textarea" 
+        placeholder="Write your reflection here..."
+        aria-label="Sleep practices reflection"
+        rows="8"
+      ></textarea>
+      <div class="button-container">
+        <button 
+          type="button" 
+          class="save-button" 
+          data-reflection-id="sleep-reflection"
+          aria-describedby="feedback-sleep-reflection"
+        >
+          <i class="fas fa-save" aria-hidden="true"></i> Save Reflection
+        </button>
+        <span id="feedback-sleep-reflection" class="save-feedback" aria-live="polite"></span>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1608,50 +1522,6 @@ document.addEventListener('DOMContentLoaded', function() {
       feedback.classList.add('show');
     });
   });
-});
-
-// Reflection Functionality
-document.addEventListener('DOMContentLoaded', function() {
-  const saveReflectionBtn = document.getElementById('save-reflection');
-  const reflectionTextarea = document.getElementById('sleep-reflection');
-  const reflectionFeedback = document.getElementById('reflection-feedback');
-  
-  if (saveReflectionBtn) {
-    saveReflectionBtn.addEventListener('click', function() {
-      const reflectionText = reflectionTextarea.value.trim();
-      
-      if (reflectionText) {
-        // Save to localStorage for persistence
-        localStorage.setItem('sleepReflection', reflectionText);
-        
-        // Show success feedback
-        reflectionFeedback.textContent = 'Your reflection has been saved successfully!';
-        reflectionFeedback.className = 'reflection-feedback success show';
-        
-        // Hide feedback after 3 seconds
-        setTimeout(() => {
-          reflectionFeedback.classList.remove('show');
-        }, 3000);
-      } else {
-        // Show error feedback
-        reflectionFeedback.textContent = 'Please write your reflection before saving.';
-        reflectionFeedback.className = 'reflection-feedback incorrect-feedback show';
-        
-        // Hide feedback after 3 seconds
-        setTimeout(() => {
-          reflectionFeedback.classList.remove('show');
-        }, 3000);
-      }
-    });
-  }
-  
-  // Load saved reflection if exists
-  if (reflectionTextarea) {
-    const savedReflection = localStorage.getItem('sleepReflection');
-    if (savedReflection) {
-      reflectionTextarea.value = savedReflection;
-    }
-  }
 });
 </script>
 </body>
