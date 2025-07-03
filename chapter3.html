@@ -284,6 +284,65 @@
   color: #721c24;
   border: 1px solid #f5c6cb;
 }
+
+/* Infographics Styles */
+.infographics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.infographic-card {
+  background-color: #fafafa;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.infographic-card h3 {
+  font-size: 1.25rem;
+  color: var(--primary-color);
+  margin-top: 0;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 0.5rem;
+}
+
+.infographic-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.infographic-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.infographic-icon {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  margin-top: 0.25rem;
+}
+
+.infographic-text .stat {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  display: block;
+}
+
+.infographic-text .description {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.4;
+}
 </style>
 </head>
 <body>
@@ -736,6 +795,7 @@
         </li>
         <li class="quiz-option" data-option="b" data-correct="false">
           <label class="option-label">
+            <span class="option-letter">b.</span>
             <span class="option-text">Limbic System</span>
           </label>
           <div class="option-feedback incorrect-feedback">
@@ -845,6 +905,126 @@
     </ul>
 
     <p style="margin-top: 1rem;">Building supportive habits helps protect your focus, extend your mental stamina, and make positive changes stick over time.</p>
+  </div>
+</section>
+    
+    <!-- 9. Fondo blanco -->
+<section class="lesson-section no-borders">
+  <h2>Infographics About Smartphone Usage Statistics</h2>
+  <p>These metrics illustrate how frequent phone usage and the constant need to check devices can contribute to cognitive overload and decision fatigue, impacting both productivity and emotional well-being.</p>
+  
+  <div class="infographics-grid">
+    <!-- Smartphone User Behavior -->
+    <div class="infographic-card">
+      <h3>Smartphone User Behavior</h3>
+      <ul class="infographic-list">
+        <li class="infographic-item">
+          <i class="fas fa-hand-pointer infographic-icon"></i>
+          <div class="infographic-text">
+            <span class="stat">2,617</span>
+            <span class="description">number of times a user clicks, taps and swipes phone daily.</span>
+          </div>
+        </li>
+        <li class="infographic-item">
+          <i class="fas fa-clock infographic-icon"></i>
+          <div class="infographic-text">
+            <span class="stat">4h 10m</span>
+            <span class="description">is the average that a person spends on a smartphone daily.</span>
+          </div>
+        </li>
+        <li class="infographic-item">
+          <i class="fas fa-unlock-alt infographic-icon"></i>
+          <div class="infographic-text">
+            <span class="stat">43.5%</span>
+            <span class="description">unlock their phones between 51 and 100 times daily.</span>
+          </div>
+        </li>
+        <li class="infographic-item">
+          <i class="fas fa-heart-broken infographic-icon"></i>
+          <div class="infographic-text">
+            <span class="stat">32.7%</span>
+            <span class="description">spend more time with their phones than their lovers.</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Impact on Daily Life -->
+    <div class="infographic-card">
+      <h3>Impact on Daily Life</h3>
+      <ul class="infographic-list">
+        <li class="infographic-item">
+          <i class="fas fa-bed infographic-icon"></i>
+          <div class="infographic-text">
+            <span class="stat">87%</span>
+            <span class="description">of users check their smartphone within 1 hour before going to sleep and after waking up.</span>
+          </div>
+        </li>
+        <li class="infographic-item">
+          <i class="fas fa-mobile-alt infographic-icon"></i>
+          <div class="infographic-text">
+            <span class="stat">66%</span>
+            <span class="description">of users sleep with their smartphones.</span>
+          </div>
+        </li>
+        <li class="infographic-item">
+          <i class="fas fa-users infographic-icon"></i>
+          <div class="infographic-text">
+            <span class="stat">86%</span>
+            <span class="description">of users check their phones even while talking to friends and family.</span>
+          </div>
+        </li>
+        <li class="infographic-item">
+          <i class="fas fa-toilet-paper infographic-icon"></i>
+          <div class="infographic-text">
+            <span class="stat">73.4%</span>
+            <span class="description">take their phones to the toilet.</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Distraction and Productivity -->
+    <div class="infographic-card">
+      <h3>Distraction and Productivity</h3>
+      <ul class="infographic-list">
+        <li class="infographic-item">
+          <i class="fas fa-user-graduate infographic-icon"></i>
+          <div class="infographic-text">
+            <span class="stat">49%</span>
+            <span class="description">of students are distracted by phones and other gadgets in class.</span>
+          </div>
+        </li>
+        <li class="infographic-item">
+          <i class="fas fa-briefcase infographic-icon"></i>
+          <div class="infographic-text">
+            <span class="stat">55%</span>
+            <span class="description">of employees admit that they are often distracted by their smartphones at work.</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Emotional and Psychological Effects -->
+    <div class="infographic-card">
+      <h3>Emotional and Psychological Effects</h3>
+      <ul class="infographic-list">
+        <li class="infographic-item">
+          <i class="fas fa-frown infographic-icon"></i>
+          <div class="infographic-text">
+            <span class="stat">87.8%</span>
+            <span class="description">of users feel anxious when they leave their phones at home.</span>
+          </div>
+        </li>
+        <li class="infographic-item">
+          <i class="fas fa-sad-tear infographic-icon"></i>
+          <div class="infographic-text">
+            <span class="stat">56%</span>
+            <span class="description">of teens feel lonely, anxious, or upset when they don’t have their phones with them.</span>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
 </section>
     
