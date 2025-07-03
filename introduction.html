@@ -75,6 +75,26 @@
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       text-decoration: none;
     }
+
+    .reading-card-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .reading-card-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .reading-card-link .reading-link {
+      color: var(--primary-color);
+      font-weight: 600;
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
@@ -288,19 +308,20 @@
       <p>Read more about IE's Center for Health and Well-Being, its mission, and the <strong>Body, Mind, & Soul Framework</strong> below:</p>
       
       <div class="reading-cards">
-        <div class="reading-card">
-          <div class="reading-card-content">
-            <h3><strong>IE Center for Health and Well-Being</strong></h3>
-            <p>Explore the mission, vision, and initiatives of IE's Center for Health and Well-being. Learn about their holistic approach to wellness and how they integrate the Body, Mind, & Soul Framework into their programs.</p>
-            <div class="reading-card-footer">
-              <a href="https://www.ie.edu/center-for-health-and-well-being/" target="_blank" class="reading-link" aria-label="Visit IE Center for Health and Well-being website (opens in new tab)">
-                Visit Website
-                <span class="reading-arrow" aria-hidden="true">→</span>
-              </a>
-            </div>
-          </div>
-        </div>
+  <a href="https://www.ie.edu/center-for-health-and-well-being/" target="_blank" class="reading-card reading-card-link" aria-label="Visit IE Center for Health and Well-being website (opens in new tab)">
+    <div class="reading-card-content">
+      <h3><strong>IE Center for Health and Well-Being</strong></h3>
+      <p>Explore the mission, vision, and initiatives of IE's Center for Health and Well-being. Learn about their holistic approach to wellness and how they integrate the Body, Mind, & Soul Framework into their programs.</p>
+      <div class="reading-card-footer">
+        <span class="reading-link">
+          Visit Website
+          <span class="reading-arrow" aria-hidden="true">→</span>
+        </span>
       </div>
+    </div>
+  </a>
+</div>
+
     </section>
 
     <section class="lesson-section no-borders">
