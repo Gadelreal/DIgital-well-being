@@ -731,14 +731,14 @@ ol {
 /* Estilos para tarjetas de lectura */
 .reading-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1.5rem;
-  margin: 1.5rem 0;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
 }
 
 .reading-card {
   background-color: white;
-  border-radius: 0;
+  border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   overflow: hidden;
   transition: all 0.3s ease;
@@ -747,14 +747,16 @@ ol {
   height: 100%;
   display: flex;
   flex-direction: column;
-  cursor: pointer; /* Añadir cursor pointer */
+  cursor: pointer;
+  min-height: 300px;
 }
 
 /* Hacer toda la card clicable */
 .reading-card-clickable {
   text-decoration: none;
   color: inherit;
-  display: block;
+  display: flex;
+  flex-direction: column;
   height: 100%;
 }
 
@@ -787,17 +789,18 @@ ol {
 }
 
 .reading-card-content {
-  padding: 1.5rem;
+  padding: 2rem;
   flex: 1;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .reading-card h3 {
   margin-top: 0;
-  margin-bottom: 0.8rem;
+  margin-bottom: 1rem;
   color: #000;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: 600;
   line-height: 1.4;
 }
@@ -806,6 +809,8 @@ ol {
   color: #555;
   margin-bottom: 1.5rem;
   flex: 1;
+  line-height: 1.6;
+  font-size: 0.95rem;
 }
 
 .reading-card-footer {
@@ -822,6 +827,7 @@ ol {
   align-items: center;
   justify-content: space-between;
   transition: color 0.2s ease;
+  font-size: 1rem;
 }
 
 .reading-link:hover {
@@ -833,6 +839,7 @@ ol {
   display: inline-block;
   margin-left: 0.5rem;
   transition: transform 0.3s ease;
+  font-size: 1.2rem;
 }
 
 .reading-link:hover .reading-arrow {
@@ -842,13 +849,27 @@ ol {
 /* Estilos responsivos para tarjetas de lectura */
 @media (max-width: 768px) {
   .reading-cards {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .reading-card-content {
+    padding: 1.5rem;
   }
 }
 
 @media (max-width: 480px) {
   .reading-cards {
     grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .reading-card-content {
+    padding: 1.25rem;
+  }
+  
+  .reading-card h3 {
+    font-size: 1.2rem;
   }
 }
 
