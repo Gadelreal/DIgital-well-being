@@ -1,630 +1,765 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Digital Well-Being - Chapter 2</title>
-<link rel="stylesheet" href="./css/styles.css">
-<!-- VideoJS CSS -->
-<link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
-<!-- Font Awesome para iconos -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<style>
-/* Estilos para la navegación A-Z del glosario y las secciones */
-.glossary-az-nav {
-  padding: 10px 0;
-  margin-bottom: 15px;
-  border-bottom: 1px solid #eee;
-  text-align: left;
-}
-.glossary-az-nav a {
-  margin: 0 5px;
-  text-decoration: none;
-  color: var(--primary-color);
-  font-weight: bold;
-  padding: 5px;
-}
-.glossary-az-nav a:hover,
-.glossary-az-nav a:focus {
-  text-decoration: underline;
-  background-color: #f0f0f0;
-  border-radius: 3px;
-}
-.glossary-section {
-  /* No se necesita margin-top aquí si el H3 lo maneja */
-}
-.glossary-letter-header {
-  font-size: 1.6em;
-  color: #333;
-  margin-top: 25px;
-  margin-bottom: 15px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid #ccc;
-}
-.glossary-section:first-child .glossary-letter-header {
-    margin-top: 0; /* El primer header no necesita tanto espacio arriba */
-}
-.modal-body {
-  max-height: 70vh;
-  overflow-y: auto;
-}
-.glossary-term {
-  margin-bottom: 10px; /* Espacio entre términos */
-  line-height: 1.6;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Well-Being - Chapter 2: Cultivating Awareness</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- Font Awesome para iconos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- VideoJS CSS -->
+  <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
+  <style>
+    .reading-card-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .reading-card-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .reading-card-link .reading-link {
+      color: var(--primary-color);
+      font-weight: 600;
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
-<!-- Añadir el enlace de saltar al contenido principal al inicio del body -->
-<a href="#main-content" class="skip-to-content">Skip to main content</a>
+  <!-- Skip to content link -->
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
 
-<!-- Modificar la estructura del header para alinear elementos en una línea -->
-<header class="full-width header-full-bottom" role="banner">
-<div class="header-content">
-  <div class="header-left">
-    <div class="logo-container tiny-logo">
-      <a href="https://www.ie.edu" target="_blank" aria-label="IE University website">
-        <img src="assets/images/logo-ie.svg" alt="IE University Logo" class="logo" width="120">
-      </a>
-    </div>
-    <h2 class="header-title">Digital Well-Being</h2>
-  </div>
-  <div class="header-controls">
-    <button id="mobile-menu-toggle" class="mobile-menu-toggle always-visible" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
-      <div class="hamburger-icon">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
+  <header class="full-width header-full-bottom" role="banner">
+    <div class="header-content">
+      <div class="header-left">
+        <div class="logo-container tiny-logo">
+          <a href="https://www.ie.edu" target="_blank" aria-label="IE University website">
+            <img src="assets/images/logo-ie.svg" alt="IE University Logo" class="logo" width="120">
+          </a>
+        </div>
+        <h2 class="header-title">Digital Well-Being</h2>
       </div>
-    </button>
-  </div>
-</div>
-<nav class="main-nav hamburger-nav" id="main-nav" aria-label="Main navigation">
-<ul>
-  <li><a href="index.html">Home</a></li>
-  <li><a href="introduction.html">0. Introduction</a></li>
-  <li><a href="chapter1.html">1. Well-Being as a Key</a></li>
-  <li><a href="chapter2.html" class="active" aria-current="page">2. Cultivating Awareness</a></li>
-  <li><a href="chapter3.html">3. Autonomy and Motivation</a></li>
-  <li><a href="chapter4.html">4. Building Resilience</a></li>
-  <li><a href="chapter5.html">5. Ownership and Practice</a></li>
-  <li><a href="#" id="glossary-menu-link"><i class="fas fa-book" style="color: #000066; margin-right: 0.5rem;" aria-hidden="true"></i>Glossary</a></li>
-  <li class="language-selector-menu">
-<span class="menu-separator"></span>
-<span id="language-label" class="sr-only">Select language:</span>
-<a href="chapter2.html" class="active" aria-current="page" aria-labelledby="language-label">English</a> | <a href="capitulo2.html" aria-labelledby="language-label">Español</a>
-</li>
-</ul>
-</nav>
-</header>
+      <div class="header-controls">
+        <button id="mobile-menu-toggle" class="mobile-menu-toggle always-visible" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
+          <div class="hamburger-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </button>
+      </div>
+    </div>
+    <nav class="main-nav hamburger-nav" id="main-nav" aria-label="Main navigation">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="introduction.html">0. Introduction</a></li>
+        <li><a href="chapter1.html">1. Well-Being as a Key</a></li>
+        <li><a href="chapter2.html" class="active" aria-current="page">2. Cultivating Awareness</a></li>
+        <li><a href="chapter3.html">3. Autonomy and Motivation</a></li>
+        <li><a href="chapter4.html">4. Building Resilience</a></li>
+        <li><a href="chapter5.html">5. Ownership and Practice</a></li>
+        <li><a href="#" id="glossary-menu-link"><i class="fas fa-book" style="color: #DB0086; margin-right: 0.5rem;" aria-hidden="true"></i>Glossary</a></li>
+        <li class="language-selector-menu">
+          <span class="menu-separator"></span>
+          <span id="language-label" class="sr-only">Select language:</span>
+          <a href="chapter2.html" class="active" aria-current="page" aria-labelledby="language-label">English</a> | <a href="es/capitulo2.html" aria-labelledby="language-label">Español</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
 
-<section class="hero-section">
-<div class="hero-content">
-  <div class="hero-title-container">
-    
-    <h1 class="hero-title"><strong>LESSON 2: Cultivating Awareness</strong></h1>
-  </div>
-</div>
-</section>
+  <section class="hero-section">
+    <div class="hero-content">
+      <div class="hero-title-container">
+        <h1 class="hero-title">Chapter 2: Cultivating Awareness</h1>
+      </div>
+    </div>
+  </section>
 
-<main id="main-content" tabindex="-1">
-  <div class="content-aligned-container">
-    
-    <section class="lesson-section no-borders">
-<h2><strong>Lesson 2 Learning Objectives</strong></h2>
-<p>After this lesson, participants will be able to:</p>
-
-<div class="learning-objectives-grid-2x2">
-  <div class="learning-objective-card">
-    <div class="objective-icon" aria-hidden="true">
-      <i class="fas fa-sync-alt"></i>
-    </div>
-    <div class="objective-content">
-      <h4>Habit Loop Understanding</h4>
-      <p>Explain the habit loop and the process of habit formation</p>
-    </div>
-  </div>
-  
-  <div class="learning-objective-card">
-    <div class="objective-icon" aria-hidden="true">
-      <i class="fas fa-heart-pulse"></i>
-    </div>
-    <div class="objective-content">
-      <h4>Digital Impact Assessment</h4>
-      <p>Identify the impact of digital habits on overall well-being</p>
-    </div>
-  </div>
-  
-  <div class="learning-objective-card">
-    <div class="objective-icon" aria-hidden="true">
-      <i class="fas fa-balance-scale"></i>
-    </div>
-    <div class="objective-content">
-      <h4>Science-Based Principles</h4>
-      <p>Apply principles from habit science to promote balance and digital well-being</p>
-    </div>
-  </div>
-  
-  <div class="learning-objective-card">
-    <div class="objective-icon" aria-hidden="true">
-      <i class="fas fa-compass"></i>
-    </div>
-    <div class="objective-content">
-      <h4>Values-Behavior Connection</h4>
-      <p>Understand how behaviors reflect personal values and influence daily experiences</p>
-    </div>
-  </div>
-</div>
-</section>
-    
-    <section class="lesson-section no-borders">
-      <h2><strong>Breaking the Loop</strong></h2>
+  <main id="main-content" tabindex="-1">
+    <div class="content-aligned-container">
       
-      <div class="responsive-video">
-        <video 
-          id="breaking-loop-video" 
-          class="video-js vjs-ie-skin vjs-big-play-centered" 
-          controls 
-          preload="auto" 
-          poster="assets/images/human-flourishing-poster.jpg"
-          data-video-id="w02v00"
-          data-logo="assets/images/logo-ie-small.png"
-          aria-label="Breaking the Loop video"
-        >
-          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w02v00-breaking-the-loop/mp4/w02v00-breaking-the-loop_1080p.mp4" type="video/mp4">
-          <p class="vjs-no-js">
-            To view this video please enable JavaScript, and consider upgrading to a
-            web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-          </p>
-          <track kind="captions" src="captions/breaking-the-loop.vtt" srclang="en" label="English" default>
-        </video>
-      </div>
-    </section>
-    
-    <section class="lesson-section no-borders">
-      <h2><strong>Digital Habits</strong></h2>
-      
-      <div class="responsive-video">
-        <video 
-          id="digital-habits-video" 
-          class="video-js vjs-ie-skin vjs-big-play-centered" 
-          controls 
-          preload="auto" 
-          poster="assets/images/human-flourishing-poster.jpg"
-          data-video-id="w02v01"
-          data-logo="assets/images/logo-ie-small.png"
-          aria-label="Digital Habits video"
-        >
-          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w02v01-digital-habits/mp4/w02v01-digital-habits_1080p.mp4" type="video/mp4">
-          <p class="vjs-no-js">
-            To view this video please enable JavaScript, and consider upgrading to a
-            web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-          </p>
-          <track kind="captions" src="captions/digital-habits.vtt" srclang="en" label="English" default>
-        </video>
-      </div>
-      
-      <div class="key-point" role="note" aria-label="Key point about digital habits">
-        <h3><strong>Key Point</strong></h3>
-        <p>Understanding the habit loop—<strong>cue, action, and reward</strong>—allows us to recognize the subconscious patterns driving our digital behaviors and gives us the tools to make small, intentional changes that improve our emotional, mental, and physical well-being.</p>
-        
-        <p>Every digital behavior follows a pattern: a cue triggers an action, which leads to a reward. By analyzing your digital habits through this lens, you can uncover the emotional drivers behind your actions and make thoughtful adjustments that better support your well-being.</p>
-        
-        <p><strong>Start by observing:</strong></p>
-        <ul>
-          <li>What triggers your behavior?</li>
-          <li>What action do you take?</li>
-          <li>What reward are you seeking?</li>
-        </ul>
-      </div>
-    </section>
+      <section class="lesson-section no-borders">
+        <h2>Learning Objectives</h2>
+        <div class="learning-objectives-grid">
+          <div class="learning-objective-card">
+            <div class="objective-icon">
+              <i class="fas fa-eye" aria-hidden="true"></i>
+            </div>
+            <div class="objective-content">
+              <h4>Develop Self-Awareness</h4>
+              <p>Learn to recognize your digital habits, triggers, and patterns of technology use</p>
+            </div>
+          </div>
+          
+          <div class="learning-objective-card">
+            <div class="objective-icon">
+              <i class="fas fa-brain" aria-hidden="true"></i>
+            </div>
+            <div class="objective-content">
+              <h4>Understand Cognitive Impact</h4>
+              <p>Explore how digital consumption affects attention, memory, and cognitive function</p>
+            </div>
+          </div>
+          
+          <div class="learning-objective-card">
+            <div class="objective-icon">
+              <i class="fas fa-clock" aria-hidden="true"></i>
+            </div>
+            <div class="objective-content">
+              <h4>Practice Mindful Usage</h4>
+              <p>Implement strategies for more intentional and conscious technology engagement</p>
+            </div>
+          </div>
+          
+          <div class="learning-objective-card">
+            <div class="objective-icon">
+              <i class="fas fa-chart-bar" aria-hidden="true"></i>
+            </div>
+            <div class="objective-content">
+              <h4>Track Digital Habits</h4>
+              <p>Use tools and techniques to monitor and assess your digital behavior patterns</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-    <section class="lesson-section no-borders">
-      <div class="values-activity-container">
-        <h2><strong>Activity: Digital Habits Audit</strong></h2>
-        <p>Let's take a closer look at your current digital habits. This <strong>Digital Habits Audit</strong> will help you reflect on how much time you spend on your phone and which apps you use most often.</p>
+      <section class="lesson-section no-borders">
+        <h2>The Importance of Digital Awareness</h2>
         
-        <p>Answer each question honestly using the screen time data from your phone. Then, rank the apps you use the most and reflect on your patterns.</p>
-        
-        <p><strong>You can download the editable template to complete your responses.</strong> This way, you can track your awareness and progress over time.</p>
-        
-        <a href="#" class="download-template-button" onclick="downloadDigitalHabitsAuditTemplate()" aria-label="Download editable template for digital habits audit activity">
-          <i class="fas fa-download" aria-hidden="true"></i>
-          <strong>Download the editable template here</strong>
-        </a>
-      </div>
-    </section>
+        <div class="responsive-video">
+          <video 
+            id="awareness-video" 
+            class="video-js vjs-ie-skin vjs-big-play-centered" 
+            controls 
+            preload="auto" 
+            poster="assets/images/positive-psychology-poster.jpg"
+            data-video-id="c02v01"
+            data-logo="assets/images/logo-ie-small.png"
+            aria-label="The Importance of Digital Awareness video"
+          >
+            <source src="https://iep-media.ie.edu/olj/digital-wellbeing/c02v01-importance-of-digital-awareness/mp4/c02v01-importance-of-digital-awareness_1080p.mp4" type="video/mp4">
+            <p class="vjs-no-js">
+              To view this video please enable JavaScript, and consider upgrading to a
+              web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+            </p>
+            <track kind="captions" src="captions/importance-of-digital-awareness.vtt" srclang="en" label="English" default>
+          </video>
+        </div>
+      </section>
 
-    <section class="lesson-section no-borders">
-      <h2><strong>Behavioural Science Applied to Well-being</strong></h2>
-      
-      <div class="responsive-video">
-        <video 
-          id="behavioural-science-video" 
-          class="video-js vjs-ie-skin vjs-big-play-centered" 
-          controls 
-          preload="auto" 
-          poster="assets/images/human-flourishing-poster.jpg"
-          data-video-id="w02v02"
-          data-logo="assets/images/logo-ie-small.png"
-          aria-label="Behavioural Science Applied to Well-being video"
-        >
-          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w02v02-behavioural-science-applied-to-well-being/mp4/w02v02-behavioural-science-applied-to-well-being_1080p.mp4" type="video/mp4">
-          <p class="vjs-no-js">
-            To view this video please enable JavaScript, and consider upgrading to a
-            web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-          </p>
-          <track kind="captions" src="captions/behavioural-science.vtt" srclang="en" label="English" default>
-        </video>
-      </div>
-      
-      <div class="key-point" role="note" aria-label="Key point about behavioural science">
-        <h3><strong>Key Point</strong></h3>
-        <p>Effective behavior change happens when you <strong>clearly define the specific habit you want to change</strong>, identify its triggers and rewards, and replace the old behavior with a more productive one—supported by positive reinforcement.</p>
+      <section class="lesson-section no-borders">
+        <h2>Digital Habit Audit</h2>
+        <p>Complete this comprehensive audit to gain insight into your current digital habits. This self-assessment will help you identify patterns and areas for improvement.</p>
         
-        <p>Changing behavior isn't just about willpower—it's about understanding the habit loop.</p>
-        <ul>
-          <li><strong>Be specific:</strong> Identify the exact behavior you want to change.</li>
-          <li><strong>Recognize triggers:</strong> What situations, people, or feelings prompt the behavior?</li>
-          <li><strong>Identify rewards:</strong> What satisfaction or relief are you getting from it?</li>
-        </ul>
-        
-        <p>By replacing an unproductive behavior with a better alternative and rewarding your progress, you set yourself up for lasting change.</p>
-      </div>
-    </section>
+        <div class="audit-container">
+          <div class="audit-section">
+            <h3>Morning Digital Routine</h3>
+            <div class="audit-question">
+              <label for="morning-first">What's the first thing you do with technology when you wake up?</label>
+              <select id="morning-first" class="audit-select">
+                <option value="">Select an option</option>
+                <option value="check-phone">Check my phone immediately</option>
+                <option value="social-media">Open social media</option>
+                <option value="news">Read news</option>
+                <option value="email">Check email</option>
+                <option value="intentional">Use technology intentionally (specific purpose)</option>
+                <option value="delay">Wait at least 30 minutes before using devices</option>
+              </select>
+            </div>
+            
+            <div class="audit-question">
+              <label for="morning-time">How much time do you spend on devices in your first hour awake?</label>
+              <select id="morning-time" class="audit-select">
+                <option value="">Select an option</option>
+                <option value="0-15">0-15 minutes</option>
+                <option value="15-30">15-30 minutes</option>
+                <option value="30-60">30-60 minutes</option>
+                <option value="60+">More than 60 minutes</option>
+              </select>
+            </div>
+          </div>
 
-    <section class="lesson-section no-borders">
-      <h2><strong>Understanding Your Environment and Identifying Digital Triggers</strong></h2>
-      
-      <div class="responsive-video">
-        <video 
-          id="environment-triggers-video" 
-          class="video-js vjs-ie-skin vjs-big-play-centered" 
-          controls 
-          preload="auto" 
-          poster="assets/images/human-flourishing-poster.jpg"
-          data-video-id="w02v03"
-          data-logo="assets/images/logo-ie-small.png"
-          aria-label="Understanding Your Environment and Identifying Digital Triggers video"
-        >
-          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w02v03-understanding-your-environment/mp4/w02v03-understanding-your-environment_1080p.mp4" type="video/mp4">
-          <p class="vjs-no-js">
-            To view this video please enable JavaScript, and consider upgrading to a
-            web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-          </p>
-          <track kind="captions" src="captions/understanding-environment.vtt" srclang="en" label="English" default>
-        </video>
-      </div>
-      
-      <div class="key-point" role="note" aria-label="Key point about environment and triggers">
-        <h3><strong>Key Point</strong></h3>
-        <p>By becoming aware of how our environment, social settings, and energy levels trigger digital habits throughout the day, we can proactively design healthier practices that protect our focus, emotional balance, and overall well-being.</p>
-        
-        <p>Our surroundings, feelings, and energy levels deeply influence our digital habits—often without us realizing it.</p>
-        
-        <p><strong>To better support your well-being:</strong></p>
-        <ul>
-          <li>Notice how different environments (like workspaces or social gatherings) and times of day impact your technology use.</li>
-          <li>Recognize when your energy dips and how that might lead to unintentional device use.</li>
-          <li>Replace draining digital habits with restorative activities—like a short walk, connecting with someone face-to-face, or simply pausing to breathe and reset.</li>
-        </ul>
-      </div>
-    </section>
+          <div class="audit-section">
+            <h3>Work/Study Digital Habits</h3>
+            <div class="audit-question">
+              <label for="work-focus">How often do you check non-work related apps/sites during work/study time?</label>
+              <select id="work-focus" class="audit-select">
+                <option value="">Select an option</option>
+                <option value="never">Never</option>
+                <option value="rarely">Rarely (few times per day)</option>
+                <option value="sometimes">Sometimes (every few hours)</option>
+                <option value="often">Often (every hour)</option>
+                <option value="constantly">Constantly (every few minutes)</option>
+              </select>
+            </div>
+            
+            <div class="audit-question">
+              <label for="multitasking">How often do you multitask with multiple digital devices or applications?</label>
+              <select id="multitasking" class="audit-select">
+                <option value="">Select an option</option>
+                <option value="never">Never</option>
+                <option value="rarely">Rarely</option>
+                <option value="sometimes">Sometimes</option>
+                <option value="often">Often</option>
+                <option value="always">Always</option>
+              </select>
+            </div>
+          </div>
 
-    <section class="lesson-section no-borders">
-      <div class="values-activity-container">
-        <h2><strong>Activity: Understanding Your Environment and Identifying Your Digital Triggers</strong></h2>
-        <p>Now it's time to take a full inventory of your digital environment. This activity will help you identify potential distractions and areas for improvement across four key areas: your phone, your computer, your workspace, and your social media habits.</p>
-        
-        <p>Follow each section carefully and take notes on what you discover. Use this as a chance to reflect on how your digital spaces are supporting — or distracting from — your well-being and goals.</p>
-        
-        <p><strong>You can download the editable template to complete your responses.</strong> This way, you can track your insights and progress.</p>
-        
-        <a href="#" class="download-template-button" onclick="downloadDigitalTriggersTemplate()" aria-label="Download editable template for digital triggers activity">
-          <i class="fas fa-download" aria-hidden="true"></i>
-          <strong>Download the editable template here</strong>
-        </a>
-      </div>
-    </section>
+          <div class="audit-section">
+            <h3>Evening Digital Routine</h3>
+            <div class="audit-question">
+              <label for="evening-cutoff">When do you typically stop using screens before bed?</label>
+              <select id="evening-cutoff" class="audit-select">
+                <option value="">Select an option</option>
+                <option value="2hours+">2+ hours before bed</option>
+                <option value="1-2hours">1-2 hours before bed</option>
+                <option value="30min-1hour">30 minutes to 1 hour before bed</option>
+                <option value="right-before">Right before bed</option>
+                <option value="in-bed">I use devices in bed</option>
+              </select>
+            </div>
+          </div>
 
-    <section class="lesson-section no-borders">
-      <h2><strong>Evidence-based Practices to Build Healthy Digital Habits</strong></h2>
-      
-      <div class="responsive-video">
-        <video 
-          id="evidence-practices-video" 
-          class="video-js vjs-ie-skin vjs-big-play-centered" 
-          controls 
-          preload="auto" 
-          poster="assets/images/human-flourishing-poster.jpg"
-          data-video-id="w02v04"
-          data-logo="assets/images/logo-ie-small.png"
-          aria-label="Evidence-based Practices to Build Healthy Digital Habits video"
-        >
-          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w02v04-evidence-based-practices/mp4/w02v04-evidence-based-practices_1080p.mp4" type="video/mp4">
-          <p class="vjs-no-js">
-            To view this video please enable JavaScript, and consider upgrading to a
-            web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-          </p>
-          <track kind="captions" src="captions/evidence-based-practices.vtt" srclang="en" label="English" default>
-        </video>
+          <button id="calculate-audit" class="audit-calculate-btn">Calculate My Digital Awareness Score</button>
+          
+          <div id="audit-results" class="audit-results" style="display: none;">
+            <h3>Your Digital Awareness Score</h3>
+            <div id="audit-score" class="audit-score"></div>
+            <div id="audit-feedback" class="audit-feedback"></div>
+            <div id="audit-recommendations" class="audit-recommendations"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="lesson-section no-borders">
+        <h2>Mindful Technology Practices</h2>
+        <p>Explore these evidence-based practices to cultivate more mindful and intentional technology use.</p>
+        
+        <div class="practices-grid">
+          <div class="practice-card">
+            <div class="practice-icon">
+              <i class="fas fa-pause" aria-hidden="true"></i>
+            </div>
+            <div class="practice-content">
+              <h4>The Digital Pause</h4>
+              <p>Before picking up your device, take a moment to ask: "What is my intention?" This simple pause can transform mindless scrolling into purposeful engagement.</p>
+              <div class="practice-steps">
+                <strong>How to practice:</strong>
+                <ol>
+                  <li>Place your hand on your device</li>
+                  <li>Take a deep breath</li>
+                  <li>Ask yourself: "Why am I reaching for this?"</li>
+                  <li>Proceed only if you have a clear, positive intention</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+
+          <div class="practice-card">
+            <div class="practice-icon">
+              <i class="fas fa-bell-slash" aria-hidden="true"></i>
+            </div>
+            <div class="practice-content">
+              <h4>Notification Boundaries</h4>
+              <p>Create intentional boundaries around when and how you receive notifications to protect your attention and reduce reactive technology use.</p>
+              <div class="practice-steps">
+                <strong>How to practice:</strong>
+                <ol>
+                  <li>Audit all your current notifications</li>
+                  <li>Keep only essential notifications active</li>
+                  <li>Set specific times for checking messages</li>
+                  <li>Use "Do Not Disturb" modes strategically</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+
+          <div class="practice-card">
+            <div class="practice-icon">
+              <i class="fas fa-stopwatch" aria-hidden="true"></i>
+            </div>
+            <div class="practice-content">
+              <h4>Time Boxing</h4>
+              <p>Allocate specific time blocks for different digital activities to prevent endless scrolling and maintain focus on your priorities.</p>
+              <div class="practice-steps">
+                <strong>How to practice:</strong>
+                <ol>
+                  <li>Identify your main digital activities</li>
+                  <li>Assign specific time slots for each</li>
+                  <li>Set timers to maintain boundaries</li>
+                  <li>Take breaks between different activities</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+
+          <div class="practice-card">
+            <div class="practice-icon">
+              <i class="fas fa-leaf" aria-hidden="true"></i>
+            </div>
+            <div class="practice-content">
+              <h4>Digital Sabbaticals</h4>
+              <p>Regular breaks from technology help reset your relationship with digital devices and create space for offline activities.</p>
+              <div class="practice-steps">
+                <strong>How to practice:</strong>
+                <ol>
+                  <li>Start with short breaks (1-2 hours)</li>
+                  <li>Gradually extend to half-day or full-day breaks</li>
+                  <li>Plan engaging offline activities</li>
+                  <li>Notice how you feel during and after breaks</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="lesson-section no-borders">
+        <h2>Resources and Tools</h2>
+        <p>Access these helpful resources to support your journey toward greater digital awareness and mindful technology use.</p>
+        
+        <div class="reading-cards">
+          <a href="assets/documents/digital-habit-tracker.pdf" target="_blank" class="reading-card reading-card-link" aria-label="Download Digital Habit Tracker (opens in new tab)">
+            <div class="reading-card-content">
+              <h3><strong>Digital Habit Tracker</strong></h3>
+              <p>A comprehensive tracking sheet to monitor your daily digital habits and identify patterns over time.</p>
+              <div class="reading-card-footer">
+                <span class="reading-link">
+                  <i class="fas fa-download" aria-hidden="true"></i>
+                  Download PDF
+                  <span class="reading-arrow" aria-hidden="true">→</span>
+                </span>
+              </div>
+            </div>
+          </a>
+
+          <a href="assets/documents/mindful-tech-checklist.pdf" target="_blank" class="reading-card reading-card-link" aria-label="Download Mindful Technology Checklist (opens in new tab)">
+            <div class="reading-card-content">
+              <h3><strong>Mindful Technology Checklist</strong></h3>
+              <p>A practical checklist to help you implement mindful technology practices in your daily routine.</p>
+              <div class="reading-card-footer">
+                <span class="reading-link">
+                  <i class="fas fa-download" aria-hidden="true"></i>
+                  Download PDF
+                  <span class="reading-arrow" aria-hidden="true">→</span>
+                </span>
+              </div>
+            </div>
+          </a>
+
+          <a href="https://www.headspace.com/meditation/technology" target="_blank" class="reading-card reading-card-link" aria-label="Visit Headspace Technology Meditations (opens in new tab)">
+            <div class="reading-card-content">
+              <h3><strong>Technology Meditations</strong></h3>
+              <p>Guided meditations specifically designed to help you develop a healthier relationship with technology.</p>
+              <div class="reading-card-footer">
+                <span class="reading-link">
+                  Visit Resource
+                  <span class="reading-arrow" aria-hidden="true">→</span>
+                </span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <section class="lesson-section no-borders">
+        <h2>Key Takeaways</h2>
+        <div class="key-points-container">
+          <div class="key-point">
+            <div class="key-point-icon">
+              <i class="fas fa-eye" aria-hidden="true"></i>
+            </div>
+            <div class="key-point-content">
+              <h4>Awareness is the First Step</h4>
+              <p>You can't change what you don't notice. Developing awareness of your digital habits is essential for making positive changes.</p>
+            </div>
+          </div>
+          
+          <div class="key-point">
+            <div class="key-point-icon">
+              <i class="fas fa-brain" aria-hidden="true"></i>
+            </div>
+            <div class="key-point-content">
+              <h4>Technology Affects Cognition</h4>
+              <p>Our digital habits directly impact our ability to focus, remember, and think clearly. Mindful use protects cognitive function.</p>
+            </div>
+          </div>
+          
+          <div class="key-point">
+            <div class="key-point-icon">
+              <i class="fas fa-clock" aria-hidden="true"></i>
+            </div>
+            <div class="key-point-content">
+              <h4>Intention Over Impulse</h4>
+              <p>Moving from reactive to intentional technology use requires practice but leads to greater satisfaction and well-being.</p>
+            </div>
+          </div>
+          
+          <div class="key-point">
+            <div class="key-point-icon">
+              <i class="fas fa-chart-line" aria-hidden="true"></i>
+            </div>
+            <div class="key-point-content">
+              <h4>Small Changes, Big Impact</h4>
+              <p>Simple practices like the digital pause or notification boundaries can significantly improve your relationship with technology.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="navigation-buttons" role="navigation" aria-label="Lesson navigation">
+        <a href="chapter1.html" class="nav-button prev"><span class="arrow-left" aria-hidden="true">←</span>Previous</a>
+        <a href="chapter3.html" class="nav-button next">Next<span class="arrow-right" aria-hidden="true">→</span></a>
       </div>
-      
-      <div class="key-point" role="note" aria-label="Key point about evidence-based practices">
-        <h3><strong>Key Point</strong></h3>
-        <p>You can reclaim focus, reduce stress, and build a healthier relationship with technology by applying simple, science-backed strategies like <strong>managing notifications, creating tech-free zones, decluttering your apps, scheduling digital breaks, and keeping your phone out of sight</strong> when it matters most.</p>
-        
-        <p>Small, intentional changes in how we interact with our devices can lead to big improvements in focus, well-being, and connection.</p>
-        
-        <p><strong>Here are 5 powerful strategies to start today:</strong></p>
-        <ul>
-          <li><strong>Master notifications:</strong> Limit interruptions by controlling alerts.</li>
-          <li><strong>Create tech-free zones:</strong> Protect spaces like your dining area and bedroom.</li>
-          <li><strong>Declutter your apps:</strong> Keep only what energizes and serves you.</li>
-          <li><strong>Schedule digital breaks:</strong> Refresh your body and mind regularly.</li>
-          <li><strong>Manage smartphone presence:</strong> Keep your device out of sight during focus time.</li>
-        </ul>
-        
-        <p>Every small step helps build a more balanced, intentional digital life.</p>
+    </div>
+  </main>
+
+  <footer role="contentinfo">
+    <div class="footer-content">
+      <p class="copyright">&copy; <span id="current-year"></span> IE University. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Glossary Modal -->
+  <div id="glossary-modal" class="modal" role="dialog" aria-labelledby="glossary-modal-title" aria-hidden="true">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="glossary-modal-title">Glossary of Digital Well-being Concepts</h2>
+        <button class="modal-close" aria-label="Close glossary">&times;</button>
       </div>
-    </section>
-    
-    <div class="navigation-buttons" role="navigation" aria-label="Lesson navigation">
-      <a href="chapter1.html" class="nav-button prev"><span class="arrow-left" aria-hidden="true">←</span>Previous</a>
-      <a href="chapter3.html" class="nav-button next">Next<span class="arrow-right" aria-hidden="true">→</span></a>
+      <div class="modal-body">
+        <nav class="glossary-az-nav" aria-label="Glossary A-Z Navigation">
+          <a href="#glossary-section-a">A</a>
+          <a href="#glossary-section-b">B</a>
+          <a href="#glossary-section-c">C</a>
+          <a href="#glossary-section-d">D</a>
+          <a href="#glossary-section-e">E</a>
+          <a href="#glossary-section-f">F</a>
+          <a href="#glossary-section-h">H</a>
+          <a href="#glossary-section-m">M</a>
+          <a href="#glossary-section-n">N</a>
+          <a href="#glossary-section-p">P</a>
+          <a href="#glossary-section-r">R</a>
+          <a href="#glossary-section-s">S</a>
+          <a href="#glossary-section-t">T</a>
+          <a href="#glossary-section-w">W</a>
+        </nav>
+        <div class="glossary-terms">
+          <div id="glossary-section-a" class="glossary-section">
+            <h3 class="glossary-letter-header">A</h3>
+            <div class="glossary-term">
+              <strong>Accountability Buddy</strong> – A supportive partner who helps track progress and encourages consistency in digital well-being goals.
+            </div>
+            <div class="glossary-term">
+              <strong>Attention Management</strong> – The practice of consciously directing focus in a digital environment to enhance productivity and cognitive health.
+            </div>
+            <div class="glossary-term">
+              <strong>Autonomy (Self-Determination Theory)</strong> – The ability to make choices about digital engagement that align with personal values and goals.
+            </div>
+          </div>
+          <div id="glossary-section-b" class="glossary-section">
+            <h3 class="glossary-letter-header">B</h3>
+            <div class="glossary-term">
+              <strong>Brain Cognition</strong> – The way the brain processes information, impacted by digital habits such as screen time and multitasking.
+            </div>
+            <div class="glossary-term">
+              <strong>Behavioral Science</strong> – The study of how people form digital habits and how technology influences decision-making.
+            </div>
+          </div>
+          <div id="glossary-section-c" class="glossary-section">
+            <h3 class="glossary-letter-header">C</h3>
+            <div class="glossary-term">
+              <strong>Character Strengths</strong> – Personal strengths (e.g., curiosity, self-regulation) that can be leveraged to cultivate healthy digital habits.
+            </div>
+            <div class="glossary-term">
+              <strong>Cognitive Load</strong> – The mental effort required to process information, which can be impacted by excessive screen time or multitasking.
+            </div>
+            <div class="glossary-term">
+              <strong>Core Values</strong> – Fundamental beliefs that guide digital habits and decision-making.
+            </div>
+          </div>
+          <div id="glossary-section-d" class="glossary-section">
+            <h3 class="glossary-letter-header">D</h3>
+            <div class="glossary-term">
+              <strong>Digital Detox</strong> – A period of time spent without digital devices to reset habits and improve well-being.
+            </div>
+            <div class="glossary-term">
+              <strong>Digital Flourishing</strong> – Thriving in a digital environment by balancing technology use with personal and professional well-being.
+            </div>
+            <div class="glossary-term">
+              <strong>Digital Goals</strong> – Personalized objectives for improving one's digital habits, often using the SMART (Specific, Measurable, Achievable, Relevant, Time-bound) framework.
+            </div>
+            <div class="glossary-term">
+              <strong>Digital Habit Audit</strong> – A self-assessment to track technology use and identify areas for improvement.
+            </div>
+            <div class="glossary-term">
+              <strong>Digital Minimalism</strong> – A philosophy advocating for intentional and purposeful use of technology to enhance well-being.
+            </div>
+          </div>
+          <div id="glossary-section-e" class="glossary-section">
+            <h3 class="glossary-letter-header">E</h3>
+            <div class="glossary-term">
+              <strong>Empathy and Technology</strong> – The relationship between digital interactions and emotional intelligence, including how technology can impact social connections.
+            </div>
+            <div class="glossary-term">
+              <strong>Energy Management</strong> – Strategies to prevent digital fatigue and optimize energy levels in a tech-heavy world.
+            </div>
+          </div>
+          <div id="glossary-section-f" class="glossary-section">
+            <h3 class="glossary-letter-header">F</h3>
+            <div class="glossary-term">
+              <strong>Focus & Productivity</strong> – The ability to maintain attention and effectiveness in work and life, often challenged by digital distractions.
+            </div>
+            <div class="glossary-term">
+              <strong>Flourishing (Well-being Theory)</strong> – The state of thriving in multiple aspects of life, including physical, mental, emotional, and digital well-being.
+            </div>
+          </div>
+          <div id="glossary-section-h" class="glossary-section">
+            <h3 class="glossary-letter-header">H</h3>
+            <div class="glossary-term">
+              <strong>Habit Loop</strong> – A framework for understanding habit formation, consisting of cue, routine, and reward, applicable to digital behaviors.
+            </div>
+          </div>
+          <div id="glossary-section-m" class="glossary-section">
+            <h3 class="glossary-letter-header">M</h3>
+            <div class="glossary-term">
+              <strong>Mindfulness in Technology Use</strong> – Practicing present-moment awareness to create intentional and balanced digital interactions.
+            </div>
+            <div class="glossary-term">
+              <strong>Motivation (Self-Determination Theory)</strong> – Internal and external factors that influence engagement with technology, including autonomMotivation (Self-Determination Theory)</strong> – Internal and external factors that influence engagement with technology, including autonomy, competence, and relatedness.
+            </div>
+          </div>
+          <div id="glossary-section-n" class="glossary-section">
+            <h3 class="glossary-letter-header">N</h3>
+            <div class="glossary-term">
+              <strong>Notification Management</strong> – Strategies to reduce interruptions and increase focus, such as disabling non-essential alerts.
+            </div>
+          </div>
+          <div id="glossary-section-p" class="glossary-section">
+            <h3 class="glossary-letter-header">P</h3>
+            <div class="glossary-term">
+              <strong>Prefrontal Cortex</strong> – The part of the brain responsible for decision-making and impulse control, which is affected by digital engagement.
+            </div>
+            <div class="glossary-term">
+              <strong>Psychological Safety and Technology</strong> – The impact of digital environments on emotional well-being and security.
+            </div>
+          </div>
+          <div id="glossary-section-r" class="glossary-section">
+            <h3 class="glossary-letter-header">R</h3>
+            <div class="glossary-term">
+              <strong>Reflection Practice</strong> – Periodic self-check-ins to assess digital habits and their alignment with personal values.
+            </div>
+          </div>
+          <div id="glossary-section-s" class="glossary-section">
+            <h3 class="glossary-letter-header">S</h3>
+            <div class="glossary-term">
+              <strong>Screen Time Awareness</strong> – Conscious tracking of time spent on digital devices to maintain a balanced lifestyle.
+            </div>
+            <div class="glossary-term">
+              <strong>Self-Regulation</strong> – The ability to control impulses and make mindful choices in digital interactions.
+            </div>
+            <div class="glossary-term">
+              <strong>Social Media Hygiene</strong> – Practices for maintaining a healthy relationship with social platforms, including curating content and setting boundaries.
+            </div>
+          </div>
+          <div id="glossary-section-t" class="glossary-section">
+            <h3 class="glossary-letter-header">T</h3>
+            <div class="glossary-term">
+              <strong>Tech-Life Balance</strong> – The intentional effort to harmonize technology use with overall well-being.
+            </div>
+            <div class="glossary-term">
+              <strong>Triggers in Digital Use</strong> – Environmental or psychological cues that prompt certain digital habits, such as checking the phone out of boredom.
+            </div>
+            <div class="glossary-term">
+              <strong>Two-Edge Effect of Technology</strong> – The concept that digital tools can both enhance and hinder well-being, depending on usage patterns.
+            </div>
+          </div>
+          <div id="glossary-section-w" class="glossary-section">
+            <h3 class="glossary-letter-header">W</h3>
+            <div class="glossary-term">
+              <strong>Willpower and Digital Use</strong> – The ability to resist distractions and build positive technology habits.
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</main>
-
-<footer role="contentinfo">
-<div class="footer-content">
-  <p class="copyright">&copy; <span id="current-year"></span> IE University. All rights reserved.</p>
-</div>
-</footer>
-
-<!-- Glossary Modal -->
-<div id="glossary-modal" class="modal" role="dialog" aria-labelledby="glossary-modal-title" aria-hidden="true">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h2 id="glossary-modal-title">Glossary of Digital Well-being Concepts</h2>
-      <button class="modal-close" aria-label="Close glossary">&times;</button>
-    </div>
-    <div class="modal-body">
-      <nav class="glossary-az-nav" aria-label="Glossary A-Z Navigation">
-        <a href="#glossary-section-a">A</a>
-        <a href="#glossary-section-b">B</a>
-        <a href="#glossary-section-c">C</a>
-        <a href="#glossary-section-d">D</a>
-        <a href="#glossary-section-e">E</a>
-        <a href="#glossary-section-f">F</a>
-        <a href="#glossary-section-h">H</a>
-        <a href="#glossary-section-m">M</a>
-        <a href="#glossary-section-n">N</a>
-        <a href="#glossary-section-p">P</a>
-        <a href="#glossary-section-r">R</a>
-        <a href="#glossary-section-s">S</a>
-        <a href="#glossary-section-t">T</a>
-        <a href="#glossary-section-w">W</a>
-      </nav>
-      <div class="glossary-terms">
-        <div id="glossary-section-a" class="glossary-section">
-          <h3 class="glossary-letter-header">A</h3>
-          <div class="glossary-term">
-            <strong>Accountability Buddy</strong> – A supportive partner who helps track progress and encourages consistency in digital well-being goals.
-          </div>
-          <div class="glossary-term">
-            <strong>Attention Management</strong> – The practice of consciously directing focus in a digital environment to enhance productivity and cognitive health.
-          </div>
-          <div class="glossary-term">
-            <strong>Autonomy (Self-Determination Theory)</strong> – The ability to make choices about digital engagement that align with personal values and goals.
-          </div>
-        </div>
-        <div id="glossary-section-b" class="glossary-section">
-          <h3 class="glossary-letter-header">B</h3>
-          <div class="glossary-term">
-            <strong>Brain Cognition</strong> – The way the brain processes information, impacted by digital habits such as screen time and multitasking.
-          </div>
-          <div class="glossary-term">
-            <strong>Behavioral Science</strong> – The study of how people form digital habits and how technology influences decision-making.
-          </div>
-        </div>
-        <div id="glossary-section-c" class="glossary-section">
-          <h3 class="glossary-letter-header">C</h3>
-          <div class="glossary-term">
-            <strong>Character Strengths</strong> – Personal strengths (e.g., curiosity, self-regulation) that can be leveraged to cultivate healthy digital habits.
-          </div>
-          <div class="glossary-term">
-            <strong>Cognitive Load</strong> – The mental effort required to process information, which can be impacted by excessive screen time or multitasking.
-          </div>
-          <div class="glossary-term">
-            <strong>Core Values</strong> – Fundamental beliefs that guide digital habits and decision-making.
-          </div>
-        </div>
-        <div id="glossary-section-d" class="glossary-section">
-          <h3 class="glossary-letter-header">D</h3>
-          <div class="glossary-term">
-            <strong>Digital Detox</strong> – A period of time spent without digital devices to reset habits and improve well-being.
-          </div>
-          <div class="glossary-term">
-            <strong>Digital Flourishing</strong> – Thriving in a digital environment by balancing technology use with personal and professional well-being.
-          </div>
-          <div class="glossary-term">
-            <strong>Digital Goals</strong> – Personalized objectives for improving one's digital habits, often using the SMART (Specific, Measurable, Achievable, Relevant, Time-bound) framework.
-          </div>
-          <div class="glossary-term">
-            <strong>Digital Habit Audit</strong> – A self-assessment to track technology use and identify areas for improvement.
-          </div>
-          <div class="glossary-term">
-            <strong>Digital Minimalism</strong> – A philosophy advocating for intentional and purposeful use of technology to enhance well-being.
-          </div>
-        </div>
-        <div id="glossary-section-e" class="glossary-section">
-          <h3 class="glossary-letter-header">E</h3>
-          <div class="glossary-term">
-            <strong>Empathy and Technology</strong> – The relationship between digital interactions and emotional intelligence, including how technology can impact social connections.
-          </div>
-          <div class="glossary-term">
-            <strong>Energy Management</strong> – Strategies to prevent digital fatigue and optimize energy levels in a tech-heavy world.
-          </div>
-        </div>
-        <div id="glossary-section-f" class="glossary-section">
-          <h3 class="glossary-letter-header">F</h3>
-          <div class="glossary-term">
-            <strong>Focus & Productivity</strong> – The ability to maintain attention and effectiveness in work and life, often challenged by digital distractions.
-          </div>
-          <div class="glossary-term">
-            <strong>Flourishing (Well-being Theory)</strong> – The state of thriving in multiple aspects of life, including physical, mental, emotional, and digital well-being.
-          </div>
-        </div>
-        <div id="glossary-section-h" class="glossary-section">
-          <h3 class="glossary-letter-header">H</h3>
-          <div class="glossary-term">
-            <strong>Habit Loop</strong> – A framework for understanding habit formation, consisting of cue, routine, and reward, applicable to digital behaviors.
-          </div>
-        </div>
-        <div id="glossary-section-m" class="glossary-section">
-          <h3 class="glossary-letter-header">M</h3>
-          <div class="glossary-term">
-            <strong>Mindfulness in Technology Use</strong> – Practicing present-moment awareness to create intentional and balanced digital interactions.
-          </div>
-          <div class="glossary-term">
-            <strong>Motivation (Self-Determination Theory)</strong> – Internal and external factors that influence engagement with technology, including autonomy, competence, and relatedness.
-          </div>
-        </div>
-        <div id="glossary-section-n" class="glossary-section">
-          <h3 class="glossary-letter-header">N</h3>
-          <div class="glossary-term">
-            <strong>Notification Management</strong> – Strategies to reduce interruptions and increase focus, such as disabling non-essential alerts.
-          </div>
-        </div>
-        <div id="glossary-section-p" class="glossary-section">
-          <h3 class="glossary-letter-header">P</h3>
-          <div class="glossary-term">
-            <strong>Prefrontal Cortex</strong> – The part of the brain responsible for decision-making and impulse control, which is affected by digital engagement.
-          </div>
-          <div class="glossary-term">
-            <strong>Psychological Safety and Technology</strong> – The impact of digital environments on emotional well-being and security.
-          </div>
-        </div>
-        <div id="glossary-section-r" class="glossary-section">
-          <h3 class="glossary-letter-header">R</h3>
-          <div class="glossary-term">
-            <strong>Reflection Practice</strong> – Periodic self-check-ins to assess digital habits and their alignment with personal values.
-          </div>
-        </div>
-        <div id="glossary-section-s" class="glossary-section">
-          <h3 class="glossary-letter-header">S</h3>
-          <div class="glossary-term">
-            <strong>Screen Time Awareness</strong> – Conscious tracking of time spent on digital devices to maintain a balanced lifestyle.
-          </div>
-          <div class="glossary-term">
-            <strong>Self-Regulation</strong> – The ability to control impulses and make mindful choices in digital interactions.
-          </div>
-          <div class="glossary-term">
-            <strong>Social Media Hygiene</strong> – Practices for maintaining a healthy relationship with social platforms, including curating content and setting boundaries.
-          </div>
-        </div>
-        <div id="glossary-section-t" class="glossary-section">
-          <h3 class="glossary-letter-header">T</h3>
-          <div class="glossary-term">
-            <strong>Tech-Life Balance</strong> – The intentional effort to harmonize technology use with overall well-being.
-          </div>
-          <div class="glossary-term">
-            <strong>Triggers in Digital Use</strong> – Environmental or psychological cues that prompt certain digital habits, such as checking the phone out of boredom.
-          </div>
-          <div class="glossary-term">
-            <strong>Two-Edge Effect of Technology</strong> – The concept that digital tools can both enhance and hinder well-being, depending on usage patterns.
-          </div>
-        </div>
-        <div id="glossary-section-w" class="glossary-section">
-          <h3 class="glossary-letter-header">W</h3>
-          <div class="glossary-term">
-            <strong>Willpower and Digital Use</strong> – The ability to resist distractions and build positive technology habits.
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
   <!-- VideoJS JavaScript -->
   <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
   <script src="js/video-player.js"></script>
   <script src="js/key-points.js"></script>
-  <script src="js/reflections.js"></script>
-  <script src="js/quiz.js"></script>
   <script src="js/main.js"></script>
-  <script src="js/logo-checker.js"></script>
   <script>
-// Glossary Modal Functionality
-document.addEventListener('DOMContentLoaded', function() {
-  const modal = document.getElementById('glossary-modal');
-  const openBtn = document.getElementById('open-glossary');
-  const menuLink = document.getElementById('glossary-menu-link');
-  const closeBtn = modal.querySelector('.modal-close');
+    // Glossary Modal Functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const modal = document.getElementById('glossary-modal');
+      const menuLink = document.getElementById('glossary-menu-link');
+      const closeBtn = modal.querySelector('.modal-close');
 
-  function openModal() {
-    modal.style.display = 'block';
-    modal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-    const firstFocusableElement = modal.querySelector('.modal-close, .glossary-az-nav a');
-    if (firstFocusableElement) {
-        firstFocusableElement.focus();
-    }
-  }
+      function openModal() {
+        modal.style.display = 'block';
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        const firstFocusableElement = modal.querySelector('.modal-close, .glossary-az-nav a');
+        if (firstFocusableElement) {
+          firstFocusableElement.focus();
+        }
+      }
 
-  function closeModal() {
-    modal.style.display = 'none';
-    modal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = 'auto';
-    if (document.activeElement === closeBtn || modal.contains(document.activeElement)) {
-        if (openBtn && openBtn === document.lastActiveElement) openBtn.focus();
-        else if (menuLink && menuLink === document.lastActiveElement) menuLink.focus();
-    }
-    document.lastActiveElement = null;
-  }
-  
-  document.lastActiveElement = null;
+      function closeModal() {
+        modal.style.display = 'none';
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = 'auto';
+        if (document.activeElement === closeBtn || modal.contains(document.activeElement)) {
+          if (menuLink && menuLink === document.lastActiveElement) menuLink.focus();
+        }
+        document.lastActiveElement = null;
+      }
 
-  if (openBtn) {
-    openBtn.addEventListener('click', function() {
-        document.lastActiveElement = this;
-        openModal();
+      document.lastActiveElement = null;
+
+      if (menuLink) {
+        menuLink.addEventListener('click', function(e) {
+          e.preventDefault();
+          document.lastActiveElement = this;
+          openModal();
+          const mainNav = document.getElementById('main-nav');
+          const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+          if (mainNav && mainNav.classList.contains('active')) {
+            mainNav.classList.remove('active');
+            mobileMenuToggle.classList.remove('active');
+            mobileMenuToggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
+
+      if (closeBtn) {
+        closeBtn.addEventListener('click', closeModal);
+      }
+
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+          closeModal();
+        }
+      });
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.style.display === 'block') {
+          closeModal();
+        }
+      });
     });
-  }
-  
-  if (menuLink) {
-    menuLink.addEventListener('click', function(e) {
-      e.preventDefault();
-      document.lastActiveElement = this;
-      openModal();
-      const mainNav = document.getElementById('main-nav');
-      const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-      if (mainNav && mainNav.classList.contains('active')) {
-        mainNav.classList.remove('active');
-        mobileMenuToggle.classList.remove('active');
-        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+
+    // Digital Habit Audit functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const calculateBtn = document.getElementById('calculate-audit');
+      const resultsDiv = document.getElementById('audit-results');
+      const scoreDiv = document.getElementById('audit-score');
+      const feedbackDiv = document.getElementById('audit-feedback');
+      const recommendationsDiv = document.getElementById('audit-recommendations');
+
+      if (calculateBtn) {
+        calculateBtn.addEventListener('click', function() {
+          const answers = {
+            morningFirst: document.getElementById('morning-first').value,
+            morningTime: document.getElementById('morning-time').value,
+            workFocus: document.getElementById('work-focus').value,
+            multitasking: document.getElementById('multitasking').value,
+            eveningCutoff: document.getElementById('evening-cutoff').value
+          };
+
+          // Check if all questions are answered
+          const unanswered = Object.values(answers).filter(value => value === '').length;
+          if (unanswered > 0) {
+            alert('Please answer all questions to calculate your score.');
+            return;
+          }
+
+          // Calculate score
+          let score = 0;
+          const maxScore = 100;
+
+          // Morning routine scoring
+          switch(answers.morningFirst) {
+            case 'delay': score += 25; break;
+            case 'intentional': score += 20; break;
+            case 'email': score += 15; break;
+            case 'news': score += 10; break;
+            case 'social-media': score += 5; break;
+            case 'check-phone': score += 0; break;
+          }
+
+          switch(answers.morningTime) {
+            case '0-15': score += 20; break;
+            case '15-30': score += 15; break;
+            case '30-60': score += 10; break;
+            case '60+': score += 0; break;
+          }
+
+          // Work focus scoring
+          switch(answers.workFocus) {
+            case 'never': score += 25; break;
+            case 'rarely': score += 20; break;
+            case 'sometimes': score += 15; break;
+            case 'often': score += 5; break;
+            case 'constantly': score += 0; break;
+          }
+
+          // Multitasking scoring
+          switch(answers.multitasking) {
+            case 'never': score += 15; break;
+            case 'rarely': score += 12; break;
+            case 'sometimes': score += 8; break;
+            case 'often': score += 4; break;
+            case 'always': score += 0; break;
+          }
+
+          // Evening routine scoring
+          switch(answers.eveningCutoff) {
+            case '2hours+': score += 15; break;
+            case '1-2hours': score += 12; break;
+            case '30min-1hour': score += 8; break;
+            case 'right-before': score += 4; break;
+            case 'in-bed': score += 0; break;
+          }
+
+          // Display results
+          scoreDiv.innerHTML = `<div class="score-circle">${score}/100</div>`;
+          
+          let feedback = '';
+          let recommendations = '';
+
+          if (score >= 80) {
+            feedback = '<p class="score-excellent">Excellent! You demonstrate strong digital awareness and healthy technology habits.</p>';
+            recommendations = '<h4>Keep up the great work:</h4><ul><li>Continue your mindful technology practices</li><li>Consider mentoring others in digital well-being</li><li>Stay curious about new research in this field</li></ul>';
+          } else if (score >= 60) {
+            feedback = '<p class="score-good">Good! You have a solid foundation of digital awareness with room for improvement.</p>';
+            recommendations = '<h4>Areas to focus on:</h4><ul><li>Strengthen your morning and evening routines</li><li>Practice the digital pause technique</li><li>Set clearer boundaries during work time</li></ul>';
+          } else if (score >= 40) {
+            feedback = '<p class="score-moderate">Moderate. Your digital habits could benefit from more intentional practices.</p>';
+            recommendations = '<h4>Priority improvements:</h4><ul><li>Implement a device-free morning routine</li><li>Use notification management strategies</li><li>Practice single-tasking during work</li><li>Create an evening wind-down routine</li></ul>';
+          } else {
+            feedback = '<p class="score-needs-work">Your digital habits may be impacting your well-being. Consider making some changes.</p>';
+            recommendations = '<h4>Start with these basics:</h4><ul><li>Delay device use for 30 minutes after waking</li><li>Turn off non-essential notifications</li><li>Set specific times for checking social media</li><li>Stop screen use 1 hour before bed</li><li>Consider a digital detox weekend</li></ul>';
+          }
+
+          feedbackDiv.innerHTML = feedback;
+          recommendationsDiv.innerHTML = recommendations;
+          resultsDiv.style.display = 'block';
+          resultsDiv.scrollIntoView({ behavior: 'smooth' });
+        });
       }
     });
-  }
-
-  if (closeBtn) {
-    closeBtn.addEventListener('click', closeModal);
-  }
-
-  modal.addEventListener('click', function(e) {
-    if (e.target === modal) {
-      closeModal();
-    }
-  });
-
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && modal.style.display === 'block') {
-      closeModal();
-    }
-  });
-});
-</script>
+  </script>
 </body>
 </html>
