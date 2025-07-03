@@ -1,125 +1,2045 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chapter 1</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Well-Being - Chapter 1</title>
+<link rel="stylesheet" href="./css/styles.css">
+<!-- VideoJS CSS -->
+<link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
+<!-- Font Awesome para iconos -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+/* Estilos para la navegación A-Z del glosario y las secciones */
+.glossary-az-nav {
+  padding: 10px 0;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+.glossary-az-nav a {
+  margin: 0 5px;
+  text-decoration: none;
+  color: var(--primary-color);
+  font-weight: bold;
+  padding: 5px;
+}
+.glossary-az-nav a:hover,
+.glossary-az-nav a:focus {
+  text-decoration: underline;
+  background-color: #f0f0f0;
+  border-radius: 3px;
+}
+.glossary-section {
+  /* No se necesita margin-top aquí si el H3 lo maneja */
+}
+.glossary-letter-header {
+  font-size: 1.6em;
+  color: #333;
+  margin-top: 25px;
+  margin-bottom: 15px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #ccc;
+}
+.glossary-section:first-child .glossary-letter-header {
+    margin-top: 0; /* El primer header no necesita tanto espacio arriba */
+}
+.modal-body {
+  max-height: 70vh;
+  overflow-y: auto;
+}
+.glossary-term {
+  margin-bottom: 10px; /* Espacio entre términos */
+  line-height: 1.6;
+}
+/* Margen para el contenedor de la actividad del quiz */
+.quiz-activity-container {
+  margin-bottom: 3rem;
+  padding-bottom: 3rem; /* Add extra bottom padding */
+}
+/* Estilos para el feedback dinámico en cada opción */
+.quiz-option {
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 2px solid transparent;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.option-feedback {
+  margin-left: auto;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  padding-left: 1rem;
+}
+.correct-answer .option-feedback {
+  color: #155724;
+}
+.incorrect-answer .option-feedback {
+  color: #721c24;
+}
+.missed-answer .option-feedback {
+  color: #856404;
+}
 
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+/* Add margin below submit button */
+.quiz-submit-btn {
+  margin-bottom: 1.5rem;
+}
 
-        h1 {
-            text-align: center;
-            color: #333;
-        }
+/* Estilos para la actividad de valores */
+.values-activity-container {
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  padding: 2rem;
+  margin: 2rem 0;
+  padding-bottom: 3rem; /* Add extra bottom padding */
+}
 
-        p {
-            line-height: 1.6;
-            color: #666;
-        }
+.values-activity-container h2 {
+  margin-top: 0 !important;
+  margin-bottom: 1rem !important;
+}
 
-        /* Hamburger Menu Styles */
-        .hamburger-menu {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: #333;
-            color: #fff;
-            padding: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-        }
+.values-activity-container p {
+  margin-bottom: 1.5rem;
+  line-height: 1.7;
+}
 
-        .hamburger-icon {
-            display: block;
-            cursor: pointer;
-            font-size: 24px;
-        }
+.download-template-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--primary-color);
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem; /* Add bottom margin */
+  border: none;
+  cursor: pointer;
+}
 
-        .menu {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: none; /* Hidden by default */
-            position: absolute;
-            top: 100%;
-            left: 0;
-            width: 100%;
-            background-color: #333;
-            text-align: center;
-        }
+.download-template-button:hover {
+  background-color: var(--primary-color-dark);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  text-decoration: none;
+}
 
-        .menu li {
-            padding: 10px;
-        }
+.download-template-button i {
+  margin-right: 0.5rem;
+}
 
-        .menu a {
-            color: #fff;
-            text-decoration: none;
-        }
+/* Estilos para la actividad de metas digitales */
+.digital-goals-activity-container {
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  padding: 2rem;
+  margin: 2rem 0;
+  padding-bottom: 3rem;
+}
 
-        .menu a:hover {
-            text-decoration: underline;
-        }
+.digital-goals-activity-container h2 {
+  margin-top: 0 !important;
+  margin-bottom: 1rem !important;
+}
 
-        .show {
-            display: block; /* Class to show the menu */
-        }
+.digital-goals-activity-container p {
+  margin-bottom: 1.5rem;
+  line-height: 1.7;
+}
 
-        .hamburger-lesson-title {
-            font-size: 1.2em;
-            font-weight: bold;
-        }
-    </style>
+@media (max-width: 768px) {
+  .quiz-activity-container {
+    padding: 1.5rem;
+    margin: 1rem;
+    padding-bottom: 2.5rem; /* Maintain extra bottom padding on mobile */
+  }
+
+  .values-activity-container {
+    padding: 1.5rem;
+    margin: 1rem;
+    padding-bottom: 2.5rem; /* Maintain extra bottom padding on mobile */
+  }
+
+  .digital-goals-activity-container {
+    padding: 1.5rem;
+    margin: 1rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .download-template-button {
+    width: 100%;
+    justify-content: center;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem; /* Maintain bottom margin on mobile */
+  }
+}
+
+/* Estilos para los acordeones - Diseño mejorado con animaciones */
+.accordion-container {
+  margin: 2rem 0;
+}
+
+.accordion-item {
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  margin-bottom: 0.5rem;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+
+.accordion-item:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.accordion-header {
+  margin: 0;
+}
+
+.accordion-trigger {
+  width: 100%;
+  background-color: #f8f9fa;
+  border: none;
+  padding: 1.2rem 1.5rem;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.accordion-trigger:hover {
+  background-color: #e9ecef;
+  color: var(--primary-color-dark);
+  text-decoration: none;
+}
+
+.accordion-trigger:focus {
+  outline: var(--focus-outline-width) solid var(--focus-outline-color);
+  outline-offset: 2px;
+  text-decoration: none;
+}
+
+.accordion-trigger[aria-expanded="true"] {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.accordion-trigger[aria-expanded="true"]:hover {
+  background-color: var(--primary-color-dark);
+  text-decoration: none;
+}
+
+.accordion-title {
+  flex: 1;
+  text-align: left;
+}
+
+.accordion-icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+  margin-left: 1rem;
+  font-family: monospace;
+}
+
+/* Animación suave para el panel del acordeón */
+.accordion-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out;
+}
+
+.accordion-panel.expanded {
+  max-height: 500px; /* Altura máxima suficiente para el contenido */
+  transition: max-height 0.4s ease-in;
+}
+
+.accordion-panel-inner {
+  padding: 1.5rem;
+  background-color: #f0f8ff;
+  border-top: 1px solid #e0e0e0;
+  line-height: 1.6;
+}
+
+.accordion-panel-inner p {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.accordion-panel-inner p:last-child {
+  margin-bottom: 0;
+}
+
+.accordion-panel-inner strong {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .accordion-trigger {
+    padding: 1rem;
+    font-size: 0.95rem;
+  }
+  
+  .accordion-panel-inner {
+    padding: 1rem;
+  }
+  
+  .accordion-icon {
+    margin-left: 0.5rem;
+  }
+  
+  .accordion-panel.expanded {
+    max-height: 400px; /* Altura reducida para móviles */
+  }
+}
+
+@media (max-width: 480px) {
+  .accordion-trigger {
+    padding: 0.8rem;
+    font-size: 0.9rem;
+  }
+  
+  .accordion-panel-inner {
+    padding: 0.8rem;
+  }
+  
+  .accordion-panel.expanded {
+    max-height: 350px; /* Altura aún más reducida para móviles pequeños */
+  }
+}
+
+/* Mejorar la interactividad de las opciones del quiz */
+.quiz-option label {
+  cursor: pointer;
+  user-select: none;
+  flex: 1;
+  line-height: 1.5;
+}
+
+.quiz-option:hover {
+  background-color: #f8f9fa !important;
+  border-color: #dee2e6;
+  transform: translateY(-1px);
+}
+
+.quiz-option input[type="checkbox"] {
+  cursor: pointer;
+  transform: scale(1.2);
+  margin-right: 1rem;
+  margin-top: 0.25rem;
+}
+
+/* Estados del quiz después del envío */
+.quiz-option.correct-answer {
+  background-color: #d4edda !important;
+  border-color: #c3e6cb !important;
+  color: #155724 !important;
+}
+
+.quiz-option.incorrect-answer {
+  background-color: #f8d7da !important;
+  border-color: #f5c6cb !important;
+  color: #721c24 !important;
+}
+
+.quiz-option.missed-answer {
+  background-color: #fff3cd !important;
+  border-color: #ffeaa7 !important;
+  color: #856404 !important;
+}
+
+.quiz-option.correct-answer:hover,
+.quiz-option.incorrect-answer:hover,
+.quiz-option.missed-answer:hover {
+  transform: none;
+  background-color: inherit !important;
+}
+
+/* Feedback de opciones */
+
+.option-feedback i {
+  font-size: 1.1rem;
+}
+
+/* Botón de reset */
+.quiz-reset-btn {
+  background-color: #007bff !important;
+  border: none;
+}
+
+.quiz-reset-btn:hover {
+  background-color: #0056b3 !important;
+}
+
+/* Checkboxes deshabilitados */
+.quiz-option input[type="checkbox"]:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.quiz-option input[type="checkbox"]:disabled + label {
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+</style>
 </head>
 <body>
+<!-- Añadir el enlace de saltar al contenido principal al inicio del body -->
+<a href="#main-content" class="skip-to-content">Skip to main content</a>
 
-    <div class="hamburger-menu">
-        <span class="hamburger-icon" onclick="toggleMenu()">☰</span>
-        <span class="hamburger-lesson-title">Digital Habits</span>
-        <div></div> <!-- Empty div for spacing -->
+<!-- Modificar la estructura del header para alinear elementos en una línea -->
+<header class="full-width header-full-bottom" role="banner">
+<div class="header-content">
+  <div class="header-left">
+    <div class="logo-container tiny-logo">
+      <a href="https://www.ie.edu" target="_blank" aria-label="IE University website">
+        <img src="assets/images/logo-ie.svg" alt="IE University Logo" class="logo" width="120">
+      </a>
+    </div>
+    <h2 class="header-title">Digital Well-Being</h2>
+  </div>
+  <div class="header-controls">
+    
+    <button id="mobile-menu-toggle" class="mobile-menu-toggle always-visible" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
+      <div class="hamburger-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </button>
+  </div>
+</div>
+<nav class="main-nav hamburger-nav" id="main-nav" aria-label="Main navigation">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="introduction.html">0. Introduction</a></li>
+    <li><a href="chapter1.html" class="active" aria-current="page">1. Well-Being as a Key</a></li>
+    <li><a href="chapter2.html">2. Cultivating Awareness</a></li>
+    <li><a href="chapter3.html">3. Autonomy and Motivation</a></li>
+    <li><a href="chapter4.html">4. Building Resilience</a></li>
+    <li><a href="chapter5.html">5. Ownership and Practice</a></li>
+    <li><a href="#" id="glossary-menu-link"><i class="fas fa-book" style="color: #000066; margin-right: 0.5rem;" aria-hidden="true"></i>Glossary</a></li>
+    <li class="language-selector-menu">
+<span class="menu-separator"></span>
+<span id="language-label" class="sr-only">Select language:</span>
+<a href="chapter1.html" class="active" aria-current="page" aria-labelledby="language-label">English</a> | <a href="capitulo1.html" aria-labelledby="language-label">Español</a>
+</li>
+  </ul>
+</nav>
+</header>
+
+<section class="hero-section">
+<div class="hero-content">
+  <div class="hero-title-container">
+    
+    <h1 class="hero-title"><strong>LESSON 1: Digital Well-being as Key to Human Flourishing</strong></h1>
+  </div>
+</div>
+</section>
+
+<main id="main-content" tabindex="-1">
+  <div class="content-aligned-container">
+    
+    <section class="lesson-section no-borders">
+<h2><strong>Lesson 1 Learning Objectives</strong></h2>
+<p>After this lesson, participants will be able to:</p>
+
+<div class="learning-objectives-grid-2x2">
+  <div class="learning-objective-card">
+    <div class="objective-icon" aria-hidden="true">
+      <i class="fas fa-lightbulb"></i>
+    </div>
+    <div class="objective-content">
+      <h4>Define Digital Well-being</h4>
+      <p>Define digital well-being and explain its significance</p>
+    </div>
+  </div>
+  
+  <div class="learning-objective-card">
+    <div class="objective-icon" aria-hidden="true">
+      <i class="fas fa-brain"></i>
+    </div>
+    <div class="objective-content">
+      <h4>Holistic Understanding</h4>
+      <p>Develop a holistic understanding of how technology impacts the body, mind, and soul—considering the roles of awareness, science, and practice in the learning journey</p>
+    </div>
+  </div>
+  
+  <div class="learning-objective-card">
+    <div class="objective-icon" aria-hidden="true">
+      <i class="fas fa-bullseye"></i>
+    </div>
+    <div class="objective-content">
+      <h4>Personal Motivations</h4>
+      <p>Identify personal motivations and set intentions to actively cultivate digital well-being</p>
+    </div>
+  </div>
+  
+  <div class="learning-objective-card">
+    <div class="objective-icon" aria-hidden="true">
+      <i class="fas fa-compass"></i>
+    </div>
+    <div class="objective-content">
+      <h4>Purpose and Values</h4>
+      <p>Reflect on purpose and values, and recognize how digital behaviors can align with or detract from them</p>
+    </div>
+  </div>
+</div>
+</section>
+    
+    <section class="lesson-section no-borders">
+      <h2><strong>The Wake-Up Call</strong></h2>
+      
+      <div class="responsive-video">
+        <video 
+          id="wake-up-call-video" 
+          class="video-js vjs-ie-skin vjs-big-play-centered" 
+          controls 
+          preload="auto" 
+          poster="assets/images/well-being-poster.png"
+          data-video-id="w01v00"
+          data-logo="assets/images/logo-ie-small.png"
+          aria-label="The Wake-Up Call video"
+        >
+          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w01v00-the-wake-up-call/mp4/w01v00-the-wake-up-call_1080p.mp4" type="video/mp4">
+          <p class="vjs-no-js">
+            To view this video please enable JavaScript, and consider upgrading to a
+            web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+          </p>
+          <track kind="captions" src="captions/the-wake-up-call.vtt" srclang="en" label="English" default>
+        </video>
+      </div>
+    </section>
+    
+    <section class="lesson-section no-borders">
+      <h2><strong>What Is Digital Well-being and What Is Not?</strong></h2>
+      
+      <div class="responsive-video">
+        <video 
+          id="digital-wellbeing-video" 
+          class="video-js vjs-ie-skin vjs-big-play-centered" 
+          controls 
+          preload="auto" 
+          poster="assets/images/well-being-poster.png"
+          data-video-id="w01v01"
+          data-logo="assets/images/logo-ie-small.png"
+          aria-label="What Is Digital Well-being and What Is Not? video"
+        >
+          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w01v01-what-is-digital-wellbeing/mp4/w01v01-what-is-digital-wellbeing_1080p.mp4" type="video/mp4">
+          <p class="vjs-no-js">
+            To view this video please enable JavaScript, and consider upgrading to a
+            web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+          </p>
+          <track kind="captions" src="captions/what-is-digital-wellbeing.vtt" srclang="en" label="English" default>
+        </video>
+      </div>
+      
+      <div class="key-point" role="note" aria-label="Key point about digital well-being">
+        <h3><strong>Key Point</strong></h3>
+        <p>Digital well-being is about <strong>building self-awareness and intentionally shaping habits around technology</strong> to support our emotional, mental, and physical health—based on our individual values and what helps us be our best.</p>
+      </div>
+    </section>
+
+    <section class="lesson-section no-borders">
+      <div class="quiz-activity-container">
+        <h2><strong>Activity: What Is Digital Well-being and What Is Not?</strong></h2>
+        <p>Select all the correct answers that reflect what digital well-being is truly about.</p>
+        <form id="wellbeing-quiz" aria-labelledby="quiz-title">
+          <fieldset>
+            <legend id="quiz-title" class="sr-only">Digital well-being question</legend>
+            <p><strong>1. Digital well-being is about...</strong></p>
+            <div class="quiz-options-list">
+              <div class="quiz-option">
+                <input type="checkbox" id="q1-a" name="q1" value="a">
+                <label for="q1-a">a. ... a set of practices and habits that you can cultivate every day.</label>
+              </div>
+              <div class="quiz-option">
+                <input type="checkbox" id="q1-b" name="q1" value="b">
+                <label for="q1-b">b. ... deleting all our social media accounts.</label>
+              </div>
+              <div class="quiz-option">
+                <input type="checkbox" id="q1-c" name="q1" value="c">
+                <label for="q1-c">c. ... treating our digital devices like an enemy.</label>
+              </div>
+              <div class="quiz-option">
+                <input type="checkbox" id="q1-d" name="q1" value="d">
+                <label for="q1-d">d. ... feeling guilty about our tech use.</label>
+              </div>
+              <div class="quiz-option">
+                <input type="checkbox" id="q1-e" name="q1" value="e">
+                <label for="q1-e">e. ... how we feel about the time we spend online.</label>
+              </div>
+              <div class="quiz-option">
+                <input type="checkbox" id="q1-f" name="q1" value="f">
+                <label for="q1-f">f. ... pursuing it as a destination.</label>
+              </div>
+            </div>
+          </fieldset>
+          <button type="submit" class="quiz-submit-btn">Submit</button>
+        </form>
+        <div id="wellbeing-quiz-feedback" class="quiz-feedback" style="display: none;" aria-live="polite">
+          <p>Digital well-being is not about completely rejecting technology or feeling guilty about using it. Rather, it's about being mindful of how we engage with digital spaces.</p>
+          <h4>The correct answers are:</h4>
+          <ul>
+            <li>a. ... a set of practices and habits that you can cultivate every day.</li>
+            <li>e. ... how we feel about the time we spend online.</li>
+          </ul>
+          <p>These responses reflect the idea that digital well-being is an ongoing process of balance and self-awareness - not a fixed destination or extreme action.</p>
+          <p>Keep considering how your digital habits impact your well-being!</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="lesson-section no-borders">
+      <div class="reflection-exercise">
+        <h2><strong>Reflection Question</strong></h2>
+        <p><strong>Take a moment to reflect and write your response to the question below.</strong></p>
+        
+        <div class="reflection-question">
+          <h3>Can you think of any habits that are supporting your digital well-being? What about the ones that are detracting you from achieving a balanced and healthy relationship with technology?</h3>
+          <textarea 
+            id="digital-habits-reflection" 
+            class="reflection-textarea" 
+            placeholder="Write your reflection here..."
+            aria-label="Digital habits reflection"
+            rows="8"
+          ></textarea>
+          <div class="button-container">
+            <button 
+              type="button" 
+              class="save-button" 
+              data-reflection-id="digital-habits-reflection"
+              aria-describedby="feedback-digital-habits-reflection"
+            >
+              <i class="fas fa-save" aria-hidden="true"></i> Save Reflection
+            </button>
+            <span id="feedback-digital-habits-reflection" class="save-feedback" aria-live="polite"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="lesson-section no-borders">
+      <h2><strong>What Role Does Technology Play in Your Life?</strong></h2>
+      
+      <div class="youtube-container">
+        <div class="responsive-video">
+          <iframe 
+            src="https://www.youtube.com/embed/L7rB_Iwlh8M" 
+            title="What Role Does Technology Play in Your Life?"
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen
+            aria-label="YouTube video: What Role Does Technology Play in Your Life?"
+          ></iframe>
+        </div>
+        <p class="video-description">Explore how technology influences different aspects of our daily lives and well-being.</p>
+      </div>
+    </section>
+
+    <section class="lesson-section no-borders">
+      <h2><strong>Raising Awareness: The Impact of Technology on Well-being</strong></h2>
+      
+      <div class="responsive-video">
+        <video 
+          id="raising-awareness-video" 
+          class="video-js vjs-ie-skin vjs-big-play-centered" 
+          controls 
+          preload="auto" 
+          poster="assets/images/well-being-poster.png"
+          data-video-id="w01v02"
+          data-logo="assets/images/logo-ie-small.png"
+          aria-label="Raising Awareness: The Impact of Technology on Well-being video"
+        >
+          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w01v02-raising-awareness/mp4/w01v02-raising-awareness_1080p.mp4" type="video/mp4">
+          <p class="vjs-no-js">
+            To view this video please enable JavaScript, and consider upgrading to a
+            web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+          </p>
+          <track kind="captions" src="captions/raising-awareness.vtt" srclang="en" label="English" default>
+        </video>
+      </div>
+      
+      <div class="key-point" role="note" aria-label="Key point about raising awareness">
+        <h3><strong>Key Point</strong></h3>
+        <p>Raising awareness of our daily digital habits—especially around sleep, focus, and relationships—helps us understand their impact on our holistic well-being and empowers us to make intentional adjustments that support body, mind, and soul.</p>
+        <p>As we transition into exploring digital habits more deeply, take a moment to reflect on your current behaviors. Are your devices helping or hindering your sleep, your ability to focus, your sense of calm, or your relationships? <strong>This awareness is the first step toward meaningful and sustainable change.</strong></p>
+      </div>
+    </section>
+
+    <section class="lesson-section no-borders">
+      <h2><strong>What Motivates You to Cultivate Your Digital Well-being?</strong></h2>
+      
+      <div class="responsive-video">
+        <video 
+          id="motivation-video" 
+          class="video-js vjs-ie-skin vjs-big-play-centered" 
+          controls 
+          preload="auto" 
+          poster="assets/images/well-being-poster.png"
+          data-video-id="w01v03"
+          data-logo="assets/images/logo-ie-small.png"
+          aria-label="What Motivates You to Cultivate Your Digital Well-being? video"
+        >
+          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w01v03-what-motivates-you/mp4/w01v03-what-motivates-you_1080p.mp4" type="video/mp4">
+          <p class="vjs-no-js">
+            To view this video please enable JavaScript, and consider upgrading to a
+            web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+          </p>
+          <track kind="captions" src="captions/what-motivates-you.vtt" srclang="en" label="English" default>
+        </video>
+      </div>
+      
+      <div class="key-point" role="note" aria-label="Key point about motivation">
+        <h3><strong>Key Point</strong></h3>
+        <p>Lasting change in digital well-being starts with intrinsic motivation—grounded in autonomy, competence, and relatedness—and requires a proactive, personalized approach that aligns with your values and purpose.</p>
+        <p>True behavioral change begins when we understand <strong>why we want to change</strong>. Reflect on <strong>what really matters to you</strong> and <strong>how your digital habits can support</strong>—not hinder—your values and goals.</p>
+        <p>Motivation is stronger and more sustainable when it's rooted in <strong>autonomy</strong> (your ability to choose), <strong>competence</strong> (your belief in your ability to grow), and <strong>relatedness</strong> (your sense of connection with others).</p>
+      </div>
+    </section>
+
+    <section class="lesson-section no-borders">
+      <div class="reflection-exercise">
+        <h2><strong>Reflection Question</strong></h2>
+        <p><strong>Take a moment to reflect and write your response to the question below.</strong></p>
+        
+        <div class="reflection-question">
+          <h3>Based on the principles of Self-Determination Theory—autonomy, competence, and relatedness—can you identify three factors that motivate you to maintain or pursue digital well-being?</h3>
+          <textarea 
+            id="motivation-reflection" 
+            class="reflection-textarea" 
+            placeholder="Write your reflection here..."
+            aria-label="Motivation reflection based on Self-Determination Theory"
+            rows="8"
+          ></textarea>
+          <div class="button-container">
+            <button 
+              type="button" 
+              class="save-button" 
+              data-reflection-id="motivation-reflection"
+              aria-describedby="feedback-motivation-reflection"
+            >
+              <i class="fas fa-save" aria-hidden="true"></i> Save Reflection
+            </button>
+            <span id="feedback-motivation-reflection" class="save-feedback" aria-live="polite"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="lesson-section no-borders">
+      <h2><strong>Aligning Your Values with Digital Habits</strong></h2>
+      
+      <div class="responsive-video">
+        <video 
+          id="values-video" 
+          class="video-js vjs-ie-skin vjs-big-play-centered" 
+          controls 
+          preload="auto" 
+          poster="assets/images/well-being-poster.png"
+          data-video-id="w01v04"
+          data-logo="assets/images/logo-ie-small.png"
+          aria-label="Aligning Your Values with Digital Habits video"
+        >
+          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w01v04-aligning-your-values-with-your-digital-habits/mp4/w01v04-aligning-your-values-with-your-digital-habits_1080p.mp4" type="video/mp4">
+          <p class="vjs-no-js">
+            To view this video please enable JavaScript, and consider upgrading to a
+            web browser that <a href="https://videojs.js.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+          </p>
+          <track kind="captions" src="captions/aligning-values.vtt" srclang="en" label="English" default>
+        </video>
+      </div>
+      
+      <div class="key-point" role="note" aria-label="Key point about aligning values">
+        <h3><strong>Key Point</strong></h3>
+        <p>Clarifying your core values is essential to making intentional decisions about your digital habits, aligning technology use with what truly matters to you strengthens well-being, focus, and authentic living.</p>
+        <p>Our digital habits are most sustainable and meaningful when they reflect our deepest values. By identifying what truly matters—whether it's integrity, creativity, connection, or balance—you can design digital behaviors that support your personal and professional well-being.</p>
+        <p>Take this opportunity to explore your core values and let them guide your intentional use of technology.</p>
+      </div>
+    </section>
+
+    <section class="lesson-section no-borders">
+      <h2><strong>Reading</strong></h2>
+      <p>Please complete the reading below: "Understanding Our Core Values: An Exercise for Individuals and Teams."</p>
+      
+      <div class="reading-cards">
+        <a href="https://blog.colinbreck.com/understanding-our-core-values-an-exercise-for-individuals-and-teams/" target="_blank" class="reading-card-clickable">
+          <div class="reading-card">
+            <div class="reading-card-content">
+              <h3>Understanding Our Core Values: An Exercise for Individuals and Teams</h3>
+              <p>This comprehensive guide provides practical exercises to help you identify and clarify your core values, which are essential for making intentional decisions about your digital habits and overall well-being.</p>
+              <div class="reading-card-footer">
+                <div class="reading-link">
+                  Read Article
+                  <span class="reading-arrow" aria-hidden="true">→</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="lesson-section no-borders">
+      <div class="values-activity-container">
+        <h2><strong>Activity: Identifying Your Core Values</strong></h2>
+        <p>In a fast-paced digital world, it's easy to lose sight of what really matters to us. Our values—what we believe in and stand for—can serve as a compass to guide our decisions, our goals, and even our digital behavior.</p>
+        
+        <p>This activity invites you to <strong>pause and reflect on your personal values</strong> by answering the questions below. Take your time to write down your thoughts.</p>
+        
+        <p><strong>You can download the editable template to complete your responses.</strong> This way, you'll have a personal record you can revisit throughout your learning journey — and beyond.</p>
+        
+        <p>Once you've answered the questions, review Brené Brown's list of values. Reflect on <strong>why these values matter to you and how your digital habits can support them</strong>. Highlight the 10 that resonate most with you and narrow them down to your top 5. This will help you track your growth and reflect on how your values align with your digital well-being.</p>
+        
+        <a href="#" class="download-template-button" onclick="downloadCoreValuesTemplate()" aria-label="Download editable template for core values activity">
+          <i class="fas fa-download" aria-hidden="true"></i>
+          <strong>Download the editable template here</strong>
+        </a>
+      </div>
+    </section>
+
+    <section class="lesson-section no-borders">
+      <h2><strong>Set Your Digital Goals</strong></h2>
+      
+      <div class="digital-goals-activity-container">
+        <h2><strong>Activity: Set Your Digital Goals</strong></h2>
+        <p>Now that you've reflected on your values and current digital habits, it's time to <strong>set your own digital goals</strong>. These goals should be meaningful to you and aligned with your personal motivations and core values.</p>
+        
+        <p><strong>You can download the editable template to complete your responses.</strong> This way, you'll have a personal record you can revisit throughout your learning journey — and beyond.</p>
+        
+        <p>We recommend using the SMART goals framework to make your goals specific, measurable, achievable, relevant, and time-bound. Here's an example of a SMART digital goal: <strong>"Reduce my screen time on weekdays by at least one hour".</strong></p>
+        
+        <a href="#" class="download-template-button" onclick="downloadDigitalGoalsTemplate()" aria-label="Download editable template for digital goals activity">
+          <i class="fas fa-download" aria-hidden="true"></i>
+          <strong>Download the editable template here</strong>
+        </a>
+      </div>
+    </section>
+
+    <section class="lesson-section no-borders">
+      <h2><strong>Discover Your Character Strengths</strong></h2>
+      
+      <div class="responsive-video">
+        <video 
+          id="character-strengths-video" 
+          class="video-js vjs-ie-skin vjs-big-play-centered" 
+          controls 
+          preload="auto" 
+          poster="assets/images/well-being-poster.png"
+          data-video-id="w01v05"
+          data-logo="assets/images/logo-ie-small.png"
+          aria-label="Using Character Strengths to Achieve Your Digital Goals video"
+        >
+          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w01v05-using-your-character-strenghts/mp4/w01v05-using-your-character-strenghts_1080p.mp4" type="video/mp4">
+          <p class="vjs-no-js">
+            To view this video please enable JavaScript, and consider upgrading to a
+            web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+          </p>
+          <track kind="captions" src="captions/using-character-strengths.vtt" srclang="en" label="English" default>
+        </video>
+      </div>
+      
+      <div class="key-point" role="note" aria-label="Key point about character strengths">
+        <h3><strong>Key Point</strong></h3>
+        <p>By recognizing and leveraging our personal strengths, we can set realistic digital goals, build resilience through challenges, and create habits that align with our authentic selves—while practicing self-kindness throughout the lifelong journey of change.</p>
+        <p>Your personal strengths are powerful allies in your journey toward healthier digital habits. By building awareness of your unique strengths—like creativity, perspective, or prudence—you can approach your goals with greater confidence, resilience, and authenticity.</p>
+        <p>Remember: meaningful change requires self-kindness, patience, and a willingness to learn and adjust over time.</p>
+      </div>
+    </section>
+    
+    <section class="lesson-section no-borders">
+  <h2><strong>Character Strengths applied to Digital Well-being</strong></h2>
+  <p>As we strive to build healthier digital habits, our character strengths can serve as powerful tools for reflection, action, and growth. By applying strengths such as curiosity, self-regulation, perseverance, and gratitude, we can navigate our digital lives with greater intention and purpose.</p>
+  
+  <p>This section explores how specific character strengths can support digital well-being across different dimensions of life—mind, body, and soul. Use these insights to identify which strengths resonate most with you and how you can apply them to create a more balanced and meaningful relationship with technology.</p>
+  
+  <div class="accordion-container">
+    <div class="accordion-item">
+      <div class="accordion-header">
+        <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-perspective">
+          <span class="accordion-title">Perspective</span>
+          <span class="accordion-icon" aria-hidden="true"></span>
+        </button>
+      </div>
+      <div class="accordion-panel" id="accordion-panel-perspective">
+        <div class="accordion-panel-inner">
+          <p><strong>Application:</strong> Reflect on how technology shapes your life holistically (mind, body, and soul).</p>
+          <p><strong>Practice:</strong> Use <strong>Perspective</strong> to reflect on whether your digital habits align with your values.</p>
+        </div>
+      </div>
     </div>
 
-    <ul class="menu" id="menu">
-        <li><a href="#">Introduction</a></li>
-        <li><a href="#">Lesson 1</a></li>
-        <li><a href="#">Lesson 2</a></li>
-        <li><a href="#">Lesson 3</a></li>
+    <div class="accordion-item">
+      <div class="accordion-header">
+        <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-judgment">
+          <span class="accordion-title">Judgment/Critical Thinking</span>
+          <span class="accordion-icon" aria-hidden="true"></span>
+        </button>
+      </div>
+      <div class="accordion-panel" id="accordion-panel-judgment">
+        <div class="accordion-panel-inner">
+          <p><strong>Application:</strong> Evaluate how digital habits impact your well-being.</p>
+          <p><strong>Practice:</strong> Apply <strong>Judgment</strong> to recognize which digital behaviors support or hinder your well-being.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header">
+        <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-curiosity">
+          <span class="accordion-title">Curiosity</span>
+          <span class="accordion-icon" aria-hidden="true"></span>
+        </button>
+      </div>
+      <div class="accordion-panel" id="accordion-panel-curiosity">
+        <div class="accordion-panel-inner">
+          <p><strong>Application:</strong> Explore new ways to engage with technology that align with your purpose.</p>
+          <p><strong>Practice:</strong> Tap into <strong>Curiosity</strong> to explore new mindful tech habits, such as using focus apps or scheduling device-free time.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header">
+        <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-self-regulation">
+          <span class="accordion-title">Self-Regulation</span>
+          <span class="accordion-icon" aria-hidden="true"></span>
+        </button>
+      </div>
+      <div class="accordion-panel" id="accordion-panel-self-regulation">
+        <div class="accordion-panel-inner">
+          <p><strong>Application:</strong> Create structure around digital use, such as setting screen-time limits.</p>
+          <p><strong>Practice:</strong> Use <strong>Self-Regulation</strong> to set up a habit tracker for screen-time reduction.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header">
+        <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-prudence">
+          <span class="accordion-title">Prudence</span>
+          <span class="accordion-icon" aria-hidden="true"></span>
+        </button>
+      </div>
+      <div class="accordion-panel" id="accordion-panel-prudence">
+        <div class="accordion-panel-inner">
+          <p><strong>Application:</strong> Plan intentional technology use to enhance productivity rather than distraction.</p>
+          <p><strong>Practice:</strong> Apply <strong>Prudence</strong> to intentionally design your digital environment (e.g., rearrange app icons to reduce distractions).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header">
+        <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-perseverance">
+          <span class="accordion-title">Perseverance</span>
+          <span class="accordion-icon" aria-hidden="true"></span>
+        </button>
+      </div>
+      <div class="accordion-panel" id="accordion-panel-perseverance">
+        <div class="accordion-panel-inner">
+          <p><strong>Application:</strong> Stick to habit changes like reducing social media time or improving sleep hygiene.</p>
+          <p><strong>Practice:</strong> Use <strong>Perseverance</strong> when implementing new habits like device-free mornings.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header">
+        <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-love-learning">
+          <span class="accordion-title">Love of Learning</span>
+          <span class="accordion-icon" aria-hidden="true"></span>
+        </button>
+      </div>
+      <div class="accordion-panel" id="accordion-panel-love-learning">
+        <div class="accordion-panel-inner">
+          <p><strong>Application:</strong> Understand the neuroscience of attention and how digital behaviors impact cognition.</p>
+          <p><strong>Practice:</strong> Use <strong>Love of Learning</strong> to understand how digital habits shape cognitive function.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header">
+        <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-gratitude">
+          <span class="accordion-title">Gratitude</span>
+          <span class="accordion-icon" aria-hidden="true"></span>
+        </button>
+      </div>
+      <div class="accordion-panel" id="accordion-panel-gratitude">
+        <div class="accordion-panel-inner">
+          <p><strong>Application:</strong> Acknowledge the benefits of digital tools while striving for balance.</p>
+          <p><strong>Practice:</strong> Use <strong>Gratitude</strong> to reflect on how technology enriches your life.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header">
+        <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-leadership">
+          <span class="accordion-title">Leadership</span>
+          <span class="accordion-icon" aria-hidden="true"></span>
+        </button>
+      </div>
+      <div class="accordion-panel" id="accordion-panel-leadership">
+        <div class="accordion-panel-inner">
+          <p><strong>Application:</strong> Share insights with others and promote mindful digital habits in your community.</p>
+          <p><strong>Practice:</strong> Practice <strong>Leadership</strong> by mentoring others in digital well-being strategies.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header">
+        <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-bravery">
+          <span class="accordion-title">Bravery</span>
+          <span class="accordion-icon" aria-hidden="true"></span>
+        </button>
+      </div>
+      <div class="accordion-panel" id="accordion-panel-bravery">
+        <div class="accordion-panel-inner">
+          <p><strong>Application:</strong> Be open about challenges in managing digital use and seek solutions.</p>
+          <p><strong>Practice:</strong> Use <strong>Bravery</strong> to openly discuss struggles and celebrate progress.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+    
+    <section class="lesson-section no-borders">
+  <div class="values-activity-container">
+    <h2><strong>Activity: Discover Your Character Strengths</strong></h2>
+    <p>Discover your personal character strengths and explore how you can use them to support your digital well-being journey.</p>
+    
+    <p>First, complete the VIA Character Strengths survey by registering for free at the link provided. Then, review your top strengths and reflect on how they can help you achieve your digital goals.</p>
+    
+    <p><strong>Survey links:</strong></p>
+    <ul style="margin-left: 2rem; margin-bottom: 1.5rem;">
+      <li style="margin-bottom: 0.5rem;"><a href="https://www.viacharacter.org/survey/account/register" target="_blank" rel="noopener noreferrer">Complete the VIA Character Strengths survey</a></li>
+      <li style="margin-bottom: 0.5rem;"><a href="https://www.viacharacter.org/character-strengths" target="_blank" rel="noopener noreferrer">Learn more about your strengths</a></li>
     </ul>
+    
+    <a href="#" class="download-template-button" onclick="downloadCharacterStrengthsTemplate()" aria-label="Download editable template for character strengths activity">
+      <i class="fas fa-download" aria-hidden="true"></i>
+      <strong>Download the editable template here</strong>
+    </a>
+  </div>
+</section>
 
-    <div class="container" style="margin-top: 60px;">
-        <h1>Chapter 1: Introduction to Digital Wellbeing</h1>
-        <p>Welcome to the first chapter of our digital wellbeing course. In this chapter, we will explore the importance of digital wellbeing and how it impacts our daily lives.</p>
-        <p>We will cover topics such as:</p>
-        <ul>
-            <li>Understanding digital wellbeing</li>
-            <li>The impact of technology on our mental and physical health</li>
-            <li>Strategies for managing our digital habits</li>
-        </ul>
-        <p>Let's begin our journey towards a healthier and more balanced digital life.</p>
+<section class="lesson-section no-borders">
+  <h2><strong>Reading</strong></h2>
+  <p>If you would like to learn more about the positive and negative associations with phone use, you may complete the following optional and complementary reading:</p>
+  
+  <div class="reading-cards">
+    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10132652/" target="_blank" rel="noopener noreferrer" class="reading-card-clickable">
+      <div class="reading-card">
+        <div class="reading-card-content">
+          <h3>Two edges of the screen: Unpacking positive and negative associations between phone use in everyday contexts and subjective well-being</h3>
+          <p>This research article explores the complex relationship between smartphone use and well-being, examining both the positive and negative impacts of phone use in daily life contexts on subjective well-being.</p>
+          <div class="reading-card-footer">
+            <div class="reading-link">
+              Read Article
+              <span class="reading-arrow" aria-hidden="true">→</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+    
+    <div class="navigation-buttons" role="navigation" aria-label="Lesson navigation">
+      <a href="introduction.html" class="nav-button prev"><span class="arrow-left" aria-hidden="true">←</span>Previous</a>
+      <a href="chapter2.html" class="nav-button next">Next<span class="arrow-right" aria-hidden="true">→</span></a>
     </div>
+  </div>
+</main>
 
-    <script>
-        function toggleMenu() {
-            var menu = document.getElementById("menu");
-            menu.classList.toggle("show");
+<footer role="contentinfo">
+<div class="footer-content">
+  <p class="copyright">&copy; <span id="current-year"></span> IE University. All rights reserved.</p>
+</div>
+</footer>
+
+<!-- Glossary Modal -->
+<div id="glossary-modal" class="modal" role="dialog" aria-labelledby="glossary-modal-title" aria-hidden="true">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 id="glossary-modal-title">Glossary of Digital Well-being Concepts</h2>
+      <button class="modal-close" aria-label="Close glossary">&times;</button>
+    </div>
+    <div class="modal-body">
+      <nav class="glossary-az-nav" aria-label="Glossary A-Z Navigation">
+        <a href="#glossary-section-a">A</a>
+        <a href="#glossary-section-b">B</a>
+        <a href="#glossary-section-c">C</a>
+        <a href="#glossary-section-d">D</a>
+        <a href="#glossary-section-e">E</a>
+        <a href="#glossary-section-f">F</a>
+        <a href="#glossary-section-h">H</a>
+        <a href="#glossary-section-m">M</a>
+        <a href="#glossary-section-n">N</a>
+        <a href="#glossary-section-p">P</a>
+        <a href="#glossary-section-r">R</a>
+        <a href="#glossary-section-s">S</a>
+        <a href="#glossary-section-t">T</a>
+        <a href="#glossary-section-w">W</a>
+      </nav>
+      <div class="glossary-terms">
+        <div id="glossary-section-a" class="glossary-section">
+          <h3 class="glossary-letter-header">A</h3>
+          <div class="glossary-term">
+            <strong>Accountability Buddy</strong> – A supportive partner who helps track progress and encourages consistency in digital well-being goals.
+          </div>
+          <div class="glossary-term">
+            <strong>Attention Management</strong> – The practice of consciously directing focus in a digital environment to enhance productivity and cognitive health.
+          </div>
+          <div class="glossary-term">
+            <strong>Autonomy (Self-Determination Theory)</strong> – The ability to make choices about digital engagement that align with personal values and goals.
+          </div>
+        </div>
+        <div id="glossary-section-b" class="glossary-section">
+          <h3 class="glossary-letter-header">B</h3>
+          <div class="glossary-term">
+            <strong>Brain Cognition</strong> – The way the brain processes information, impacted by digital habits such as screen time and multitasking.
+          </div>
+          <div class="glossary-term">
+            <strong>Behavioral Science</strong> – The study of how people form digital habits and how technology influences decision-making.
+          </div>
+        </div>
+        <div id="glossary-section-c" class="glossary-section">
+          <h3 class="glossary-letter-header">C</h3>
+          <div class="glossary-term">
+            <strong>Character Strengths</strong> – Personal strengths (e.g., curiosity, self-regulation) that can be leveraged to cultivate healthy digital habits.
+          </div>
+          <div class="glossary-term">
+            <strong>Cognitive Load</strong> – The mental effort required to process information, which can be impacted by excessive screen time or multitasking.
+          </div>
+          <div class="glossary-term">
+            <strong>Core Values</strong> – Fundamental beliefs that guide digital habits and decision-making.
+          </div>
+        </div>
+        <div id="glossary-section-d" class="glossary-section">
+          <h3 class="glossary-letter-header">D</h3>
+          <div class="glossary-term">
+            <strong>Digital Detox</strong> – A period of time spent without digital devices to reset habits and improve well-being.
+          </div>
+          <div class="glossary-term">
+            <strong>Digital Flourishing</strong> – Thriving in a digital environment by balancing technology use with personal and professional well-being.
+          </div>
+          <div class="glossary-term">
+            <strong>Digital Goals</strong> – Personalized objectives for improving one's digital habits, often using the SMART (Specific, Measurable, Achievable, Relevant, Time-bound) framework.
+          </div>
+          <div class="glossary-term">
+            <strong>Digital Habit Audit</strong> – A self-assessment to track technology use and identify areas for improvement.
+          </div>
+          <div class="glossary-term">
+            <strong>Digital Minimalism</strong> – A philosophy advocating for intentional and purposeful use of technology to enhance well-being.
+          </div>
+        </div>
+        <div id="glossary-section-e" class="glossary-section">
+          <h3 class="glossary-letter-header">E</h3>
+          <div class="glossary-term">
+            <strong>Empathy and Technology</strong> – The relationship between digital interactions and emotional intelligence, including how technology can impact social connections.
+          </div>
+          <div class="glossary-term">
+            <strong>Energy Management</strong> – Strategies to prevent digital fatigue and optimize energy levels in a tech-heavy world.
+          </div>
+        </div>
+        <div id="glossary-section-f" class="glossary-section">
+          <h3 class="glossary-letter-header">F</h3>
+          <div class="glossary-term">
+            <strong>Focus & Productivity</strong> – The ability to maintain attention and effectiveness in work and life, often challenged by digital distractions.
+          </div>
+          <div class="glossary-term">
+            <strong>Flourishing (Well-being Theory)</strong> – The state of thriving in multiple aspects of life, including physical, mental, emotional, and digital well-being.
+          </div>
+        </div>
+        <div id="glossary-section-h" class="glossary-section">
+          <h3 class="glossary-letter-header">H</h3>
+          <div class="glossary-term">
+            <strong>Habit Loop</strong> – A framework for understanding habit formation, consisting of cue, routine, and reward, applicable to digital behaviors.
+          </div>
+        </div>
+        <div id="glossary-section-m" class="glossary-section">
+          <h3 class="glossary-letter-header">M</h3>
+          <div class="glossary-term">
+            <strong>Mindfulness in Technology Use</strong> – Practicing present-moment awareness to create intentional and balanced digital interactions.
+          </div>
+          <div class="glossary-term">
+            <strong>Motivation (Self-Determination Theory)</strong> – Internal and external factors that influence engagement with technology, including autonomy, competence, and relatedness.
+          </div>
+        </div>
+        <div id="glossary-section-n" class="glossary-section">
+          <h3 class="glossary-letter-header">N</h3>
+          <div class="glossary-term">
+            <strong>Notification Management</strong> – Strategies to reduce interruptions and increase focus, such as disabling non-essential alerts.
+          </div>
+        </div>
+        <div id="glossary-section-p" class="glossary-section">
+          <h3 class="glossary-letter-header">P</h3>
+          <div class="glossary-term">
+            <strong>Prefrontal Cortex</strong> – The part of the brain responsible for decision-making and impulse control, which is affected by digital engagement.
+          </div>
+          <div class="glossary-term">
+            <strong>Psychological Safety and Technology</strong> – The impact of digital environments on emotional well-being and security.
+          </div>
+        </div>
+        <div id="glossary-section-r" class="glossary-section">
+          <h3 class="glossary-letter-header">R</h3>
+          <div class="glossary-term">
+            <strong>Reflection Practice</strong> – Periodic self-check-ins to assess digital habits and their alignment with personal values.
+          </div>
+        </div>
+        <div id="glossary-section-s" class="glossary-section">
+          <h3 class="glossary-letter-header">S</h3>
+          <div class="glossary-term">
+            <strong>Screen Time Awareness</strong> – Conscious tracking of time spent on digital devices to maintain a balanced lifestyle.
+          </div>
+          <div class="glossary-term">
+            <strong>Self-Regulation</strong> – The ability to control impulses and make mindful choices in digital interactions.
+          </div>
+          <div class="glossary-term">
+            <strong>Social Media Hygiene</strong> – Practices for maintaining a healthy relationship with social platforms, including curating content and setting boundaries.
+          </div>
+        </div>
+        <div id="glossary-section-t" class="glossary-section">
+          <h3 class="glossary-letter-header">T</h3>
+          <div class="glossary-term">
+            <strong>Tech-Life Balance</strong> – The intentional effort to harmonize technology use with overall well-being.
+          </div>
+          <div class="glossary-term">
+            <strong>Triggers in Digital Use</strong> – Environmental or psychological cues that prompt certain digital habits, such as checking the phone out of boredom.
+          </div>
+          <div class="glossary-term">
+            <strong>Two-Edge Effect of Technology</strong> – The concept that digital tools can both enhance and hinder well-being, depending on usage patterns.
+          </div>
+        </div>
+        <div id="glossary-section-w" class="glossary-section">
+          <h3 class="glossary-letter-header">W</h3>
+          <div class="glossary-term">
+            <strong>Willpower and Digital Use</strong> – The ability to resist distractions and build positive technology habits.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- VideoJS JavaScript -->
+  <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
+  <script src="js/video-player.js"></script>
+  <script src="js/key-points.js"></script>
+  <script src="js/reflections.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/logo-checker.js"></script>
+  <script>
+// Glossary Modal Functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const modal = document.getElementById('glossary-modal');
+  const openBtn = document.getElementById('open-glossary');
+  const menuLink = document.getElementById('glossary-menu-link');
+  const closeBtn = modal.querySelector('.modal-close');
+
+  function openModal() {
+    modal.style.display = 'block';
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    const firstFocusableElement = modal.querySelector('.modal-close, .glossary-az-nav a');
+    if (firstFocusableElement) {
+        firstFocusableElement.focus();
+    }
+  }
+
+  function closeModal() {
+    modal.style.display = 'none';
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = 'auto';
+    if (document.activeElement === closeBtn || modal.contains(document.activeElement)) {
+        if (openBtn && openBtn === document.lastActiveElement) openBtn.focus();
+        else if (menuLink && menuLink === document.lastActiveElement) menuLink.focus();
+    }
+    document.lastActiveElement = null;
+  }
+  
+  document.lastActiveElement = null;
+
+  if (openBtn) {
+    openBtn.addEventListener('click', function() {
+        document.lastActiveElement = this;
+        openModal();
+    });
+  }
+  
+  if (menuLink) {
+    menuLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.lastActiveElement = this;
+      openModal();
+      const mainNav = document.getElementById('main-nav');
+      const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+      if (mainNav && mainNav.classList.contains('active')) {
+        mainNav.classList.remove('active');
+        mobileMenuToggle.classList.remove('active');
+        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeModal);
+  }
+
+  modal.addEventListener('click', function(e) {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && modal.style.display === 'block') {
+      closeModal();
+    }
+  });
+});
+
+// Quiz functionality for Digital Well-being quiz
+document.addEventListener('DOMContentLoaded', function() {
+  const quizForm = document.getElementById('wellbeing-quiz');
+  const feedbackDiv = document.getElementById('wellbeing-quiz-feedback');
+  
+  if (quizForm && feedbackDiv) {
+    // Add click handlers to quiz options for better UX
+    const quizOptions = quizForm.querySelectorAll('.quiz-option');
+    quizOptions.forEach(option => {
+      option.addEventListener('click', function(e) {
+        // Only toggle if clicking on the option div, not the checkbox or label
+        if (e.target === this) {
+          const checkbox = this.querySelector('input[type="checkbox"]');
+          if (checkbox && !checkbox.disabled) {
+            checkbox.checked = !checkbox.checked;
+          }
         }
-    </script>
+      });
+    });
+    
+    quizForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Get all checkboxes
+      const allCheckboxes = quizForm.querySelectorAll('input[type="checkbox"]');
+      const checkedBoxes = quizForm.querySelectorAll('input[type="checkbox"]:checked');
+      const selectedValues = Array.from(checkedBoxes).map(cb => cb.value);
+      
+      console.log('Selected values:', selectedValues); // Debug log
+      
+      // Correct answers are 'a' and 'e'
+      const correctAnswers = ['a', 'e'];
+      
+      // Clear previous feedback styling
+      const allOptions = quizForm.querySelectorAll('.quiz-option');
+      allOptions.forEach(option => {
+        option.classList.remove('correct-answer', 'incorrect-answer', 'missed-answer');
+        const existingFeedback = option.querySelector('.option-feedback');
+        if (existingFeedback) {
+          existingFeedback.remove();
+        }
+      });
+      
+      // Check each option and provide feedback
+      allCheckboxes.forEach(checkbox => {
+        const value = checkbox.value;
+        const isChecked = checkbox.checked;
+        const isCorrect = correctAnswers.includes(value);
+        const option = checkbox.closest('.quiz-option');
+        
+        let feedbackHTML = '';
+        
+        if (isCorrect && isChecked) {
+          // Correct answer selected
+          option.classList.add('correct-answer');
+          feedbackHTML = '<span class="option-feedback"><i class="fas fa-check-circle"></i> Correct!</span>';
+        } else if (isCorrect && !isChecked) {
+          // Correct answer missed
+          option.classList.add('missed-answer');
+          feedbackHTML = '<span class="option-feedback"><i class="fas fa-exclamation-triangle"></i> Missed</span>';
+        } else if (!isCorrect && isChecked) {
+          // Incorrect answer selected
+          option.classList.add('incorrect-answer');
+          feedbackHTML = '<span class="option-feedback"><i class="fas fa-times-circle"></i> Incorrect</span>';
+        }
+        
+        if (feedbackHTML) {
+          option.insertAdjacentHTML('beforeend', feedbackHTML);
+        }
+        
+        // Disable checkbox after submission
+        checkbox.disabled = true;
+      });
+      
+      // Show the feedback section
+      feedbackDiv.style.display = 'block';
+      feedbackDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      
+      // Disable the submit button and change text
+      const submitBtn = quizForm.querySelector('button[type="submit"]');
+      if (submitBtn) {
+        submitBtn.textContent = 'Submitted';
+        submitBtn.disabled = true;
+        submitBtn.style.backgroundColor = '#6c757d';
+        submitBtn.style.cursor = 'not-allowed';
+      }
+      
+      // Add a reset button
+      if (!quizForm.querySelector('.quiz-reset-btn')) {
+        const resetBtn = document.createElement('button');
+        resetBtn.type = 'button';
+        resetBtn.className = 'quiz-submit-btn quiz-reset-btn';
+        resetBtn.textContent = 'Try Again';
+        resetBtn.style.marginLeft = '1rem';
+        resetBtn.style.backgroundColor = '#007bff';
+        
+        resetBtn.addEventListener('click', function() {
+          // Reset form
+          quizForm.reset();
+          
+          // Clear all feedback
+          allOptions.forEach(option => {
+            option.classList.remove('correct-answer', 'incorrect-answer', 'missed-answer');
+            const feedback = option.querySelector('.option-feedback');
+            if (feedback) {
+              feedback.remove();
+            }
+          });
+          
+          // Re-enable checkboxes
+          allCheckboxes.forEach(cb => {
+            cb.disabled = false;
+          });
+          
+          // Hide feedback
+          feedbackDiv.style.display = 'none';
+          
+          // Re-enable submit button and restore original styling
+          if (submitBtn) {
+            submitBtn.textContent = 'Submit';
+            submitBtn.disabled = false;
+            submitBtn.style.backgroundColor = 'var(--primary-color)'; // Restore primary color
+            submitBtn.style.cursor = 'pointer';
+          }
+          
+          // Remove reset button
+          this.remove();
+          
+          // Scroll back to quiz
+          quizForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+        
+        submitBtn.parentNode.insertBefore(resetBtn, submitBtn.nextSibling);
+      }
+    });
+  }
+});
 
+// Core Values Template download functionality
+function downloadCoreValuesTemplate() {
+  // Create a simple template content
+  const templateContent = `IDENTIFYING YOUR CORE VALUES - TEMPLATE
+
+Instructions:
+In a fast-paced digital world, it's easy to lose sight of what really matters to us. Our values—what we believe in and stand for—can serve as a compass to guide our decisions, our goals, and even our digital behavior.
+
+This activity invites you to pause and reflect on your personal values by answering the questions below. Take your time to write down your thoughts.
+
+REFLECTION QUESTIONS:
+
+1. What matters most to you in life?
+_________________________________________________
+_________________________________________________
+_________________________________________________
+
+2. When you think about your best self, what values do you embody?
+_________________________________________________
+_________________________________________________
+_________________________________________________
+
+3. What principles guide your decisions?
+_________________________________________________
+_________________________________________________
+_________________________________________________
+
+4. What would you want to be remembered for?
+_________________________________________________
+_________________________________________________
+_________________________________________________
+
+5. What values do you want your digital habits to reflect?
+_________________________________________________
+_________________________________________________
+_________________________________________________
+
+BRENÉ BROWN'S VALUES LIST:
+Review the list below and highlight the 10 that resonate most with you, then narrow them down to your top 5.
+
+□ Accountability    □ Achievement      □ Adventure        □ Authenticity
+□ Authority         □ Autonomy         □ Balance          □ Beauty
+□ Boldness          □ Compassion       □ Competency       □ Contribution
+□ Creativity        □ Curiosity        □ Determination    □ Fairness
+□ Faith             □ Fame             □ Family           □ Freedom
+□ Friendship        □ Fun              □ Growth           □ Happiness
+□ Health            □ Honesty          □ Hope             □ Humility
+□ Independence      □ Initiative       □ Integrity        □ Intelligence
+□ Intuition         □ Joy              □ Justice          □ Kindness
+□ Knowledge         □ Leadership       □ Learning         □ Legacy
+□ Leisure           □ Love             □ Loyalty          □ Meaningful Work
+□ Money             □ Nonconformity    □ Optimism         □ Order
+□ Parenting         □ Patience         □ Patriotism       □ Perfection
+□ Popularity        □ Power            □ Purpose          □ Recognition
+□ Religion          □ Reputation       □ Respect          □ Responsibility
+□ Security          □ Self-Respect     □ Service          □ Spirituality
+□ Stability         □ Success          □ Tradition        □ Travel
+□ Wealth            □ Wisdom
+
+MY TOP 5 CORE VALUES:
+
+1. _________________________________________________
+   Why this matters to me: _________________________
+   _________________________________________________
+
+2. _________________________________________________
+   Why this matters to me: _________________________
+   _________________________________________________
+
+3. _________________________________________________
+   Why this matters to me: _________________________
+   Why this matters to me: _________________________
+   _________________________________________________
+
+4. _________________________________________________
+   Why this matters to me: _________________________
+   _________________________________________________
+
+5. _________________________________________________
+   Why this matters to me: _________________________
+   _________________________________________________
+
+REFLECTION ON DIGITAL HABITS:
+
+How can your digital habits support these core values?
+_________________________________________________
+_________________________________________________
+_________________________________________________
+
+What digital behaviors might be conflicting with your values?
+_________________________________________________
+_________________________________________________
+_________________________________________________
+
+What changes would you like to make to better align your digital habits with your values?
+_________________________________________________
+_________________________________________________
+_________________________________________________
+
+---
+Digital Well-Being Course - IE University
+© ${new Date().getFullYear()} IE University. All rights reserved.`;
+
+  // Create and download the file
+  const blob = new Blob([templateContent], { type: 'text/plain' });
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'Core_Values_Template.txt';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  window.URL.revokeObjectURL(url);
+  
+  // Show feedback to user
+  const button = event.target.closest('.download-template-button');
+  const originalText = button.innerHTML;
+  button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> <strong>Template Downloaded!</strong>';
+  button.style.backgroundColor = '#28a745';
+  
+  setTimeout(() => {
+    button.innerHTML = originalText;
+    button.style.backgroundColor = '';
+  }, 3000);
+}
+
+// Digital Goals Template download functionality
+function downloadDigitalGoalsTemplate() {
+  // Create digital goals template content
+  const templateContent = `SET YOUR DIGITAL GOALS - TEMPLATE
+
+Instructions:
+Now that you've reflected on your values and current digital habits, it's time to set your own digital goals. These goals should be meaningful to you and aligned with your personal motivations and core values.
+
+We recommend using the SMART goals framework to make your goals specific, measurable, achievable, relevant, and time-bound.
+
+SMART GOALS FRAMEWORK:
+- Specific: Clear and well-defined
+- Measurable: Quantifiable progress
+- Achievable: Realistic and attainable
+- Relevant: Aligned with your values and priorities
+- Time-bound: Has a clear deadline
+
+EXAMPLE:
+Instead of: "I want to use my phone less"
+SMART Goal: "Reduce my screen time on weekdays by at least one hour by the end of this month"
+
+YOUR DIGITAL GOALS:
+
+GOAL 1:
+What do you want to achieve?
+_________________________________________________
+_________________________________________________
+
+Make it SMART:
+Specific: ____________________________________
+Measurable: __________________________________
+Achievable: __________________________________
+Relevant: ____________________________________
+Time-bound: __________________________________
+
+Final SMART Goal:
+_________________________________________________
+_________________________________________________
+
+GOAL 2:
+What do you want to achieve?
+_________________________________________________
+_________________________________________________
+
+Make it SMART:
+Specific: ____________________________________
+Measurable: __________________________________
+Achievable: __________________________________
+Relevant: ____________________________________
+Time-bound: __________________________________
+
+Final SMART Goal:
+_________________________________________________
+_________________________________________________
+
+GOAL 3:
+What do you want to achieve?
+_________________________________________________
+_________________________________________________
+
+Make it SMART:
+Specific: ____________________________________
+Measurable: __________________________________
+Achievable: __________________________________
+Relevant: ____________________________________
+Time-bound: __________________________________
+
+Final SMART Goal:
+_________________________________________________
+_________________________________________________
+
+REFLECTION QUESTIONS:
+
+1. How do these goals align with your core values?
+_________________________________________________
+_________________________________________________
+_________________________________________________
+
+2. What obstacles might you face in achieving these goals?
+_________________________________________________
+_________________________________________________
+_________________________________________________
+
+3. What support or resources do you need?
+_________________________________________________
+_________________________________________________
+_________________________________________________
+
+4. How will you track your progress?
+_________________________________________________
+_________________________________________________
+_________________________________________________
+
+5. How will you celebrate when you achieve these goals?
+_________________________________________________
+_________________________________________________
+_________________________________________________
+
+ACTION PLAN:
+
+Goal 1 - Next Steps:
+Week 1: _____________________________________
+Week 2: _____________________________________
+Week 3: _____________________________________
+Week 4: _____________________________________
+
+Goal 2 - Next Steps:
+Week 1: _____________________________________
+Week 2: _____________________________________
+Week 3: _____________________________________
+Week 4: _____________________________________
+
+Goal 3 - Next Steps:
+Week 1: _____________________________________
+Week 2: _____________________________________
+Week 3: _____________________________________
+Week 4: _____________________________________
+
+PROGRESS TRACKING:
+
+Date: _______________
+Progress on Goal 1: ___________________________
+Progress on Goal 2: ___________________________
+Progress on Goal 3: ___________________________
+Challenges faced: _____________________________
+Adjustments needed: ___________________________
+
+Date: _______________
+Progress on Goal 1: ___________________________
+Progress on Goal 2: ___________________________
+Progress on Goal 3: ___________________________
+Challenges faced: _____________________________
+Adjustments needed: ___________________________
+
+Date: _______________
+Progress on Goal 1: ___________________________
+Progress on Goal 2: ___________________________
+Progress on Goal 3: ___________________________
+Challenges faced: _____________________________
+Adjustments needed: ___________________________
+
+---
+Digital Well-Being Course - IE University
+© ${new Date().getFullYear()} IE University. All rights reserved.`;
+
+  // Create and download the file
+  const blob = new Blob([templateContent], { type: 'text/plain' });
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'Digital_Goals_Template.txt';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  window.URL.revokeObjectURL(url);
+  
+  // Show feedback to user
+  const button = event.target.closest('.download-template-button');
+  const originalText = button.innerHTML;
+  button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> <strong>Template Downloaded!</strong>';
+  button.style.backgroundColor = '#28a745';
+  
+  setTimeout(() => {
+    button.innerHTML = originalText;
+    button.style.backgroundColor = '';
+  }, 3000);
+}
+
+// Character Strengths Template download functionality
+function downloadCharacterStrengthsTemplate() {
+  // Create character strengths template content
+  const templateContent = `DISCOVER YOUR CHARACTER STRENGTHS - TEMPLATE
+
+Instructions:
+Discover your personal character strengths and explore how you can use them to support your digital well-being journey.
+
+First, complete the VIA Character Strengths survey by registering for free at the link provided. Then, review your top strengths and reflect on how they can help you achieve your digital goals.
+
+SURVEY LINKS:
+• Complete the VIA Character Strengths survey: https://www.viacharacter.org/survey/account/register
+• Learn more about your strengths: https://www.viacharacter.org/character-strengths
+
+MY TOP CHARACTER STRENGTHS:
+
+After completing the VIA survey, write down your top 5 character strengths:
+
+1. _________________________________________________
+   Description: ___________________________________
+   _________________________________________________
+
+2. _________________________________________________
+   Description: ___________________________________
+   _________________________________________________
+
+3. _________________________________________________
+   Description: ___________________________________
+   _________________________________________________
+
+4. _________________________________________________
+   Description: ___________________________________
+   _________________________________________________
+
+5. _________________________________________________
+   Description: ___________________________________
+   _________________________________________________
+
+REFLECTION QUESTIONS:
+
+1. Which of your top strengths surprised you the most? Why?
+_________________________________________________
+_________________________________________________
+_________________________________________________
+
+2. How do you currently use these strengths in your daily life?
+_________________________________________________
+_________________________________________________
+_________________________________________________
+
+3. Which strengths do you feel you underuse or could develop further?
+_________________________________________________
+_________________________________________________
+_________________________________________________
+
+APPLYING STRENGTHS TO DIGITAL WELL-BEING:
+
+For each of your top 5 strengths, reflect on how you can use them to support your digital well-being goals:
+
+Strength 1: _____________________________________
+How I can use this for digital well-being:
+_________________________________________________
+_________________________________________________
+_________________________________________________
+
+Strength 2: _____________________________________
+How I can use this for digital well-being:
+_________________________________________________
+_________________________________________________
+_________________________________________________
+
+Strength 3: _____________________________________
+How I can use this for digital well-being:
+_________________________________________________
+_________________________________________________
+_________________________________________________
+
+Strength 4: _____________________________________
+How I can use this for digital well-being:
+_________________________________________________
+_________________________________________________
+_________________________________________________
+
+Strength 5: _____________________________________
+How I can use this for digital well-being:
+_________________________________________________
+_________________________________________________
+_________________________________________________
+
+SPECIFIC APPLICATIONS:
+
+Based on the character strengths examples from the lesson, identify specific ways you can apply your strengths:
+
+If you have PERSPECTIVE:
+□ Reflect on how technology shapes your life holistically (mind, body, and soul)
+□ Use Perspective to reflect on whether your digital habits align with your values
+□ Other: ________________________________________
+
+If you have JUDGMENT/CRITICAL THINKING:
+□ Evaluate how digital habits impact your well-being
+□ Apply Judgment to recognize which digital behaviors support or hinder your well-being
+□ Other: ________________________________________
+
+If you have CURIOSITY:
+□ Explore new ways to engage with technology that align with your purpose
+□ Tap into Curiosity to explore new mindful tech habits
+□ Other: ________________________________________
+
+If you have SELF-REGULATION:
+□ Create structure around digital use, such as setting screen-time limits
+□ Use Self-Regulation to set up a habit tracker for screen-time reduction
+□ Other: ________________________________________
+
+If you have PRUDENCE:
+□ Plan intentional technology use to enhance productivity rather than distraction
+□ Apply Prudence to intentionally design your digital environment
+□ Other: ________________________________________
+
+If you have PERSEVERANCE:
+□ Stick to habit changes like reducing social media time or improving sleep hygiene
+□ Use Perseverance when implementing new habits like device-free mornings
+□ Other: ________________________________________
+
+If you have LOVE OF LEARNING:
+□ Understand the neuroscience of attention and how digital behaviors impact cognition
+□ Leverage Love of Learning to understand how digital habits shape cognitive function
+□ Other: ________________________________________
+
+If you have GRATITUDE:
+□ Acknowledge the benefits of digital tools while striving for balance
+□ Use Gratitude to reflect on how technology enriches your life
+□ Other: ________________________________________
+
+If you have LEADERSHIP:
+□ Share insights with others and promote mindful digital habits in your community
+□ Practice Leadership by mentoring others in digital well-being strategies
+□ Other: ________________________________________
+
+If you have BRAVERY:
+□ Be open about challenges in managing digital use and seek solutions
+□ Use Bravery to openly discuss struggles and celebrate progress
+□ Other: ________________________________________
+
+ACTION PLAN:
+
+Based on your reflections above, create a specific action plan for using your character strengths to support your digital well-being:
+
+This week, I will:
+_________________________________________________
+_________________________________________________
+_________________________________________________
+
+This month, I will:
+_________________________________________________
+_________________________________________________
+_________________________________________________
+
+In the next 3 months, I will:
+_________________________________________________
+_________________________________________________
+_________________________________________________
+
+PROGRESS TRACKING:
+
+Date: _______________
+Strength used: _______________________________
+How I applied it: _____________________________
+_________________________________________________
+Result/Impact: _______________________________
+_________________________________________________
+
+Date: _______________
+Strength used: _______________________________
+How I applied it: _____________________________
+_________________________________________________
+Result/Impact: _______________________________
+_________________________________________________
+
+Date: _______________
+Strength used: _______________________________
+How I applied it: _____________________________
+_________________________________________________
+Result/Impact: _______________________________
+_________________________________________________
+
+NOTES AND INSIGHTS:
+_________________________________________________
+_________________________________________________
+_________________________________________________
+_________________________________________________
+_________________________________________________
+
+---
+Digital Well-Being Course - IE University
+© ${new Date().getFullYear()} IE University. All rights reserved.`;
+
+  // Create and download the file
+  const blob = new Blob([templateContent], { type: 'text/plain' });
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'Character_Strengths_Template.txt';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  window.URL.revokeObjectURL(url);
+  
+  // Show feedback to user
+  const button = event.target.closest('.download-template-button');
+  const originalText = button.innerHTML;
+  button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> <strong>Template Downloaded!</strong>';
+  button.style.backgroundColor = '#28a745';
+  
+  setTimeout(() => {
+    button.innerHTML = originalText;
+    button.style.backgroundColor = '';
+  }, 3000);
+}
+
+// Accordion functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const accordionTriggers = document.querySelectorAll('.accordion-trigger');
+  
+  accordionTriggers.forEach(trigger => {
+    // Inicializar el icono correctamente
+    const icon = trigger.querySelector('.accordion-icon');
+    if (icon) {
+      icon.textContent = '+';
+    }
+    
+    trigger.addEventListener('click', function() {
+      const panelId = this.getAttribute('aria-controls');
+      const panel = document.getElementById(panelId);
+      const currentIcon = this.querySelector('.accordion-icon');
+      const isExpanded = this.getAttribute('aria-expanded') === 'true';
+      
+      if (!panel || !currentIcon) {
+        console.error('Accordion panel or icon not found:', panelId);
+        return;
+      }
+      
+      // Cerrar todos los otros acordeones
+      accordionTriggers.forEach(otherTrigger => {
+        if (otherTrigger !== this) {
+          const otherPanelId = otherTrigger.getAttribute('aria-controls');
+          const otherPanel = document.getElementById(otherPanelId);
+          const otherIcon = otherTrigger.querySelector('.accordion-icon');
+          
+          if (otherPanel && otherIcon) {
+            otherTrigger.setAttribute('aria-expanded', 'false');
+            otherPanel.classList.remove('expanded');
+            otherIcon.textContent = '+';
+          }
+        }
+      });
+      
+      // Alternar el acordeón actual
+      if (isExpanded) {
+        this.setAttribute('aria-expanded', 'false');
+        panel.classList.remove('expanded');
+        currentIcon.textContent = '+';
+      } else {
+        this.setAttribute('aria-expanded', 'true');
+        panel.classList.add('expanded');
+        currentIcon.textContent = '−';
+      }
+    });
+    
+    // Navegación por teclado
+    trigger.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        this.click();
+      }
+    });
+  });
+});
+</script>
 </body>
 </html>
