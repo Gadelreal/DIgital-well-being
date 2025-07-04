@@ -1009,92 +1009,59 @@
   <script src="js/main.js"></script>
   <script src="js/logo-checker.js"></script>
   <script>
-// Glossary Modal Functionality
-document.addEventListener('DOMContentLoaded', function() {
-  const modal = document.getElementById('glossary-modal');
-  const openBtn = document.getElementById('open-glossary');
-  const menuLink = document.getElementById('glossary-menu-link');
-  const closeBtn = modal.querySelector('.modal-close');
-
-  function openModal() {
-    modal.style.display = 'block';
-    modal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-    const firstFocusableElement = modal.querySelector('.modal-close, .glossary-az-nav a');
-    if (firstFocusableElement) {
-        firstFocusableElement.focus();
-    }
-  }
-
-  function closeModal() {
-    modal.style.display = 'none';
-    modal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = 'auto';
-    if (document.activeElement === closeBtn || modal.contains(document.activeElement)) {
-        if (openBtn && openBtn === document.lastActiveElement) openBtn.focus();
-        else if (menuLink && menuLink === document.lastActiveElement) menuLink.focus();
-    }
-    document.lastActiveElement = null;
-  }
+// Session storage functions for assessment responses
+function saveResponseToSession() {
+  const responses = {
+    screenTime: document.querySelector('input[name="question1"]:checked')?.value || '',
+    digitalGoals: document.querySelector('input[name="question2"]:checked')?.value || '',
+    closerToGoal: document.querySelector('input[name="question3"]:checked')?.value || '',
+    consciousUse: document.querySelector('input[name="question4"]:checked')?.value || '',
+    feelBetter: document.querySelector('input[name="question5"]:checked')?.value || '',
+    reflection: document.getElementById('reflection-response').value || '',
+    timestamp: new Date().toISOString()
+  };
   
-  document.lastActiveElement = null;
-
-  if (openBtn) {
-    openBtn.addEventListener('click', function() {
-        document.lastActiveElement = this;
-        openModal();
-    });
-  }
-  
-  if (menuLink) {
-    menuLink.addEventListener('click', function(e) {
-      e.preventDefault();
-      document.lastActiveElement = this;
-      openModal();
-      const mainNav = document.getElementById('main-nav');
-      const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-      if (mainNav && mainNav.classList.contains('active')) {
-        mainNav.classList.remove('active');
-        mobileMenuToggle.classList.remove('active');
-        mobileMenuToggle.setAttribute('aria-expanded', 'false');
-      }
-    });
-  }
-
-  if (closeBtn) {
-    closeBtn.addEventListener('click', closeModal);
-  }
-
-  modal.addEventListener('click', function(e) {
-    if (e.target === modal) {
-      closeModal();
-    }
-  });
-
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && modal.style.display === 'block') {
-      closeModal();
-    }
-  });
-});
-
-// Template download functions
-function downloadDigitalHabitsAuditTemplate() {
-  // Placeholder function for downloading digital habits audit template
-  alert('Digital Habits Audit template download would be implemented here');
+  sessionStorage.setItem('chapter2_assessment', JSON.stringify(responses));
 }
 
-function downloadDigitalTriggersTemplate() {
-  // Placeholder function for downloading digital triggers template
-  alert('Digital Triggers template download would be implemented here');
-}
-
-function downloadToolsTemplate() {
-  // Placeholder function for downloading tools template
-  alert('Tools and Practices template download would be implemented here');
+function loadResponseFromSession() {
+  const savedData = sessionStorage.getItem('chapter2_assessment');
+  if (savedData) {
+    const responses = JSON.parse(savedData);
+    
+    // Restore radio button selections
+    if (responses.screenTime) {
+      const radio1 = document.querySelector(`input[name="question1"][value="${responses.screenTime}"]`);
+      if (radio1) radio1.checked = true;
+    }
+    if (responses.digitalGoals) {
+      const radio2 = document.querySelector(`input[name="question2"][value="${responses.digitalGoals}"]`);
+      if (radio2) radio2.checked = true;
+    }
+    if (responses.closerToGoal) {
+      const radio3 = document.querySelector(`input[name="question3"][value="${responses.closerToGoal}"]`);
+      if (radio3) radio3.checked = true;
+    }
+    if (responses.consciousUse) {
+      const radio4 = document.querySelector(`input[name="question4"][value="${responses.consciousUse}"]`);
+      if (radio4) radio4.checked = true;
+    }
+    if (responses.feelBetter) {
+      const radio5 = document.querySelector(`input[name="question5"][value="${responses.feelBetter}"]`);
+      if (radio5) radio5.checked = true;
+    }
+    
+    // Restore reflection text
+    if (responses.reflection) {
+      document.getElementById('reflection-response').value = responses.reflection;
+    }
+  }
 }
 
 function downloadAssessmentResponse() {
+  // Save to session first
+  saveResponseToSession();
+  
   // Get all form responses
   const responses = {
     screenTime: document.querySelector('input[name="question1"]:checked')?.value || '',
@@ -1176,6 +1143,107 @@ function downloadAssessmentResponse() {
   
   // Save the PDF
   doc.save('Chapter2_Assessment_Response.pdf');
+}
+
+// Add event listeners for auto-saving responses
+document.addEventListener('DOMContentLoaded', function() {
+  // Load saved responses when page loads
+  loadResponseFromSession();
+  
+  // Auto-save when radio buttons change
+  const radioButtons = document.querySelectorAll('input[type="radio"]');
+  radioButtons.forEach(radio => {
+    radio.addEventListener('change', saveResponseToSession);
+  });
+  
+  // Auto-save when reflection text changes
+  const reflectionTextarea = document.getElementById('reflection-response');
+  if (reflectionTextarea) {
+    reflectionTextarea.addEventListener('input', saveResponseToSession);
+  }
+  
+  // Existing glossary modal code remains the same...
+  const modal = document.getElementById('glossary-modal');
+  const openBtn = document.getElementById('open-glossary');
+  const menuLink = document.getElementById('glossary-menu-link');
+  const closeBtn = modal.querySelector('.modal-close');
+
+  function openModal() {
+    modal.style.display = 'block';
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    const firstFocusableElement = modal.querySelector('.modal-close, .glossary-az-nav a');
+    if (firstFocusableElement) {
+        firstFocusableElement.focus();
+    }
+  }
+
+  function closeModal() {
+    modal.style.display = 'none';
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = 'auto';
+    if (document.activeElement === closeBtn || modal.contains(document.activeElement)) {
+        if (openBtn && openBtn === document.lastActiveElement) openBtn.focus();
+        else if (menuLink && menuLink === document.lastActiveElement) menuLink.focus();
+    }
+    document.lastActiveElement = null;
+  }
+  
+  document.lastActiveElement = null;
+
+  if (openBtn) {
+    openBtn.addEventListener('click', function() {
+        document.lastActiveElement = this;
+        openModal();
+    });
+  }
+  
+  if (menuLink) {
+    menuLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.lastActiveElement = this;
+      openModal();
+      const mainNav = document.getElementById('main-nav');
+      const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+      if (mainNav && mainNav.classList.contains('active')) {
+        mainNav.classList.remove('active');
+        mobileMenuToggle.classList.remove('active');
+        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeModal);
+  }
+
+  modal.addEventListener('click', function(e) {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && modal.style.display === 'block') {
+      closeModal();
+    }
+  });
+});
+
+// Template download functions
+function downloadDigitalHabitsAuditTemplate() {
+  // Placeholder function for downloading digital habits audit template
+  alert('Digital Habits Audit template download would be implemented here');
+}
+
+function downloadDigitalTriggersTemplate() {
+  // Placeholder function for downloading digital triggers template
+  alert('Digital Triggers template download would be implemented here');
+}
+
+function downloadToolsTemplate() {
+  // Placeholder function for downloading tools template
+  alert('Tools and Practices template download would be implemented here');
 }
 </script>
 </body>
