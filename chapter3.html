@@ -324,14 +324,14 @@
 
 .infographic-item {
   display: flex;
-  align-items: flex-start;
+  align-items: center; /* Change from flex-start to center for better alignment */
   gap: 1rem;
-  margin-bottom: 24px; /* 24px vertical separation */
+  margin-bottom: 24px;
   padding: 1.5rem;
   background-color: white;
-  border: 1px solid #d1d5db; /* Gray border */
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.2s ease;
 }
 
@@ -354,6 +354,15 @@
   font-size: 0.95rem;
   color: #555;
   line-height: 1.4;
+}
+
+.infographic-icon {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  margin-top: 0; /* Remove margin-top */
+  flex-shrink: 0; /* Prevent icon from shrinking */
+  display: flex;
+  align-items: center; /* Center the icon vertically */
 }
 </style>
 </head>
@@ -763,7 +772,6 @@
         </li>
         <li class="quiz-option" data-option="b" data-correct="false">
           <label class="option-label">
-            <span class="option-letter">b.</span>
             <span class="option-text">It helps you make decisions.</span>
           </label>
           <div class="option-feedback incorrect-feedback">
