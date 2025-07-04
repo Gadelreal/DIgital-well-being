@@ -290,6 +290,37 @@
     margin-bottom: 0;
   }
 }
+
+.chart-validation {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.validation-error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+  padding: 0.75rem;
+  margin: 0.5rem 0;
+  font-weight: 600;
+}
+
+.validation-success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+  border-radius: 4px;
+  padding: 0.75rem;
+  margin: 0.5rem 0;
+  font-weight: 600;
+}
+
+.hours-counter {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 0.5rem;
+}
 </style>
 </head>
 <body>
@@ -763,6 +794,12 @@
               <div class="legend-color" style="background-color: #C9CBCF;"></div>
               <span>Other</span>
             </div>
+          </div>
+          <div class="chart-validation">
+            <div id="hours-counter" class="hours-counter">
+              Total hours: <span id="total-hours">0</span> / 168
+            </div>
+            <div id="validation-message" style="display: none;"></div>
           </div>
         </div>
         
@@ -1327,6 +1364,187 @@ document.addEventListener('DOMContentLoaded', function() {
 <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
+// Chart functionality with validation
+let balanceChart = null;
+
+const chartColors = [
+  '#FF6384', // Sleep - Pink
+  '#36A2EB', // Work - Blue
+  '#FFCE56', // Family - Yellow
+  '#4BC0C0', // Hobbies - Teal
+  '#9966FF', // Digital Use - Purple
+  '#FF9F40', // Exercise - Orange
+  '#FF6B9D', // Social - Light Pink
+  '#C9CBCF'  // Other - Gray
+];
+
+const activityLabels = ['Sleep', 'Work', 'Family', 'Hobbies', 'Digital Use', 'Exercise', 'Social', 'Other'];
+
+function validateHours() {
+  const values = [
+    parseInt(document.getElementById('sleep-hours').value) || 0,
+    parseInt(document.getElementById('work-hours').value) || 0,
+    parseInt(document.getElementById('family-hours').value) || 0,
+    parseInt(document.getElementById('hobbies-hours').value) || 0,
+    parseInt(document.getElementById('digital-hours').value) || 0,
+    parseInt(document.getElementById('exercise-hours').value) || 0,
+    parseInt(document.getElementById('social-hours').value) || 0,
+    parseInt(document.getElementById('other-hours').value) || 0
+  ];
+  
+  const total = values.reduce((sum, value) => sum + value, 0);
+  const totalHoursSpan = document.getElementById('total-hours');
+  const validationMessage = document.getElementById('validation-message');
+  
+  // Update total hours display
+  if (totalHoursSpan) {
+    totalHoursSpan.textContent = total;
+  }
+  
+  // Validate total hours
+  if (total > 168) {
+    validationMessage.className = 'validation-error';
+    validationMessage.textContent = `Error: Total hours (${total}) exceeds 168 hours per week. Please reduce some values.`;
+    validationMessage.style.display = 'block';
+    return false;
+  } else if (total === 168) {
+    validationMessage.className = 'validation-success';
+    validationMessage.textContent = 'Perfect! You have allocated exactly 168 hours (full week).';
+    validationMessage.style.display = 'block';
+  } else if (total > 0) {
+    validationMessage.className = 'hours-counter';
+    validationMessage.textContent = `You have ${168 - total} hours remaining to allocate.`;
+    validationMessage.style.display = 'block';
+  } else {
+    validationMessage.style.display = 'none';
+  }
+  
+  return true;
+}
+
+function updateChart() {
+  const canvas = document.getElementById('balance-chart-canvas');
+  const ctx = canvas.getContext('2d');
+  
+  // Validate hours first
+  const isValid = validateHours();
+  
+  // Get values from inputs
+  const values = [
+    parseInt(document.getElementById('sleep-hours').value) || 0,
+    parseInt(document.getElementById('work-hours').value) || 0,
+    parseInt(document.getElementById('family-hours').value) || 0,
+    parseInt(document.getElementById('hobbies-hours').value) || 0,
+    parseInt(document.getElementById('digital-hours').value) || 0,
+    parseInt(document.getElementById('exercise-hours').value) || 0,
+    parseInt(document.getElementById('social-hours').value) || 0,
+    parseInt(document.getElementById('other-hours').value) || 0
+  ];
+  
+  // Check if any values exist
+  const hasData = values.some(value => value > 0);
+  
+  if (balanceChart) {
+    balanceChart.destroy();
+  }
+  
+  if (hasData && isValid) {
+    // Filter out zero values for the chart
+    const filteredData = [];
+    const filteredLabels = [];
+    const filteredColors = [];
+    
+    values.forEach((value, index) => {
+      if (value > 0) {
+        filteredData.push(value);
+        filteredLabels.push(activityLabels[index]);
+        filteredColors.push(chartColors[index]);
+      }
+    });
+    
+    balanceChart = new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: filteredLabels,
+        datasets: [{
+          data: filteredData,
+          backgroundColor: filteredColors,
+          borderColor: '#fff',
+          borderWidth: 2
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false // We'll use our custom legend
+          },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                const label = context.label || '';
+                const value = context.parsed;
+                const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                const percentage = ((value / total) * 100).toFixed(1);
+                return `${label}: ${value} hours (${percentage}%)`;
+              }
+            }
+          }
+        }
+      }
+    });
+  } else if (!hasData) {
+    // Clear the canvas if no data
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#666';
+    ctx.font = '16px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText('Enter hours above to see your life balance chart', canvas.width / 2, canvas.height / 2);
+  } else if (!isValid) {
+    // Clear the canvas if validation fails
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#dc3545';
+    ctx.font = '16px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText('Please correct the hours to see the chart', canvas.width / 2, canvas.height / 2);
+  }
+}
+
+// Enhanced input validation
+function handleHourInput(event) {
+  const input = event.target;
+  let value = parseInt(input.value) || 0;
+  
+  // Ensure individual values don't exceed 168
+  if (value > 168) {
+    value = 168;
+    input.value = value;
+  }
+  
+  // Ensure values are not negative
+  if (value < 0) {
+    value = 0;
+    input.value = value;
+  }
+  
+  // Update chart and validation
+  updateChart();
+}
+
+// Initialize chart on page load
+document.addEventListener('DOMContentLoaded', function() {
+  // Set up time input listeners with enhanced validation
+  const timeInputs = document.querySelectorAll('input[id$="-hours"]');
+  timeInputs.forEach(input => {
+    input.addEventListener('input', handleHourInput);
+    input.addEventListener('blur', handleHourInput);
+  });
+  
+  // Initial chart update
+  updateChart();
+});
+
 // Session storage functionality for all activities
 document.addEventListener('DOMContentLoaded', function() {
   // Auto-save functionality for all textareas and inputs
@@ -1390,113 +1608,6 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   });
-});
-
-// Chart functionality
-let balanceChart = null;
-
-const chartColors = [
-  '#FF6384', // Sleep - Pink
-  '#36A2EB', // Work - Blue
-  '#FFCE56', // Family - Yellow
-  '#4BC0C0', // Hobbies - Teal
-  '#9966FF', // Digital Use - Purple
-  '#FF9F40', // Exercise - Orange
-  '#FF6B9D', // Social - Light Pink
-  '#C9CBCF'  // Other - Gray
-];
-
-const activityLabels = ['Sleep', 'Work', 'Family', 'Hobbies', 'Digital Use', 'Exercise', 'Social', 'Other'];
-
-function updateChart() {
-  const canvas = document.getElementById('balance-chart-canvas');
-  const ctx = canvas.getContext('2d');
-  
-  // Get values from inputs
-  const values = [
-    parseInt(document.getElementById('sleep-hours').value) || 0,
-    parseInt(document.getElementById('work-hours').value) || 0,
-    parseInt(document.getElementById('family-hours').value) || 0,
-    parseInt(document.getElementById('hobbies-hours').value) || 0,
-    parseInt(document.getElementById('digital-hours').value) || 0,
-    parseInt(document.getElementById('exercise-hours').value) || 0,
-    parseInt(document.getElementById('social-hours').value) || 0,
-    parseInt(document.getElementById('other-hours').value) || 0
-  ];
-  
-  // Check if any values exist
-  const hasData = values.some(value => value > 0);
-  
-  if (balanceChart) {
-    balanceChart.destroy();
-  }
-  
-  if (hasData) {
-    // Filter out zero values for the chart
-    const filteredData = [];
-    const filteredLabels = [];
-    const filteredColors = [];
-    
-    values.forEach((value, index) => {
-      if (value > 0) {
-        filteredData.push(value);
-        filteredLabels.push(activityLabels[index]);
-        filteredColors.push(chartColors[index]);
-      }
-    });
-    
-    balanceChart = new Chart(ctx, {
-      type: 'pie',
-      data: {
-        labels: filteredLabels,
-        datasets: [{
-          data: filteredData,
-          backgroundColor: filteredColors,
-          borderColor: '#fff',
-          borderWidth: 2
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            display: false // We'll use our custom legend
-          },
-          tooltip: {
-            callbacks: {
-              label: function(context) {
-                const label = context.label || '';
-                const value = context.parsed;
-                const total = context.dataset.data.reduce((a, b) => a + b, 0);
-                const percentage = ((value / total) * 100).toFixed(1);
-                return `${label}: ${value} hours (${percentage}%)`;
-              }
-            }
-          }
-        }
-      }
-    });
-  } else {
-    // Clear the canvas if no data
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = '#666';
-    ctx.font = '16px Arial';
-    ctx.textAlign = 'center';
-    ctx.fillText('Enter hours above to see your life balance chart', canvas.width / 2, canvas.height / 2);
-  }
-}
-
-// Initialize chart on page load
-document.addEventListener('DOMContentLoaded', function() {
-  // Set up time input listeners
-  const timeInputs = document.querySelectorAll('input[id$="-hours"]');
-  timeInputs.forEach(input => {
-    input.addEventListener('input', updateChart);
-  });
-  
-  // Initial chart update
-  updateChart();
 });
 
 // Download functionality
