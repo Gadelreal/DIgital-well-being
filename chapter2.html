@@ -7,6 +7,8 @@
 <link rel="stylesheet" href="./css/styles.css">
 <!-- VideoJS CSS -->
 <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
+<!-- jsPDF Library for PDF generation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <!-- Font Awesome para iconos -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
@@ -1099,33 +1101,77 @@ function downloadAssessmentResponse() {
     reflection: document.getElementById('reflection-response').value || ''
   };
   
-  // Create downloadable content
-  const content = `Digital Well-being Assessment - Chapter 2 Touchpoint I
-Date: ${new Date().toLocaleDateString()}
-
-SCALE RESPONSES (1 = completely disagree, 5 = completely agree):
-1. I have decreased my screen time: ${responses.screenTime}
-2. I have stuck to my Digital Goals: ${responses.digitalGoals}
-3. I am closer to where I want to be: ${responses.closerToGoal}
-4. I have made more conscious use of my digital devices: ${responses.consciousUse}
-5. I feel better about my use of digital devices: ${responses.feelBetter}
-
-REFLECTION:
-How do you feel after completing the first two lessons of this course? Have you noticed any differences in your general well-being?
-
-${responses.reflection}
-`;
-
-  // Create and download file
-  const blob = new Blob([content], { type: 'text/plain' });
-  const url = window.URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'Chapter2_Assessment_Response.txt';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  window.URL.revokeObjectURL(url);
+  // Create PDF
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  
+  // Set font
+  doc.setFont("helvetica");
+  
+  // Title
+  doc.setFontSize(16);
+  doc.setFont("helvetica", "bold");
+  doc.text("Digital Well-being Assessment - Chapter 2 Touchpoint I", 20, 20);
+  
+  // Date
+  doc.setFontSize(12);
+  doc.setFont("helvetica", "normal");
+  doc.text(`Date: ${new Date().toLocaleDateString()}`, 20, 35);
+  
+  // Scale responses section
+  doc.setFontSize(14);
+  doc.setFont("helvetica", "bold");
+  doc.text("SCALE RESPONSES", 20, 55);
+  doc.setFontSize(10);
+  doc.setFont("helvetica", "italic");
+  doc.text("(1 = completely disagree, 5 = completely agree)", 20, 65);
+  
+  doc.setFontSize(11);
+  doc.setFont("helvetica", "normal");
+  let yPosition = 80;
+  
+  const questions = [
+    { label: "1. I have decreased my screen time:", value: responses.screenTime },
+    { label: "2. I have stuck to my Digital Goals:", value: responses.digitalGoals },
+    { label: "3. I am closer to where I want to be:", value: responses.closerToGoal },
+    { label: "4. I have made more conscious use of my digital devices:", value: responses.consciousUse },
+    { label: "5. I feel better about my use of digital devices:", value: responses.feelBetter }
+  ];
+  
+  questions.forEach(question => {
+    doc.text(question.label, 20, yPosition);
+    doc.setFont("helvetica", "bold");
+    doc.text(question.value || "Not answered", 180, yPosition);
+    doc.setFont("helvetica", "normal");
+    yPosition += 12;
+  });
+  
+  // Reflection section
+  yPosition += 10;
+  doc.setFontSize(14);
+  doc.setFont("helvetica", "bold");
+  doc.text("REFLECTION", 20, yPosition);
+  
+  yPosition += 15;
+  doc.setFontSize(11);
+  doc.setFont("helvetica", "italic");
+  const reflectionQuestion = "How do you feel after completing the first two lessons of this course? Have you noticed any differences in your general well-being?";
+  const splitQuestion = doc.splitTextToSize(reflectionQuestion, 170);
+  doc.text(splitQuestion, 20, yPosition);
+  yPosition += splitQuestion.length * 6 + 10;
+  
+  // Reflection answer
+  doc.setFont("helvetica", "normal");
+  if (responses.reflection) {
+    const splitReflection = doc.splitTextToSize(responses.reflection, 170);
+    doc.text(splitReflection, 20, yPosition);
+  } else {
+    doc.setFont("helvetica", "italic");
+    doc.text("No reflection provided", 20, yPosition);
+  }
+  
+  // Save the PDF
+  doc.save('Chapter2_Assessment_Response.pdf');
 }
 </script>
 </body>
