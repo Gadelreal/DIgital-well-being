@@ -89,8 +89,53 @@
   text-align: center;
   min-height: 400px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 2rem;
+}
+
+.chart-wrapper {
+  width: 100%;
+  max-width: 500px;
+  height: 400px;
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.legend-color {
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+}
+
+.chart-placeholder {
+  color: #666;
+  font-style: italic;
+  padding: 2rem;
 }
 
 .download-btn {
@@ -169,6 +214,80 @@
 @media (max-width: 768px) {
   .time-input-grid {
     grid-template-columns: 1fr;
+  }
+  
+  .chart-legend {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .chart-wrapper {
+    height: 300px;
+  }
+}
+
+.assessment-step {
+  margin-bottom: 2rem;
+}
+
+.assessment-step h4 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.scale-question {
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+}
+
+.scale-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.scale-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-width: 80px;
+}
+
+.scale-option input[type="radio"] {
+  margin-bottom: 0.5rem;
+  width: 20px;
+  height: 20px;
+}
+
+.scale-option label {
+  font-size: 0.8rem;
+  color: #666;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .scale-options {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .scale-option {
+    flex-direction: row;
+    min-width: auto;
+    width: 100%;
+    justify-content: flex-start;
+  }
+  
+  .scale-option input[type="radio"] {
+    margin-right: 1rem;
+    margin-bottom: 0;
   }
 }
 </style>
@@ -608,7 +727,43 @@
         </div>
         
         <div id="life-balance-chart" class="chart-container">
-          <!-- Chart will be generated here -->
+          <div class="chart-wrapper">
+            <canvas id="balance-chart-canvas"></canvas>
+          </div>
+          <div class="chart-legend" id="chart-legend">
+            <div class="legend-item">
+              <div class="legend-color" style="background-color: #FF6384;"></div>
+              <span>Sleep</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background-color: #36A2EB;"></div>
+              <span>Work</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background-color: #FFCE56;"></div>
+              <span>Family</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background-color: #4BC0C0;"></div>
+              <span>Hobbies</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background-color: #9966FF;"></div>
+              <span>Digital Use</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background-color: #FF9F40;"></div>
+              <span>Exercise</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background-color: #FF6B9D;"></div>
+              <span>Social</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background-color: #C9CBCF;"></div>
+              <span>Other</span>
+            </div>
+          </div>
         </div>
         
         <div class="reflection-question">
@@ -750,91 +905,168 @@
         <p>This quick check-in is designed to help you measure your progress and notice any positive changes. Measuring your progress periodically and journaling about it can promote consistency, beneficial insights, and a greater sense of self-efficacy. Use the scale from 1 to 5 to indicate how much you agree with each statement (1 = completely disagree, 5 = completely agree).</p>
         <p>After completing the scale, take a moment to reflect in writing. Your responses will be saved and available for download so you can see how far you've come.</p>
         
-        <h3><strong>Step 1:</strong> <strong>Indicate how much you agree with each statement</strong> <em>(1 = completely disagree, 5 = completely agree).</em></h3>
         
-        <div class="assessment-question">
-          <p class="question-text">I have decreased my screen time.</p>
-          <div class="radio-group">
-            <label><input type="radio" name="screen-time" value="1"> <em>1-Completely disagree</em></label>
-            <label><input type="radio" name="screen-time" value="2"> <em>2</em></label>
-            <label><input type="radio" name="screen-time" value="3"> <em>3</em></label>
-            <label><input type="radio" name="screen-time" value="4"> <em>4</em></label>
-            <label><input type="radio" name="screen-time" value="5"> <em>5-Completely agree</em></label>
-          </div>
-        </div>
-        
-        <div class="assessment-question">
-          <p class="question-text">I have stuck to my Digital Goals.</p>
-          <div class="radio-group">
-            <label><input type="radio" name="digital-goals" value="1"> <em>1-Completely disagree</em></label>
-            <label><input type="radio" name="digital-goals" value="2"> <em>2</em></label>
-            <label><input type="radio" name="digital-goals" value="3"> <em>3</em></label>
-            <label><input type="radio" name="digital-goals" value="4"> <em>4</em></label>
-            <label><input type="radio" name="digital-goals" value="5"> <em>5-Completely agree</em></label>
-          </div>
-        </div>
-        
-        <div class="assessment-question">
-          <p class="question-text">I am closer to where I want to be.</p>
-          <div class="radio-group">
-            <label><input type="radio" name="progress" value="1"> <em>1-Completely disagree</em></label>
-            <label><input type="radio" name="progress" value="2"> <em>2</em></label>
-            <label><input type="radio" name="progress" value="3"> <em>3</em></label>
-            <label><input type="radio" name="progress" value="4"> <em>4</em></label>
-            <label><input type="radio" name="progress" value="5"> <em>5-Completely agree</em></label>
-          </div>
-        </div>
-        
-        <div class="assessment-question">
-          <p class="question-text">I have made more conscious use of my digital devices.</p>
-          <div class="radio-group">
-            <label><input type="radio" name="conscious-use" value="1"> <em>1-Completely disagree</em></label>
-            <label><input type="radio" name="conscious-use" value="2"> <em>2</em></label>
-            <label><input type="radio" name="conscious-use" value="3"> <em>3</em></label>
-            <label><input type="radio" name="conscious-use" value="4"> <em>4</em></label>
-            <label><input type="radio" name="conscious-use" value="5"> <em>5-Completely agree</em></label>
-          </div>
-        </div>
-        
-        <div class="assessment-question">
-          <p class="question-text">I feel better about my use of digital devices.</p>
-          <div class="radio-group">
-            <label><input type="radio" name="feel-better" value="1"> <em>1-Completely disagree</em></label>
-            <label><input type="radio" name="feel-better" value="2"> <em>2</em></label>
-            <label><input type="radio" name="feel-better" value="3"> <em>3</em></label>
-            <label><input type="radio" name="feel-better" value="4"> <em>4</em></label>
-            <label><input type="radio" name="feel-better" value="5"> <em>5-Completely agree</em></label>
-          </div>
-        </div>
-        
-        <h3><strong>Step 2:</strong> <strong>Take a moment to reflect by responding to the question below</strong></h3>
-        
-        <div class="reflection-question">
-          <h3>How do you feel after completing the third and fourth lesson of this course? Have you noticed any differences in your general well-being?</h3>
-          <textarea 
-            id="wellbeing-reflection" 
-            class="reflection-textarea"
-            rows="6" 
-            placeholder="Please write a short description..."
-            aria-label="Well-being reflection"
-          ></textarea>
-          <div class="button-container">
-            <button 
-              type="button" 
-              class="save-button" 
-              data-reflection-id="wellbeing-reflection"
-              aria-describedby="feedback-wellbeing-reflection"
-            >
-              <i class="fas fa-save" aria-hidden="true"></i> Save Reflection
-            </button>
-            <span id="feedback-wellbeing-reflection" class="save-feedback" aria-live="polite"></span>
-          </div>
-        </div>
-        
-        <button id="download-assessment-response" class="download-btn">
-          <i class="fas fa-download" aria-hidden="true"></i>
-          Download my response
-        </button>
+<div class="assessment-step">
+  <h4><strong>Step 1:</strong> <strong>Indicate how much you agree with each statement</strong> <em>(1 = completely disagree, 5 = completely agree).</em></h4>
+  
+  <div class="scale-question">
+    <p><strong>I have decreased my screen time.</strong></p>
+    <div class="scale-options">
+      <div class="scale-option">
+        <input type="radio" id="q1-1" name="screen-time" value="1">
+        <label for="q1-1">1-Completely disagree</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q1-2" name="screen-time" value="2">
+        <label for="q1-2">2</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q1-3" name="screen-time" value="3">
+        <label for="q1-3">3</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q1-4" name="screen-time" value="4">
+        <label for="q1-4">4</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q1-5" name="screen-time" value="5">
+        <label for="q1-5">5-Completely agree</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="scale-question">
+    <p><strong>I have stuck to my Digital Goals.</strong></p>
+    <div class="scale-options">
+      <div class="scale-option">
+        <input type="radio" id="q2-1" name="digital-goals" value="1">
+        <label for="q2-1">1-Completely disagree</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q2-2" name="digital-goals" value="2">
+        <label for="q2-2">2</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q2-3" name="digital-goals" value="3">
+        <label for="q2-3">3</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q2-4" name="digital-goals" value="4">
+        <label for="q2-4">4</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q2-5" name="digital-goals" value="5">
+        <label for="q2-5">5-Completely agree</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="scale-question">
+    <p><strong>I am closer to where I want to be.</strong></p>
+    <div class="scale-options">
+      <div class="scale-option">
+        <input type="radio" id="q3-1" name="progress" value="1">
+        <label for="q3-1">1-Completely disagree</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q3-2" name="progress" value="2">
+        <label for="q3-2">2</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q3-3" name="progress" value="3">
+        <label for="q3-3">3</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q3-4" name="progress" value="4">
+        <label for="q3-4">4</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q3-5" name="progress" value="5">
+        <label for="q3-5">5-Completely agree</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="scale-question">
+    <p><strong>I have made more conscious use of my digital devices.</strong></p>
+    <div class="scale-options">
+      <div class="scale-option">
+        <input type="radio" id="q4-1" name="conscious-use" value="1">
+        <label for="q4-1">1-Completely disagree</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q4-2" name="conscious-use" value="2">
+        <label for="q4-2">2</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q4-3" name="conscious-use" value="3">
+        <label for="q4-3">3</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q4-4" name="conscious-use" value="4">
+        <label for="q4-4">4</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q4-5" name="conscious-use" value="5">
+        <label for="q4-5">5-Completely agree</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="scale-question">
+    <p><strong>I feel better about my use of digital devices.</strong></p>
+    <div class="scale-options">
+      <div class="scale-option">
+        <input type="radio" id="q5-1" name="feel-better" value="1">
+        <label for="q5-1">1-Completely disagree</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q5-2" name="feel-better" value="2">
+        <label for="q5-2">2</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q5-3" name="feel-better" value="3">
+        <label for="q5-3">3</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q5-4" name="feel-better" value="4">
+        <label for="q5-4">4</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q5-5" name="feel-better" value="5">
+        <label for="q5-5">5-Completely agree</label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="assessment-step">
+  <h4><strong>Step 2:</strong> <strong>Take a moment to reflect by responding to the question below</strong></h4>
+  <p>How do you feel after completing the third and fourth lesson of this course? Have you noticed any differences in your general well-being?</p>
+  <textarea 
+    id="wellbeing-reflection" 
+    class="reflection-textarea"
+    rows="6" 
+    placeholder="Please write a short description..."
+    aria-label="Well-being reflection"
+  ></textarea>
+  <div class="button-container">
+    <button 
+      type="button" 
+      class="save-button" 
+      data-reflection-id="wellbeing-reflection"
+      aria-describedby="feedback-wellbeing-reflection"
+    >
+      <i class="fas fa-save" aria-hidden="true"></i> Save Reflection
+    </button>
+    <span id="feedback-wellbeing-reflection" class="save-feedback" aria-live="polite"></span>
+  </div>
+</div>
+
+<button id="download-assessment-response" class="download-btn">
+  <i class="fas fa-download" aria-hidden="true"></i>
+  Download my response
+</button>
       </div>
     </section>
     
@@ -1123,166 +1355,355 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // Update chart if it's a time input
       if (element.id && element.id.includes('-hours')) {
-        updateLifeBalanceChart();
+        updateChart();
+      }
+    });
+    
+    element.addEventListener('change', function() {
+      if (element.type === 'radio') {
+        sessionStorage.setItem(`chapter4_${element.name}`, element.value);
       }
     });
   });
   
-  // Life Balance Chart
-  let balanceChart = null;
+  // Save button functionality
+  const saveButtons = document.querySelectorAll('.save-button');
+  saveButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const reflectionId = this.getAttribute('data-reflection-id');
+      const textarea = document.getElementById(reflectionId);
+      const feedback = document.getElementById(`feedback-${reflectionId}`);
+      
+      if (textarea && textarea.value.trim()) {
+        sessionStorage.setItem(`chapter4_${reflectionId}`, textarea.value);
+        feedback.textContent = 'Reflection saved!';
+        feedback.style.color = '#28a745';
+        setTimeout(() => {
+          feedback.textContent = '';
+        }, 3000);
+      } else {
+        feedback.textContent = 'Please write your reflection first.';
+        feedback.style.color = '#dc3545';
+        setTimeout(() => {
+          feedback.textContent = '';
+        }, 3000);
+      }
+    });
+  });
+});
+
+// Chart functionality
+let balanceChart = null;
+
+const chartColors = [
+  '#FF6384', // Sleep - Pink
+  '#36A2EB', // Work - Blue
+  '#FFCE56', // Family - Yellow
+  '#4BC0C0', // Hobbies - Teal
+  '#9966FF', // Digital Use - Purple
+  '#FF9F40', // Exercise - Orange
+  '#FF6B9D', // Social - Light Pink
+  '#C9CBCF'  // Other - Gray
+];
+
+const activityLabels = ['Sleep', 'Work', 'Family', 'Hobbies', 'Digital Use', 'Exercise', 'Social', 'Other'];
+
+function updateChart() {
+  const canvas = document.getElementById('balance-chart-canvas');
+  const ctx = canvas.getContext('2d');
   
-  function updateLifeBalanceChart() {
-    const sleepHours = parseInt(document.getElementById('sleep-hours').value) || 0;
-    const workHours = parseInt(document.getElementById('work-hours').value) || 0;
-    const familyHours = parseInt(document.getElementById('family-hours').value) || 0;
-    const hobbiesHours = parseInt(document.getElementById('hobbies-hours').value) || 0;
-    const digitalHours = parseInt(document.getElementById('digital-hours').value) || 0;
-    const exerciseHours = parseInt(document.getElementById('exercise-hours').value) || 0;
-    const socialHours = parseInt(document.getElementById('social-hours').value) || 0;
-    const otherHours = parseInt(document.getElementById('other-hours').value) || 0;
+  // Get values from inputs
+  const values = [
+    parseInt(document.getElementById('sleep-hours').value) || 0,
+    parseInt(document.getElementById('work-hours').value) || 0,
+    parseInt(document.getElementById('family-hours').value) || 0,
+    parseInt(document.getElementById('hobbies-hours').value) || 0,
+    parseInt(document.getElementById('digital-hours').value) || 0,
+    parseInt(document.getElementById('exercise-hours').value) || 0,
+    parseInt(document.getElementById('social-hours').value) || 0,
+    parseInt(document.getElementById('other-hours').value) || 0
+  ];
+  
+  // Check if any values exist
+  const hasData = values.some(value => value > 0);
+  
+  if (balanceChart) {
+    balanceChart.destroy();
+  }
+  
+  if (hasData) {
+    // Filter out zero values for the chart
+    const filteredData = [];
+    const filteredLabels = [];
+    const filteredColors = [];
     
-    const data = [sleepHours, workHours, familyHours, hobbiesHours, digitalHours, exerciseHours, socialHours, otherHours];
-    const labels = ['Sleep', 'Work', 'Family', 'Hobbies', 'Digital Use', 'Exercise', 'Social', 'Other'];
-    const colors = ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40', '#FF6384', '#C9CBCF'];
+    values.forEach((value, index) => {
+      if (value > 0) {
+        filteredData.push(value);
+        filteredLabels.push(activityLabels[index]);
+        filteredColors.push(chartColors[index]);
+      }
+    });
     
-    const ctx = document.getElementById('life-balance-chart');
-    if (!ctx) return;
-    
-    // Create canvas if it doesn't exist
-    let canvas = ctx.querySelector('canvas');
-    if (!canvas) {
-      canvas = document.createElement('canvas');
-      canvas.width = 400;
-      canvas.height = 400;
-      ctx.appendChild(canvas);
-    }
-    
-    if (balanceChart) {
-      balanceChart.destroy();
-    }
-    
-    balanceChart = new Chart(canvas, {
+    balanceChart = new Chart(ctx, {
       type: 'pie',
       data: {
-        labels: labels,
+        labels: filteredLabels,
         datasets: [{
-          data: data,
-          backgroundColor: colors,
-          borderWidth: 2,
-          borderColor: '#fff'
+          data: filteredData,
+          backgroundColor: filteredColors,
+          borderColor: '#fff',
+          borderWidth: 2
         }]
       },
       options: {
         responsive: true,
+        maintainAspectRatio: false,
         plugins: {
           legend: {
-            position: 'bottom'
+            display: false // We'll use our custom legend
           },
-          title: {
-            display: true,
-            text: 'Life Balance Cake'
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                const label = context.label || '';
+                const value = context.parsed;
+                const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                const percentage = ((value / total) * 100).toFixed(1);
+                return `${label}: ${value} hours (${percentage}%)`;
+              }
+            }
           }
         }
       }
     });
+  } else {
+    // Clear the canvas if no data
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#666';
+    ctx.font = '16px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText('Enter hours above to see your life balance chart', canvas.width / 2, canvas.height / 2);
   }
+}
+
+// Initialize chart on page load
+document.addEventListener('DOMContentLoaded', function() {
+  // Set up time input listeners
+  const timeInputs = document.querySelectorAll('input[id$="-hours"]');
+  timeInputs.forEach(input => {
+    input.addEventListener('input', updateChart);
+  });
   
-  // Initialize chart
-  updateLifeBalanceChart();
-  
-  // Download functions
-  function generatePDF(title, content) {
+  // Initial chart update
+  updateChart();
+});
+
+// Download functionality
+document.addEventListener('DOMContentLoaded', function() {
+  // Goals Review Download
+  document.getElementById('download-goals-review').addEventListener('click', function() {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
     
-    doc.setFontSize(16);
-    doc.text(title, 20, 20);
+    doc.setFontSize(18);
+    doc.text('Digital Goals Review - Chapter 4', 20, 20);
     
     doc.setFontSize(12);
     let yPosition = 40;
     
-    content.forEach(item => {
-      if (yPosition > 270) {
-        doc.addPage();
-        yPosition = 20;
-      }
-      
-      doc.setFont(undefined, 'bold');
-      doc.text(item.question, 20, yPosition);
+    // Progress reflection
+    const progressReflection = sessionStorage.getItem('chapter4_progress-reflection') || '';
+    if (progressReflection) {
+      doc.text('Progress and Effort Reflection:', 20, yPosition);
       yPosition += 10;
-      
-      doc.setFont(undefined, 'normal');
-      const splitText = doc.splitTextToSize(item.answer || 'No response provided', 170);
-      doc.text(splitText, 20, yPosition);
-      yPosition += splitText.length * 5 + 10;
-    });
+      const progressLines = doc.splitTextToSize(progressReflection, 170);
+      doc.text(progressLines, 20, yPosition);
+      yPosition += progressLines.length * 5 + 10;
+    }
     
-    doc.save(`${title.replace(/[^a-z0-9]/gi, '_').toLowerCase()}.pdf`);
-  }
-  
-  // Goals Review Download
-  document.getElementById('download-goals-review')?.addEventListener('click', function() {
-    const content = [
-      {
-        question: 'How would you rate your progress and effort? Where are you now, compared to where you were then? Are you closer to consolidating Digital Habits that serve you?',
-        answer: document.getElementById('progress-reflection').value
-      },
-      {
-        question: 'Consider the insights from this journey, were your Digital Goals suitable? What habits worked for you, and which ones didn\'t? How could you make adjustments to your habits to suit your routine, day-to-day activities, and values?',
-        answer: document.getElementById('insights-reflection').value
-      }
-    ];
+    // Insights reflection
+    const insightsReflection = sessionStorage.getItem('chapter4_insights-reflection') || '';
+    if (insightsReflection) {
+      doc.text('Insights and Adjustments:', 20, yPosition);
+      yPosition += 10;
+      const insightsLines = doc.splitTextToSize(insightsReflection, 170);
+      doc.text(insightsLines, 20, yPosition);
+      yPosition += insightsLines.length * 5 + 10;
+    }
     
-    generatePDF('Digital Goals Review', content);
+    doc.save('chapter4-goals-review.pdf');
   });
   
-  // Relationship Response Download
-  document.getElementById('download-relationship-response')?.addEventListener('click', function() {
-    const content = [
-      {
-        question: 'What tools worked best for you? Which ones were the most challenging? How will you keep them apart of your daily routine?',
-        answer: document.getElementById('tools-reflection').value
-      },
-      {
-        question: 'How will these exercises help your tech-life balance in the future?',
-        answer: document.getElementById('balance-reflection').value
-      },
-      {
-        question: 'Which practices can you implement to have a better relationship with your devices, considering your own unique journey?',
-        answer: document.getElementById('practices-reflection').value
-      }
-    ];
-    
-    generatePDF('Building Positive Relationship with Technology', content);
-  });
-  
-  // Balance Response Download
-  document.getElementById('download-balance-response')?.addEventListener('click', function() {
-    const content = [
-      {
-        question: 'Time Distribution (Hours per week)',
-        answer: `Sleep: ${document.getElementById('sleep-hours').value || 0}, Work: ${document.getElementById('work-hours').value || 0}, Family: ${document.getElementById('family-hours').value || 0}, Hobbies: ${document.getElementById('hobbies-hours').value || 0}, Digital Use: ${document.getElementById('digital-hours').value || 0}, Exercise: ${document.getElementById('exercise-hours').value || 0}, Social: ${document.getElementById('social-hours').value || 0}, Other: ${document.getElementById('other-hours').value || 0}`
-      },
-      {
-        question: 'Are some slices larger than you expected? Does the balance reflect your values and priorities? Is your digital use taking more space than you\'d like?',
-        answer: document.getElementById('balance-observation').value
-      },
-      {
-        question: 'Think about one or two digital habits you could reduce and write your reflection below. What could you do instead with that reclaimed time?',
-        answer: document.getElementById('habit-reduction').value
-      }
-    ];
-    
-    generatePDF('Life Balance Reflection', content);
-  });
-  
-  // Buddy Template Download
-  document.getElementById('download-buddy-template')?.addEventListener('click', function() {
+  // Relationship Building Download
+  document.getElementById('download-relationship-response').addEventListener('click', function() {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
     
-    doc.setFontSize(16);
+    doc.setFontSize(18);
+    doc.text('Building Positive Relationship with Technology - Chapter 4', 20, 20);
+    
+    doc.setFontSize(12);
+    let yPosition = 40;
+    
+    // Tools reflection
+    const toolsReflection = sessionStorage.getItem('chapter4_tools-reflection') || '';
+    if (toolsReflection) {
+      doc.text('Tools and Challenges:', 20, yPosition);
+      yPosition += 10;
+      const toolsLines = doc.splitTextToSize(toolsReflection, 170);
+      doc.text(toolsLines, 20, yPosition);
+      yPosition += toolsLines.length * 5 + 10;
+    }
+    
+    // Balance reflection
+    const balanceReflection = sessionStorage.getItem('chapter4_balance-reflection') || '';
+    if (balanceReflection) {
+      doc.text('Tech-Life Balance Future:', 20, yPosition);
+      yPosition += 10;
+      const balanceLines = doc.splitTextToSize(balanceReflection, 170);
+      doc.text(balanceLines, 20, yPosition);
+      yPosition += balanceLines.length * 5 + 10;
+    }
+    
+    // Practices reflection
+    const practicesReflection = sessionStorage.getItem('chapter4_practices-reflection') || '';
+    if (practicesReflection) {
+      doc.text('Better Device Relationship Practices:', 20, yPosition);
+      yPosition += 10;
+      const practicesLines = doc.splitTextToSize(practicesReflection, 170);
+      doc.text(practicesLines, 20, yPosition);
+      yPosition += practicesLines.length * 5 + 10;
+    }
+    
+    doc.save('chapter4-relationship-building.pdf');
+  });
+  
+  // Balance Activity Download
+  document.getElementById('download-balance-response').addEventListener('click', function() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    
+    doc.setFontSize(18);
+    doc.text('Rituals for Digital Flourishing - Chapter 4', 20, 20);
+    
+    doc.setFontSize(12);
+    let yPosition = 40;
+    
+    // Time allocation data
+    doc.text('Time Allocation (hours per week):', 20, yPosition);
+    yPosition += 15;
+    
+    const activities = ['sleep', 'work', 'family', 'hobbies', 'digital', 'exercise', 'social', 'other'];
+    const labels = ['Sleep', 'Work', 'Family', 'Hobbies', 'Digital Use', 'Exercise', 'Social', 'Other'];
+    
+    activities.forEach((activity, index) => {
+      const hours = sessionStorage.getItem(`chapter4_${activity}-hours`) || '0';
+      doc.text(`${labels[index]}: ${hours} hours`, 30, yPosition);
+      yPosition += 8;
+    });
+    
+    yPosition += 10;
+    
+    // Balance observation
+    const balanceObservation = sessionStorage.getItem('chapter4_balance-observation') || '';
+    if (balanceObservation) {
+      doc.text('Balance Observation:', 20, yPosition);
+      yPosition += 10;
+      const observationLines = doc.splitTextToSize(balanceObservation, 170);
+      doc.text(observationLines, 20, yPosition);
+      yPosition += observationLines.length * 5 + 10;
+    }
+    
+    // Habit reduction
+    const habitReduction = sessionStorage.getItem('chapter4_habit-reduction') || '';
+    if (habitReduction) {
+      doc.text('Digital Habit Reduction Ideas:', 20, yPosition);
+      yPosition += 10;
+      const reductionLines = doc.splitTextToSize(habitReduction, 170);
+      doc.text(reductionLines, 20, yPosition);
+      yPosition += reductionLines.length * 5 + 10;
+    }
+    
+    doc.save('chapter4-digital-flourishing.pdf');
+  });
+  
+  // Buddy Template Download
+  document.getElementById('download-buddy-template').addEventListener('click', function() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    
+    doc.setFontSize(18);
     doc.text('Accountability Buddy Planning Template', 20, 20);
     
     doc.setFontSize(12);
+    let yPosition = 40;
+    
     const questions = [
+      'Who in your life could serve as your accountability buddy?',
+      'What specific digital well-being goals would you share with them?',
+      'How often would you check in with each other?',
+      'What format would work best for your check-ins (text, call, in-person)?',
+      'How would you celebrate progress together?',
+      'What would you do if one of you falls off track?',
+      'How could you also support them in their goals?'
+    ];
+    
+    questions.forEach(question => {
+      doc.text(question, 20, yPosition);
+      yPosition += 10;
+      doc.text('_'.repeat(80), 20, yPosition);
+      yPosition += 15;
+      doc.text('_'.repeat(80), 20, yPosition);
+      yPosition += 20;
+    });
+    
+    doc.save('accountability-buddy-template.pdf');
+  });
+  
+  // Assessment Download
+  document.getElementById('download-assessment-response').addEventListener('click', function() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    
+    doc.setFontSize(18);
+    doc.text('End of Lesson Assessment: Touchpoint II - Chapter 4', 20, 20);
+    
+    doc.setFontSize(12);
+    let yPosition = 40;
+    
+    // Assessment responses
+    const questions = [
+      { name: 'screen-time', text: 'I have decreased my screen time.' },
+      { name: 'digital-goals', text: 'I have stuck to my Digital Goals.' },
+      { name: 'progress', text: 'I am closer to where I want to be.' },
+      { name: 'conscious-use', text: 'I have made more conscious use of my digital devices.' },
+      { name: 'feel-better', text: 'I feel better about my use of digital devices.' }
+    ];
+    
+    doc.text('Assessment Responses (1=Completely disagree, 5=Completely agree):', 20, yPosition);
+    yPosition += 15;
+    
+    questions.forEach(question => {
+      const response = sessionStorage.getItem(`chapter4_${question.name}`) || 'Not answered';
+      doc.text(`${question.text}`, 20, yPosition);
+      yPosition += 8;
+      doc.text(`Response: ${response}`, 30, yPosition);
+      yPosition += 15;
+    });
+    
+    // Well-being reflection
+    const wellbeingReflection = sessionStorage.getItem('chapter4_wellbeing-reflection') || '';
+    if (wellbeingReflection) {
+      doc.text('Well-being Reflection:', 20, yPosition);
+      yPosition += 10;
+      const reflectionLines = doc.splitTextToSize(wellbeingReflection, 170);
+      doc.text(reflectionLines, 20, yPosition);
+    }
+    
+    doc.save('chapter4-assessment-touchpoint-ii.pdf');
+  });
+});
+</script>
+</body>
+</html>
