@@ -1392,8 +1392,65 @@
 <script src="js/reflections.js"></script>
 <script src="js/main.js"></script>
 <script>
+// Session Storage Functions for Chapter 3 Activities
+function saveToSession(key, value) {
+  try {
+    sessionStorage.setItem(`chapter3_${key}`, JSON.stringify(value));
+  } catch (error) {
+    console.warn('Could not save to session storage:', error);
+  }
+}
+
+function loadFromSession(key) {
+  try {
+    const value = sessionStorage.getItem(`chapter3_${key}`);
+    return value ? JSON.parse(value) : null;
+  } catch (error) {
+    console.warn('Could not load from session storage:', error);
+    return null;
+  }
+}
+
+// Load saved responses on page load
+function loadSavedResponses() {
+  // Load attention activity responses
+  for (let i = 1; i <= 4; i++) {
+    const savedValue = loadFromSession(`attention_${i}`);
+    if (savedValue) {
+      const dropdown = document.getElementById(`attention-${i}`);
+      if (dropdown) {
+        dropdown.value = savedValue;
+      }
+    }
+  }
+
+  // Load quiz responses
+  const savedQuizResponses = loadFromSession('quiz_responses');
+  if (savedQuizResponses) {
+    Object.keys(savedQuizResponses).forEach(questionId => {
+      const selectedOption = savedQuizResponses[questionId];
+      const optionElement = document.querySelector(`[data-question="${questionId}"] [data-option="${selectedOption}"]`);
+      if (optionElement) {
+        optionElement.classList.add('selected');
+      }
+    });
+  }
+
+  // Load reflection response
+  const savedReflection = loadFromSession('sleep_reflection');
+  if (savedReflection) {
+    const reflectionTextarea = document.getElementById('sleep-reflection');
+    if (reflectionTextarea) {
+      reflectionTextarea.value = savedReflection;
+    }
+  }
+}
+
 // Glossary Modal Functionality
 document.addEventListener('DOMContentLoaded', function() {
+  // Load saved responses
+  loadSavedResponses();
+
   const modal = document.getElementById('glossary-modal');
   const openBtn = document.getElementById('open-glossary');
   const menuLink = document.getElementById('glossary-menu-link');
@@ -1466,6 +1523,16 @@ document.addEventListener('DOMContentLoaded', function() {
   const checkAnswersBtn = document.getElementById('check-answers');
   const overallFeedback = document.getElementById('overall-feedback');
   
+  // Add event listeners to dropdowns to save responses
+  for (let i = 1; i <= 4; i++) {
+    const dropdown = document.getElementById(`attention-${i}`);
+    if (dropdown) {
+      dropdown.addEventListener('change', function() {
+        saveToSession(`attention_${i}`, this.value);
+      });
+    }
+  }
+  
   if (checkAnswersBtn) {
     checkAnswersBtn.addEventListener('click', function() {
       checkAttentionAnswers();
@@ -1505,6 +1572,13 @@ document.addEventListener('DOMContentLoaded', function() {
       overallFeedback.className = 'overall-feedback partial';
     }
     
+    // Save completion status
+    saveToSession('attention_activity_completed', {
+      score: correctCount,
+      total: totalQuestions,
+      timestamp: new Date().toISOString()
+    });
+    
     // Scroll to feedback
     overallFeedback.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
@@ -1513,6 +1587,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // Multiple Choice Test Functionality
 document.addEventListener('DOMContentLoaded', function() {
   const quizOptions = document.querySelectorAll('.quiz-option');
+  let quizResponses = loadFromSession('quiz_responses') || {};
   
   quizOptions.forEach(option => {
     option.addEventListener('click', function() {
@@ -1520,6 +1595,10 @@ document.addEventListener('DOMContentLoaded', function() {
       const questionNumber = question.dataset.question;
       const selectedOption = this.dataset.option;
       const isCorrect = this.dataset.correct === 'true';
+      
+      // Save the response
+      quizResponses[questionNumber] = selectedOption;
+      saveToSession('quiz_responses', quizResponses);
       
       // Remove previous selections and feedback in this question
       const allOptionsInQuestion = question.querySelectorAll('.quiz-option');
@@ -1544,6 +1623,72 @@ document.addEventListener('DOMContentLoaded', function() {
       feedback.classList.add('show');
     });
   });
+});
+
+// Reflection Question Functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const reflectionTextarea = document.getElementById('sleep-reflection');
+  const saveButton = document.querySelector('[data-reflection-id="sleep-reflection"]');
+  const feedbackElement = document.getElementById('feedback-sleep-reflection');
+
+  if (reflectionTextarea) {
+    // Auto-save as user types (with debounce)
+    let saveTimeout;
+    reflectionTextarea.addEventListener('input', function() {
+      clearTimeout(saveTimeout);
+      saveTimeout = setTimeout(() => {
+        saveToSession('sleep_reflection', this.value);
+      }, 1000); // Save after 1 second of no typing
+    });
+  }
+
+  if (saveButton) {
+    saveButton.addEventListener('click', function() {
+      const reflectionText = reflectionTextarea.value.trim();
+      
+      if (!reflectionText) {
+        feedbackElement.textContent = "Please enter some text before saving";
+        feedbackElement.classList.add('show');
+        feedbackElement.style.color = '#d32f2f';
+        
+        setTimeout(() => {
+          feedbackElement.classList.remove('show');
+        }, 3000);
+        
+        reflectionTextarea.focus();
+        return;
+      }
+
+      // Save to session storage
+      saveToSession('sleep_reflection', reflectionText);
+      saveToSession('sleep_reflection_saved', {
+        timestamp: new Date().toISOString(),
+        wordCount: reflectionText.split(/\s+/).length
+      });
+
+      // Show success feedback
+      feedbackElement.textContent = "Reflection saved successfully!";
+      feedbackElement.classList.add('show');
+      feedbackElement.style.color = '';
+      
+      setTimeout(() => {
+        feedbackElement.classList.remove('show');
+      }, 3000);
+
+      // Announce for screen readers
+      const ariaLiveRegion = document.createElement('div');
+      ariaLiveRegion.setAttribute('aria-live', 'polite');
+      ariaLiveRegion.className = 'sr-only';
+      ariaLiveRegion.textContent = 'Your reflection has been saved successfully.';
+      document.body.appendChild(ariaLiveRegion);
+
+      setTimeout(() => {
+        if (ariaLiveRegion.parentNode) {
+          ariaLiveRegion.parentNode.removeChild(ariaLiveRegion);
+        }
+      }, 3000);
+    });
+  }
 });
 </script>
 </body>
