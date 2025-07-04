@@ -324,8 +324,9 @@
 
 .infographic-item {
   display: flex;
-  align-items: center; /* Change from flex-start to center for better alignment */
-  gap: 1rem;
+  flex-direction: column; /* Change to column layout */
+  align-items: flex-start; /* Align everything to the left */
+  gap: 0.5rem; /* Smaller gap between elements */
   margin-bottom: 24px;
   padding: 1.5rem;
   background-color: white;
@@ -336,11 +337,23 @@
 }
 
 .infographic-item:hover {
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Slightly stronger shadow on hover */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .infographic-item:last-child {
-  margin-bottom: 0; /* Remove margin from last item */
+  margin-bottom: 0;
+}
+
+.infographic-icon {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem; /* Add space below icon */
+  align-self: flex-start; /* Ensure icon stays left-aligned */
+}
+
+.infographic-text {
+  width: 100%; /* Take full width */
+  text-align: left; /* Align text to the left */
 }
 
 .infographic-text .stat {
@@ -348,21 +361,14 @@
   font-weight: bold;
   color: #333;
   display: block;
+  margin-bottom: 0.25rem; /* Small space between number and description */
 }
 
 .infographic-text .description {
   font-size: 0.95rem;
   color: #555;
   line-height: 1.4;
-}
-
-.infographic-icon {
-  font-size: 1.5rem;
-  color: var(--primary-color);
-  margin-top: 0; /* Remove margin-top */
-  flex-shrink: 0; /* Prevent icon from shrinking */
-  display: flex;
-  align-items: center; /* Center the icon vertically */
+  margin: 0; /* Remove any default margins */
 }
 </style>
 </head>
@@ -772,6 +778,7 @@
         </li>
         <li class="quiz-option" data-option="b" data-correct="false">
           <label class="option-label">
+            <span class="option-letter">b.</span>
             <span class="option-text">It helps you make decisions.</span>
           </label>
           <div class="option-feedback incorrect-feedback">
