@@ -1364,6 +1364,40 @@ document.addEventListener('DOMContentLoaded', function() {
 <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
+function showChartMessage(message, color) {
+  const chartWrapper = document.querySelector('.chart-wrapper');
+  let messageDiv = chartWrapper.querySelector('.chart-message');
+  
+  if (!messageDiv) {
+    messageDiv = document.createElement('div');
+    messageDiv.className = 'chart-message';
+    messageDiv.style.cssText = `
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      font-size: 16px;
+      line-height: 1.5;
+      padding: 20px;
+      max-width: 80%;
+      z-index: 10;
+    `;
+    chartWrapper.appendChild(messageDiv);
+  }
+  
+  messageDiv.innerHTML = message;
+  messageDiv.style.color = color;
+  messageDiv.style.display = 'block';
+}
+
+function hideChartMessage() {
+  const messageDiv = document.querySelector('.chart-message');
+  if (messageDiv) {
+    messageDiv.style.display = 'none';
+  }
+}
+
 // Chart functionality with validation
 let balanceChart = null;
 
@@ -1449,6 +1483,9 @@ function updateChart() {
   }
   
   if (hasData && isValid) {
+    // Hide any existing message
+    hideChartMessage();
+    
     // Filter out zero values for the chart
     const filteredData = [];
     const filteredLabels = [];
@@ -1497,19 +1534,13 @@ function updateChart() {
   } else if (!hasData) {
     // Clear the canvas if no data
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = '#666';
-    ctx.font = '16px Arial';
-    ctx.textAlign = 'center';
-    ctx.fillText('Please enter your weekly hours above (maximum 168 hours total)', canvas.width / 2, canvas.height / 2 - 10);
-    ctx.fillText('A week has 168 hours - allocate your time across activities', canvas.width / 2, canvas.height / 2 + 10);
+    // Show text message in HTML instead of canvas
+    showChartMessage('Please enter your weekly hours above (maximum 168 hours total).<br>A week has 168 hours - allocate your time across activities.', '#666');
   } else if (!isValid) {
     // Clear the canvas if validation fails
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = '#dc3545';
-    ctx.font = '16px Arial';
-    ctx.textAlign = 'center';
-    ctx.fillText('You cannot exceed 168 hours total in your activities.', canvas.width / 2, canvas.height / 2 - 10);
-    ctx.fillText('Please correct this to continue.', canvas.width / 2, canvas.height / 2 + 10);
+    // Show error message in HTML instead of canvas
+    showChartMessage('You cannot exceed 168 hours total in your activities.<br>Please correct this to continue.', '#dc3545');
   }
 }
 
