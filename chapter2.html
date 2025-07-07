@@ -1147,14 +1147,24 @@ async function downloadAssessmentResponse() {
   // Scale responses section
   doc.setFontSize(14);
   doc.setFont("helvetica", "bold");
-  doc.text("SCALE RESPONSES", 20, startY + 45);
+  let yPosition = startY + 45;
+  
+  // Check if we need a new page
+  if (yPosition > 270) {
+    doc.addPage();
+    yPosition = 20;
+  }
+  
+  doc.text("SCALE RESPONSES", 20, yPosition);
+  yPosition += 10;
+  
   doc.setFontSize(10);
   doc.setFont("helvetica", "italic");
-  doc.text("(1 = completely disagree, 5 = completely agree)", 20, startY + 55);
+  doc.text("(1 = completely disagree, 5 = completely agree)", 20, yPosition);
+  yPosition += 15;
   
   doc.setFontSize(11);
   doc.setFont("helvetica", "normal");
-  let yPosition = startY + 70;
   
   const questions = [
     { label: "1. I have decreased my screen time:", value: responses.screenTime },
@@ -1165,6 +1175,12 @@ async function downloadAssessmentResponse() {
   ];
   
   questions.forEach(question => {
+    // Check if we need a new page
+    if (yPosition > 270) {
+      doc.addPage();
+      yPosition = 20;
+    }
+    
     doc.text(question.label, 20, yPosition);
     doc.setFont("helvetica", "bold");
     doc.text(question.value || "Not answered", 180, yPosition);
@@ -1174,6 +1190,13 @@ async function downloadAssessmentResponse() {
   
   // Reflection section
   yPosition += 10;
+  
+  // Check if we need a new page for reflection section
+  if (yPosition > 250) {
+    doc.addPage();
+    yPosition = 20;
+  }
+  
   doc.setFontSize(14);
   doc.setFont("helvetica", "bold");
   doc.text("REFLECTION", 20, yPosition);
@@ -1183,6 +1206,13 @@ async function downloadAssessmentResponse() {
   doc.setFont("helvetica", "italic");
   const reflectionQuestion = "How do you feel after completing the first two lessons of this course? Have you noticed any differences in your general well-being?";
   const splitQuestion = doc.splitTextToSize(reflectionQuestion, 170);
+  
+  // Check if question fits on current page
+  if (yPosition + (splitQuestion.length * 6) > 270) {
+    doc.addPage();
+    yPosition = 20;
+  }
+  
   doc.text(splitQuestion, 20, yPosition);
   yPosition += splitQuestion.length * 6 + 10;
   
@@ -1190,8 +1220,38 @@ async function downloadAssessmentResponse() {
   doc.setFont("helvetica", "normal");
   if (responses.reflection) {
     const splitReflection = doc.splitTextToSize(responses.reflection, 170);
-    doc.text(splitReflection, 20, yPosition);
+    
+    // Handle long reflections that might span multiple pages
+    let remainingLines = [...splitReflection];
+    
+    while (remainingLines.length > 0) {
+      // Calculate how many lines can fit on current page
+      const availableSpace = 280 - yPosition;
+      const linesPerPage = Math.floor(availableSpace / 6);
+      
+      if (linesPerPage <= 0) {
+        doc.addPage();
+        yPosition = 20;
+        continue;
+      }
+      
+      // Take lines that fit on current page
+      const linesToAdd = remainingLines.splice(0, linesPerPage);
+      doc.text(linesToAdd, 20, yPosition);
+      yPosition += linesToAdd.length * 6;
+      
+      // If there are more lines, add a new page
+      if (remainingLines.length > 0) {
+        doc.addPage();
+        yPosition = 20;
+      }
+    }
   } else {
+    // Check if "No reflection provided" fits
+    if (yPosition > 270) {
+      doc.addPage();
+      yPosition = 20;
+    }
     doc.setFont("helvetica", "italic");
     doc.text("No reflection provided", 20, yPosition);
   }

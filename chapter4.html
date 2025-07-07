@@ -1606,6 +1606,11 @@ async function downloadGoalsReview() {
   let yPosition = startY + 45;
   
   // Progress reflection
+  if (yPosition > 250) {
+    doc.addPage();
+    yPosition = 20;
+  }
+  
   doc.setFontSize(14);
   doc.setFont("helvetica", "bold");
   doc.text("PROGRESS REFLECTION", 20, yPosition);
@@ -1615,21 +1620,59 @@ async function downloadGoalsReview() {
   doc.setFont("helvetica", "italic");
   const progressQuestion = "How would you rate your progress and effort? Where are you now, compared to where you were then? Are you closer to consolidating Digital Habits that serve you?";
   const splitProgressQuestion = doc.splitTextToSize(progressQuestion, 170);
+  
+  // Check if question fits on current page
+  if (yPosition + (splitProgressQuestion.length * 6) > 270) {
+    doc.addPage();
+    yPosition = 20;
+  }
+  
   doc.text(splitProgressQuestion, 20, yPosition);
   yPosition += splitProgressQuestion.length * 6 + 10;
   
   doc.setFont("helvetica", "normal");
   if (progressReflection) {
     const splitProgressReflection = doc.splitTextToSize(progressReflection, 170);
-    doc.text(splitProgressReflection, 20, yPosition);
-    yPosition += splitProgressReflection.length * 6 + 20;
+    
+    // Handle long reflections that might span multiple pages
+    let remainingLines = [...splitProgressReflection];
+    
+    while (remainingLines.length > 0) {
+      const availableSpace = 280 - yPosition;
+      const linesPerPage = Math.floor(availableSpace / 6);
+      
+      if (linesPerPage <= 0) {
+        doc.addPage();
+        yPosition = 20;
+        continue;
+      }
+      
+      const linesToAdd = remainingLines.splice(0, linesPerPage);
+      doc.text(linesToAdd, 20, yPosition);
+      yPosition += linesToAdd.length * 6;
+      
+      if (remainingLines.length > 0) {
+        doc.addPage();
+        yPosition = 20;
+      }
+    }
+    yPosition += 20;
   } else {
+    if (yPosition > 270) {
+      doc.addPage();
+      yPosition = 20;
+    }
     doc.setFont("helvetica", "italic");
     doc.text("No reflection provided", 20, yPosition);
     yPosition += 20;
   }
   
   // Insights reflection
+  if (yPosition > 250) {
+    doc.addPage();
+    yPosition = 20;
+  }
+  
   doc.setFontSize(14);
   doc.setFont("helvetica", "bold");
   doc.text("INSIGHTS REFLECTION", 20, yPosition);
@@ -1639,14 +1682,47 @@ async function downloadGoalsReview() {
   doc.setFont("helvetica", "italic");
   const insightsQuestion = "Consider the insights from this journey, were your Digital Goals suitable? What habits worked for you, and which ones didn't? How could you make adjustments to your habits to suit your routine, day-to-day activities, and values?";
   const splitInsightsQuestion = doc.splitTextToSize(insightsQuestion, 170);
+  
+  // Check if question fits on current page
+  if (yPosition + (splitInsightsQuestion.length * 6) > 270) {
+    doc.addPage();
+    yPosition = 20;
+  }
+  
   doc.text(splitInsightsQuestion, 20, yPosition);
   yPosition += splitInsightsQuestion.length * 6 + 10;
   
   doc.setFont("helvetica", "normal");
   if (insightsReflection) {
     const splitInsightsReflection = doc.splitTextToSize(insightsReflection, 170);
-    doc.text(splitInsightsReflection, 20, yPosition);
+    
+    // Handle long reflections that might span multiple pages
+    let remainingLines = [...splitInsightsReflection];
+    
+    while (remainingLines.length > 0) {
+      const availableSpace = 280 - yPosition;
+      const linesPerPage = Math.floor(availableSpace / 6);
+      
+      if (linesPerPage <= 0) {
+        doc.addPage();
+        yPosition = 20;
+        continue;
+      }
+      
+      const linesToAdd = remainingLines.splice(0, linesPerPage);
+      doc.text(linesToAdd, 20, yPosition);
+      yPosition += linesToAdd.length * 6;
+      
+      if (remainingLines.length > 0) {
+        doc.addPage();
+        yPosition = 20;
+      }
+    }
   } else {
+    if (yPosition > 270) {
+      doc.addPage();
+      yPosition = 20;
+    }
     doc.setFont("helvetica", "italic");
     doc.text("No reflection provided", 20, yPosition);
   }
@@ -1683,6 +1759,11 @@ async function downloadRelationshipResponse() {
   let yPosition = startY + 45;
   
   // Tools reflection
+  if (yPosition > 250) {
+    doc.addPage();
+    yPosition = 20;
+  }
+  
   doc.setFontSize(14);
   doc.setFont("helvetica", "bold");
   doc.text("TOOLS REFLECTION", 20, yPosition);
@@ -1692,27 +1773,56 @@ async function downloadRelationshipResponse() {
   doc.setFont("helvetica", "italic");
   const toolsQuestion = "What tools worked best for you? Which ones were the most challenging? How will you keep them apart of your daily routine?";
   const splitToolsQuestion = doc.splitTextToSize(toolsQuestion, 170);
+  
+  if (yPosition + (splitToolsQuestion.length * 6) > 270) {
+    doc.addPage();
+    yPosition = 20;
+  }
+  
   doc.text(splitToolsQuestion, 20, yPosition);
   yPosition += splitToolsQuestion.length * 6 + 10;
   
   doc.setFont("helvetica", "normal");
   if (toolsReflection) {
     const splitToolsReflection = doc.splitTextToSize(toolsReflection, 170);
-    doc.text(splitToolsReflection, 20, yPosition);
-    yPosition += splitToolsReflection.length * 6 + 20;
+    
+    let remainingLines = [...splitToolsReflection];
+    while (remainingLines.length > 0) {
+      const availableSpace = 280 - yPosition;
+      const linesPerPage = Math.floor(availableSpace / 6);
+      
+      if (linesPerPage <= 0) {
+        doc.addPage();
+        yPosition = 20;
+        continue;
+      }
+      
+      const linesToAdd = remainingLines.splice(0, linesPerPage);
+      doc.text(linesToAdd, 20, yPosition);
+      yPosition += linesToAdd.length * 6;
+      
+      if (remainingLines.length > 0) {
+        doc.addPage();
+        yPosition = 20;
+      }
+    }
+    yPosition += 20;
   } else {
+    if (yPosition > 270) {
+      doc.addPage();
+      yPosition = 20;
+    }
     doc.setFont("helvetica", "italic");
     doc.text("No reflection provided", 20, yPosition);
     yPosition += 20;
   }
   
-  // Check if we need a new page
+  // Balance reflection
   if (yPosition > 250) {
     doc.addPage();
     yPosition = 20;
   }
   
-  // Balance reflection
   doc.setFontSize(14);
   doc.setFont("helvetica", "bold");
   doc.text("TECH-LIFE BALANCE REFLECTION", 20, yPosition);
@@ -1722,27 +1832,56 @@ async function downloadRelationshipResponse() {
   doc.setFont("helvetica", "italic");
   const balanceQuestion = "How will these exercises help your tech-life balance in the future?";
   const splitBalanceQuestion = doc.splitTextToSize(balanceQuestion, 170);
+  
+  if (yPosition + (splitBalanceQuestion.length * 6) > 270) {
+    doc.addPage();
+    yPosition = 20;
+  }
+  
   doc.text(splitBalanceQuestion, 20, yPosition);
   yPosition += splitBalanceQuestion.length * 6 + 10;
   
   doc.setFont("helvetica", "normal");
   if (balanceReflection) {
     const splitBalanceReflection = doc.splitTextToSize(balanceReflection, 170);
-    doc.text(splitBalanceReflection, 20, yPosition);
-    yPosition += splitBalanceReflection.length * 6 + 20;
+    
+    let remainingLines = [...splitBalanceReflection];
+    while (remainingLines.length > 0) {
+      const availableSpace = 280 - yPosition;
+      const linesPerPage = Math.floor(availableSpace / 6);
+      
+      if (linesPerPage <= 0) {
+        doc.addPage();
+        yPosition = 20;
+        continue;
+      }
+      
+      const linesToAdd = remainingLines.splice(0, linesPerPage);
+      doc.text(linesToAdd, 20, yPosition);
+      yPosition += linesToAdd.length * 6;
+      
+      if (remainingLines.length > 0) {
+        doc.addPage();
+        yPosition = 20;
+      }
+    }
+    yPosition += 20;
   } else {
+    if (yPosition > 270) {
+      doc.addPage();
+      yPosition = 20;
+    }
     doc.setFont("helvetica", "italic");
     doc.text("No reflection provided", 20, yPosition);
     yPosition += 20;
   }
   
-  // Check if we need a new page
+  // Practices reflection
   if (yPosition > 250) {
     doc.addPage();
     yPosition = 20;
   }
   
-  // Practices reflection
   doc.setFontSize(14);
   doc.setFont("helvetica", "bold");
   doc.text("PRACTICES REFLECTION", 20, yPosition);
@@ -1752,14 +1891,44 @@ async function downloadRelationshipResponse() {
   doc.setFont("helvetica", "italic");
   const practicesQuestion = "Which practices can you implement to have a better relationship with your devices, considering your own unique journey?";
   const splitPracticesQuestion = doc.splitTextToSize(practicesQuestion, 170);
+  
+  if (yPosition + (splitPracticesQuestion.length * 6) > 270) {
+    doc.addPage();
+    yPosition = 20;
+  }
+  
   doc.text(splitPracticesQuestion, 20, yPosition);
   yPosition += splitPracticesQuestion.length * 6 + 10;
   
   doc.setFont("helvetica", "normal");
   if (practicesReflection) {
     const splitPracticesReflection = doc.splitTextToSize(practicesReflection, 170);
-    doc.text(splitPracticesReflection, 20, yPosition);
+    
+    let remainingLines = [...splitPracticesReflection];
+    while (remainingLines.length > 0) {
+      const availableSpace = 280 - yPosition;
+      const linesPerPage = Math.floor(availableSpace / 6);
+      
+      if (linesPerPage <= 0) {
+        doc.addPage();
+        yPosition = 20;
+        continue;
+      }
+      
+      const linesToAdd = remainingLines.splice(0, linesPerPage);
+      doc.text(linesToAdd, 20, yPosition);
+      yPosition += linesToAdd.length * 6;
+      
+      if (remainingLines.length > 0) {
+        doc.addPage();
+        yPosition = 20;
+      }
+    }
   } else {
+    if (yPosition > 270) {
+      doc.addPage();
+      yPosition = 20;
+    }
     doc.setFont("helvetica", "italic");
     doc.text("No reflection provided", 20, yPosition);
   }
@@ -1811,6 +1980,11 @@ async function downloadBalanceResponse() {
   let yPosition = startY + 45;
   
   // Chart data
+  if (yPosition > 250) {
+    doc.addPage();
+    yPosition = 20;
+  }
+  
   doc.setFontSize(14);
   doc.setFont("helvetica", "bold");
   doc.text("WEEKLY TIME DISTRIBUTION", 20, yPosition);
@@ -1820,16 +1994,30 @@ async function downloadBalanceResponse() {
   doc.setFont("helvetica", "normal");
   activities.forEach(activity => {
     if (activity.hours > 0) {
+      if (yPosition > 270) {
+        doc.addPage();
+        yPosition = 20;
+      }
       doc.text(`${activity.name}: ${activity.hours} hours`, 20, yPosition);
       yPosition += 8;
     }
   });
+  
+  if (yPosition > 270) {
+    doc.addPage();
+    yPosition = 20;
+  }
   
   doc.setFont("helvetica", "bold");
   doc.text(`Total: ${totalHours} hours`, 20, yPosition);
   yPosition += 20;
   
   // Balance observation
+  if (yPosition > 250) {
+    doc.addPage();
+    yPosition = 20;
+  }
+  
   doc.setFontSize(14);
   doc.setFont("helvetica", "bold");
   doc.text("BALANCE OBSERVATION", 20, yPosition);
@@ -1839,27 +2027,56 @@ async function downloadBalanceResponse() {
   doc.setFont("helvetica", "italic");
   const observationQuestion = "Are some slices larger than you expected? Does the balance reflect your values and priorities? Is your digital use taking more space than you'd like?";
   const splitObservationQuestion = doc.splitTextToSize(observationQuestion, 170);
+  
+  if (yPosition + (splitObservationQuestion.length * 6) > 270) {
+    doc.addPage();
+    yPosition = 20;
+  }
+  
   doc.text(splitObservationQuestion, 20, yPosition);
   yPosition += splitObservationQuestion.length * 6 + 10;
   
   doc.setFont("helvetica", "normal");
   if (balanceObservation) {
     const splitObservation = doc.splitTextToSize(balanceObservation, 170);
-    doc.text(splitObservation, 20, yPosition);
-    yPosition += splitObservation.length * 6 + 20;
+    
+    let remainingLines = [...splitObservation];
+    while (remainingLines.length > 0) {
+      const availableSpace = 280 - yPosition;
+      const linesPerPage = Math.floor(availableSpace / 6);
+      
+      if (linesPerPage <= 0) {
+        doc.addPage();
+        yPosition = 20;
+        continue;
+      }
+      
+      const linesToAdd = remainingLines.splice(0, linesPerPage);
+      doc.text(linesToAdd, 20, yPosition);
+      yPosition += linesToAdd.length * 6;
+      
+      if (remainingLines.length > 0) {
+        doc.addPage();
+        yPosition = 20;
+      }
+    }
+    yPosition += 20;
   } else {
+    if (yPosition > 270) {
+      doc.addPage();
+      yPosition = 20;
+    }
     doc.setFont("helvetica", "italic");
     doc.text("No reflection provided", 20, yPosition);
     yPosition += 20;
   }
   
-  // Check if we need a new page
+  // Habit reduction
   if (yPosition > 250) {
     doc.addPage();
     yPosition = 20;
   }
   
-  // Habit reduction
   doc.setFontSize(14);
   doc.setFont("helvetica", "bold");
   doc.text("HABIT REDUCTION REFLECTION", 20, yPosition);
@@ -1869,14 +2086,44 @@ async function downloadBalanceResponse() {
   doc.setFont("helvetica", "italic");
   const reductionQuestion = "Think about one or two digital habits you could reduce and write your reflection below. What could you do instead with that reclaimed time?";
   const splitReductionQuestion = doc.splitTextToSize(reductionQuestion, 170);
+  
+  if (yPosition + (splitReductionQuestion.length * 6) > 270) {
+    doc.addPage();
+    yPosition = 20;
+  }
+  
   doc.text(splitReductionQuestion, 20, yPosition);
   yPosition += splitReductionQuestion.length * 6 + 10;
   
   doc.setFont("helvetica", "normal");
   if (habitReduction) {
     const splitReduction = doc.splitTextToSize(habitReduction, 170);
-    doc.text(splitReduction, 20, yPosition);
+    
+    let remainingLines = [...splitReduction];
+    while (remainingLines.length > 0) {
+      const availableSpace = 280 - yPosition;
+      const linesPerPage = Math.floor(availableSpace / 6);
+      
+      if (linesPerPage <= 0) {
+        doc.addPage();
+        yPosition = 20;
+        continue;
+      }
+      
+      const linesToAdd = remainingLines.splice(0, linesPerPage);
+      doc.text(linesToAdd, 20, yPosition);
+      yPosition += linesToAdd.length * 6;
+      
+      if (remainingLines.length > 0) {
+        doc.addPage();
+        yPosition = 20;
+      }
+    }
   } else {
+    if (yPosition > 270) {
+      doc.addPage();
+      yPosition = 20;
+    }
     doc.setFont("helvetica", "italic");
     doc.text("No reflection provided", 20, yPosition);
   }
@@ -1921,14 +2168,23 @@ async function downloadAssessmentResponse() {
   // Scale responses section
   doc.setFontSize(14);
   doc.setFont("helvetica", "bold");
-  doc.text("SCALE RESPONSES", 20, startY + 45);
+  let yPosition = startY + 45;
+  
+  if (yPosition > 270) {
+    doc.addPage();
+    yPosition = 20;
+  }
+  
+  doc.text("SCALE RESPONSES", 20, yPosition);
+  yPosition += 10;
+  
   doc.setFontSize(10);
   doc.setFont("helvetica", "italic");
-  doc.text("(1 = completely disagree, 5 = completely agree)", 20, startY + 55);
+  doc.text("(1 = completely disagree, 5 = completely agree)", 20, yPosition);
+  yPosition += 15;
   
   doc.setFontSize(11);
   doc.setFont("helvetica", "normal");
-  let yPosition = startY + 70;
   
   const questions = [
     { label: "1. I have decreased my screen time:", value: responses.screenTime },
@@ -1939,6 +2195,11 @@ async function downloadAssessmentResponse() {
   ];
   
   questions.forEach(question => {
+    if (yPosition > 270) {
+      doc.addPage();
+      yPosition = 20;
+    }
+    
     doc.text(question.label, 20, yPosition);
     doc.setFont("helvetica", "bold");
     doc.text(question.value || "Not answered", 180, yPosition);
@@ -1948,6 +2209,12 @@ async function downloadAssessmentResponse() {
   
   // Reflection section
   yPosition += 10;
+  
+  if (yPosition > 250) {
+    doc.addPage();
+    yPosition = 20;
+  }
+  
   doc.setFontSize(14);
   doc.setFont("helvetica", "bold");
   doc.text("REFLECTION", 20, yPosition);
@@ -1957,6 +2224,12 @@ async function downloadAssessmentResponse() {
   doc.setFont("helvetica", "italic");
   const reflectionQuestion = "How do you feel after completing the third and fourth lesson of this course? Have you noticed any differences in your general well-being?";
   const splitQuestion = doc.splitTextToSize(reflectionQuestion, 170);
+  
+  if (yPosition + (splitQuestion.length * 6) > 270) {
+    doc.addPage();
+    yPosition = 20;
+  }
+  
   doc.text(splitQuestion, 20, yPosition);
   yPosition += splitQuestion.length * 6 + 10;
   
@@ -1964,8 +2237,32 @@ async function downloadAssessmentResponse() {
   doc.setFont("helvetica", "normal");
   if (responses.wellbeingReflection) {
     const splitReflection = doc.splitTextToSize(responses.wellbeingReflection, 170);
-    doc.text(splitReflection, 20, yPosition);
+    
+    let remainingLines = [...splitReflection];
+    while (remainingLines.length > 0) {
+      const availableSpace = 280 - yPosition;
+      const linesPerPage = Math.floor(availableSpace / 6);
+      
+      if (linesPerPage <= 0) {
+        doc.addPage();
+        yPosition = 20;
+        continue;
+      }
+      
+      const linesToAdd = remainingLines.splice(0, linesPerPage);
+      doc.text(linesToAdd, 20, yPosition);
+      yPosition += linesToAdd.length * 6;
+      
+      if (remainingLines.length > 0) {
+        doc.addPage();
+        yPosition = 20;
+      }
+    }
   } else {
+    if (yPosition > 270) {
+      doc.addPage();
+      yPosition = 20;
+    }
     doc.setFont("helvetica", "italic");
     doc.text("No reflection provided", 20, yPosition);
   }
