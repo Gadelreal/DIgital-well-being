@@ -449,7 +449,7 @@
     <li><a href="chapter1.html" class="active" aria-current="page">1. Well-Being as a Key</a></li>
     <li><a href="chapter2.html">2. Digital Habits</a></li>
     <li><a href="chapter3.html">3. Attention, Cognition, Energy...</a></li>
-    <li><a href="chapter4.html">4. Building Resilience</a></li>
+    <li><a href="chapter4.html">4. Digital Well-being Vision and Practice</a></li>
     <li><a href="chapter5.html">5. Ownership and Practice</a></li>
     <li><a href="#" id="glossary-menu-link"><i class="fas fa-book" style="color: #000066; margin-right: 0.5rem;" aria-hidden="true"></i>Glossary</a></li>
   </ul>
@@ -811,274 +811,196 @@
     <section class="lesson-section no-borders">
       <div class="values-activity-container">
         <h2><strong>Activity: Identifying Your Core Values</strong></h2>
-        <p>In a fast-paced digital world, it's easy to lose sight of what really matters to us. Our values—what we believe in and stand for—can serve as a compass to guide our decisions, our goals, and even our digital behavior.</p>
+        <p>In a fast-paced digital worl, it's easy to lose sight of what truly matters to us. This activity will help you identify your core values and reflect on how your current digital habits align with or detract from these values.</p>
         
-        <p>This activity invites you to <strong>pause and reflect on your personal values</strong> by answering the questions below. Take your time to write down your thoughts.</p>
+        <p><strong>Instructions:</strong></p>
+        <ol>
+          <li>Download the Values Identification Template below</li>
+          <li>Complete the exercises to identify your top 5-7 core values</li>
+          <li>Reflect on how your current digital habits support or conflict with these values</li>
+          <li>Consider what changes you might want to make to better align your digital behavior with your values</li>
+        </ol>
         
-        <p><strong>You can download the editable template to complete your responses.</strong> This way, you'll have a personal record you can revisit throughout your learning journey — and beyond.</p>
-        
-        <p>Once you've answered the questions, review Brené Brown's list of values. Reflect on <strong>why these values matter to you and how your digital habits can support them</strong>. Highlight the 10 that resonate most with you and narrow them down to your top 5. This will help you track your growth and reflect on how your values align with your digital well-being.</p>
-        
-        <a href="#" class="download-template-button" onclick="downloadCoreValuesTemplate()" aria-label="Download editable template for core values activity">
+        <button class="download-template-button" onclick="downloadValuesTemplate()">
           <i class="fas fa-download" aria-hidden="true"></i>
-          <strong>Download the editable template here</strong>
-        </a>
+          Download Values Template
+        </button>
+        
+        <p><em>This template includes value categories, reflection questions, and space for you to create an action plan for aligning your digital habits with your core values.</em></p>
       </div>
     </section>
 
     <section class="lesson-section no-borders">
-      <h2><strong>Set Your Digital Goals</strong></h2>
-      
-      <div class="digital-goals-activity-container">
-        <h2><strong>Activity: Set Your Digital Goals</strong></h2>
-        <p>Now that you've reflected on your values and current digital habits, it's time to <strong>set your own digital goals</strong>. These goals should be meaningful to you and aligned with your personal motivations and core values.</p>
+      <div class="reflection-exercise">
+        <h2><strong>Reflection Question</strong></h2>
+        <p><strong>After completing the values identification activity, reflect on the question below.</strong></p>
         
-        <p><strong>You can download the editable template to complete your responses.</strong> This way, you'll have a personal record you can revisit throughout your learning journey — and beyond.</p>
-        
-        <p>We recommend using the SMART goals framework to make your goals specific, measurable, achievable, relevant, and time-bound. Here's an example of a SMART digital goal: <strong>"Reduce my screen time on weekdays by at least one hour".</strong></p>
-        
-        <a href="#" class="download-template-button" onclick="downloadDigitalGoalsTemplate()" aria-label="Download editable template for digital goals activity">
-          <i class="fas fa-download" aria-hidden="true"></i>
-          <strong>Download the editable template here</strong>
-        </a>
+        <div class="reflection-question">
+          <h3>How do your current digital habits align with your core values? Are there specific areas where you notice a disconnect between what you value and how you use technology?</h3>
+          <textarea 
+            id="values-alignment-reflection" 
+            class="reflection-textarea" 
+            placeholder="Write your reflection here..."
+            aria-label="Values alignment reflection"
+            rows="8"
+          ></textarea>
+          <div class="button-container">
+            <button 
+              type="button" 
+              class="save-button" 
+              data-reflection-id="values-alignment-reflection"
+              aria-describedby="feedback-values-alignment-reflection"
+            >
+              <i class="fas fa-save" aria-hidden="true"></i> Save Reflection
+            </button>
+            <span id="feedback-values-alignment-reflection" class="save-feedback" aria-live="polite"></span>
+          </div>
+        </div>
       </div>
     </section>
 
     <section class="lesson-section no-borders">
-      <h2><strong>Discover Your Character Strengths</strong></h2>
+      <h2><strong>Setting Digital Goals</strong></h2>
       
       <div class="responsive-video">
         <video 
-          id="character-strengths-video" 
+          id="digital-goals-video" 
           class="video-js vjs-ie-skin vjs-big-play-centered" 
           controls 
           preload="auto" 
           poster="assets/images/well-being-poster.png"
           data-video-id="w01v05"
           data-logo="assets/images/logo-ie-small.png"
-          aria-label="Using Character Strengths to Achieve Your Digital Goals video"
+          aria-label="Setting Digital Goals video"
         >
-          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w01v05-using-your-character-strenghts/mp4/w01v05-using-your-character-strenghts_1080p.mp4" type="video/mp4">
+          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w01v05-setting-digital-goals/mp4/w01v05-setting-digital-goals_1080p.mp4" type="video/mp4">
           <p class="vjs-no-js">
             To view this video please enable JavaScript, and consider upgrading to a
             web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
           </p>
-          <track kind="captions" src="captions/using-character-strengths.vtt" srclang="en" label="English" default>
+          <track kind="captions" src="captions/setting-digital-goals.vtt" srclang="en" label="English" default>
         </video>
       </div>
       
-      <div class="key-point" role="note" aria-label="Key point about character strengths">
+      <div class="key-point" role="note" aria-label="Key point about setting digital goals">
         <h3><strong>Key Point</strong></h3>
-        <p>By recognizing and leveraging our personal strengths, we can set realistic digital goals, build resilience through challenges, and create habits that align with our authentic selves—while practicing self-kindness throughout the lifelong journey of change.</p>
-        <p>Your personal strengths are powerful allies in your journey toward healthier digital habits. By building awareness of your unique strengths—like creativity, perspective, or prudence—you can approach your goals with greater confidence, resilience, and authenticity.</p>
-        <p>Remember: meaningful change requires self-kindness, patience, and a willingness to learn and adjust over time.</p>
+        <p>Effective digital goals are SMART (Specific, Measurable, Achievable, Relevant, Time-bound), values-based, and focused on building positive habits rather than just restricting negative ones.</p>
+        <p>Setting clear, actionable goals helps transform your awareness and values into concrete steps toward digital well-being. Remember to start small, be specific, and focus on what you want to <strong>gain</strong> from your digital habits, not just what you want to avoid.</p>
       </div>
     </section>
-    
+
     <section class="lesson-section no-borders">
-  <h2><strong>Character Strengths applied to Digital Well-being</strong></h2>
-  <p>As we strive to build healthier digital habits, our character strengths can serve as powerful tools for reflection, action, and growth. By applying strengths such as curiosity, self-regulation, perseverance, and gratitude, we can navigate our digital lives with greater intention and purpose.</p>
-  
-  <p>This section explores how specific character strengths can support digital well-being across different dimensions of life—mind, body, and soul. Use these insights to identify which strengths resonate most with you and how you can apply them to create a more balanced and meaningful relationship with technology.</p>
-  
-  <div class="accordion-container">
-    <div class="accordion-item">
-      <div class="accordion-header">
-        <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-perspective">
-          <span class="accordion-title">Perspective</span>
-          <span class="accordion-icon" aria-hidden="true"></span>
+      <div class="digital-goals-activity-container">
+        <h2><strong>Activity: Setting Your Digital Well-being Goals</strong></h2>
+        <p>Now that you've identified your core values and reflected on your digital habits, it's time to set specific, actionable goals for your digital well-being journey.</p>
+        
+        <p><strong>Instructions:</strong></p>
+        <ol>
+          <li>Download the Digital Goals Template below</li>
+          <li>Use the SMART framework to create 2-3 specific digital well-being goals</li>
+          <li>Ensure your goals align with the core values you identified earlier</li>
+          <li>Include both short-term (1-2 weeks) and medium-term (1-2 months) goals</li>
+          <li>Focus on positive habits you want to build, not just restrictions</li>
+        </ol>
+        
+        <button class="download-template-button" onclick="downloadDigitalGoalsTemplate()">
+          <i class="fas fa-download" aria-hidden="true"></i>
+          Download Digital Goals Template
         </button>
+        
+        <p><em>This template includes the SMART framework, examples of digital well-being goals, and space for tracking your progress.</em></p>
       </div>
-      <div class="accordion-panel" id="accordion-panel-perspective">
-        <div class="accordion-panel-inner">
-          <p><strong>Application:</strong> Reflect on how technology shapes your life holistically (mind, body, and soul).</p>
-          <p><strong>Practice:</strong> Use <strong>Perspective</strong> to reflect on whether your digital habits align with your values.</p>
-        </div>
-      </div>
-    </div>
+    </section>
 
-    <div class="accordion-item">
-      <div class="accordion-header">
-        <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-judgment">
-          <span class="accordion-title">Judgment/Critical Thinking</span>
-          <span class="accordion-icon" aria-hidden="true"></span>
-        </button>
-      </div>
-      <div class="accordion-panel" id="accordion-panel-judgment">
-        <div class="accordion-panel-inner">
-          <p><strong>Application:</strong> Evaluate how digital habits impact your well-being.</p>
-          <p><strong>Practice:</strong> Apply <strong>Judgment</strong> to recognize which digital behaviors support or hinder your well-being.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="accordion-item">
-      <div class="accordion-header">
-        <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-curiosity">
-          <span class="accordion-title">Curiosity</span>
-          <span class="accordion-icon" aria-hidden="true"></span>
-        </button>
-      </div>
-      <div class="accordion-panel" id="accordion-panel-curiosity">
-        <div class="accordion-panel-inner">
-          <p><strong>Application:</strong> Explore new ways to engage with technology that align with your purpose.</p>
-          <p><strong>Practice:</strong> Tap into <strong>Curiosity</strong> to explore new mindful tech habits, such as using focus apps or scheduling device-free time.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="accordion-item">
-      <div class="accordion-header">
-        <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-self-regulation">
-          <span class="accordion-title">Self-Regulation</span>
-          <span class="accordion-icon" aria-hidden="true"></span>
-        </button>
-      </div>
-      <div class="accordion-panel" id="accordion-panel-self-regulation">
-        <div class="accordion-panel-inner">
-          <p><strong>Application:</strong> Create structure around digital use, such as setting screen-time limits.</p>
-          <p><strong>Practice:</strong> Use <strong>Self-Regulation</strong> to set up a habit tracker for screen-time reduction.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="accordion-item">
-      <div class="accordion-header">
-        <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-prudence">
-          <span class="accordion-title">Prudence</span>
-          <span class="accordion-icon" aria-hidden="true"></span>
-        </button>
-      </div>
-      <div class="accordion-panel" id="accordion-panel-prudence">
-        <div class="accordion-panel-inner">
-          <p><strong>Application:</strong> Plan intentional technology use to enhance productivity rather than distraction.</p>
-          <p><strong>Practice:</strong> Apply <strong>Prudence</strong> to intentionally design your digital environment (e.g., rearrange app icons to reduce distractions).</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="accordion-item">
-      <div class="accordion-header">
-        <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-perseverance">
-          <span class="accordion-title">Perseverance</span>
-          <span class="accordion-icon" aria-hidden="true"></span>
-        </button>
-      </div>
-      <div class="accordion-panel" id="accordion-panel-perseverance">
-        <div class="accordion-panel-inner">
-          <p><strong>Application:</strong> Stick to habit changes like reducing social media time or improving sleep hygiene.</p>
-          <p><strong>Practice:</strong> Use <strong>Perseverance</strong> when implementing new habits like device-free mornings.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="accordion-item">
-      <div class="accordion-header">
-        <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-love-learning">
-          <span class="accordion-title">Love of Learning</span>
-          <span class="accordion-icon" aria-hidden="true"></span>
-        </button>
-      </div>
-      <div class="accordion-panel" id="accordion-panel-love-learning">
-        <div class="accordion-panel-inner">
-          <p><strong>Application:</strong> Understand the neuroscience of attention and how digital behaviors impact cognition.</p>
-          <p><strong>Practice:</strong> Use <strong>Love of Learning</strong> to understand how digital habits shape cognitive function.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="accordion-item">
-      <div class="accordion-header">
-        <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-gratitude">
-          <span class="accordion-title">Gratitude</span>
-          <span class="accordion-icon" aria-hidden="true"></span>
-        </button>
-      </div>
-      <div class="accordion-panel" id="accordion-panel-gratitude">
-        <div class="accordion-panel-inner">
-          <p><strong>Application:</strong> Acknowledge the benefits of digital tools while striving for balance.</p>
-          <p><strong>Practice:</strong> Use <strong>Gratitude</strong> to reflect on how technology enriches your life.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="accordion-item">
-      <div class="accordion-header">
-        <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-leadership">
-          <span class="accordion-title">Leadership</span>
-          <span class="accordion-icon" aria-hidden="true"></span>
-        </button>
-      </div>
-      <div class="accordion-panel" id="accordion-panel-leadership">
-        <div class="accordion-panel-inner">
-          <p><strong>Application:</strong> Share insights with others and promote mindful digital habits in your community.</p>
-          <p><strong>Practice:</strong> Practice <strong>Leadership</strong> by mentoring others in digital well-being strategies.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="accordion-item">
-      <div class="accordion-header">
-        <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-bravery">
-          <span class="accordion-title">Bravery</span>
-          <span class="accordion-icon" aria-hidden="true"></span>
-        </button>
-      </div>
-      <div class="accordion-panel" id="accordion-panel-bravery">
-        <div class="accordion-panel-inner">
-          <p><strong>Application:</strong> Be open about challenges in managing digital use and seek solutions.</p>
-          <p><strong>Practice:</strong> Use <strong>Bravery</strong> to openly discuss struggles and celebrate progress.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-    
     <section class="lesson-section no-borders">
-  <div class="values-activity-container">
-    <h2><strong>Activity: Discover Your Character Strengths</strong></h2>
-    <p>Discover your personal character strengths and explore how you can use them to support your digital well-being journey.</p>
-    
-    <p>First, complete the VIA Character Strengths survey by registering for free at the link provided. Then, review your top strengths and reflect on how they can help you achieve your digital goals.</p>
-    
-    <p><strong>Survey links:</strong></p>
-    <ul style="margin-left: 2rem; margin-bottom: 1.5rem;">
-      <li style="margin-bottom: 0.5rem;"><a href="https://www.viacharacter.org/survey/account/register" target="_blank" rel="noopener noreferrer">Complete the VIA Character Strengths survey</a></li>
-      <li style="margin-bottom: 0.5rem;"><a href="https://www.viacharacter.org/character-strengths" target="_blank" rel="noopener noreferrer">Learn more about your strengths</a></li>
-    </ul>
-    
-    <a href="#" class="download-template-button" onclick="downloadCharacterStrengthsTemplate()" aria-label="Download editable template for character strengths activity">
-      <i class="fas fa-download" aria-hidden="true"></i>
-      <strong>Download the editable template here</strong>
-    </a>
-  </div>
-</section>
+      <div class="reflection-exercise">
+        <h2><strong>Final Reflection</strong></h2>
+        <p><strong>As you complete this lesson, take a moment to reflect on your key takeaways.</strong></p>
+        
+        <div class="reflection-question">
+          <h3>What is one insight from this lesson that you want to remember as you continue your digital well-being journey? How will you apply this insight in the coming week?</h3>
+          <textarea 
+            id="final-reflection" 
+            class="reflection-textarea" 
+            placeholder="Write your reflection here..."
+            aria-label="Final lesson reflection"
+            rows="8"
+          ></textarea>
+          <div class="button-container">
+            <button 
+              type="button" 
+              class="save-button" 
+              data-reflection-id="final-reflection"
+              aria-describedby="feedback-final-reflection"
+            >
+              <i class="fas fa-save" aria-hidden="true"></i> Save Reflection
+            </button>
+            <span id="feedback-final-reflection" class="save-feedback" aria-live="polite"></span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<section class="lesson-section no-borders">
-  <h2><strong>Reading</strong></h2>
-  <p>If you would like to learn more about the positive and negative associations with phone use, you may complete the following optional and complementary reading:</p>
-  
-  <div class="reading-cards">
-    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10132652/" target="_blank" rel="noopener noreferrer" class="reading-card-clickable">
-      <div class="reading-card">
-        <div class="reading-card-content">
-          <h3>Two edges of the screen: Unpacking positive and negative associations between phone use in everyday contexts and subjective well-being</h3>
-          <p>This research article explores the complex relationship between smartphone use and well-being, examining both the positive and negative impacts of phone use in daily life contexts on subjective well-being.</p>
-          <div class="reading-card-footer">
-            <div class="reading-link">
-              Read Article
-              <span class="reading-arrow" aria-hidden="true">→</span>
+    <section class="lesson-section no-borders">
+      <h2><strong>Lesson 1 Summary</strong></h2>
+      
+      <div class="accordion-container">
+        <div class="accordion-item">
+          <h3 class="accordion-header">
+            <button class="accordion-trigger" aria-expanded="false" aria-controls="summary-panel-1">
+              <span class="accordion-title">Key Concepts Covered</span>
+              <span class="accordion-icon" aria-hidden="true">+</span>
+            </button>
+          </h3>
+          <div id="summary-panel-1" class="accordion-panel">
+            <div class="accordion-panel-inner">
+              <p><strong>Digital Well-being Definition:</strong> Building self-awareness and intentionally shaping habits around technology to support emotional, mental, and physical health based on individual values.</p>
+              <p><strong>Holistic Impact:</strong> Technology affects our body, mind, and soul through sleep patterns, focus, relationships, and overall life satisfaction.</p>
+              <p><strong>Self-Determination Theory:</strong> Sustainable motivation comes from autonomy (choice), competence (growth), and relatedness (connection).</p>
+              <p><strong>Values Alignment:</strong> Core values serve as a compass for making intentional decisions about digital habits.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="accordion-item">
+          <h3 class="accordion-header">
+            <button class="accordion-trigger" aria-expanded="false" aria-controls="summary-panel-2">
+              <span class="accordion-title">Practical Tools and Activities</span>
+              <span class="accordion-icon" aria-hidden="true">+</span>
+            </button>
+          </h3>
+          <div id="summary-panel-2" class="accordion-panel">
+            <div class="accordion-panel-inner">
+              <p><strong>Values Identification:</strong> Completed an exercise to identify your top 5-7 core values and assess how your digital habits align with them.</p>
+              <p><strong>SMART Goals Framework:</strong> Learned to create Specific, Measurable, Achievable, Relevant, and Time-bound goals for digital well-being.</p>
+              <p><strong>Reflection Practice:</strong> Engaged in multiple reflection exercises to build self-awareness about current digital habits and motivations for change.</p>
+              <p><strong>Awareness Building:</strong> Developed understanding of how technology impacts sleep, focus, and relationships.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="accordion-item">
+          <h3 class="accordion-header">
+            <button class="accordion-trigger" aria-expanded="false" aria-controls="summary-panel-3">
+              <span class="accordion-title">Next Steps</span>
+              <span class="accordion-icon" aria-hidden="true">+</span>
+            </button>
+          </h3>
+          <div id="summary-panel-3" class="accordion-panel">
+            <div class="accordion-panel-inner">
+              <p><strong>Continue Reflection:</strong> Keep observing your digital habits throughout the week and notice how they align with your identified values.</p>
+              <p><strong>Implement Small Changes:</strong> Begin working on the digital goals you set, starting with small, manageable steps.</p>
+              <p><strong>Prepare for Lesson 2:</strong> In the next lesson, we'll dive deeper into the science of digital habits and learn practical strategies for behavior change.</p>
+              <p><strong>Stay Curious:</strong> Maintain an attitude of curiosity and self-compassion as you explore your relationship with technology.</p>
             </div>
           </div>
         </div>
       </div>
-    </a>
-  </div>
-</section>
+    </section>
     
-    <div class="navigation-buttons" role="navigation" aria-label="Lesson navigation">
-      <a href="introduction.html" class="nav-button prev"><span class="arrow-left" aria-hidden="true">←</span>Previous</a>
-      <a href="chapter2.html" class="nav-button next">Next<span class="arrow-right" aria-hidden="true">→</span></a>
+    <div class="navigation-buttons" role="navigation" aria-label="Course navigation">
+      <a href="introduction.html" class="nav-button prev"><span class="arrow-left" aria-hidden="true">←</span>Introduction</a>
+      <a href="chapter2.html" class="nav-button next">Lesson 2<span class="arrow-right" aria-hidden="true">→</span></a>
     </div>
   </div>
 </main>
@@ -1254,15 +1176,14 @@
   </div>
 </div>
 
-  <!-- VideoJS JavaScript -->
-  <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
-  <script src="js/video-player.js"></script>
-  <script src="js/key-points.js"></script>
-  <script src="js/reflections.js"></script>
-  <script src="js/quiz.js"></script>
-  <script src="js/main.js"></script>
-  <script src="js/logo-checker.js"></script>
-  <script>
+<!-- VideoJS JavaScript -->
+<script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
+<script src="js/video-player.js"></script>
+<script src="js/key-points.js"></script>
+<script src="js/reflections.js"></script>
+<script src="js/quiz.js"></script>
+<script src="js/main.js"></script>
+<script>
 // Glossary Modal Functionality
 document.addEventListener('DOMContentLoaded', function() {
   const modal = document.getElementById('glossary-modal');
@@ -1332,416 +1253,206 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-// Quiz functionality for Digital Well-being quiz
+// Accordion functionality
 document.addEventListener('DOMContentLoaded', function() {
-  const quizForm = document.getElementById('wellbeing-quiz');
-  const feedbackDiv = document.getElementById('wellbeing-quiz-feedback');
+  const accordionTriggers = document.querySelectorAll('.accordion-trigger');
   
-  if (quizForm && feedbackDiv) {
-    // Add click handlers to quiz options for better UX
-    const quizOptions = quizForm.querySelectorAll('.quiz-option');
-    quizOptions.forEach(option => {
-      option.addEventListener('click', function(e) {
-        // Only toggle if clicking on the option div, not the checkbox or label
-        if (e.target === this) {
-          const checkbox = this.querySelector('input[type="checkbox"]');
-          if (checkbox && !checkbox.disabled) {
-            checkbox.checked = !checkbox.checked;
-          }
-        }
-      });
-    });
-    
-    quizForm.addEventListener('submit', function(e) {
-      e.preventDefault();
+  accordionTriggers.forEach(trigger => {
+    trigger.addEventListener('click', function() {
+      const panel = document.getElementById(this.getAttribute('aria-controls'));
+      const icon = this.querySelector('.accordion-icon');
+      const isExpanded = this.getAttribute('aria-expanded') === 'true';
       
-      // Get all checkboxes
-      const allCheckboxes = quizForm.querySelectorAll('input[type="checkbox"]');
-      const checkedBoxes = quizForm.querySelectorAll('input[type="checkbox"]:checked');
-      const selectedValues = Array.from(checkedBoxes).map(cb => cb.value);
-      
-      console.log('Selected values:', selectedValues); // Debug log
-      
-      // Correct answers are 'a' and 'e'
-      const correctAnswers = ['a', 'e'];
-      
-      // Clear previous feedback styling
-      const allOptions = quizForm.querySelectorAll('.quiz-option');
-      allOptions.forEach(option => {
-        option.classList.remove('correct-answer', 'incorrect-answer', 'missed-answer');
-        const existingFeedback = option.querySelector('.option-feedback');
-        if (existingFeedback) {
-          existingFeedback.remove();
+      // Close all other accordions
+      accordionTriggers.forEach(otherTrigger => {
+        if (otherTrigger !== this) {
+          const otherPanel = document.getElementById(otherTrigger.getAttribute('aria-controls'));
+          const otherIcon = otherTrigger.querySelector('.accordion-icon');
+          otherTrigger.setAttribute('aria-expanded', 'false');
+          otherPanel.classList.remove('expanded');
+          otherIcon.textContent = '+';
         }
       });
       
-      // Check each option and provide feedback
-      allCheckboxes.forEach(checkbox => {
-        const value = checkbox.value;
-        const isChecked = checkbox.checked;
-        const isCorrect = correctAnswers.includes(value);
-        const option = checkbox.closest('.quiz-option');
-        
-        let feedbackHTML = '';
-        
-        if (isCorrect && isChecked) {
-          // Correct answer selected
-          option.classList.add('correct-answer');
-          feedbackHTML = '<span class="option-feedback"><i class="fas fa-check-circle"></i> Correct!</span>';
-        } else if (isCorrect && !isChecked) {
-          // Correct answer missed
-          option.classList.add('missed-answer');
-          feedbackHTML = '<span class="option-feedback"><i class="fas fa-exclamation-triangle"></i> Missed</span>';
-        } else if (!isCorrect && isChecked) {
-          // Incorrect answer selected
-          option.classList.add('incorrect-answer');
-          feedbackHTML = '<span class="option-feedback"><i class="fas fa-times-circle"></i> Incorrect</span>';
-        }
-        
-        if (feedbackHTML) {
-          option.insertAdjacentHTML('beforeend', feedbackHTML);
-        }
-        
-        // Disable checkbox after submission
-        checkbox.disabled = true;
-      });
-      
-      // Show the feedback section
-      feedbackDiv.style.display = 'block';
-      feedbackDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      
-      // Disable the submit button and change text
-      const submitBtn = quizForm.querySelector('button[type="submit"]');
-      if (submitBtn) {
-        submitBtn.textContent = 'Submitted';
-        submitBtn.disabled = true;
-        submitBtn.style.backgroundColor = '#6c757d';
-        submitBtn.style.cursor = 'not-allowed';
-      }
-      
-      // Add a reset button
-      if (!quizForm.querySelector('.quiz-reset-btn')) {
-        const resetBtn = document.createElement('button');
-        resetBtn.type = 'button';
-        resetBtn.className = 'quiz-submit-btn quiz-reset-btn';
-        resetBtn.textContent = 'Try Again';
-        resetBtn.style.marginLeft = '1rem';
-        resetBtn.style.backgroundColor = '#007bff';
-        
-        resetBtn.addEventListener('click', function() {
-          // Reset form
-          quizForm.reset();
-          
-          // Clear all feedback
-          allOptions.forEach(option => {
-            option.classList.remove('correct-answer', 'incorrect-answer', 'missed-answer');
-            const feedback = option.querySelector('.option-feedback');
-            if (feedback) {
-              feedback.remove();
-            }
-          });
-          
-          // Re-enable checkboxes
-          allCheckboxes.forEach(cb => {
-            cb.disabled = false;
-          });
-          
-          // Hide feedback
-          feedbackDiv.style.display = 'none';
-          
-          // Re-enable submit button and restore original styling
-          if (submitBtn) {
-            submitBtn.textContent = 'Submit';
-            submitBtn.disabled = false;
-            submitBtn.style.backgroundColor = 'var(--primary-color)'; // Restore primary color
-            submitBtn.style.cursor = 'pointer';
-          }
-          
-          // Remove reset button
-          this.remove();
-          
-          // Scroll back to quiz
-          quizForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
-        
-        submitBtn.parentNode.insertBefore(resetBtn, submitBtn.nextSibling);
+      // Toggle current accordion
+      if (isExpanded) {
+        this.setAttribute('aria-expanded', 'false');
+        panel.classList.remove('expanded');
+        icon.textContent = '+';
+      } else {
+        this.setAttribute('aria-expanded', 'true');
+        panel.classList.add('expanded');
+        icon.textContent = '−';
       }
     });
-  }
+  });
 });
 
-// Core Values Template download functionality
-function downloadCoreValuesTemplate() {
-  // Create a simple template content
-  const templateContent = `IDENTIFYING YOUR CORE VALUES - TEMPLATE
+// Download template functions
+function downloadValuesTemplate() {
+  // Create a simple values template
+  const templateContent = `CORE VALUES IDENTIFICATION TEMPLATE
 
-Instructions:
-In a fast-paced digital world, it's easy to lose sight of what really matters to us. Our values—what we believe in and stand for—can serve as a compass to guide our decisions, our goals, and even our digital behavior.
+Instructions: Complete the exercises below to identify your top 5-7 core values.
 
-This activity invites you to pause and reflect on your personal values by answering the questions below. Take your time to write down your thoughts.
+STEP 1: VALUES BRAINSTORM
+Review the list below and circle/highlight the values that resonate with you:
 
-REFLECTION QUESTIONS:
+Achievement, Adventure, Authenticity, Authority, Autonomy, Balance, Beauty, Challenge, Community, Compassion, Competence, Competition, Connection, Contribution, Courage, Creativity, Curiosity, Excellence, Excitement, Faith, Fame, Family, Freedom, Friendship, Fun, Growth, Happiness, Health, Honesty, Hope, Humility, Independence, Influence, Inner Harmony, Integrity, Intelligence, Intimacy, Joy, Justice, Knowledge, Leadership, Learning, Legacy, Leisure, Love, Loyalty, Meaningful Work, Money, Nature, Order, Parenting, Patience, Patriotism, Peace, Pleasure, Popularity, Power, Recognition, Religion, Reputation, Respect, Responsibility, Security, Self-Respect, Service, Spirituality, Stability, Success, Tradition, Travel, Truth, Wealth, Wisdom
 
-1. What matters most to you in life?
-_________________________________________________
-_________________________________________________
-_________________________________________________
+STEP 2: NARROW DOWN YOUR LIST
+From your highlighted values, select your top 15-20 values:
 
-2. When you think about your best self, what values do you embody?
-_________________________________________________
-_________________________________________________
-_________________________________________________
+1. _________________ 11. _________________
+2. _________________ 12. _________________
+3. _________________ 13. _________________
+4. _________________ 14. _________________
+5. _________________ 15. _________________
+6. _________________ 16. _________________
+7. _________________ 17. _________________
+8. _________________ 18. _________________
+9. _________________ 19. _________________
+10. ________________ 20. _________________
 
-3. What principles guide your decisions?
-_________________________________________________
-_________________________________________________
-_________________________________________________
+STEP 3: IDENTIFY YOUR CORE VALUES
+From your list above, select your top 5-7 core values:
 
-4. What would you want to be remembered for?
-_________________________________________________
-_________________________________________________
-_________________________________________________
+1. _________________
+2. _________________
+3. _________________
+4. _________________
+5. _________________
+6. _________________
+7. _________________
 
-5. What values do you want your digital habits to reflect?
-_________________________________________________
-_________________________________________________
-_________________________________________________
+STEP 4: REFLECTION QUESTIONS
+For each of your core values, answer:
 
-BRENÉ BROWN'S VALUES LIST:
-Review the list below and highlight the 10 that resonate most with you, then narrow them down to your top 5.
+Value 1: _________________
+- How does this value show up in your life currently?
+- How do your digital habits support or conflict with this value?
 
-□ Accountability    □ Achievement      □ Adventure        □ Authenticity
-□ Authority         □ Autonomy         □ Balance          □ Beauty
-□ Boldness          □ Compassion       □ Competency       □ Contribution
-□ Creativity        □ Curiosity        □ Determination    □ Fairness
-□ Faith             □ Fame             □ Family           □ Freedom
-□ Friendship        □ Fun              □ Growth           □ Happiness
-□ Health            □ Honesty          □ Hope             □ Humility
-□ Independence      □ Initiative       □ Integrity        □ Intelligence
-□ Intuition         □ Joy              □ Justice          □ Kindness
-□ Knowledge         □ Leadership       □ Learning         □ Legacy
-□ Leisure           □ Love             □ Loyalty          □ Meaningful Work
-□ Money             □ Nonconformity    □ Optimism         □ Order
-□ Parenting         □ Patience         □ Patriotism       □ Perfection
-□ Popularity        □ Power            □ Purpose          □ Recognition
-□ Religion          □ Reputation       □ Respect          □ Responsibility
-□ Security          □ Self-Respect     □ Service          □ Spirituality
-□ Stability         □ Success          □ Tradition        □ Travel
-□ Wealth            □ Wisdom
+Value 2: _________________
+- How does this value show up in your life currently?
+- How do your digital habits support or conflict with this value?
 
-MY TOP 5 CORE VALUES:
+[Continue for all values...]
+
+STEP 5: ACTION PLANNING
+Based on your reflection, what changes would you like to make to better align your digital habits with your core values?
 
 1. _________________________________________________
-   Why this matters to me: _________________________
-   _________________________________________________
-
 2. _________________________________________________
-   Why this matters to me: _________________________
-   _________________________________________________
-
 3. _________________________________________________
-   Why this matters to me: _________________________
-   Why this matters to me: _________________________
-   _________________________________________________
 
-4. _________________________________________________
-   Why this matters to me: _________________________
-   _________________________________________________
+Remember: Your values are your personal compass. Use them to guide your decisions about technology use and digital well-being.`;
 
-5. _________________________________________________
-   Why this matters to me: _________________________
-   _________________________________________________
-
-REFLECTION ON DIGITAL HABITS:
-
-How can your digital habits support these core values?
-_________________________________________________
-_________________________________________________
-_________________________________________________
-
-What digital behaviors might be conflicting with your values?
-_________________________________________________
-_________________________________________________
-_________________________________________________
-
-What changes would you like to make to better align your digital habits with your values?
-_________________________________________________
-_________________________________________________
-_________________________________________________
-
----
-Digital Well-Being Course - IE University
-© ${new Date().getFullYear()} IE University. All rights reserved.`;
-
-  // Create and download the file
   const blob = new Blob([templateContent], { type: 'text/plain' });
   const url = window.URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = 'Core_Values_Template.txt';
+  a.download = 'Values_Identification_Template.txt';
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
   window.URL.revokeObjectURL(url);
-  
-  // Show feedback to user
-  const button = event.target.closest('.download-template-button');
-  const originalText = button.innerHTML;
-  button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> <strong>Template Downloaded!</strong>';
-  button.style.backgroundColor = '#28a745';
-  
-  setTimeout(() => {
-    button.innerHTML = originalText;
-    button.style.backgroundColor = '';
-  }, 3000);
 }
 
-// Digital Goals Template download functionality
 function downloadDigitalGoalsTemplate() {
-  // Create digital goals template content
-  const templateContent = `SET YOUR DIGITAL GOALS - TEMPLATE
+  const templateContent = `DIGITAL WELL-BEING GOALS TEMPLATE
 
-Instructions:
-Now that you've reflected on your values and current digital habits, it's time to set your own digital goals. These goals should be meaningful to you and aligned with your personal motivations and core values.
-
-We recommend using the SMART goals framework to make your goals specific, measurable, achievable, relevant, and time-bound.
+Instructions: Use the SMART framework to create 2-3 specific digital well-being goals.
 
 SMART GOALS FRAMEWORK:
 - Specific: Clear and well-defined
 - Measurable: Quantifiable progress
 - Achievable: Realistic and attainable
-- Relevant: Aligned with your values and priorities
-- Time-bound: Has a clear deadline
+- Relevant: Aligned with your values
+- Time-bound: Has a deadline
 
-EXAMPLE:
-Instead of: "I want to use my phone less"
-SMART Goal: "Reduce my screen time on weekdays by at least one hour by the end of this month"
-
-YOUR DIGITAL GOALS:
+YOUR CORE VALUES (from previous exercise):
+1. _________________
+2. _________________
+3. _________________
+4. _________________
+5. _________________
 
 GOAL 1:
-What do you want to achieve?
-_________________________________________________
+Specific: What exactly do you want to achieve?
 _________________________________________________
 
-Make it SMART:
-Specific: ____________________________________
-Measurable: __________________________________
-Achievable: __________________________________
-Relevant: ____________________________________
-Time-bound: __________________________________
-
-Final SMART Goal:
+Measurable: How will you track progress?
 _________________________________________________
+
+Achievable: Is this realistic for you right now?
+_________________________________________________
+
+Relevant: How does this align with your values?
+_________________________________________________
+
+Time-bound: When will you achieve this?
+_________________________________________________
+
+Complete Goal Statement:
 _________________________________________________
 
 GOAL 2:
-What do you want to achieve?
-_________________________________________________
+Specific: What exactly do you want to achieve?
 _________________________________________________
 
-Make it SMART:
-Specific: ____________________________________
-Measurable: __________________________________
-Achievable: __________________________________
-Relevant: ____________________________________
-Time-bound: __________________________________
-
-Final SMART Goal:
+Measurable: How will you track progress?
 _________________________________________________
+
+Achievable: Is this realistic for you right now?
+_________________________________________________
+
+Relevant: How does this align with your values?
+_________________________________________________
+
+Time-bound: When will you achieve this?
+_________________________________________________
+
+Complete Goal Statement:
 _________________________________________________
 
 GOAL 3:
-What do you want to achieve?
-_________________________________________________
-_________________________________________________
-
-Make it SMART:
-Specific: ____________________________________
-Measurable: __________________________________
-Achievable: __________________________________
-Relevant: ____________________________________
-Time-bound: __________________________________
-
-Final SMART Goal:
-_________________________________________________
+Specific: What exactly do you want to achieve?
 _________________________________________________
 
-REFLECTION QUESTIONS:
-
-1. How do these goals align with your core values?
-_________________________________________________
-_________________________________________________
+Measurable: How will you track progress?
 _________________________________________________
 
-2. What obstacles might you face in achieving these goals?
-_________________________________________________
-_________________________________________________
+Achievable: Is this realistic for you right now?
 _________________________________________________
 
-3. What support or resources do you need?
-_________________________________________________
-_________________________________________________
+Relevant: How does this align with your values?
 _________________________________________________
 
-4. How will you track your progress?
-_________________________________________________
-_________________________________________________
+Time-bound: When will you achieve this?
 _________________________________________________
 
-5. How will you celebrate when you achieve these goals?
-_________________________________________________
-_________________________________________________
+Complete Goal Statement:
 _________________________________________________
 
-ACTION PLAN:
-
-Goal 1 - Next Steps:
-Week 1: _____________________________________
-Week 2: _____________________________________
-Week 3: _____________________________________
-Week 4: _____________________________________
-
-Goal 2 - Next Steps:
-Week 1: _____________________________________
-Week 2: _____________________________________
-Week 3: _____________________________________
-Week 4: _____________________________________
-
-Goal 3 - Next Steps:
-Week 1: _____________________________________
-Week 2: _____________________________________
-Week 3: _____________________________________
-Week 4: _____________________________________
+EXAMPLES OF DIGITAL WELL-BEING GOALS:
+- "I will establish a phone-free bedroom by removing my phone from my nightstand and using a traditional alarm clock, starting tonight and continuing for the next 30 days."
+- "I will practice mindful social media use by setting a 20-minute daily limit on Instagram and checking it only twice per day (morning and evening) for the next 2 weeks."
+- "I will improve my focus during work by using the Pomodoro Technique (25 minutes focused work, 5-minute break) and keeping my phone in another room during work sessions, starting Monday and continuing for 3 weeks."
 
 PROGRESS TRACKING:
+Week 1: ________________________________
+Week 2: ________________________________
+Week 3: ________________________________
+Week 4: ________________________________
 
-Date: _______________
-Progress on Goal 1: ___________________________
-Progress on Goal 2: ___________________________
-Progress on Goal 3: ___________________________
-Challenges faced: _____________________________
-Adjustments needed: ___________________________
+REFLECTION QUESTIONS:
+- What obstacles might you encounter?
+- How will you overcome these obstacles?
+- Who can support you in achieving these goals?
+- How will you celebrate your progress?
 
-Date: _______________
-Progress on Goal 1: ___________________________
-Progress on Goal 2: ___________________________
-Progress on Goal 3: ___________________________
-Challenges faced: _____________________________
-Adjustments needed: ___________________________
+Remember: Start small, be consistent, and focus on building positive habits rather than just restricting negative ones.`;
 
-Date: _______________
-Progress on Goal 1: ___________________________
-Progress on Goal 2: ___________________________
-Progress on Goal 3: ___________________________
-Challenges faced: _____________________________
-Adjustments needed: ___________________________
-
----
-Digital Well-Being Course - IE University
-© ${new Date().getFullYear()} IE University. All rights reserved.`;
-
-  // Create and download the file
   const blob = new Blob([templateContent], { type: 'text/plain' });
   const url = window.URL.createObjectURL(blob);
   const a = document.createElement('a');
@@ -1751,296 +1462,7 @@ Digital Well-Being Course - IE University
   a.click();
   document.body.removeChild(a);
   window.URL.revokeObjectURL(url);
-  
-  // Show feedback to user
-  const button = event.target.closest('.download-template-button');
-  const originalText = button.innerHTML;
-  button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> <strong>Template Downloaded!</strong>';
-  button.style.backgroundColor = '#28a745';
-  
-  setTimeout(() => {
-    button.innerHTML = originalText;
-    button.style.backgroundColor = '';
-  }, 3000);
 }
-
-// Character Strengths Template download functionality
-function downloadCharacterStrengthsTemplate() {
-  // Create character strengths template content
-  const templateContent = `DISCOVER YOUR CHARACTER STRENGTHS - TEMPLATE
-
-Instructions:
-Discover your personal character strengths and explore how you can use them to support your digital well-being journey.
-
-First, complete the VIA Character Strengths survey by registering for free at the link provided. Then, review your top strengths and reflect on how they can help you achieve your digital goals.
-
-SURVEY LINKS:
-• Complete the VIA Character Strengths survey: https://www.viacharacter.org/survey/account/register
-• Learn more about your strengths: https://www.viacharacter.org/character-strengths
-
-MY TOP CHARACTER STRENGTHS:
-
-After completing the VIA survey, write down your top 5 character strengths:
-
-1. _________________________________________________
-   Description: ___________________________________
-   _________________________________________________
-
-2. _________________________________________________
-   Description: ___________________________________
-   _________________________________________________
-
-3. _________________________________________________
-   Description: ___________________________________
-   _________________________________________________
-
-4. _________________________________________________
-   Description: ___________________________________
-   _________________________________________________
-
-5. _________________________________________________
-   Description: ___________________________________
-   _________________________________________________
-
-REFLECTION QUESTIONS:
-
-1. Which of your top strengths surprised you the most? Why?
-_________________________________________________
-_________________________________________________
-_________________________________________________
-
-2. How do you currently use these strengths in your daily life?
-_________________________________________________
-_________________________________________________
-_________________________________________________
-
-3. Which strengths do you feel you underuse or could develop further?
-_________________________________________________
-_________________________________________________
-_________________________________________________
-
-APPLYING STRENGTHS TO DIGITAL WELL-BEING:
-
-For each of your top 5 strengths, reflect on how you can use them to support your digital well-being goals:
-
-Strength 1: _____________________________________
-How I can use this for digital well-being:
-_________________________________________________
-_________________________________________________
-_________________________________________________
-
-Strength 2: _____________________________________
-How I can use this for digital well-being:
-_________________________________________________
-_________________________________________________
-_________________________________________________
-
-Strength 3: _____________________________________
-How I can use this for digital well-being:
-_________________________________________________
-_________________________________________________
-_________________________________________________
-
-Strength 4: _____________________________________
-How I can use this for digital well-being:
-_________________________________________________
-_________________________________________________
-_________________________________________________
-
-Strength 5: _____________________________________
-How I can use this for digital well-being:
-_________________________________________________
-_________________________________________________
-_________________________________________________
-
-SPECIFIC APPLICATIONS:
-
-Based on the character strengths examples from the lesson, identify specific ways you can apply your strengths:
-
-If you have PERSPECTIVE:
-□ Reflect on how technology shapes your life holistically (mind, body, and soul)
-□ Use Perspective to reflect on whether your digital habits align with your values
-□ Other: ________________________________________
-
-If you have JUDGMENT/CRITICAL THINKING:
-□ Evaluate how digital habits impact your well-being
-□ Apply Judgment to recognize which digital behaviors support or hinder your well-being
-□ Other: ________________________________________
-
-If you have CURIOSITY:
-□ Explore new ways to engage with technology that align with your purpose
-□ Tap into Curiosity to explore new mindful tech habits
-□ Other: ________________________________________
-
-If you have SELF-REGULATION:
-□ Create structure around digital use, such as setting screen-time limits
-□ Use Self-Regulation to set up a habit tracker for screen-time reduction
-□ Other: ________________________________________
-
-If you have PRUDENCE:
-□ Plan intentional technology use to enhance productivity rather than distraction
-□ Apply Prudence to intentionally design your digital environment
-□ Other: ________________________________________
-
-If you have PERSEVERANCE:
-□ Stick to habit changes like reducing social media time or improving sleep hygiene
-□ Use Perseverance when implementing new habits like device-free mornings
-□ Other: ________________________________________
-
-If you have LOVE OF LEARNING:
-□ Understand the neuroscience of attention and how digital behaviors impact cognition
-□ Leverage Love of Learning to understand how digital habits shape cognitive function
-□ Other: ________________________________________
-
-If you have GRATITUDE:
-□ Acknowledge the benefits of digital tools while striving for balance
-□ Use Gratitude to reflect on how technology enriches your life
-□ Other: ________________________________________
-
-If you have LEADERSHIP:
-□ Share insights with others and promote mindful digital habits in your community
-□ Practice Leadership by mentoring others in digital well-being strategies
-□ Other: ________________________________________
-
-If you have BRAVERY:
-□ Be open about challenges in managing digital use and seek solutions
-□ Use Bravery to openly discuss struggles and celebrate progress
-□ Other: ________________________________________
-
-ACTION PLAN:
-
-Based on your reflections above, create a specific action plan for using your character strengths to support your digital well-being:
-
-This week, I will:
-_________________________________________________
-_________________________________________________
-_________________________________________________
-
-This month, I will:
-_________________________________________________
-_________________________________________________
-_________________________________________________
-
-In the next 3 months, I will:
-_________________________________________________
-_________________________________________________
-_________________________________________________
-
-PROGRESS TRACKING:
-
-Date: _______________
-Strength used: _______________________________
-How I applied it: _____________________________
-_________________________________________________
-Result/Impact: _______________________________
-_________________________________________________
-
-Date: _______________
-Strength used: _______________________________
-How I applied it: _____________________________
-_________________________________________________
-Result/Impact: _______________________________
-_________________________________________________
-
-Date: _______________
-Strength used: _______________________________
-How I applied it: _____________________________
-_________________________________________________
-Result/Impact: _______________________________
-_________________________________________________
-
-NOTES AND INSIGHTS:
-_________________________________________________
-_________________________________________________
-_________________________________________________
-_________________________________________________
-_________________________________________________
-
----
-Digital Well-Being Course - IE University
-© ${new Date().getFullYear()} IE University. All rights reserved.`;
-
-  // Create and download the file
-  const blob = new Blob([templateContent], { type: 'text/plain' });
-  const url = window.URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'Character_Strengths_Template.txt';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  window.URL.revokeObjectURL(url);
-  
-  // Show feedback to user
-  const button = event.target.closest('.download-template-button');
-  const originalText = button.innerHTML;
-  button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> <strong>Template Downloaded!</strong>';
-  button.style.backgroundColor = '#28a745';
-  
-  setTimeout(() => {
-    button.innerHTML = originalText;
-    button.style.backgroundColor = '';
-  }, 3000);
-}
-
-// Accordion functionality
-document.addEventListener('DOMContentLoaded', function() {
-  const accordionTriggers = document.querySelectorAll('.accordion-trigger');
-  
-  accordionTriggers.forEach(trigger => {
-    // Inicializar el icono correctamente
-    const icon = trigger.querySelector('.accordion-icon');
-    if (icon) {
-      icon.textContent = '+';
-    }
-    
-    trigger.addEventListener('click', function() {
-      const panelId = this.getAttribute('aria-controls');
-      const panel = document.getElementById(panelId);
-      const currentIcon = this.querySelector('.accordion-icon');
-      const isExpanded = this.getAttribute('aria-expanded') === 'true';
-      
-      if (!panel || !currentIcon) {
-        console.error('Accordion panel or icon not found:', panelId);
-        return;
-      }
-      
-      // Cerrar todos los otros acordeones
-      accordionTriggers.forEach(otherTrigger => {
-        if (otherTrigger !== this) {
-          const otherPanelId = otherTrigger.getAttribute('aria-controls');
-          const otherPanel = document.getElementById(otherPanelId);
-          const otherIcon = otherTrigger.querySelector('.accordion-icon');
-          
-          if (otherPanel && otherIcon) {
-            otherTrigger.setAttribute('aria-expanded', 'false');
-            otherPanel.classList.remove('expanded');
-            otherIcon.textContent = '+';
-          }
-        }
-      });
-      
-      // Alternar el acordeón actual
-      if (isExpanded) {
-        this.setAttribute('aria-expanded', 'false');
-        panel.classList.remove('expanded');
-        currentIcon.textContent = '+';
-      } else {
-        this.setAttribute('aria-expanded', 'true');
-        panel.classList.add('expanded');
-        currentIcon.textContent = '−';
-      }
-    });
-    
-    // Navegación por teclado
-    trigger.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        this.click();
-      }
-    });
-  });
-});
 </script>
 </body>
 </html>
