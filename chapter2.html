@@ -1009,6 +1009,57 @@
   <script src="js/main.js"></script>
   <script src="js/logo-checker.js"></script>
   <script>
+// Enhanced PDF generation function with header image
+async function addPDFHeader(doc) {
+  try {
+    // Load the header image
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    
+    return new Promise((resolve, reject) => {
+      img.onload = function() {
+        try {
+          // Create a canvas to process the image
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d');
+          
+          // Set canvas dimensions to match the image aspect ratio
+          const imgWidth = 170; // PDF width minus margins
+          const imgHeight = (img.height / img.width) * imgWidth;
+          
+          canvas.width = img.width;
+          canvas.height = img.height;
+          
+          // Draw the image on canvas
+          ctx.drawImage(img, 0, 0);
+          
+          // Convert to base64
+          const imgData = canvas.toDataURL('image/jpeg', 0.8);
+          
+          // Add image to PDF
+          doc.addImage(imgData, 'JPEG', 20, 10, imgWidth, imgHeight);
+          
+          resolve(imgHeight + 20); // Return the Y position after the header
+        } catch (error) {
+          console.warn('Error processing header image:', error);
+          resolve(20); // Return default Y position if image fails
+        }
+      };
+      
+      img.onerror = function() {
+        console.warn('Could not load header image');
+        resolve(20); // Return default Y position if image fails to load
+      };
+      
+      // Load the image
+      img.src = 'assets/images/pdf-header.jpg';
+    });
+  } catch (error) {
+    console.warn('Error loading header image:', error);
+    return 20; // Return default Y position if there's an error
+  }
+}
+
 // Session storage functions for assessment responses
 function saveResponseToSession() {
   const responses = {
@@ -1058,7 +1109,7 @@ function loadResponseFromSession() {
   }
 }
 
-function downloadAssessmentResponse() {
+async function downloadAssessmentResponse() {
   // Save to session first
   saveResponseToSession();
   
@@ -1076,30 +1127,33 @@ function downloadAssessmentResponse() {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
   
+  // Add header image and get the Y position after it
+  const startY = await addPDFHeader(doc);
+  
   // Set font
   doc.setFont("helvetica");
   
   // Title
   doc.setFontSize(16);
   doc.setFont("helvetica", "bold");
-  doc.text("Digital Well-being Assessment - Chapter 2 Touchpoint I", 20, 20);
+  doc.text("Digital Well-being Assessment - Chapter 2 Touchpoint I", 20, startY + 10);
   
   // Date
   doc.setFontSize(12);
   doc.setFont("helvetica", "normal");
-  doc.text(`Date: ${new Date().toLocaleDateString()}`, 20, 35);
+  doc.text(`Date: ${new Date().toLocaleDateString()}`, 20, startY + 25);
   
   // Scale responses section
   doc.setFontSize(14);
   doc.setFont("helvetica", "bold");
-  doc.text("SCALE RESPONSES", 20, 55);
+  doc.text("SCALE RESPONSES", 20, startY + 45);
   doc.setFontSize(10);
   doc.setFont("helvetica", "italic");
-  doc.text("(1 = completely disagree, 5 = completely agree)", 20, 65);
+  doc.text("(1 = completely disagree, 5 = completely agree)", 20, startY + 55);
   
   doc.setFontSize(11);
   doc.setFont("helvetica", "normal");
-  let yPosition = 80;
+  let yPosition = startY + 70;
   
   const questions = [
     { label: "1. I have decreased my screen time:", value: responses.screenTime },
