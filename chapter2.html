@@ -1024,7 +1024,8 @@ async function addPDFHeader(doc) {
           const ctx = canvas.getContext('2d');
           
           // Set canvas dimensions to match the image aspect ratio
-          const imgWidth = 170; // PDF width minus margins
+          const pdfWidth = 210; // A4 width in mm (jsPDF default)
+          const imgWidth = pdfWidth; // 100% of PDF width
           const imgHeight = (img.height / img.width) * imgWidth;
           
           canvas.width = img.width;
@@ -1036,10 +1037,10 @@ async function addPDFHeader(doc) {
           // Convert to base64
           const imgData = canvas.toDataURL('image/jpeg', 0.8);
           
-          // Add image to PDF
-          doc.addImage(imgData, 'JPEG', 20, 10, imgWidth, imgHeight);
+          // Add image to PDF at top corner, full width
+          doc.addImage(imgData, 'JPEG', 0, 0, imgWidth, imgHeight);
           
-          resolve(imgHeight + 20); // Return the Y position after the header
+          resolve(imgHeight + 10); // Return the Y position after the header with small margin
         } catch (error) {
           console.warn('Error processing header image:', error);
           resolve(20); // Return default Y position if image fails
