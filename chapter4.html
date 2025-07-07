@@ -1,60 +1,2379 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chapter 4: Digital Well-being Vision and Practice</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Human Flourishing - Chapter 4</title>
+<link rel="stylesheet" href="./css/styles.css">
+<!-- VideoJS CSS -->
+<link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
+<!-- Font Awesome para iconos -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
+<style>
+/* Estilos para la navegación A-Z del glosario y las secciones */
+.glossary-az-nav {
+  padding: 10px 0;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+.glossary-az-nav a {
+  margin: 0 5px;
+  text-decoration: none;
+  color: var(--primary-color);
+  font-weight: bold;
+  padding: 5px;
+}
+.glossary-az-nav a:hover,
+.glossary-az-nav a:focus {
+  text-decoration: underline;
+  background-color: #f0f0f0;
+  border-radius: 3px;
+}
+.glossary-section {
+  /* No se necesita margin-top aquí si el H3 lo maneja */
+}
+.glossary-letter-header {
+  font-size: 1.6em;
+  color: #333;
+  margin-top: 25px;
+  margin-bottom: 15px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #ccc;
+}
+.glossary-section:first-child .glossary-letter-header {
+    margin-top: 0; /* El primer header no necesita tanto espacio arriba */
+}
+.modal-body {
+  max-height: 70vh;
+  overflow-y: auto;
+}
+.glossary-term {
+  margin-bottom: 10px; /* Espacio entre términos */
+  line-height: 1.6;
+}
+.hero-title {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 300;
+}
+
+/* Additional styles for Chapter 4 activities */
+.time-input-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.time-input-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.time-input-item label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.time-input-item input {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.chart-container {
+  margin: 2rem 0;
+  text-align: center;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 2rem;
+}
+
+.chart-wrapper {
+  width: 100%;
+  max-width: 500px;
+  height: 400px;
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.legend-color {
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+}
+
+.chart-placeholder {
+  color: #666;
+  font-style: italic;
+  padding: 2rem;
+}
+
+.download-btn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.download-btn:hover {
+  background-color: var(--link-hover-color);
+  transform: translateY(-2px);
+}
+
+.download-btn:active {
+  transform: scale(0.98);
+}
+
+.template-download {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.assessment-container {
+  margin: 2rem 0;
+}
+
+.assessment-question {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 0;
+}
+
+.question-text {
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.radio-group label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.radio-group label:hover {
+  background-color: #f0f0f0;
+}
+
+.radio-group input[type="radio"] {
+  margin-right: 0.8rem;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .time-input-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .chart-legend {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .chart-wrapper {
+    height: 300px;
+  }
+}
+
+.assessment-step {
+  margin-bottom: 2rem;
+}
+
+.assessment-step h4 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.scale-question {
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+}
+
+.scale-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.scale-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-width: 80px;
+}
+
+.scale-option input[type="radio"] {
+  margin-bottom: 0.5rem;
+  width: 20px;
+  height: 20px;
+}
+
+.scale-option label {
+  font-size: 0.8rem;
+  color: #666;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .scale-options {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .scale-option {
+    flex-direction: row;
+    min-width: auto;
+    width: 100%;
+    justify-content: flex-start;
+  }
+  
+  .scale-option input[type="radio"] {
+    margin-right: 1rem;
+    margin-bottom: 0;
+  }
+}
+
+.chart-validation {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.validation-error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+  padding: 0.75rem;
+  margin: 0.5rem 0;
+  font-weight: 600;
+}
+
+.validation-success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+  border-radius: 4px;
+  padding: 0.75rem;
+  margin: 0.5rem 0;
+  font-weight: 600;
+}
+
+.hours-counter {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 0.5rem;
+}
+</style>
 </head>
 <body>
+<!-- Añadir el enlace de saltar al contenido principal al inicio del body -->
+<a href="#main-content" class="skip-to-content">Skip to main content</a>
 
-    <header>
-        <h1>Digital Well-being: A Practical Guide</h1>
-    </header>
+<!-- Modificar la estructura del header para alinear elementos en una línea -->
+<header class="full-width header-full-bottom" role="banner">
+<div class="header-content">
+  <div class="header-left">
+    <div class="logo-container tiny-logo">
+      <a href="https://www.ie.edu" target="_blank" aria-label="IE University website">
+        <img src="assets/images/logo-ie.svg" alt="IE University Logo" class="logo" width="120">
+      </a>
+    </div>
+    <h2 class="header-title">Digital Well-Being</h2>
+  </div>
+  <div class="header-controls">
+    <button id="mobile-menu-toggle" class="mobile-menu-toggle always-visible" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
+      <div class="hamburger-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </button>
+  </div>
+</div>
+<nav class="main-nav hamburger-nav" id="main-nav" aria-label="Main navigation">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="introduction.html">0. Introduction</a></li>
+    <li><a href="chapter1.html">1. Well-Being as a Key</a></li>
+    <li><a href="chapter2.html">2. Digital Habits</a></li>
+    <li><a href="chapter3.html">3. Attention, Cognition, Energy...</a></li>
+    <li><a href="chapter4.html" class="active" aria-current="page">4. Digital Well-being Vision and Practice</a></li>
+    <li><a href="chapter5.html">5. Ownership and Practice</a></li>
+    <li><a href="#" id="glossary-menu-link"><i class="fas fa-book" style="color: #000066; margin-right: 0.5rem;" aria-hidden="true"></i>Glossary</a></li>
+  </ul>
+</nav>
+</header>
 
-    <nav>
+<section class="hero-section">
+<div class="hero-content">
+  <div class="hero-title-container">
+    
+    <h1 class="hero-title">LESSON 4: Digital Well-being Vision and Practice</h1>
+  </div>
+</div>
+</section>
+
+<main id="main-content" tabindex="-1">
+  <div class="content-aligned-container">
+    
+    
+    <!-- Learning Objectives -->
+    <section class="lesson-section no-borders">
+      <h2>Lesson 4 Learning Objectives</h2>
+      <p>After this lesson, participants will be able to:</p>
+      
+      <div class="learning-objectives-grid">
+        <div class="learning-objective-card">
+          <div class="objective-icon" aria-hidden="true">
+            <i class="fas fa-globe-americas"></i>
+          </div>
+          <div class="objective-content">
+            <h4>Digital Context Understanding</h4>
+            <p>Understand the broader digital context of life and work, and develop a personal approach to digital well-being.</p>
+          </div>
+        </div>
+        
+        <div class="learning-objective-card">
+          <div class="objective-icon" aria-hidden="true">
+            <i class="fas fa-eye"></i>
+          </div>
+          <div class="objective-content">
+            <h4>Science-Informed Vision</h4>
+            <p>Create a science-informed vision for their own digital well-being.</p>
+          </div>
+        </div>
+        
+        <div class="learning-objective-card">
+          <div class="objective-icon" aria-hidden="true">
+            <i class="fas fa-map-marked-alt"></i>
+          </div>
+          <div class="objective-content">
+            <h4>Holistic Roadmap</h4>
+            <p>Design a holistic roadmap—integrating body, mind, and soul—to align digital habits with cognitive health and personal flourishing.</p>
+          </div>
+        </div>
+        
+        <div class="learning-objective-card">
+          <div class="objective-icon" aria-hidden="true">
+            <i class="fas fa-lightbulb"></i>
+          </div>
+          <div class="objective-content">
+            <h4>Awareness and Motivation</h4>
+            <p>Cultivate awareness and motivation to align digital engagement with purpose and values.</p>
+          </div>
+        </div>
+        
+        <div class="learning-objective-card">
+          <div class="objective-icon" aria-hidden="true">
+            <i class="fas fa-user-check"></i>
+          </div>
+          <div class="objective-content">
+            <h4>Personal Accountability</h4>
+            <p>Reflect on strategies for personal accountability in the ongoing journey of digital well-being.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- The New Routine -->
+    <section class="lesson-section no-borders">
+      <h2>The New Routine</h2>
+      
+      <div class="responsive-video">
+        <video 
+          id="new-routine-video" 
+          class="video-js vjs-ie-skin vjs-big-play-centered" 
+          controls 
+          preload="auto" 
+          data-video-id="w04v00"
+          data-logo="assets/images/logo-ie-small.png"
+          aria-label="The New Routine video"
+        >
+          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w04v00-the-new-routine/mp4/w04v00-the-new-routine_1080p.mp4" type="video/mp4">
+          <p class="vjs-no-js">
+            To view this video please enable JavaScript, and consider upgrading to a
+            web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+          </p>
+        </video>
+      </div>
+    </section>
+    
+    <!-- Review Your Digital Goals -->
+    <section class="lesson-section no-borders">
+      <h2>Review Your Digital Goals</h2>
+      
+      <div class="responsive-video">
+        <video 
+          id="review-goals-video" 
+          class="video-js vjs-ie-skin vjs-big-play-centered" 
+          controls 
+          preload="auto" 
+          data-video-id="w04v01"
+          data-logo="assets/images/logo-ie-small.png"
+          aria-label="Review Your Digital Goals video"
+        >
+          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w04v01-review-your-digital-goals/mp4/w04v01-review-your-digital-goals_1080p.mp4" type="video/mp4">
+          <p class="vjs-no-js">
+            To view this video please enable JavaScript, and consider upgrading to a
+            web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+          </p>
+        </video>
+      </div>
+      
+      <div class="key-point" role="note" aria-label="Key point about sustainable digital well-being">
+        <h3>Key Point</h3>
+        <p>Sustainable digital well-being is built through ongoing self-reflection, small adjustments, and an understanding that meaningful change is a lifelong journey—not a quick fix.</p>
+        <p>As you reflect on your digital habits, remember that change takes time and intention. You've explored your values, strengths, goals, and triggers—and you've likely seen how even one small change can lead to powerful ripple effects.</p>
+        <p>This isn't about being perfect. It's about <strong>learning, adjusting, and continuing</strong> to align your habits with what helps you be your best.</p>
+        <p>Keep asking:</p>
         <ul>
-            <li><a href="index.html">Introduction</a></li>
-            <li><a href="chapter1.html">1. Understanding Digital Well-being</a></li>
-            <li><a href="chapter2.html">2. The Impact of Technology on Our Lives</a></li>
-            <li><a href="chapter3.html">3. Identifying Your Digital Habits</a></li>
-            <li><a href="chapter4.html" class="active" aria-current="page">4. Digital Well-being Vision and Practice</a></li>
-            <li><a href="chapter5.html">5. Strategies for a Balanced Digital Life</a></li>
-            <li><a href="chapter6.html">6. Building a Supportive Digital Environment</a></li>
-            <li><a href="conclusion.html">Conclusion</a></li>
+          <li>What's working well?</li>
+          <li>What continues to challenge me?</li>
+          <li>How can I evolve my habits to better support my energy, focus, and relationships?</li>
         </ul>
-    </nav>
+      </div>
+    </section>
+    
+    <!-- Activity: Review Your Digital Goals -->
+    <section class="lesson-section no-borders">
+      <div class="reflection-exercise">
+        <h2>Activity: Review Your Digital Goals</h2>
+        <p>Take a moment to reflect on your journey. This activity is not graded — it's an opportunity for you to check in with yourself and recognize your progress.</p>
+        <p><strong>Re-read your Digital Goals and answer the reflection questions below</strong>. Think about what's worked, what hasn't, and how your habits have evolved.</p>
+        
+        <div class="reflection-question">
+          <h3><em>How would you rate your progress and effort? Where are you now, compared to where you were then? Are you closer to consolidating Digital Habits that serve you?</em></h3>
+          <textarea 
+            id="progress-reflection" 
+            class="reflection-textarea"
+            rows="4" 
+            placeholder="Write your reflection here..."
+            aria-label="Progress reflection"
+          ></textarea>
+          <div class="button-container">
+            <button 
+              type="button" 
+              class="save-button" 
+              data-reflection-id="progress-reflection"
+              aria-describedby="feedback-progress-reflection"
+            >
+              <i class="fas fa-save" aria-hidden="true"></i> Save Reflection
+            </button>
+            <span id="feedback-progress-reflection" class="save-feedback" aria-live="polite"></span>
+          </div>
+        </div>
+        
+        <div class="reflection-question">
+          <h3><em>Consider the insights from this journey, were your Digital Goals suitable? What habits worked for you, and which ones didn't? How could you make adjustments to your habits to suit your routine, day-to-day activities, and values?</em></h3>
+          <textarea 
+            id="insights-reflection" 
+            class="reflection-textarea"
+            rows="4" 
+            placeholder="Write your reflection here..."
+            aria-label="Insights reflection"
+          ></textarea>
+          <div class="button-container">
+            <button 
+              type="button" 
+              class="save-button" 
+              data-reflection-id="insights-reflection"
+              aria-describedby="feedback-insights-reflection"
+            >
+              <i class="fas fa-save" aria-hidden="true"></i> Save Reflection
+            </button>
+            <span id="feedback-insights-reflection" class="save-feedback" aria-live="polite"></span>
+          </div>
+        </div>
+        
+        <button id="download-goals-review" class="download-btn">
+          <i class="fas fa-download" aria-hidden="true"></i>
+          Download my response
+        </button>
+      </div>
+    </section>
+    
+    <!-- Building a Positive Relationship With Technology -->
+    <section class="lesson-section no-borders">
+      <h2>Building a Positive Relationship With Technology</h2>
+      
+      <div class="responsive-video">
+        <video 
+          id="positive-relationship-video" 
+          class="video-js vjs-ie-skin vjs-big-play-centered" 
+          controls 
+          preload="auto" 
+          data-video-id="w04v02"
+          data-logo="assets/images/logo-ie-small.png"
+          aria-label="Building a Positive Relationship with Technology video"
+        >
+          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w04v02-building-a-positive-relationship-with-technology/mp4/w04v02-building-a-positive-relationship-with-technology_1080p.mp4" type="video/mp4">
+          <p class="vjs-no-js">
+            To view this video please enable JavaScript, and consider upgrading to a
+            web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+          </p>
+        </video>
+      </div>
+      
+      <div class="key-point" role="note" aria-label="Key point about building positive relationship with technology">
+        <h3>Key Point</h3>
+        <p>Digital well-being is a lifelong, personal journey—by experimenting, reflecting, and choosing what truly supports your values and focus, you can build a positive and empowered relationship with technology.</p>
+        <p>Your relationship with technology should feel <strong>intentional and empowering</strong>—not controlling or overwhelming.</p>
+        <p>As you finish this course, remember that there's no one-size-fits-all solution. It's about finding what works for <em>you</em> and making small, meaningful changes over time.</p>
+        <p>A few takeaways to guide your continued journey:</p>
+        <ul>
+          <li><strong>Reflect regularly</strong> on your digital behaviors.</li>
+          <li><strong>Adjust mindfully</strong>—experiment with settings, habits, or routines.</li>
+          <li><strong>Own your relationship with tech</strong>—you get to choose how and when it serves you best.</li>
+        </ul>
+        <p>Stay curious, stay committed, and keep learning.</p>
+      </div>
+    </section>
+    
+    <!-- Activity: Building a Positive Relationship With Technology -->
+    <section class="lesson-section no-borders">
+      <div class="reflection-exercise">
+        <h2>Activity: Building a Positive Relationship With Technology</h2>
+        <p>As you wrap up this experience, take a quiet moment to reflect on your progress.</p>
+        <p>This is your chance to think about the tools, habits, and insights that supported you — and how you might carry them forward. Your reflections will help strengthen your commitment to a more mindful and balanced digital life.</p>
+        <p><strong>Remember: there are no right or wrong answers here.</strong> Your journey is personal, and your responses will be saved and available for download at the end of the course.</p>
+        
+        <div class="reflection-question">
+          <h3><em>What tools worked best for you? Which ones were the most challenging? How will you keep them apart of your daily routine?</em></h3>
+          <textarea 
+            id="tools-reflection" 
+            class="reflection-textarea"
+            rows="4" 
+            placeholder="Write your reflection here..."
+            aria-label="Tools reflection"
+          ></textarea>
+          <div class="button-container">
+            <button 
+              type="button" 
+              class="save-button" 
+              data-reflection-id="tools-reflection"
+              aria-describedby="feedback-tools-reflection"
+            >
+              <i class="fas fa-save" aria-hidden="true"></i> Save Reflection
+            </button>
+            <span id="feedback-tools-reflection" class="save-feedback" aria-live="polite"></span>
+          </div>
+        </div>
+        
+        <div class="reflection-question">
+          <h3><em>How will these exercises help your tech-life balance in the future?</em></h3>
+          <textarea 
+            id="balance-reflection" 
+            class="reflection-textarea"
+            rows="4" 
+            placeholder="Write your reflection here..."
+            aria-label="Balance reflection"
+          ></textarea>
+          <div class="button-container">
+            <button 
+              type="button" 
+              class="save-button" 
+              data-reflection-id="balance-reflection"
+              aria-describedby="feedback-balance-reflection"
+            >
+              <i class="fas fa-save" aria-hidden="true"></i> Save Reflection
+            </button>
+            <span id="feedback-balance-reflection" class="save-feedback" aria-live="polite"></span>
+          </div>
+        </div>
+        
+        <div class="reflection-question">
+          <h3><em>Which practices can you implement to have a better relationship with your devices, considering your own unique journey?</em></h3>
+          <textarea 
+            id="practices-reflection" 
+            class="reflection-textarea"
+            rows="4" 
+            placeholder="Write your reflection here..."
+            aria-label="Practices reflection"
+          ></textarea>
+          <div class="button-container">
+            <button 
+              type="button" 
+              class="save-button" 
+              data-reflection-id="practices-reflection"
+              aria-describedby="feedback-practices-reflection"
+            >
+              <i class="fas fa-save" aria-hidden="true"></i> Save Reflection
+            </button>
+            <span id="feedback-practices-reflection" class="save-feedback" aria-live="polite"></span>
+          </div>
+        </div>
+        
+        <button id="download-relationship-response" class="download-btn">
+          <i class="fas fa-download" aria-hidden="true"></i>
+          Download my response
+        </button>
+      </div>
+    </section>
+    
+    <!-- Rituals for Digital Flourishing -->
+    <section class="lesson-section no-borders">
+      <h2>Rituals for Digital Flourishing</h2>
+      
+      <div class="responsive-video">
+        <video 
+          id="rituals-video" 
+          class="video-js vjs-ie-skin vjs-big-play-centered" 
+          controls 
+          preload="auto" 
+          data-video-id="w04v03"
+          data-logo="assets/images/logo-ie-small.png"
+          aria-label="Rituals for Digital Flourishing video"
+        >
+          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w04v03-rituals-for-digital-flourishing/mp4/w04v03-rituals-for-digital-flourishing_1080p.mp4" type="video/mp4">
+          <p class="vjs-no-js">
+            To view this video please enable JavaScript, and consider upgrading to a
+            web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+          </p>
+        </video>
+      </div>
+      
+      <div class="key-point" role="note" aria-label="Key point about behavior change strategies">
+        <h3>Key Point</h3>
+        <p>Lasting behavior change is hard, but strategies like practice, social accountability, and modifying your environment can significantly improve your chances of success.</p>
+        <p>Change takes more than willpower—it takes strategy.</p>
+        <p>Try these proven behavior change techniques:</p>
+        <ul>
+          <li><strong>Practice</strong> in real or simulated situations to reinforce the new behavior.</li>
+          <li><strong>Tell someone</strong>—sharing your goal publicly boosts accountability.</li>
+          <li><strong>Hack your cues</strong>—remove or adjust triggers that lead to unwanted habits.</li>
+          <li><strong>Fake it 'til you make it</strong>—acting the part can help build the habit.</li>
+          <li><strong>Practice mindfulness</strong> to catch yourself in the moment of choice.</li>
+          <li><strong>Gamify the process</strong>—friendly challenges and rewards help keep you motivated.</li>
+        </ul>
+        <p>Start small, stay consistent, and adapt what works best for you.</p>
+      </div>
+    </section>
+    
+    <!-- Activity: Rituals for Digital Flourishing -->
+    <section class="lesson-section no-borders">
+      <div class="reflection-exercise">
+        <h2>Activity: Rituals for Digital Flourishing</h2>
+        <p>Let's visualize how you spend your time by creating a "life balance cake." Your reflections will be saved and can be downloaded at the end of the course.</p>
+        
+        <h3>Instructions:</h3>
+        <p>Take a moment to reflect on how you currently spend your time during a typical week.</p>
+        <ol>
+          <li><strong>Enter the number of hours</strong> you spend on each activity listed (e.g., sleep, work, family, hobbies, digital use, etc.).</li>
+          <li>As you fill in the fields, a <strong>colorful "life balance cake" (pie chart)</strong> will generate automatically to show how your time is distributed.</li>
+          <li>Observe the chart, reflect, and <strong>answer the questions below:</strong></li>
+        </ol>
+        
+        <div class="time-input-grid">
+          <div class="time-input-item">
+            <label for="sleep-hours">Sleep:</label>
+            <input type="number" id="sleep-hours" min="0" max="168" placeholder="Hours per week">
+          </div>
+          <div class="time-input-item">
+            <label for="work-hours">Work:</label>
+            <input type="number" id="work-hours" min="0" max="168" placeholder="Hours per week">
+          </div>
+          <div class="time-input-item">
+            <label for="family-hours">Family:</label>
+            <input type="number" id="family-hours" min="0" max="168" placeholder="Hours per week">
+          </div>
+          <div class="time-input-item">
+            <label for="hobbies-hours">Hobbies:</label>
+            <input type="number" id="hobbies-hours" min="0" max="168" placeholder="Hours per week">
+          </div>
+          <div class="time-input-item">
+            <label for="digital-hours">Digital Use:</label>
+            <input type="number" id="digital-hours" min="0" max="168" placeholder="Hours per week">
+          </div>
+          <div class="time-input-item">
+            <label for="exercise-hours">Exercise:</label>
+            <input type="number" id="exercise-hours" min="0" max="168" placeholder="Hours per week">
+          </div>
+          <div class="time-input-item">
+            <label for="social-hours">Social:</label>
+            <input type="number" id="social-hours" min="0" max="168" placeholder="Hours per week">
+          </div>
+          <div class="time-input-item">
+            <label for="other-hours">Other:</label>
+            <input type="number" id="other-hours" min="0" max="168" placeholder="Hours per week">
+          </div>
+        </div>
+        
+        <div id="life-balance-chart" class="chart-container">
+          <div class="chart-wrapper">
+            <canvas id="balance-chart-canvas"></canvas>
+          </div>
+          <div class="chart-legend" id="chart-legend">
+            <div class="legend-item">
+              <div class="legend-color" style="background-color: #FF6384;"></div>
+              <span>Sleep</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background-color: #36A2EB;"></div>
+              <span>Work</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background-color: #FFCE56;"></div>
+              <span>Family</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background-color: #4BC0C0;"></div>
+              <span>Hobbies</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background-color: #9966FF;"></div>
+              <span>Digital Use</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background-color: #FF9F40;"></div>
+              <span>Exercise</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background-color: #FF6B9D;"></div>
+              <span>Social</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background-color: #C9CBCF;"></div>
+              <span>Other</span>
+            </div>
+          </div>
+          <div class="chart-validation">
+            <div id="hours-counter" class="hours-counter">
+              Total hours: <span id="total-hours">0</span> / 168
+            </div>
+            <div id="validation-message" style="display: none;"></div>
+          </div>
+        </div>
+        
+        <div class="reflection-question">
+          <h3><em>Are some slices larger than you expected? Does the balance reflect your values and priorities? Is your digital use taking more space than you'd like?</em></h3>
+          <textarea 
+            id="balance-observation" 
+            class="reflection-textarea"
+            rows="4" 
+            placeholder="Write your reflection here..."
+            aria-label="Balance observation reflection"
+          ></textarea>
+          <div class="button-container">
+            <button 
+              type="button" 
+              class="save-button" 
+              data-reflection-id="balance-observation"
+              aria-describedby="feedback-balance-observation"
+            >
+              <i class="fas fa-save" aria-hidden="true"></i> Save Reflection
+            </button>
+            <span id="feedback-balance-observation" class="save-feedback" aria-live="polite"></span>
+          </div>
+        </div>
+        
+        <div class="reflection-question">
+          <h3><em>Think about one or two digital habits you could reduce and write your reflection below. What could you do instead with that reclaimed time?</em></h3>
+          <textarea 
+            id="habit-reduction" 
+            class="reflection-textarea"
+            rows="4" 
+            placeholder="Write your reflection here..."
+            aria-label="Habit reduction reflection"
+          ></textarea>
+          <div class="button-container">
+            <button 
+              type="button" 
+              class="save-button" 
+              data-reflection-id="habit-reduction"
+              aria-describedby="feedback-habit-reduction"
+            >
+              <i class="fas fa-save" aria-hidden="true"></i> Save Reflection
+            </button>
+            <span id="feedback-habit-reduction" class="save-feedback" aria-live="polite"></span>
+          </div>
+        </div>
+        
+        <button id="download-balance-response" class="download-btn">
+          <i class="fas fa-download" aria-hidden="true"></i>
+          Download my response
+        </button>
+      </div>
+    </section>
+    
+    <!-- How to Stay Accountable -->
+    <section class="lesson-section no-borders">
+      <h2>How to Stay Accountable?: Choose Your Buddy!</h2>
+      
+      <div class="responsive-video">
+        <video 
+          id="accountability-video" 
+          class="video-js vjs-ie-skin vjs-big-play-centered" 
+          controls 
+          preload="auto" 
+          data-video-id="w04v04"
+          data-logo="assets/images/logo-ie-small.png"
+          aria-label="How to Stay Accountable video"
+        >
+          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w04v04-how-to-stay-accountable/mp4/w04v04-how-to-stay-accountable_1080p.mp4" type="video/mp4">
+          <p class="vjs-no-js">
+            To view this video please enable JavaScript, and consider upgrading to a
+            web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+          </p>
+        </video>
+      </div>
+      
+      <div class="key-point" role="note" aria-label="Key point about accountability">
+        <h3>Key Point</h3>
+        <p>Staying accountable to your digital goals is easier and more sustainable when you involve a trusted accountability partner, celebrate progress, set boundaries, and regularly reflect on your habits.</p>
+        <p><strong>Behavior change is hard—but you don't have to do it alone.</strong></p>
+        <p>Partnering with someone you trust can help you stay motivated, focused, and honest with yourself.</p>
+        <p>Here are a few <strong>tips to make the most of your accountability partner:</strong></p>
+        <ul>
+          <li>Be clear and honest about your goals.</li>
+          <li>Check in regularly—remotely or in person.</li>
+          <li>Celebrate small wins together and adjust goals as needed.</li>
+          <li>Track your progress in a journal and learn from your setbacks.</li>
+        </ul>
+        <p>You can also <strong>support your progress with habits like</strong>:</p>
+        <ul>
+          <li>Mindfulness and reflection.</li>
+          <li>Digital boundaries (e.g., screen-free meals or wind-down time).</li>
+          <li>Reward systems and offline hobbies that restore your energy.</li>
+        </ul>
+        <p>And remember—being someone else's accountability buddy can also deepen your own commitment to digital well-being.</p>
+      </div>
+    </section>
+    
+    <!-- Activity: Accountability Buddy Planning -->
+    <section class="lesson-section no-borders">
+      <h2>Activity: Accountability Buddy Planning</h2>
+      <p>Having someone support you throughout your digital well-being journey can make all the difference. This activity helps you think through how to choose an accountability buddy and how to work with them effectively.</p>
+      <p>Take a few moments to reflect on the questions below. <strong>Think practically — who in your life could support you, and how could you stay connected and motivated?</strong></p>
+      <p><strong>You can download the editable template to complete your responses.</strong> This way, you can track your ideas.</p>
+      
+      <div class="template-download">
+        <button id="download-buddy-template" class="download-btn">
+          <i class="fas fa-download" aria-hidden="true"></i>
+          Download the editable template here
+        </button>
+      </div>
+    </section>
+    
+    <!-- Reading -->
+    <section class="lesson-section no-borders">
+      <h2>Reading</h2>
+      <p>Please complete the following reading: <em>"Seven Habits of Mindfulness"</em></p>
+      
+      <div class="reading-cards">
+        <div class="reading-card">
+          <div class="reading-card-content">
+            <h3>Seven Habits of Mindfulness</h3>
+            <p>Explore seven practical habits that can help you develop mindfulness in your daily life and improve your relationship with technology.</p>
+            <div class="reading-card-footer">
+              <a href="https://www.ie.edu/insights/infographics/seven-habits-of-mindfulness/" target="_blank" class="reading-link" aria-label="Read Seven Habits of Mindfulness (opens in new tab)">
+                Read Article
+                <span class="reading-arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- End of Lesson Assessment -->
+    <section class="lesson-section no-borders">
+      <div class="reflection-exercise">
+        <h2>End of Lesson Assessment: Touchpoint II</h2>
+        <p><strong>Let's pause and reflect on your journey so far.</strong></p>
+        <p>This quick check-in is designed to help you measure your progress and notice any positive changes. Measuring your progress periodically and journaling about it can promote consistency, beneficial insights, and a greater sense of self-efficacy. Use the scale from 1 to 5 to indicate how much you agree with each statement (1 = completely disagree, 5 = completely agree).</p>
+        <p>After completing the scale, take a moment to reflect in writing. Your responses will be saved and available for download so you can see how far you've come.</p>
+        
+        
+<div class="assessment-step">
+  <h4><strong>Step 1:</strong> <strong>Indicate how much you agree with each statement</strong> <em>(1 = completely disagree, 5 = completely agree).</em></h4>
+  
+  <div class="scale-question">
+    <p><strong>I have decreased my screen time.</strong></p>
+    <div class="scale-options">
+      <div class="scale-option">
+        <input type="radio" id="q1-1" name="screen-time" value="1">
+        <label for="q1-1">1-Completely disagree</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q1-2" name="screen-time" value="2">
+        <label for="q1-2">2</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q1-3" name="screen-time" value="3">
+        <label for="q1-3">3</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q1-4" name="screen-time" value="4">
+        <label for="q1-4">4</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q1-5" name="screen-time" value="5">
+        <label for="q1-5">5-Completely agree</label>
+      </div>
+    </div>
+  </div>
 
-    <main>
-        <section id="chapter-content">
-            <h2>Chapter 4: Digital Well-being Vision and Practice</h2>
-            <p>This chapter focuses on creating a personal vision for your digital well-being and implementing practical strategies to achieve it.</p>
+  <div class="scale-question">
+    <p><strong>I have stuck to my Digital Goals.</strong></p>
+    <div class="scale-options">
+      <div class="scale-option">
+        <input type="radio" id="q2-1" name="digital-goals" value="1">
+        <label for="q2-1">1-Completely disagree</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q2-2" name="digital-goals" value="2">
+        <label for="q2-2">2</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q2-3" name="digital-goals" value="3">
+        <label for="q2-3">3</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q2-4" name="digital-goals" value="4">
+        <label for="q2-4">4</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q2-5" name="digital-goals" value="5">
+        <label for="q2-5">5-Completely agree</label>
+      </div>
+    </div>
+  </div>
 
-            <h3>4.1 Defining Your Digital Well-being Vision</h3>
-            <p>Start by reflecting on what a healthy and balanced digital life looks like for you. Consider your values, goals, and priorities.</p>
+  <div class="scale-question">
+    <p><strong>I am closer to where I want to be.</strong></p>
+    <div class="scale-options">
+      <div class="scale-option">
+        <input type="radio" id="q3-1" name="progress" value="1">
+        <label for="q3-1">1-Completely disagree</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q3-2" name="progress" value="2">
+        <label for="q3-2">2</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q3-3" name="progress" value="3">
+        <label for="q3-3">3</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q3-4" name="progress" value="4">
+        <label for="q3-4">4</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q3-5" name="progress" value="5">
+        <label for="q3-5">5-Completely agree</label>
+      </div>
+    </div>
+  </div>
 
-            <h3>4.2 Setting Realistic Goals</h3>
-            <p>Break down your vision into smaller, achievable goals. For example, "Reduce social media usage by 30 minutes per day" or "Spend one hour each day without any screens."</p>
+  <div class="scale-question">
+    <p><strong>I have made more conscious use of my digital devices.</strong></p>
+    <div class="scale-options">
+      <div class="scale-option">
+        <input type="radio" id="q4-1" name="conscious-use" value="1">
+        <label for="q4-1">1-Completely disagree</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q4-2" name="conscious-use" value="2">
+        <label for="q4-2">2</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q4-3" name="conscious-use" value="3">
+        <label for="q4-3">3</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q4-4" name="conscious-use" value="4">
+        <label for="q4-4">4</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q4-5" name="conscious-use" value="5">
+        <label for="q4-5">5-Completely agree</label>
+      </div>
+    </div>
+  </div>
 
-            <h3>4.3 Practical Strategies for Implementation</h3>
-            <ul>
-                <li><strong>Time Blocking:</strong> Schedule specific times for digital activities and stick to them.</li>
-                <li><strong>App Limits:</strong> Use built-in features or third-party apps to limit your time on distracting apps.</li>
-                <li><strong>Digital Detox:</strong> Plan regular breaks from technology, such as a weekend without screens.</li>
-                <li><strong>Mindful Technology Use:</strong> Be present and intentional when using technology. Avoid mindless scrolling.</li>
-            </ul>
+  <div class="scale-question">
+    <p><strong>I feel better about my use of digital devices.</strong></p>
+    <div class="scale-options">
+      <div class="scale-option">
+        <input type="radio" id="q5-1" name="feel-better" value="1">
+        <label for="q5-1">1-Completely disagree</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q5-2" name="feel-better" value="2">
+        <label for="q5-2">2</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q5-3" name="feel-better" value="3">
+        <label for="q5-3">3</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q5-4" name="feel-better" value="4">
+        <label for="q5-4">4</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q5-5" name="feel-better" value="5">
+        <label for="q5-5">5-Completely agree</label>
+      </div>
+    </div>
+  </div>
+</div>
 
-            <h3>4.4 Monitoring and Adjusting Your Approach</h3>
-            <p>Regularly evaluate your progress and make adjustments as needed. What's working? What's not? Be flexible and adapt your strategies to fit your changing needs.</p>
+<div class="assessment-step">
+  <h4><strong>Step 2:</strong> <strong>Take a moment to reflect by responding to the question below</strong></h4>
+  <p>How do you feel after completing the third and fourth lesson of this course? Have you noticed any differences in your general well-being?</p>
+  <textarea 
+    id="wellbeing-reflection" 
+    class="reflection-textarea"
+    rows="6" 
+    placeholder="Please write a short description..."
+    aria-label="Well-being reflection"
+  ></textarea>
+  <div class="button-container">
+    <button 
+      type="button" 
+      class="save-button" 
+      data-reflection-id="wellbeing-reflection"
+      aria-describedby="feedback-wellbeing-reflection"
+    >
+      <i class="fas fa-save" aria-hidden="true"></i> Save Reflection
+    </button>
+    <span id="feedback-wellbeing-reflection" class="save-feedback" aria-live="polite"></span>
+  </div>
+</div>
 
-            <h3>4.5 Seeking Support</h3>
-            <p>Connect with others who are also working on their digital well-being. Share your experiences and learn from each other.</p>
-        </section>
-    </main>
+<button id="download-assessment-response" class="download-btn">
+  <i class="fas fa-download" aria-hidden="true"></i>
+  Download my response
+</button>
+      </div>
+    </section>
+    
+    <div class="navigation-buttons" role="navigation" aria-label="Lesson navigation">
+      <a href="chapter3.html" class="nav-button prev"><span class="arrow-left" aria-hidden="true">←</span>Previous</a>
+      <a href="chapter5.html" class="nav-button next">Next<span class="arrow-right" aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</main>
 
-    <footer>
-        <p>&copy; 2023 Digital Well-being Guide</p>
-    </footer>
+<footer role="contentinfo">
+<div class="footer-content">
+  <p class="copyright">&copy; <span id="current-year"></span> IE University. All rights reserved.</p>
+</div>
+</footer>
 
+<!-- Glossary Modal -->
+<div id="glossary-modal" class="modal" role="dialog" aria-labelledby="glossary-modal-title" aria-hidden="true">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 id="glossary-modal-title">Glossary of Digital Well-being Concepts</h2>
+      <button class="modal-close" aria-label="Close glossary">&times;</button>
+    </div>
+    <div class="modal-body">
+      <nav class="glossary-az-nav" aria-label="Glossary A-Z Navigation">
+        <a href="#glossary-section-a">A</a>
+        <a href="#glossary-section-b">B</a>
+        <a href="#glossary-section-c">C</a>
+        <a href="#glossary-section-d">D</a>
+        <a href="#glossary-section-e">E</a>
+        <a href="#glossary-section-f">F</a>
+        <a href="#glossary-section-h">H</a>
+        <a href="#glossary-section-m">M</a>
+        <a href="#glossary-section-n">N</a>
+        <a href="#glossary-section-p">P</a>
+        <a href="#glossary-section-r">R</a>
+        <a href="#glossary-section-s">S</a>
+        <a href="#glossary-section-t">T</a>
+        <a href="#glossary-section-w">W</a>
+      </nav>
+      <div class="glossary-terms">
+        <div id="glossary-section-a" class="glossary-section">
+          <h3 class="glossary-letter-header">A</h3>
+          <div class="glossary-term">
+            <strong>Accountability Buddy</strong> – A supportive partner who helps track progress and encourages consistency in digital well-being goals.
+          </div>
+          <div class="glossary-term">
+            <strong>Attention Management</strong> – The practice of consciously directing focus in a digital environment to enhance productivity and cognitive health.
+          </div>
+          <div class="glossary-term">
+            <strong>Autonomy (Self-Determination Theory)</strong> – The ability to make choices about digital engagement that align with personal values and goals.
+          </div>
+        </div>
+        <div id="glossary-section-b" class="glossary-section">
+          <h3 class="glossary-letter-header">B</h3>
+          <div class="glossary-term">
+            <strong>Brain Cognition</strong> – The way the brain processes information, impacted by digital habits such as screen time and multitasking.
+          </div>
+          <div class="glossary-term">
+            <strong>Behavioral Science</strong> – The study of how people form digital habits and how technology influences decision-making.
+          </div>
+        </div>
+        <div id="glossary-section-c" class="glossary-section">
+          <h3 class="glossary-letter-header">C</h3>
+          <div class="glossary-term">
+            <strong>Character Strengths</strong> – Personal strengths (e.g., curiosity, self-regulation) that can be leveraged to cultivate healthy digital habits.
+          </div>
+          <div class="glossary-term">
+            <strong>Cognitive Load</strong> – The mental effort required to process information, which can be impacted by excessive screen time or multitasking.
+          </div>
+          <div class="glossary-term">
+            <strong>Core Values</strong> – Fundamental beliefs that guide digital habits and decision-making.
+          </div>
+        </div>
+        <div id="glossary-section-d" class="glossary-section">
+          <h3 class="glossary-letter-header">D</h3>
+          <div class="glossary-term">
+            <strong>Digital Detox</strong> – A period of time spent without digital devices to reset habits and improve well-being.
+          </div>
+          <div class="glossary-term">
+            <strong>Digital Flourishing</strong> – Thriving in a digital environment by balancing technology use with personal and professional well-being.
+          </div>
+          <div class="glossary-term">
+            <strong>Digital Goals</strong> – Personalized objectives for improving one's digital habits, often using the SMART (Specific, Measurable, Achievable, Relevant, Time-bound) framework.
+          </div>
+          <div class="glossary-term">
+            <strong>Digital Habit Audit</strong> – A self-assessment to track technology use and identify areas for improvement.
+          </div>
+          <div class="glossary-term">
+            <strong>Digital Minimalism</strong> – A philosophy advocating for intentional and purposeful use of technology to enhance well-being.
+          </div>
+        </div>
+        <div id="glossary-section-e" class="glossary-section">
+          <h3 class="glossary-letter-header">E</h3>
+          <div class="glossary-term">
+            <strong>Empathy and Technology</strong> – The relationship between digital interactions and emotional intelligence, including how technology can impact social connections.
+          </div>
+          <div class="glossary-term">
+            <strong>Energy Management</strong> – Strategies to prevent digital fatigue and optimize energy levels in a tech-heavy world.
+          </div>
+        </div>
+        <div id="glossary-section-f" class="glossary-section">
+          <h3 class="glossary-letter-header">F</h3>
+          <div class="glossary-term">
+            <strong>Focus & Productivity</strong> – The ability to maintain attention and effectiveness in work and life, often challenged by digital distractions.
+          </div>
+          <div class="glossary-term">
+            <strong>Flourishing (Well-being Theory)</strong> – The state of thriving in multiple aspects of life, including physical, mental, emotional, and digital well-being.
+          </div>
+        </div>
+        <div id="glossary-section-h" class="glossary-section">
+          <h3 class="glossary-letter-header">H</h3>
+          <div class="glossary-term">
+            <strong>Habit Loop</strong> – A framework for understanding habit formation, consisting of cue, routine, and reward, applicable to digital behaviors.
+          </div>
+        </div>
+        <div id="glossary-section-m" class="glossary-section">
+          <h3 class="glossary-letter-header">M</h3>
+          <div class="glossary-term">
+            <strong>Mindfulness in Technology Use</strong> – Practicing present-moment awareness to create intentional and balanced digital interactions.
+          </div>
+          <div class="glossary-term">
+            <strong>Motivation (Self-Determination Theory)</strong> – Internal and external factors that influence engagement with technology, including autonomy, competence, and relatedness.
+          </div>
+        </div>
+        <div id="glossary-section-n" class="glossary-section">
+          <h3 class="glossary-letter-header">N</h3>
+          <div class="glossary-term">
+            <strong>Notification Management</strong> – Strategies to reduce interruptions and increase focus, such as disabling non-essential alerts.
+          </div>
+        </div>
+        <div id="glossary-section-p" class="glossary-section">
+          <h3 class="glossary-letter-header">P</h3>
+          <div class="glossary-term">
+            <strong>Prefrontal Cortex</strong> – The part of the brain responsible for decision-making and impulse control, which is affected by digital engagement.
+          </div>
+          <div class="glossary-term">
+            <strong>Psychological Safety and Technology</strong> – The impact of digital environments on emotional well-being and security.
+          </div>
+        </div>
+        <div id="glossary-section-r" class="glossary-section">
+          <h3 class="glossary-letter-header">R</h3>
+          <div class="glossary-term">
+            <strong>Reflection Practice</strong> – Periodic self-check-ins to assess digital habits and their alignment with personal values.
+          </div>
+        </div>
+        <div id="glossary-section-s" class="glossary-section">
+          <h3 class="glossary-letter-header">S</h3>
+          <div class="glossary-term">
+            <strong>Screen Time Awareness</strong> – Conscious tracking of time spent on digital devices to maintain a balanced lifestyle.
+          </div>
+          <div class="glossary-term">
+            <strong>Self-Regulation</strong> – The ability to control impulses and make mindful choices in digital interactions.
+          </div>
+          <div class="glossary-term">
+            <strong>Social Media Hygiene</strong> – Practices for maintaining a healthy relationship with social platforms, including curating content and setting boundaries.
+          </div>
+        </div>
+        <div id="glossary-section-t" class="glossary-section">
+          <h3 class="glossary-letter-header">T</h3>
+          <div class="glossary-term">
+            <strong>Tech-Life Balance</strong> – The intentional effort to harmonize technology use with overall well-being.
+          </div>
+          <div class="glossary-term">
+            <strong>Triggers in Digital Use</strong> – Environmental or psychological cues that prompt certain digital habits, such as checking the phone out of boredom.
+          </div>
+          <div class="glossary-term">
+            <strong>Two-Edge Effect of Technology</strong> – The concept that digital tools can both enhance and hinder well-being, depending on usage patterns.
+          </div>
+        </div>
+        <div id="glossary-section-w" class="glossary-section">
+          <h3 class="glossary-letter-header">W</h3>
+          <div class="glossary-term">
+            <strong>Willpower and Digital Use</strong> – The ability to resist distractions and build positive technology habits.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- VideoJS JavaScript -->
+<script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
+<script src="js/video-player.js"></script>
+<script src="js/key-points.js"></script>
+<script src="js/reflections.js"></script>
+<script src="js/main.js"></script>
+<script>
+// Enhanced PDF generation function with header image
+async function addPDFHeader(doc) {
+  try {
+    // Load the header image
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    
+    return new Promise((resolve, reject) => {
+      img.onload = function() {
+        try {
+          // Create a canvas to process the image
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d');
+          
+          // Set canvas dimensions to match the image aspect ratio
+          const pdfWidth = 210; // A4 width in mm (jsPDF default)
+          const imgWidth = pdfWidth; // 100% of PDF width
+          const imgHeight = (img.height / img.width) * imgWidth;
+          
+          canvas.width = img.width;
+          canvas.height = img.height;
+          
+          // Draw the image on canvas
+          ctx.drawImage(img, 0, 0);
+          
+          // Convert to base64
+          const imgData = canvas.toDataURL('image/jpeg', 0.8);
+          
+          // Add image to PDF at top corner, full width
+          doc.addImage(imgData, 'JPEG', 0, 0, imgWidth, imgHeight);
+          
+          resolve(imgHeight + 10); // Return the Y position after the header with small margin
+        } catch (error) {
+          console.warn('Error processing header image:', error);
+          resolve(20); // Return default Y position if image fails
+        }
+      };
+      
+      img.onerror = function() {
+        console.warn('Could not load header image');
+        resolve(20); // Return default Y position if image fails to load
+      };
+      
+      // Load the image
+      img.src = 'assets/images/pdf-header.jpg';
+    });
+  } catch (error) {
+    console.warn('Error loading header image:', error);
+    return 20; // Return default Y position if there's an error
+  }
+}
+
+// Life Balance Chart functionality
+let balanceChart = null;
+
+function initializeChart() {
+  const canvas = document.getElementById('balance-chart-canvas');
+  const ctx = canvas.getContext('2d');
+  
+  // Set canvas size
+  canvas.width = 400;
+  canvas.height = 400;
+  
+  // Clear canvas and show placeholder
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  
+  // Show placeholder text
+  showChartMessage('Enter weekly hours for each activity to generate your life balance chart (maximum 168 hours total)');
+}
+
+function showChartMessage(message, isError = false) {
+  const canvas = document.getElementById('balance-chart-canvas');
+  const ctx = canvas.getContext('2d');
+  
+  // Clear canvas
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  
+  // Set text properties
+  ctx.font = '16px Arial';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillStyle = isError ? '#721c24' : '#666';
+  
+  // Word wrap the message
+  const words = message.split(' ');
+  const lines = [];
+  let currentLine = '';
+  const maxWidth = canvas.width - 40;
+  
+  for (let word of words) {
+    const testLine = currentLine + (currentLine ? ' ' : '') + word;
+    const metrics = ctx.measureText(testLine);
+    
+    if (metrics.width > maxWidth && currentLine) {
+      lines.push(currentLine);
+      currentLine = word;
+    } else {
+      currentLine = testLine;
+    }
+  }
+  if (currentLine) {
+    lines.push(currentLine);
+  }
+  
+  // Draw lines
+  const lineHeight = 24;
+  const startY = (canvas.height - (lines.length * lineHeight)) / 2;
+  
+  lines.forEach((line, index) => {
+    ctx.fillText(line, canvas.width / 2, startY + (index * lineHeight));
+  });
+}
+
+function updateChart() {
+  const activities = [
+    { name: 'Sleep', hours: parseFloat(document.getElementById('sleep-hours').value) || 0, color: '#FF6384' },
+    { name: 'Work', hours: parseFloat(document.getElementById('work-hours').value) || 0, color: '#36A2EB' },
+    { name: 'Family', hours: parseFloat(document.getElementById('family-hours').value) || 0, color: '#FFCE56' },
+    { name: 'Hobbies', hours: parseFloat(document.getElementById('hobbies-hours').value) || 0, color: '#4BC0C0' },
+    { name: 'Digital Use', hours: parseFloat(document.getElementById('digital-hours').value) || 0, color: '#9966FF' },
+    { name: 'Exercise', hours: parseFloat(document.getElementById('exercise-hours').value) || 0, color: '#FF9F40' },
+    { name: 'Social', hours: parseFloat(document.getElementById('social-hours').value) || 0, color: '#FF6B9D' },
+    { name: 'Other', hours: parseFloat(document.getElementById('other-hours').value) || 0, color: '#C9CBCF' }
+  ];
+  
+  const totalHours = activities.reduce((sum, activity) => sum + activity.hours, 0);
+  const totalHoursElement = document.getElementById('total-hours');
+  const validationMessage = document.getElementById('validation-message');
+  
+  // Update total hours display
+  totalHoursElement.textContent = totalHours;
+  
+  // Validate total hours
+  if (totalHours > 168) {
+    validationMessage.innerHTML = '<div class="validation-error">You cannot exceed 168 hours total in your activities. Please correct this to continue.</div>';
+    validationMessage.style.display = 'block';
+    showChartMessage('You cannot exceed 168 hours total in your activities. Please correct this to continue.', true);
+    return;
+  } else if (totalHours === 0) {
+    validationMessage.style.display = 'none';
+    showChartMessage('Enter weekly hours for each activity to generate your life balance chart (maximum 168 hours total)');
+    return;
+  } else {
+    validationMessage.style.display = 'none';
+  }
+  
+  // Filter out activities with 0 hours
+  const nonZeroActivities = activities.filter(activity => activity.hours > 0);
+  
+  if (nonZeroActivities.length === 0) {
+    showChartMessage('Enter weekly hours for each activity to generate your life balance chart (maximum 168 hours total)');
+    return;
+  }
+  
+  // Draw pie chart
+  const canvas = document.getElementById('balance-chart-canvas');
+  const ctx = canvas.getContext('2d');
+  
+  // Clear canvas
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  
+  const centerX = canvas.width / 2;
+  const centerY = canvas.height / 2;
+  const radius = Math.min(centerX, centerY) - 20;
+  
+  let currentAngle = -Math.PI / 2; // Start at top
+  
+  nonZeroActivities.forEach(activity => {
+    const sliceAngle = (activity.hours / totalHours) * 2 * Math.PI;
+    
+    // Draw slice
+    ctx.beginPath();
+    ctx.moveTo(centerX, centerY);
+    ctx.arc(centerX, centerY, radius, currentAngle, currentAngle + sliceAngle);
+    ctx.closePath();
+    ctx.fillStyle = activity.color;
+    ctx.fill();
+    ctx.strokeStyle = '#fff';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+    
+    // Draw label if slice is large enough
+    if (activity.hours / totalHours > 0.05) {
+      const labelAngle = currentAngle + sliceAngle / 2;
+      const labelX = centerX + Math.cos(labelAngle) * (radius * 0.7);
+      const labelY = centerY + Math.sin(labelAngle) * (radius * 0.7);
+      
+      ctx.fillStyle = '#000';
+      ctx.font = '12px Arial';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(`${activity.hours}h`, labelX, labelY);
+    }
+    
+    currentAngle += sliceAngle;
+  });
+}
+
+// Session storage functions
+function saveChartData() {
+  const chartData = {
+    sleep: document.getElementById('sleep-hours').value,
+    work: document.getElementById('work-hours').value,
+    family: document.getElementById('family-hours').value,
+    hobbies: document.getElementById('hobbies-hours').value,
+    digital: document.getElementById('digital-hours').value,
+    exercise: document.getElementById('exercise-hours').value,
+    social: document.getElementById('social-hours').value,
+    other: document.getElementById('other-hours').value,
+    balanceObservation: document.getElementById('balance-observation').value,
+    habitReduction: document.getElementById('habit-reduction').value,
+    timestamp: new Date().toISOString()
+  };
+  
+  sessionStorage.setItem('chapter4_chart_data', JSON.stringify(chartData));
+}
+
+function loadChartData() {
+  const savedData = sessionStorage.getItem('chapter4_chart_data');
+  if (savedData) {
+    const data = JSON.parse(savedData);
+    
+    document.getElementById('sleep-hours').value = data.sleep || '';
+    document.getElementById('work-hours').value = data.work || '';
+    document.getElementById('family-hours').value = data.family || '';
+    document.getElementById('hobbies-hours').value = data.hobbies || '';
+    document.getElementById('digital-hours').value = data.digital || '';
+    document.getElementById('exercise-hours').value = data.exercise || '';
+    document.getElementById('social-hours').value = data.social || '';
+    document.getElementById('other-hours').value = data.other || '';
+    document.getElementById('balance-observation').value = data.balanceObservation || '';
+    document.getElementById('habit-reduction').value = data.habitReduction || '';
+    
+    updateChart();
+  }
+}
+
+// Assessment functions
+function saveAssessmentData() {
+  const assessmentData = {
+    screenTime: document.querySelector('input[name="screen-time"]:checked')?.value || '',
+    digitalGoals: document.querySelector('input[name="digital-goals"]:checked')?.value || '',
+    progress: document.querySelector('input[name="progress"]:checked')?.value || '',
+    consciousUse: document.querySelector('input[name="conscious-use"]:checked')?.value || '',
+    feelBetter: document.querySelector('input[name="feel-better"]:checked')?.value || '',
+    wellbeingReflection: document.getElementById('wellbeing-reflection').value || '',
+    timestamp: new Date().toISOString()
+  };
+  
+  sessionStorage.setItem('chapter4_assessment', JSON.stringify(assessmentData));
+}
+
+function loadAssessmentData() {
+  const savedData = sessionStorage.getItem('chapter4_assessment');
+  if (savedData) {
+    const data = JSON.parse(savedData);
+    
+    // Restore radio button selections
+    if (data.screenTime) {
+      const radio1 = document.querySelector(`input[name="screen-time"][value="${data.screenTime}"]`);
+      if (radio1) radio1.checked = true;
+    }
+    if (data.digitalGoals) {
+      const radio2 = document.querySelector(`input[name="digital-goals"][value="${data.digitalGoals}"]`);
+      if (radio2) radio2.checked = true;
+    }
+    if (data.progress) {
+      const radio3 = document.querySelector(`input[name="progress"][value="${data.progress}"]`);
+      if (radio3) radio3.checked = true;
+    }
+    if (data.consciousUse) {
+      const radio4 = document.querySelector(`input[name="conscious-use"][value="${data.consciousUse}"]`);
+      if (radio4) radio4.checked = true;
+    }
+    if (data.feelBetter) {
+      const radio5 = document.querySelector(`input[name="feel-better"][value="${data.feelBetter}"]`);
+      if (radio5) radio5.checked = true;
+    }
+    
+    // Restore reflection text
+    if (data.wellbeingReflection) {
+      document.getElementById('wellbeing-reflection').value = data.wellbeingReflection;
+    }
+  }
+}
+
+// PDF download functions
+async function downloadGoalsReview() {
+  const progressReflection = document.getElementById('progress-reflection').value;
+  const insightsReflection = document.getElementById('insights-reflection').value;
+  
+  // Create PDF with jsPDF
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  
+  // Add header image and get the Y position after it
+  const startY = await addPDFHeader(doc);
+  
+  // Set font
+  doc.setFont("helvetica");
+  
+  // Title
+  doc.setFontSize(16);
+  doc.setFont("helvetica", "bold");
+  doc.text("Digital Goals Review - Chapter 4", 20, startY + 10);
+  
+  // Date
+  doc.setFontSize(12);
+  doc.setFont("helvetica", "normal");
+  doc.text(`Date: ${new Date().toLocaleDateString()}`, 20, startY + 25);
+  
+  let yPosition = startY + 45;
+  
+  // Progress reflection
+  if (yPosition > 250) {
+    doc.addPage();
+    yPosition = 20;
+  }
+  
+  doc.setFontSize(14);
+  doc.setFont("helvetica", "bold");
+  doc.text("PROGRESS REFLECTION", 20, yPosition);
+  yPosition += 15;
+  
+  doc.setFontSize(11);
+  doc.setFont("helvetica", "italic");
+  const progressQuestion = "How would you rate your progress and effort? Where are you now, compared to where you were then? Are you closer to consolidating Digital Habits that serve you?";
+  const splitProgressQuestion = doc.splitTextToSize(progressQuestion, 170);
+  
+  // Check if question fits on current page
+  if (yPosition + (splitProgressQuestion.length * 6) > 270) {
+    doc.addPage();
+    yPosition = 20;
+  }
+  
+  doc.text(splitProgressQuestion, 20, yPosition);
+  yPosition += splitProgressQuestion.length * 6 + 10;
+  
+  doc.setFont("helvetica", "normal");
+  if (progressReflection) {
+    const splitProgressReflection = doc.splitTextToSize(progressReflection, 170);
+    
+    // Handle long reflections that might span multiple pages
+    let remainingLines = [...splitProgressReflection];
+    
+    while (remainingLines.length > 0) {
+      const availableSpace = 280 - yPosition;
+      const linesPerPage = Math.floor(availableSpace / 6);
+      
+      if (linesPerPage <= 0) {
+        doc.addPage();
+        yPosition = 20;
+        continue;
+      }
+      
+      const linesToAdd = remainingLines.splice(0, linesPerPage);
+      doc.text(linesToAdd, 20, yPosition);
+      yPosition += linesToAdd.length * 6;
+      
+      if (remainingLines.length > 0) {
+        doc.addPage();
+        yPosition = 20;
+      }
+    }
+    yPosition += 20;
+  } else {
+    if (yPosition > 270) {
+      doc.addPage();
+      yPosition = 20;
+    }
+    doc.setFont("helvetica", "italic");
+    doc.text("No reflection provided", 20, yPosition);
+    yPosition += 20;
+  }
+  
+  // Insights reflection
+  if (yPosition > 250) {
+    doc.addPage();
+    yPosition = 20;
+  }
+  
+  doc.setFontSize(14);
+  doc.setFont("helvetica", "bold");
+  doc.text("INSIGHTS REFLECTION", 20, yPosition);
+  yPosition += 15;
+  
+  doc.setFontSize(11);
+  doc.setFont("helvetica", "italic");
+  const insightsQuestion = "Consider the insights from this journey, were your Digital Goals suitable? What habits worked for you, and which ones didn't? How could you make adjustments to your habits to suit your routine, day-to-day activities, and values?";
+  const splitInsightsQuestion = doc.splitTextToSize(insightsQuestion, 170);
+  
+  // Check if question fits on current page
+  if (yPosition + (splitInsightsQuestion.length * 6) > 270) {
+    doc.addPage();
+    yPosition = 20;
+  }
+  
+  doc.text(splitInsightsQuestion, 20, yPosition);
+  yPosition += splitInsightsQuestion.length * 6 + 10;
+  
+  doc.setFont("helvetica", "normal");
+  if (insightsReflection) {
+    const splitInsightsReflection = doc.splitTextToSize(insightsReflection, 170);
+    
+    // Handle long reflections that might span multiple pages
+    let remainingLines = [...splitInsightsReflection];
+    
+    while (remainingLines.length > 0) {
+      const availableSpace = 280 - yPosition;
+      const linesPerPage = Math.floor(availableSpace / 6);
+      
+      if (linesPerPage <= 0) {
+        doc.addPage();
+        yPosition = 20;
+        continue;
+      }
+      
+      const linesToAdd = remainingLines.splice(0, linesPerPage);
+      doc.text(linesToAdd, 20, yPosition);
+      yPosition += linesToAdd.length * 6;
+      
+      if (remainingLines.length > 0) {
+        doc.addPage();
+        yPosition = 20;
+      }
+    }
+  } else {
+    if (yPosition > 270) {
+      doc.addPage();
+      yPosition = 20;
+    }
+    doc.setFont("helvetica", "italic");
+    doc.text("No reflection provided", 20, yPosition);
+  }
+  
+  // Save the PDF
+  doc.save('Chapter4_Goals_Review.pdf');
+}
+
+async function downloadRelationshipResponse() {
+  const toolsReflection = document.getElementById('tools-reflection').value;
+  const balanceReflection = document.getElementById('balance-reflection').value;
+  const practicesReflection = document.getElementById('practices-reflection').value;
+  
+  // Create PDF with jsPDF
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  
+  // Add header image and get the Y position after it
+  const startY = await addPDFHeader(doc);
+  
+  // Set font
+  doc.setFont("helvetica");
+  
+  // Title
+  doc.setFontSize(16);
+  doc.setFont("helvetica", "bold");
+  doc.text("Building a Positive Relationship With Technology - Chapter 4", 20, startY + 10);
+  
+  // Date
+  doc.setFontSize(12);
+  doc.setFont("helvetica", "normal");
+  doc.text(`Date: ${new Date().toLocaleDateString()}`, 20, startY + 25);
+  
+  let yPosition = startY + 45;
+  
+  // Tools reflection
+  if (yPosition > 250) {
+    doc.addPage();
+    yPosition = 20;
+  }
+  
+  doc.setFontSize(14);
+  doc.setFont("helvetica", "bold");
+  doc.text("TOOLS REFLECTION", 20, yPosition);
+  yPosition += 15;
+  
+  doc.setFontSize(11);
+  doc.setFont("helvetica", "italic");
+  const toolsQuestion = "What tools worked best for you? Which ones were the most challenging? How will you keep them apart of your daily routine?";
+  const splitToolsQuestion = doc.splitTextToSize(toolsQuestion, 170);
+  
+  if (yPosition + (splitToolsQuestion.length * 6) > 270) {
+    doc.addPage();
+    yPosition = 20;
+  }
+  
+  doc.text(splitToolsQuestion, 20, yPosition);
+  yPosition += splitToolsQuestion.length * 6 + 10;
+  
+  doc.setFont("helvetica", "normal");
+  if (toolsReflection) {
+    const splitToolsReflection = doc.splitTextToSize(toolsReflection, 170);
+    
+    let remainingLines = [...splitToolsReflection];
+    while (remainingLines.length > 0) {
+      const availableSpace = 280 - yPosition;
+      const linesPerPage = Math.floor(availableSpace / 6);
+      
+      if (linesPerPage <= 0) {
+        doc.addPage();
+        yPosition = 20;
+        continue;
+      }
+      
+      const linesToAdd = remainingLines.splice(0, linesPerPage);
+      doc.text(linesToAdd, 20, yPosition);
+      yPosition += linesToAdd.length * 6;
+      
+      if (remainingLines.length > 0) {
+        doc.addPage();
+        yPosition = 20;
+      }
+    }
+    yPosition += 20;
+  } else {
+    if (yPosition > 270) {
+      doc.addPage();
+      yPosition = 20;
+    }
+    doc.setFont("helvetica", "italic");
+    doc.text("No reflection provided", 20, yPosition);
+    yPosition += 20;
+  }
+  
+  // Balance reflection
+  if (yPosition > 250) {
+    doc.addPage();
+    yPosition = 20;
+  }
+  
+  doc.setFontSize(14);
+  doc.setFont("helvetica", "bold");
+  doc.text("TECH-LIFE BALANCE REFLECTION", 20, yPosition);
+  yPosition += 15;
+  
+  doc.setFontSize(11);
+  doc.setFont("helvetica", "italic");
+  const balanceQuestion = "How will these exercises help your tech-life balance in the future?";
+  const splitBalanceQuestion = doc.splitTextToSize(balanceQuestion, 170);
+  
+  if (yPosition + (splitBalanceQuestion.length * 6) > 270) {
+    doc.addPage();
+    yPosition = 20;
+  }
+  
+  doc.text(splitBalanceQuestion, 20, yPosition);
+  yPosition += splitBalanceQuestion.length * 6 + 10;
+  
+  doc.setFont("helvetica", "normal");
+  if (balanceReflection) {
+    const splitBalanceReflection = doc.splitTextToSize(balanceReflection, 170);
+    
+    let remainingLines = [...splitBalanceReflection];
+    while (remainingLines.length > 0) {
+      const availableSpace = 280 - yPosition;
+      const linesPerPage = Math.floor(availableSpace / 6);
+      
+      if (linesPerPage <= 0) {
+        doc.addPage();
+        yPosition = 20;
+        continue;
+      }
+      
+      const linesToAdd = remainingLines.splice(0, linesPerPage);
+      doc.text(linesToAdd, 20, yPosition);
+      yPosition += linesToAdd.length * 6;
+      
+      if (remainingLines.length > 0) {
+        doc.addPage();
+        yPosition = 20;
+      }
+    }
+    yPosition += 20;
+  } else {
+    if (yPosition > 270) {
+      doc.addPage();
+      yPosition = 20;
+    }
+    doc.setFont("helvetica", "italic");
+    doc.text("No reflection provided", 20, yPosition);
+    yPosition += 20;
+  }
+  
+  // Practices reflection
+  if (yPosition > 250) {
+    doc.addPage();
+    yPosition = 20;
+  }
+  
+  doc.setFontSize(14);
+  doc.setFont("helvetica", "bold");
+  doc.text("PRACTICES REFLECTION", 20, yPosition);
+  yPosition += 15;
+  
+  doc.setFontSize(11);
+  doc.setFont("helvetica", "italic");
+  const practicesQuestion = "Which practices can you implement to have a better relationship with your devices, considering your own unique journey?";
+  const splitPracticesQuestion = doc.splitTextToSize(practicesQuestion, 170);
+  
+  if (yPosition + (splitPracticesQuestion.length * 6) > 270) {
+    doc.addPage();
+    yPosition = 20;
+  }
+  
+  doc.text(splitPracticesQuestion, 20, yPosition);
+  yPosition += splitPracticesQuestion.length * 6 + 10;
+  
+  doc.setFont("helvetica", "normal");
+  if (practicesReflection) {
+    const splitPracticesReflection = doc.splitTextToSize(practicesReflection, 170);
+    
+    let remainingLines = [...splitPracticesReflection];
+    while (remainingLines.length > 0) {
+      const availableSpace = 280 - yPosition;
+      const linesPerPage = Math.floor(availableSpace / 6);
+      
+      if (linesPerPage <= 0) {
+        doc.addPage();
+        yPosition = 20;
+        continue;
+      }
+      
+      const linesToAdd = remainingLines.splice(0, linesPerPage);
+      doc.text(linesToAdd, 20, yPosition);
+      yPosition += linesToAdd.length * 6;
+      
+      if (remainingLines.length > 0) {
+        doc.addPage();
+        yPosition = 20;
+      }
+    }
+  } else {
+    if (yPosition > 270) {
+      doc.addPage();
+      yPosition = 20;
+    }
+    doc.setFont("helvetica", "italic");
+    doc.text("No reflection provided", 20, yPosition);
+  }
+  
+  // Save the PDF
+  doc.save('Chapter4_Relationship_Response.pdf');
+}
+
+async function downloadBalanceResponse() {
+  saveChartData(); // Save current data
+  
+  const balanceObservation = document.getElementById('balance-observation').value;
+  const habitReduction = document.getElementById('habit-reduction').value;
+  
+  // Get chart data
+  const activities = [
+    { name: 'Sleep', hours: parseFloat(document.getElementById('sleep-hours').value) || 0 },
+    { name: 'Work', hours: parseFloat(document.getElementById('work-hours').value) || 0 },
+    { name: 'Family', hours: parseFloat(document.getElementById('family-hours').value) || 0 },
+    { name: 'Hobbies', hours: parseFloat(document.getElementById('hobbies-hours').value) || 0 },
+    { name: 'Digital Use', hours: parseFloat(document.getElementById('digital-hours').value) || 0 },
+    { name: 'Exercise', hours: parseFloat(document.getElementById('exercise-hours').value) || 0 },
+    { name: 'Social', hours: parseFloat(document.getElementById('social-hours').value) || 0 },
+    { name: 'Other', hours: parseFloat(document.getElementById('other-hours').value) || 0 }
+  ];
+  
+  const totalHours = activities.reduce((sum, activity) => sum + activity.hours, 0);
+  
+  // Create PDF with jsPDF
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  
+  // Add header image and get the Y position after it
+  const startY = await addPDFHeader(doc);
+  
+  // Set font
+  doc.setFont("helvetica");
+  
+  // Title
+  doc.setFontSize(16);
+  doc.setFont("helvetica", "bold");
+  doc.text("Life Balance Chart - Chapter 4", 20, startY + 10);
+  
+  // Date
+  doc.setFontSize(12);
+  doc.setFont("helvetica", "normal");
+  doc.text(`Date: ${new Date().toLocaleDateString()}`, 20, startY + 25);
+  
+  let yPosition = startY + 45;
+  
+  // Chart data
+  if (yPosition > 250) {
+    doc.addPage();
+    yPosition = 20;
+  }
+  
+  doc.setFontSize(14);
+  doc.setFont("helvetica", "bold");
+  doc.text("WEEKLY TIME DISTRIBUTION", 20, yPosition);
+  yPosition += 15;
+  
+  doc.setFontSize(11);
+  doc.setFont("helvetica", "normal");
+  activities.forEach(activity => {
+    if (activity.hours > 0) {
+      if (yPosition > 270) {
+        doc.addPage();
+        yPosition = 20;
+      }
+      doc.text(`${activity.name}: ${activity.hours} hours`, 20, yPosition);
+      yPosition += 8;
+    }
+  });
+  
+  if (yPosition > 270) {
+    doc.addPage();
+    yPosition = 20;
+  }
+  
+  doc.setFont("helvetica", "bold");
+  doc.text(`Total: ${totalHours} hours`, 20, yPosition);
+  yPosition += 20;
+  
+  // Balance observation
+  if (yPosition > 250) {
+    doc.addPage();
+    yPosition = 20;
+  }
+  
+  doc.setFontSize(14);
+  doc.setFont("helvetica", "bold");
+  doc.text("BALANCE OBSERVATION", 20, yPosition);
+  yPosition += 15;
+  
+  doc.setFontSize(11);
+  doc.setFont("helvetica", "italic");
+  const observationQuestion = "Are some slices larger than you expected? Does the balance reflect your values and priorities? Is your digital use taking more space than you'd like?";
+  const splitObservationQuestion = doc.splitTextToSize(observationQuestion, 170);
+  
+  if (yPosition + (splitObservationQuestion.length * 6) > 270) {
+    doc.addPage();
+    yPosition = 20;
+  }
+  
+  doc.text(splitObservationQuestion, 20, yPosition);
+  yPosition += splitObservationQuestion.length * 6 + 10;
+  
+  doc.setFont("helvetica", "normal");
+  if (balanceObservation) {
+    const splitObservation = doc.splitTextToSize(balanceObservation, 170);
+    
+    let remainingLines = [...splitObservation];
+    while (remainingLines.length > 0) {
+      const availableSpace = 280 - yPosition;
+      const linesPerPage = Math.floor(availableSpace / 6);
+      
+      if (linesPerPage <= 0) {
+        doc.addPage();
+        yPosition = 20;
+        continue;
+      }
+      
+      const linesToAdd = remainingLines.splice(0, linesPerPage);
+      doc.text(linesToAdd, 20, yPosition);
+      yPosition += linesToAdd.length * 6;
+      
+      if (remainingLines.length > 0) {
+        doc.addPage();
+        yPosition = 20;
+      }
+    }
+    yPosition += 20;
+  } else {
+    if (yPosition > 270) {
+      doc.addPage();
+      yPosition = 20;
+    }
+    doc.setFont("helvetica", "italic");
+    doc.text("No reflection provided", 20, yPosition);
+    yPosition += 20;
+  }
+  
+  // Habit reduction
+  if (yPosition > 250) {
+    doc.addPage();
+    yPosition = 20;
+  }
+  
+  doc.setFontSize(14);
+  doc.setFont("helvetica", "bold");
+  doc.text("HABIT REDUCTION REFLECTION", 20, yPosition);
+  yPosition += 15;
+  
+  doc.setFontSize(11);
+  doc.setFont("helvetica", "italic");
+  const reductionQuestion = "Think about one or two digital habits you could reduce and write your reflection below. What could you do instead with that reclaimed time?";
+  const splitReductionQuestion = doc.splitTextToSize(reductionQuestion, 170);
+  
+  if (yPosition + (splitReductionQuestion.length * 6) > 270) {
+    doc.addPage();
+    yPosition = 20;
+  }
+  
+  doc.text(splitReductionQuestion, 20, yPosition);
+  yPosition += splitReductionQuestion.length * 6 + 10;
+  
+  doc.setFont("helvetica", "normal");
+  if (habitReduction) {
+    const splitReduction = doc.splitTextToSize(habitReduction, 170);
+    
+    let remainingLines = [...splitReduction];
+    while (remainingLines.length > 0) {
+      const availableSpace = 280 - yPosition;
+      const linesPerPage = Math.floor(availableSpace / 6);
+      
+      if (linesPerPage <= 0) {
+        doc.addPage();
+        yPosition = 20;
+        continue;
+      }
+      
+      const linesToAdd = remainingLines.splice(0, linesPerPage);
+      doc.text(linesToAdd, 20, yPosition);
+      yPosition += linesToAdd.length * 6;
+      
+      if (remainingLines.length > 0) {
+        doc.addPage();
+        yPosition = 20;
+      }
+    }
+  } else {
+    if (yPosition > 270) {
+      doc.addPage();
+      yPosition = 20;
+    }
+    doc.setFont("helvetica", "italic");
+    doc.text("No reflection provided", 20, yPosition);
+  }
+  
+  // Save the PDF
+  doc.save('Chapter4_Life_Balance_Chart.pdf');
+}
+
+async function downloadAssessmentResponse() {
+  saveAssessmentData(); // Save current data
+  
+  // Get all form responses
+  const responses = {
+    screenTime: document.querySelector('input[name="screen-time"]:checked')?.value || '',
+    digitalGoals: document.querySelector('input[name="digital-goals"]:checked')?.value || '',
+    progress: document.querySelector('input[name="progress"]:checked')?.value || '',
+    consciousUse: document.querySelector('input[name="conscious-use"]:checked')?.value || '',
+    feelBetter: document.querySelector('input[name="feel-better"]:checked')?.value || '',
+    wellbeingReflection: document.getElementById('wellbeing-reflection').value || ''
+  };
+  
+  // Create PDF with jsPDF
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  
+  // Add header image and get the Y position after it
+  const startY = await addPDFHeader(doc);
+  
+  // Set font
+  doc.setFont("helvetica");
+  
+  // Title
+  doc.setFontSize(16);
+  doc.setFont("helvetica", "bold");
+  doc.text("Digital Well-being Assessment - Chapter 4 Touchpoint II", 20, startY + 10);
+  
+  // Date
+  doc.setFontSize(12);
+  doc.setFont("helvetica", "normal");
+  doc.text(`Date: ${new Date().toLocaleDateString()}`, 20, startY + 25);
+  
+  // Scale responses section
+  doc.setFontSize(14);
+  doc.setFont("helvetica", "bold");
+  let yPosition = startY + 45;
+  
+  if (yPosition > 270) {
+    doc.addPage();
+    yPosition = 20;
+  }
+  
+  doc.text("SCALE RESPONSES", 20, yPosition);
+  yPosition += 10;
+  
+  doc.setFontSize(10);
+  doc.setFont("helvetica", "italic");
+  doc.text("(1 = completely disagree, 5 = completely agree)", 20, yPosition);
+  yPosition += 15;
+  
+  doc.setFontSize(11);
+  doc.setFont("helvetica", "normal");
+  
+  const questions = [
+    { label: "1. I have decreased my screen time:", value: responses.screenTime },
+    { label: "2. I have stuck to my Digital Goals:", value: responses.digitalGoals },
+    { label: "3. I am closer to where I want to be:", value: responses.progress },
+    { label: "4. I have made more conscious use of my digital devices:", value: responses.consciousUse },
+    { label: "5. I feel better about my use of digital devices:", value: responses.feelBetter }
+  ];
+  
+  questions.forEach(question => {
+    if (yPosition > 270) {
+      doc.addPage();
+      yPosition = 20;
+    }
+    
+    doc.text(question.label, 20, yPosition);
+    doc.setFont("helvetica", "bold");
+    doc.text(question.value || "Not answered", 180, yPosition);
+    doc.setFont("helvetica", "normal");
+    yPosition += 12;
+  });
+  
+  // Reflection section
+  yPosition += 10;
+  
+  if (yPosition > 250) {
+    doc.addPage();
+    yPosition = 20;
+  }
+  
+  doc.setFontSize(14);
+  doc.setFont("helvetica", "bold");
+  doc.text("REFLECTION", 20, yPosition);
+  
+  yPosition += 15;
+  doc.setFontSize(11);
+  doc.setFont("helvetica", "italic");
+  const reflectionQuestion = "How do you feel after completing the third and fourth lesson of this course? Have you noticed any differences in your general well-being?";
+  const splitQuestion = doc.splitTextToSize(reflectionQuestion, 170);
+  
+  if (yPosition + (splitQuestion.length * 6) > 270) {
+    doc.addPage();
+    yPosition = 20;
+  }
+  
+  doc.text(splitQuestion, 20, yPosition);
+  yPosition += splitQuestion.length * 6 + 10;
+  
+  // Reflection answer
+  doc.setFont("helvetica", "normal");
+  if (responses.wellbeingReflection) {
+    const splitReflection = doc.splitTextToSize(responses.wellbeingReflection, 170);
+    
+    let remainingLines = [...splitReflection];
+    while (remainingLines.length > 0) {
+      const availableSpace = 280 - yPosition;
+      const linesPerPage = Math.floor(availableSpace / 6);
+      
+      if (linesPerPage <= 0) {
+        doc.addPage();
+        yPosition = 20;
+        continue;
+      }
+      
+      const linesToAdd = remainingLines.splice(0, linesPerPage);
+      doc.text(linesToAdd, 20, yPosition);
+      yPosition += linesToAdd.length * 6;
+      
+      if (remainingLines.length > 0) {
+        doc.addPage();
+        yPosition = 20;
+      }
+    }
+  } else {
+    if (yPosition > 270) {
+      doc.addPage();
+      yPosition = 20;
+    }
+    doc.setFont("helvetica", "italic");
+    doc.text("No reflection provided", 20, yPosition);
+  }
+  
+  // Save the PDF
+  doc.save('Chapter4_Assessment_Response.pdf');
+}
+
+function downloadBuddyTemplate() {
+  // Placeholder function for downloading buddy template
+  alert('Accountability Buddy template download would be implemented here');
+}
+
+// Event listeners
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize chart
+  initializeChart();
+  
+  // Load saved data
+  loadChartData();
+  loadAssessmentData();
+  
+  // Chart input event listeners
+  const chartInputs = document.querySelectorAll('.time-input-item input');
+  chartInputs.forEach(input => {
+    input.addEventListener('input', function() {
+      updateChart();
+      saveChartData();
+    });
+  });
+  
+  // Chart reflection event listeners
+  document.getElementById('balance-observation').addEventListener('input', saveChartData);
+  document.getElementById('habit-reduction').addEventListener('input', saveChartData);
+  
+  // Assessment event listeners
+  const radioButtons = document.querySelectorAll('input[type="radio"]');
+  radioButtons.forEach(radio => {
+    radio.addEventListener('change', saveAssessmentData);
+  });
+  
+  document.getElementById('wellbeing-reflection').addEventListener('input', saveAssessmentData);
+  
+  // Download button event listeners
+  document.getElementById('download-goals-review').addEventListener('click', downloadGoalsReview);
+  document.getElementById('download-relationship-response').addEventListener('click', downloadRelationshipResponse);
+  document.getElementById('download-balance-response').addEventListener('click', downloadBalanceResponse);
+  document.getElementById('download-assessment-response').addEventListener('click', downloadAssessmentResponse);
+  document.getElementById('download-buddy-template').addEventListener('click', downloadBuddyTemplate);
+  
+  // Glossary modal functionality
+  const modal = document.getElementById('glossary-modal');
+  const menuLink = document.getElementById('glossary-menu-link');
+  const closeBtn = modal.querySelector('.modal-close');
+
+  function openModal() {
+    modal.style.display = 'block';
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    const firstFocusableElement = modal.querySelector('.modal-close, .glossary-az-nav a');
+    if (firstFocusableElement) {
+        firstFocusableElement.focus();
+    }
+  }
+
+  function closeModal() {
+    modal.style.display = 'none';
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = 'auto';
+    if (document.activeElement === closeBtn || modal.contains(document.activeElement)) {
+        if (menuLink && menuLink === document.lastActiveElement) menuLink.focus();
+    }
+    document.lastActiveElement = null;
+  }
+  
+  document.lastActiveElement = null;
+  
+  if (menuLink) {
+    menuLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.lastActiveElement = this;
+      openModal();
+      const mainNav = document.getElementById('main-nav');
+      const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+      if (mainNav && mainNav.classList.contains('active')) {
+        mainNav.classList.remove('active');
+        mobileMenuToggle.classList.remove('active');
+        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeModal);
+  }
+
+  modal.addEventListener('click', function(e) {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && modal.style.display === 'block') {
+      closeModal();
+    }
+  });
+});
+</script>
+
+<!-- jsPDF Library for PDF generation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </body>
 </html>

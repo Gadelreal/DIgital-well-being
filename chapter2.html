@@ -7,11 +7,11 @@
 <link rel="stylesheet" href="./css/styles.css">
 <!-- VideoJS CSS -->
 <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
+<!-- jsPDF Library for PDF generation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <!-- Font Awesome para iconos -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
-<!-- jsPDF library -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
 /* Estilos para la navegación A-Z del glosario y las secciones */
 .glossary-az-nav {
@@ -56,76 +56,17 @@
   line-height: 1.6;
 }
 
-/* Estilos para la actividad del habit tracker */
-.habit-tracker-container {
+/* Estilos para las actividades con plantillas descargables */
+.values-activity-container {
   background-color: #f9f9f9;
   border: 1px solid #e0e0e0;
   padding: 2rem;
+  padding-bottom: 3rem; /* Increased from 2.5rem to 3rem to match Lesson 1 */
   margin: 2rem 0;
-  border-radius: 8px;
+  border-radius: 0;
 }
 
-.habit-tracker-container h2 {
-  margin-top: 0 !important;
-  margin-bottom: 1rem !important;
-  color: var(--primary-color);
-}
-
-.habit-tracker-container p {
-  margin-bottom: 1.5rem;
-  line-height: 1.7;
-}
-
-.habit-tracker-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  gap: 0;
-  margin: 2rem 0;
-  border: 2px solid var(--primary-color);
-  border-radius: 8px;
-  overflow: hidden;
-  background: white;
-}
-
-.habit-tracker-header {
-  background-color: var(--primary-color);
-  color: white;
-  padding: 1rem 0.5rem;
-  font-weight: bold;
-  text-align: center;
-  font-size: 0.9rem;
-}
-
-.habit-tracker-cell {
-  padding: 0.8rem 0.5rem;
-  border-right: 1px solid #e0e0e0;
-  border-bottom: 1px solid #e0e0e0;
-  text-align: center;
-  min-height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.habit-tracker-cell:last-child {
-  border-right: none;
-}
-
-.habit-tracker-cell.habit-name {
-  text-align: left;
-  font-weight: 600;
-  background-color: #f8f9fa;
-  padding-left: 1rem;
-}
-
-.habit-checkbox {
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-  transform: scale(1.2);
-}
-
-.download-tracker-button {
+.download-template-button {
   display: inline-flex;
   align-items: center;
   padding: 1rem 2rem;
@@ -134,14 +75,12 @@
   text-decoration: none;
   border-radius: 4px;
   font-weight: 600;
-  font-size: 1rem;
   transition: all 0.3s ease;
-  margin-top: 1rem;
-  border: none;
-  cursor: pointer;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem; /* Increased from 0.5rem to 1.5rem to match Lesson 1 */
 }
 
-.download-tracker-button:hover {
+.download-template-button:hover {
   background-color: var(--primary-color-dark);
   color: white;
   transform: translateY(-2px);
@@ -149,162 +88,167 @@
   text-decoration: none;
 }
 
-.download-tracker-button i {
+.download-template-button i {
   margin-right: 0.5rem;
 }
 
-/* Responsive design for habit tracker */
-@media (max-width: 768px) {
-  .habit-tracker-container {
-    padding: 1.5rem;
-    margin: 1rem;
-  }
-  
-  .habit-tracker-grid {
-    font-size: 0.8rem;
-  }
-  
-  .habit-tracker-header {
-    padding: 0.8rem 0.3rem;
-    font-size: 0.8rem;
-  }
-  
-  .habit-tracker-cell {
-    padding: 0.6rem 0.3rem;
-    min-height: 40px;
-  }
-  
-  .habit-checkbox {
-    width: 16px;
-    height: 16px;
-    transform: scale(1);
-  }
-  
-  .download-tracker-button {
-    width: 100%;
-    justify-content: center;
-  }
-}
-
-@media (max-width: 480px) {
-  .habit-tracker-grid {
-    grid-template-columns: 1.5fr repeat(7, 1fr);
-    font-size: 0.7rem;
-  }
-  
-  .habit-tracker-header {
-    padding: 0.6rem 0.2rem;
-    font-size: 0.7rem;
-  }
-  
-  .habit-tracker-cell {
-    padding: 0.4rem 0.2rem;
-    min-height: 35px;
-  }
-  
-  .habit-tracker-cell.habit-name {
-    padding-left: 0.5rem;
-  }
-}
-
-/* Estilos para las actividades interactivas */
-.interactive-activity {
-  background-color: #f0f8ff;
-  border: 2px solid var(--primary-color);
-  border-radius: 8px;
-  padding: 2rem;
+/* Estilos para las herramientas numeradas */
+.tools-list {
+  counter-reset: tool-counter;
   margin: 2rem 0;
 }
 
-.interactive-activity h3 {
-  color: var(--primary-color);
-  margin-top: 0;
-  margin-bottom: 1rem;
-}
-
-.habit-input-group {
-  margin-bottom: 1.5rem;
-}
-
-.habit-input-group label {
-  display: block;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  color: #333;
-}
-
-.habit-input-group input,
-.habit-input-group select,
-.habit-input-group textarea {
-  width: 100%;
-  padding: 0.8rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 1rem;
-  font-family: inherit;
-}
-
-.habit-input-group textarea {
-  resize: vertical;
-  min-height: 100px;
-}
-
-.add-habit-button {
-  background-color: var(--primary-color);
-  color: white;
-  border: none;
-  padding: 0.8rem 1.5rem;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-
-.add-habit-button:hover {
-  background-color: var(--primary-color-dark);
-  transform: translateY(-1px);
-}
-
-.habits-list {
-  margin-top: 2rem;
-}
-
-.habit-item {
+.tool-item {
+  counter-increment: tool-counter;
   background-color: white;
   border: 1px solid #e0e0e0;
-  border-radius: 4px;
-  padding: 1rem;
+  padding: 2rem;
+  padding-top: 3.5rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  border-left: 4px solid var(--primary-color);
+  cursor: default;
+  pointer-events: auto;
+}
+
+.tool-item::before {
+  content: counter(tool-counter);
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: var(--primary-color);
+  color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1rem;
+  z-index: 1;
+}
+
+.tool-item h4 {
+  margin-top: 0;
   margin-bottom: 1rem;
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.tool-description {
+  margin-bottom: 1rem;
+  font-style: italic;
+  color: #666;
+}
+
+/* Estilos para la evaluación */
+.assessment-container {
+  background-color: #f0f8ff;
+  border: 2px solid var(--primary-color);
+  padding: 2rem;
+  padding-bottom: 3rem; /* Increased from 2.5rem to 3rem to match Lesson 1 */
+  margin: 2rem 0;
+  border-radius: 8px;
+}
+
+.assessment-step {
+  margin-bottom: 2rem;
+}
+
+.assessment-step h4 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.scale-question {
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+}
+
+.scale-options {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
-.habit-info h4 {
-  margin: 0 0 0.5rem 0;
-  color: var(--primary-color);
+.scale-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-width: 80px;
 }
 
-.habit-info p {
-  margin: 0;
+.scale-option input[type="radio"] {
+  margin-bottom: 0.5rem;
+  width: 20px;
+  height: 20px;
+}
+
+.scale-option label {
+  font-size: 0.8rem;
   color: #666;
-  font-size: 0.9rem;
-}
-
-.remove-habit-button {
-  background-color: #dc3545;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
   cursor: pointer;
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
 }
 
-.remove-habit-button:hover {
-  background-color: #c82333;
+.reflection-textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 1rem;
+  resize: vertical;
+  margin-top: 1rem;
+}
+
+.download-response-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--primary-color);
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem; /* Increased from 0.5rem to 1.5rem to match Lesson 1 */
+  border: none;
+  cursor: pointer;
+}
+
+.download-response-button:hover {
+  background-color: var(--primary-color-dark);
+  color: white;
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .scale-options {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .scale-option {
+    flex-direction: row;
+    min-width: auto;
+    width: 100%;
+    justify-content: flex-start;
+  }
+  
+  .scale-option input[type="radio"] {
+    margin-right: 1rem;
+    margin-bottom: 0;
+  }
 }
 
 .hero-title {
@@ -329,7 +273,6 @@
     <h2 class="header-title">Digital Well-Being</h2>
   </div>
   <div class="header-controls">
-    
     <button id="mobile-menu-toggle" class="mobile-menu-toggle always-visible" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
       <div class="hamburger-icon">
         <span></span>
@@ -341,16 +284,16 @@
   </div>
 </div>
 <nav class="main-nav hamburger-nav" id="main-nav" aria-label="Main navigation">
-  <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="introduction.html">0. Introduction</a></li>
-    <li><a href="chapter1.html">1. Well-Being as a Key</a></li>
-    <li><a href="chapter2.html" class="active" aria-current="page">2. Digital Habits</a></li>
-    <li><a href="chapter3.html">3. Attention, Cognition, Energy...</a></li>
-    <li><a href="chapter4.html">4. Digital Well-being Vision and Practice</a></li>
-    <li><a href="chapter5.html">5. Ownership and Practice</a></li>
-    <li><a href="#" id="glossary-menu-link"><i class="fas fa-book" style="color: #000066; margin-right: 0.5rem;" aria-hidden="true"></i>Glossary</a></li>
-  </ul>
+<ul>
+  <li><a href="index.html">Home</a></li>
+  <li><a href="introduction.html">0. Introduction</a></li>
+  <li><a href="chapter1.html">1. Well-Being as a Key</a></li>
+  <li><a href="chapter2.html" class="active" aria-current="page">2. Digital Habits</a></li>
+  <li><a href="chapter3.html">3. Attention, Cognition, Energy...</a></li>
+  <li><a href="chapter4.html">4. Digital Well-being Vision and Practice</a></li>
+  <li><a href="chapter5.html">5. Ownership and Practice</a></li>
+  <li><a href="#" id="glossary-menu-link"><i class="fas fa-book" style="color: #DB0086; margin-right: 0.5rem;" aria-hidden="true"></i>Glossary</a></li>
+</ul>
 </nav>
 </header>
 
@@ -375,427 +318,514 @@
       <i class="fas fa-sync-alt"></i>
     </div>
     <div class="objective-content">
-      <h4>Understand the Habit Loop</h4>
-      <p>Explain the habit loop (cue, routine, reward) and how it applies to digital behaviors</p>
+      <h4>Habit Loop Understanding</h4>
+      <p>Explain the habit loop and the process of habit formation</p>
     </div>
   </div>
   
   <div class="learning-objective-card">
     <div class="objective-icon" aria-hidden="true">
-      <i class="fas fa-microscope"></i>
+      <i class="fas fa-heart-pulse"></i>
     </div>
     <div class="objective-content">
-      <h4>Apply Behavioral Science</h4>
-      <p>Apply behavioral science principles to identify and modify digital habits</p>
+      <h4>Digital Impact Assessment</h4>
+      <p>Identify the impact of digital habits on overall well-being</p>
     </div>
   </div>
   
   <div class="learning-objective-card">
     <div class="objective-icon" aria-hidden="true">
-      <i class="fas fa-chart-line"></i>
+      <i class="fas fa-balance-scale"></i>
     </div>
     <div class="objective-content">
-      <h4>Track Digital Behaviors</h4>
-      <p>Develop skills to track and analyze personal digital behaviors and patterns</p>
+      <h4>Science-Based Principles</h4>
+      <p>Apply principles from habit science to promote balance and digital well-being</p>
     </div>
   </div>
   
   <div class="learning-objective-card">
     <div class="objective-icon" aria-hidden="true">
-      <i class="fas fa-tools"></i>
+      <i class="fas fa-compass"></i>
     </div>
     <div class="objective-content">
-      <h4>Create Habit Change Strategies</h4>
-      <p>Design practical strategies for building positive digital habits and breaking negative ones</p>
+      <h4>Values-Behavior Connection</h4>
+      <p>Understand how behaviors reflect personal values and influence daily experiences</p>
     </div>
   </div>
 </div>
 </section>
     
     <section class="lesson-section no-borders">
-      <h2><strong>The Science of Habit Formation</strong></h2>
+      <h2><strong>Breaking the Loop</strong></h2>
       
       <div class="responsive-video">
         <video 
-          id="habit-formation-video" 
+          id="breaking-loop-video" 
           class="video-js vjs-ie-skin vjs-big-play-centered" 
           controls 
           preload="auto" 
-          poster="assets/images/well-being-poster.png"
-          data-video-id="w02v01"
+          poster="assets/images/human-flourishing-poster.jpg"
+          data-video-id="w02v00"
           data-logo="assets/images/logo-ie-small.png"
-          aria-label="The Science of Habit Formation video"
+          aria-label="Breaking the Loop video"
         >
-          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w02v01-the-science-of-habit-formation/mp4/w02v01-the-science-of-habit-formation_1080p.mp4" type="video/mp4">
+          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w02v00-breaking-the-loop/mp4/w02v00-breaking-the-loop_1080p.mp4" type="video/mp4">
           <p class="vjs-no-js">
             To view this video please enable JavaScript, and consider upgrading to a
             web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
           </p>
-          <track kind="captions" src="captions/habit-formation.vtt" srclang="en" label="English" default>
+          <track kind="captions" src="captions/breaking-the-loop.vtt" srclang="en" label="English" default>
         </video>
-      </div>
-      
-      <div class="key-point" role="note" aria-label="Key point about habit formation">
-        <h3><strong>Key Point</strong></h3>
-        <p>Habits are formed through a neurological loop consisting of a <strong>cue</strong> (trigger), <strong>routine</strong> (behavior), and <strong>reward</strong> (benefit). Understanding this loop is essential for both building positive digital habits and breaking negative ones.</p>
-        <p>The brain creates habits to conserve energy and make decisions more efficient. Once a habit is established, the brain can execute it almost automatically, which is why changing habits requires conscious effort and strategic planning.</p>
-      </div>
-    </section>
-
-    <section class="lesson-section no-borders">
-      <div class="reflection-exercise">
-        <h2><strong>Reflection Question</strong></h2>
-        <p><strong>Think about one of your digital habits and analyze it using the habit loop framework.</strong></p>
-        
-        <div class="reflection-question">
-          <h3>Choose a digital habit you do regularly (like checking your phone first thing in the morning). What is the cue that triggers this behavior? What is the routine (the actual behavior)? What reward do you get from it?</h3>
-          <textarea 
-            id="habit-loop-reflection" 
-            class="reflection-textarea" 
-            placeholder="Example: Cue - I wake up and see my phone on the nightstand. Routine - I immediately check messages and social media. Reward - I feel connected and informed about what happened overnight."
-            aria-label="Habit loop analysis reflection"
-            rows="8"
-          ></textarea>
-          <div class="button-container">
-            <button 
-              type="button" 
-              class="save-button" 
-              data-reflection-id="habit-loop-reflection"
-              aria-describedby="feedback-habit-loop-reflection"
-            >
-              <i class="fas fa-save" aria-hidden="true"></i> Save Reflection
-            </button>
-            <span id="feedback-habit-loop-reflection" class="save-feedback" aria-live="polite"></span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="lesson-section no-borders">
-      <h2><strong>Digital Habit Audit: Understanding Your Current Patterns</strong></h2>
-      
-      <div class="responsive-video">
-        <video 
-          id="habit-audit-video" 
-          class="video-js vjs-ie-skin vjs-big-play-centered" 
-          controls 
-          preload="auto" 
-          poster="assets/images/well-being-poster.png"
-          data-video-id="w02v02"
-          data-logo="assets/images/logo-ie-small.png"
-          aria-label="Digital Habit Audit video"
-        >
-          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w02v02-digital-habit-audit/mp4/w02v02-digital-habit-audit_1080p.mp4" type="video/mp4">
-          <p class="vjs-no-js">
-            To view this video please enable JavaScript, and consider upgrading to a
-            web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-          </p>
-          <track kind="captions" src="captions/habit-audit.vtt" srclang="en" label="English" default>
-        </video>
-      </div>
-      
-      <div class="key-point" role="note" aria-label="Key point about digital habit audit">
-        <h3><strong>Key Point</strong></h3>
-        <p>A digital habit audit involves systematically observing and recording your technology use patterns to identify which habits serve your well-being and which ones detract from it. This awareness is the foundation for meaningful change.</p>
-        <p>The goal isn't to judge your current habits, but to understand them objectively. Look for patterns in timing, triggers, emotions, and outcomes to gain insights into your digital behavior.</p>
-      </div>
-    </section>
-
-    <section class="lesson-section no-borders">
-      <div class="habit-tracker-container">
-        <h2><strong>Activity: 7-Day Digital Habit Tracker</strong></h2>
-        <p>Use this interactive tracker to monitor your digital habits for one week. Check off each habit when you complete it, and observe patterns in your behavior.</p>
-        
-        <div class="habit-tracker-grid" id="habit-tracker">
-          <div class="habit-tracker-header">Digital Habit</div>
-          <div class="habit-tracker-header">Mon</div>
-          <div class="habit-tracker-header">Tue</div>
-          <div class="habit-tracker-header">Wed</div>
-          <div class="habit-tracker-header">Thu</div>
-          <div class="habit-tracker-header">Fri</div>
-          <div class="habit-tracker-header">Sat</div>
-          <div class="habit-tracker-header">Sun</div>
-          
-          <div class="habit-tracker-cell habit-name">Check phone within 5 min of waking</div>
-          <div class="habit-tracker-cell"><input type="checkbox" class="habit-checkbox" data-habit="phone-wake" data-day="mon"></div>
-          <div class="habit-tracker-cell"><input type="checkbox" class="habit-checkbox" data-habit="phone-wake" data-day="tue"></div>
-          <div class="habit-tracker-cell"><input type="checkbox" class="habit-checkbox" data-habit="phone-wake" data-day="wed"></div>
-          <div class="habit-tracker-cell"><input type="checkbox" class="habit-checkbox" data-habit="phone-wake" data-day="thu"></div>
-          <div class="habit-tracker-cell"><input type="checkbox" class="habit-checkbox" data-habit="phone-wake" data-day="fri"></div>
-          <div class="habit-tracker-cell"><input type="checkbox" class="habit-checkbox" data-habit="phone-wake" data-day="sat"></div>
-          <div class="habit-tracker-cell"><input type="checkbox" class="habit-checkbox" data-habit="phone-wake" data-day="sun"></div>
-          
-          <div class="habit-tracker-cell habit-name">Use phone during meals</div>
-          <div class="habit-tracker-cell"><input type="checkbox" class="habit-checkbox" data-habit="phone-meals" data-day="mon"></div>
-          <div class="habit-tracker-cell"><input type="checkbox" class="habit-checkbox" data-habit="phone-meals" data-day="tue"></div>
-          <div class="habit-tracker-cell"><input type="checkbox" class="habit-checkbox" data-habit="phone-meals" data-day="wed"></div>
-          <div class="habit-tracker-cell"><input type="checkbox" class="habit-checkbox" data-habit="phone-meals" data-day="thu"></div>
-          <div class="habit-tracker-cell"><input type="checkbox" class="habit-checkbox" data-habit="phone-meals" data-day="fri"></div>
-          <div class="habit-tracker-cell"><input type="checkbox" class="habit-checkbox" data-habit="phone-meals" data-day="sat"></div>
-          <div class="habit-tracker-cell"><input type="checkbox" class="habit-checkbox" data-habit="phone-meals" data-day="sun"></div>
-          
-          <div class="habit-tracker-cell habit-name">Check social media before bed</div>
-          <div class="habit-tracker-cell"><input type="checkbox" class="habit-checkbox" data-habit="social-bed" data-day="mon"></div>
-          <div class="habit-tracker-cell"><input type="checkbox" class="habit-checkbox" data-habit="social-bed" data-day="tue"></div>
-          <div class="habit-tracker-cell"><input type="checkbox" class="habit-checkbox" data-habit="social-bed" data-day="wed"></div>
-          <div class="habit-tracker-cell"><input type="checkbox" class="habit-checkbox" data-habit="social-bed" data-day="thu"></div>
-          <div class="habit-tracker-cell"><input type="checkbox" class="habit-checkbox" data-habit="social-bed" data-day="fri"></div>
-          <div class="habit-tracker-cell"><input type="checkbox" class="habit-checkbox" data-habit="social-bed" data-day="sat"></div>
-          <div class="habit-tracker-cell"><input type="checkbox" class="habit-checkbox" data-habit="social-bed" data-day="sun"></div>
-          
-          <div class="habit-tracker-cell habit-name">Take phone-free breaks (30+ min)</div>
-          <div class="habit-tracker-cell"><input type="checkbox" class="habit-checkbox" data-habit="phone-free" data-day="mon"></div>
-          <div class="habit-tracker-cell"><input type="checkbox" class="habit-checkbox" data-habit="phone-free" data-day="tue"></div>
-          <div class="habit-tracker-cell"><input type="checkbox" class="habit-checkbox" data-habit="phone-free" data-day="wed"></div>
-          <div class="habit-tracker-cell"><input type="checkbox" class="habit-checkbox" data-habit="phone-free" data-day="thu"></div>
-          <div class="habit-tracker-cell"><input type="checkbox" class="habit-checkbox" data-habit="phone-free" data-day="fri"></div>
-          <div class="habit-tracker-cell"><input type="checkbox" class="habit-checkbox" data-habit="phone-free" data-day="sat"></div>
-          <div class="habit-tracker-cell"><input type="checkbox" class="habit-checkbox" data-habit="phone-free" data-day="sun"></div>
-          
-          <div class="habit-tracker-cell habit-name">Use focus mode/do not disturb</div>
-          <div class="habit-tracker-cell"><input type="checkbox" class="habit-checkbox" data-habit="focus-mode" data-day="mon"></div>
-          <div class="habit-tracker-cell"><input type="checkbox" class="habit-checkbox" data-habit="focus-mode" data-day="tue"></div>
-          <div class="habit-tracker-cell"><input type="checkbox" class="habit-checkbox" data-habit="focus-mode" data-day="wed"></div>
-          <div class="habit-tracker-cell"><input type="checkbox" class="habit-checkbox" data-habit="focus-mode" data-day="thu"></div>
-          <div class="habit-tracker-cell"><input type="checkbox" class="habit-checkbox" data-habit="focus-mode" data-day="fri"></div>
-          <div class="habit-tracker-cell"><input type="checkbox" class="habit-checkbox" data-habit="focus-mode" data-day="sat"></div>
-          <div class="habit-tracker-cell"><input type="checkbox" class="habit-checkbox" data-habit="focus-mode" data-day="sun"></div>
-        </div>
-        
-        <button class="download-tracker-button" onclick="downloadHabitTracker()">
-          <i class="fas fa-download" aria-hidden="true"></i>
-          Download My Habit Tracker Results
-        </button>
-        
-        <p><em>Track your habits honestly for one week. At the end of the week, look for patterns and reflect on which habits support your well-being and which ones you'd like to change.</em></p>
-      </div>
-    </section>
-
-    <section class="lesson-section no-borders">
-      <div class="reflection-exercise">
-        <h2><strong>Reflection Question</strong></h2>
-        <p><strong>After tracking your habits for a few days, reflect on what you're noticing.</strong></p>
-        
-        <div class="reflection-question">
-          <h3>What patterns are you observing in your digital habits? Are there specific times of day, emotions, or situations that trigger certain digital behaviors?</h3>
-          <textarea 
-            id="habit-patterns-reflection" 
-            class="reflection-textarea" 
-            placeholder="Write your observations about patterns, triggers, and insights from tracking your digital habits..."
-            aria-label="Habit patterns reflection"
-            rows="8"
-          ></textarea>
-          <div class="button-container">
-            <button 
-              type="button" 
-              class="save-button" 
-              data-reflection-id="habit-patterns-reflection"
-              aria-describedby="feedback-habit-patterns-reflection"
-            >
-              <i class="fas fa-save" aria-hidden="true"></i> Save Reflection
-            </button>
-            <span id="feedback-habit-patterns-reflection" class="save-feedback" aria-live="polite"></span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="lesson-section no-borders">
-      <h2><strong>Strategies for Building Positive Digital Habits</strong></h2>
-      
-      <div class="responsive-video">
-        <video 
-          id="positive-habits-video" 
-          class="video-js vjs-ie-skin vjs-big-play-centered" 
-          controls 
-          preload="auto" 
-          poster="assets/images/well-being-poster.png"
-          data-video-id="w02v03"
-          data-logo="assets/images/logo-ie-small.png"
-          aria-label="Strategies for Building Positive Digital Habits video"
-        >
-          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w02v03-building-positive-digital-habits/mp4/w02v03-building-positive-digital-habits_1080p.mp4" type="video/mp4">
-          <p class="vjs-no-js">
-            To view this video please enable JavaScript, and consider upgrading to a
-            web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-          </p>
-          <track kind="captions" src="captions/positive-habits.vtt" srclang="en" label="English" default>
-        </video>
-      </div>
-      
-      <div class="key-point" role="note" aria-label="Key point about building positive habits">
-        <h3><strong>Key Point</strong></h3>
-        <p>Building positive digital habits requires <strong>starting small</strong>, <strong>stacking habits</strong> onto existing routines, <strong>designing your environment</strong> for success, and <strong>focusing on the identity</strong> you want to develop rather than just the outcome.</p>
-        <p>The most effective approach is to make positive habits obvious, attractive, easy, and satisfying while making negative habits invisible, unattractive, difficult, and unsatisfying.</p>
-      </div>
-    </section>
-
-    <section class="lesson-section no-borders">
-      <div class="interactive-activity">
-        <h3><strong>Activity: Design Your Positive Digital Habit</strong></h3>
-        <p>Use this tool to design a new positive digital habit using behavioral science principles.</p>
-        
-        <div class="habit-input-group">
-          <label for="habit-name">What positive digital habit do you want to build?</label>
-          <input type="text" id="habit-name" placeholder="e.g., Read for 20 minutes instead of scrolling social media before bed">
-        </div>
-        
-        <div class="habit-input-group">
-          <label for="habit-cue">What will be your cue (trigger)?</label>
-          <input type="text" id="habit-cue" placeholder="e.g., When I put on my pajamas">
-        </div>
-        
-        <div class="habit-input-group">
-          <label for="habit-routine">What is the specific routine (behavior)?</label>
-          <input type="text" id="habit-routine" placeholder="e.g., I will put my phone in another room and read a physical book">
-        </div>
-        
-        <div class="habit-input-group">
-          <label for="habit-reward">What reward will you give yourself?</label>
-          <input type="text" id="habit-reward" placeholder="e.g., I'll feel relaxed and accomplished, and track my progress">
-        </div>
-        
-        <div class="habit-input-group">
-          <label for="habit-environment">How will you design your environment for success?</label>
-          <textarea id="habit-environment" placeholder="e.g., Keep a book on my nightstand, charge my phone in the living room, set up a cozy reading corner"></textarea>
-        </div>
-        
-        <div class="habit-input-group">
-          <label for="habit-obstacles">What obstacles might you face and how will you overcome them?</label>
-          <textarea id="habit-obstacles" placeholder="e.g., I might feel FOMO from not checking my phone. I'll remind myself that I can check messages in the morning and focus on the benefits of better sleep."></textarea>
-        </div>
-        
-        <button class="add-habit-button" onclick="addHabitPlan()">
-          <i class="fas fa-plus" aria-hidden="true"></i> Add to My Habit Plan
-        </button>
-        
-        <div class="habits-list" id="habits-list">
-          <!-- Habit plans will be added here -->
-        </div>
-      </div>
-    </section>
-
-    <section class="lesson-section no-borders">
-      <h2><strong>Breaking Negative Digital Habits</strong></h2>
-      
-      <div class="responsive-video">
-        <video 
-          id="breaking-habits-video" 
-          class="video-js vjs-ie-skin vjs-big-play-centered" 
-          controls 
-          preload="auto" 
-          poster="assets/images/well-being-poster.png"
-          data-video-id="w02v04"
-          data-logo="assets/images/logo-ie-small.png"
-          aria-label="Breaking Negative Digital Habits video"
-        >
-          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w02v04-breaking-negative-digital-habits/mp4/w02v04-breaking-negative-digital-habits_1080p.mp4" type="video/mp4">
-          <p class="vjs-no-js">
-            To view this video please enable JavaScript, and consider upgrading to a
-            web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-          </p>
-          <track kind="captions" src="captions/breaking-habits.vtt" srclang="en" label="English" default>
-        </video>
-      </div>
-      
-      <div class="key-point" role="note" aria-label="Key point about breaking negative habits">
-        <h3><strong>Key Point</strong></h3>
-        <p>Breaking negative digital habits is most effective when you <strong>replace</strong> them with positive alternatives rather than simply trying to eliminate them. Focus on changing the routine while keeping the same cue and reward structure.</p>
-        <p>Use strategies like increasing friction (making the habit harder to do), removing triggers from your environment, and finding healthier ways to meet the underlying need that the habit was serving.</p>
-      </div>
-    </section>
-
-    <section class="lesson-section no-borders">
-      <div class="reflection-exercise">
-        <h2><strong>Reflection Question</strong></h2>
-        <p><strong>Think about a negative digital habit you'd like to change.</strong></p>
-        
-        <div class="reflection-question">
-          <h3>Identify one negative digital habit you want to break. What need is this habit meeting for you (e.g., boredom, connection, validation)? What positive habit could you replace it with that meets the same need?</h3>
-          <textarea 
-            id="breaking-habits-reflection" 
-            class="reflection-textarea" 
-            placeholder="Example: Negative habit - Mindlessly scrolling social media when I'm bored. Need it meets - Entertainment and stimulation. Replacement habit - When I feel bored, I'll do a 5-minute breathing exercise or read a few pages of a book."
-            aria-label="Breaking negative habits reflection"
-            rows="8"
-          ></textarea>
-          <div class="button-container">
-            <button 
-              type="button" 
-              class="save-button" 
-              data-reflection-id="breaking-habits-reflection"
-              aria-describedby="feedback-breaking-habits-reflection"
-            >
-              <i class="fas fa-save" aria-hidden="true"></i> Save Reflection
-            </button>
-            <span id="feedback-breaking-habits-reflection" class="save-feedback" aria-live="polite"></span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="lesson-section no-borders">
-      <h2><strong>The Role of Environment in Digital Habits</strong></h2>
-      
-      <div class="responsive-video">
-        <video 
-          id="environment-video" 
-          class="video-js vjs-ie-skin vjs-big-play-centered" 
-          controls 
-          preload="auto" 
-          poster="assets/images/well-being-poster.png"
-          data-video-id="w02v05"
-          data-logo="assets/images/logo-ie-small.png"
-          aria-label="The Role of Environment in Digital Habits video"
-        >
-          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w02v05-environment-and-digital-habits/mp4/w02v05-environment-and-digital-habits_1080p.mp4" type="video/mp4">
-          <p class="vjs-no-js">
-            To view this video please enable JavaScript, and consider upgrading to a
-            web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-          </p>
-          <track kind="captions" src="captions/environment-habits.vtt" srclang="en" label="English" default>
-        </video>
-      </div>
-      
-      <div class="key-point" role="note" aria-label="Key point about environment and habits">
-        <h3><strong>Key Point</strong></h3>
-        <p>Your environment is often more powerful than your willpower. By strategically designing your physical and digital environments, you can make positive habits easier and negative habits harder to perform.</p>
-        <p>Small environmental changes—like where you charge your phone, which apps are on your home screen, or how you organize your workspace—can have a significant impact on your digital behavior patterns.</p>
-      </div>
-    </section>
-
-    <section class="lesson-section no-borders">
-      <div class="reflection-exercise">
-        <h2><strong>Final Reflection</strong></h2>
-        <p><strong>As you complete this lesson on digital habits, reflect on your key insights and next steps.</strong></p>
-        
-        <div class="reflection-question">
-          <h3>What is the most important insight you've gained about your digital habits? What is one specific change you want to implement this week based on what you've learned?</h3>
-          <textarea 
-            id="final-habits-reflection" 
-            class="reflection-textarea" 
-            placeholder="Reflect on your key insights and commit to one specific change you'll make this week..."
-            aria-label="Final habits lesson reflection"
-            rows="8"
-          ></textarea>
-          <div class="button-container">
-            <button 
-              type="button" 
-              class="save-button" 
-              data-reflection-id="final-habits-reflection"
-              aria-describedby="feedback-final-habits-reflection"
-            >
-              <i class="fas fa-save" aria-hidden="true"></i> Save Reflection
-            </button>
-            <span id="feedback-final-habits-reflection" class="save-feedback" aria-live="polite"></span>
-          </div>
-        </div>
       </div>
     </section>
     
-    <div class="navigation-buttons" role="navigation" aria-label="Course navigation">
-      <a href="chapter1.html" class="nav-button prev"><span class="arrow-left" aria-hidden="true">←</span>Lesson 1</a>
-      <a href="chapter3.html" class="nav-button next">Lesson 3<span class="arrow-right" aria-hidden="true">→</span></a>
+    <section class="lesson-section no-borders">
+      <h2><strong>Digital Habits</strong></h2>
+      
+      <div class="responsive-video">
+        <video 
+          id="digital-habits-video" 
+          class="video-js vjs-ie-skin vjs-big-play-centered" 
+          controls 
+          preload="auto" 
+          poster="assets/images/human-flourishing-poster.jpg"
+          data-video-id="w02v01"
+          data-logo="assets/images/logo-ie-small.png"
+          aria-label="Digital Habits video"
+        >
+          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w02v01-digital-habits/mp4/w02v01-digital-habits_1080p.mp4" type="video/mp4">
+          <p class="vjs-no-js">
+            To view this video please enable JavaScript, and consider upgrading to a
+            web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+          </p>
+          <track kind="captions" src="captions/digital-habits.vtt" srclang="en" label="English" default>
+        </video>
+      </div>
+      
+      <div class="key-point" role="note" aria-label="Key point about digital habits">
+        <h3><strong>Key Point</strong></h3>
+        <p>Understanding the habit loop—<strong>cue, action, and reward</strong>—allows us to recognize the subconscious patterns driving our digital behaviors and gives us the tools to make small, intentional changes that improve our emotional, mental, and physical well-being.</p>
+        
+        <p>Every digital behavior follows a pattern: a <em>cue</em> triggers an <em>action</em>, which leads to a <em>reward</em>. By analyzing your digital habits through this lens, you can uncover the emotional drivers behind your actions and make thoughtful adjustments that better support your well-being.</p>
+        
+        <p><strong>Start by observing:</strong></p>
+        <ul>
+          <li>What triggers your behavior?</li>
+          <li>What action do you take?</li>
+          <li>What reward are you seeking?</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="lesson-section no-borders">
+      <div class="values-activity-container">
+        <h2><strong>Activity: Digital Habits Audit</strong></h2>
+        <p>Let's take a closer look at your current digital habits. This <strong>Digital Habits Audit</strong> will help you reflect on how much time you spend on your phone and which apps you use most often.</p>
+        
+        <p><strong>Answer each question honestly</strong> using the screen time data from your phone. Then, rank the apps you use the most and reflect on your patterns.</p>
+        
+        <p><strong>You can download the editable template to complete your responses.</strong> This way, you can track your awareness and progress over time.</p>
+        
+        <a href="#" class="download-template-button" onclick="downloadDigitalHabitsAuditTemplate()" aria-label="Download editable template for digital habits audit activity">
+          <i class="fas fa-download" aria-hidden="true"></i>
+          <strong>Download the editable template here</strong>
+        </a>
+      </div>
+    </section>
+
+    <section class="lesson-section no-borders">
+      <h2><strong>Behavioural Science Applied to Well-being</strong></h2>
+      
+      <div class="responsive-video">
+        <video 
+          id="behavioural-science-video" 
+          class="video-js vjs-ie-skin vjs-big-play-centered" 
+          controls 
+          preload="auto" 
+          poster="assets/images/human-flourishing-poster.jpg"
+          data-video-id="w02v02"
+          data-logo="assets/images/logo-ie-small.png"
+          aria-label="Behavioural Science Applied to Well-being video"
+        >
+          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w02v02-behavioural-science-applied-to-well-being/mp4/w02v02-behavioural-science-applied-to-well-being_1080p.mp4" type="video/mp4">
+          <p class="vjs-no-js">
+            To view this video please enable JavaScript, and consider upgrading to a
+            web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+          </p>
+          <track kind="captions" src="captions/behavioural-science.vtt" srclang="en" label="English" default>
+        </video>
+      </div>
+      
+      <div class="key-point" role="note" aria-label="Key point about behavioural science">
+        <h3><strong>Key Point</strong></h3>
+        <p>Effective behavior change happens when you <strong>clearly define the specific habit you want to change</strong>, identify its triggers and rewards, and replace the old behavior with a more productive one—supported by positive reinforcement.</p>
+        
+        <p>Changing behavior isn't just about willpower—it's about understanding the <em>habit loop</em>.</p>
+        <ul>
+          <li><strong>Be specific:</strong> Identify the exact behavior you want to change.</li>
+          <li><strong>Recognize triggers:</strong> What situations, people, or feelings prompt the behavior?</li>
+          <li><strong>Identify rewards:</strong> What satisfaction or relief are you getting from it?</li>
+        </ul>
+        
+        <p>By replacing an unproductive behavior with a better alternative and rewarding your progress, you set yourself up for lasting change.</p>
+      </div>
+    </section>
+
+    <section class="lesson-section no-borders">
+      <h2><strong>Understanding Your Environment and Identifying Digital Triggers</strong></h2>
+      
+      <div class="responsive-video">
+        <video 
+          id="environment-triggers-video" 
+          class="video-js vjs-ie-skin vjs-big-play-centered" 
+          controls 
+          preload="auto" 
+          poster="assets/images/human-flourishing-poster.jpg"
+          data-video-id="w02v03"
+          data-logo="assets/images/logo-ie-small.png"
+          aria-label="Understanding Your Environment and Identifying Digital Triggers video"
+        >
+          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w02v03-understanding-your-environment/mp4/w02v03-understanding-your-environment_1080p.mp4" type="video/mp4">
+          <p class="vjs-no-js">
+            To view this video please enable JavaScript, and consider upgrading to a
+            web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+          </p>
+          <track kind="captions" src="captions/understanding-environment.vtt" srclang="en" label="English" default>
+        </video>
+      </div>
+      
+      <div class="key-point" role="note" aria-label="Key point about environment and triggers">
+        <h3><strong>Key Point</strong></h3>
+        <p>By becoming aware of how our environment, social settings, and energy levels trigger digital habits throughout the day, we can proactively design healthier practices that protect our focus, emotional balance, and overall well-being.</p>
+        
+        <p>Our surroundings, feelings, and energy levels deeply influence our digital habits—often without us realizing it.</p>
+        
+        <p><strong>To better support your well-being:</strong></p>
+        <ul>
+          <li>Notice how different environments (like workspaces or social gatherings) and times of day impact your technology use.</li>
+          <li>Recognize when your energy dips and how that might lead to unintentional device use.</li>
+          <li>Replace draining digital habits with restorative activities—like a short walk, connecting with someone face-to-face, or simply pausing to breathe and reset.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="lesson-section no-borders">
+      <div class="values-activity-container">
+        <h2><strong>Activity: Understanding Your Environment and Identifying Your Digital Triggers</strong></h2>
+        <p>Now it's time to take a full inventory of your digital environment. This activity will help you identify potential distractions and areas for improvement across four key areas: your phone, your computer, your workspace, and your social media habits.</p>
+        
+        <p>Follow each section carefully and take notes on what you discover. Use this as a chance to reflect on how your digital spaces are supporting — or distracting from — your well-being and goals.</p>
+        
+        <p><strong>You can download the editable template to complete your responses.</strong> This way, you can track your insights and progress.</p>
+        
+        <a href="#" class="download-template-button" onclick="downloadDigitalTriggersTemplate()" aria-label="Download editable template for digital triggers activity">
+          <i class="fas fa-download" aria-hidden="true"></i>
+          <strong>Download the editable template here</strong>
+        </a>
+      </div>
+    </section>
+
+    <section class="lesson-section no-borders">
+      <h2><strong>Evidence-based Practices to Build Healthy Digital Habits</strong></h2>
+      
+      <div class="responsive-video">
+        <video 
+          id="evidence-practices-video" 
+          class="video-js vjs-ie-skin vjs-big-play-centered" 
+          controls 
+          preload="auto" 
+          poster="assets/images/human-flourishing-poster.jpg"
+          data-video-id="w02v04"
+          data-logo="assets/images/logo-ie-small.png"
+          aria-label="Evidence-based Practices to Build Healthy Digital Habits video"
+        >
+          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w02v04-evidence-based-practices/mp4/w02v04-evidence-based-practices_1080p.mp4" type="video/mp4">
+          <p class="vjs-no-js">
+            To view this video please enable JavaScript, and consider upgrading to a
+            web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+          </p>
+          <track kind="captions" src="captions/evidence-based-practices.vtt" srclang="en" label="English" default>
+        </video>
+      </div>
+      
+      <div class="key-point" role="note" aria-label="Key point about evidence-based practices">
+        <h3><strong>Key Point</strong></h3>
+        <p>You can reclaim focus, reduce stress, and build a healthier relationship with technology by applying simple, science-backed strategies like <strong>managing notifications, creating tech-free zones, decluttering your apps, scheduling digital breaks, and keeping your phone out of sight</strong> when it matters most.</p>
+        
+        <p>Small, intentional changes in how we interact with our devices can lead to big improvements in focus, well-being, and connection.</p>
+        
+        <p><strong>Here are 5 powerful strategies to start today:</strong></p>
+        <ul>
+          <li><strong>Master notifications:</strong> Limit interruptions by controlling alerts.</li>
+          <li><strong>Create tech-free zones:</strong> Protect spaces like your dining area and bedroom.</li>
+          <li><strong>Declutter your apps:</strong> Keep only what energizes and serves you.</li>
+          <li><strong>Schedule digital breaks:</strong> Refresh your body and mind regularly.</li>
+          <li><strong>Manage smartphone presence:</strong> Keep your device out of sight during focus time.</li>
+        </ul>
+        
+        <p>Every small step helps build a more balanced, intentional digital life.</p>
+      </div>
+    </section>
+
+    <section class="lesson-section no-borders">
+      <h2><strong>Tools and Evidence-based Practices That Will Help You Build Healthy Digital Habits</strong></h2>
+      
+      <div class="tools-list">
+        <div class="tool-item">
+          <h4><strong>Defining Specific Email and Social Media Checking Times</strong></h4>
+          <p>Opening your email inbox or social media accounts is time and energy-consuming. Doing it constantly highly influences your productivity, attention, and general well-being. When checking for new messages, you shift your focus, get overwhelmed by all the new information, increase stress levels, and get mentally distracted.</p>
+          <p class="tool-description"><strong>The Tool:</strong> Schedule a daily limited number of times to check your email & social media accounts. Set specific times throughout the day to open your inboxes and check your social media notifications. That way, you make more intentional use of your time and avoid constant distractions.</p>
+        </div>
+
+        <div class="tool-item">
+          <h4><strong>Controlling Technology Usage with a Phone Drawer or Pouch</strong></h4>
+          <p>The environment surrounding us directly affects our behaviors and habits. Just from having our phones in sight, we lose focus, and our cognitive availability worsens. Automatically, we tend to get distracted.</p>
+          <p class="tool-description"><strong>The Tool:</strong> Use a phone pouch or choose a drawer to leave your phone in while working or studying. This way, picking up your phone becomes an active and intentional decision, forcing you to think twice. This Tool will help you save time from distraction and commit to more meaningful work. It is a visual reminder to focus on what truly matters and escape the urge to become distracted.</p>
+        </div>
+
+        <div class="tool-item">
+          <h4><strong>Changing your Devices Screen to Grayscale</strong></h4>
+          <p>Designers conceive smartphones that optimize the user experience. Within that framework, colors play a major role in making the experience highly satisfying and addictive. Our brains are attracted to bright and shiny things, making colors play an important role in making you stick to your screens.</p>
+          <p class="tool-description"><strong>The Tool:</strong> For the next week, activate the grayscale mode on your phone. You will force your smartphone to display everything in shades of gray, blocking the visual elements that generate addiction. It will make your phone less engaging to use, encouraging a more meaningful use.</p>
+        </div>
+
+        <div class="tool-item">
+          <h4><strong>Turning off Phone Notifications</strong></h4>
+          <p>Notifications' job is to grab your attention and inform you of incoming information. Their core purpose is to catch your attention, independent of what you are doing. However, knowing everything at all times comes with a cost. Notifications make you lose focus, get distracted, and generate addiction.</p>
+          <p class="tool-description"><strong>The Tool:</strong> Open your phone settings and turn off your notifications for the week. You will see how you gain control over your phone instead of viceversa. It will help decrease your stress and anxiety levels, the feeling of being overwhelmed, and increase your productivity and focus. You will feel more calm, in control, present, and conscious about your Digital Habits.</p>
+        </div>
+
+        <div class="tool-item">
+          <h4><strong>Establishing No-Phone Zones</strong></h4>
+          <p>It is our new reality - our phones have become part of our routines and are one of our major daily time-consumers. Being constantly online can increase stress, anxiety, loneliness, and sleep deprivation. Using your devices for insignificant matters decreases our connection to ourselves, others, the world, and reality.</p>
+          <p class="tool-description"><strong>The Tool:</strong> Choose places in your home or office to unplug from technology. You can choose a bedroom, kitchen, lunch area, or terrace. Don't take your devices there. Allow yourself to reconnect with and be present in the activities and world surrounding you.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="lesson-section no-borders">
+      <div class="values-activity-container">
+        <h2><strong>Activity: Tools and Practices to Build Healthy Digital Habits</strong></h2>
+        
+        <p><strong>Time to put your digital goals into action!</strong></p>
+        
+        <p>After exploring the tools before, choose at least two of them to try out this week. These small changes can have a big impact. Experimenting is encouraged — find what works best for you.</p>
+        
+        <p>Once you've selected your tools, reflect briefly on why you chose them.</p>
+        
+        <p>Then, use the Daily Tracker to mark each day you successfully used each tool. This simple practice can help build momentum and keep you motivated!</p>
+        
+        <a href="#" class="download-template-button" onclick="downloadToolsTemplate()" aria-label="Download editable template for tools and practices activity">
+          <i class="fas fa-download" aria-hidden="true"></i>
+          <strong>Download the editable template here</strong>
+        </a>
+      </div>
+    </section>
+
+    <section class="lesson-section no-borders">
+      <h2><strong>Readings</strong></h2>
+      
+      <div class="reading-cards">
+        <a href="https://www.ie.edu/impactskillstoolkit/tool/strengthen-your-willpower/" target="_blank" class="reading-card reading-card-clickable" aria-label="Visit Strengthen your Willpower resource (opens in new tab)">
+          <div class="reading-card-content">
+            <h3><strong>Strengthen your Willpower!</strong></h3>
+            <p>Like all muscles in the body, willpower can be strengthened with the right practice. Try 10 practical and effective ways to strengthen your self-control, focus and perseverance.</p>
+            <div class="reading-card-footer">
+              <span class="reading-link">
+                Visit Resource
+                <span class="reading-arrow" aria-hidden="true">→</span>
+              </span>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://www.idrlabs.com/willpower/test.php" target="_blank" class="reading-card reading-card-clickable" aria-label="Visit Willpower Test (opens in new tab)">
+          <div class="reading-card-content">
+            <h3><strong>Willpower Test!</strong></h3>
+            <p>Though modern research on personality suggests that some people are born with stronger willpower, self-control, fortitude, resilience, and the ability to delay gratification, it does not mean one's willpower cannot be developed. What is your willpower like? Try this test and discover more about yourself!</p>
+            <div class="reading-card-footer">
+              <span class="reading-link">
+                Take Test
+                <span class="reading-arrow" aria-hidden="true">→</span>
+              </span>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://www.ie.edu/impactskillstoolkit/tool/habit-hacking/" target="_blank" class="reading-card reading-card-clickable" aria-label="Visit Habit Hacking resource (opens in new tab)">
+          <div class="reading-card-content">
+            <h3><strong>Habit Hacking!</strong></h3>
+            <p>Understanding the science of behaviors and how they link to meaning and emotion is key. Consider the reward we get from behaviors and how this links to emotion and meaning. Apply the habit loop to analyze the three elements always present; cue, routine and reward.</p>
+            <div class="reading-card-footer">
+              <span class="reading-link">
+                Visit Resource
+                <span class="reading-arrow" aria-hidden="true">→</span>
+              </span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="lesson-section no-borders">
+  <h2><strong>End of Lesson Assessment: Touchpoint I</strong></h2>
+  
+  <p><strong>Let's pause and reflect on your journey so far.</strong></p>
+  
+  <p>This quick check-in is designed to help you measure your progress and notice any positive changes. Use the scale from 1 to 5 to indicate how much you agree with each statement (1 = completely disagree, 
+5 = completely agree).</p>
+  
+  <p>After completing the scale, take a moment to reflect in writing. Your responses will be saved and available for download at the end of the course so you can see how far you've come.</p>
+  
+  <div class="assessment-step">
+    <h4><strong>Step 1:</strong> <strong>Indicate how much you agree with each statement</strong> <em>(1 = completely disagree, 5 = completely agree).</em></h4>
+    
+    <div class="scale-question">
+      <p><strong>I have decreased my screen time.</strong></p>
+      <div class="scale-options">
+        <div class="scale-option">
+          <input type="radio" id="q1-1" name="question1" value="1">
+          <label for="q1-1">1-Completely disagree</label>
+        </div>
+        <div class="scale-option">
+          <input type="radio" id="q1-2" name="question1" value="2">
+          <label for="q1-2">2</label>
+        </div>
+        <div class="scale-option">
+          <input type="radio" id="q1-3" name="question1" value="3">
+          <label for="q1-3">3</label>
+        </div>
+        <div class="scale-option">
+          <input type="radio" id="q1-4" name="question1" value="4">
+          <label for="q1-4">4</label>
+        </div>
+        <div class="scale-option">
+          <input type="radio" id="q1-5" name="question1" value="5">
+          <label for="q1-5">5-Completely agree</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="scale-question">
+      <p><strong>I have stuck to my Digital Goals.</strong></p>
+      <div class="scale-options">
+        <div class="scale-option">
+          <input type="radio" id="q2-1" name="question2" value="1">
+          <label for="q2-1">1-Completely disagree</label>
+        </div>
+        <div class="scale-option">
+          <input type="radio" id="q2-2" name="question2" value="2">
+          <label for="q2-2">2</label>
+        </div>
+        <div class="scale-option">
+          <input type="radio" id="q2-3" name="question2" value="3">
+          <label for="q2-3">3</label>
+        </div>
+        <div class="scale-option">
+          <input type="radio" id="q2-4" name="question2" value="4">
+          <label for="q2-4">4</label>
+        </div>
+        <div class="scale-option">
+          <input type="radio" id="q2-5" name="question2" value="5">
+          <label for="q2-5">5-Completely agree</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="scale-question">
+      <p><strong>I am closer to where I want to be.</strong></p>
+      <div class="scale-options">
+        <div class="scale-option">
+          <input type="radio" id="q3-1" name="question3" value="1">
+          <label for="q3-1">1-Completely disagree</label>
+        </div>
+        <div class="scale-option">
+          <input type="radio" id="q3-2" name="question3" value="2">
+          <label for="q3-2">2</label>
+        </div>
+        <div class="scale-option">
+          <input type="radio" id="q3-3" name="question3" value="3">
+          <label for="q3-3">3</label>
+        </div>
+        <div class="scale-option">
+          <input type="radio" id="q3-4" name="question3" value="4">
+          <label for="q3-4">4</label>
+        </div>
+        <div class="scale-option">
+          <input type="radio" id="q3-5" name="question3" value="5">
+          <label for="q3-5">5-Completely agree</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="scale-question">
+      <p><strong>I have made more conscious use of my digital devices.</strong></p>
+      <div class="scale-options">
+        <div class="scale-option">
+          <input type="radio" id="q4-1" name="question4" value="1">
+          <label for="q4-1">1-Completely disagree</label>
+        </div>
+        <div class="scale-option">
+          <input type="radio" id="q4-2" name="question4" value="2">
+          <label for="q4-2">2</label>
+        </div>
+        <div class="scale-option">
+          <input type="radio" id="q4-3" name="question4" value="3">
+          <label for="q4-3">3</label>
+        </div>
+        <div class="scale-option">
+          <input type="radio" id="q4-4" name="question4" value="4">
+          <label for="q4-4">4</label>
+        </div>
+        <div class="scale-option">
+          <input type="radio" id="q4-5" name="question4" value="5">
+          <label for="q4-5">5-Completely agree</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="scale-question">
+      <p><strong>I feel better about my use of digital devices.</strong></p>
+      <div class="scale-options">
+        <div class="scale-option">
+          <input type="radio" id="q5-1" name="question5" value="1">
+          <label for="q5-1">1-Completely disagree</label>
+        </div>
+        <div class="scale-option">
+          <input type="radio" id="q5-2" name="question5" value="2">
+          <label for="q5-2">2</label>
+        </div>
+        <div class="scale-option">
+          <input type="radio" id="q5-3" name="question5" value="3">
+          <label for="q5-3">3</label>
+        </div>
+        <div class="scale-option">
+          <input type="radio" id="q5-4" name="question4" value="4">
+          <label for="q4-4">4</label>
+        </div>
+        <div class="scale-option">
+          <input type="radio" id="q5-5" name="question5" value="5">
+          <label for="q5-5">5-Completely agree</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="assessment-step">
+    <h4><strong>Step 2:</strong> <strong>Take a moment to reflect by responding the question below</strong></h4>
+    <p>How do you feel after completing the first two lessons of this course? Have you noticed any differences in your general well-being?</p>
+    <textarea class="reflection-textarea" id="reflection-response" placeholder="Write your reflection here..."></textarea>
+    
+    <button class="download-response-button" onclick="downloadAssessmentResponse()">
+      <i class="fas fa-download" aria-hidden="true"></i>
+      Download my response
+    </button>
+  </div>
+</section>
+    
+    <div class="navigation-buttons" role="navigation" aria-label="Lesson navigation">
+      <a href="chapter1.html" class="nav-button prev"><span class="arrow-left" aria-hidden="true">←</span>Previous</a>
+      <a href="chapter3.html" class="nav-button next">Next<span class="arrow-right" aria-hidden="true">→</span></a>
     </div>
   </div>
 </main>
@@ -948,7 +978,8 @@
             <strong>Social Media Hygiene</strong> – Practices for maintaining a healthy relationship with social platforms, including curating content and setting boundaries.
           </div>
         </div>
-        <div id="glossary-section-t" class="glossary-letter-header">T</h3>
+        <div id="glossary-section-t" class="glossary-section">
+          <h3 class="glossary-letter-header">T</h3>
           <div class="glossary-term">
             <strong>Tech-Life Balance</strong> – The intentional effort to harmonize technology use with overall well-being.
           </div>
@@ -970,15 +1001,283 @@
   </div>
 </div>
 
-<!-- VideoJS JavaScript -->
-<script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
-<script src="js/video-player.js"></script>
-<script src="js/key-points.js"></script>
-<script src="js/reflections.js"></script>
-<script src="js/main.js"></script>
-<script>
-// Glossary Modal Functionality
+  <!-- VideoJS JavaScript -->
+  <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
+  <script src="js/video-player.js"></script>
+  <script src="js/key-points.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/logo-checker.js"></script>
+  <script>
+// Enhanced PDF generation function with header image
+async function addPDFHeader(doc) {
+  try {
+    // Load the header image
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    
+    return new Promise((resolve, reject) => {
+      img.onload = function() {
+        try {
+          // Create a canvas to process the image
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d');
+          
+          // Set canvas dimensions to match the image aspect ratio
+          const pdfWidth = 210; // A4 width in mm (jsPDF default)
+          const imgWidth = pdfWidth; // 100% of PDF width
+          const imgHeight = (img.height / img.width) * imgWidth;
+          
+          canvas.width = img.width;
+          canvas.height = img.height;
+          
+          // Draw the image on canvas
+          ctx.drawImage(img, 0, 0);
+          
+          // Convert to base64
+          const imgData = canvas.toDataURL('image/jpeg', 0.8);
+          
+          // Add image to PDF at top corner, full width
+          doc.addImage(imgData, 'JPEG', 0, 0, imgWidth, imgHeight);
+          
+          resolve(imgHeight + 10); // Return the Y position after the header with small margin
+        } catch (error) {
+          console.warn('Error processing header image:', error);
+          resolve(20); // Return default Y position if image fails
+        }
+      };
+      
+      img.onerror = function() {
+        console.warn('Could not load header image');
+        resolve(20); // Return default Y position if image fails to load
+      };
+      
+      // Load the image
+      img.src = 'assets/images/pdf-header.jpg';
+    });
+  } catch (error) {
+    console.warn('Error loading header image:', error);
+    return 20; // Return default Y position if there's an error
+  }
+}
+
+// Session storage functions for assessment responses
+function saveResponseToSession() {
+  const responses = {
+    screenTime: document.querySelector('input[name="question1"]:checked')?.value || '',
+    digitalGoals: document.querySelector('input[name="question2"]:checked')?.value || '',
+    closerToGoal: document.querySelector('input[name="question3"]:checked')?.value || '',
+    consciousUse: document.querySelector('input[name="question4"]:checked')?.value || '',
+    feelBetter: document.querySelector('input[name="question5"]:checked')?.value || '',
+    reflection: document.getElementById('reflection-response').value || '',
+    timestamp: new Date().toISOString()
+  };
+  
+  sessionStorage.setItem('chapter2_assessment', JSON.stringify(responses));
+}
+
+function loadResponseFromSession() {
+  const savedData = sessionStorage.getItem('chapter2_assessment');
+  if (savedData) {
+    const responses = JSON.parse(savedData);
+    
+    // Restore radio button selections
+    if (responses.screenTime) {
+      const radio1 = document.querySelector(`input[name="question1"][value="${responses.screenTime}"]`);
+      if (radio1) radio1.checked = true;
+    }
+    if (responses.digitalGoals) {
+      const radio2 = document.querySelector(`input[name="question2"][value="${responses.digitalGoals}"]`);
+      if (radio2) radio2.checked = true;
+    }
+    if (responses.closerToGoal) {
+      const radio3 = document.querySelector(`input[name="question3"][value="${responses.closerToGoal}"]`);
+      if (radio3) radio3.checked = true;
+    }
+    if (responses.consciousUse) {
+      const radio4 = document.querySelector(`input[name="question4"][value="${responses.consciousUse}"]`);
+      if (radio4) radio4.checked = true;
+    }
+    if (responses.feelBetter) {
+      const radio5 = document.querySelector(`input[name="question5"][value="${responses.feelBetter}"]`);
+      if (radio5) radio5.checked = true;
+    }
+    
+    // Restore reflection text
+    if (responses.reflection) {
+      document.getElementById('reflection-response').value = responses.reflection;
+    }
+  }
+}
+
+async function downloadAssessmentResponse() {
+  // Save to session first
+  saveResponseToSession();
+  
+  // Get all form responses
+  const responses = {
+    screenTime: document.querySelector('input[name="question1"]:checked')?.value || '',
+    digitalGoals: document.querySelector('input[name="question2"]:checked')?.value || '',
+    closerToGoal: document.querySelector('input[name="question3"]:checked')?.value || '',
+    consciousUse: document.querySelector('input[name="question4"]:checked')?.value || '',
+    feelBetter: document.querySelector('input[name="question5"]:checked')?.value || '',
+    reflection: document.getElementById('reflection-response').value || ''
+  };
+  
+  // Create PDF
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  
+  // Add header image and get the Y position after it
+  const startY = await addPDFHeader(doc);
+  
+  // Set font
+  doc.setFont("helvetica");
+  
+  // Title
+  doc.setFontSize(16);
+  doc.setFont("helvetica", "bold");
+  doc.text("Digital Well-being Assessment - Chapter 2 Touchpoint I", 20, startY + 10);
+  
+  // Date
+  doc.setFontSize(12);
+  doc.setFont("helvetica", "normal");
+  doc.text(`Date: ${new Date().toLocaleDateString()}`, 20, startY + 25);
+  
+  // Scale responses section
+  doc.setFontSize(14);
+  doc.setFont("helvetica", "bold");
+  let yPosition = startY + 45;
+  
+  // Check if we need a new page
+  if (yPosition > 270) {
+    doc.addPage();
+    yPosition = 20;
+  }
+  
+  doc.text("SCALE RESPONSES", 20, yPosition);
+  yPosition += 10;
+  
+  doc.setFontSize(10);
+  doc.setFont("helvetica", "italic");
+  doc.text("(1 = completely disagree, 5 = completely agree)", 20, yPosition);
+  yPosition += 15;
+  
+  doc.setFontSize(11);
+  doc.setFont("helvetica", "normal");
+  
+  const questions = [
+    { label: "1. I have decreased my screen time:", value: responses.screenTime },
+    { label: "2. I have stuck to my Digital Goals:", value: responses.digitalGoals },
+    { label: "3. I am closer to where I want to be:", value: responses.closerToGoal },
+    { label: "4. I have made more conscious use of my digital devices:", value: responses.consciousUse },
+    { label: "5. I feel better about my use of digital devices:", value: responses.feelBetter }
+  ];
+  
+  questions.forEach(question => {
+    // Check if we need a new page
+    if (yPosition > 270) {
+      doc.addPage();
+      yPosition = 20;
+    }
+    
+    doc.text(question.label, 20, yPosition);
+    doc.setFont("helvetica", "bold");
+    doc.text(question.value || "Not answered", 180, yPosition);
+    doc.setFont("helvetica", "normal");
+    yPosition += 12;
+  });
+  
+  // Reflection section
+  yPosition += 10;
+  
+  // Check if we need a new page for reflection section
+  if (yPosition > 250) {
+    doc.addPage();
+    yPosition = 20;
+  }
+  
+  doc.setFontSize(14);
+  doc.setFont("helvetica", "bold");
+  doc.text("REFLECTION", 20, yPosition);
+  
+  yPosition += 15;
+  doc.setFontSize(11);
+  doc.setFont("helvetica", "italic");
+  const reflectionQuestion = "How do you feel after completing the first two lessons of this course? Have you noticed any differences in your general well-being?";
+  const splitQuestion = doc.splitTextToSize(reflectionQuestion, 170);
+  
+  // Check if question fits on current page
+  if (yPosition + (splitQuestion.length * 6) > 270) {
+    doc.addPage();
+    yPosition = 20;
+  }
+  
+  doc.text(splitQuestion, 20, yPosition);
+  yPosition += splitQuestion.length * 6 + 10;
+  
+  // Reflection answer
+  doc.setFont("helvetica", "normal");
+  if (responses.reflection) {
+    const splitReflection = doc.splitTextToSize(responses.reflection, 170);
+    
+    // Handle long reflections that might span multiple pages
+    let remainingLines = [...splitReflection];
+    
+    while (remainingLines.length > 0) {
+      // Calculate how many lines can fit on current page
+      const availableSpace = 280 - yPosition;
+      const linesPerPage = Math.floor(availableSpace / 6);
+      
+      if (linesPerPage <= 0) {
+        doc.addPage();
+        yPosition = 20;
+        continue;
+      }
+      
+      // Take lines that fit on current page
+      const linesToAdd = remainingLines.splice(0, linesPerPage);
+      doc.text(linesToAdd, 20, yPosition);
+      yPosition += linesToAdd.length * 6;
+      
+      // If there are more lines, add a new page
+      if (remainingLines.length > 0) {
+        doc.addPage();
+        yPosition = 20;
+      }
+    }
+  } else {
+    // Check if "No reflection provided" fits
+    if (yPosition > 270) {
+      doc.addPage();
+      yPosition = 20;
+    }
+    doc.setFont("helvetica", "italic");
+    doc.text("No reflection provided", 20, yPosition);
+  }
+  
+  // Save the PDF
+  doc.save('Chapter2_Assessment_Response.pdf');
+}
+
+// Add event listeners for auto-saving responses
 document.addEventListener('DOMContentLoaded', function() {
+  // Load saved responses when page loads
+  loadResponseFromSession();
+  
+  // Auto-save when radio buttons change
+  const radioButtons = document.querySelectorAll('input[type="radio"]');
+  radioButtons.forEach(radio => {
+    radio.addEventListener('change', saveResponseToSession);
+  });
+  
+  // Auto-save when reflection text changes
+  const reflectionTextarea = document.getElementById('reflection-response');
+  if (reflectionTextarea) {
+    reflectionTextarea.addEventListener('input', saveResponseToSession);
+  }
+  
+  // Existing glossary modal code remains the same...
   const modal = document.getElementById('glossary-modal');
   const openBtn = document.getElementById('open-glossary');
   const menuLink = document.getElementById('glossary-menu-link');
@@ -1046,256 +1345,21 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-// Habit Tracker Functionality
-document.addEventListener('DOMContentLoaded', function() {
-  // Load saved habit tracker data
-  loadHabitTrackerData();
-  
-  // Add event listeners to all checkboxes
-  const checkboxes = document.querySelectorAll('.habit-checkbox');
-  checkboxes.forEach(checkbox => {
-    checkbox.addEventListener('change', saveHabitTrackerData);
-  });
-});
-
-function saveHabitTrackerData() {
-  const data = {};
-  const checkboxes = document.querySelectorAll('.habit-checkbox');
-  
-  checkboxes.forEach(checkbox => {
-    const habit = checkbox.dataset.habit;
-    const day = checkbox.dataset.day;
-    const key = `${habit}-${day}`;
-    data[key] = checkbox.checked;
-  });
-  
-  localStorage.setItem('habitTrackerData', JSON.stringify(data));
+// Template download functions
+function downloadDigitalHabitsAuditTemplate() {
+  // Placeholder function for downloading digital habits audit template
+  alert('Digital Habits Audit template download would be implemented here');
 }
 
-function loadHabitTrackerData() {
-  const savedData = localStorage.getItem('habitTrackerData');
-  if (savedData) {
-    const data = JSON.parse(savedData);
-    
-    Object.keys(data).forEach(key => {
-      const checkbox = document.querySelector(`[data-habit="${key.split('-')[0]}"][data-day="${key.split('-')[1]}"]`);
-      if (checkbox) {
-        checkbox.checked = data[key];
-      }
-    });
-  }
+function downloadDigitalTriggersTemplate() {
+  // Placeholder function for downloading digital triggers template
+  alert('Digital Triggers template download would be implemented here');
 }
 
-function downloadHabitTracker() {
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF();
-  
-  // Add header image
-  addPDFHeader(doc);
-  
-  // Title
-  doc.setFontSize(20);
-  doc.setFont(undefined, 'bold');
-  doc.text('My 7-Day Digital Habit Tracker Results', 20, 70);
-  
-  // Get current date
-  const currentDate = new Date().toLocaleDateString();
-  doc.setFontSize(12);
-  doc.setFont(undefined, 'normal');
-  doc.text(`Generated on: ${currentDate}`, 20, 80);
-  
-  // Habit data
-  const habits = [
-    { key: 'phone-wake', name: 'Check phone within 5 min of waking' },
-    { key: 'phone-meals', name: 'Use phone during meals' },
-    { key: 'social-bed', name: 'Check social media before bed' },
-    { key: 'phone-free', name: 'Take phone-free breaks (30+ min)' },
-    { key: 'focus-mode', name: 'Use focus mode/do not disturb' }
-  ];
-  
-  const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
-  const dayNames = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-  
-  let yPosition = 95;
-  
-  // Table header
-  doc.setFontSize(10);
-  doc.setFont(undefined, 'bold');
-  doc.text('Habit', 20, yPosition);
-  dayNames.forEach((day, index) => {
-    doc.text(day, 80 + (index * 15), yPosition);
-  });
-  
-  yPosition += 10;
-  
-  // Table content
-  doc.setFont(undefined, 'normal');
-  habits.forEach(habit => {
-    // Check if we need a new page
-    if (yPosition > 250) {
-      doc.addPage();
-      addPDFHeader(doc);
-      yPosition = 70;
-    }
-    
-    // Habit name (truncated if too long)
-    let habitName = habit.name;
-    if (habitName.length > 35) {
-      habitName = habitName.substring(0, 32) + '...';
-    }
-    doc.text(habitName, 20, yPosition);
-    
-    // Days
-    days.forEach((day, index) => {
-      const checkbox = document.querySelector(`[data-habit="${habit.key}"][data-day="${day}"]`);
-      const checked = checkbox ? checkbox.checked : false;
-      doc.text(checked ? '✓' : '✗', 85 + (index * 15), yPosition);
-    });
-    
-    yPosition += 8;
-  });
-  
-  // Summary section
-  yPosition += 10;
-  if (yPosition > 230) {
-    doc.addPage();
-    addPDFHeader(doc);
-    yPosition = 70;
-  }
-  
-  doc.setFont(undefined, 'bold');
-  doc.text('Summary & Insights:', 20, yPosition);
-  yPosition += 10;
-  
-  doc.setFont(undefined, 'normal');
-  doc.text('Use this space to reflect on your habit patterns:', 20, yPosition);
-  yPosition += 10;
-  
-  // Add lines for writing
-  for (let i = 0; i < 8; i++) {
-    if (yPosition > 270) {
-      doc.addPage();
-      addPDFHeader(doc);
-      yPosition = 70;
-    }
-    doc.line(20, yPosition, 190, yPosition);
-    yPosition += 10;
-  }
-  
-  // Save the PDF
-  doc.save('My_Digital_Habit_Tracker_Results.pdf');
+function downloadToolsTemplate() {
+  // Placeholder function for downloading tools template
+  alert('Tools and Practices template download would be implemented here');
 }
-
-// Add PDF header function
-function addPDFHeader(doc) {
-  // Add header image
-  const headerImg = new Image();
-  headerImg.crossOrigin = "anonymous";
-  headerImg.onload = function() {
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    canvas.width = headerImg.width;
-    canvas.height = headerImg.height;
-    ctx.drawImage(headerImg, 0, 0);
-    const imgData = canvas.toDataURL('image/jpeg');
-    
-    // Calculate dimensions to maintain aspect ratio
-    const imgWidth = doc.internal.pageSize.getWidth();
-    const imgHeight = (headerImg.height / headerImg.width) * imgWidth;
-    
-    doc.addImage(imgData, 'JPEG', 0, 0, imgWidth, imgHeight);
-  };
-  headerImg.src = 'assets/images/pdf-header.jpg';
-  
-  // Add a margin below header
-  return 60; // Return the Y position where content should start
-}
-
-// Habit Planning Functionality
-let habitPlans = [];
-
-function addHabitPlan() {
-  const habitName = document.getElementById('habit-name').value;
-  const habitCue = document.getElementById('habit-cue').value;
-  const habitRoutine = document.getElementById('habit-routine').value;
-  const habitReward = document.getElementById('habit-reward').value;
-  const habitEnvironment = document.getElementById('habit-environment').value;
-  const habitObstacles = document.getElementById('habit-obstacles').value;
-  
-  if (!habitName || !habitCue || !habitRoutine) {
-    alert('Please fill in at least the habit name, cue, and routine fields.');
-    return;
-  }
-  
-  const habitPlan = {
-    id: Date.now(),
-    name: habitName,
-    cue: habitCue,
-    routine: habitRoutine,
-    reward: habitReward,
-    environment: habitEnvironment,
-    obstacles: habitObstacles
-  };
-  
-  habitPlans.push(habitPlan);
-  displayHabitPlans();
-  clearHabitForm();
-  
-  // Save to localStorage
-  localStorage.setItem('habitPlans', JSON.stringify(habitPlans));
-}
-
-function displayHabitPlans() {
-  const habitsList = document.getElementById('habits-list');
-  
-  if (habitPlans.length === 0) {
-    habitsList.innerHTML = '';
-    return;
-  }
-  
-  habitsList.innerHTML = '<h4>My Habit Plans:</h4>';
-  
-  habitPlans.forEach(plan => {
-    const habitItem = document.createElement('div');
-    habitItem.className = 'habit-item';
-    habitItem.innerHTML = `
-      <div class="habit-info">
-        <h4>${plan.name}</h4>
-        <p><strong>Cue:</strong> ${plan.cue}</p>
-        <p><strong>Routine:</strong> ${plan.routine}</p>
-        ${plan.reward ? `<p><strong>Reward:</strong> ${plan.reward}</p>` : ''}
-      </div>
-      <button class="remove-habit-button" onclick="removeHabitPlan(${plan.id})">
-        <i class="fas fa-trash" aria-hidden="true"></i> Remove
-      </button>
-    `;
-    habitsList.appendChild(habitItem);
-  });
-}
-
-function removeHabitPlan(id) {
-  habitPlans = habitPlans.filter(plan => plan.id !== id);
-  displayHabitPlans();
-  localStorage.setItem('habitPlans', JSON.stringify(habitPlans));
-}
-
-function clearHabitForm() {
-  document.getElementById('habit-name').value = '';
-  document.getElementById('habit-cue').value = '';
-  document.getElementById('habit-routine').value = '';
-  document.getElementById('habit-reward').value = '';
-  document.getElementById('habit-environment').value = '';
-  document.getElementById('habit-obstacles').value = '';
-}
-
-// Load habit plans on page load
-document.addEventListener('DOMContentLoaded', function() {
-  const savedPlans = localStorage.getItem('habitPlans');
-  if (savedPlans) {
-    habitPlans = JSON.parse(savedPlans);
-    displayHabitPlans();
-  }
-});
 </script>
 </body>
 </html>
