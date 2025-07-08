@@ -1,6 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
   // Initialize all quizzes on the page
   initializeQuizzes()
+
+  // Load saved answers if they exist
+  loadSavedAnswers()
 })
 
 function initializeQuizzes() {
@@ -205,18 +208,36 @@ function handleFinalQuizSubmit() {
 
   const fieldsets = form.querySelectorAll("fieldset")
   let allAnswered = true
+  const userAnswers = {}
 
+  // Collect user answers and check if all questions are answered
   fieldsets.forEach((fieldset) => {
     const questionName = fieldset.querySelector('input[type="radio"]').name
     const selectedOption = form.querySelector(`input[name="${questionName}"]:checked`)
     if (!selectedOption) {
       allAnswered = false
+    } else {
+      userAnswers[questionName] = selectedOption.value
     }
   })
 
   if (!allAnswered) {
     alert("Please answer all questions before submitting.")
     return
+  }
+
+  // Save answers to sessionStorage
+  const quizData = {
+    answers: userAnswers,
+    timestamp: new Date().toISOString(),
+    completed: true,
+  }
+
+  try {
+    sessionStorage.setItem("finalQuizAnswers", JSON.stringify(quizData))
+    console.log("Final quiz answers saved to session storage:", quizData)
+  } catch (error) {
+    console.error("Error saving quiz answers to session storage:", error)
   }
 
   // Disable all inputs and submit button
@@ -227,7 +248,7 @@ function handleFinalQuizSubmit() {
   })
   submitBtn.disabled = true
 
-  // Process each question
+  // Process each question for visual feedback
   fieldsets.forEach((fieldset) => {
     const questionName = fieldset.querySelector('input[type="radio"]').name
     const selectedOption = form.querySelector(`input[name="${questionName}"]:checked`)
@@ -245,7 +266,47 @@ function handleFinalQuizSubmit() {
     })
   })
 
-  // Show feedback
+  // Show feedback with save confirmation
+  const feedbackElement = document.getElementById("final-quiz-feedback")
+  feedbackElement.innerHTML = `
+    <h4>Thank you for completing the final assessment!</h4>
+    <p><strong>✓ Your answers have been saved successfully.</strong></p>
+    <p>We appreciate the time and thought you've put into this test. We hope it has helped reinforce the key concepts and practical strategies you explored throughout the course.</p>
+    <p>Your responses reflect the knowledge you've gained in your digital well-being journey. Keep reflecting, practicing, and applying what you've learned—and remember, digital well-being is an ongoing process of balance, awareness, and intentional choice.</p>
+  `
+
   feedback.style.display = "block"
   feedback.scrollIntoView({ behavior: "smooth", block: "center" })
+}
+
+// Function to retrieve saved quiz answers
+function getSavedQuizAnswers() {
+  try {
+    const savedData = sessionStorage.getItem("finalQuizAnswers")
+    if (savedData) {
+      return JSON.parse(savedData)
+    }
+  } catch (error) {
+    console.error("Error retrieving quiz answers from session storage:", error)
+  }
+  return null
+}
+
+// Function to load saved answers when page loads (optional)
+function loadSavedAnswers() {
+  const savedData = getSavedQuizAnswers()
+  if (savedData && savedData.answers) {
+    const form = document.getElementById("final-quiz")
+    if (form) {
+      Object.keys(savedData.answers).forEach((questionName) => {
+        const savedValue = savedData.answers[questionName]
+        const radioButton = form.querySelector(`input[name="${questionName}"][value="${savedValue}"]`)
+        if (radioButton) {
+          radioButton.checked = true
+          radioButton.dispatchEvent(new Event("change"))
+        }
+      })
+      console.log("Loaded saved quiz answers:", savedData)
+    }
+  }
 }
