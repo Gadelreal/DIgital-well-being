@@ -240,13 +240,12 @@ function handleFinalQuizSubmit() {
     console.error("Error saving quiz answers to session storage:", error)
   }
 
-  // Disable all inputs and submit button
+  // Disable all inputs
   const allInputs = form.querySelectorAll('input[type="radio"]')
   allInputs.forEach((input) => {
     input.disabled = true
     input.closest(".quiz-option").style.cursor = "default"
   })
-  submitBtn.disabled = true
 
   // Process each question for visual feedback
   fieldsets.forEach((fieldset) => {
@@ -266,6 +265,19 @@ function handleFinalQuizSubmit() {
     })
   })
 
+  // Change submit button to "Try Again" button
+  submitBtn.textContent = "Try Again"
+  submitBtn.disabled = false
+  submitBtn.type = "button"
+
+  // Remove the original submit event listener and add reset functionality
+  const newSubmitBtn = submitBtn.cloneNode(true)
+  submitBtn.parentNode.replaceChild(newSubmitBtn, submitBtn)
+
+  newSubmitBtn.addEventListener("click", () => {
+    resetFinalQuiz()
+  })
+
   // Show feedback with save confirmation
   const feedbackElement = document.getElementById("final-quiz-feedback")
   feedbackElement.innerHTML = `
@@ -277,6 +289,82 @@ function handleFinalQuizSubmit() {
 
   feedback.style.display = "block"
   feedback.scrollIntoView({ behavior: "smooth", block: "center" })
+
+  // Announce to screen readers
+  const announcement = document.createElement("div")
+  announcement.className = "sr-only"
+  announcement.setAttribute("aria-live", "polite")
+  announcement.textContent = "Quiz completed. Results are now displayed below. You can try again if you wish."
+  form.appendChild(announcement)
+
+  setTimeout(() => {
+    if (announcement.parentNode) {
+      announcement.parentNode.removeChild(announcement)
+    }
+  }, 1000)
+}
+
+function resetFinalQuiz() {
+  const form = document.getElementById("final-quiz")
+  const feedback = document.getElementById("final-quiz-feedback")
+  const submitBtn = form.querySelector(".quiz-submit-btn")
+
+  // Reset form
+  form.reset()
+
+  // Enable all inputs
+  const allInputs = form.querySelectorAll('input[type="radio"]')
+  allInputs.forEach((input) => {
+    input.disabled = false
+    input.closest(".quiz-option").style.cursor = "pointer"
+  })
+
+  // Remove feedback classes and selected classes
+  const allOptions = form.querySelectorAll(".quiz-option")
+  allOptions.forEach((option) => {
+    option.classList.remove("correct-answer", "incorrect-answer", "selected")
+  })
+
+  // Hide feedback
+  feedback.style.display = "none"
+
+  // Change button back to "Submit Answers"
+  submitBtn.textContent = "Submit Answers"
+  submitBtn.type = "submit"
+
+  // Remove the reset event listener and restore submit functionality
+  const newSubmitBtn = submitBtn.cloneNode(true)
+  submitBtn.parentNode.replaceChild(newSubmitBtn, submitBtn)
+
+  // Re-add the submit event listener
+  newSubmitBtn.addEventListener("click", (e) => {
+    e.preventDefault()
+    handleFinalQuizSubmit()
+  })
+
+  // Clear saved answers from session storage
+  try {
+    sessionStorage.removeItem("finalQuizAnswers")
+    console.log("Final quiz answers cleared from session storage")
+  } catch (error) {
+    console.error("Error clearing quiz answers from session storage:", error)
+  }
+
+  // Scroll back to quiz
+  form.scrollIntoView({ behavior: "smooth", block: "start" })
+
+  // Announce to screen readers
+  const announcement = document.createElement("div")
+  announcement.className = "sr-only"
+  announcement.setAttribute("aria-live", "polite")
+  announcement.textContent = "Quiz has been reset. You can now try again."
+  form.appendChild(announcement)
+
+  setTimeout(() => {
+    if (announcement.parentNode) {
+      announcement.parentNode.removeChild(announcement)
+    }
+  }, 1000)
 }
 
 // Function to retrieve saved quiz answers
