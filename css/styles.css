@@ -4099,7 +4099,7 @@ html:focus,
 
 .quiz-activity-container .quiz-option {
   display: flex;
-  align-items: flex-start;
+  align-items: center; /* Changed from flex-start to center for better alignment */
   padding: 1rem;
   background-color: white;
   border: 1px solid #ddd;
@@ -4111,9 +4111,9 @@ html:focus,
     background-color: #f0f0f0;
 }
 
-.quiz-activity-container .quiz-option input[type="checkbox"] {
-  margin-right: 1rem;
-  margin-top: 0.25rem;
+.quiz-activity-container .quiz-option input[type="radio"] {
+  margin-right: 1.5rem; /* Increased from 1rem to 1.5rem for more spacing */
+  margin-top: 0; /* Changed from 0.25rem to 0 for better alignment */
   width: 18px;
   height: 18px;
   cursor: pointer;
