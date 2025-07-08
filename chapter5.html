@@ -196,6 +196,102 @@
 .quiz-option input[type="radio"]:checked + .option-text {
   font-weight: 500;
 }
+
+/* Quiz Results Cards */
+.quiz-results-container {
+  margin-top: 2rem;
+  display: none;
+}
+
+.quiz-results-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  .quiz-results-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+.quiz-result-card {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.quiz-result-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.quiz-result-card.correct {
+  border-color: #28a745;
+}
+
+.quiz-result-card.incorrect {
+  border-color: #dc3545;
+}
+
+.quiz-result-card.percentage {
+  border-color: var(--primary-color);
+}
+
+.quiz-result-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.quiz-result-card.correct .quiz-result-icon {
+  color: #28a745;
+}
+
+.quiz-result-card.incorrect .quiz-result-icon {
+  color: #dc3545;
+}
+
+.quiz-result-card.percentage .quiz-result-icon {
+  color: var(--primary-color);
+}
+
+.quiz-result-number {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+
+.quiz-result-card.correct .quiz-result-number {
+  color: #28a745;
+}
+
+.quiz-result-card.incorrect .quiz-result-number {
+  color: #dc3545;
+}
+
+.quiz-result-card.percentage .quiz-result-number {
+  color: var(--primary-color);
+}
+
+.quiz-result-label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.25rem;
+}
+
+.quiz-result-description {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.4;
+}
 </style>
 </head>
 <body>
@@ -232,7 +328,7 @@
     <li><a href="chapter2.html">2. Digital Habits</a></li>
     <li><a href="chapter3.html">3. Attention, Cognition, Energy...</a></li>
     <li><a href="chapter4.html">4. Building Resilience</a></li>
-    <li><a href="chapter5.html" class="active" aria-current="page">5. Ownership and Practice</a></li>
+    <li><a href="chapter5.html" class="active" aria-current="page">5. Course Conclusion</a></li>
     <li><a href="#" id="glossary-menu-link"><i class="fas fa-book" style="color: #000066; margin-right: 0.5rem;" aria-hidden="true"></i>Glossary</a></li>
   </ul>
 </nav>
@@ -598,8 +694,41 @@
 
         <div id="final-quiz-feedback" class="quiz-feedback" style="display: none;">
           <h4>Thank you for completing the final assessment!</h4>
+          <p><strong>✓ Your answers have been saved successfully.</strong></p>
           <p>We appreciate the time and thought you've put into this test. We hope it has helped reinforce the key concepts and practical strategies you explored throughout the course.</p>
           <p>Your responses reflect the knowledge you've gained in your digital well-being journey. Keep reflecting, practicing, and applying what you've learned—and remember, digital well-being is an ongoing process of balance, awareness, and intentional choice.</p>
+        </div>
+
+        <!-- Quiz Results Container -->
+        <div id="quiz-results-container" class="quiz-results-container">
+          <div class="quiz-results-grid">
+            <div class="quiz-result-card correct">
+              <div class="quiz-result-icon">
+                <i class="fas fa-check-circle"></i>
+              </div>
+              <div class="quiz-result-number" id="correct-count">0</div>
+              <div class="quiz-result-label">Correct Answers</div>
+              <div class="quiz-result-description">Questions answered correctly</div>
+            </div>
+            
+            <div class="quiz-result-card incorrect">
+              <div class="quiz-result-icon">
+                <i class="fas fa-times-circle"></i>
+              </div>
+              <div class="quiz-result-number" id="incorrect-count">0</div>
+              <div class="quiz-result-label">Incorrect Answers</div>
+              <div class="quiz-result-description">Questions answered incorrectly</div>
+            </div>
+            
+            <div class="quiz-result-card percentage">
+              <div class="quiz-result-icon">
+                <i class="fas fa-percentage"></i>
+              </div>
+              <div class="quiz-result-number" id="percentage-score">0%</div>
+              <div class="quiz-result-label">Success Rate</div>
+              <div class="quiz-result-description">Overall quiz performance</div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

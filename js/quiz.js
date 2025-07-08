@@ -240,6 +240,10 @@ function handleFinalQuizSubmit() {
     console.error("Error saving quiz answers to session storage:", error)
   }
 
+  // Calculate results
+  let correctCount = 0
+  let incorrectCount = 0
+
   // Disable all inputs
   const allInputs = form.querySelectorAll('input[type="radio"]')
   allInputs.forEach((input) => {
@@ -247,12 +251,19 @@ function handleFinalQuizSubmit() {
     input.closest(".quiz-option").style.cursor = "default"
   })
 
-  // Process each question for visual feedback
+  // Process each question for visual feedback and counting
   fieldsets.forEach((fieldset) => {
     const questionName = fieldset.querySelector('input[type="radio"]').name
     const selectedOption = form.querySelector(`input[name="${questionName}"]:checked`)
     const correctAnswer = correctAnswers[questionName]
     const options = fieldset.querySelectorAll(".quiz-option")
+
+    // Check if answer is correct
+    if (selectedOption && selectedOption.value === correctAnswer) {
+      correctCount++
+    } else {
+      incorrectCount++
+    }
 
     options.forEach((option) => {
       const input = option.querySelector("input")
@@ -264,6 +275,19 @@ function handleFinalQuizSubmit() {
       }
     })
   })
+
+  // Calculate percentage
+  const totalQuestions = Object.keys(correctAnswers).length
+  const percentage = Math.round((correctCount / totalQuestions) * 100)
+
+  // Update results display
+  document.getElementById("correct-count").textContent = correctCount
+  document.getElementById("incorrect-count").textContent = incorrectCount
+  document.getElementById("percentage-score").textContent = percentage + "%"
+
+  // Show results container
+  const resultsContainer = document.getElementById("quiz-results-container")
+  resultsContainer.style.display = "block"
 
   // Change submit button to "Try Again" button
   submitBtn.textContent = "Try Again"
@@ -294,7 +318,7 @@ function handleFinalQuizSubmit() {
   const announcement = document.createElement("div")
   announcement.className = "sr-only"
   announcement.setAttribute("aria-live", "polite")
-  announcement.textContent = "Quiz completed. Results are now displayed below. You can try again if you wish."
+  announcement.textContent = `Quiz completed. You scored ${correctCount} out of ${totalQuestions} correct answers (${percentage}%). Results are now displayed below. You can try again if you wish.`
   form.appendChild(announcement)
 
   setTimeout(() => {
@@ -308,6 +332,7 @@ function resetFinalQuiz() {
   const form = document.getElementById("final-quiz")
   const feedback = document.getElementById("final-quiz-feedback")
   const submitBtn = form.querySelector(".quiz-submit-btn")
+  const resultsContainer = document.getElementById("quiz-results-container")
 
   // Reset form
   form.reset()
@@ -325,8 +350,14 @@ function resetFinalQuiz() {
     option.classList.remove("correct-answer", "incorrect-answer", "selected")
   })
 
-  // Hide feedback
+  // Hide feedback and results
   feedback.style.display = "none"
+  resultsContainer.style.display = "none"
+
+  // Reset results display
+  document.getElementById("correct-count").textContent = "0"
+  document.getElementById("incorrect-count").textContent = "0"
+  document.getElementById("percentage-score").textContent = "0%"
 
   // Change button back to "Submit Answers"
   submitBtn.textContent = "Submit Answers"
@@ -367,34 +398,52 @@ function resetFinalQuiz() {
   }, 1000)
 }
 
-// Function to retrieve saved quiz answers
-function getSavedQuizAnswers() {
+// Function to save quiz answers to session storage
+function saveQuizAnswers(quizId, answers) {
   try {
-    const savedData = sessionStorage.getItem("finalQuizAnswers")
-    if (savedData) {
-      return JSON.parse(savedData)
+    const quizData = {
+      answers: answers,
+      timestamp: new Date().toISOString(),
+      completed: true,
     }
+    sessionStorage.setItem(quizId, JSON.stringify(quizData))
+    return true
   } catch (error) {
-    console.error("Error retrieving quiz answers from session storage:", error)
+    console.error("Error saving quiz answers:", error)
+    return false
   }
-  return null
 }
 
-// Function to load saved answers when page loads (optional)
+// Function to get saved quiz answers from session storage
+function getSavedQuizAnswers(quizId) {
+  try {
+    const savedData = sessionStorage.getItem(quizId)
+    return savedData ? JSON.parse(savedData) : null
+  } catch (error) {
+    console.error("Error retrieving saved quiz answers:", error)
+    return null
+  }
+}
+
+// Function to load saved answers when page loads
 function loadSavedAnswers() {
-  const savedData = getSavedQuizAnswers()
-  if (savedData && savedData.answers) {
+  // Load final quiz answers if they exist
+  const savedFinalQuiz = getSavedQuizAnswers("finalQuizAnswers")
+  if (savedFinalQuiz && savedFinalQuiz.answers) {
     const form = document.getElementById("final-quiz")
     if (form) {
-      Object.keys(savedData.answers).forEach((questionName) => {
-        const savedValue = savedData.answers[questionName]
-        const radioButton = form.querySelector(`input[name="${questionName}"][value="${savedValue}"]`)
-        if (radioButton) {
-          radioButton.checked = true
-          radioButton.dispatchEvent(new Event("change"))
+      // Restore selected answers
+      Object.keys(savedFinalQuiz.answers).forEach((questionName) => {
+        const answer = savedFinalQuiz.answers[questionName]
+        const radio = form.querySelector(`input[name="${questionName}"][value="${answer}"]`)
+        if (radio) {
+          radio.checked = true
+          const parentOption = radio.closest(".quiz-option")
+          if (parentOption) {
+            parentOption.classList.add("selected")
+          }
         }
       })
-      console.log("Loaded saved quiz answers:", savedData)
     }
   }
 }
