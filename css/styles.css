@@ -4127,10 +4127,12 @@ html:focus,
   font-weight: 500;
 }
 
-.quiz-activity-container .quiz-option label::first-letter {
-  font-weight: 700;
-  font-size: 1.1em;
-  color: var(--primary-color);
+/* In `.quiz-activity-container .quiz-option label`, remove the `::first-letter` pseudo-element styling to ensure consistent text formatting across all quiz options. */
+.quiz-activity-container .quiz-option label {
+  cursor: pointer;
+  flex: 1;
+  line-height: 1.5;
+  font-weight: 500;
 }
 
 .quiz-submit-btn {
