@@ -164,6 +164,38 @@
   font-style: italic;
   color: #333;
 }
+
+.quiz-option {
+  display: flex;
+  align-items: flex-start;
+  cursor: pointer;
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+  user-select: none;
+}
+
+.quiz-option:hover {
+  background-color: #f8f9fa;
+}
+
+.quiz-option input[type="radio"] {
+  margin-right: 0.75rem;
+  margin-top: 0.1rem;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.option-text {
+  flex: 1;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.quiz-option input[type="radio"]:checked + .option-text {
+  font-weight: 500;
+}
 </style>
 </head>
 <body>
@@ -335,22 +367,22 @@
           <fieldset>
             <legend>1. What is the best definition of digital well-being?</legend>
             <div class="quiz-options-list">
-              <div class="quiz-option">
+              <label class="quiz-option" for="q1a">
                 <input type="radio" id="q1a" name="question1" value="a">
-                <label for="q1a">a) Limiting screen time as much as possible</label>
-              </div>
-              <div class="quiz-option">
+                <span class="option-text">a) Limiting screen time as much as possible</span>
+              </label>
+              <label class="quiz-option" for="q1b">
                 <input type="radio" id="q1b" name="question1" value="b">
-                <label for="q1b">b) Learning how to use technology only for work purposes</label>
-              </div>
-              <div class="quiz-option">
+                <span class="option-text">b) Learning how to use technology only for work purposes</span>
+              </label>
+              <label class="quiz-option" for="q1c">
                 <input type="radio" id="q1c" name="question1" value="c">
-                <label for="q1c">c) Cultivating habits and practices that support a healthy, balanced integration of technology in our lives</label>
-              </div>
-              <div class="quiz-option">
+                <span class="option-text">c) Cultivating habits and practices that support a healthy, balanced integration of technology in our lives</span>
+              </label>
+              <label class="quiz-option" for="q1d">
                 <input type="radio" id="q1d" name="question1" value="d">
-                <label for="q1d">d) Avoiding social media completely</label>
-              </div>
+                <span class="option-text">d) Avoiding social media completely</span>
+              </label>
             </div>
           </fieldset>
 
@@ -358,22 +390,22 @@
           <fieldset>
             <legend>2. How can we best describe the relationship between digital technology and human well-being?</legend>
             <div class="quiz-options-list">
-              <div class="quiz-option">
+              <label class="quiz-option" for="q2a">
                 <input type="radio" id="q2a" name="question2" value="a">
-                <label for="q2a">a) Technology is mostly harmful and should be minimized</label>
-              </div>
-              <div class="quiz-option">
+                <span class="option-text">a) Technology is mostly harmful and should be minimized</span>
+              </label>
+              <label class="quiz-option" for="q2b">
                 <input type="radio" id="q2b" name="question2" value="b">
-                <label for="q2b">b) The impact of technology is fixed and doesn't change with behavior</label>
-              </div>
-              <div class="quiz-option">
+                <span class="option-text">b) The impact of technology is fixed and doesn't change with behavior</span>
+              </label>
+              <label class="quiz-option" for="q2c">
                 <input type="radio" id="q2c" name="question2" value="c">
-                <label for="q2c">c) The effects of technology on well-being depend on how intentionally and mindfully we engage with it</label>
-              </div>
-              <div class="quiz-option">
+                <span class="option-text">c) The effects of technology on well-being depend on how intentionally and mindfully we engage with it</span>
+              </label>
+              <label class="quiz-option" for="q2d">
                 <input type="radio" id="q2d" name="question2" value="d">
-                <label for="q2d">d) Digital well-being is only relevant for people working in tech</label>
-              </div>
+                <span class="option-text">d) Digital well-being is only relevant for people working in tech</span>
+              </label>
             </div>
           </fieldset>
 
@@ -381,22 +413,22 @@
           <fieldset>
             <legend>3. Which of the following is a science-based strategy to improve digital well-being?</legend>
             <div class="quiz-options-list">
-              <div class="quiz-option">
+              <label class="quiz-option" for="q3a">
                 <input type="radio" id="q3a" name="question3" value="a">
-                <label for="q3a">a) Uninstalling all apps from your phone</label>
-              </div>
-              <div class="quiz-option">
+                <span class="option-text">a) Uninstalling all apps from your phone</span>
+              </label>
+              <label class="quiz-option" for="q3b">
                 <input type="radio" id="q3b" name="question3" value="b">
-                <label for="q3b">b) Replacing screen time with productivity tools</label>
-              </div>
-              <div class="quiz-option">
+                <span class="option-text">b) Replacing screen time with productivity tools</span>
+              </label>
+              <label class="quiz-option" for="q3c">
                 <input type="radio" id="q3c" name="question3" value="c">
-                <label for="q3c">c) Identifying triggers and using habit loops to intentionally shape digital behavior</label>
-              </div>
-              <div class="quiz-option">
+                <span class="option-text">c) Identifying triggers and using habit loops to intentionally shape digital behavior</span>
+              </label>
+              <label class="quiz-option" for="q3d">
                 <input type="radio" id="q3d" name="question3" value="d">
-                <label for="q3d">d) Setting daily alarms to remind yourself to go offline</label>
-              </div>
+                <span class="option-text">d) Setting daily alarms to remind yourself to go offline</span>
+              </label>
             </div>
           </fieldset>
 
@@ -404,22 +436,22 @@
           <fieldset>
             <legend>4. Which of the following is a true statement about digital habits?</legend>
             <div class="quiz-options-list">
-              <div class="quiz-option">
+              <label class="quiz-option" for="q4a">
                 <input type="radio" id="q4a" name="question4" value="a">
-                <label for="q4a">a) They are solely based on willpower</label>
-              </div>
-              <div class="quiz-option">
+                <span class="option-text">a) They are solely based on willpower</span>
+              </label>
+              <label class="quiz-option" for="q4b">
                 <input type="radio" id="q4b" name="question4" value="b">
-                <label for="q4b">b) Habits cannot be changed once they're formed</label>
-              </div>
-              <div class="quiz-option">
+                <span class="option-text">b) Habits cannot be changed once they're formed</span>
+              </label>
+              <label class="quiz-option" for="q4c">
                 <input type="radio" id="q4c" name="question4" value="c">
-                <label for="q4c">c) Habits follow a loop of cue, action, and reward</label>
-              </div>
-              <div class="quiz-option">
+                <span class="option-text">c) Habits follow a loop of cue, action, and reward</span>
+              </label>
+              <label class="quiz-option" for="q4d">
                 <input type="radio" id="q4d" name="question4" value="d">
-                <label for="q4d">d) Habits are completely random and untraceable</label>
-              </div>
+                <span class="option-text">d) Habits are completely random and untraceable</span>
+              </label>
             </div>
           </fieldset>
 
@@ -427,22 +459,22 @@
           <fieldset>
             <legend>5. What is a common trigger that leads to unintentional digital behavior?</legend>
             <div class="quiz-options-list">
-              <div class="quiz-option">
+              <label class="quiz-option" for="q5a">
                 <input type="radio" id="q5a" name="question5" value="a">
-                <label for="q5a">a) Deep reflection on values</label>
-              </div>
-              <div class="quiz-option">
+                <span class="option-text">a) Deep reflection on values</span>
+              </label>
+              <label class="quiz-option" for="q5b">
                 <input type="radio" id="q5b" name="question5" value="b">
-                <label for="q5b">b) Scheduled device-free time</label>
-              </div>
-              <div class="quiz-option">
+                <span class="option-text">b) Scheduled device-free time</span>
+              </label>
+              <label class="quiz-option" for="q5c">
                 <input type="radio" id="q5c" name="question5" value="c">
-                <label for="q5c">c) Environmental cues, like phone notifications</label>
-              </div>
-              <div class="quiz-option">
+                <span class="option-text">c) Environmental cues, like phone notifications</span>
+              </label>
+              <label class="quiz-option" for="q5d">
                 <input type="radio" id="q5d" name="question5" value="d">
-                <label for="q5d">d) Conscious intention</label>
-              </div>
+                <span class="option-text">d) Conscious intention</span>
+              </label>
             </div>
           </fieldset>
 
@@ -450,22 +482,22 @@
           <fieldset>
             <legend>6. Which of the following statements reflects a positive outcome of mindful digital habits?</legend>
             <div class="quiz-options-list">
-              <div class="quiz-option">
+              <label class="quiz-option" for="q6a">
                 <input type="radio" id="q6a" name="question6" value="a">
-                <label for="q6a">a) They eliminate the need for self-discipline</label>
-              </div>
-              <div class="quiz-option">
+                <span class="option-text">a) They eliminate the need for self-discipline</span>
+              </label>
+              <label class="quiz-option" for="q6b">
                 <input type="radio" id="q6b" name="question6" value="b">
-                <label for="q6b">b) They help reduce decision fatigue and free up mental energy</label>
-              </div>
-              <div class="quiz-option">
+                <span class="option-text">b) They help reduce decision fatigue and free up mental energy</span>
+              </label>
+              <label class="quiz-option" for="q6c">
                 <input type="radio" id="q6c" name="question6" value="c">
-                <label for="q6c">c) They make you more dependent on routines</label>
-              </div>
-              <div class="quiz-option">
+                <span class="option-text">c) They make you more dependent on routines</span>
+              </label>
+              <label class="quiz-option" for="q6d">
                 <input type="radio" id="q6d" name="question6" value="d">
-                <label for="q6d">d) They require complex tools to be effective</label>
-              </div>
+                <span class="option-text">d) They require complex tools to be effective</span>
+              </label>
             </div>
           </fieldset>
 
@@ -473,22 +505,22 @@
           <fieldset>
             <legend>7. What is the link between attention, energy, and productivity discussed in Lesson 3?</legend>
             <div class="quiz-options-list">
-              <div class="quiz-option">
+              <label class="quiz-option" for="q7a">
                 <input type="radio" id="q7a" name="question7" value="a">
-                <label for="q7a">a) They are unrelated areas of performance</label>
-              </div>
-              <div class="quiz-option">
+                <span class="option-text">a) They are unrelated areas of performance</span>
+              </label>
+              <label class="quiz-option" for="q7b">
                 <input type="radio" id="q7b" name="question7" value="b">
-                <label for="q7b">b) Attention management supports better energy levels and productivity</label>
-              </div>
-              <div class="quiz-option">
+                <span class="option-text">b) Attention management supports better energy levels and productivity</span>
+              </label>
+              <label class="quiz-option" for="q7c">
                 <input type="radio" id="q7c" name="question7" value="c">
-                <label for="q7c">c) Productivity causes attention problems</label>
-              </div>
-              <div class="quiz-option">
+                <span class="option-text">c) Productivity causes attention problems</span>
+              </label>
+              <label class="quiz-option" for="q7d">
                 <input type="radio" id="q7d" name="question7" value="d">
-                <label for="q7d">d) Only energy matters for productivity</label>
-              </div>
+                <span class="option-text">d) Only energy matters for productivity</span>
+              </label>
             </div>
           </fieldset>
 
@@ -496,22 +528,22 @@
           <fieldset>
             <legend>8. What does the term "cognitive load" refer to in the course?</legend>
             <div class="quiz-options-list">
-              <div class="quiz-option">
+              <label class="quiz-option" for="q8a">
                 <input type="radio" id="q8a" name="question8" value="a">
-                <label for="q8a">a) Carrying too many devices at once</label>
-              </div>
-              <div class="quiz-option">
+                <span class="option-text">a) Carrying too many devices at once</span>
+              </label>
+              <label class="quiz-option" for="q8b">
                 <input type="radio" id="q8b" name="question8" value="b">
-                <label for="q8b">b) The total amount of mental effort being used in the working memory</label>
-              </div>
-              <div class="quiz-option">
+                <span class="option-text">b) The total amount of mental effort being used in the working memory</span>
+              </label>
+              <label class="quiz-option" for="q8c">
                 <input type="radio" id="q8c" name="question8" value="c">
-                <label for="q8c">c) How fast we can process information on a screen</label>
-              </div>
-              <div class="quiz-option">
+                <span class="option-text">c) How fast we can process information on a screen</span>
+              </label>
+              <label class="quiz-option" for="q8d">
                 <input type="radio" id="q8d" name="question8" value="d">
-                <label for="q8d">d) The weight of psychological pressure from social media</label>
-              </div>
+                <span class="option-text">d) The weight of psychological pressure from social media</span>
+              </label>
             </div>
           </fieldset>
 
@@ -519,22 +551,22 @@
           <fieldset>
             <legend>9. According to the course, how can accountability support digital well-being goals?</legend>
             <div class="quiz-options-list">
-              <div class="quiz-option">
+              <label class="quiz-option" for="q9a">
                 <input type="radio" id="q9a" name="question9" value="a">
-                <label for="q9a">a) By encouraging competition among participants</label>
-              </div>
-              <div class="quiz-option">
+                <span class="option-text">a) By encouraging competition among participants</span>
+              </label>
+              <label class="quiz-option" for="q9b">
                 <input type="radio" id="q9b" name="question9" value="b">
-                <label for="q9b">b) By assigning responsibility for someone else's habits</label>
-              </div>
-              <div class="quiz-option">
+                <span class="option-text">b) By assigning responsibility for someone else's habits</span>
+              </label>
+              <label class="quiz-option" for="q9c">
                 <input type="radio" id="q9c" name="question9" value="c">
-                <label for="q9c">c) By increasing the likelihood of meeting goals through shared commitment</label>
-              </div>
-              <div class="quiz-option">
+                <span class="option-text">c) By increasing the likelihood of meeting goals through shared commitment</span>
+              </label>
+              <label class="quiz-option" for="q9d">
                 <input type="radio" id="q9d" name="question9" value="d">
-                <label for="q9d">d) By reducing the need for personal responsibility</label>
-              </div>
+                <span class="option-text">d) By reducing the need for personal responsibility</span>
+              </label>
             </div>
           </fieldset>
 
@@ -542,22 +574,22 @@
           <fieldset>
             <legend>10. What is the most effective way to align your digital habits with your purpose and values?</legend>
             <div class="quiz-options-list">
-              <div class="quiz-option">
+              <label class="quiz-option" for="q10a">
                 <input type="radio" id="q10a" name="question10" value="a">
-                <label for="q10a">a) Download more well-being apps</label>
-              </div>
-              <div class="quiz-option">
+                <span class="option-text">a) Download more well-being apps</span>
+              </label>
+              <label class="quiz-option" for="q10b">
                 <input type="radio" id="q10b" name="question10" value="b">
-                <label for="q10b">b) Track screen time with a smartwatch</label>
-              </div>
-              <div class="quiz-option">
+                <span class="option-text">b) Track screen time with a smartwatch</span>
+              </label>
+              <label class="quiz-option" for="q10c">
                 <input type="radio" id="q10c" name="question10" value="c">
-                <label for="q10c">c) Reflect on your core values and intentionally choose habits that support them</label>
-              </div>
-              <div class="quiz-option">
+                <span class="option-text">c) Reflect on your core values and intentionally choose habits that support them</span>
+              </label>
+              <label class="quiz-option" for="q10d">
                 <input type="radio" id="q10d" name="question10" value="d">
-                <label for="q10d">d) Avoid technology in all forms</label>
-              </div>
+                <span class="option-text">d) Avoid technology in all forms</span>
+              </label>
             </div>
           </fieldset>
 

@@ -20,6 +20,47 @@ function initializeQuizzes() {
       e.preventDefault()
       handleFinalQuizSubmit()
     })
+
+    // Add click handlers for better radio button interaction
+    const radioButtons = finalQuiz.querySelectorAll('input[type="radio"]')
+    radioButtons.forEach((radio) => {
+      radio.addEventListener("change", function () {
+        // Ensure the radio button is properly selected
+        this.checked = true
+
+        // Update visual feedback
+        const parentOption = this.closest(".quiz-option")
+        if (parentOption) {
+          // Remove selected class from siblings
+          const siblingOptions = parentOption.parentNode.querySelectorAll(".quiz-option")
+          siblingOptions.forEach((option) => option.classList.remove("selected"))
+
+          // Add selected class to current option
+          parentOption.classList.add("selected")
+        }
+      })
+
+      // Handle click events on the radio button itself
+      radio.addEventListener("click", function (e) {
+        // Ensure the click is processed
+        setTimeout(() => {
+          this.checked = true
+          this.dispatchEvent(new Event("change"))
+        }, 0)
+      })
+    })
+
+    // Add click handlers for quiz option labels
+    const quizOptions = finalQuiz.querySelectorAll(".quiz-option")
+    quizOptions.forEach((option) => {
+      option.addEventListener("click", function (e) {
+        const radio = this.querySelector('input[type="radio"]')
+        if (radio && e.target !== radio) {
+          radio.checked = true
+          radio.dispatchEvent(new Event("change"))
+        }
+      })
+    })
   }
 }
 
