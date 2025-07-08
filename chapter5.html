@@ -105,6 +105,65 @@
 .download-template-button i {
   margin-right: 0.5rem;
 }
+
+/* Estilos para las encuestas de seguimiento */
+.survey-section {
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  padding: 2rem;
+  margin: 2rem 0;
+  border-radius: 0;
+}
+
+.survey-section h2 {
+  margin-top: 0 !important;
+  margin-bottom: 1rem !important;
+}
+
+.survey-section p {
+  margin-bottom: 1.5rem;
+  line-height: 1.7;
+}
+
+.survey-link-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--primary-color);
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.survey-link-button:hover {
+  background-color: var(--primary-color-dark);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  text-decoration: none;
+}
+
+.survey-link-button i {
+  margin-right: 0.5rem;
+}
+
+.survey-note {
+  background-color: #e8f4fd;
+  border-left: 4px solid var(--primary-color);
+  padding: 1rem;
+  margin: 1.5rem 0;
+  border-radius: 0 4px 4px 0;
+}
+
+.survey-note p {
+  margin-bottom: 0 !important;
+  font-style: italic;
+  color: #333;
+}
 </style>
 </head>
 <body>
@@ -351,7 +410,7 @@
               </div>
               <div class="quiz-option">
                 <input type="radio" id="q4b" name="question4" value="b">
-                <label for="q4b">b) Habits cannot be changed once they’re formed</label>
+                <label for="q4b">b) Habits cannot be changed once they're formed</label>
               </div>
               <div class="quiz-option">
                 <input type="radio" id="q4c" name="question4" value="c">
@@ -435,7 +494,7 @@
 
           <!-- Question 8 -->
           <fieldset>
-            <legend>8. What does the term “cognitive load” refer to in the course?</legend>
+            <legend>8. What does the term "cognitive load" refer to in the course?</legend>
             <div class="quiz-options-list">
               <div class="quiz-option">
                 <input type="radio" id="q8a" name="question8" value="a">
@@ -466,7 +525,7 @@
               </div>
               <div class="quiz-option">
                 <input type="radio" id="q9b" name="question9" value="b">
-                <label for="q9b">b) By assigning responsibility for someone else’s habits</label>
+                <label for="q9b">b) By assigning responsibility for someone else's habits</label>
               </div>
               <div class="quiz-option">
                 <input type="radio" id="q9c" name="question9" value="c">
@@ -507,8 +566,48 @@
 
         <div id="final-quiz-feedback" class="quiz-feedback" style="display: none;">
           <h4>Thank you for completing the final assessment!</h4>
-          <p>We appreciate the time and thought you’ve put into this test. We hope it has helped reinforce the key concepts and practical strategies you explored throughout the course.</p>
+          <p>We appreciate the time and thought you've put into this test. We hope it has helped reinforce the key concepts and practical strategies you explored throughout the course.</p>
           <p>Your responses reflect the knowledge you've gained in your digital well-being journey. Keep reflecting, practicing, and applying what you've learned—and remember, digital well-being is an ongoing process of balance, awareness, and intentional choice.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Well-being Survey - Fondo gris -->
+    <section class="lesson-section no-borders">
+      <div class="survey-section">
+        <h2>Well-being Survey</h2>
+        
+        <p>This follow-up self-assessment invites you to reflect on any shifts you may have experienced since starting the course. While it uses validated well-being measures, the results are not meant to serve as a judgment or final outcome. Instead, the evolution of your results offers another moment of reflection—one that can reveal how your experience and habits are developing in a broader, ever-changing context.</p>
+        
+        <p>Remember, fostering your digital well-being is a gradual, personal process. Be patient with yourself, and notice what changes as you consciously integrate new practices into your life.</p>
+        
+        <div class="survey-note">
+          <p>Be sure to select the <strong>Digital Well-being (Digital Learning)</strong> option when prompted, so we can also measure learning outcomes for this course:</p>
+        </div>
+        
+        <a href="https://ie.co1.qualtrics.com/jfe/form/SV_8cymWir9nTWHN42" target="_blank" class="survey-link-button" aria-label="Open well-being survey in new tab">
+          <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+          Take the Well-being Survey
+        </a>
+      </div>
+    </section>
+
+    <!-- 6. Final Survey - Fondo blanco -->
+    <section class="lesson-section no-borders">
+      <div class="survey-section">
+        <h2>Final Survey</h2>
+        
+        <p>We'd love to hear your thoughts! By taking a few minutes to complete this short survey, you'll help us understand how the course content resonated with you and how we can make it even better in the future.</p>
+        
+        <p>Your feedback is incredibly valuable, and we truly appreciate your time and input:</p>
+        
+        <a href="#" class="survey-link-button" onclick="alert('Final survey link will be added here')" aria-label="Open final course survey">
+          <i class="fas fa-comment-dots" aria-hidden="true"></i>
+          Take the Final Survey
+        </a>
+        
+        <div class="survey-note">
+          <p><em>Survey link to be added</em></p>
         </div>
       </div>
     </section>
