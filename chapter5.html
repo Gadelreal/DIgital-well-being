@@ -57,6 +57,18 @@
   font-family: 'Rubik', sans-serif;
   font-weight: 300;
 }
+
+.learning-objectives-grid-2x2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 800px;
+}
+
+@media (max-width: 768px) {
+  .learning-objectives-grid-2x2 {
+    grid-template-columns: 1fr; /* Stack on smaller screens */
+  }
+}
 </style>
 </head>
 <body>
@@ -123,7 +135,7 @@
       
       <p>Now, just a few final steps remain to complete your learning experience:</p>
       
-      <div class="learning-objectives-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 800px;">
+      <div class="learning-objectives-grid-2x2">
         <div class="learning-objective-card">
           <div class="objective-icon" aria-hidden="true">
             <i class="fas fa-clipboard-list"></i>
