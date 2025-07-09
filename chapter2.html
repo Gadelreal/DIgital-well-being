@@ -364,12 +364,13 @@
           class="video-js vjs-ie-skin vjs-big-play-centered" 
           controls 
           preload="auto" 
-          poster="assets/images/human-flourishing-poster.jpg"
+          poster="/placeholder.svg?height=400&width=700&text=Breaking+the+Loop+Video"
           data-video-id="w02v00"
           data-logo="assets/images/logo-ie-small.png"
           aria-label="Breaking the Loop video"
         >
-          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w02v00-breaking-the-loop/mp4/w02v00-breaking-the-loop_1080p.mp4" type="video/mp4">
+          <source src="https://media.ie.edu/digital-wellbeing/chapter2/breaking-the-loop.mp4" type="video/mp4">
+          <source src="https://cdn.ie.edu/courses/digital-wellbeing/videos/ch2-breaking-loop.mp4" type="video/mp4">
           <p class="vjs-no-js">
             To view this video please enable JavaScript, and consider upgrading to a
             web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
@@ -388,12 +389,13 @@
           class="video-js vjs-ie-skin vjs-big-play-centered" 
           controls 
           preload="auto" 
-          poster="assets/images/human-flourishing-poster.jpg"
+          poster="/placeholder.svg?height=400&width=700&text=Digital+Habits+Video"
           data-video-id="w02v01"
           data-logo="assets/images/logo-ie-small.png"
           aria-label="Digital Habits video"
         >
-          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w02v01-digital-habits/mp4/w02v01-digital-habits_1080p.mp4" type="video/mp4">
+          <source src="https://media.ie.edu/digital-wellbeing/chapter2/digital-habits.mp4" type="video/mp4">
+          <source src="https://cdn.ie.edu/courses/digital-wellbeing/videos/ch2-digital-habits.mp4" type="video/mp4">
           <p class="vjs-no-js">
             To view this video please enable JavaScript, and consider upgrading to a
             web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
@@ -442,12 +444,13 @@
           class="video-js vjs-ie-skin vjs-big-play-centered" 
           controls 
           preload="auto" 
-          poster="assets/images/human-flourishing-poster.jpg"
+          poster="/placeholder.svg?height=400&width=700&text=Behavioural+Science+Video"
           data-video-id="w02v02"
           data-logo="assets/images/logo-ie-small.png"
           aria-label="Behavioural Science Applied to Well-being video"
         >
-          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w02v02-behavioural-science-applied-to-well-being/mp4/w02v02-behavioural-science-applied-to-well-being_1080p.mp4" type="video/mp4">
+          <source src="https://media.ie.edu/digital-wellbeing/chapter2/behavioural-science.mp4" type="video/mp4">
+          <source src="https://cdn.ie.edu/courses/digital-wellbeing/videos/ch2-behavioural-science.mp4" type="video/mp4">
           <p class="vjs-no-js">
             To view this video please enable JavaScript, and consider upgrading to a
             web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
@@ -480,12 +483,13 @@
           class="video-js vjs-ie-skin vjs-big-play-centered" 
           controls 
           preload="auto" 
-          poster="assets/images/human-flourishing-poster.jpg"
+          poster="/placeholder.svg?height=400&width=700&text=Environment+and+Triggers+Video"
           data-video-id="w02v03"
           data-logo="assets/images/logo-ie-small.png"
           aria-label="Understanding Your Environment and Identifying Digital Triggers video"
         >
-          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w02v03-understanding-your-environment/mp4/w02v03-understanding-your-environment_1080p.mp4" type="video/mp4">
+          <source src="https://media.ie.edu/digital-wellbeing/chapter2/environment-triggers.mp4" type="video/mp4">
+          <source src="https://cdn.ie.edu/courses/digital-wellbeing/videos/ch2-environment-triggers.mp4" type="video/mp4">
           <p class="vjs-no-js">
             To view this video please enable JavaScript, and consider upgrading to a
             web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
@@ -534,12 +538,13 @@
           class="video-js vjs-ie-skin vjs-big-play-centered" 
           controls 
           preload="auto" 
-          poster="assets/images/human-flourishing-poster.jpg"
+          poster="/placeholder.svg?height=400&width=700&text=Evidence-based+Practices+Video"
           data-video-id="w02v04"
           data-logo="assets/images/logo-ie-small.png"
           aria-label="Evidence-based Practices to Build Healthy Digital Habits video"
         >
-          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w02v04-evidence-based-practices/mp4/w02v04-evidence-based-practices_1080p.mp4" type="video/mp4">
+          <source src="https://media.ie.edu/digital-wellbeing/chapter2/evidence-practices.mp4" type="video/mp4">
+          <source src="https://cdn.ie.edu/courses/digital-wellbeing/videos/ch2-evidence-practices.mp4" type="video/mp4">
           <p class="vjs-no-js">
             To view this video please enable JavaScript, and consider upgrading to a
             web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
@@ -1219,147 +1224,359 @@ async function downloadAssessmentResponse() {
   // Reflection answer
   doc.setFont("helvetica", "normal");
   if (responses.reflection) {
-    const splitReflection = doc.splitTextToSize(responses.reflection, 170);
+    const split = doc.splitTextToSize(responses.reflection, 170);
     
-    // Handle long reflections that might span multiple pages
-    let remainingLines = [...splitReflection];
-    
-    while (remainingLines.length > 0) {
-      // Calculate how many lines can fit on current page
-      const availableSpace = 280 - yPosition;
-      const linesPerPage = Math.floor(availableSpace / 6);
-      
-      if (linesPerPage <= 0) {
-        doc.addPage();
-        yPosition = 20;
-        continue;
-      }
-      
-      // Take lines that fit on current page
-      const linesToAdd = remainingLines.splice(0, linesPerPage);
-      doc.text(linesToAdd, 20, yPosition);
-      yPosition += linesToAdd.length * 6;
-      
-      // If there are more lines, add a new page
-      if (remainingLines.length > 0) {
-        doc.addPage();
-        yPosition = 20;
-      }
-    }
-  } else {
-    // Check if "No reflection provided" fits
-    if (yPosition > 270) {
+    // Check if answer fits on current page, if not add new page
+    if (yPosition + (split.length * 6) > 270) {
       doc.addPage();
       yPosition = 20;
     }
-    doc.setFont("helvetica", "italic");
+    
+    doc.text(split, 20, yPosition);
+  } else {
     doc.text("No reflection provided", 20, yPosition);
   }
   
   // Save the PDF
-  doc.save('Chapter2_Assessment_Response.pdf');
+  doc.save('Digital_Wellbeing_Chapter2_Assessment.pdf');
 }
 
-// Add event listeners for auto-saving responses
+async function downloadDigitalHabitsAuditTemplate() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  
+  // Add header image and get the Y position after it
+  const startY = await addPDFHeader(doc);
+  
+  // Set font
+  doc.setFont("helvetica");
+  
+  // Title
+  doc.setFontSize(16);
+  doc.setFont("helvetica", "bold");
+  doc.text("Digital Habits Audit - Activity Template", 20, startY + 10);
+  
+  // Date
+  doc.setFontSize(12);
+  doc.setFont("helvetica", "normal");
+  doc.text(`Date: ${new Date().toLocaleDateString()}`, 20, startY + 25);
+  
+  let yPosition = startY + 45;
+  
+  // Instructions
+  doc.setFontSize(11);
+  doc.setFont("helvetica", "italic");
+  const instructions = "Use the screen time data from your phone to answer each question honestly. Then rank the apps you use most and reflect on your patterns.";
+  const splitInstructions = doc.splitTextToSize(instructions, 170);
+  doc.text(splitInstructions, 20, yPosition);
+  yPosition += splitInstructions.length * 6 + 15;
+  
+  // Questions
+  doc.setFontSize(12);
+  doc.setFont("helvetica", "bold");
+  
+  const questions = [
+    "1. How much time do you spend on your phone daily?",
+    "2. What are your top 5 most-used apps?",
+    "3. Which apps consume the most time?",
+    "4. When do you use your phone most during the day?",
+    "5. What triggers you to pick up your phone?",
+    "6. How do you feel after using certain apps?",
+    "7. Which digital habits support your well-being?",
+    "8. Which digital habits detract from your well-being?"
+  ];
+  
+  questions.forEach(question => {
+    // Check if we need a new page
+    if (yPosition > 250) {
+      doc.addPage();
+      yPosition = 20;
+    }
+    
+    doc.text(question, 20, yPosition);
+    yPosition += 10;
+    
+    // Add lines for answers
+    doc.setFont("helvetica", "normal");
+    for (let i = 0; i < 3; i++) {
+      doc.line(20, yPosition + 5, 190, yPosition + 5);
+      yPosition += 8;
+    }
+    yPosition += 5;
+    doc.setFont("helvetica", "bold");
+  });
+  
+  // Save the PDF
+  doc.save('Digital_Habits_Audit_Template.pdf');
+}
+
+async function downloadDigitalTriggersTemplate() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  
+  // Add header image and get the Y position after it
+  const startY = await addPDFHeader(doc);
+  
+  // Set font
+  doc.setFont("helvetica");
+  
+  // Title
+  doc.setFontSize(16);
+  doc.setFont("helvetica", "bold");
+  doc.text("Understanding Your Environment and Digital Triggers", 20, startY + 10);
+  
+  // Date
+  doc.setFontSize(12);
+  doc.setFont("helvetica", "normal");
+  doc.text(`Date: ${new Date().toLocaleDateString()}`, 20, startY + 25);
+  
+  let yPosition = startY + 45;
+  
+  // Instructions
+  doc.setFontSize(11);
+  doc.setFont("helvetica", "italic");
+  const instructions = "Take a full inventory of your digital environment across four key areas. Use this as a chance to reflect on how your digital spaces support or distract from your well-being.";
+  const splitInstructions = doc.splitTextToSize(instructions, 170);
+  doc.text(splitInstructions, 20, yPosition);
+  yPosition += splitInstructions.length * 6 + 15;
+  
+  // Sections
+  const sections = [
+    {
+      title: "1. YOUR PHONE AUDIT",
+      questions: [
+        "How many apps do you have on your home screen?",
+        "Which apps send you the most notifications?",
+        "What's your current screen time average?",
+        "Which apps do you open most frequently?"
+      ]
+    },
+    {
+      title: "2. YOUR COMPUTER AUDIT", 
+      questions: [
+        "How many browser tabs do you typically have open?",
+        "What websites do you visit most often?",
+        "How organized is your desktop?",
+        "What digital tools help vs. hinder your productivity?"
+      ]
+    },
+    {
+      title: "3. YOUR WORKSPACE AUDIT",
+      questions: [
+        "How many devices are visible in your workspace?",
+        "What distractions are within arm's reach?",
+        "How does your physical environment affect focus?",
+        "What changes could improve your digital workspace?"
+      ]
+    },
+    {
+      title: "4. YOUR SOCIAL MEDIA AUDIT",
+      questions: [
+        "Which platforms do you use most?",
+        "How do you feel after using each platform?",
+        "What type of content do you engage with most?",
+        "Which accounts or content drain your energy?"
+      ]
+    }
+  ];
+  
+  sections.forEach(section => {
+    // Check if we need a new page for section title
+    if (yPosition > 250) {
+      doc.addPage();
+      yPosition = 20;
+    }
+    
+    doc.setFontSize(14);
+    doc.setFont("helvetica", "bold");
+    doc.text(section.title, 20, yPosition);
+    yPosition += 15;
+    
+    section.questions.forEach(question => {
+      // Check if we need a new page
+      if (yPosition > 240) {
+        doc.addPage();
+        yPosition = 20;
+      }
+      
+      doc.setFontSize(11);
+      doc.setFont("helvetica", "normal");
+      doc.text(question, 25, yPosition);
+      yPosition += 8;
+      
+      // Add lines for answers
+      for (let i = 0; i < 2; i++) {
+        doc.line(25, yPosition + 3, 190, yPosition + 3);
+        yPosition += 6;
+      }
+      yPosition += 5;
+    });
+    
+    yPosition += 10;
+  });
+  
+  // Save the PDF
+  doc.save('Digital_Triggers_Environment_Template.pdf');
+}
+
+async function downloadToolsTemplate() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  
+  // Add header image and get the Y position after it
+  const startY = await addPDFHeader(doc);
+  
+  // Set font
+  doc.setFont("helvetica");
+  
+  // Title
+  doc.setFontSize(16);
+  doc.setFont("helvetica", "bold");
+  doc.text("Tools and Practices to Build Healthy Digital Habits", 20, startY + 10);
+  
+  // Date
+  doc.setFontSize(12);
+  doc.setFont("helvetica", "normal");
+  doc.text(`Date: ${new Date().toLocaleDateString()}`, 20, startY + 25);
+  
+  let yPosition = startY + 45;
+  
+  // Instructions
+  doc.setFontSize(11);
+  doc.setFont("helvetica", "italic");
+  const instructions = "Choose at least two tools to try this week. Reflect on why you chose them, then use the Daily Tracker to mark your progress.";
+  const splitInstructions = doc.splitTextToSize(instructions, 170);
+  doc.text(splitInstructions, 20, yPosition);
+  yPosition += splitInstructions.length * 6 + 15;
+  
+  // Tool selection section
+  doc.setFontSize(14);
+  doc.setFont("helvetica", "bold");
+  doc.text("MY SELECTED TOOLS", 20, yPosition);
+  yPosition += 15;
+  
+  const tools = [
+    "Defining Specific Email and Social Media Checking Times",
+    "Controlling Technology Usage with a Phone Drawer or Pouch", 
+    "Changing your Devices Screen to Grayscale",
+    "Turning off Phone Notifications",
+    "Establishing No-Phone Zones"
+  ];
+  
+  doc.setFontSize(11);
+  doc.setFont("helvetica", "normal");
+  
+  tools.forEach(tool => {
+    // Check if we need a new page
+    if (yPosition > 260) {
+      doc.addPage();
+      yPosition = 20;
+    }
+    
+    doc.text("☐ " + tool, 25, yPosition);
+    yPosition += 10;
+  });
+  
+  yPosition += 10;
+  
+  // Reflection section
+  doc.setFontSize(12);
+  doc.setFont("helvetica", "bold");
+  doc.text("WHY I CHOSE THESE TOOLS:", 20, yPosition);
+  yPosition += 15;
+  
+  // Add lines for reflection
+  for (let i = 0; i < 5; i++) {
+    if (yPosition > 270) {
+      doc.addPage();
+      yPosition = 20;
+    }
+    doc.line(20, yPosition, 190, yPosition);
+    yPosition += 8;
+  }
+  
+  yPosition += 15;
+  
+  // Daily tracker section
+  if (yPosition > 200) {
+    doc.addPage();
+    yPosition = 20;
+  }
+  
+  doc.setFontSize(14);
+  doc.setFont("helvetica", "bold");
+  doc.text("DAILY TRACKER", 20, yPosition);
+  yPosition += 15;
+  
+  doc.setFontSize(11);
+  doc.setFont("helvetica", "italic");
+  doc.text("Mark each day you successfully used each tool:", 20, yPosition);
+  yPosition += 15;
+  
+  // Create tracker table
+  const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+  
+  doc.setFont("helvetica", "bold");
+  doc.text("Tool 1:", 20, yPosition);
+  yPosition += 8;
+  
+  // Days header
+  let xPosition = 30;
+  days.forEach(day => {
+    doc.text(day, xPosition, yPosition);
+    xPosition += 20;
+  });
+  yPosition += 10;
+  
+  // Checkboxes
+  xPosition = 32;
+  days.forEach(() => {
+    doc.text("☐", xPosition, yPosition);
+    xPosition += 20;
+  });
+  yPosition += 20;
+  
+  doc.text("Tool 2:", 20, yPosition);
+  yPosition += 8;
+  
+  // Days header
+  xPosition = 30;
+  days.forEach(day => {
+    doc.text(day, xPosition, yPosition);
+    xPosition += 20;
+  });
+  yPosition += 10;
+  
+  // Checkboxes
+  xPosition = 32;
+  days.forEach(() => {
+    doc.text("☐", xPosition, yPosition);
+    xPosition += 20;
+  });
+  
+  // Save the PDF
+  doc.save('Digital_Habits_Tools_Template.pdf');
+}
+
+// Auto-save responses when user interacts with form
 document.addEventListener('DOMContentLoaded', function() {
-  // Load saved responses when page loads
+  // Load saved responses
   loadResponseFromSession();
   
-  // Auto-save when radio buttons change
+  // Add event listeners to save responses
   const radioButtons = document.querySelectorAll('input[type="radio"]');
   radioButtons.forEach(radio => {
     radio.addEventListener('change', saveResponseToSession);
   });
   
-  // Auto-save when reflection text changes
   const reflectionTextarea = document.getElementById('reflection-response');
   if (reflectionTextarea) {
     reflectionTextarea.addEventListener('input', saveResponseToSession);
   }
-  
-  // Existing glossary modal code remains the same...
-  const modal = document.getElementById('glossary-modal');
-  const openBtn = document.getElementById('open-glossary');
-  const menuLink = document.getElementById('glossary-menu-link');
-  const closeBtn = modal.querySelector('.modal-close');
-
-  function openModal() {
-    modal.style.display = 'block';
-    modal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-    const firstFocusableElement = modal.querySelector('.modal-close, .glossary-az-nav a');
-    if (firstFocusableElement) {
-        firstFocusableElement.focus();
-    }
-  }
-
-  function closeModal() {
-    modal.style.display = 'none';
-    modal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = 'auto';
-    if (document.activeElement === closeBtn || modal.contains(document.activeElement)) {
-        if (openBtn && openBtn === document.lastActiveElement) openBtn.focus();
-        else if (menuLink && menuLink === document.lastActiveElement) menuLink.focus();
-    }
-    document.lastActiveElement = null;
-  }
-  
-  document.lastActiveElement = null;
-
-  if (openBtn) {
-    openBtn.addEventListener('click', function() {
-        document.lastActiveElement = this;
-        openModal();
-    });
-  }
-  
-  if (menuLink) {
-    menuLink.addEventListener('click', function(e) {
-      e.preventDefault();
-      document.lastActiveElement = this;
-      openModal();
-      const mainNav = document.getElementById('main-nav');
-      const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-      if (mainNav && mainNav.classList.contains('active')) {
-        mainNav.classList.remove('active');
-        mobileMenuToggle.classList.remove('active');
-        mobileMenuToggle.setAttribute('aria-expanded', 'false');
-      }
-    });
-  }
-
-  if (closeBtn) {
-    closeBtn.addEventListener('click', closeModal);
-  }
-
-  modal.addEventListener('click', function(e) {
-    if (e.target === modal) {
-      closeModal();
-    }
-  });
-
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && modal.style.display === 'block') {
-      closeModal();
-    }
-  });
 });
 
-// Template download functions
-function downloadDigitalHabitsAuditTemplate() {
-  // Placeholder function for downloading digital habits audit template
-  alert('Digital Habits Audit template download would be implemented here');
-}
-
-function downloadDigitalTriggersTemplate() {
-  // Placeholder function for downloading digital triggers template
-  alert('Digital Triggers template download would be implemented here');
-}
-
-function downloadToolsTemplate() {
-  // Placeholder function for downloading tools template
-  alert('Tools and Practices template download would be implemented here');
-}
-</script>
+// Set current year in footer
+document.getElementById('current-year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
