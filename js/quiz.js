@@ -1,24 +1,32 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // Mejorar el efecto hover en las opciones
+  const quizOptions = document.querySelectorAll(".quiz-options li, .quiz-option")
+  quizOptions.forEach((option) => {
+    option.addEventListener("mouseenter", () => {
+      if (!option.style.pointerEvents || option.style.pointerEvents !== "none") {
+        option.style.transform = "translateY(-2px)"
+        option.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.1)"
+        option.style.transition = "all 0.2s ease"
+      }
+    })
+
+    option.addEventListener("mouseleave", () => {
+      option.style.transform = "translateY(0)"
+      option.style.boxShadow = "none"
+    })
+  })
+
   // Initialize all quizzes on the page
   initializeQuizzes()
 })
 
 function initializeQuizzes() {
-  // Digital Well-being Quiz (Chapter 2)
+  // Digital Well-being Quiz
   const wellbeingQuiz = document.getElementById("wellbeing-quiz")
   if (wellbeingQuiz) {
     wellbeingQuiz.addEventListener("submit", (e) => {
       e.preventDefault()
       handleWellbeingQuizSubmit()
-    })
-  }
-
-  // Final Quiz (Chapter 5)
-  const finalQuiz = document.getElementById("final-quiz")
-  if (finalQuiz) {
-    finalQuiz.addEventListener("submit", (e) => {
-      e.preventDefault()
-      handleFinalQuizSubmit()
     })
   }
 }
@@ -142,69 +150,4 @@ function resetWellbeingQuiz() {
       announcement.parentNode.removeChild(announcement)
     }
   }, 1000)
-}
-
-function handleFinalQuizSubmit() {
-  const form = document.getElementById("final-quiz")
-  const feedback = document.getElementById("final-quiz-feedback")
-  const submitBtn = form.querySelector(".quiz-submit-btn")
-
-  const correctAnswers = {
-    question1: "c",
-    question2: "c",
-    question3: "c",
-    question4: "c",
-    question5: "c",
-    question6: "b",
-    question7: "b",
-    question8: "b",
-    question9: "c",
-    question10: "c",
-  }
-
-  const fieldsets = form.querySelectorAll("fieldset")
-  let allAnswered = true
-
-  fieldsets.forEach((fieldset) => {
-    const questionName = fieldset.querySelector('input[type="radio"]').name
-    const selectedOption = form.querySelector(`input[name="${questionName}"]:checked`)
-    if (!selectedOption) {
-      allAnswered = false
-    }
-  })
-
-  if (!allAnswered) {
-    alert("Please answer all questions before submitting.")
-    return
-  }
-
-  // Disable all inputs and submit button
-  const allInputs = form.querySelectorAll('input[type="radio"]')
-  allInputs.forEach((input) => {
-    input.disabled = true
-    input.closest(".quiz-option").style.cursor = "default"
-  })
-  submitBtn.disabled = true
-
-  // Process each question
-  fieldsets.forEach((fieldset) => {
-    const questionName = fieldset.querySelector('input[type="radio"]').name
-    const selectedOption = form.querySelector(`input[name="${questionName}"]:checked`)
-    const correctAnswer = correctAnswers[questionName]
-    const options = fieldset.querySelectorAll(".quiz-option")
-
-    options.forEach((option) => {
-      const input = option.querySelector("input")
-      if (input.value === correctAnswer) {
-        option.classList.add("correct-answer") // Mark correct answer
-      }
-      if (selectedOption && input.id === selectedOption.id && selectedOption.value !== correctAnswer) {
-        option.classList.add("incorrect-answer") // Mark user's incorrect answer
-      }
-    })
-  })
-
-  // Show feedback
-  feedback.style.display = "block"
-  feedback.scrollIntoView({ behavior: "smooth", block: "center" })
 }
