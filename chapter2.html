@@ -364,7 +364,7 @@
           class="video-js vjs-ie-skin vjs-big-play-centered" 
           controls 
           preload="auto" 
-          poster="assets/images/human-flourishing-poster.jpg"
+          poster="assets/images/breaking-loop-poster.png"
           data-video-id="w02v00"
           data-logo="assets/images/logo-ie-small.png"
           aria-label="Breaking the Loop video"
@@ -388,7 +388,7 @@
           class="video-js vjs-ie-skin vjs-big-play-centered" 
           controls 
           preload="auto" 
-          poster="assets/images/human-flourishing-poster.jpg"
+          poster="assets/images/digital-habits-poster.png"
           data-video-id="w02v01"
           data-logo="assets/images/logo-ie-small.png"
           aria-label="Digital Habits video"
@@ -442,7 +442,7 @@
           class="video-js vjs-ie-skin vjs-big-play-centered" 
           controls 
           preload="auto" 
-          poster="assets/images/human-flourishing-poster.jpg"
+          poster="assets/images/behavioural-science-poster.png"
           data-video-id="w02v02"
           data-logo="assets/images/logo-ie-small.png"
           aria-label="Behavioural Science Applied to Well-being video"
@@ -480,7 +480,7 @@
           class="video-js vjs-ie-skin vjs-big-play-centered" 
           controls 
           preload="auto" 
-          poster="assets/images/human-flourishing-poster.jpg"
+          poster="assets/images/environment-triggers-poster.png"
           data-video-id="w02v03"
           data-logo="assets/images/logo-ie-small.png"
           aria-label="Understanding Your Environment and Identifying Digital Triggers video"
@@ -534,7 +534,7 @@
           class="video-js vjs-ie-skin vjs-big-play-centered" 
           controls 
           preload="auto" 
-          poster="assets/images/human-flourishing-poster.jpg"
+          poster="assets/images/evidence-practices-poster.png"
           data-video-id="w02v04"
           data-logo="assets/images/logo-ie-small.png"
           aria-label="Evidence-based Practices to Build Healthy Digital Habits video"
@@ -1266,3 +1266,46 @@ document.addEventListener('DOMContentLoaded', function() {
   loadResponseFromSession();
   
   //
+
+  const radioButtons = document.querySelectorAll('input[type="radio"][name^="question"]');
+  const reflectionTextarea = document.getElementById('reflection-response');
+
+  radioButtons.forEach(radio => {
+    radio.addEventListener('change', saveResponseToSession);
+  });
+
+  reflectionTextarea.addEventListener('input', saveResponseToSession);
+});
+
+function downloadDigitalHabitsAuditTemplate() {
+  // Trigger the download of the Digital Habits Audit template (e.g., a .docx file)
+  const link = document.createElement('a');
+  link.href = 'assets/templates/digital-habits-audit-template.docx'; // Replace with the actual path to your template file
+  link.download = 'Digital_Habits_Audit_Template.docx'; // Set the desired filename
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
+function downloadDigitalTriggersTemplate() {
+  // Trigger the download of the Digital Triggers template (e.g., a .docx file)
+  const link = document.createElement('a');
+  link.href = 'assets/templates/digital-triggers-template.docx'; // Replace with the actual path to your template file
+  link.download = 'Digital_Triggers_Template.docx'; // Set the desired filename
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
+function downloadToolsTemplate() {
+  // Trigger the download of the Tools template (e.g., a .docx file)
+  const link = document.createElement('a');
+  link.href = 'assets/templates/tools-template.docx'; // Replace with the actual path to your template file
+  link.download = 'Tools_Template.docx'; // Set the desired filename
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+</script>
+</body>
+</html>
