@@ -364,7 +364,7 @@
           class="video-js vjs-ie-skin vjs-big-play-centered" 
           controls 
           preload="auto" 
-          poster="assets/images/human-flourishing-poster.jpg"
+          poster="assets/images/breaking-loop-poster.png"
           data-video-id="w02v00"
           data-logo="assets/images/logo-ie-small.png"
           aria-label="Breaking the Loop video"
@@ -388,7 +388,7 @@
           class="video-js vjs-ie-skin vjs-big-play-centered" 
           controls 
           preload="auto" 
-          poster="assets/images/human-flourishing-poster.jpg"
+          poster="assets/images/digital-habits-poster.png"
           data-video-id="w02v01"
           data-logo="assets/images/logo-ie-small.png"
           aria-label="Digital Habits video"
@@ -442,7 +442,7 @@
           class="video-js vjs-ie-skin vjs-big-play-centered" 
           controls 
           preload="auto" 
-          poster="assets/images/human-flourishing-poster.jpg"
+          poster="assets/images/behavioural-science-poster.png"
           data-video-id="w02v02"
           data-logo="assets/images/logo-ie-small.png"
           aria-label="Behavioural Science Applied to Well-being video"
@@ -480,7 +480,7 @@
           class="video-js vjs-ie-skin vjs-big-play-centered" 
           controls 
           preload="auto" 
-          poster="assets/images/human-flourishing-poster.jpg"
+          poster="assets/images/environment-triggers-poster.png"
           data-video-id="w02v03"
           data-logo="assets/images/logo-ie-small.png"
           aria-label="Understanding Your Environment and Identifying Digital Triggers video"
@@ -534,7 +534,7 @@
           class="video-js vjs-ie-skin vjs-big-play-centered" 
           controls 
           preload="auto" 
-          poster="assets/images/human-flourishing-poster.jpg"
+          poster="assets/images/evidence-practices-poster.png"
           data-video-id="w02v04"
           data-logo="assets/images/logo-ie-small.png"
           aria-label="Evidence-based Practices to Build Healthy Digital Habits video"
@@ -1265,100 +1265,46 @@ document.addEventListener('DOMContentLoaded', function() {
   // Load saved responses when page loads
   loadResponseFromSession();
   
-  // Auto-save when radio buttons change
-  const radioButtons = document.querySelectorAll('input[type="radio"]');
+  //
+
+  const radioButtons = document.querySelectorAll('input[type="radio"][name^="question"]');
+  const reflectionTextarea = document.getElementById('reflection-response');
+
   radioButtons.forEach(radio => {
     radio.addEventListener('change', saveResponseToSession);
   });
-  
-  // Auto-save when reflection text changes
-  const reflectionTextarea = document.getElementById('reflection-response');
-  if (reflectionTextarea) {
-    reflectionTextarea.addEventListener('input', saveResponseToSession);
-  }
-  
-  // Existing glossary modal code remains the same...
-  const modal = document.getElementById('glossary-modal');
-  const openBtn = document.getElementById('open-glossary');
-  const menuLink = document.getElementById('glossary-menu-link');
-  const closeBtn = modal.querySelector('.modal-close');
 
-  function openModal() {
-    modal.style.display = 'block';
-    modal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-    const firstFocusableElement = modal.querySelector('.modal-close, .glossary-az-nav a');
-    if (firstFocusableElement) {
-        firstFocusableElement.focus();
-    }
-  }
-
-  function closeModal() {
-    modal.style.display = 'none';
-    modal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = 'auto';
-    if (document.activeElement === closeBtn || modal.contains(document.activeElement)) {
-        if (openBtn && openBtn === document.lastActiveElement) openBtn.focus();
-        else if (menuLink && menuLink === document.lastActiveElement) menuLink.focus();
-    }
-    document.lastActiveElement = null;
-  }
-  
-  document.lastActiveElement = null;
-
-  if (openBtn) {
-    openBtn.addEventListener('click', function() {
-        document.lastActiveElement = this;
-        openModal();
-    });
-  }
-  
-  if (menuLink) {
-    menuLink.addEventListener('click', function(e) {
-      e.preventDefault();
-      document.lastActiveElement = this;
-      openModal();
-      const mainNav = document.getElementById('main-nav');
-      const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-      if (mainNav && mainNav.classList.contains('active')) {
-        mainNav.classList.remove('active');
-        mobileMenuToggle.classList.remove('active');
-        mobileMenuToggle.setAttribute('aria-expanded', 'false');
-      }
-    });
-  }
-
-  if (closeBtn) {
-    closeBtn.addEventListener('click', closeModal);
-  }
-
-  modal.addEventListener('click', function(e) {
-    if (e.target === modal) {
-      closeModal();
-    }
-  });
-
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && modal.style.display === 'block') {
-      closeModal();
-    }
-  });
+  reflectionTextarea.addEventListener('input', saveResponseToSession);
 });
 
-// Template download functions
 function downloadDigitalHabitsAuditTemplate() {
-  // Placeholder function for downloading digital habits audit template
-  alert('Digital Habits Audit template download would be implemented here');
+  // Trigger the download of the Digital Habits Audit template (e.g., a .docx file)
+  const link = document.createElement('a');
+  link.href = 'assets/templates/digital-habits-audit-template.docx'; // Replace with the actual path to your template file
+  link.download = 'Digital_Habits_Audit_Template.docx'; // Set the desired filename
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 }
 
 function downloadDigitalTriggersTemplate() {
-  // Placeholder function for downloading digital triggers template
-  alert('Digital Triggers template download would be implemented here');
+  // Trigger the download of the Digital Triggers template (e.g., a .docx file)
+  const link = document.createElement('a');
+  link.href = 'assets/templates/digital-triggers-template.docx'; // Replace with the actual path to your template file
+  link.download = 'Digital_Triggers_Template.docx'; // Set the desired filename
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 }
 
 function downloadToolsTemplate() {
-  // Placeholder function for downloading tools template
-  alert('Tools and Practices template download would be implemented here');
+  // Trigger the download of the Tools template (e.g., a .docx file)
+  const link = document.createElement('a');
+  link.href = 'assets/templates/tools-template.docx'; // Replace with the actual path to your template file
+  link.download = 'Tools_Template.docx'; // Set the desired filename
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 }
 </script>
 </body>
