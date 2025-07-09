@@ -294,6 +294,20 @@
 }
 
 /* Estilos para las referencias */
+.references-section {
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  padding: 2rem;
+  margin: 2rem 0;
+  border-radius: 0;
+}
+
+.references-section h2 {
+  margin-top: 0 !important;
+  margin-bottom: 1.5rem !important;
+  text-align: center;
+}
+
 .references-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -397,17 +411,6 @@
     font-size: 0.8rem;
   }
 }
-
-/* Estilos para referencias sin enlaces (no interactivas) */
-.reference-card.no-link {
-  cursor: default;
-}
-
-.reference-card.no-link:hover {
-  transform: none;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  border-color: #e0e0e0;
-}
 </style>
 </head>
 <body>
@@ -461,7 +464,8 @@
 
 <main id="main-content" tabindex="-1">
   <div class="content-aligned-container">
-    
+    <h1>LESSON 5: Course Conclusion</h1>
+    <div class="title-separator blue" aria-hidden="true"></div>
     
     <!-- 1. Course Conclusion - Fondo blanco -->
     <section class="lesson-section no-borders">
@@ -890,9 +894,10 @@
 
     <!-- 7. Content Sources & References -->
     <section class="lesson-section no-borders">
-      <h2>Content Sources & References</h2>
-      
-      <div class="references-grid">
+      <div class="references-section">
+        <h2>Content Sources & References</h2>
+        
+        <div class="references-grid">
           <!-- Reference 1 -->
           <div class="reference-card">
             <div class="reference-number">1</div>
@@ -933,7 +938,7 @@
           </div>
 
           <!-- Reference 4 -->
-          <div class="reference-card no-link">
+          <div class="reference-card">
             <div class="reference-number">4</div>
             <div class="reference-content">
               <div class="reference-text">
@@ -995,7 +1000,7 @@
           </div>
 
           <!-- Reference 9 -->
-          <div class="reference-card no-link">
+          <div class="reference-card">
             <div class="reference-number">9</div>
             <div class="reference-content">
               <div class="reference-text">
@@ -1031,7 +1036,7 @@
           </div>
 
           <!-- Reference 12 -->
-          <div class="reference-card no-link">
+          <div class="reference-card">
             <div class="reference-number">12</div>
             <div class="reference-content">
               <div class="reference-text">
@@ -1067,7 +1072,7 @@
           </div>
 
           <!-- Reference 15 -->
-          <div class="reference-card no-link">
+          <div class="reference-card">
             <div class="reference-number">15</div>
             <div class="reference-content">
               <div class="reference-text">
@@ -1076,6 +1081,7 @@
             </div>
           </div>
         </div>
+      </div>
     </section>
     
     <div class="navigation-buttons" role="navigation" aria-label="Lesson navigation">
