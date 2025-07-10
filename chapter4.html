@@ -61,7 +61,8 @@
 /* Additional styles for Chapter 4 activities */
 .time-input-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
   gap: 1rem;
   margin: 2rem 0;
 }
@@ -213,7 +214,8 @@
 
 @media (max-width: 768px) {
   .time-input-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
   }
   
   .chart-legend {
@@ -223,6 +225,13 @@
   
   .chart-wrapper {
     height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .time-input-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(8, 1fr);
   }
 }
 
@@ -1335,21 +1344,20 @@ async function addPDFHeader(doc) {
         }
       };
       
-      img.onerror = function() {
+      img.onerror =  function() {
         console.warn('Could not load header image');
         resolve(20); // Return default Y position if image fails to load
       };
       
-      // Load the image
       img.src = 'assets/images/pdf-header.jpg';
     });
   } catch (error) {
     console.warn('Error loading header image:', error);
-    return 20; // Return default Y position if there's an error
+    return 20; // Return default Y position if anything fails
   }
 }
 
-// Life Balance Chart functionality
+// Chart functionality
 let balanceChart = null;
 
 function initializeChart() {
@@ -1360,1025 +1368,435 @@ function initializeChart() {
   canvas.width = 400;
   canvas.height = 400;
   
-  // Clear canvas and show placeholder
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  
-  // Show placeholder text
-  showChartMessage('Enter weekly hours for each activity to generate your life balance chart (maximum 168 hours total)');
-}
-
-function showChartMessage(message, isError = false) {
-  const canvas = document.getElementById('balance-chart-canvas');
-  const ctx = canvas.getContext('2d');
-  
   // Clear canvas
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   
-  // Set text properties
+  // Draw placeholder text
+  ctx.fillStyle = '#666';
   ctx.font = '16px Arial';
   ctx.textAlign = 'center';
-  ctx.textBaseline = 'middle';
-  ctx.fillStyle = isError ? '#721c24' : '#666';
-  
-  // Word wrap the message
-  const words = message.split(' ');
-  const lines = [];
-  let currentLine = '';
-  const maxWidth = canvas.width - 40;
-  
-  for (let word of words) {
-    const testLine = currentLine + (currentLine ? ' ' : '') + word;
-    const metrics = ctx.measureText(testLine);
-    
-    if (metrics.width > maxWidth && currentLine) {
-      lines.push(currentLine);
-      currentLine = word;
-    } else {
-      currentLine = testLine;
-    }
-  }
-  if (currentLine) {
-    lines.push(currentLine);
-  }
-  
-  // Draw lines
-  const lineHeight = 24;
-  const startY = (canvas.height - (lines.length * lineHeight)) / 2;
-  
-  lines.forEach((line, index) => {
-    ctx.fillText(line, canvas.width / 2, startY + (index * lineHeight));
-  });
+  ctx.fillText('Enter your hours to see your life balance chart', canvas.width / 2, canvas.height / 2);
 }
 
 function updateChart() {
-  const activities = [
-    { name: 'Sleep', hours: parseFloat(document.getElementById('sleep-hours').value) || 0, color: '#FF6384' },
-    { name: 'Work', hours: parseFloat(document.getElementById('work-hours').value) || 0, color: '#36A2EB' },
-    { name: 'Family', hours: parseFloat(document.getElementById('family-hours').value) || 0, color: '#FFCE56' },
-    { name: 'Hobbies', hours: parseFloat(document.getElementById('hobbies-hours').value) || 0, color: '#4BC0C0' },
-    { name: 'Digital Use', hours: parseFloat(document.getElementById('digital-hours').value) || 0, color: '#9966FF' },
-    { name: 'Exercise', hours: parseFloat(document.getElementById('exercise-hours').value) || 0, color: '#FF9F40' },
-    { name: 'Social', hours: parseFloat(document.getElementById('social-hours').value) || 0, color: '#FF6B9D' },
-    { name: 'Other', hours: parseFloat(document.getElementById('other-hours').value) || 0, color: '#C9CBCF' }
-  ];
+  const inputs = {
+    sleep: parseFloat(document.getElementById('sleep-hours').value) || 0,
+    work: parseFloat(document.getElementById('work-hours').value) || 0,
+    family: parseFloat(document.getElementById('family-hours').value) || 0,
+    hobbies: parseFloat(document.getElementById('hobbies-hours').value) || 0,
+    digital: parseFloat(document.getElementById('digital-hours').value) || 0,
+    exercise: parseFloat(document.getElementById('exercise-hours').value) || 0,
+    social: parseFloat(document.getElementById('social-hours').value) || 0,
+    other: parseFloat(document.getElementById('other-hours').value) || 0
+  };
   
-  const totalHours = activities.reduce((sum, activity) => sum + activity.hours, 0);
-  const totalHoursElement = document.getElementById('total-hours');
+  const total = Object.values(inputs).reduce((sum, val) => sum + val, 0);
+  const totalHoursSpan = document.getElementById('total-hours');
   const validationMessage = document.getElementById('validation-message');
   
-  // Update total hours display
-  totalHoursElement.textContent = totalHours;
+  totalHoursSpan.textContent = total;
   
-  // Validate total hours
-  if (totalHours > 168) {
-    validationMessage.innerHTML = '<div class="validation-error">You cannot exceed 168 hours total in your activities. Please correct this to continue.</div>';
+  // Validation
+  if (total > 168) {
+    validationMessage.textContent = 'Total hours exceed 168 hours per week. Please adjust your entries.';
+    validationMessage.className = 'validation-error';
     validationMessage.style.display = 'block';
-    showChartMessage('You cannot exceed 168 hours total in your activities. Please correct this to continue.', true);
-    return;
-  } else if (totalHours === 0) {
-    validationMessage.style.display = 'none';
-    showChartMessage('Enter weekly hours for each activity to generate your life balance chart (maximum 168 hours total)');
-    return;
+  } else if (total > 0) {
+    validationMessage.textContent = 'Great! Your time allocation looks balanced.';
+    validationMessage.className = 'validation-success';
+    validationMessage.style.display = 'block';
   } else {
     validationMessage.style.display = 'none';
   }
   
-  // Filter out activities with 0 hours
-  const nonZeroActivities = activities.filter(activity => activity.hours > 0);
-  
-  if (nonZeroActivities.length === 0) {
-    showChartMessage('Enter weekly hours for each activity to generate your life balance chart (maximum 168 hours total)');
-    return;
+  // Draw chart if there's data
+  if (total > 0) {
+    drawPieChart(inputs, total);
+  } else {
+    initializeChart();
   }
-  
-  // Draw pie chart
+}
+
+function drawPieChart(data, total) {
   const canvas = document.getElementById('balance-chart-canvas');
   const ctx = canvas.getContext('2d');
-  
-  // Clear canvas
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  
   const centerX = canvas.width / 2;
   const centerY = canvas.height / 2;
   const radius = Math.min(centerX, centerY) - 20;
   
+  const colors = {
+    sleep: '#FF6384',
+    work: '#36A2EB',
+    family: '#FFCE56',
+    hobbies: '#4BC0C0',
+    digital: '#9966FF',
+    exercise: '#FF9F40',
+    social: '#FF6B9D',
+    other: '#C9CBCF'
+  };
+  
+  // Clear canvas
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  
   let currentAngle = -Math.PI / 2; // Start at top
   
-  nonZeroActivities.forEach(activity => {
-    const sliceAngle = (activity.hours / totalHours) * 2 * Math.PI;
-    
-    // Draw slice
-    ctx.beginPath();
-    ctx.moveTo(centerX, centerY);
-    ctx.arc(centerX, centerY, radius, currentAngle, currentAngle + sliceAngle);
-    ctx.closePath();
-    ctx.fillStyle = activity.color;
-    ctx.fill();
-    ctx.strokeStyle = '#fff';
-    ctx.lineWidth = 2;
-    ctx.stroke();
-    
-    // Draw label if slice is large enough
-    if (activity.hours / totalHours > 0.05) {
-      const labelAngle = currentAngle + sliceAngle / 2;
-      const labelX = centerX + Math.cos(labelAngle) * (radius * 0.7);
-      const labelY = centerY + Math.sin(labelAngle) * (radius * 0.7);
+  Object.entries(data).forEach(([key, value]) => {
+    if (value > 0) {
+      const sliceAngle = (value / total) * 2 * Math.PI;
       
-      ctx.fillStyle = '#000';
-      ctx.font = '12px Arial';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillText(`${activity.hours}h`, labelX, labelY);
+      // Draw slice
+      ctx.beginPath();
+      ctx.moveTo(centerX, centerY);
+      ctx.arc(centerX, centerY, radius, currentAngle, currentAngle + sliceAngle);
+      ctx.closePath();
+      ctx.fillStyle = colors[key];
+      ctx.fill();
+      ctx.strokeStyle = '#fff';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      
+      currentAngle += sliceAngle;
     }
-    
-    currentAngle += sliceAngle;
   });
 }
 
-// Session storage functions
-function saveChartData() {
-  const chartData = {
-    sleep: document.getElementById('sleep-hours').value,
-    work: document.getElementById('work-hours').value,
-    family: document.getElementById('family-hours').value,
-    hobbies: document.getElementById('hobbies-hours').value,
-    digital: document.getElementById('digital-hours').value,
-    exercise: document.getElementById('exercise-hours').value,
-    social: document.getElementById('social-hours').value,
-    other: document.getElementById('other-hours').value,
-    balanceObservation: document.getElementById('balance-observation').value,
-    habitReduction: document.getElementById('habit-reduction').value,
-    timestamp: new Date().toISOString()
-  };
+// Initialize chart on page load
+document.addEventListener('DOMContentLoaded', function() {
+  initializeChart();
   
-  sessionStorage.setItem('chapter4_chart_data', JSON.stringify(chartData));
-}
+  // Add event listeners to all time inputs
+  const timeInputs = document.querySelectorAll('.time-input-item input');
+  timeInputs.forEach(input => {
+    input.addEventListener('input', updateChart);
+  });
+});
 
-function loadChartData() {
-  const savedData = sessionStorage.getItem('chapter4_chart_data');
-  if (savedData) {
-    const data = JSON.parse(savedData);
-    
-    document.getElementById('sleep-hours').value = data.sleep || '';
-    document.getElementById('work-hours').value = data.work || '';
-    document.getElementById('family-hours').value = data.family || '';
-    document.getElementById('hobbies-hours').value = data.hobbies || '';
-    document.getElementById('digital-hours').value = data.digital || '';
-    document.getElementById('exercise-hours').value = data.exercise || '';
-    document.getElementById('social-hours').value = data.social || '';
-    document.getElementById('other-hours').value = data.other || '';
-    document.getElementById('balance-observation').value = data.balanceObservation || '';
-    document.getElementById('habit-reduction').value = data.habitReduction || '';
-    
-    updateChart();
-  }
-}
-
-// Assessment functions
-function saveAssessmentData() {
-  const assessmentData = {
-    screenTime: document.querySelector('input[name="screen-time"]:checked')?.value || '',
-    digitalGoals: document.querySelector('input[name="digital-goals"]:checked')?.value || '',
-    progress: document.querySelector('input[name="progress"]:checked')?.value || '',
-    consciousUse: document.querySelector('input[name="conscious-use"]:checked')?.value || '',
-    feelBetter: document.querySelector('input[name="feel-better"]:checked')?.value || '',
-    wellbeingReflection: document.getElementById('wellbeing-reflection').value || '',
-    timestamp: new Date().toISOString()
-  };
-  
-  sessionStorage.setItem('chapter4_assessment', JSON.stringify(assessmentData));
-}
-
-function loadAssessmentData() {
-  const savedData = sessionStorage.getItem('chapter4_assessment');
-  if (savedData) {
-    const data = JSON.parse(savedData);
-    
-    // Restore radio button selections
-    if (data.screenTime) {
-      const radio1 = document.querySelector(`input[name="screen-time"][value="${data.screenTime}"]`);
-      if (radio1) radio1.checked = true;
-    }
-    if (data.digitalGoals) {
-      const radio2 = document.querySelector(`input[name="digital-goals"][value="${data.digitalGoals}"]`);
-      if (radio2) radio2.checked = true;
-    }
-    if (data.progress) {
-      const radio3 = document.querySelector(`input[name="progress"][value="${data.progress}"]`);
-      if (radio3) radio3.checked = true;
-    }
-    if (data.consciousUse) {
-      const radio4 = document.querySelector(`input[name="conscious-use"][value="${data.consciousUse}"]`);
-      if (radio4) radio4.checked = true;
-    }
-    if (data.feelBetter) {
-      const radio5 = document.querySelector(`input[name="feel-better"][value="${data.feelBetter}"]`);
-      if (radio5) radio5.checked = true;
-    }
-    
-    // Restore reflection text
-    if (data.wellbeingReflection) {
-      document.getElementById('wellbeing-reflection').value = data.wellbeingReflection;
-    }
-  }
-}
-
-// PDF download functions
-async function downloadGoalsReview() {
-  const progressReflection = document.getElementById('progress-reflection').value;
-  const insightsReflection = document.getElementById('insights-reflection').value;
-  
-  // Create PDF with jsPDF
+// Download functions for Chapter 4 activities
+document.getElementById('download-goals-review').addEventListener('click', async function() {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
   
-  // Add header image and get the Y position after it
+  // Add header image and get Y position
   const startY = await addPDFHeader(doc);
-  
-  // Set font
-  doc.setFont("helvetica");
+  let yPosition = startY;
   
   // Title
-  doc.setFontSize(16);
-  doc.setFont("helvetica", "bold");
-  doc.text("Digital Goals Review - Chapter 4", 20, startY + 10);
-  
-  // Date
-  doc.setFontSize(12);
-  doc.setFont("helvetica", "normal");
-  doc.text(`Date: ${new Date().toLocaleDateString()}`, 20, startY + 25);
-  
-  let yPosition = startY + 45;
-  
-  // Progress reflection
-  if (yPosition > 250) {
-    doc.addPage();
-    yPosition = 20;
-  }
-  
-  doc.setFontSize(14);
-  doc.setFont("helvetica", "bold");
-  doc.text("PROGRESS REFLECTION", 20, yPosition);
+  doc.setFontSize(18);
+  doc.setFont(undefined, 'bold');
+  doc.text('Review Your Digital Goals - My Response', 20, yPosition);
   yPosition += 15;
   
-  doc.setFontSize(11);
-  doc.setFont("helvetica", "italic");
-  const progressQuestion = "How would you rate your progress and effort? Where are you now, compared to where you were then? Are you closer to consolidating Digital Habits that serve you?";
-  const splitProgressQuestion = doc.splitTextToSize(progressQuestion, 170);
+  // Date
+  doc.setFontSize(10);
+  doc.setFont(undefined, 'normal');
+  doc.text(`Generated on: ${new Date().toLocaleDateString()}`, 20, yPosition);
+  yPosition += 15;
   
-  // Check if question fits on current page
-  if (yPosition + (splitProgressQuestion.length * 6) > 270) {
-    doc.addPage();
-    yPosition = 20;
-  }
-  
-  doc.text(splitProgressQuestion, 20, yPosition);
-  yPosition += splitProgressQuestion.length * 6 + 10;
-  
-  doc.setFont("helvetica", "normal");
-  if (progressReflection) {
-    const splitProgressReflection = doc.splitTextToSize(progressReflection, 170);
+  // Progress reflection
+  const progressText = document.getElementById('progress-reflection').value;
+  if (progressText) {
+    doc.setFontSize(12);
+    doc.setFont(undefined, 'bold');
+    doc.text('Progress and Effort Reflection:', 20, yPosition);
+    yPosition += 8;
     
-    // Handle long reflections that might span multiple pages
-    let remainingLines = [...splitProgressReflection];
-    
-    while (remainingLines.length > 0) {
-      const availableSpace = 280 - yPosition;
-      const linesPerPage = Math.floor(availableSpace / 6);
-      
-      if (linesPerPage <= 0) {
-        doc.addPage();
-        yPosition = 20;
-        continue;
-      }
-      
-      const linesToAdd = remainingLines.splice(0, linesPerPage);
-      doc.text(linesToAdd, 20, yPosition);
-      yPosition += linesToAdd.length * 6;
-      
-      if (remainingLines.length > 0) {
-        doc.addPage();
-        yPosition = 20;
-      }
-    }
-    yPosition += 20;
-  } else {
-    if (yPosition > 270) {
-      doc.addPage();
-      yPosition = 20;
-    }
-    doc.setFont("helvetica", "italic");
-    doc.text("No reflection provided", 20, yPosition);
-    yPosition += 20;
+    doc.setFont(undefined, 'normal');
+    const progressLines = doc.splitTextToSize(progressText, 170);
+    doc.text(progressLines, 20, yPosition);
+    yPosition += progressLines.length * 5 + 10;
   }
   
   // Insights reflection
-  if (yPosition > 250) {
-    doc.addPage();
-    yPosition = 20;
-  }
-  
-  doc.setFontSize(14);
-  doc.setFont("helvetica", "bold");
-  doc.text("INSIGHTS REFLECTION", 20, yPosition);
-  yPosition += 15;
-  
-  doc.setFontSize(11);
-  doc.setFont("helvetica", "italic");
-  const insightsQuestion = "Consider the insights from this journey, were your Digital Goals suitable? What habits worked for you, and which ones didn't? How could you make adjustments to your habits to suit your routine, day-to-day activities, and values?";
-  const splitInsightsQuestion = doc.splitTextToSize(insightsQuestion, 170);
-  
-  // Check if question fits on current page
-  if (yPosition + (splitInsightsQuestion.length * 6) > 270) {
-    doc.addPage();
-    yPosition = 20;
-  }
-  
-  doc.text(splitInsightsQuestion, 20, yPosition);
-  yPosition += splitInsightsQuestion.length * 6 + 10;
-  
-  doc.setFont("helvetica", "normal");
-  if (insightsReflection) {
-    const splitInsightsReflection = doc.splitTextToSize(insightsReflection, 170);
+  const insightsText = document.getElementById('insights-reflection').value;
+  if (insightsText) {
+    doc.setFontSize(12);
+    doc.setFont(undefined, 'bold');
+    doc.text('Insights and Adjustments:', 20, yPosition);
+    yPosition += 8;
     
-    // Handle long reflections that might span multiple pages
-    let remainingLines = [...splitInsightsReflection];
-    
-    while (remainingLines.length > 0) {
-      const availableSpace = 280 - yPosition;
-      const linesPerPage = Math.floor(availableSpace / 6);
-      
-      if (linesPerPage <= 0) {
-        doc.addPage();
-        yPosition = 20;
-        continue;
-      }
-      
-      const linesToAdd = remainingLines.splice(0, linesPerPage);
-      doc.text(linesToAdd, 20, yPosition);
-      yPosition += linesToAdd.length * 6;
-      
-      if (remainingLines.length > 0) {
-        doc.addPage();
-        yPosition = 20;
-      }
-    }
-  } else {
-    if (yPosition > 270) {
-      doc.addPage();
-      yPosition = 20;
-    }
-    doc.setFont("helvetica", "italic");
-    doc.text("No reflection provided", 20, yPosition);
+    doc.setFont(undefined, 'normal');
+    const insightsLines = doc.splitTextToSize(insightsText, 170);
+    doc.text(insightsLines, 20, yPosition);
+    yPosition += insightsLines.length * 5;
   }
   
-  // Save the PDF
-  doc.save('Chapter4_Goals_Review.pdf');
-}
+  doc.save('digital-goals-review.pdf');
+});
 
-async function downloadRelationshipResponse() {
-  const toolsReflection = document.getElementById('tools-reflection').value;
-  const balanceReflection = document.getElementById('balance-reflection').value;
-  const practicesReflection = document.getElementById('practices-reflection').value;
-  
-  // Create PDF with jsPDF
+document.getElementById('download-relationship-response').addEventListener('click', async function() {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
   
-  // Add header image and get the Y position after it
+  // Add header image and get Y position
   const startY = await addPDFHeader(doc);
-  
-  // Set font
-  doc.setFont("helvetica");
+  let yPosition = startY;
   
   // Title
-  doc.setFontSize(16);
-  doc.setFont("helvetica", "bold");
-  doc.text("Building a Positive Relationship With Technology - Chapter 4", 20, startY + 10);
-  
-  // Date
-  doc.setFontSize(12);
-  doc.setFont("helvetica", "normal");
-  doc.text(`Date: ${new Date().toLocaleDateString()}`, 20, startY + 25);
-  
-  let yPosition = startY + 45;
-  
-  // Tools reflection
-  if (yPosition > 250) {
-    doc.addPage();
-    yPosition = 20;
-  }
-  
-  doc.setFontSize(14);
-  doc.setFont("helvetica", "bold");
-  doc.text("TOOLS REFLECTION", 20, yPosition);
+  doc.setFontSize(18);
+  doc.setFont(undefined, 'bold');
+  doc.text('Building a Positive Relationship With Technology - My Response', 20, yPosition);
   yPosition += 15;
   
-  doc.setFontSize(11);
-  doc.setFont("helvetica", "italic");
-  const toolsQuestion = "What tools worked best for you? Which ones were the most challenging? How will you keep them apart of your daily routine?";
-  const splitToolsQuestion = doc.splitTextToSize(toolsQuestion, 170);
+  // Date
+  doc.setFontSize(10);
+  doc.setFont(undefined, 'normal');
+  doc.text(`Generated on: ${new Date().toLocaleDateString()}`, 20, yPosition);
+  yPosition += 15;
   
-  if (yPosition + (splitToolsQuestion.length * 6) > 270) {
-    doc.addPage();
-    yPosition = 20;
-  }
-  
-  doc.text(splitToolsQuestion, 20, yPosition);
-  yPosition += splitToolsQuestion.length * 6 + 10;
-  
-  doc.setFont("helvetica", "normal");
-  if (toolsReflection) {
-    const splitToolsReflection = doc.splitTextToSize(toolsReflection, 170);
+  // Tools reflection
+  const toolsText = document.getElementById('tools-reflection').value;
+  if (toolsText) {
+    doc.setFontSize(12);
+    doc.setFont(undefined, 'bold');
+    doc.text('Tools and Daily Routine:', 20, yPosition);
+    yPosition += 8;
     
-    let remainingLines = [...splitToolsReflection];
-    while (remainingLines.length > 0) {
-      const availableSpace = 280 - yPosition;
-      const linesPerPage = Math.floor(availableSpace / 6);
-      
-      if (linesPerPage <= 0) {
-        doc.addPage();
-        yPosition = 20;
-        continue;
-      }
-      
-      const linesToAdd = remainingLines.splice(0, linesPerPage);
-      doc.text(linesToAdd, 20, yPosition);
-      yPosition += linesToAdd.length * 6;
-      
-      if (remainingLines.length > 0) {
-        doc.addPage();
-        yPosition = 20;
-      }
-    }
-    yPosition += 20;
-  } else {
-    if (yPosition > 270) {
-      doc.addPage();
-      yPosition = 20;
-    }
-    doc.setFont("helvetica", "italic");
-    doc.text("No reflection provided", 20, yPosition);
-    yPosition += 20;
+    doc.setFont(undefined, 'normal');
+    const toolsLines = doc.splitTextToSize(toolsText, 170);
+    doc.text(toolsLines, 20, yPosition);
+    yPosition += toolsLines.length * 5 + 10;
   }
   
   // Balance reflection
-  if (yPosition > 250) {
-    doc.addPage();
-    yPosition = 20;
-  }
-  
-  doc.setFontSize(14);
-  doc.setFont("helvetica", "bold");
-  doc.text("TECH-LIFE BALANCE REFLECTION", 20, yPosition);
-  yPosition += 15;
-  
-  doc.setFontSize(11);
-  doc.setFont("helvetica", "italic");
-  const balanceQuestion = "How will these exercises help your tech-life balance in the future?";
-  const splitBalanceQuestion = doc.splitTextToSize(balanceQuestion, 170);
-  
-  if (yPosition + (splitBalanceQuestion.length * 6) > 270) {
-    doc.addPage();
-    yPosition = 20;
-  }
-  
-  doc.text(splitBalanceQuestion, 20, yPosition);
-  yPosition += splitBalanceQuestion.length * 6 + 10;
-  
-  doc.setFont("helvetica", "normal");
-  if (balanceReflection) {
-    const splitBalanceReflection = doc.splitTextToSize(balanceReflection, 170);
+  const balanceText = document.getElementById('balance-reflection').value;
+  if (balanceText) {
+    doc.setFontSize(12);
+    doc.setFont(undefined, 'bold');
+    doc.text('Tech-Life Balance in the Future:', 20, yPosition);
+    yPosition += 8;
     
-    let remainingLines = [...splitBalanceReflection];
-    while (remainingLines.length > 0) {
-      const availableSpace = 280 - yPosition;
-      const linesPerPage = Math.floor(availableSpace / 6);
-      
-      if (linesPerPage <= 0) {
-        doc.addPage();
-        yPosition = 20;
-        continue;
-      }
-      
-      const linesToAdd = remainingLines.splice(0, linesPerPage);
-      doc.text(linesToAdd, 20, yPosition);
-      yPosition += linesToAdd.length * 6;
-      
-      if (remainingLines.length > 0) {
-        doc.addPage();
-        yPosition = 20;
-      }
-    }
-    yPosition += 20;
-  } else {
-    if (yPosition > 270) {
-      doc.addPage();
-      yPosition = 20;
-    }
-    doc.setFont("helvetica", "italic");
-    doc.text("No reflection provided", 20, yPosition);
-    yPosition += 20;
+    doc.setFont(undefined, 'normal');
+    const balanceLines = doc.splitTextToSize(balanceText, 170);
+    doc.text(balanceLines, 20, yPosition);
+    yPosition += balanceLines.length * 5 + 10;
   }
   
   // Practices reflection
-  if (yPosition > 250) {
-    doc.addPage();
-    yPosition = 20;
-  }
-  
-  doc.setFontSize(14);
-  doc.setFont("helvetica", "bold");
-  doc.text("PRACTICES REFLECTION", 20, yPosition);
-  yPosition += 15;
-  
-  doc.setFontSize(11);
-  doc.setFont("helvetica", "italic");
-  const practicesQuestion = "Which practices can you implement to have a better relationship with your devices, considering your own unique journey?";
-  const splitPracticesQuestion = doc.splitTextToSize(practicesQuestion, 170);
-  
-  if (yPosition + (splitPracticesQuestion.length * 6) > 270) {
-    doc.addPage();
-    yPosition = 20;
-  }
-  
-  doc.text(splitPracticesQuestion, 20, yPosition);
-  yPosition += splitPracticesQuestion.length * 6 + 10;
-  
-  doc.setFont("helvetica", "normal");
-  if (practicesReflection) {
-    const splitPracticesReflection = doc.splitTextToSize(practicesReflection, 170);
+  const practicesText = document.getElementById('practices-reflection').value;
+  if (practicesText) {
+    doc.setFontSize(12);
+    doc.setFont(undefined, 'bold');
+    doc.text('Practices for Better Device Relationship:', 20, yPosition);
+    yPosition += 8;
     
-    let remainingLines = [...splitPracticesReflection];
-    while (remainingLines.length > 0) {
-      const availableSpace = 280 - yPosition;
-      const linesPerPage = Math.floor(availableSpace / 6);
-      
-      if (linesPerPage <= 0) {
-        doc.addPage();
-        yPosition = 20;
-        continue;
-      }
-      
-      const linesToAdd = remainingLines.splice(0, linesPerPage);
-      doc.text(linesToAdd, 20, yPosition);
-      yPosition += linesToAdd.length * 6;
-      
-      if (remainingLines.length > 0) {
-        doc.addPage();
-        yPosition = 20;
-      }
-    }
-  } else {
-    if (yPosition > 270) {
-      doc.addPage();
-      yPosition = 20;
-    }
-    doc.setFont("helvetica", "italic");
-    doc.text("No reflection provided", 20, yPosition);
+    doc.setFont(undefined, 'normal');
+    const practicesLines = doc.splitTextToSize(practicesText, 170);
+    doc.text(practicesLines, 20, yPosition);
+    yPosition += practicesLines.length * 5;
   }
   
-  // Save the PDF
-  doc.save('Chapter4_Relationship_Response.pdf');
-}
+  doc.save('positive-relationship-technology.pdf');
+});
 
-async function downloadBalanceResponse() {
-  saveChartData(); // Save current data
-  
-  const balanceObservation = document.getElementById('balance-observation').value;
-  const habitReduction = document.getElementById('habit-reduction').value;
-  
-  // Get chart data
-  const activities = [
-    { name: 'Sleep', hours: parseFloat(document.getElementById('sleep-hours').value) || 0 },
-    { name: 'Work', hours: parseFloat(document.getElementById('work-hours').value) || 0 },
-    { name: 'Family', hours: parseFloat(document.getElementById('family-hours').value) || 0 },
-    { name: 'Hobbies', hours: parseFloat(document.getElementById('hobbies-hours').value) || 0 },
-    { name: 'Digital Use', hours: parseFloat(document.getElementById('digital-hours').value) || 0 },
-    { name: 'Exercise', hours: parseFloat(document.getElementById('exercise-hours').value) || 0 },
-    { name: 'Social', hours: parseFloat(document.getElementById('social-hours').value) || 0 },
-    { name: 'Other', hours: parseFloat(document.getElementById('other-hours').value) || 0 }
-  ];
-  
-  const totalHours = activities.reduce((sum, activity) => sum + activity.hours, 0);
-  
-  // Create PDF with jsPDF
+document.getElementById('download-balance-response').addEventListener('click', async function() {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
   
-  // Add header image and get the Y position after it
+  // Add header image and get Y position
   const startY = await addPDFHeader(doc);
-  
-  // Set font
-  doc.setFont("helvetica");
+  let yPosition = startY;
   
   // Title
-  doc.setFontSize(16);
-  doc.setFont("helvetica", "bold");
-  doc.text("Life Balance Chart - Chapter 4", 20, startY + 10);
+  doc.setFontSize(18);
+  doc.setFont(undefined, 'bold');
+  doc.text('Rituals for Digital Flourishing - My Response', 20, yPosition);
+  yPosition += 15;
   
   // Date
-  doc.setFontSize(12);
-  doc.setFont("helvetica", "normal");
-  doc.text(`Date: ${new Date().toLocaleDateString()}`, 20, startY + 25);
-  
-  let yPosition = startY + 45;
-  
-  // Chart data
-  if (yPosition > 250) {
-    doc.addPage();
-    yPosition = 20;
-  }
-  
-  doc.setFontSize(14);
-  doc.setFont("helvetica", "bold");
-  doc.text("WEEKLY TIME DISTRIBUTION", 20, yPosition);
+  doc.setFontSize(10);
+  doc.setFont(undefined, 'normal');
+  doc.text(`Generated on: ${new Date().toLocaleDateString()}`, 20, yPosition);
   yPosition += 15;
   
-  doc.setFontSize(11);
-  doc.setFont("helvetica", "normal");
-  activities.forEach(activity => {
-    if (activity.hours > 0) {
-      if (yPosition > 270) {
-        doc.addPage();
-        yPosition = 20;
-      }
-      doc.text(`${activity.name}: ${activity.hours} hours`, 20, yPosition);
-      yPosition += 8;
-    }
+  // Time allocation data
+  const timeData = {
+    sleep: document.getElementById('sleep-hours').value || '0',
+    work: document.getElementById('work-hours').value || '0',
+    family: document.getElementById('family-hours').value || '0',
+    hobbies: document.getElementById('hobbies-hours').value || '0',
+    digital: document.getElementById('digital-hours').value || '0',
+    exercise: document.getElementById('exercise-hours').value || '0',
+    social: document.getElementById('social-hours').value || '0',
+    other: document.getElementById('other-hours').value || '0'
+  };
+  
+  doc.setFontSize(12);
+  doc.setFont(undefined, 'bold');
+  doc.text('My Weekly Time Allocation:', 20, yPosition);
+  yPosition += 10;
+  
+  doc.setFont(undefined, 'normal');
+  Object.entries(timeData).forEach(([activity, hours]) => {
+    doc.text(`${activity.charAt(0).toUpperCase() + activity.slice(1)}: ${hours} hours`, 25, yPosition);
+    yPosition += 6;
   });
-  
-  if (yPosition > 270) {
-    doc.addPage();
-    yPosition = 20;
-  }
-  
-  doc.setFont("helvetica", "bold");
-  doc.text(`Total: ${totalHours} hours`, 20, yPosition);
-  yPosition += 20;
+  yPosition += 5;
   
   // Balance observation
-  if (yPosition > 250) {
-    doc.addPage();
-    yPosition = 20;
-  }
-  
-  doc.setFontSize(14);
-  doc.setFont("helvetica", "bold");
-  doc.text("BALANCE OBSERVATION", 20, yPosition);
-  yPosition += 15;
-  
-  doc.setFontSize(11);
-  doc.setFont("helvetica", "italic");
-  const observationQuestion = "Are some slices larger than you expected? Does the balance reflect your values and priorities? Is your digital use taking more space than you'd like?";
-  const splitObservationQuestion = doc.splitTextToSize(observationQuestion, 170);
-  
-  if (yPosition + (splitObservationQuestion.length * 6) > 270) {
-    doc.addPage();
-    yPosition = 20;
-  }
-  
-  doc.text(splitObservationQuestion, 20, yPosition);
-  yPosition += splitObservationQuestion.length * 6 + 10;
-  
-  doc.setFont("helvetica", "normal");
+  const balanceObservation = document.getElementById('balance-observation').value;
   if (balanceObservation) {
-    const splitObservation = doc.splitTextToSize(balanceObservation, 170);
+    doc.setFont(undefined, 'bold');
+    doc.text('Balance Observation:', 20, yPosition);
+    yPosition += 8;
     
-    let remainingLines = [...splitObservation];
-    while (remainingLines.length > 0) {
-      const availableSpace = 280 - yPosition;
-      const linesPerPage = Math.floor(availableSpace / 6);
-      
-      if (linesPerPage <= 0) {
-        doc.addPage();
-        yPosition = 20;
-        continue;
-      }
-      
-      const linesToAdd = remainingLines.splice(0, linesPerPage);
-      doc.text(linesToAdd, 20, yPosition);
-      yPosition += linesToAdd.length * 6;
-      
-      if (remainingLines.length > 0) {
-        doc.addPage();
-        yPosition = 20;
-      }
-    }
-    yPosition += 20;
-  } else {
-    if (yPosition > 270) {
-      doc.addPage();
-      yPosition = 20;
-    }
-    doc.setFont("helvetica", "italic");
-    doc.text("No reflection provided", 20, yPosition);
-    yPosition += 20;
+    doc.setFont(undefined, 'normal');
+    const observationLines = doc.splitTextToSize(balanceObservation, 170);
+    doc.text(observationLines, 20, yPosition);
+    yPosition += observationLines.length * 5 + 10;
   }
   
   // Habit reduction
-  if (yPosition > 250) {
-    doc.addPage();
-    yPosition = 20;
-  }
-  
-  doc.setFontSize(14);
-  doc.setFont("helvetica", "bold");
-  doc.text("HABIT REDUCTION REFLECTION", 20, yPosition);
-  yPosition += 15;
-  
-  doc.setFontSize(11);
-  doc.setFont("helvetica", "italic");
-  const reductionQuestion = "Think about one or two digital habits you could reduce and write your reflection below. What could you do instead with that reclaimed time?";
-  const splitReductionQuestion = doc.splitTextToSize(reductionQuestion, 170);
-  
-  if (yPosition + (splitReductionQuestion.length * 6) > 270) {
-    doc.addPage();
-    yPosition = 20;
-  }
-  
-  doc.text(splitReductionQuestion, 20, yPosition);
-  yPosition += splitReductionQuestion.length * 6 + 10;
-  
-  doc.setFont("helvetica", "normal");
+  const habitReduction = document.getElementById('habit-reduction').value;
   if (habitReduction) {
-    const splitReduction = doc.splitTextToSize(habitReduction, 170);
+    doc.setFont(undefined, 'bold');
+    doc.text('Digital Habits to Reduce:', 20, yPosition);
+    yPosition += 8;
     
-    let remainingLines = [...splitReduction];
-    while (remainingLines.length > 0) {
-      const availableSpace = 280 - yPosition;
-      const linesPerPage = Math.floor(availableSpace / 6);
-      
-      if (linesPerPage <= 0) {
-        doc.addPage();
-        yPosition = 20;
-        continue;
-      }
-      
-      const linesToAdd = remainingLines.splice(0, linesPerPage);
-      doc.text(linesToAdd, 20, yPosition);
-      yPosition += linesToAdd.length * 6;
-      
-      if (remainingLines.length > 0) {
-        doc.addPage();
-        yPosition = 20;
-      }
-    }
-  } else {
-    if (yPosition > 270) {
-      doc.addPage();
-      yPosition = 20;
-    }
-    doc.setFont("helvetica", "italic");
-    doc.text("No reflection provided", 20, yPosition);
+    doc.setFont(undefined, 'normal');
+    const reductionLines = doc.splitTextToSize(habitReduction, 170);
+    doc.text(reductionLines, 20, yPosition);
+    yPosition += reductionLines.length * 5;
   }
   
-  // Save the PDF
-  doc.save('Chapter4_Life_Balance_Chart.pdf');
-}
+  doc.save('rituals-digital-flourishing.pdf');
+});
 
-async function downloadAssessmentResponse() {
-  saveAssessmentData(); // Save current data
-  
-  // Get all form responses
-  const responses = {
-    screenTime: document.querySelector('input[name="screen-time"]:checked')?.value || '',
-    digitalGoals: document.querySelector('input[name="digital-goals"]:checked')?.value || '',
-    progress: document.querySelector('input[name="progress"]:checked')?.value || '',
-    consciousUse: document.querySelector('input[name="conscious-use"]:checked')?.value || '',
-    feelBetter: document.querySelector('input[name="feel-better"]:checked')?.value || '',
-    wellbeingReflection: document.getElementById('wellbeing-reflection').value || ''
-  };
-  
-  // Create PDF with jsPDF
+document.getElementById('download-assessment-response').addEventListener('click', async function() {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
   
-  // Add header image and get the Y position after it
+  // Add header image and get Y position
   const startY = await addPDFHeader(doc);
-  
-  // Set font
-  doc.setFont("helvetica");
+  let yPosition = startY;
   
   // Title
-  doc.setFontSize(16);
-  doc.setFont("helvetica", "bold");
-  doc.text("Digital Well-being Assessment - Chapter 4 Touchpoint II", 20, startY + 10);
+  doc.setFontSize(18);
+  doc.setFont(undefined, 'bold');
+  doc.text('End of Lesson Assessment: Touchpoint II - My Response', 20, yPosition);
+  yPosition += 15;
   
   // Date
-  doc.setFontSize(12);
-  doc.setFont("helvetica", "normal");
-  doc.text(`Date: ${new Date().toLocaleDateString()}`, 20, startY + 25);
-  
-  // Scale responses section
-  doc.setFontSize(14);
-  doc.setFont("helvetica", "bold");
-  let yPosition = startY + 45;
-  
-  if (yPosition > 270) {
-    doc.addPage();
-    yPosition = 20;
-  }
-  
-  doc.text("SCALE RESPONSES", 20, yPosition);
-  yPosition += 10;
-  
   doc.setFontSize(10);
-  doc.setFont("helvetica", "italic");
-  doc.text("(1 = completely disagree, 5 = completely agree)", 20, yPosition);
+  doc.setFont(undefined, 'normal');
+  doc.text(`Generated on: ${new Date().toLocaleDateString()}`, 20, yPosition);
   yPosition += 15;
   
-  doc.setFontSize(11);
-  doc.setFont("helvetica", "normal");
-  
+  // Assessment responses
   const questions = [
-    { label: "1. I have decreased my screen time:", value: responses.screenTime },
-    { label: "2. I have stuck to my Digital Goals:", value: responses.digitalGoals },
-    { label: "3. I am closer to where I want to be:", value: responses.progress },
-    { label: "4. I have made more conscious use of my digital devices:", value: responses.consciousUse },
-    { label: "5. I feel better about my use of digital devices:", value: responses.feelBetter }
+    { name: 'screen-time', text: 'I have decreased my screen time.' },
+    { name: 'digital-goals', text: 'I have stuck to my Digital Goals.' },
+    { name: 'progress', text: 'I am closer to where I want to be.' },
+    { name: 'conscious-use', text: 'I have made more conscious use of my digital devices.' },
+    { name: 'feel-better', text: 'I feel better about my use of digital devices.' }
   ];
   
-  questions.forEach(question => {
-    if (yPosition > 270) {
-      doc.addPage();
-      yPosition = 20;
-    }
-    
-    doc.text(question.label, 20, yPosition);
-    doc.setFont("helvetica", "bold");
-    doc.text(question.value || "Not answered", 180, yPosition);
-    doc.setFont("helvetica", "normal");
-    yPosition += 12;
-  });
-  
-  // Reflection section
+  doc.setFontSize(12);
+  doc.setFont(undefined, 'bold');
+  doc.text('Assessment Responses (1 = completely disagree, 5 = completely agree):', 20, yPosition);
   yPosition += 10;
   
-  if (yPosition > 250) {
-    doc.addPage();
-    yPosition = 20;
-  }
+  doc.setFont(undefined, 'normal');
+  questions.forEach(question => {
+    const selectedValue = document.querySelector(`input[name="${question.name}"]:checked`)?.value || 'Not answered';
+    doc.text(`${question.text} - ${selectedValue}`, 25, yPosition);
+    yPosition += 6;
+  });
+  yPosition += 10;
   
-  doc.setFontSize(14);
-  doc.setFont("helvetica", "bold");
-  doc.text("REFLECTION", 20, yPosition);
-  
-  yPosition += 15;
-  doc.setFontSize(11);
-  doc.setFont("helvetica", "italic");
-  const reflectionQuestion = "How do you feel after completing the third and fourth lesson of this course? Have you noticed any differences in your general well-being?";
-  const splitQuestion = doc.splitTextToSize(reflectionQuestion, 170);
-  
-  if (yPosition + (splitQuestion.length * 6) > 270) {
-    doc.addPage();
-    yPosition = 20;
-  }
-  
-  doc.text(splitQuestion, 20, yPosition);
-  yPosition += splitQuestion.length * 6 + 10;
-  
-  // Reflection answer
-  doc.setFont("helvetica", "normal");
-  if (responses.wellbeingReflection) {
-    const splitReflection = doc.splitTextToSize(responses.wellbeingReflection, 170);
+  // Well-being reflection
+  const wellbeingReflection = document.getElementById('wellbeing-reflection').value;
+  if (wellbeingReflection) {
+    doc.setFont(undefined, 'bold');
+    doc.text('Well-being Reflection:', 20, yPosition);
+    yPosition += 8;
     
-    let remainingLines = [...splitReflection];
-    while (remainingLines.length > 0) {
-      const availableSpace = 280 - yPosition;
-      const linesPerPage = Math.floor(availableSpace / 6);
-      
-      if (linesPerPage <= 0) {
-        doc.addPage();
-        yPosition = 20;
-        continue;
-      }
-      
-      const linesToAdd = remainingLines.splice(0, linesPerPage);
-      doc.text(linesToAdd, 20, yPosition);
-      yPosition += linesToAdd.length * 6;
-      
-      if (remainingLines.length > 0) {
-        doc.addPage();
-        yPosition = 20;
-      }
-    }
-  } else {
-    if (yPosition > 270) {
-      doc.addPage();
-      yPosition = 20;
-    }
-    doc.setFont("helvetica", "italic");
-    doc.text("No reflection provided", 20, yPosition);
+    doc.setFont(undefined, 'normal');
+    const reflectionLines = doc.splitTextToSize(wellbeingReflection, 170);
+    doc.text(reflectionLines, 20, yPosition);
+    yPosition += reflectionLines.length * 5;
   }
   
-  // Save the PDF
-  doc.save('Chapter4_Assessment_Response.pdf');
-}
+  doc.save('touchpoint-ii-assessment.pdf');
+});
 
-function downloadBuddyTemplate() {
-  // Placeholder function for downloading buddy template
-  alert('Accountability Buddy template download would be implemented here');
-}
+document.getElementById('download-buddy-template').addEventListener('click', function() {
+  // Create a simple text template for the accountability buddy planning
+  const template = `ACCOUNTABILITY BUDDY PLANNING TEMPLATE
 
-// Event listeners
-document.addEventListener('DOMContentLoaded', function() {
-  // Initialize chart
-  initializeChart();
-  
-  // Load saved data
-  loadChartData();
-  loadAssessmentData();
-  
-  // Chart input event listeners
-  const chartInputs = document.querySelectorAll('.time-input-item input');
-  chartInputs.forEach(input => {
-    input.addEventListener('input', function() {
-      updateChart();
-      saveChartData();
-    });
-  });
-  
-  // Chart reflection event listeners
-  document.getElementById('balance-observation').addEventListener('input', saveChartData);
-  document.getElementById('habit-reduction').addEventListener('input', saveChartData);
-  
-  // Assessment event listeners
-  const radioButtons = document.querySelectorAll('input[type="radio"]');
-  radioButtons.forEach(radio => {
-    radio.addEventListener('change', saveAssessmentData);
-  });
-  
-  document.getElementById('wellbeing-reflection').addEventListener('input', saveAssessmentData);
-  
-  // Download button event listeners
-  document.getElementById('download-goals-review').addEventListener('click', downloadGoalsReview);
-  document.getElementById('download-relationship-response').addEventListener('click', downloadRelationshipResponse);
-  document.getElementById('download-balance-response').addEventListener('click', downloadBalanceResponse);
-  document.getElementById('download-assessment-response').addEventListener('click', downloadAssessmentResponse);
-  document.getElementById('download-buddy-template').addEventListener('click', downloadBuddyTemplate);
-  
-  // Glossary modal functionality
-  const modal = document.getElementById('glossary-modal');
-  const menuLink = document.getElementById('glossary-menu-link');
-  const closeBtn = modal.querySelector('.modal-close');
+Generated on: ${new Date().toLocaleDateString()}
 
-  function openModal() {
-    modal.style.display = 'block';
-    modal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-    const firstFocusableElement = modal.querySelector('.modal-close, .glossary-az-nav a');
-    if (firstFocusableElement) {
-        firstFocusableElement.focus();
-    }
-  }
+Instructions: Complete this template to plan your accountability buddy partnership for digital well-being.
 
-  function closeModal() {
-    modal.style.display = 'none';
-    modal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = 'auto';
-    if (document.activeElement === closeBtn || modal.contains(document.activeElement)) {
-        if (menuLink && menuLink === document.lastActiveElement) menuLink.focus();
-    }
-    document.lastActiveElement = null;
-  }
-  
-  document.lastActiveElement = null;
-  
-  if (menuLink) {
-    menuLink.addEventListener('click', function(e) {
-      e.preventDefault();
-      document.lastActiveElement = this;
-      openModal();
-      const mainNav = document.getElementById('main-nav');
-      const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-      if (mainNav && mainNav.classList.contains('active')) {
-        mainNav.classList.remove('active');
-        mobileMenuToggle.classList.remove('active');
-        mobileMenuToggle.setAttribute('aria-expanded', 'false');
-      }
-    });
-  }
+1. WHO COULD BE YOUR ACCOUNTABILITY BUDDY?
+Think about someone you trust who would support your digital well-being goals:
+Name: ________________________________
+Relationship: __________________________
+Why this person: _______________________
+____________________________________
 
-  if (closeBtn) {
-    closeBtn.addEventListener('click', closeModal);
-  }
+2. WHAT ARE YOUR SPECIFIC DIGITAL GOALS?
+Write 2-3 specific goals you want to work on:
+Goal 1: _______________________________
+____________________________________
+Goal 2: _______________________________
+____________________________________
+Goal 3: _______________________________
+____________________________________
 
-  modal.addEventListener('click', function(e) {
-    if (e.target === modal) {
-      closeModal();
-    }
-  });
+3. HOW WILL YOU STAY CONNECTED?
+Check-in frequency: ____________________
+Communication method: __________________
+Meeting format: _______________________
 
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && modal.style.display === 'block') {
-      closeModal();
-    }
-  });
+4. WHAT WILL YOU TRACK TOGETHER?
+□ Screen time hours
+□ App usage
+□ Digital-free time
+□ Sleep quality
+□ Focus/productivity
+□ Other: _____________________________
+
+5. HOW WILL YOU CELEBRATE PROGRESS?
+Small wins: ___________________________
+Weekly achievements: ___________________
+Monthly milestones: ____________________
+
+6. WHAT CHALLENGES DO YOU ANTICIPATE?
+Challenge 1: ___________________________
+Solution: _____________________________
+Challenge 2: ___________________________
+Solution: _____________________________
+
+7. COMMITMENT STATEMENT
+I commit to working with my accountability buddy to improve my digital well-being by:
+____________________________________
+____________________________________
+____________________________________
+
+Signature: ____________________________
+Date: ________________________________
+
+NOTES:
+____________________________________
+____________________________________
+____________________________________
+____________________________________
+`;
+
+  // Create and download the file
+  const blob = new Blob([template], { type: 'text/plain' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'accountability-buddy-template.txt';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
 });
 </script>
 
-<!-- jsPDF Library for PDF generation -->
+<!-- jsPDF library -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </body>
 </html>
