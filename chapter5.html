@@ -545,51 +545,22 @@
     
     <!-- 3. Action Plan - Fondo blanco -->
     <section class="lesson-section no-borders">
-  <div class="values-activity-container">
-    <h2><strong>Activity: Develop Your Own Digital Well-being Action Plan</strong></h2>
-    
-    <h3>Congratulations on completing the Digital Well-being Course!</h3>
-    <p>This is where your learning becomes daily practice. Use this action plan to define your 
-    next steps, stay focused, and build habits that truly serve your life.</p>
-    
-    <form id="action-plan-form">
-      <div class="reflection-question">
-        <h4>1. Current Digital Habits Assessment</h4>
-        <p>Reflect on your current digital habits. What patterns have you noticed? What habits serve you well, and which ones would you like to change?</p>
-        <textarea id="current-habits" name="current-habits" rows="4" placeholder="Describe your current digital habits and patterns..."></textarea>
+      <div class="values-activity-container">
+        <h2><strong>Activity: Develop Your Own Digital Well-being Action Plan</strong></h2>
+        
+        <h3>Congratulations on completing the Digital Well-being Course!</h3>
+        <p>This is where your learning becomes daily practice. Use this action plan to define your 
+        next steps, stay focused, and build habits that truly serve your life.</p>
+        
+        <p>You can download the editable template to complete your responses. This way, 
+        you can save your answers as a personalized roadmap for your digital well-being.</p>
+        
+        <a href="#" class="download-template-button" onclick="downloadActionPlanTemplate()" aria-label="Download editable template for digital well-being action plan">
+          <i class="fas fa-download" aria-hidden="true"></i>
+          <strong>Download the editable template here</strong>
+        </a>
       </div>
-      
-      <div class="reflection-question">
-        <h4>2. Goal Setting</h4>
-        <p>Based on what you've learned, what are 2-3 specific digital well-being goals you want to achieve? Make them SMART (Specific, Measurable, Achievable, Relevant, Time-bound).</p>
-        <textarea id="goal-setting" name="goal-setting" rows="4" placeholder="Write your digital well-being goals..."></textarea>
-      </div>
-      
-      <div class="reflection-question">
-        <h4>3. Action Steps</h4>
-        <p>What specific actions will you take to achieve these goals? Include daily, weekly, and monthly practices.</p>
-        <textarea id="action-steps" name="action-steps" rows="4" placeholder="List your specific action steps..."></textarea>
-      </div>
-      
-      <div class="reflection-question">
-        <h4>4. Accountability Plan</h4>
-        <p>How will you stay accountable to these goals? Who can support you, and how will you track your progress?</p>
-        <textarea id="accountability" name="accountability" rows="4" placeholder="Describe your accountability plan..."></textarea>
-      </div>
-      
-      <div class="reflection-question">
-        <h4>5. Personal Reflection</h4>
-        <p>What insights from this course resonated most with you? How do you envision your relationship with technology evolving?</p>
-        <textarea id="reflection" name="reflection" rows="4" placeholder="Share your personal reflections..."></textarea>
-      </div>
-    </form>
-    
-    <a href="#" class="download-template-button" onclick="downloadActionPlanTemplate()" aria-label="Download your digital well-being action plan responses">
-      <i class="fas fa-download" aria-hidden="true"></i>
-      <strong>Download my responses</strong>
-    </a>
-  </div>
-</section>
+    </section>
 
     <!-- 4. Final Quiz -->
     <section class="lesson-section no-borders">
@@ -1363,198 +1334,11 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-// Replace the placeholder function with this complete implementation:
+// Template download function
 function downloadActionPlanTemplate() {
-  // Get student responses
-  const responses = {
-    currentHabits: document.getElementById('current-habits')?.value || '',
-    goalSetting: document.getElementById('goal-setting')?.value || '',
-    actionSteps: document.getElementById('action-steps')?.value || '',
-    accountability: document.getElementById('accountability')?.value || '',
-    reflection: document.getElementById('reflection')?.value || ''
-  };
-
-  // Check if any responses are filled
-  const hasResponses = Object.values(responses).some(response => response.trim() !== '');
-  
-  if (!hasResponses) {
-    alert('Please fill out at least one section of your Action Plan before downloading.');
-    return;
-  }
-
-  // Create PDF
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF();
-  
-  // Add header image
-  const headerImg = new Image();
-  headerImg.crossOrigin = "anonymous";
-  headerImg.onload = function() {
-    // Add header image
-    doc.addImage(headerImg, 'JPEG', 0, 0, 210, 40);
-    
-    // Title and date
-    doc.setFontSize(18);
-    doc.setFont(undefined, 'bold');
-    doc.text('Digital Well-being Action Plan', 20, 60);
-    
-    doc.setFontSize(12);
-    doc.setFont(undefined, 'normal');
-    const currentDate = new Date().toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
-    doc.text(`Generated on: ${currentDate}`, 20, 70);
-    
-    let yPosition = 85;
-    const pageHeight = doc.internal.pageSize.height;
-    const margin = 20;
-    const lineHeight = 7;
-    
-    // Function to add text with page breaks
-    function addTextWithPageBreaks(text, startY, isQuestion = false) {
-      if (isQuestion) {
-        doc.setFont(undefined, 'bold');
-        doc.setFontSize(12);
-      } else {
-        doc.setFont(undefined, 'normal');
-        doc.setFontSize(11);
-      }
-      
-      const lines = doc.splitTextToSize(text, 170);
-      let currentY = startY;
-      
-      for (let i = 0; i < lines.length; i++) {
-        if (currentY > pageHeight - 30) {
-          doc.addPage();
-          currentY = 20;
-        }
-        doc.text(lines[i], margin, currentY);
-        currentY += lineHeight;
-      }
-      
-      return currentY + 5;
-    }
-    
-    // Add sections
-    if (responses.currentHabits.trim()) {
-      yPosition = addTextWithPageBreaks('1. Current Digital Habits Assessment:', yPosition, true);
-      yPosition = addTextWithPageBreaks(responses.currentHabits, yPosition);
-      yPosition += 5;
-    }
-    
-    if (responses.goalSetting.trim()) {
-      yPosition = addTextWithPageBreaks('2. Goal Setting:', yPosition, true);
-      yPosition = addTextWithPageBreaks(responses.goalSetting, yPosition);
-      yPosition += 5;
-    }
-    
-    if (responses.actionSteps.trim()) {
-      yPosition = addTextWithPageBreaks('3. Action Steps:', yPosition, true);
-      yPosition = addTextWithPageBreaks(responses.actionSteps, yPosition);
-      yPosition += 5;
-    }
-    
-    if (responses.accountability.trim()) {
-      yPosition = addTextWithPageBreaks('4. Accountability Plan:', yPosition, true);
-      yPosition = addTextWithPageBreaks(responses.accountability, yPosition);
-      yPosition += 5;
-    }
-    
-    if (responses.reflection.trim()) {
-      yPosition = addTextWithPageBreaks('5. Personal Reflection:', yPosition, true);
-      yPosition = addTextWithPageBreaks(responses.reflection, yPosition);
-    }
-    
-    // Save the PDF
-    doc.save('Digital_Wellbeing_Action_Plan.pdf');
-  };
-  
-  headerImg.onerror = function() {
-    console.error('Could not load header image, generating PDF without it');
-    
-    // Generate PDF without header image
-    doc.setFontSize(18);
-    doc.setFont(undefined, 'bold');
-    doc.text('Digital Well-being Action Plan', 20, 30);
-    
-    doc.setFontSize(12);
-    doc.setFont(undefined, 'normal');
-    const currentDate = new Date().toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
-    doc.text(`Generated on: ${currentDate}`, 20, 40);
-    
-    let yPosition = 55;
-    const pageHeight = doc.internal.pageSize.height;
-    const margin = 20;
-    const lineHeight = 7;
-    
-    // Function to add text with page breaks
-    function addTextWithPageBreaks(text, startY, isQuestion = false) {
-      if (isQuestion) {
-        doc.setFont(undefined, 'bold');
-        doc.setFontSize(12);
-      } else {
-        doc.setFont(undefined, 'normal');
-        doc.setFontSize(11);
-      }
-      
-      const lines = doc.splitTextToSize(text, 170);
-      let currentY = startY;
-      
-      for (let i = 0; i < lines.length; i++) {
-        if (currentY > pageHeight - 30) {
-          doc.addPage();
-          currentY = 20;
-        }
-        doc.text(lines[i], margin, currentY);
-        currentY += lineHeight;
-      }
-      
-      return currentY + 5;
-    }
-    
-    // Add sections
-    if (responses.currentHabits.trim()) {
-      yPosition = addTextWithPageBreaks('1. Current Digital Habits Assessment:', yPosition, true);
-      yPosition = addTextWithPageBreaks(responses.currentHabits, yPosition);
-      yPosition += 5;
-    }
-    
-    if (responses.goalSetting.trim()) {
-      yPosition = addTextWithPageBreaks('2. Goal Setting:', yPosition, true);
-      yPosition = addTextWithPageBreaks(responses.goalSetting, yPosition);
-      yPosition += 5;
-    }
-    
-    if (responses.actionSteps.trim()) {
-      yPosition = addTextWithPageBreaks('3. Action Steps:', yPosition, true);
-      yPosition = addTextWithPageBreaks(responses.actionSteps, yPosition);
-      yPosition += 5;
-    }
-    
-    if (responses.accountability.trim()) {
-      yPosition = addTextWithPageBreaks('4. Accountability Plan:', yPosition, true);
-      yPosition = addTextWithPageBreaks(responses.accountability, yPosition);
-      yPosition += 5;
-    }
-    
-    if (responses.reflection.trim()) {
-      yPosition = addTextWithPageBreaks('5. Personal Reflection:', yPosition, true);
-      yPosition = addTextWithPageBreaks(responses.reflection, yPosition);
-    }
-    
-    // Save the PDF
-    doc.save('Digital_Wellbeing_Action_Plan.pdf');
-  };
-  
-  headerImg.src = 'assets/images/pdf-header.jpg';
+  // Placeholder function for downloading action plan template
+  alert('Digital Well-being Action Plan template download would be implemented here');
 }
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </body>
 </html>
