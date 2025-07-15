@@ -3,18 +3,14 @@
 // Import Video.js library
 const videojs = window.videojs
 
+// Array global para almacenar todas las instancias de players
+const allPlayers = []
+
 // Función para pausar todos los otros videos excepto el actual
 function pauseOtherVideos(currentPlayer) {
-  // Obtener todos los elementos de video en la página
-  var videoElements = document.querySelectorAll("video.video-js")
-
-  videoElements.forEach((videoEl) => {
-    // Verificar si el elemento tiene un player de Video.js asociado
-    if (videoEl.player && videoEl.player !== currentPlayer) {
-      // Pausar el video si está reproduciéndose
-      if (!videoEl.player.paused()) {
-        videoEl.player.pause()
-      }
+  allPlayers.forEach((player) => {
+    if (player !== currentPlayer && !player.paused()) {
+      player.pause()
     }
   })
 }
@@ -63,8 +59,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       el.classList.add("vjs-initialized")
 
-      // Guardar referencia del player en el elemento para poder acceder después
-      el.player = player
+      // Agregar el player al array global
+      allPlayers.push(player)
 
       // Asegurar que el big play button esté visible
       player.ready(() => {
