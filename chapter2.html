@@ -115,7 +115,7 @@
   content: counter(tool-counter);
   position: absolute;
   top: 20px;
-  left: 20px;
+  left: 2rem; /* Changed from 0px to 2rem to align with content padding */
   background-color: var(--primary-color);
   color: white;
   width: 30px;
@@ -598,25 +598,37 @@
         <div class="tool-item">
           <h4><strong>Controlling Technology Usage with a Phone Drawer or Pouch</strong></h4>
           <p>The environment surrounding us directly affects our behaviors and habits. Just from having our phones in sight, we lose focus, and our cognitive availability worsens. Automatically, we tend to get distracted.</p>
-          <p class="tool-description"><strong>The Tool:</strong> Use a phone pouch or choose a drawer to leave your phone in while working or studying. This way, picking up your phone becomes an active and intentional decision, forcing you to think twice. This Tool will help you save time from distraction and commit to more meaningful work. It is a visual reminder to focus on what truly matters and escape the urge to become distracted.</p>
+          <p class="tool-description">
+  <i class="fas fa-mobile-alt tool-icon" aria-hidden="true"></i>
+  <span class="tool-text"><strong>The Tool:</strong> Use a phone pouch or choose a drawer to leave your phone in while working or studying. This way, picking up your phone becomes an active and intentional decision, forcing you to think twice. This Tool will help you save time from distraction and commit to more meaningful work. It is a visual reminder to focus on what truly matters and escape the urge to become distracted.</span>
+</p>
         </div>
 
         <div class="tool-item">
           <h4><strong>Changing your Devices Screen to Grayscale</strong></h4>
           <p>Designers conceive smartphones that optimize the user experience. Within that framework, colors play a major role in making the experience highly satisfying and addictive. Our brains are attracted to bright and shiny things, making colors play an important role in making you stick to your screens.</p>
-          <p class="tool-description"><strong>The Tool:</strong> For the next week, activate the grayscale mode on your phone. You will force your smartphone to display everything in shades of gray, blocking the visual elements that generate addiction. It will make your phone less engaging to use, encouraging a more meaningful use.</p>
+          <p class="tool-description">
+  <i class="fas fa-palette tool-icon" aria-hidden="true"></i>
+  <span class="tool-text"><strong>The Tool:</strong> For the next week, activate the grayscale mode on your phone. You will force your smartphone to display everything in shades of gray, blocking the visual elements that generate addiction. It will make your phone less engaging to use, encouraging a more meaningful use.</span>
+</p>
         </div>
 
         <div class="tool-item">
           <h4><strong>Turning off Phone Notifications</strong></h4>
           <p>Notifications' job is to grab your attention and inform you of incoming information. Their core purpose is to catch your attention, independent of what you are doing. However, knowing everything at all times comes with a cost. Notifications make you lose focus, get distracted, and generate addiction.</p>
-          <p class="tool-description"><strong>The Tool:</strong> Open your phone settings and turn off your notifications for the week. You will see how you gain control over your phone instead of viceversa. It will help decrease your stress and anxiety levels, the feeling of being overwhelmed, and increase your productivity and focus. You will feel more calm, in control, present, and conscious about your Digital Habits.</p>
+          <p class="tool-description">
+  <i class="fas fa-bell-slash tool-icon" aria-hidden="true"></i>
+  <span class="tool-text"><strong>The Tool:</strong> Open your phone settings and turn off your notifications for the week. You will see how you gain control over your phone instead of viceversa. It will help decrease your stress and anxiety levels, the feeling of being overwhelmed, and increase your productivity and focus. You will feel more calm, in control, present, and conscious about your Digital Habits.</span>
+</p>
         </div>
 
         <div class="tool-item">
           <h4><strong>Establishing No-Phone Zones</strong></h4>
           <p>It is our new reality - our phones have become part of our routines and are one of our major daily time-consumers. Being constantly online can increase stress, anxiety, loneliness, and sleep deprivation. Using your devices for insignificant matters decreases our connection to ourselves, others, the world, and reality.</p>
-          <p class="tool-description"><strong>The Tool:</strong> Choose places in your home or office to unplug from technology. You can choose a bedroom, kitchen, lunch area, or terrace. Don't take your devices there. Allow yourself to reconnect with and be present in the activities and world surrounding you.</p>
+          <p class="tool-description">
+  <i class="fas fa-ban tool-icon" aria-hidden="true"></i>
+  <span class="tool-text"><strong>The Tool:</strong> Choose places in your home or office to unplug from technology. You can choose a bedroom, kitchen, lunch area, or terrace. Don't take your devices there. Allow yourself to reconnect with and be present in the activities and world surrounding you.</span>
+</p>
         </div>
       </div>
     </section>
@@ -996,8 +1008,7 @@
             <strong>Social Media Hygiene</strong> – Practices for maintaining a healthy relationship with social platforms, including curating content and setting boundaries.
           </div>
         </div>
-        <div id="glossary-section-t" class="glossary-section">
-          <h3 class="glossary-letter-header">T</h3>
+        <div id="glossary-section-t" class="glossary-letter-header">T</h3>
           <div class="glossary-term">
             <strong>Tech-Life Balance</strong> – The intentional effort to harmonize technology use with overall well-being.
           </div>
@@ -1239,91 +1250,338 @@ async function downloadAssessmentResponse() {
   if (responses.reflection) {
     const splitReflection = doc.splitTextToSize(responses.reflection, 170);
     
-    // Handle long reflections that might span multiple pages
-    let remainingLines = [...splitReflection];
-    
-    while (remainingLines.length > 0) {
-      // Calculate how many lines can fit on current page
-      const availableSpace = 280 - yPosition;
-      const linesPerPage = Math.floor(availableSpace / 6);
-      
-      if (linesPerPage <= 0) {
-        doc.addPage();
-        yPosition = 20;
-        continue;
-      }
-      
-      // Take lines that fit on current page
-      const linesToAdd = remainingLines.splice(0, linesPerPage);
-      doc.text(linesToAdd, 20, yPosition);
-      yPosition += linesToAdd.length * 6;
-      
-      // If there are more lines, add a new page
-      if (remainingLines.length > 0) {
-        doc.addPage();
-        yPosition = 20;
-      }
-    }
-  } else {
-    // Check if "No reflection provided" fits
-    if (yPosition > 270) {
+    // Check if reflection fits on current page, if not add new page
+    if (yPosition + (splitReflection.length * 6) > 270) {
       doc.addPage();
       yPosition = 20;
     }
-    doc.setFont("helvetica", "italic");
+    
+    doc.text(splitReflection, 20, yPosition);
+  } else {
     doc.text("No reflection provided", 20, yPosition);
   }
   
   // Save the PDF
-  doc.save('Chapter2_Assessment_Response.pdf');
+  doc.save('Digital_Wellbeing_Chapter2_Assessment.pdf');
 }
 
-// Add event listeners for auto-saving responses
+async function downloadDigitalHabitsAuditTemplate() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  
+  // Add header image and get the Y position after it
+  const startY = await addPDFHeader(doc);
+  
+  // Set font
+  doc.setFont("helvetica");
+  
+  // Title
+  doc.setFontSize(16);
+  doc.setFont("helvetica", "bold");
+  doc.text("Digital Habits Audit - Activity Template", 20, startY + 10);
+  
+  // Date
+  doc.setFontSize(12);
+  doc.setFont("helvetica", "normal");
+  doc.text(`Date: ${new Date().toLocaleDateString()}`, 20, startY + 25);
+  
+  let yPosition = startY + 45;
+  
+  // Instructions
+  doc.setFontSize(11);
+  doc.setFont("helvetica", "normal");
+  const instructions = "Let's take a closer look at your current digital habits. This Digital Habits Audit will help you reflect on how much time you spend on your phone and which apps you use most often.";
+  const splitInstructions = doc.splitTextToSize(instructions, 170);
+  doc.text(splitInstructions, 20, yPosition);
+  yPosition += splitInstructions.length * 6 + 15;
+  
+  // Questions
+  const questions = [
+    "1. How much time do you spend on your phone daily? (Check your screen time settings)",
+    "2. What are your top 5 most-used apps? (List them in order)",
+    "3. How many times do you pick up your phone per day?",
+    "4. What triggers you to check your phone most often?",
+    "5. Which apps do you check first thing in the morning?",
+    "6. Which apps do you use right before bed?",
+    "7. How do you feel after spending time on your most-used apps?",
+    "8. Which digital habits would you like to change?"
+  ];
+  
+  questions.forEach(question => {
+    // Check if we need a new page
+    if (yPosition > 250) {
+      doc.addPage();
+      yPosition = 20;
+    }
+    
+    doc.setFont("helvetica", "bold");
+    doc.text(question, 20, yPosition);
+    yPosition += 10;
+    
+    // Add lines for answers
+    doc.setFont("helvetica", "normal");
+    for (let i = 0; i < 3; i++) {
+      doc.line(20, yPosition + 5, 190, yPosition + 5);
+      yPosition += 10;
+    }
+    yPosition += 5;
+  });
+  
+  // Save the PDF
+  doc.save('Digital_Habits_Audit_Template.pdf');
+}
+
+async function downloadDigitalTriggersTemplate() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  
+  // Add header image and get the Y position after it
+  const startY = await addPDFHeader(doc);
+  
+  // Set font
+  doc.setFont("helvetica");
+  
+  // Title
+  doc.setFontSize(16);
+  doc.setFont("helvetica", "bold");
+  doc.text("Understanding Your Environment and Digital Triggers - Template", 20, startY + 10);
+  
+  // Date
+  doc.setFontSize(12);
+  doc.setFont("helvetica", "normal");
+  doc.text(`Date: ${new Date().toLocaleDateString()}`, 20, startY + 25);
+  
+  let yPosition = startY + 45;
+  
+  // Instructions
+  doc.setFontSize(11);
+  doc.setFont("helvetica", "normal");
+  const instructions = "Take a full inventory of your digital environment. This activity will help you identify potential distractions and areas for improvement across four key areas.";
+  const splitInstructions = doc.splitTextToSize(instructions, 170);
+  doc.text(splitInstructions, 20, yPosition);
+  yPosition += splitInstructions.length * 6 + 15;
+  
+  const sections = [
+    {
+      title: "1. YOUR PHONE",
+      questions: [
+        "How many apps do you have on your home screen?",
+        "Which apps send you the most notifications?",
+        "What's your phone's current notification settings?",
+        "Where do you usually keep your phone during work/study?"
+      ]
+    },
+    {
+      title: "2. YOUR COMPUTER",
+      questions: [
+        "How many browser tabs do you typically have open?",
+        "What websites do you visit most during work breaks?",
+        "Which computer notifications distract you most?",
+        "How organized is your digital desktop?"
+      ]
+    },
+    {
+      title: "3. YOUR WORKSPACE",
+      questions: [
+        "What digital devices are visible in your workspace?",
+        "How does your physical environment affect your digital habits?",
+        "What environmental cues trigger device checking?",
+        "How could you redesign your space to support focus?"
+      ]
+    },
+    {
+      title: "4. YOUR SOCIAL MEDIA HABITS",
+      questions: [
+        "Which social media platforms do you use most?",
+        "When during the day do you check social media most?",
+        "How do you feel before and after social media use?",
+        "What specific content or accounts affect your mood most?"
+      ]
+    }
+  ];
+  
+  sections.forEach(section => {
+    // Check if we need a new page for section title
+    if (yPosition > 260) {
+      doc.addPage();
+      yPosition = 20;
+    }
+    
+    doc.setFontSize(14);
+    doc.setFont("helvetica", "bold");
+    doc.text(section.title, 20, yPosition);
+    yPosition += 15;
+    
+    section.questions.forEach(question => {
+      // Check if we need a new page
+      if (yPosition > 240) {
+        doc.addPage();
+        yPosition = 20;
+      }
+      
+      doc.setFontSize(11);
+      doc.setFont("helvetica", "normal");
+      doc.text(question, 20, yPosition);
+      yPosition += 10;
+      
+      // Add lines for answers
+      for (let i = 0; i < 2; i++) {
+        doc.line(20, yPosition + 3, 190, yPosition + 3);
+        yPosition += 8;
+      }
+      yPosition += 5;
+    });
+    
+    yPosition += 10;
+  });
+  
+  // Save the PDF
+  doc.save('Digital_Triggers_Environment_Template.pdf');
+}
+
+async function downloadToolsTemplate() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  
+  // Add header image and get the Y position after it
+  const startY = await addPDFHeader(doc);
+  
+  // Set font
+  doc.setFont("helvetica");
+  
+  // Title
+  doc.setFontSize(16);
+  doc.setFont("helvetica", "bold");
+  doc.text("Tools and Practices for Healthy Digital Habits - Template", 20, startY + 10);
+  
+  // Date
+  doc.setFontSize(12);
+  doc.setFont("helvetica", "normal");
+  doc.text(`Date: ${new Date().toLocaleDateString()}`, 20, startY + 25);
+  
+  let yPosition = startY + 45;
+  
+  // Instructions
+  doc.setFontSize(11);
+  doc.setFont("helvetica", "normal");
+  const instructions = "Choose at least two tools to try this week. Reflect on your choices and track your daily progress.";
+  const splitInstructions = doc.splitTextToSize(instructions, 170);
+  doc.text(splitInstructions, 20, yPosition);
+  yPosition += splitInstructions.length * 6 + 15;
+  
+  // Tool selection section
+  doc.setFontSize(14);
+  doc.setFont("helvetica", "bold");
+  doc.text("TOOL SELECTION", 20, yPosition);
+  yPosition += 15;
+  
+  const tools = [
+    "☐ Defining Specific Email and Social Media Checking Times",
+    "☐ Controlling Technology Usage with a Phone Drawer or Pouch",
+    "☐ Changing your Device Screen to Grayscale",
+    "☐ Turning off Phone Notifications",
+    "☐ Establishing No-Phone Zones"
+  ];
+  
+  doc.setFontSize(11);
+  doc.setFont("helvetica", "normal");
+  tools.forEach(tool => {
+    if (yPosition > 270) {
+      doc.addPage();
+      yPosition = 20;
+    }
+    doc.text(tool, 20, yPosition);
+    yPosition += 12;
+  });
+  
+  yPosition += 10;
+  
+  // Reflection section
+  if (yPosition > 250) {
+    doc.addPage();
+    yPosition = 20;
+  }
+  
+  doc.setFontSize(14);
+  doc.setFont("helvetica", "bold");
+  doc.text("REFLECTION", 20, yPosition);
+  yPosition += 15;
+  
+  doc.setFontSize(11);
+  doc.setFont("helvetica", "normal");
+  doc.text("Why did you choose these specific tools?", 20, yPosition);
+  yPosition += 10;
+  
+  // Add lines for reflection
+  for (let i = 0; i < 4; i++) {
+    doc.line(20, yPosition + 5, 190, yPosition + 5);
+    yPosition += 10;
+  }
+  
+  yPosition += 15;
+  
+  // Daily tracker section
+  if (yPosition > 200) {
+    doc.addPage();
+    yPosition = 20;
+  }
+  
+  doc.setFontSize(14);
+  doc.setFont("helvetica", "bold");
+  doc.text("DAILY TRACKER", 20, yPosition);
+  yPosition += 15;
+  
+  doc.setFontSize(11);
+  doc.setFont("helvetica", "normal");
+  doc.text("Mark each day you successfully used each tool:", 20, yPosition);
+  yPosition += 15;
+  
+  // Create tracker table
+  const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+  
+  // Tool 1 tracker
+  doc.text("Tool 1: ________________________", 20, yPosition);
+  yPosition += 10;
+  days.forEach((day, index) => {
+    doc.text(`${day}: ☐`, 20 + (index * 25), yPosition);
+  });
+  yPosition += 20;
+  
+  // Tool 2 tracker
+  doc.text("Tool 2: ________________________", 20, yPosition);
+  yPosition += 10;
+  days.forEach((day, index) => {
+    doc.text(`${day}: ☐`, 20 + (index * 25), yPosition);
+  });
+  yPosition += 20;
+  
+  // Tool 3 tracker (optional)
+  doc.text("Tool 3: ________________________", 20, yPosition);
+  yPosition += 10;
+  days.forEach((day, index) => {
+    doc.text(`${day}: ☐`, 20 + (index * 25), yPosition);
+  });
+  
+  // Save the PDF
+  doc.save('Digital_Habits_Tools_Template.pdf');
+}
+
+// Add event listeners for form changes to save to session
 document.addEventListener('DOMContentLoaded', function() {
-  // Load saved responses when page loads
+  // Load saved responses
   loadResponseFromSession();
   
-  //
-
-  const radioButtons = document.querySelectorAll('input[type="radio"][name^="question"]');
-  const reflectionTextarea = document.getElementById('reflection-response');
-
+  // Add event listeners to save responses as user types/selects
+  const radioButtons = document.querySelectorAll('input[type="radio"]');
   radioButtons.forEach(radio => {
     radio.addEventListener('change', saveResponseToSession);
   });
-
-  reflectionTextarea.addEventListener('input', saveResponseToSession);
+  
+  const reflectionTextarea = document.getElementById('reflection-response');
+  if (reflectionTextarea) {
+    reflectionTextarea.addEventListener('input', saveResponseToSession);
+  }
 });
-
-function downloadDigitalHabitsAuditTemplate() {
-  // Trigger the download of the Digital Habits Audit template (e.g., a .docx file)
-  const link = document.createElement('a');
-  link.href = 'assets/templates/digital-habits-audit-template.docx'; // Replace with the actual path to your template file
-  link.download = 'Digital_Habits_Audit_Template.docx'; // Set the desired filename
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-}
-
-function downloadDigitalTriggersTemplate() {
-  // Trigger the download of the Digital Triggers template (e.g., a .docx file)
-  const link = document.createElement('a');
-  link.href = 'assets/templates/digital-triggers-template.docx'; // Replace with the actual path to your template file
-  link.download = 'Digital_Triggers_Template.docx'; // Set the desired filename
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-}
-
-function downloadToolsTemplate() {
-  // Trigger the download of the Tools template (e.g., a .docx file)
-  const link = document.createElement('a');
-  link.href = 'assets/templates/tools-template.docx'; // Replace with the actual path to your template file
-  link.download = 'Tools_Template.docx'; // Set the desired filename
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-}
-</script>
+  </script>
 </body>
 </html>
