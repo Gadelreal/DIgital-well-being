@@ -99,26 +99,6 @@
   padding: 2rem;
   margin: 2rem 0;
   padding-bottom: 3rem; /* Add extra bottom padding */
-  pointer-events: none !important;
-  cursor: default !important;
-  user-select: none;
-}
-
-.values-activity-container:hover {
-  background-color: #f9f9f9 !important;
-  cursor: default !important;
-}
-
-.values-activity-container:active {
-  background-color: #f9f9f9 !important;
-}
-
-.values-activity-container:focus {
-  outline: none !important;
-}
-
-.values-activity-container * {
-  pointer-events: auto !important;
 }
 
 .values-activity-container h2 {
@@ -167,26 +147,6 @@
   padding: 2rem;
   margin: 2rem 0;
   padding-bottom: 3rem;
-  pointer-events: none !important;
-  cursor: default !important;
-  user-select: none;
-}
-
-.digital-goals-activity-container:hover {
-  background-color: #f9f9f9 !important;
-  cursor: default !important;
-}
-
-.digital-goals-activity-container:active {
-  background-color: #f9f9f9 !important;
-}
-
-.digital-goals-activity-container:focus {
-  outline: none !important;
-}
-
-.digital-goals-activity-container * {
-  pointer-events: auto !important;
 }
 
 .digital-goals-activity-container h2 {
@@ -1316,16 +1276,16 @@
         <div id="glossary-section-t" class="glossary-section">
           <h3 class="glossary-letter-header">T</h3>
           <div class="glossary-term">
-            <strong>Technology Boundaries</strong> – Limits set around digital device use to protect personal time, relationships, and well-being.
+            <strong>Technology Addiction</strong> – A behavioral pattern characterized by excessive and compulsive use of digital devices, leading to negative consequences.
           </div>
           <div class="glossary-term">
-            <strong>Tech-Life Balance</strong> – The equilibrium between digital engagement and offline activities that supports overall well-being.
+            <strong>Time Management</strong> – Strategies to balance digital activities with other important aspects of life, such as work, relationships, and self-care.
           </div>
         </div>
         <div id="glossary-section-w" class="glossary-section">
           <h3 class="glossary-letter-header">W</h3>
           <div class="glossary-term">
-            <strong>Well-being Theory</strong> – A framework that considers physical, mental, emotional, and spiritual aspects of health in relation to digital habits.
+            <strong>Well-being Theory</strong> – A framework that encompasses various dimensions of well-being, including physical, mental, emotional, social, and digital aspects.
           </div>
         </div>
       </div>
@@ -1333,440 +1293,494 @@
   </div>
 </div>
 
-<!-- VideoJS JavaScript -->
-<script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
-<script src="js/video-player.js"></script>
-<script src="js/main.js"></script>
-<script src="js/reflections.js"></script>
-<script src="js/quiz.js"></script>
-
-<script>
-// Función para descargar la plantilla de valores centrales
-function downloadCoreValuesTemplate() {
-  const content = `IDENTIFYING YOUR CORE VALUES - REFLECTION TEMPLATE
+  <!-- VideoJS JavaScript -->
+  <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
+  <script src="js/video-player.js"></script>
+  <script src="js/key-points.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/reflections.js"></script>
+  <script src="js/logo-checker.js"></script>
+  <script>
+    // Función para descargar el template de valores centrales
+    function downloadCoreValuesTemplate() {
+      const content = `IDENTIFYING YOUR CORE VALUES - REFLECTION TEMPLATE
 
 Instructions: Take your time to reflect on each question below. Write down your thoughts and be honest with yourself about what truly matters to you.
 
 1. PERSONAL VALUES REFLECTION
 
-a) What are the most important principles that guide your life decisions?
-   (Write your response here)
+What are the most important principles that guide your life?
+_________________________________________________________________
+_________________________________________________________________
+_________________________________________________________________
 
-b) When you think about your best self, what qualities do you embody?
-   (Write your response here)
+What values did you learn from your family, culture, or community that still resonate with you today?
+_________________________________________________________________
+_________________________________________________________________
+_________________________________________________________________
 
-c) What values were important to your family growing up? Which of these do you still hold today?
-   (Write your response here)
+Think of a time when you felt most proud of yourself. What values were you honoring in that moment?
+_________________________________________________________________
+_________________________________________________________________
+_________________________________________________________________
 
-d) Think of someone you deeply admire. What values do they represent?
-   (Write your response here)
-
-e) What causes or issues do you feel passionate about? What values do they reflect?
-   (Write your response here)
+What values do you want to be remembered for?
+_________________________________________________________________
+_________________________________________________________________
+_________________________________________________________________
 
 2. VALUES IN ACTION
 
-a) Describe a time when you felt most proud of yourself. What values were you expressing?
-   (Write your response here)
+Describe a situation where you had to make a difficult decision. What values guided your choice?
+_________________________________________________________________
+_________________________________________________________________
+_________________________________________________________________
 
-b) Think of a difficult decision you made that you're glad you stuck with. What values guided that decision?
-   (Write your response here)
+When do you feel most authentic and true to yourself? What values are you expressing?
+_________________________________________________________________
+_________________________________________________________________
+_________________________________________________________________
 
-c) When do you feel most authentic and true to yourself? What values are present in those moments?
-   (Write your response here)
+What causes or issues do you care deeply about? What values do they reflect?
+_________________________________________________________________
+_________________________________________________________________
+_________________________________________________________________
 
-3. VALUES AND DIGITAL LIFE
+3. DIGITAL HABITS AND VALUES ALIGNMENT
 
-a) How do your current digital habits align with or conflict with your core values?
-   (Write your response here)
+How do your current digital habits support or conflict with your core values?
+_________________________________________________________________
+_________________________________________________________________
+_________________________________________________________________
 
-b) What would it look like to live your digital life in complete alignment with your values?
-   (Write your response here)
-
-c) What is one small change you could make to your digital habits that would better reflect your values?
-   (Write your response here)
+What changes could you make to better align your technology use with your values?
+_________________________________________________________________
+_________________________________________________________________
+_________________________________________________________________
 
 4. TOP VALUES IDENTIFICATION
 
-After reflecting on the questions above, review Brené Brown's list of values (https://brenebrown.com/resources/dare-to-lead-list-of-values/).
+After reviewing Brené Brown's list of values, write down the 10 that resonate most with you:
 
-a) List 10 values that resonate most strongly with you:
-   1. ________________
-   2. ________________
-   3. ________________
-   4. ________________
-   5. ________________
-   6. ________________
-   7. ________________
-   8. ________________
-   9. ________________
-   10. _______________
+1. ________________________    6. ________________________
+2. ________________________    7. ________________________
+3. ________________________    8. ________________________
+4. ________________________    9. ________________________
+5. ________________________    10. _______________________
 
-b) Now narrow these down to your TOP 5 core values:
-   1. ________________
-   2. ________________
-   3. ________________
-   4. ________________
-   5. ________________
+Now, narrow these down to your TOP 5 core values:
 
-c) For each of your top 5 values, write a brief explanation of why it matters to you:
+1. ________________________
+2. ________________________
+3. ________________________
+4. ________________________
+5. ________________________
 
-   Value 1: ________________
-   Why it matters: (Write your response here)
+5. REFLECTION ON YOUR TOP 5 VALUES
 
-   Value 2: ________________
-   Why it matters: (Write your response here)
+For each of your top 5 values, write a brief explanation of why it matters to you and how your digital habits can support it:
 
-   Value 3: ________________
-   Why it matters: (Write your response here)
+Value 1: ________________________
+Why it matters: ___________________________________________________
+How digital habits can support it: ________________________________
+_________________________________________________________________
 
-   Value 4: ________________
-   Why it matters: (Write your response here)
+Value 2: ________________________
+Why it matters: ___________________________________________________
+How digital habits can support it: ________________________________
+_________________________________________________________________
 
-   Value 5: ________________
-   Why it matters: (Write your response here)
+Value 3: ________________________
+Why it matters: ___________________________________________________
+How digital habits can support it: ________________________________
+_________________________________________________________________
 
-5. COMMITMENT TO VALUES-BASED LIVING
+Value 4: ________________________
+Why it matters: ___________________________________________________
+How digital habits can support it: ________________________________
+_________________________________________________________________
 
-Write a brief personal statement about how you want to honor these values in your daily life, including your digital habits:
+Value 5: ________________________
+Why it matters: ___________________________________________________
+How digital habits can support it: ________________________________
+_________________________________________________________________
 
-(Write your response here)
+FINAL REFLECTION:
+How will you use these core values to guide your digital well-being journey?
+_________________________________________________________________
+_________________________________________________________________
+_________________________________________________________________
+_________________________________________________________________
 
 ---
+Keep this template as a reference throughout your digital well-being journey. Return to it whenever you need to reconnect with what truly matters to you.`;
 
-Remember: This is a living document. Your values may evolve over time, and that's perfectly normal. Revisit this reflection periodically to ensure your actions and habits continue to align with what matters most to you.
+      const blob = new Blob([content], { type: 'text/plain' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'Core_Values_Reflection_Template.txt';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    }
 
-Date completed: ________________
-Next review date: ________________`;
+    // Función para descargar el template de metas digitales
+    function downloadDigitalGoalsTemplate() {
+      const content = `DIGITAL GOALS SETTING TEMPLATE
 
-  const blob = new Blob([content], { type: 'text/plain' });
-  const url = window.URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'Core_Values_Reflection_Template.txt';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  window.URL.revokeObjectURL(url);
-}
-
-// Función para descargar la plantilla de metas digitales
-function downloadDigitalGoalsTemplate() {
-  const content = `DIGITAL GOALS SETTING TEMPLATE
-
-Instructions: Use this template to set meaningful digital goals that align with your values and support your well-being. Follow the SMART goals framework (Specific, Measurable, Achievable, Relevant, Time-bound).
+Instructions: Use this template to set meaningful digital goals that align with your values and motivations. Remember to use the SMART framework (Specific, Measurable, Achievable, Relevant, Time-bound).
 
 1. CURRENT DIGITAL HABITS ASSESSMENT
 
-a) What are your current digital habits that you'd like to change or improve?
-   (Write your response here)
+What are your current digital habits that you'd like to change or improve?
+_________________________________________________________________
+_________________________________________________________________
+_________________________________________________________________
 
-b) How do these habits currently impact your well-being (positively or negatively)?
-   (Write your response here)
+Which digital behaviors are supporting your well-being?
+_________________________________________________________________
+_________________________________________________________________
+_________________________________________________________________
 
-c) Which of your core values do these habits support or conflict with?
-   (Write your response here)
+Which digital behaviors are detracting from your well-being?
+_________________________________________________________________
+_________________________________________________________________
+_________________________________________________________________
 
-2. DIGITAL GOALS SETTING
+2. VALUES AND MOTIVATION CONNECTION
 
-Goal #1:
+How do your core values relate to your desired digital changes?
+_________________________________________________________________
+_________________________________________________________________
+_________________________________________________________________
+
+What motivates you most to improve your digital well-being? (Consider autonomy, competence, and relatedness)
+_________________________________________________________________
+_________________________________________________________________
+_________________________________________________________________
+
+3. SMART DIGITAL GOALS
+
+Goal 1:
 Specific: What exactly do you want to achieve?
-(Write your response here)
+_________________________________________________________________
 
-Measurable: How will you measure progress?
-(Write your response here)
+Measurable: How will you track progress?
+_________________________________________________________________
 
-Achievable: Is this goal realistic for you right now?
-(Write your response here)
+Achievable: Is this goal realistic for you?
+_________________________________________________________________
 
-Relevant: How does this goal align with your values and well-being?
-(Write your response here)
+Relevant: How does this align with your values and motivations?
+_________________________________________________________________
 
-Time-bound: When do you want to achieve this goal?
-(Write your response here)
+Time-bound: What's your timeline?
+_________________________________________________________________
 
-Complete SMART Goal Statement:
-(Write your complete goal here)
+SMART Goal Statement:
+_________________________________________________________________
+_________________________________________________________________
 
-Goal #2:
+Goal 2:
 Specific: What exactly do you want to achieve?
-(Write your response here)
+_________________________________________________________________
 
-Measurable: How will you measure progress?
-(Write your response here)
+Measurable: How will you track progress?
+_________________________________________________________________
 
-Achievable: Is this goal realistic for you right now?
-(Write your response here)
+Achievable: Is this goal realistic for you?
+_________________________________________________________________
 
-Relevant: How does this goal align with your values and well-being?
-(Write your response here)
+Relevant: How does this align with your values and motivations?
+_________________________________________________________________
 
-Time-bound: When do you want to achieve this goal?
-(Write your response here)
+Time-bound: What's your timeline?
+_________________________________________________________________
 
-Complete SMART Goal Statement:
-(Write your complete goal here)
+SMART Goal Statement:
+_________________________________________________________________
+_________________________________________________________________
 
-Goal #3:
+Goal 3:
 Specific: What exactly do you want to achieve?
-(Write your response here)
+_________________________________________________________________
 
-Measurable: How will you measure progress?
-(Write your response here)
+Measurable: How will you track progress?
+_________________________________________________________________
 
-Achievable: Is this goal realistic for you right now?
-(Write your response here)
+Achievable: Is this goal realistic for you?
+_________________________________________________________________
 
-Relevant: How does this goal align with your values and well-being?
-(Write your response here)
+Relevant: How does this align with your values and motivations?
+_________________________________________________________________
 
-Time-bound: When do you want to achieve this goal?
-(Write your response here)
+Time-bound: What's your timeline?
+_________________________________________________________________
 
-Complete SMART Goal Statement:
-(Write your complete goal here)
+SMART Goal Statement:
+_________________________________________________________________
+_________________________________________________________________
 
-3. ACTION PLANNING
+4. ACTION PLANNING
 
-For each goal, identify specific actions you'll take:
+What specific steps will you take to achieve Goal 1?
+Step 1: ________________________________________________________
+Step 2: ________________________________________________________
+Step 3: ________________________________________________________
 
-Goal #1 Action Steps:
-- Step 1: (Write your response here)
-- Step 2: (Write your response here)
-- Step 3: (Write your response here)
+What potential obstacles might you face, and how will you overcome them?
+Obstacle: _____________________________________________________
+Solution: _____________________________________________________
 
-Goal #2 Action Steps:
-- Step 1: (Write your response here)
-- Step 2: (Write your response here)
-- Step 3: (Write your response here)
+Obstacle: _____________________________________________________
+Solution: _____________________________________________________
 
-Goal #3 Action Steps:
-- Step 1: (Write your response here)
-- Step 2: (Write your response here)
-- Step 3: (Write your response here)
-
-4. POTENTIAL CHALLENGES AND SOLUTIONS
-
-What obstacles might you face in achieving these goals?
-(Write your response here)
-
-How will you overcome these challenges?
-(Write your response here)
+5. SUPPORT AND ACCOUNTABILITY
 
 Who can support you in achieving these goals?
-(Write your response here)
+_________________________________________________________________
 
-5. PROGRESS TRACKING
+How will you track your progress?
+_________________________________________________________________
 
-How will you track your progress weekly?
-(Write your response here)
+How will you celebrate your successes?
+_________________________________________________________________
 
-When will you review and adjust your goals if needed?
-(Write your response here)
+6. REFLECTION AND ADJUSTMENT
 
-6. MOTIVATION REMINDER
+How often will you review and adjust your goals?
+_________________________________________________________________
 
-Why are these goals important to you?
-(Write your response here)
+What will you do if you don't meet a goal by the deadline?
+_________________________________________________________________
 
-How will achieving these goals improve your well-being?
-(Write your response here)
+COMMITMENT STATEMENT:
+I commit to working toward these digital well-being goals because they align with my values and will help me live more intentionally. I understand that change takes time and I will be patient and kind with myself throughout this journey.
 
----
-
-Remember: Goals are meant to serve you, not stress you. Be flexible and adjust them as needed. Celebrate small wins along the way!
-
-Date created: ________________
-First review date: ________________`;
-
-  const blob = new Blob([content], { type: 'text/plain' });
-  const url = window.URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'Digital_Goals_Template.txt';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  window.URL.revokeObjectURL(url);
-}
-
-// Función para descargar la plantilla de fortalezas de carácter
-function downloadCharacterStrengthsTemplate() {
-  const content = `CHARACTER STRENGTHS FOR DIGITAL WELL-BEING TEMPLATE
-
-Instructions: Complete the VIA Character Strengths survey first, then use this template to reflect on how your strengths can support your digital well-being journey.
-
-1. YOUR VIA CHARACTER STRENGTHS RESULTS
-
-After completing the survey at https://www.viacharacter.org/survey/account/register, list your top 5 character strengths:
-
-1. ________________
-2. ________________
-3. ________________
-4. ________________
-5. ________________
-
-2. UNDERSTANDING YOUR STRENGTHS
-
-For each of your top 5 strengths, write a brief description of what it means to you:
-
-Strength #1: ________________
-What this means to me: (Write your response here)
-
-Strength #2: ________________
-What this means to me: (Write your response here)
-
-Strength #3: ________________
-What this means to me: (Write your response here)
-
-Strength #4: ________________
-What this means to me: (Write your response here)
-
-Strength #5: ________________
-What this means to me: (Write your response here)
-
-3. APPLYING STRENGTHS TO DIGITAL WELL-BEING
-
-For each strength, identify how you can use it to support your digital goals:
-
-Strength #1: ________________
-How I can use this for digital well-being:
-(Write your response here)
-
-Specific example or practice:
-(Write your response here)
-
-Strength #2: ________________
-How I can use this for digital well-being:
-(Write your response here)
-
-Specific example or practice:
-(Write your response here)
-
-Strength #3: ________________
-How I can use this for digital well-being:
-(Write your response here)
-
-Specific example or practice:
-(Write your response here)
-
-Strength #4: ________________
-How I can use this for digital well-being:
-(Write your response here)
-
-Specific example or practice:
-(Write your response here)
-
-Strength #5: ________________
-How I can use this for digital well-being:
-(Write your response here)
-
-Specific example or practice:
-(Write your response here)
-
-4. STRENGTH-BASED STRATEGIES
-
-Based on your strengths, what are three specific strategies you can use to achieve your digital goals?
-
-Strategy 1: (Write your response here)
-
-Strategy 2: (Write your response here)
-
-Strategy 3: (Write your response here)
-
-5. OVERCOMING CHALLENGES WITH STRENGTHS
-
-Think about potential obstacles in your digital well-being journey. How can your strengths help you overcome them?
-
-Potential challenge: (Write your response here)
-How my strengths can help: (Write your response here)
-
-Potential challenge: (Write your response here)
-How my strengths can help: (Write your response here)
-
-Potential challenge: (Write your response here)
-How my strengths can help: (Write your response here)
-
-6. BUILDING ON STRENGTHS
-
-Which of your strengths do you want to develop further to support your digital well-being?
-(Write your response here)
-
-How will you practice and develop this strength?
-(Write your response here)
-
-7. SELF-COMPASSION AND GROWTH
-
-How can you use your strengths to practice self-kindness when facing setbacks in your digital well-being journey?
-(Write your response here)
-
-What would it look like to approach your digital goals with curiosity and self-compassion rather than judgment?
-(Write your response here)
-
-8. REFLECTION AND COMMITMENT
-
-How do your character strengths align with your core values?
-(Write your response here)
-
-What is one commitment you want to make about using your strengths for digital well-being?
-(Write your response here)
+Signature: _________________________ Date: _________________
 
 ---
+Review this template regularly and adjust your goals as needed. Remember, digital well-being is a journey, not a destination.`;
 
-Remember: Your strengths are your superpowers. Use them to create sustainable, authentic changes in your digital habits. Be patient and kind with yourself throughout this journey.
+      const blob = new Blob([content], { type: 'text/plain' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'Digital_Goals_Setting_Template.txt';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    }
 
-Date completed: ________________
-Next review date: ________________`;
+    // Función para descargar el template de fortalezas de carácter
+    function downloadCharacterStrengthsTemplate() {
+      const content = `CHARACTER STRENGTHS FOR DIGITAL WELL-BEING TEMPLATE
 
-  const blob = new Blob([content], { type: 'text/plain' });
-  const url = window.URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'Character_Strengths_Digital_Wellbeing_Template.txt';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  window.URL.revokeObjectURL(url);
-}
+Instructions: After completing the VIA Character Strengths survey, use this template to explore how your top strengths can support your digital well-being journey.
 
-// Accordion functionality
-document.addEventListener('DOMContentLoaded', function() {
-  const accordionTriggers = document.querySelectorAll('.accordion-trigger');
-  
-  accordionTriggers.forEach(trigger => {
-    trigger.addEventListener('click', function() {
-      const panel = this.parentElement.nextElementSibling;
-      const icon = this.querySelector('.accordion-icon');
-      const isExpanded = this.getAttribute('aria-expanded') === 'true';
+1. YOUR VIA SURVEY RESULTS
+
+List your top 5 character strengths from the VIA survey:
+
+1. ________________________
+2. ________________________
+3. ________________________
+4. ________________________
+5. ________________________
+
+2. STRENGTHS REFLECTION
+
+For each of your top 5 strengths, reflect on the following:
+
+STRENGTH 1: ________________________
+
+How does this strength show up in your daily life?
+_________________________________________________________________
+_________________________________________________________________
+
+How could you use this strength to improve your digital habits?
+_________________________________________________________________
+_________________________________________________________________
+
+Specific example of applying this strength to digital well-being:
+_________________________________________________________________
+_________________________________________________________________
+
+STRENGTH 2: ________________________
+
+How does this strength show up in your daily life?
+_________________________________________________________________
+_________________________________________________________________
+
+How could you use this strength to improve your digital habits?
+_________________________________________________________________
+_________________________________________________________________
+
+Specific example of applying this strength to digital well-being:
+_________________________________________________________________
+_________________________________________________________________
+
+STRENGTH 3: ________________________
+
+How does this strength show up in your daily life?
+_________________________________________________________________
+_________________________________________________________________
+
+How could you use this strength to improve your digital habits?
+_________________________________________________________________
+_________________________________________________________________
+
+Specific example of applying this strength to digital well-being:
+_________________________________________________________________
+_________________________________________________________________
+
+STRENGTH 4: ________________________
+
+How does this strength show up in your daily life?
+_________________________________________________________________
+_________________________________________________________________
+
+How could you use this strength to improve your digital habits?
+_________________________________________________________________
+_________________________________________________________________
+
+Specific example of applying this strength to digital well-being:
+_________________________________________________________________
+_________________________________________________________________
+
+STRENGTH 5: ________________________
+
+How does this strength show up in your daily life?
+_________________________________________________________________
+_________________________________________________________________
+
+How could you use this strength to improve your digital habits?
+_________________________________________________________________
+_________________________________________________________________
+
+Specific example of applying this strength to digital well-being:
+_________________________________________________________________
+_________________________________________________________________
+
+3. CONNECTING STRENGTHS TO YOUR DIGITAL GOALS
+
+Review your digital goals from the previous activity. How can your character strengths help you achieve these goals?
+
+Goal 1: ________________________________________________________
+Supporting strengths: __________________________________________
+How they'll help: ______________________________________________
+_________________________________________________________________
+
+Goal 2: ________________________________________________________
+Supporting strengths: __________________________________________
+How they'll help: ______________________________________________
+_________________________________________________________________
+
+Goal 3: ________________________________________________________
+Supporting strengths: __________________________________________
+How they'll help: ______________________________________________
+_________________________________________________________________
+
+4. OVERCOMING CHALLENGES WITH STRENGTHS
+
+What challenges do you anticipate in your digital well-being journey?
+Challenge 1: ___________________________________________________
+Which strength(s) can help: ____________________________________
+How: __________________________________________________________
+
+Challenge 2: ___________________________________________________
+Which strength(s) can help: ____________________________________
+How: __________________________________________________________
+
+Challenge 3: ___________________________________________________
+Which strength(s) can help: ____________________________________
+How: __________________________________________________________
+
+5. STRENGTHS-BASED ACTION PLAN
+
+Based on your character strengths, create specific actions you can take this week:
+
+This week, I will use my strength of _________________________ to:
+_________________________________________________________________
+
+This week, I will use my strength of _________________________ to:
+_________________________________________________________________
+
+This week, I will use my strength of _________________________ to:
+_________________________________________________________________
+
+6. SELF-COMPASSION AND GROWTH
+
+How will you practice self-kindness when facing setbacks in your digital well-being journey?
+_________________________________________________________________
+_________________________________________________________________
+
+How can your strengths help you maintain a growth mindset?
+_________________________________________________________________
+_________________________________________________________________
+
+REFLECTION:
+What insights have you gained about how your character strengths can support your digital well-being?
+_________________________________________________________________
+_________________________________________________________________
+_________________________________________________________________
+
+---
+Remember: Your character strengths are your superpowers. Use them wisely and compassionately as you work toward healthier digital habits.`;
+
+      const blob = new Blob([content], { type: 'text/plain' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'Character_Strengths_Digital_Wellbeing_Template.txt';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    }
+
+    // Accordion functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const accordionTriggers = document.querySelectorAll('.accordion-trigger');
       
-      // Close all other panels
-      accordionTriggers.forEach(otherTrigger => {
-        if (otherTrigger !== this) {
-          const otherPanel = otherTrigger.parentElement.nextElementSibling;
-          const otherIcon = otherTrigger.querySelector('.accordion-icon');
-          otherTrigger.setAttribute('aria-expanded', 'false');
-          otherPanel.classList.remove('expanded');
-          otherIcon.textContent = '+';
-        }
-      });
-      
-      // Toggle current panel
-      if (isExpanded) {
-        this.setAttribute('aria-expanded', 'false');
-        panel.classList.remove('expanded');
+      accordionTriggers.forEach(trigger => {
+        trigger.addEventListener('click', function() {
+          const panel = this.parentElement.nextElementSibling;
+          const icon = this.querySelector('.accordion-icon');
+          const isExpanded = this.getAttribute('aria-expanded') === 'true';
+          
+          // Close all other panels
+          accordionTriggers.forEach(otherTrigger => {
+            if (otherTrigger !== this) {
+              const otherPanel = otherTrigger.parentElement.nextElementSibling;
+              const otherIcon = otherTrigger.querySelector('.accordion-icon');
+              otherTrigger.setAttribute('aria-expanded', 'false');
+              otherPanel.classList.remove('expanded');
+              otherIcon.textContent = '+';
+            }
+          });
+          
+          // Toggle current panel
+          if (isExpanded) {
+            this.setAttribute('aria-expanded', 'false');
+            panel.classList.remove('expanded');
+            icon.textContent = '+';
+          } else {
+            this.setAttribute('aria-expanded', 'true');
+            panel.classList.add('expanded');
+            icon.textContent = '−';
+          }
+        });
+        
+        // Initialize icon
+        const icon = trigger.querySelector('.accordion-icon');
         icon.textContent = '+';
-      } else {
-        this.setAttribute('aria-expanded', 'true');
-        panel.classList.add('expanded');
-        icon.textContent = '−';
-      }
+      });
     });
-    
-    // Initialize icon
-    const icon = trigger.querySelector('.accordion-icon');
-    icon.textContent = '+';
-  });
-});
-</script>
+  </script>
 </body>
 </html>
