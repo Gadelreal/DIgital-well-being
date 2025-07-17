@@ -107,6 +107,16 @@
   margin-bottom: 1.5rem;
   position: relative;
   border-left: 4px solid var(--primary-color);
+  pointer-events: none;
+}
+
+.tool-item:hover {
+  background-color: white;
+  cursor: default;
+}
+
+.tool-item * {
+  pointer-events: none;
 }
 
 .tool-item::before {
