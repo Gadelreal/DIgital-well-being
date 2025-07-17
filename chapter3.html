@@ -623,6 +623,7 @@
 
     <div class="activity-results">
       <button id="check-answers" class="check-answers-btn">Check Answers</button>
+      <button id="try-again" class="check-answers-btn" style="display: none; margin-left: 1rem;">Try Again</button>
       <div id="overall-feedback" class="overall-feedback"></div>
     </div>
   </div>
@@ -1576,6 +1577,12 @@ document.addEventListener('DOMContentLoaded', function() {
       overallFeedback.className = 'overall-feedback partial';
     }
     
+    // Show Try Again button
+    const tryAgainBtn = document.getElementById('try-again');
+    if (tryAgainBtn) {
+      tryAgainBtn.style.display = 'inline-block';
+    }
+    
     // Save completion status
     saveToSession('attention_activity_completed', {
       score: correctCount,
@@ -1585,6 +1592,51 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Scroll to feedback
     overallFeedback.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+});
+
+// Try Again functionality for attention activity
+document.addEventListener('DOMContentLoaded', function() {
+  const tryAgainBtn = document.getElementById('try-again');
+  
+  if (tryAgainBtn) {
+    tryAgainBtn.addEventListener('click', function() {
+      // Reset all dropdowns
+      for (let i = 1; i <= 4; i++) {
+        const dropdown = document.getElementById(`attention-${i}`);
+        const feedback = document.getElementById(`feedback-${i}`);
+        if (dropdown) {
+          dropdown.value = '';
+          dropdown.selectedIndex = 0;
+        }
+        if (feedback) {
+          feedback.textContent = '';
+          feedback.className = 'feedback';
+        }
+      }
+      
+      // Clear overall feedback
+      const overallFeedback = document.getElementById('overall-feedback');
+      if (overallFeedback) {
+        overallFeedback.textContent = '';
+        overallFeedback.className = 'overall-feedback';
+      }
+      
+      // Hide Try Again button
+      this.style.display = 'none';
+      
+      // Clear saved responses
+      for (let i = 1; i <= 4; i++) {
+        sessionStorage.removeItem(`chapter3_attention_${i}`);
+      }
+      sessionStorage.removeItem('chapter3_attention_activity_completed');
+      
+      // Focus on first dropdown
+      const firstDropdown = document.getElementById('attention-1');
+      if (firstDropdown) {
+        firstDropdown.focus();
+      }
+    });
   }
 });
 
