@@ -107,8 +107,6 @@
   margin-bottom: 1.5rem;
   position: relative;
   border-left: 4px solid var(--primary-color);
-  cursor: default;
-  pointer-events: auto;
 }
 
 .tool-item::before {
@@ -1008,7 +1006,8 @@
             <strong>Social Media Hygiene</strong> – Practices for maintaining a healthy relationship with social platforms, including curating content and setting boundaries.
           </div>
         </div>
-        <div id="glossary-section-t" class="glossary-letter-header">T</h3>
+        <div id="glossary-section-t" class="glossary-section">
+          <h3 class="glossary-letter-header">T</h3>
           <div class="glossary-term">
             <strong>Tech-Life Balance</strong> – The intentional effort to harmonize technology use with overall well-being.
           </div>
@@ -1237,21 +1236,21 @@ async function downloadAssessmentResponse() {
   const splitQuestion = doc.splitTextToSize(reflectionQuestion, 170);
   
   // Check if question fits on current page
-  if (yPosition + (splitQuestion.length * 6) > 270) {
+  if (yPosition + (splitQuestion.length * 5) > 270) {
     doc.addPage();
     yPosition = 20;
   }
   
   doc.text(splitQuestion, 20, yPosition);
-  yPosition += splitQuestion.length * 6 + 10;
+  yPosition += splitQuestion.length * 5 + 10;
   
-  // Reflection answer
+  // Reflection response
   doc.setFont("helvetica", "normal");
   if (responses.reflection) {
     const splitReflection = doc.splitTextToSize(responses.reflection, 170);
     
     // Check if reflection fits on current page, if not add new page
-    if (yPosition + (splitReflection.length * 6) > 270) {
+    if (yPosition + (splitReflection.length * 5) > 270) {
       doc.addPage();
       yPosition = 20;
     }
@@ -1289,22 +1288,25 @@ async function downloadDigitalHabitsAuditTemplate() {
   
   // Instructions
   doc.setFontSize(11);
-  doc.setFont("helvetica", "normal");
-  const instructions = "Let's take a closer look at your current digital habits. This Digital Habits Audit will help you reflect on how much time you spend on your phone and which apps you use most often.";
+  doc.setFont("helvetica", "italic");
+  const instructions = "Use your phone's screen time data to answer each question honestly. Then rank the apps you use most and reflect on your patterns.";
   const splitInstructions = doc.splitTextToSize(instructions, 170);
   doc.text(splitInstructions, 20, yPosition);
-  yPosition += splitInstructions.length * 6 + 15;
+  yPosition += splitInstructions.length * 5 + 15;
   
   // Questions
+  doc.setFontSize(12);
+  doc.setFont("helvetica", "bold");
+  
   const questions = [
-    "1. How much time do you spend on your phone daily? (Check your screen time settings)",
-    "2. What are your top 5 most-used apps? (List them in order)",
-    "3. How many times do you pick up your phone per day?",
-    "4. What triggers you to check your phone most often?",
-    "5. Which apps do you check first thing in the morning?",
-    "6. Which apps do you use right before bed?",
-    "7. How do you feel after spending time on your most-used apps?",
-    "8. Which digital habits would you like to change?"
+    "1. How much time do you spend on your phone daily?",
+    "2. Which apps do you use the most? (List top 5)",
+    "3. What times of day are you most active on your phone?",
+    "4. How many times do you pick up your phone per day?",
+    "5. Which apps send you the most notifications?",
+    "6. What triggers you to check your phone most often?",
+    "7. How do you feel about your current phone usage?",
+    "8. What patterns do you notice in your digital habits?"
   ];
   
   questions.forEach(question => {
@@ -1316,13 +1318,13 @@ async function downloadDigitalHabitsAuditTemplate() {
     
     doc.setFont("helvetica", "bold");
     doc.text(question, 20, yPosition);
-    yPosition += 10;
+    yPosition += 8;
     
     // Add lines for answers
     doc.setFont("helvetica", "normal");
     for (let i = 0; i < 3; i++) {
       doc.line(20, yPosition + 5, 190, yPosition + 5);
-      yPosition += 10;
+      yPosition += 8;
     }
     yPosition += 5;
   });
@@ -1344,7 +1346,7 @@ async function downloadDigitalTriggersTemplate() {
   // Title
   doc.setFontSize(16);
   doc.setFont("helvetica", "bold");
-  doc.text("Understanding Your Environment and Digital Triggers - Template", 20, startY + 10);
+  doc.text("Understanding Your Environment and Digital Triggers", 20, startY + 10);
   
   // Date
   doc.setFontSize(12);
@@ -1355,54 +1357,54 @@ async function downloadDigitalTriggersTemplate() {
   
   // Instructions
   doc.setFontSize(11);
-  doc.setFont("helvetica", "normal");
-  const instructions = "Take a full inventory of your digital environment. This activity will help you identify potential distractions and areas for improvement across four key areas.";
+  doc.setFont("helvetica", "italic");
+  const instructions = "Take a full inventory of your digital environment across four key areas. Use this as a chance to reflect on how your digital spaces support or distract from your well-being.";
   const splitInstructions = doc.splitTextToSize(instructions, 170);
   doc.text(splitInstructions, 20, yPosition);
-  yPosition += splitInstructions.length * 6 + 15;
+  yPosition += splitInstructions.length * 5 + 15;
   
   const sections = [
     {
-      title: "1. YOUR PHONE",
+      title: "1. YOUR PHONE ENVIRONMENT",
       questions: [
-        "How many apps do you have on your home screen?",
-        "Which apps send you the most notifications?",
-        "What's your phone's current notification settings?",
-        "Where do you usually keep your phone during work/study?"
+        "How many apps are on your home screen?",
+        "Which apps are most easily accessible?",
+        "What notifications are currently enabled?",
+        "How is your phone organized (folders, etc.)?"
       ]
     },
     {
-      title: "2. YOUR COMPUTER",
+      title: "2. YOUR COMPUTER ENVIRONMENT",
       questions: [
         "How many browser tabs do you typically have open?",
-        "What websites do you visit most during work breaks?",
-        "Which computer notifications distract you most?",
-        "How organized is your digital desktop?"
+        "What websites are bookmarked or frequently visited?",
+        "What desktop notifications are enabled?",
+        "How organized is your digital workspace?"
       ]
     },
     {
-      title: "3. YOUR WORKSPACE",
+      title: "3. YOUR PHYSICAL WORKSPACE",
       questions: [
-        "What digital devices are visible in your workspace?",
-        "How does your physical environment affect your digital habits?",
-        "What environmental cues trigger device checking?",
-        "How could you redesign your space to support focus?"
+        "Where do you keep your devices while working?",
+        "What digital distractions are within reach?",
+        "How does your environment support or hinder focus?",
+        "What changes could improve your digital well-being?"
       ]
     },
     {
       title: "4. YOUR SOCIAL MEDIA HABITS",
       questions: [
-        "Which social media platforms do you use most?",
-        "When during the day do you check social media most?",
-        "How do you feel before and after social media use?",
-        "What specific content or accounts affect your mood most?"
+        "Which platforms do you use most frequently?",
+        "What triggers you to check social media?",
+        "How do you feel before and after using social media?",
+        "What patterns do you notice in your social media use?"
       ]
     }
   ];
   
   sections.forEach(section => {
     // Check if we need a new page for section title
-    if (yPosition > 260) {
+    if (yPosition > 250) {
       doc.addPage();
       yPosition = 20;
     }
@@ -1420,14 +1422,15 @@ async function downloadDigitalTriggersTemplate() {
       }
       
       doc.setFontSize(11);
-      doc.setFont("helvetica", "normal");
-      doc.text(question, 20, yPosition);
-      yPosition += 10;
+      doc.setFont("helvetica", "bold");
+      doc.text(question, 25, yPosition);
+      yPosition += 8;
       
       // Add lines for answers
+      doc.setFont("helvetica", "normal");
       for (let i = 0; i < 2; i++) {
-        doc.line(20, yPosition + 3, 190, yPosition + 3);
-        yPosition += 8;
+        doc.line(25, yPosition + 3, 190, yPosition + 3);
+        yPosition += 6;
       }
       yPosition += 5;
     });
@@ -1452,7 +1455,7 @@ async function downloadToolsTemplate() {
   // Title
   doc.setFontSize(16);
   doc.setFont("helvetica", "bold");
-  doc.text("Tools and Practices for Healthy Digital Habits - Template", 20, startY + 10);
+  doc.text("Tools and Practices for Healthy Digital Habits", 20, startY + 10);
   
   // Date
   doc.setFontSize(12);
@@ -1463,11 +1466,11 @@ async function downloadToolsTemplate() {
   
   // Instructions
   doc.setFontSize(11);
-  doc.setFont("helvetica", "normal");
-  const instructions = "Choose at least two tools to try this week. Reflect on your choices and track your daily progress.";
+  doc.setFont("helvetica", "italic");
+  const instructions = "Choose at least two tools to try this week. Reflect on why you chose them, then use the daily tracker to mark your progress.";
   const splitInstructions = doc.splitTextToSize(instructions, 170);
   doc.text(splitInstructions, 20, yPosition);
-  yPosition += splitInstructions.length * 6 + 15;
+  yPosition += splitInstructions.length * 5 + 15;
   
   // Tool selection section
   doc.setFontSize(14);
@@ -1485,19 +1488,20 @@ async function downloadToolsTemplate() {
   
   doc.setFontSize(11);
   doc.setFont("helvetica", "normal");
+  
   tools.forEach(tool => {
     if (yPosition > 270) {
       doc.addPage();
       yPosition = 20;
     }
-    doc.text(tool, 20, yPosition);
-    yPosition += 12;
+    doc.text(tool, 25, yPosition);
+    yPosition += 8;
   });
   
-  yPosition += 10;
+  yPosition += 15;
   
   // Reflection section
-  if (yPosition > 250) {
+  if (yPosition > 240) {
     doc.addPage();
     yPosition = 20;
   }
@@ -1508,14 +1512,15 @@ async function downloadToolsTemplate() {
   yPosition += 15;
   
   doc.setFontSize(11);
-  doc.setFont("helvetica", "normal");
+  doc.setFont("helvetica", "bold");
   doc.text("Why did you choose these specific tools?", 20, yPosition);
   yPosition += 10;
   
   // Add lines for reflection
+  doc.setFont("helvetica", "normal");
   for (let i = 0; i < 4; i++) {
-    doc.line(20, yPosition + 5, 190, yPosition + 5);
-    yPosition += 10;
+    doc.line(20, yPosition, 190, yPosition);
+    yPosition += 8;
   }
   
   yPosition += 15;
@@ -1537,29 +1542,40 @@ async function downloadToolsTemplate() {
   yPosition += 15;
   
   // Create tracker table
-  const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+  const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+  const toolNames = [
+    'Email/Social Media Times',
+    'Phone Drawer/Pouch',
+    'Grayscale Mode',
+    'Notifications Off',
+    'No-Phone Zones'
+  ];
   
-  // Tool 1 tracker
-  doc.text("Tool 1: ________________________", 20, yPosition);
-  yPosition += 10;
+  // Table headers
+  doc.setFont("helvetica", "bold");
+  doc.text("Tool", 20, yPosition);
   days.forEach((day, index) => {
-    doc.text(`${day}: ☐`, 20 + (index * 25), yPosition);
+    doc.text(day, 80 + (index * 15), yPosition);
   });
-  yPosition += 20;
-  
-  // Tool 2 tracker
-  doc.text("Tool 2: ________________________", 20, yPosition);
   yPosition += 10;
-  days.forEach((day, index) => {
-    doc.text(`${day}: ☐`, 20 + (index * 25), yPosition);
-  });
-  yPosition += 20;
   
-  // Tool 3 tracker (optional)
-  doc.text("Tool 3: ________________________", 20, yPosition);
-  yPosition += 10;
-  days.forEach((day, index) => {
-    doc.text(`${day}: ☐`, 20 + (index * 25), yPosition);
+  // Table rows
+  doc.setFont("helvetica", "normal");
+  toolNames.forEach(tool => {
+    if (yPosition > 270) {
+      doc.addPage();
+      yPosition = 20;
+    }
+    
+    const splitTool = doc.splitTextToSize(tool, 55);
+    doc.text(splitTool, 20, yPosition);
+    
+    // Add checkboxes for each day
+    days.forEach((day, index) => {
+      doc.rect(80 + (index * 15), yPosition - 4, 8, 8);
+    });
+    
+    yPosition += Math.max(splitTool.length * 5, 12);
   });
   
   // Save the PDF
@@ -1571,7 +1587,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Load saved responses
   loadResponseFromSession();
   
-  // Add event listeners to save responses as user types/selects
+  // Add event listeners to save responses as they change
   const radioButtons = document.querySelectorAll('input[type="radio"]');
   radioButtons.forEach(radio => {
     radio.addEventListener('change', saveResponseToSession);
