@@ -1608,6 +1608,65 @@ document.addEventListener('DOMContentLoaded', function() {
     reflectionTextarea.addEventListener('input', saveResponseToSession);
   }
 });
+  
+// Glossary modal functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const glossaryModal = document.getElementById('glossary-modal');
+  const glossaryMenuLink = document.getElementById('glossary-menu-link');
+  const modalClose = document.querySelector('.modal-close');
+  const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+  const mainNav = document.getElementById('main-nav');
+
+  // Open glossary modal from menu link
+  if (glossaryMenuLink) {
+    glossaryMenuLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      if (glossaryModal) {
+        glossaryModal.style.display = 'block';
+        glossaryModal.setAttribute('aria-hidden', 'false');
+        
+        // Close mobile menu if open
+        if (mainNav && mainNav.classList.contains('active')) {
+          mainNav.classList.remove('active');
+          if (mobileMenuToggle) {
+            mobileMenuToggle.setAttribute('aria-expanded', 'false');
+          }
+        }
+        
+        // Focus on modal for accessibility
+        glossaryModal.focus();
+      }
+    });
+  }
+
+  // Close modal functionality
+  if (modalClose) {
+    modalClose.addEventListener('click', function() {
+      if (glossaryModal) {
+        glossaryModal.style.display = 'none';
+        glossaryModal.setAttribute('aria-hidden', 'true');
+      }
+    });
+  }
+
+  // Close modal when clicking outside
+  if (glossaryModal) {
+    glossaryModal.addEventListener('click', function(e) {
+      if (e.target === glossaryModal) {
+        glossaryModal.style.display = 'none';
+        glossaryModal.setAttribute('aria-hidden', 'true');
+      }
+    });
+  }
+
+  // Close modal with Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && glossaryModal && glossaryModal.style.display === 'block') {
+      glossaryModal.style.display = 'none';
+      glossaryModal.setAttribute('aria-hidden', 'true');
+    }
+  });
+});
   </script>
 </body>
 </html>
