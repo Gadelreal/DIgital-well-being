@@ -1630,11 +1630,7 @@ function initializeDownloadButtons() {
     doc.setFont("helvetica", "bold");
     yPosition += 35;
     
-    // Check if we need a new page
-    if (yPosition > 270) {
-      doc.addPage();
-      yPosition = 20;
-    }
+    if (yPosition > 270) { doc.addPage(); yPosition = 20; }
     
     doc.text("MY WEEKLY TIME ALLOCATION", 20, yPosition);
     yPosition += 15;
@@ -1642,76 +1638,87 @@ function initializeDownloadButtons() {
     doc.setFontSize(11);
     doc.setFont("helvetica", "normal");
     
-    // Get time allocation data
-    const timeData = {
-      'Sleep': document.getElementById('sleep-hours').value || '0',
-      'Work': document.getElementById('work-hours').value || '0',
-      'Family': document.getElementById('family-hours').value || '0',
-      'Hobbies': document.getElementById('hobbies-hours').value || '0',
-      'Digital Use': document.getElementById('digital-hours').value || '0',
-      'Exercise': document.getElementById('exercise-hours').value || '0',
-      'Social': document.getElementById('social-hours').value || '0',
-      'Other': document.getElementById('other-hours').value || '0'
-    };
-    
-    // Calculate total
-    let totalHours = 0;
-    Object.entries(timeData).forEach(([activity, hours]) => {
-      // Check if we need a new page
-      if (yPosition > 270) {
-        doc.addPage();
-        yPosition = 20;
-      }
-      
-      const hoursNum = parseInt(hours) || 0;
-      totalHours += hoursNum;
-      doc.text(`${activity}: ${hours} hours per week`, 20, yPosition);
-      yPosition += 8;
+    // Use global chartData for consistency
+    const timeData = chartData;
+    const totalHours = Object.values(timeData).reduce((sum, val) => sum + val, 0);
+
+    Object.entries(timeData).forEach(([key, hours]) => {
+        if (yPosition > 270) { doc.addPage(); yPosition = 20; }
+        const hoursNum = hours || 0;
+        doc.text(`${chartLabels[key]}: ${hoursNum} hours per week`, 20, yPosition);
+        yPosition += 8;
     });
     
     yPosition += 5;
-    
-    // Check if we need a new page
-    if (yPosition > 270) {
-      doc.addPage();
-      yPosition = 20;
-    }
+    if (yPosition > 270) { doc.addPage(); yPosition = 20; }
     
     doc.setFont("helvetica", "bold");
     doc.text(`Total hours: ${totalHours} / 168`, 20, yPosition);
     yPosition += 15;
     
-    // Add the pie chart image if it exists
+    // Add the pie chart image and legend if it exists
     const canvas = document.getElementById('balance-chart-canvas');
     if (totalHours > 0 && canvas) {
         const chartHeight = 80; // mm
-        // Check for page break before adding the chart
-        if (yPosition + chartHeight > 280) {
-            doc.addPage();
-            yPosition = 20;
-        }
+        if (yPosition + chartHeight > 280) { doc.addPage(); yPosition = 20; }
         
         try {
             const chartImage = canvas.toDataURL('image/png');
             const chartWidth = 80; // mm
             const xOffset = (doc.internal.pageSize.getWidth() - chartWidth) / 2;
             doc.addImage(chartImage, 'PNG', xOffset, yPosition, chartWidth, chartHeight);
-            yPosition += chartHeight + 10; // Add space after the chart
+            yPosition += chartHeight + 5;
         } catch (e) {
             console.error("Could not add chart to PDF:", e);
             doc.text("Chart could not be generated in the PDF.", 20, yPosition);
             yPosition += 10;
         }
+
+        // Add Legend
+        if (yPosition > 250) { doc.addPage(); yPosition = 20; }
+        doc.setFontSize(12);
+        doc.setFont("helvetica", "bold");
+        doc.text("Legend", 20, yPosition);
+        yPosition += 8;
+
+        doc.setFontSize(10);
+        doc.setFont("helvetica", "normal");
+
+        const legendXStart = 20;
+        const legendYStart = yPosition;
+        const legendItemHeight = 7;
+        const legendColorBoxSize = 5;
+        let legendColumn = 0;
+        const maxItemsPerColumn = 4;
+        let itemCount = 0;
+
+        const activeCategories = Object.entries(timeData).filter(([key, value]) => value > 0);
+
+        activeCategories.forEach(([key, value]) => {
+            if (itemCount > 0 && itemCount % maxItemsPerColumn === 0) {
+                legendColumn++;
+                yPosition = legendYStart;
+            }
+
+            const xPos = legendXStart + (legendColumn * 95);
+            if (yPosition + legendItemHeight > 280) { doc.addPage(); yPosition = 20; }
+
+            doc.setFillColor(chartColors[key]);
+            doc.rect(xPos, yPosition, legendColorBoxSize, legendColorBoxSize, 'F');
+
+            const percentage = totalHours > 0 ? ((value / totalHours) * 100).toFixed(1) : 0;
+            const legendText = `${chartLabels[key]}: ${value} hrs (${percentage}%)`;
+            doc.text(legendText, xPos + legendColorBoxSize + 3, yPosition + legendColorBoxSize - 1);
+
+            yPosition += legendItemHeight;
+            itemCount++;
+        });
+        const numRows = Math.ceil(activeCategories.length / (legendColumn + 1));
+        yPosition = legendYStart + (numRows * legendItemHeight) + 10;
     }
     
     // Reflection sections
-    yPosition += 10;
-    
-    // Check if we need a new page for reflection section
-    if (yPosition > 250) {
-      doc.addPage();
-      yPosition = 20;
-    }
+    if (yPosition > 250) { doc.addPage(); yPosition = 20; }
     
     doc.setFontSize(14);
     doc.setFont("helvetica", "bold");
@@ -1721,55 +1728,27 @@ function initializeDownloadButtons() {
     doc.setFontSize(11);
     doc.setFont("helvetica", "normal");
     
-    // Balance observation reflection
     const balanceObservationQuestion = "Are some slices larger than you expected? Does the balance reflect your values and priorities? Is your digital use taking more space than you'd like?";
     const splitQuestion1 = doc.splitTextToSize(balanceObservationQuestion, 170);
-    
-    // Check if question fits on current page
-    if (yPosition + (splitQuestion1.length * 6) > 270) {
-      doc.addPage();
-      yPosition = 20;
-    }
-    
+    if (yPosition + (splitQuestion1.length * 6) > 270) { doc.addPage(); yPosition = 20; }
     doc.text(splitQuestion1, 20, yPosition);
     yPosition += splitQuestion1.length * 6 + 10;
     
-    // Balance observation answer
     const balanceObservationText = document.getElementById('balance-observation').value;
     if (balanceObservationText) {
       const splitReflection1 = doc.splitTextToSize(balanceObservationText, 170);
-      
-      // Handle long reflections that might span multiple pages
       let remainingLines1 = [...splitReflection1];
-      
       while (remainingLines1.length > 0) {
-        // Calculate how many lines can fit on current page
         const availableSpace = 280 - yPosition;
         const linesPerPage = Math.floor(availableSpace / 6);
-        
-        if (linesPerPage <= 0) {
-          doc.addPage();
-          yPosition = 20;
-          continue;
-        }
-        
-        // Take lines that fit on current page
+        if (linesPerPage <= 0) { doc.addPage(); yPosition = 20; continue; }
         const linesToAdd = remainingLines1.splice(0, linesPerPage);
         doc.text(linesToAdd, 20, yPosition);
         yPosition += linesToAdd.length * 6;
-        
-        // If there are more lines, add a new page
-        if (remainingLines1.length > 0) {
-          doc.addPage();
-          yPosition = 20;
-        }
+        if (remainingLines1.length > 0) { doc.addPage(); yPosition = 20; }
       }
     } else {
-      // Check if "No reflection provided" fits
-      if (yPosition > 270) {
-        doc.addPage();
-        yPosition = 20;
-      }
+      if (yPosition > 270) { doc.addPage(); yPosition = 20; }
       doc.setFont("helvetica", "italic");
       doc.text("No reflection provided", 20, yPosition);
       yPosition += 6;
@@ -1777,67 +1756,34 @@ function initializeDownloadButtons() {
     
     yPosition += 15;
     
-    // Habit reduction reflection
-    // Check if we need a new page for second question
-    if (yPosition > 250) {
-      doc.addPage();
-      yPosition = 20;
-    }
+    if (yPosition > 250) { doc.addPage(); yPosition = 20; }
     
     doc.setFont("helvetica", "normal");
     const habitReductionQuestion = "Think about one or two digital habits you could reduce and write your reflection below. What could you do instead with that reclaimed time?";
     const splitQuestion2 = doc.splitTextToSize(habitReductionQuestion, 170);
-    
-    // Check if question fits on current page
-    if (yPosition + (splitQuestion2.length * 6) > 270) {
-      doc.addPage();
-      yPosition = 20;
-    }
-    
+    if (yPosition + (splitQuestion2.length * 6) > 270) { doc.addPage(); yPosition = 20; }
     doc.text(splitQuestion2, 20, yPosition);
     yPosition += splitQuestion2.length * 6 + 10;
     
-    // Habit reduction answer
     const habitReductionText = document.getElementById('habit-reduction').value;
     if (habitReductionText) {
       const splitReflection2 = doc.splitTextToSize(habitReductionText, 170);
-      
-      // Handle long reflections that might span multiple pages
       let remainingLines2 = [...splitReflection2];
-      
       while (remainingLines2.length > 0) {
-        // Calculate how many lines can fit on current page
         const availableSpace = 280 - yPosition;
         const linesPerPage = Math.floor(availableSpace / 6);
-        
-        if (linesPerPage <= 0) {
-          doc.addPage();
-          yPosition = 20;
-          continue;
-        }
-        
-        // Take lines that fit on current page
+        if (linesPerPage <= 0) { doc.addPage(); yPosition = 20; continue; }
         const linesToAdd = remainingLines2.splice(0, linesPerPage);
         doc.text(linesToAdd, 20, yPosition);
         yPosition += linesToAdd.length * 6;
-        
-        // If there are more lines, add a new page
-        if (remainingLines2.length > 0) {
-          doc.addPage();
-          yPosition = 20;
-        }
+        if (remainingLines2.length > 0) { doc.addPage(); yPosition = 20; }
       }
     } else {
-      // Check if "No reflection provided" fits
-      if (yPosition > 270) {
-        doc.addPage();
-        yPosition = 20;
-      }
+      if (yPosition > 270) { doc.addPage(); yPosition = 20; }
       doc.setFont("helvetica", "italic");
       doc.text("No reflection provided", 20, yPosition);
     }
     
-    // Save the PDF
     doc.save('Chapter4_Rituals_Digital_Flourishing_Response.pdf');
   });
 
@@ -1845,23 +1791,19 @@ function initializeDownloadButtons() {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
     
-    // Add header image and get Y position
     const startY = await addPDFHeader(doc);
     let yPosition = startY;
     
-    // Title
     doc.setFontSize(18);
     doc.setFont(undefined, 'bold');
     doc.text('End of Lesson Assessment: Touchpoint II - My Response', 20, yPosition);
     yPosition += 15;
     
-    // Date
     doc.setFontSize(10);
     doc.setFont(undefined, 'normal');
     doc.text(`Generated on: ${new Date().toLocaleDateString()}`, 20, yPosition);
     yPosition += 15;
     
-    // Assessment responses
     const questions = [
       { name: 'screen-time', text: 'I have decreased my screen time.' },
       { name: 'digital-goals', text: 'I have stuck to my Digital Goals.' },
@@ -1883,7 +1825,6 @@ function initializeDownloadButtons() {
     });
     yPosition += 10;
     
-    // Well-being reflection
     const wellbeingReflection = document.getElementById('wellbeing-reflection').value;
     if (wellbeingReflection) {
       doc.setFont(undefined, 'bold');
@@ -1900,7 +1841,6 @@ function initializeDownloadButtons() {
   });
 
   document.getElementById('download-buddy-template').addEventListener('click', function() {
-    // Create a simple text template for the accountability buddy planning
     const template = `ACCOUNTABILITY BUDDY PLANNING TEMPLATE
 
 Generated on: ${new Date().toLocaleDateString()}
@@ -1963,7 +1903,6 @@ ____________________________________
 ____________________________________
 `;
 
-    // Create and download the file
     const blob = new Blob([template], { type: 'text/plain' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -1977,21 +1916,40 @@ ____________________________________
 }
 // Chart functionality
 let balanceChart = null;
-let chartData = [];
+let chartData = {};
 let chartSegments = [];
+
+const chartColors = {
+  sleep: '#FF6384',
+  work: '#36A2EB',
+  family: '#FFCE56',
+  hobbies: '#4BC0C0',
+  digital: '#9966FF',
+  exercise: '#FF9F40',
+  social: '#FF6B9D',
+  other: '#C9CBCF'
+};
+
+const chartLabels = {
+  sleep: 'Sleep',
+  work: 'Work',
+  family: 'Family',
+  hobbies: 'Hobbies',
+  digital: 'Digital Use',
+  exercise: 'Exercise',
+  social: 'Social',
+  other: 'Other'
+};
 
 function initializeChart() {
   const canvas = document.getElementById('balance-chart-canvas');
   const ctx = canvas.getContext('2d');
   
-  // Set canvas size
   canvas.width = 400;
   canvas.height = 400;
   
-  // Clear canvas
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   
-  // Draw placeholder text
   ctx.fillStyle = '#666';
   ctx.font = '16px Arial';
   ctx.textAlign = 'center';
@@ -2003,6 +1961,7 @@ function updateChart() {
     sleep: parseFloat(document.getElementById('sleep-hours').value) || 0,
     work: parseFloat(document.getElementById('work-hours').value) || 0,
     family: parseFloat(document.getElementById('family-hours').value) || 0,
+    hobbies: parseFloat(document.getElementById('hobbies-hours').value) || 0,
     digital: parseFloat(document.getElementById('digital-hours').value) || 0,
     exercise: parseFloat(document.getElementById('exercise-hours').value) || 0,
     social: parseFloat(document.getElementById('social-hours').value) || 0,
@@ -2015,10 +1974,8 @@ function updateChart() {
   
   totalHoursSpan.textContent = total;
   
-  // Store data globally for PDF generation
   chartData = inputs;
   
-  // Validation
   if (total > 168) {
     validationMessage.textContent = 'Total hours exceed 168 hours per week. Please adjust your entries.';
     validationMessage.className = 'validation-error';
@@ -2027,7 +1984,6 @@ function updateChart() {
     validationMessage.style.display = 'none';
   }
   
-  // Draw chart if there's data
   if (total > 0) {
     drawPieChart(inputs, total);
   } else {
@@ -2042,54 +1998,29 @@ function drawPieChart(data, total) {
   const centerY = canvas.height / 2;
   const radius = Math.min(centerX, centerY) - 20;
   
-  const colors = {
-    sleep: '#FF6384',
-    work: '#36A2EB',
-    family: '#FFCE56',
-    hobbies: '#4BC0C0',
-    digital: '#9966FF',
-    exercise: '#FF9F40',
-    social: '#FF6B9D',
-    other: '#C9CBCF'
-  };
-  
-  const labels = {
-    sleep: 'Sleep',
-    work: 'Work',
-    family: 'Family',
-    hobbies: 'Hobbies',
-    digital: 'Digital Use',
-    exercise: 'Exercise',
-    social: 'Social',
-    other: 'Other'
-  };
-  
-  // Clear canvas
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   
-  let currentAngle = -Math.PI / 2; // Start at top
-  chartSegments = []; // Reset segments for tooltip
+  let currentAngle = -Math.PI / 2;
+  chartSegments = [];
   
   Object.entries(data).forEach(([key, value]) => {
     if (value > 0) {
       const sliceAngle = (value / total) * 2 * Math.PI;
       
-      // Store segment info for tooltip
       chartSegments.push({
         key: key,
-        label: labels[key],
+        label: chartLabels[key],
         value: value,
         startAngle: currentAngle,
         endAngle: currentAngle + sliceAngle,
-        color: colors[key]
+        color: chartColors[key]
       });
       
-      // Draw slice
       ctx.beginPath();
       ctx.moveTo(centerX, centerY);
       ctx.arc(centerX, centerY, radius, currentAngle, currentAngle + sliceAngle);
       ctx.closePath();
-      ctx.fillStyle = colors[key];
+      ctx.fillStyle = chartColors[key];
       ctx.fill();
       ctx.strokeStyle = '#fff';
       ctx.lineWidth = 2;
@@ -2100,7 +2031,6 @@ function drawPieChart(data, total) {
   });
 }
 
-// Tooltip functionality
 function setupTooltip() {
   const canvas = document.getElementById('balance-chart-canvas');
   const tooltip = document.getElementById('chart-tooltip');
@@ -2119,33 +2049,18 @@ function setupTooltip() {
     const centerY = canvas.height / 2;
     const radius = Math.min(centerX, centerY) - 20;
     
-    // Calculate distance from center
     const distance = Math.sqrt((x - centerX) ** 2 + (y - centerY) ** 2);
     
     if (distance <= radius) {
-      // Calculate angle
       let angle = Math.atan2(y - centerY, x - centerX);
-      if (angle < 0) angle += 2 * Math.PI;
+      if (angle < -Math.PI / 2) {
+        angle += 2 * Math.PI;
+      }
       
-      // Adjust angle to match our starting point (top of circle)
-      angle = (angle + Math.PI / 2) % (2 * Math.PI);
-      
-      // Find which segment the mouse is over
       for (const segment of chartSegments) {
-        let startAngle = (segment.startAngle + Math.PI / 2) % (2 * Math.PI);
-        let endAngle = (segment.endAngle + Math.PI / 2) % (2 * Math.PI);
-        
-        // Handle angle wrapping
-        if (startAngle > endAngle) {
-          if (angle >= startAngle || angle <= endAngle) {
-            showTooltip(event, segment, rect);
-            return;
-          }
-        } else {
-          if (angle >= startAngle && angle <= endAngle) {
-            showTooltip(event, segment, rect);
-            return;
-          }
+        if (angle >= segment.startAngle && angle <= segment.endAngle) {
+          showTooltip(event, segment, rect);
+          return;
         }
       }
     }
@@ -2166,12 +2081,10 @@ function showTooltip(event, segment, rect) {
   tooltip.textContent = `${segment.label}: ${segment.value} hours`;
 }
 
-// Initialize chart on page load
 document.addEventListener('DOMContentLoaded', function() {
   initializeChart();
   setupTooltip();
   
-  // Add event listeners to all time inputs
   const timeInputs = document.querySelectorAll('.time-input-item input');
   timeInputs.forEach(input => {
     input.addEventListener('input', updateChart);
@@ -2187,32 +2100,24 @@ document.addEventListener('DOMContentLoaded', function() {
   const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
   const mainNav = document.getElementById('main-nav');
 
-  // Open glossary modal
   if (glossaryLink && glossaryModal) {
     glossaryLink.addEventListener('click', function(e) {
       e.preventDefault();
       e.stopPropagation();
       
-      // Close mobile menu if open
       if (mainNav && mobileMenuToggle) {
         mainNav.classList.remove('active');
         mobileMenuToggle.classList.remove('active');
         mobileMenuToggle.setAttribute('aria-expanded', 'false');
       }
       
-      // Open modal
       glossaryModal.style.display = 'block';
       glossaryModal.setAttribute('aria-hidden', 'false');
-      
-      // Focus on modal for accessibility
       glossaryModal.focus();
-      
-      // Prevent body scroll
       document.body.style.overflow = 'hidden';
     });
   }
 
-  // Close modal functionality
   function closeModal() {
     if (glossaryModal) {
       glossaryModal.style.display = 'none';
@@ -2221,12 +2126,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  // Close button
   if (modalClose) {
     modalClose.addEventListener('click', closeModal);
   }
 
-  // Close on outside click
   if (glossaryModal) {
     glossaryModal.addEventListener('click', function(e) {
       if (e.target === glossaryModal) {
@@ -2235,7 +2138,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Close on Escape key
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape' && glossaryModal && glossaryModal.style.display === 'block') {
       closeModal();
