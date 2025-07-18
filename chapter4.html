@@ -1681,6 +1681,29 @@ function initializeDownloadButtons() {
     doc.text(`Total hours: ${totalHours} / 168`, 20, yPosition);
     yPosition += 15;
     
+    // Add the pie chart image if it exists
+    const canvas = document.getElementById('balance-chart-canvas');
+    if (totalHours > 0 && canvas) {
+        const chartHeight = 80; // mm
+        // Check for page break before adding the chart
+        if (yPosition + chartHeight > 280) {
+            doc.addPage();
+            yPosition = 20;
+        }
+        
+        try {
+            const chartImage = canvas.toDataURL('image/png');
+            const chartWidth = 80; // mm
+            const xOffset = (doc.internal.pageSize.getWidth() - chartWidth) / 2;
+            doc.addImage(chartImage, 'PNG', xOffset, yPosition, chartWidth, chartHeight);
+            yPosition += chartHeight + 10; // Add space after the chart
+        } catch (e) {
+            console.error("Could not add chart to PDF:", e);
+            doc.text("Chart could not be generated in the PDF.", 20, yPosition);
+            yPosition += 10;
+        }
+    }
+    
     // Reflection sections
     yPosition += 10;
     
@@ -1696,7 +1719,7 @@ function initializeDownloadButtons() {
     
     yPosition += 15;
     doc.setFontSize(11);
-    doc.setFont("helvetica", "italic");
+    doc.setFont("helvetica", "normal");
     
     // Balance observation reflection
     const balanceObservationQuestion = "Are some slices larger than you expected? Does the balance reflect your values and priorities? Is your digital use taking more space than you'd like?";
@@ -1712,7 +1735,6 @@ function initializeDownloadButtons() {
     yPosition += splitQuestion1.length * 6 + 10;
     
     // Balance observation answer
-    doc.setFont("helvetica", "normal");
     const balanceObservationText = document.getElementById('balance-observation').value;
     if (balanceObservationText) {
       const splitReflection1 = doc.splitTextToSize(balanceObservationText, 170);
@@ -1762,7 +1784,7 @@ function initializeDownloadButtons() {
       yPosition = 20;
     }
     
-    doc.setFont("helvetica", "italic");
+    doc.setFont("helvetica", "normal");
     const habitReductionQuestion = "Think about one or two digital habits you could reduce and write your reflection below. What could you do instead with that reclaimed time?";
     const splitQuestion2 = doc.splitTextToSize(habitReductionQuestion, 170);
     
@@ -1776,7 +1798,6 @@ function initializeDownloadButtons() {
     yPosition += splitQuestion2.length * 6 + 10;
     
     // Habit reduction answer
-    doc.setFont("helvetica", "normal");
     const habitReductionText = document.getElementById('habit-reduction').value;
     if (habitReductionText) {
       const splitReflection2 = doc.splitTextToSize(habitReductionText, 170);
@@ -1982,7 +2003,6 @@ function updateChart() {
     sleep: parseFloat(document.getElementById('sleep-hours').value) || 0,
     work: parseFloat(document.getElementById('work-hours').value) || 0,
     family: parseFloat(document.getElementById('family-hours').value) || 0,
-    hobbies: parseFloat(document.getElementById('hobbies-hours').value) || 0,
     digital: parseFloat(document.getElementById('digital-hours').value) || 0,
     exercise: parseFloat(document.getElementById('exercise-hours').value) || 0,
     social: parseFloat(document.getElementById('social-hours').value) || 0,
