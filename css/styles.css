@@ -186,10 +186,25 @@ textarea:focus,
 }
 
 /* Eliminar cualquier borde en estados de click/active para elementos no interactivos */
-*:not(a):not(button):not(input):not(textarea):not([tabindex]):not([role="button"]):active {
+*:not(a):not(button):not(input):not(textarea):not([tabindex]):not([role="button"]):not(.digital-goals-activity-container):not(.values-activity-container):not(.reflection-question):not(.infographic-card):active {
   outline: none !important;
   border: none !important;
 }
+/* Eliminar efectos de transformación durante el click en elementos dentro del contenedor digital-goals-activity-container */
+.digital-goals-activity-container *:active {
+  transform: none !important;
+  transition: none !important;
+}
+
+.digital-goals-activity-container *:focus {
+  transform: none !important;
+}
+
+.digital-goals-activity-container *:hover {
+  transform: none !important;
+}
+
+
 
 /* === FIN part1.css === */
 
@@ -709,8 +724,7 @@ ol {
   .module-background .key-point,
   .survey-background .key-point,
   .lesson-section:nth-child(even) > .key-point,
-  .lesson-section:nth-child(odd) > .key-point,
-  {
+  .lesson-section:nth-child(odd) > .key-point {
     width: calc(100% - 4rem) !important;
     max-width: 1136px !important;
   }
