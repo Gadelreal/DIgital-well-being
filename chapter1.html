@@ -1315,96 +1315,12 @@
   <script>
     // Función para descargar el template de valores centrales
     function downloadCoreValuesTemplate() {
-      const content = `IDENTIFYING YOUR CORE VALUES - REFLECTION TEMPLATE
-
-In a fast-paced digital world, it's easy to lose sight of what really matters to us. Our values - what we believe in and stand for - can serve as a compass to guide our decisions, our goals, and even our digital behavior.
-
-This activity invites you to pause and reflect on your personal values by answering the questions below. Once you've answered the questions, review Brené Brown's list of values. Highlight the 10 that resonate most with you and narrow them down to your top 5. Reflect on why these values matter to you and how your digital habits can support them.
-
-STEP 1: ANSWER THE QUESTIONS BELOW
-
-1. What moments in your life have made you feel the most fulfilled and why?
-_________________________________________________________________
-_________________________________________________________________
-_________________________________________________________________
-
-2. When have you felt the proudest of yourself? What were you doing?
-_________________________________________________________________
-_________________________________________________________________
-_________________________________________________________________
-
-3. Think about a time when you felt deeply connected to others. What was happening?
-_________________________________________________________________
-_________________________________________________________________
-_________________________________________________________________
-
-4. What activities or experiences make you lose track of time because you enjoy them so much?
-_________________________________________________________________
-_________________________________________________________________
-_________________________________________________________________
-
-5. What are your non-negotiables?
-_________________________________________________________________
-_________________________________________________________________
-_________________________________________________________________
-
-6. When faced with a difficult decision, what principles guide you?
-_________________________________________________________________
-_________________________________________________________________
-_________________________________________________________________
-
-STEP 2: SELECT YOUR CORE VALUES
-
-1. Select 10 values that resonate with you
-
-Take your time to read through the list (You may download the list of values from Brené Brown's website). Write below the 10 values that feel most important or meaningful to you right now.
-
-1. ________________________
-2. ________________________
-3. ________________________
-4. ________________________
-5. ________________________
-6. ________________________
-7. ________________________
-8. ________________________
-9. ________________________
-10. _______________________
-
-2. Identify your 5 core values
-
-Now, from the 10 you selected, narrow it down to your top 5. These are the values that truly define who you are and who you want to be.
-
-1. ________________________
-2. ________________________
-3. ________________________
-4. ________________________
-5. ________________________
-
-3. Reflect
-
-Think about the 5 values you've chosen and respond to the following question:
-
-Why do these 5 values matter to you, and how can your digital habits support or reflect these values in your daily life?
-_________________________________________________________________
-_________________________________________________________________
-_________________________________________________________________
-_________________________________________________________________
-_________________________________________________________________
-_________________________________________________________________
-_________________________________________________________________
-
----
-Keep this template as a reference throughout your digital well-being journey. Return to it whenever you need to reconnect with what truly matters to you.`;
-
-  const blob = new Blob([content], { type: 'text/plain' });
-  const url = window.URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'Identifying_Your_Core_Values_Reflection_Template.txt';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  window.URL.revokeObjectURL(url);
+  const link = document.createElement('a');
+  link.href = 'assets/documents/Identifying_Your_Core_Values_Reflection_Template.pdf';
+  link.download = 'Identifying_Your_Core_Values_Reflection_Template.pdf';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 }
 
     // Función para descargar el template de metas digitales
