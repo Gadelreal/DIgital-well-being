@@ -1047,10 +1047,10 @@
       <p><strong>You can download the editable template to complete your responses.</strong> This way, you can track your ideas.</p>
       
       <div class="template-download">
-        <button id="download-buddy-template" class="download-btn">
+        <a href="assets/documents/Lesson4_Accountability Buddy Planning.pdf" class="download-btn" download>
           <i class="fas fa-download" aria-hidden="true"></i>
           Download the editable template here
-        </button>
+        </a>
       </div>
     </section>
     
@@ -1838,80 +1838,6 @@ function initializeDownloadButtons() {
     }
     
     doc.save('touchpoint-ii-assessment.pdf');
-  });
-
-  document.getElementById('download-buddy-template').addEventListener('click', function() {
-    const template = `ACCOUNTABILITY BUDDY PLANNING TEMPLATE
-
-Generated on: ${new Date().toLocaleDateString()}
-
-Instructions: Complete this template to plan your accountability buddy partnership for digital well-being.
-
-1. WHO COULD BE YOUR ACCOUNTABILITY BUDDY?
-Think about someone you trust who would support your digital well-being goals:
-Name: ________________________________
-Relationship: __________________________
-Why this person: _______________________
-____________________________________
-
-2. WHAT ARE YOUR SPECIFIC DIGITAL GOALS?
-Write 2-3 specific goals you want to work on:
-Goal 1: _______________________________
-____________________________________
-Goal 2: _______________________________
-____________________________________
-Goal 3: _______________________________
-____________________________________
-
-3. HOW WILL YOU STAY CONNECTED?
-Check-in frequency: ____________________
-Communication method: __________________
-Meeting format: _______________________
-
-4. WHAT WILL YOU TRACK TOGETHER?
-□ Screen time hours
-□ App usage
-□ Digital-free time
-□ Sleep quality
-□ Focus/productivity
-□ Other: _____________________________
-
-5. HOW WILL YOU CELEBRATE PROGRESS?
-Small wins: ___________________________
-Weekly achievements: ___________________
-Monthly milestones: ____________________
-
-6. WHAT CHALLENGES DO YOU ANTICIPATE?
-Challenge 1: ___________________________
-Solution: _____________________________
-Challenge 2: ___________________________
-Solution: _____________________________
-
-7. COMMITMENT STATEMENT
-I commit to working with my accountability buddy to improve my digital well-being by:
-____________________________________
-____________________________________
-____________________________________
-
-Signature: ____________________________
-Date: ________________________________
-
-NOTES:
-____________________________________
-____________________________________
-____________________________________
-____________________________________
-`;
-
-    const blob = new Blob([template], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'accountability-buddy-template.txt';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
   });
 }
 // Chart functionality
