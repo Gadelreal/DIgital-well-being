@@ -44,6 +44,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const videoId = video.getAttribute("data-video-id")
     const logoSrc = video.getAttribute("data-logo")
 
+    // Remove English CC tracks from the video element before initializing Video.js
+    const tracks = video.querySelectorAll("track")
+    tracks.forEach((track) => {
+      if (
+        track.label === "English CC" ||
+        track.getAttribute("label") === "English CC" ||
+        track.srclang === "en-CC" ||
+        track.getAttribute("srclang") === "en-CC"
+      ) {
+        track.remove()
+      }
+    })
+
     // Configuración de Video.js
     const player = videojs(video.id, {
       controls: true,
@@ -62,13 +75,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Plugin para pausar otros videos
     player.ready(() => {
-      // Remove English CC tracks from subtitle menu
-      const tracks = player.textTracks()
-      for (let i = tracks.length - 1; i >= 0; i--) {
-        const track = tracks[i]
-        if (track.label === "English CC" || track.language === "en-CC") {
+      // Additional cleanup of English CC tracks after player is ready
+      const textTracks = player.textTracks()
+      for (let i = textTracks.length - 1; i >= 0; i--) {
+        const track = textTracks[i]
+        if (
+          track.label === "English CC" ||
+          track.language === "en-CC" ||
+          (track.label === "english" && track.kind === "captions")
+        ) {
           player.removeRemoteTextTrack(track)
         }
+      }
+
+      // Force rebuild of captions menu
+      const captionsButton = player.controlBar.subsCapsButton
+      if (captionsButton) {
+        captionsButton.update()
       }
 
       player.on("play", () => {
@@ -81,6 +104,17 @@ document.addEventListener("DOMContentLoaded", () => {
         logoOverlay.className = "vjs-logo-overlay"
         logoOverlay.innerHTML = `<img src="${logoSrc}" alt="Logo" class="vjs-logo">`
         player.el().appendChild(logoOverlay)
+      }
+    })
+
+    // Additional event listener to clean up tracks when they're added dynamically
+    player.on("texttrackchange", () => {
+      const textTracks = player.textTracks()
+      for (let i = textTracks.length - 1; i >= 0; i--) {
+        const track = textTracks[i]
+        if (track.label === "English CC" || track.language === "en-CC") {
+          player.removeRemoteTextTrack(track)
+        }
       }
     })
 
