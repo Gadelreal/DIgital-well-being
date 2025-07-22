@@ -251,7 +251,6 @@
             To view this video please enable JavaScript, and consider upgrading to a
             web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
           </p>
-          <track kind="captions" src="captions/welcome-to-digital-wellbeing.vtt" srclang="en" label="English" default>
         </video>
       </div>
     </section>
@@ -297,7 +296,6 @@
             To view this video please enable JavaScript, and consider upgrading to a
             web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
           </p>
-          <track kind="captions" src="captions/visual-identity.vtt" srclang="en" label="English" default>
         </video>
       </div>
     </section>
@@ -447,7 +445,7 @@
             <strong>Notification Management</strong> – Strategies to reduce interruptions and increase focus, such as disabling non-essential alerts.
           </div>
         </div>
-        <div id="glossary-section-p" class="glossary-section">
+        <div id="glossary-section-p" class="glossary-letter-header">
           <h3 class="glossary-letter-header">P</h3>
           <div class="glossary-term">
             <strong>Prefrontal Cortex</strong> – The part of the brain responsible for decision-making and impulse control, which is affected by digital engagement.
@@ -503,6 +501,7 @@
 <script src="js/key-points.js"></script>
 <script src="js/reflections.js"></script>
 <script src="js/main.js"></script>
+<script src="js/quiz.js"></script>
 <script>
 // Glossary Modal Functionality
 document.addEventListener('DOMContentLoaded', function() {
@@ -572,6 +571,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
+
+// Template download function
+function downloadActionPlanTemplate() {
+  // Create a temporary link element to trigger the download
+  const link = document.createElement('a');
+  link.href = 'assets/documents/Lesson5_Develop Your Own Digital Well-being Action Plan.pdf';
+  link.download = 'Lesson5_Develop Your Own Digital Well-being Action Plan.pdf';
+  link.style.display = 'none';
+  
+  // Add to DOM, click, and remove
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
 </script>
 </body>
 </html>
