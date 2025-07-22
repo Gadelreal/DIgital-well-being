@@ -10,57 +10,86 @@
 <!-- Font Awesome para iconos -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
 <style>
 /* Estilos para la navegación A-Z del glosario y las secciones */
 .glossary-az-nav {
-  padding: 10px 0;
-  margin-bottom: 15px;
-  border-bottom: 1px solid #eee;
-  text-align: left;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  padding: 15px 0 20px 0;
+  margin-bottom: 0;
+  border-bottom: 2px solid #eee;
+  text-align: center;
+  z-index: 10;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
 .glossary-az-nav a {
-  margin: 0 5px;
+  margin: 0 8px 5px 0;
   text-decoration: none;
   color: var(--primary-color);
   font-weight: bold;
-  padding: 5px;
-  border-radius: 3px;
-  transition: all 0.2s ease;
+  padding: 8px 12px;
+  border-radius: 4px;
+  display: inline-block;
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
+
 .glossary-az-nav a:hover,
 .glossary-az-nav a:focus {
-  text-decoration: underline;
-  background-color: #f0f0f0;
+  text-decoration: none;
+  background-color: var(--primary-color);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
+
 .glossary-az-nav a.active {
   background-color: var(--primary-color);
   color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
+
 .glossary-section {
-  transition: opacity 0.3s ease;
+  margin-bottom: 2rem;
 }
+
 .glossary-section.hidden {
   display: none;
 }
+
 .glossary-letter-header {
   font-size: 1.6em;
   color: #333;
-  margin-top: 25px;
-  margin-bottom: 15px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid #ccc;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--primary-color);
 }
+
 .glossary-section:first-child .glossary-letter-header {
-    margin-top: 0; /* El primer header no necesita tanto espacio arriba */
+  margin-top: 15px;
 }
+
 .modal-body {
   max-height: 70vh;
   overflow-y: auto;
+  padding: 0;
 }
-.glossary-term {
-  margin-bottom: 10px; /* Espacio entre términos */
+
+.glossary-terms {
+  padding: 0 2rem 2rem 2rem;
+  margin-bottom: 10px;
   line-height: 1.6;
 }
+
+.glossary-term {
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
 .hero-title {
   font-family: 'Rubik', sans-serif;
   font-weight: 300;
@@ -138,23 +167,23 @@
   </div>
 </div>
 <nav class="main-nav hamburger-nav" id="main-nav" aria-label="Main navigation">
-<ul>
-  <li><a href="index.html">Home</a></li>
-  <li><a href="introduction.html" class="active" aria-current="page">0. Introduction</a></li>
-  <li><a href="chapter1.html">1. Well-being as a Key...</a></li>
-  <li><a href="chapter2.html">2. Digital Habits</a></li>
-  <li><a href="chapter3.html">3. Attention, Cognition, Energy...</a></li>
-  <li><a href="chapter4.html">4. Digital Well-being Vision and Practice</a></li>
-  <li><a href="chapter5.html">5. Course Conclusion</a></li>
-  <li><a href="#" id="glossary-menu-link"><i class="fas fa-book" style="color: #DB0086; margin-right: 0.5rem;" aria-hidden="true"></i>Open Glossary</a></li>
-</ul>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="introduction.html" class="active" aria-current="page">0. Introduction</a></li>
+    <li><a href="chapter1.html">1. Well-being as a Key...</a></li>
+    <li><a href="chapter2.html">2. Digital Habits</a></li>
+    <li><a href="chapter3.html">3. Attention, Cognition, Energy...</a></li>
+    <li><a href="chapter4.html">4. Digital Well-being Vision and Practice</a></li>
+    <li><a href="chapter5.html">5. Course Conclusion</a></li>
+    <li><a href="#" id="glossary-menu-link"><i class="fas fa-book" style="color: #DB0086; margin-right: 0.5rem;" aria-hidden="true"></i>Open Glossary</a></li>
+  </ul>
 </nav>
 </header>
 
 <section class="hero-section">
 <div class="hero-content">
   <div class="hero-title-container">
-    <h1 class="hero-title">INTRODUCTION<br>Welcome to the Digital Well-being Course</h1>
+    <h1 class="hero-title">INTRODUCTION<br>Digital Well-being</h1>
   </div>
 </div>
 </section>
@@ -163,7 +192,119 @@
   <div class="content-aligned-container">
     
     <section class="lesson-section no-borders">
-      <h2>Welcome to the Digital Well-being Course</h2>
+      <h2>Course Description and Learning Objectives</h2>
+      
+      
+      <h3>Course Description</h3>
+      <p><strong>Digital Well-being</strong> is a course designed to develop awareness and practices that help us leverage technology to enhance our lives, while also fostering human flourishing, connection, innovation, and productivity.</p>
+
+      <p>Technological advances have transformed the way we live, work, and communicate, becoming omnipresent in our daily lives. These shifts have made movement, connection, and communication more accessible. However, data shows that our personal habits—both at work and in life—can contribute to increased isolation, reduced empathy, and diminished self-awareness.</p>
+
+      <p>This course, developed by the <strong>Center for Health and Well-being at IE University</strong>, takes a proactive approach to cultivating awareness and applying scientific insights to develop healthy practices that support brain function, relationships, and productivity through balanced technology use. We will explore learning at an individual level while also reflecting on the digital culture we are collectively shaping.</p>
+
+      <p><strong>At the Center for Health and Well-being, we embrace a holistic approach to flourishing and well-being</strong>. As technology becomes ever more integral to life, we aim to foster greater appreciation, learning, perspective, and <strong>balance in our digital well-being.</strong></p>
+      
+      
+      <h3>Course Learning Objectives</h3>
+
+      <div class="learning-objectives-grid">
+        <div class="learning-objective-card">
+          <div class="objective-icon" aria-hidden="true">
+            <i class="fas fa-lightbulb"></i>
+          </div>
+          <div class="objective-content">
+            <h4>Digital Well-being Appreciation</h4>
+            <p>Develop an appreciation for digital well-being and understand its importance.</p>
+          </div>
+        </div>
+        
+        <div class="learning-objective-card">
+          <div class="objective-icon" aria-hidden="true">
+            <i class="fas fa-brain"></i>
+          </div>
+          <div class="objective-content">
+            <h4>Technology's Holistic Impact</h4>
+            <p>Recognize the ways technology influences our physical, mental, emotional, and spiritual well-being.</p>
+          </div>
+        </div>
+        
+        <div class="learning-objective-card">
+          <div class="objective-icon" aria-hidden="true">
+            <i class="fas fa-cogs"></i>
+          </div>
+          <div class="objective-content">
+            <h4>Cognitive & Behavioral Understanding</h4>
+            <p>Understand how behaviors and habits related to technology affect cognitive functioning, productivity, and relationships.</p>
+          </div>
+        </div>
+        
+        <div class="learning-objective-card">
+          <div class="objective-icon" aria-hidden="true">
+            <i class="fas fa-balance-scale"></i>
+          </div>
+          <div class="objective-content">
+            <h4>Holistic Practice Development</h4>
+            <p>Cultivate a holistic and proactive approach to establish practices that support cognition, productivity, and balance in technology use.</p>
+          </div>
+        </div>
+        
+        <div class="learning-objective-card">
+          <div class="objective-icon" aria-hidden="true">
+            <i class="fas fa-rocket"></i>
+          </div>
+          <div class="objective-content">
+            <h4>Digital Environment Thriving</h4>
+            <p>Strengthen the ability to thrive both personally and professionally in a digital environment.</p>
+          </div>
+        </div>
+        
+        <div class="learning-objective-card">
+          <div class="objective-icon" aria-hidden="true">
+            <i class="fas fa-clipboard-list"></i>
+          </div>
+          <div class="objective-content">
+            <h4>Personal Action Plan</h4>
+            <p>Create a personalized digital well-being action plan.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="lesson-section no-borders">
+      <h2>Meet the Minds Behind the Course</h2>
+      <p>This course was created with care and expertise by professors from the <strong>IE University</strong> community, in collaboration with the <strong>IE Center for Health and Well-being</strong>. Each contributor brings a deep passion for helping individuals lead more balanced, intentional, and fulfilling lives—both online and offline.</p>
+      
+      <p>Their insights are rooted in science, shaped by experience, and guided by a shared commitment to personal and professional well-being.</p>
+      
+      <p><strong>We hope you enjoy the content and make the most of this journey.</strong> May it inspire meaningful reflection, spark new habits, and support your continued growth in digital well-being.</p>
+    </section>
+    
+    <section class="lesson-section no-borders">
+      <h2>Well-being Survey</h2>
+      <p>This brief self-assessment uses scientifically validated measures to help you reflect on key aspects of well-being as you begin the course. These <strong>baseline results</strong> are a starting point—designed to increase awareness of your current state across different areas of life and to help you identify what you may want to support more intentionally as you explore practices that foster <strong>digital well-being</strong>.</p>
+      
+      <p>Be sure to select the <strong>Digital Well-being (Digital Learning)</strong> option when prompted, so we can also measure learning outcomes for this course:</p>
+      
+      <div class="reading-cards">
+        <a href="https://ie.co1.qualtrics.com/jfe/form/SV_8cymWir9nTWHN42" target="_blank" class="reading-card-clickable">
+          <div class="reading-card">
+            <div class="reading-card-content">
+              <h3>Digital Well-being Survey</h3>
+              <p>Complete this scientifically validated self-assessment to establish your baseline well-being metrics and support your learning journey.</p>
+              <div class="reading-card-footer">
+                <div class="reading-link">
+                  Take Survey
+                  <span class="reading-arrow" aria-hidden="true">→</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+    
+    <section class="lesson-section no-borders">
+      <h2>Welcome to the Course</h2>
       
       <div class="responsive-video">
         <video 
@@ -172,94 +313,43 @@
           controls 
           preload="auto" 
           poster="assets/images/welcome-to-course-poster.jpg"
-          data-video-id="w00v00"
-          
-          aria-label="Welcome to the Digital Well-being Course video"
-        >
-          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w00v00-welcome-to-the-digital-well-being-course/hls.m3u8" type="application/x-mpegURL">
-          <p class="vjs-no-js">
-            To view this video please enable JavaScript, and consider upgrading to a
-            web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-          </p>
-          <track kind="captions" src="captions/welcome-to-course.vtt" srclang="en" label="English" default>
-        </video>
-      </div>
-    </section>
-    
-    <section class="lesson-section no-borders">
-      <h2>Human Flourishing</h2>
-      
-      <div class="responsive-video">
-        <video 
-          id="human-flourishing-video" 
-          class="video-js vjs-ie-skin vjs-big-play-centered" 
-          controls 
-          preload="auto" 
-          poster="assets/images/human-flourishing-poster.jpg"
           data-video-id="w00v01"
           
-          aria-label="Human Flourishing video"
+          aria-label="Video 0.1: Welcome to Digital Well-being: Exploring the Body, Mind, and Soul Framework"
         >
-          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w00v01-human-flourishing/hls.m3u8" type="application/x-mpegURL">
+          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w00v01-welcome-to-digital-wellbeing/hls.m3u8" type="application/x-mpegURL">
           <p class="vjs-no-js">
             To view this video please enable JavaScript, and consider upgrading to a
             web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
           </p>
-          <track kind="captions" src="captions/human-flourishing.vtt" srclang="en" label="English" default>
         </video>
       </div>
     </section>
     
     <section class="lesson-section no-borders">
-      <h2>Positive Psychology and Well-being</h2>
+      <h2>Reading</h2>
+      <p>Read more about IE's Center for Health and Well-being, its mission, and the Body, Mind, and Soul Framework below:</p>
       
-      <div class="responsive-video">
-        <video 
-          id="positive-psychology-video" 
-          class="video-js vjs-ie-skin vjs-big-play-centered" 
-          controls 
-          preload="auto" 
-          poster="assets/images/positive-psychology-poster.jpg"
-          data-video-id="w00v02"
-          
-          aria-label="Positive Psychology and Well-being video"
-        >
-          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w00v02-positive-psychology-and-well-being/hls.m3u8" type="application/x-mpegURL">
-          <p class="vjs-no-js">
-            To view this video please enable JavaScript, and consider upgrading to a
-            web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-          </p>
-          <track kind="captions" src="captions/positive-psychology.vtt" srclang="en" label="English" default>
-        </video>
+      <div class="reading-cards">
+        <a href="https://www.ie.edu/center-for-health-and-well-being/" target="_blank" class="reading-card-clickable">
+          <div class="reading-card">
+            <div class="reading-card-content">
+              <h3>IE Center for Health and Well-being</h3>
+              <p>Discover the mission, vision, and holistic Body, Mind, and Soul Framework that guides our approach to well-being at IE University.</p>
+              <div class="reading-card-footer">
+                <div class="reading-link">
+                  Visit Center
+                  <span class="reading-arrow" aria-hidden="true">→</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
       </div>
     </section>
     
     <section class="lesson-section no-borders">
-      <h2>Well-being</h2>
-      
-      <div class="responsive-video">
-        <video 
-          id="wellbeing-video" 
-          class="video-js vjs-ie-skin vjs-big-play-centered" 
-          controls 
-          preload="auto" 
-          poster="assets/images/well-being-poster.png"
-          data-video-id="w00v03"
-          
-          aria-label="Well-being video"
-        >
-          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w00v03-well-being/hls.m3u8" type="application/x-mpegURL">
-          <p class="vjs-no-js">
-            To view this video please enable JavaScript, and consider upgrading to a
-            web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-          </p>
-          <track kind="captions" src="captions/well-being.vtt" srclang="en" label="English" default>
-        </video>
-      </div>
-    </section>
-    
-    <section class="lesson-section no-borders">
-      <h2>Visual Design</h2>
+      <h2>A Word on the Visual Design of this Course</h2>
       
       <div class="responsive-video">
         <video 
@@ -268,46 +358,38 @@
           controls 
           preload="auto" 
           poster="assets/images/visual-design-poster.jpg"
-          data-video-id="w00v04"
+          data-video-id="w00v02"
           
-          aria-label="Visual Design video"
+          aria-label="Video 0.2: The Visual Identity of Our Course"
         >
-          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w00v04-visual-design/hls.m3u8" type="application/x-mpegURL">
+          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w00v02-the-visual-identity-of-the-course/hls.m3u8" type="application/x-mpegURL">
           <p class="vjs-no-js">
             To view this video please enable JavaScript, and consider upgrading to a
             web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
           </p>
-          <track kind="captions" src="captions/visual-design.vtt" srclang="en" label="English" default>
         </video>
       </div>
     </section>
     
     <section class="lesson-section no-borders">
-      <h2>Mario Alonso Puig</h2>
+      <h2>Glossary of Digital Well-being Concepts</h2>
+      <p>Throughout this course, you will encounter a variety of terms related to digital well-being. To support your learning, we have compiled a Glossary of Digital Well-being Concepts.</p>
       
-      <div class="responsive-video">
-        <video 
-          id="mario-alonso-video" 
-          class="video-js vjs-ie-skin vjs-big-play-centered" 
-          controls 
-          preload="auto" 
-          poster="assets/images/mario-alonso-puig-poster.jpg"
-          data-video-id="w00v05"
-          
-          aria-label="Mario Alonso Puig video"
+      <p>This glossary includes key definitions that will appear throughout the course, and it is available for you to consult at any time if you have questions or need clarification. We encourage you to refer back to it whenever you need to deepen your understanding or refresh a concept.</p>
+      
+      <div class="button-container">
+        <button 
+          id="open-glossary" 
+          class="save-button" 
+          aria-label="Open glossary of digital well-being concepts"
         >
-          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w00v05-mario-alonso-puig/hls.m3u8" type="application/x-mpegURL">
-          <p class="vjs-no-js">
-            To view this video please enable JavaScript, and consider upgrading to a
-            web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-          </p>
-          <track kind="captions" src="captions/mario-alonso-puig.vtt" srclang="en" label="English" default>
-        </video>
+          <i class="fas fa-book" aria-hidden="true"></i> Open Glossary
+        </button>
       </div>
     </section>
     
-    <div class="navigation-buttons" role="navigation" aria-label="Lesson navigation">
-      <a href="index.html" class="nav-button prev"><span class="arrow-left" aria-hidden="true">←</span>Previous</a>
+    <div class="navigation-buttons" role="navigation" aria-label="Course navigation">
+      <a href="index.html" class="nav-button prev"><span class="arrow-left" aria-hidden="true">←</span>Home</a>
       <a href="chapter1.html" class="nav-button next">Next<span class="arrow-right" aria-hidden="true">→</span></a>
     </div>
   </div>
@@ -345,7 +427,7 @@
         <a href="#" data-filter="w">W</a>
       </nav>
       <div class="glossary-terms">
-        <div class="glossary-section" data-letter="a">
+        <div id="glossary-section-a" class="glossary-section" data-letter="a">
           <h3 class="glossary-letter-header">A</h3>
           <div class="glossary-term">
             <strong>Accountability Buddy</strong> – A supportive partner who helps track progress and encourages consistency in digital well-being goals.
@@ -357,7 +439,7 @@
             <strong>Autonomy (Self-Determination Theory)</strong> – The ability to make choices about digital engagement that align with personal values and goals.
           </div>
         </div>
-        <div class="glossary-section" data-letter="b">
+        <div id="glossary-section-b" class="glossary-section" data-letter="b">
           <h3 class="glossary-letter-header">B</h3>
           <div class="glossary-term">
             <strong>Brain Cognition</strong> – The way the brain processes information, impacted by digital habits such as screen time and multitasking.
@@ -366,7 +448,7 @@
             <strong>Behavioral Science</strong> – The study of how people form digital habits and how technology influences decision-making.
           </div>
         </div>
-        <div class="glossary-section" data-letter="c">
+        <div id="glossary-section-c" class="glossary-section" data-letter="c">
           <h3 class="glossary-letter-header">C</h3>
           <div class="glossary-term">
             <strong>Character Strengths</strong> – Personal strengths (e.g., curiosity, self-regulation) that can be leveraged to cultivate healthy digital habits.
@@ -378,7 +460,7 @@
             <strong>Core Values</strong> – Fundamental beliefs that guide digital habits and decision-making.
           </div>
         </div>
-        <div class="glossary-section" data-letter="d">
+        <div id="glossary-section-d" class="glossary-section" data-letter="d">
           <h3 class="glossary-letter-header">D</h3>
           <div class="glossary-term">
             <strong>Digital Detox</strong> – A period of time spent without digital devices to reset habits and improve well-being.
@@ -396,7 +478,7 @@
             <strong>Digital Minimalism</strong> – A philosophy advocating for intentional and purposeful use of technology to enhance well-being.
           </div>
         </div>
-        <div class="glossary-section" data-letter="e">
+        <div id="glossary-section-e" class="glossary-section" data-letter="e">
           <h3 class="glossary-letter-header">E</h3>
           <div class="glossary-term">
             <strong>Empathy and Technology</strong> – The relationship between digital interactions and emotional intelligence, including how technology can impact social connections.
@@ -405,7 +487,7 @@
             <strong>Energy Management</strong> – Strategies to prevent digital fatigue and optimize energy levels in a tech-heavy world.
           </div>
         </div>
-        <div class="glossary-section" data-letter="f">
+        <div id="glossary-section-f" class="glossary-section" data-letter="f">
           <h3 class="glossary-letter-header">F</h3>
           <div class="glossary-term">
             <strong>Focus & Productivity</strong> – The ability to maintain attention and effectiveness in work and life, often challenged by digital distractions.
@@ -414,13 +496,13 @@
             <strong>Flourishing (Well-being Theory)</strong> – The state of thriving in multiple aspects of life, including physical, mental, emotional, and digital well-being.
           </div>
         </div>
-        <div class="glossary-section" data-letter="h">
+        <div id="glossary-section-h" class="glossary-section" data-letter="h">
           <h3 class="glossary-letter-header">H</h3>
           <div class="glossary-term">
             <strong>Habit Loop</strong> – A framework for understanding habit formation, consisting of cue, routine, and reward, applicable to digital behaviors.
           </div>
         </div>
-        <div class="glossary-section" data-letter="m">
+        <div id="glossary-section-m" class="glossary-section" data-letter="m">
           <h3 class="glossary-letter-header">M</h3>
           <div class="glossary-term">
             <strong>Mindfulness in Technology Use</strong> – Practicing present-moment awareness to create intentional and balanced digital interactions.
@@ -429,13 +511,13 @@
             <strong>Motivation (Self-Determination Theory)</strong> – Internal and external factors that influence engagement with technology, including autonomy, competence, and relatedness.
           </div>
         </div>
-        <div class="glossary-section" data-letter="n">
+        <div id="glossary-section-n" class="glossary-section" data-letter="n">
           <h3 class="glossary-letter-header">N</h3>
           <div class="glossary-term">
             <strong>Notification Management</strong> – Strategies to reduce interruptions and increase focus, such as disabling non-essential alerts.
           </div>
         </div>
-        <div class="glossary-section" data-letter="p">
+        <div id="glossary-section-p" class="glossary-section" data-letter="p">
           <h3 class="glossary-letter-header">P</h3>
           <div class="glossary-term">
             <strong>Prefrontal Cortex</strong> – The part of the brain responsible for decision-making and impulse control, which is affected by digital engagement.
@@ -444,46 +526,40 @@
             <strong>Psychological Safety and Technology</strong> – The impact of digital environments on emotional well-being and security.
           </div>
         </div>
-        <div class="glossary-section" data-letter="r">
+        <div id="glossary-section-r" class="glossary-section" data-letter="r">
           <h3 class="glossary-letter-header">R</h3>
           <div class="glossary-term">
             <strong>Reflection Practice</strong> – Periodic self-check-ins to assess digital habits and their alignment with personal values.
           </div>
         </div>
-        <div class="glossary-section" data-letter="s">
+        <div id="glossary-section-s" class="glossary-section" data-letter="s">
           <h3 class="glossary-letter-header">S</h3>
           <div class="glossary-term">
-            <strong>Screen Time</strong> – The amount of time spent using digital devices, which can impact physical and mental health.
+            <strong>Screen Time Awareness</strong> – Conscious tracking of time spent on digital devices to maintain a balanced lifestyle.
           </div>
           <div class="glossary-term">
-            <strong>Self-Compassion</strong> – Treating oneself with kindness and understanding, especially when facing challenges in digital well-being.
+            <strong>Self-Regulation</strong> – The ability to control impulses and make mindful choices in digital interactions.
           </div>
           <div class="glossary-term">
-            <strong>Self-Determination Theory</strong> – A psychological framework that emphasizes the importance of autonomy, competence, and relatedness in motivation and well-being.
-          </div>
-          <div class="glossary-term">
-            <strong>SMART Goals</strong> – Specific, Measurable, Achievable, Relevant, and Time-bound objectives for improving digital habits.
-          </div>
-          <div class="glossary-term">
-            <strong>Social Media Literacy</strong> – The ability to critically evaluate and engage with social media content in a healthy and informed manner.
-          </div>
-          <div class="glossary-term">
-            <strong>Soul (Well-being Theory)</strong> – The aspect of well-being related to purpose, values, and meaning in life, influenced by digital habits.
+            <strong>Social Media Hygiene</strong> – Practices for maintaining a healthy relationship with social platforms, including curating content and setting boundaries.
           </div>
         </div>
-        <div class="glossary-section" data-letter="t">
+        <div id="glossary-section-t" class="glossary-section" data-letter="t">
           <h3 class="glossary-letter-header">T</h3>
           <div class="glossary-term">
-            <strong>Technology Addiction</strong> – A behavioral pattern characterized by excessive and compulsive use of digital devices, leading to negative consequences.
+            <strong>Tech-Life Balance</strong> – The intentional effort to harmonize technology use with overall well-being.
           </div>
           <div class="glossary-term">
-            <strong>Time Management</strong> – Strategies to balance digital activities with other important aspects of life, such as work, relationships, and self-care.
+            <strong>Triggers in Digital Use</strong> – Environmental or psychological cues that prompt certain digital habits, such as checking the phone out of boredom.
+          </div>
+          <div class="glossary-term">
+            <strong>Two-Edge Effect of Technology</strong> – The concept that digital tools can both enhance and hinder well-being, depending on usage patterns.
           </div>
         </div>
-        <div class="glossary-section" data-letter="w">
+        <div id="glossary-section-w" class="glossary-section" data-letter="w">
           <h3 class="glossary-letter-header">W</h3>
           <div class="glossary-term">
-            <strong>Well-being Theory</strong> – A framework that encompasses various dimensions of well-being, including physical, mental, emotional, social, and digital aspects.
+            <strong>Willpower and Digital Use</strong> – The ability to resist distractions and build positive technology habits.
           </div>
         </div>
       </div>
