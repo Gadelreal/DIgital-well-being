@@ -62,6 +62,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Plugin para pausar otros videos
     player.ready(() => {
+      // Remove English CC tracks from subtitle menu
+      const tracks = player.textTracks()
+      for (let i = tracks.length - 1; i >= 0; i--) {
+        const track = tracks[i]
+        if (track.label === "English CC" || track.language === "en-CC") {
+          player.removeRemoteTextTrack(track)
+        }
+      }
+
       player.on("play", () => {
         pauseOtherVideos(player)
       })
