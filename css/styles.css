@@ -3972,6 +3972,9 @@ html:focus,
       align-items: center;
       background-color: #f8f9fa;
       border-radius: 8px 8px 0 0;
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
 
     .modal-header h2 {
@@ -4002,6 +4005,51 @@ html:focus,
       color: #000;
     }
 
+    /* Navegación de letras fija */
+    .glossary-alphabet-nav {
+      position: sticky;
+      top: 80px; /* Posicionado justo debajo del header */
+      background-color: white;
+      border-bottom: 1px solid #e0e0e0;
+      padding: 1rem 2rem;
+      z-index: 9;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .alphabet-letters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+    }
+
+    .alphabet-letter {
+      display: inline-block;
+      padding: 0.5rem 0.75rem;
+      background-color: #f8f9fa;
+      color: var(--primary-color);
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      min-width: 32px;
+      text-align: center;
+    }
+
+    .alphabet-letter:hover {
+      background-color: var(--primary-color);
+      color: white;
+      text-decoration: none;
+    }
+
+    .alphabet-letter.disabled {
+      background-color: #e9ecef;
+      color: #6c757d;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
     .modal-body {
       padding: 2rem;
       overflow-y: auto;
@@ -4020,11 +4068,27 @@ html:focus,
       border-left: 4px solid ##DB0086;
       border-radius: 0 4px 4px 0;
       line-height: 1.6;
+      scroll-margin-top: 120px; /* Espacio para la navegación fija */
     }
 
     .glossary-term strong {
       color: ##DB0086;
       font-weight: 600;
+    }
+
+    /* Secciones de letras */
+    .letter-section {
+      margin-bottom: 2rem;
+    }
+
+    .letter-section h3 {
+      color: var(--primary-color);
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--primary-color);
+      scroll-margin-top: 120px; /* Espacio para la navegación fija */
     }
 
     @media (max-width: 768px) {
@@ -4042,12 +4106,32 @@ html:focus,
         font-size: 1.3rem;
       }
 
+      .glossary-alphabet-nav {
+        padding: 0.75rem 1.5rem;
+        top: 70px;
+      }
+
+      .alphabet-letters {
+        gap: 0.25rem;
+      }
+
+      .alphabet-letter {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.8rem;
+        min-width: 28px;
+      }
+
       .modal-body {
         padding: 1.5rem;
       }
 
       .glossary-term {
         padding: 0.8rem;
+        scroll-margin-top: 100px;
+      }
+
+      .letter-section h3 {
+        scroll-margin-top: 100px;
       }
     }
 
@@ -4066,8 +4150,31 @@ html:focus,
         font-size: 1.2rem;
       }
 
+      .glossary-alphabet-nav {
+        padding: 0.5rem 1rem;
+        top: 60px;
+      }
+
+      .alphabet-letters {
+        gap: 0.2rem;
+      }
+
+      .alphabet-letter {
+        padding: 0.3rem 0.5rem;
+        font-size: 0.75rem;
+        min-width: 24px;
+      }
+
       .modal-body {
         padding: 1rem;
+      }
+
+      .glossary-term {
+        scroll-margin-top: 80px;
+      }
+
+      .letter-section h3 {
+        scroll-margin-top: 80px;
       }
     }
 
@@ -4095,228 +4202,690 @@ html:focus,
 .quiz-activity-container fieldset {
   border: none;
   padding: 0;
-  margin: 0 0 1.5rem 0;
+  margin: 0 0 2rem 0;
 }
 
 .quiz-activity-container legend {
   font-weight: 600;
   margin-bottom: 1rem;
+  color: #000;
   font-size: 1.1rem;
+}
+
+.quiz-activity-container .quiz-options {
+  list-style: none;
   padding: 0;
-  width: 100%;
+  margin: 0;
 }
 
-.quiz-activity-container .quiz-options-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
+.quiz-activity-container .quiz-options li {
+  margin-bottom: 0.8rem;
 }
 
-.quiz-activity-container .quiz-option {
+.quiz-activity-container .quiz-options label {
   display: flex;
-  align-items: center; /* Changed from flex-start to center for better alignment */
-  padding: 1rem;
+  align-items: flex-start;
+  cursor: pointer;
+  padding: 0.8rem;
+  border-radius: 6px;
+  transition: background-color 0.2s;
   background-color: white;
   border: 1px solid #ddd;
-  border-radius: 4px;
-  transition: background-color 0.2s;
 }
 
-.quiz-activity-container .quiz-option:hover {
-    background-color: #f0f0f0;
+.quiz-activity-container .quiz-options label:hover {
+  background-color: #f0f0f0;
 }
 
-.quiz-activity-container .quiz-option input[type="radio"] {
-  margin-right: 1.5rem; /* Increased from 1rem to 1.5rem for more spacing */
-  margin-top: 0; /* Changed from 0.25rem to 0 for better alignment */
+.quiz-activity-container .quiz-options input[type="radio"] {
+  margin-right: 0.8rem;
+  margin-top: 0.3rem;
   width: 18px;
   height: 18px;
   cursor: pointer;
-  flex-shrink: 0;
 }
 
-.quiz-activity-container .quiz-option label {
-  cursor: pointer;
-  flex: 1;
-  line-height: 1.5;
-  font-weight: 500;
-}
-
-/* In `.quiz-activity-container .quiz-option label`, remove the `::first-letter` pseudo-element styling to ensure consistent text formatting across all quiz options. */
-.quiz-activity-container .quiz-option label {
-  cursor: pointer;
-  flex: 1;
-  line-height: 1.5;
-  font-weight: 500;
-}
-
-.quiz-submit-btn {
+.quiz-activity-container .quiz-submit {
   background-color: var(--primary-color);
   color: white;
   border: none;
   border-radius: 4px;
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
-  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s, opacity 0.3s;
-  margin-bottom: 2rem; /* Add spacing below the submit button */
+  transition: background-color 0.3s;
+  margin-top: 1rem;
 }
 
-.quiz-submit-btn:hover {
+.quiz-activity-container .quiz-submit:hover {
   background-color: var(--link-hover-color);
 }
 
-.quiz-submit-btn:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-    opacity: 0.7;
-}
-
-.quiz-feedback {
-  margin-top: 2rem;
-  padding: 1.5rem;
-  border-radius: 4px;
-  background-color: #f0f8ff;
-  border: 1px solid #bde0fe;
-  line-height: 1.7;
-}
-
-.quiz-feedback h4 {
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
-  color: var(--primary-color);
-  font-size: 1.1rem;
-}
-
-.quiz-feedback ul {
-  list-style-type: none;
-  padding-left: 0;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
-.quiz-feedback li {
-  margin-bottom: 0.5rem;
-  padding-left: 1.5rem;
-  position: relative;
-}
-
-.quiz-feedback li.correct::before {
-  content: "✓";
-  position: absolute;
-  left: 0;
-  color: #28a745;
+.quiz-activity-container .quiz-result {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: 6px;
   font-weight: bold;
 }
 
-.quiz-feedback li.incorrect::before {
-  content: "✗";
-  position: absolute;
-  left: 0;
-  color: #dc3545;
-  font-weight: bold;
+.quiz-activity-container .quiz-result.correct {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
 }
 
-.quiz-feedback .correct-answer {
-  font-weight: 600;
-  color: #28a745;
+.quiz-activity-container .quiz-result.incorrect {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
 }
 
-.quiz-feedback .incorrect-answer {
-  font-weight: 600;
-  color: #dc3545;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .quiz-activity-container {
-    padding: 1.5rem;
-  }
-  
-  .quiz-activity-container .quiz-option {
-    padding: 0.8rem;
-  }
-  
-  .quiz-activity-container .quiz-option input[type="radio"] {
-    margin-right: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .quiz-activity-container {
-    padding: 1rem;
-  }
-  
-  .quiz-activity-container .quiz-option {
-    padding: 0.6rem;
-  }
-  
-  .quiz-activity-container .quiz-option input[type="radio"] {
-    margin-right: 0.8rem;
-  }
-}
-
-/* === Chapter 3 === */
-
-/* Estilos para el contenedor de fortalezas de carácter */
-.character-strengths-container {
+/* === Digital Goals Activity Styles === */
+.digital-goals-activity-container {
   background-color: #f9f9f9;
   border: 1px solid #e0e0e0;
   padding: 2rem;
   margin: 2rem 0;
 }
 
-.character-strengths-container h2 {
+.digital-goals-activity-container h2 {
   margin-top: 0 !important;
   margin-bottom: 1rem !important;
 }
 
-.character-strengths-container p {
+.digital-goals-activity-container p {
   margin-bottom: 1.5rem;
 }
 
-.character-strengths-container ul {
+.digital-goals-activity-container .goal-input-group {
   margin-bottom: 1.5rem;
 }
 
-.character-strengths-container li {
+.digital-goals-activity-container label {
+  display: block;
+  font-weight: 600;
   margin-bottom: 0.5rem;
-  line-height: 1.6;
+  color: #000;
 }
 
-/* Estilos para las tarjetas de fortalezas */
-.strengths-cards {
+.digital-goals-activity-container input[type="text"],
+.digital-goals-activity-container textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+  box-sizing: border-box;
+}
+
+.digital-goals-activity-container input[type="text"]:focus,
+.digital-goals-activity-container textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(0, 0, 102, 0.2);
+}
+
+.digital-goals-activity-container textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.digital-goals-activity-container .save-button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.digital-goals-activity-container .save-button:hover {
+  background-color: var(--link-hover-color);
+}
+
+.digital-goals-activity-container .save-button:active {
+  transform: scale(0.98);
+}
+
+.digital-goals-activity-container .save-feedback {
+  margin-left: 1rem;
+  font-size: 0.9rem;
+  color: var(--success-color);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.digital-goals-activity-container .save-feedback.show {
+  opacity: 1;
+  animation: fadeInOut 3s forwards;
+}
+
+/* === Values Activity Styles === */
+.values-activity-container {
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  padding: 2rem;
+  margin: 2rem 0;
+}
+
+.values-activity-container h2 {
+  margin-top: 0 !important;
+  margin-bottom: 1rem !important;
+}
+
+.values-activity-container p {
+  margin-bottom: 1.5rem;
+}
+
+.values-activity-container .values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.values-activity-container .value-item {
+  background-color: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  user-select: none;
+}
+
+.values-activity-container .value-item:hover {
+  border-color: var(--primary-color);
+  background-color: #f8f9ff;
+}
+
+.values-activity-container .value-item.selected {
+  border-color: var(--primary-color);
+  background-color: rgba(0, 0, 102, 0.1);
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.values-activity-container .selected-values {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+}
+
+.values-activity-container .selected-values h4 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+.values-activity-container .selected-values-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.values-activity-container .selected-values-list li {
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  background-color: #f8f9ff;
+  border-left: 3px solid var(--primary-color);
+  border-radius: 0 4px 4px 0;
+}
+
+.values-activity-container .save-button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  margin-top: 1rem;
+}
+
+.values-activity-container .save-button:hover {
+  background-color: var(--link-hover-color);
+}
+
+.values-activity-container .save-button:active {
+  transform: scale(0.98);
+}
+
+.values-activity-container .save-feedback {
+  margin-left: 1rem;
+  font-size: 0.9rem;
+  color: var(--success-color);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.values-activity-container .save-feedback.show {
+  opacity: 1;
+  animation: fadeInOut 3s forwards;
+}
+
+@media (max-width: 768px) {
+  .values-activity-container .values-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .values-activity-container .values-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* === Infographic Card Styles === */
+.infographic-card {
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.infographic-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  border-color: var(--primary-color);
+}
+
+.infographic-card h3 {
+  color: var(--primary-color);
+  margin-top: 0 !important;
+  margin-bottom: 1rem !important;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.infographic-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
+.infographic-card p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+.infographic-card .card-footer {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #f0f0f0;
+  text-align: center;
+}
+
+.infographic-card .view-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--primary-color);
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.infographic-card .view-button:hover {
+  background-color: var(--link-hover-color);
+  color: white;
+  text-decoration: none;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.infographic-card .view-button i {
+  margin-right: 0.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .infographic-card {
+    padding: 1.25rem;
+    margin: 1.5rem 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .infographic-card {
+    padding: 1rem;
+    margin: 1rem 0;
+  }
+
+  .infographic-card .view-button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* === Chapter 3 === */
+
+/* Estilos para las tarjetas de herramientas */
+.tools-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1.5rem;
   margin: 2rem 0;
 }
 
-.strength-card {
+.tool-card {
   background-color: white;
+  border: 1px solid #e0e0e0;
   border-radius: 8px;
   padding: 1.5rem;
-  border: 1px solid #e0e0e0;
   transition: all 0.3s ease;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-.strength-card:hover {
+.tool-card:hover {
   transform: translateY(-3px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
   border-color: var(--primary-color);
 }
 
-.strength-card h4 {
+.tool-card h4 {
   color: var(--primary-color);
-  margin-bottom: 0.8rem;
-  font-weight: 600;
-  font-size: 1.1rem;
   margin-top: 0;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  font-size: 1.2rem;
 }
 
-.strength-card p {
+.tool-card p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+.tool-card .tool-features {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.tool-card .tool-features li {
+  padding: 0.3rem 0;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.tool-card .tool-features li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.tool-card .tool-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--primary-color);
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.tool-card .tool-link:hover {
+  background-color: var(--link-hover-color);
+  color: white;
+  text-decoration: none;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.tool-card .tool-link i {
+  margin-right: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .tools-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Estilos para las tarjetas de estrategias */
+.strategies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.strategy-card {
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-left: 4px solid var(--primary-color);
+}
+
+.strategy-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.strategy-card h4 {
+  color: var(--primary-color);
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.strategy-card p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+.strategy-card .strategy-steps {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.strategy-card .strategy-steps li {
+  padding: 0.5rem 0;
+  position: relative;
+  padding-left: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.strategy-card .strategy-steps li::before {
+  content: counter(step-counter);
+  counter-increment: step-counter;
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.strategy-card .strategy-steps {
+  counter-reset: step-counter;
+}
+
+@media (max-width: 768px) {
+  .strategies-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* === Chapter 4 === */
+
+/* Estilos para las tarjetas de técnicas de mindfulness */
+.mindfulness-techniques {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.technique-card {
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.technique-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background-color: var(--primary-color);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.3s ease;
+}
+
+.technique-card:hover::before {
+  transform: scaleY(1);
+}
+
+.technique-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.technique-card h4 {
+  color: var(--primary-color);
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.technique-card .technique-duration {
+  background-color: rgba(0, 0, 102, 0.1);
+  color: var(--primary-color);
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.technique-card p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+.technique-card .technique-steps {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+  counter-reset: technique-counter;
+}
+
+.technique-card .technique-steps li {
+  padding: 0.5rem 0;
+  position: relative;
+  padding-left: 2rem;
+  margin-bottom: 0.5rem;
+  counter-increment: technique-counter;
+}
+
+.technique-card .technique-steps li::before {
+  content: counter(technique-counter);
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .mindfulness-techniques {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Estilos para las tarjetas de beneficios del sueño */
+.sleep-benefits {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.sleep-benefit-card {
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.sleep-benefit-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  border-color: var(--primary-color);
+}
+
+.sleep-benefit-card .benefit-icon {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.sleep-benefit-card h4 {
+  color: var(--primary-color);
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.sleep-benefit-card p {
   margin: 0;
   line-height: 1.6;
   color: #333;
@@ -4324,430 +4893,540 @@ html:focus,
 }
 
 @media (max-width: 768px) {
-  .strengths-cards {
+  .sleep-benefits {
     grid-template-columns: 1fr;
   }
-  
-  .character-strengths-container {
-    padding: 1.5rem;
-  }
 }
 
-@media (max-width: 480px) {
-  .character-strengths-container {
-    padding: 1rem;
-  }
-  
-  .strength-card {
-    padding: 1.25rem;
-  }
-}
-
-/* === Chapter 4 === */
-
-/* Estilos para el contenedor de testimonios */
-.testimonials-container {
-  background-color: #f9f9f9;
-  border: 1px solid #e0e0e0;
-  padding: 2rem;
-  margin: 2rem 0;
-}
-
-.testimonials-container h2 {
-  margin-top: 0 !important;
-  margin-bottom: 1rem !important;
-  text-align: center;
-}
-
-.testimonials-container p {
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
-
-/* Estilos para las tarjetas de testimonios */
-.testimonials-grid {
+/* Estilos para las tarjetas de consejos de higiene del sueño */
+.sleep-hygiene-tips {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
   margin: 2rem 0;
 }
 
-.testimonial-card {
+.sleep-tip-card {
   background-color: white;
-  border-radius: 8px;
-  padding: 2rem;
   border: 1px solid #e0e0e0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  position: relative;
+  border-radius: 8px;
+  padding: 1.5rem;
   transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-left: 4px solid var(--primary-color);
 }
 
-.testimonial-card:hover {
+.sleep-tip-card:hover {
   transform: translateY(-3px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-  border-color: var(--primary-color);
 }
 
-.testimonial-card::before {
-  content: '"';
-  position: absolute;
-  top: -10px;
-  left: 20px;
-  font-size: 4rem;
+.sleep-tip-card h4 {
   color: var(--primary-color);
-  font-family: serif;
-  line-height: 1;
-}
-
-.testimonial-quote {
-  font-style: italic;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
-  color: #333;
-  font-size: 1rem;
-}
-
-.testimonial-author {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.author-avatar {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color: var(--primary-color);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-weight: bold;
-  font-size: 1.2rem;
-  flex-shrink: 0;
-}
-
-.author-info {
-  flex: 1;
-}
-
-.author-name {
+  margin-top: 0;
+  margin-bottom: 1rem;
   font-weight: 600;
-  color: #000;
-  margin-bottom: 0.25rem;
-  font-size: 1rem;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
 }
 
-.author-role {
-  color: #666;
-  font-size: 0.9rem;
+.sleep-tip-card h4 i {
+  margin-right: 0.5rem;
+  font-size: 1.3rem;
+}
+
+.sleep-tip-card p {
   margin: 0;
+  line-height: 1.6;
+  color: #333;
 }
 
 @media (max-width: 768px) {
-  .testimonials-grid {
+  .sleep-hygiene-tips {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-  
-  .testimonials-container {
-    padding: 1.5rem;
-  }
-  
-  .testimonial-card {
-    padding: 1.5rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .testimonials-container {
-    padding: 1rem;
-  }
-  
-  .testimonial-card {
-    padding: 1.25rem;
-  }
-  
-  .testimonial-card::before {
-    font-size: 3rem;
-    top: -5px;
-    left: 15px;
   }
 }
 
 /* === Chapter 5 === */
 
-/* Estilos para el quiz final */
-.final-quiz-container {
+/* Estilos para las tarjetas de elementos del plan de acción */
+.action-plan-elements {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.action-element-card {
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+.action-element-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background-color: var(--primary-color);
+  border-radius: 4px 0 0 4px;
+}
+
+.action-element-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.action-element-card .element-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background-color: rgba(0, 0, 102, 0.1);
+  color: var(--primary-color);
+  border-radius: 50%;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.action-element-card h4 {
+  color: var(--primary-color);
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.action-element-card p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+.action-element-card .element-details {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.action-element-card .element-details li {
+  padding: 0.3rem 0;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.action-element-card .element-details li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .action-plan-elements {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Estilos para las tarjetas de pasos del plan */
+.plan-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.plan-step-card {
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.plan-step-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  border-color: var(--primary-color);
+}
+
+.plan-step-card .step-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.plan-step-card .step-content {
+  flex: 1;
+}
+
+.plan-step-card .step-content h4 {
+  color: var(--primary-color);
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.plan-step-card .step-content p {
+  margin: 0;
+  line-height: 1.6;
+  color: #333;
+}
+
+@media (max-width: 768px) {
+  .plan-step-card {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .plan-step-card .step-number {
+    align-self: center;
+  }
+}
+
+/* Estilos para el formulario de plan de acción */
+.action-plan-form {
   background-color: #f9f9f9;
   border: 1px solid #e0e0e0;
+  border-radius: 8px;
   padding: 2rem;
   margin: 2rem 0;
 }
 
-.final-quiz-container h2 {
+.action-plan-form h3 {
+  color: var(--primary-color);
   margin-top: 0 !important;
-  margin-bottom: 1rem !important;
-}
-
-.final-quiz-container p {
-  margin-bottom: 1.5rem;
-}
-
-.final-quiz-question {
-  background-color: white;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.final-quiz-question h3 {
-  margin-top: 0 !important;
-  margin-bottom: 1rem !important;
-  color: #000;
-  font-size: 1.1rem;
+  margin-bottom: 1.5rem !important;
   font-weight: 600;
+  text-align: center;
 }
 
-.final-quiz-options {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-}
-
-.final-quiz-option {
-  display: flex;
-  align-items: center;
-  padding: 1rem;
-  background-color: #f8f9fa;
+.action-plan-form .form-section {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background-color: white;
+  border-radius: 6px;
   border: 1px solid #e0e0e0;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.2s ease;
 }
 
-.final-quiz-option:hover {
-  background-color: #e9ecef;
-  border-color: var(--primary-color);
-}
-
-.final-quiz-option.selected {
-  background-color: rgba(219, 0, 134, 0.1);
-  border-color: var(--primary-color);
-}
-
-.final-quiz-option input[type="radio"] {
-  margin-right: 1.5rem;
+.action-plan-form .form-section h4 {
+  color: var(--primary-color);
   margin-top: 0;
-  width: 18px;
-  height: 18px;
-  cursor: pointer;
-  flex-shrink: 0;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  font-size: 1.1rem;
 }
 
-.final-quiz-option label {
-  cursor: pointer;
-  flex: 1;
-  line-height: 1.5;
-  font-weight: 500;
+.action-plan-form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #000;
 }
 
-.final-quiz-submit {
-  background-color: var(--primary-color);
-  color: white;
+.action-plan-form input[type="text"],
+.action-plan-form textarea,
+.action-plan-form select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+  box-sizing: border-box;
+  margin-bottom: 1rem;
+}
+
+.action-plan-form input[type="text"]:focus,
+.action-plan-form textarea:focus,
+.action-plan-form select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(0, 0, 102, 0.2);
+}
+
+.action-plan-form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.action-plan-form .form-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.action-plan-form .save-button,
+.action-plan-form .download-button {
+  padding: 0.75rem 1.5rem;
   border: none;
   border-radius: 4px;
-  padding: 0.75rem 1.5rem;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-bottom: 2rem; /* Add spacing below the submit button */
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
 }
 
-.final-quiz-submit:hover {
+.action-plan-form .save-button {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.action-plan-form .save-button:hover {
   background-color: var(--link-hover-color);
 }
 
-.final-quiz-submit:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-  opacity: 0.7;
+.action-plan-form .download-button {
+  background-color: #28a745;
+  color: white;
 }
 
-.quiz-results {
-  margin-top: 2rem;
-  padding: 1.5rem;
-  background-color: #f0f8ff;
-  border: 1px solid #bde0fe;
-  border-radius: 4px;
+.action-plan-form .download-button:hover {
+  background-color: #218838;
+  color: white;
+  text-decoration: none;
 }
 
-.quiz-results h3 {
-  margin-top: 0 !important;
-  margin-bottom: 1rem !important;
-  color: var(--primary-color);
-  font-size: 1.2rem;
+.action-plan-form .download-button i,
+.action-plan-form .save-button i {
+  margin-right: 0.5rem;
 }
 
-.results-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-
-.result-item {
+.action-plan-form .save-feedback {
   text-align: center;
-  padding: 1rem;
-  background-color: white;
-  border-radius: 4px;
-  border: 1px solid #e0e0e0;
-}
-
-.result-number {
-  font-size: 2rem;
-  font-weight: bold;
-  color: var(--primary-color);
-  display: block;
-}
-
-.result-label {
+  margin-top: 1rem;
   font-size: 0.9rem;
-  color: #666;
-  margin-top: 0.5rem;
+  color: var(--success-color);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.action-plan-form .save-feedback.show {
+  opacity: 1;
+  animation: fadeInOut 3s forwards;
 }
 
 @media (max-width: 768px) {
-  .final-quiz-container {
+  .action-plan-form {
     padding: 1.5rem;
   }
-  
-  .final-quiz-question {
-    padding: 1.25rem;
+
+  .action-plan-form .form-buttons {
+    flex-direction: column;
   }
-  
-  .final-quiz-option {
-    padding: 0.8rem;
-  }
-  
-  .final-quiz-option input[type="radio"] {
-    margin-right: 1rem;
-  }
-  
-  .results-grid {
-    grid-template-columns: 1fr;
-    gap: 0.8rem;
+
+  .action-plan-form .save-button,
+  .action-plan-form .download-button {
+    width: 100%;
+    justify-content: center;
   }
 }
 
-@media (max-width: 480px) {
-  .final-quiz-container {
-    padding: 1rem;
-  }
-  
-  .final-quiz-question {
-    padding: 1rem;
-  }
-  
-  .final-quiz-option {
-    padding: 0.6rem;
-  }
-  
-  .final-quiz-option input[type="radio"] {
-    margin-right: 0.8rem;
-  }
-}
-
-/* === Accordion Styles === */
-.accordion-container {
+/* Estilos para las tarjetas de recursos adicionales */
+.additional-resources {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
   margin: 2rem 0;
 }
 
-.accordion-item {
+.resource-card {
   background-color: white;
   border: 1px solid #e0e0e0;
+  border-radius: 8px;
   padding: 1.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  text-align: center;
 }
 
-.accordion-item + .accordion-item {
-    border-top: none;
+.resource-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  border-color: var(--primary-color);
 }
 
-.accordion-item:first-child {
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
+.resource-card .resource-icon {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
 }
 
-.accordion-item:last-child {
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
-}
-
-.accordion-header {
-  margin: 0;
+.resource-card h4 {
+  color: var(--primary-color);
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-weight: 600;
   font-size: 1.2rem;
+}
+
+.resource-card p {
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+.resource-card .resource-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--primary-color);
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.resource-card .resource-link:hover {
+  background-color: var(--link-hover-color);
+  color: white;
+  text-decoration: none;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.resource-card .resource-link i {
+  margin-right: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .additional-resources {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Estilos para el contenedor de encuestas */
+.survey-container-final {
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 2rem;
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.survey-container-final h3 {
+  color: var(--primary-color);
+  margin-top: 0 !important;
+  margin-bottom: 1.5rem !important;
   font-weight: 600;
 }
 
-.accordion-trigger {
-  background: none;
-  border: none;
-  width: 100%;
-  text-align: left;
-  padding: 0;
-  font-family: inherit;
-  font-size: inherit;
-  font-weight: inherit;
-  color: var(--primary-color);
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.accordion-trigger:hover, .accordion-trigger:focus {
-  color: var(--primary-color-dark);
-  text-decoration: underline;
-}
-
-.accordion-icon {
-  width: 24px;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.4rem;
-  font-weight: bold;
-  flex-shrink: 0;
-  margin-left: 1rem;
-  font-family: monospace;
-}
-
-.accordion-description {
-  margin-top: 0.75rem;
-  margin-bottom: 0;
-  color: #333;
+.survey-container-final p {
+  margin-bottom: 1.5rem;
   line-height: 1.6;
+  color: #333;
 }
 
-.accordion-panel {
-  margin-top: 1rem;
-  overflow: hidden;
+.survey-container-final .survey-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
-.accordion-panel[hidden] {
-    display: none;
+.survey-container-final .survey-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--primary-color);
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: all 0.3s ease;
 }
 
-.accordion-panel-inner {
-    padding: 1rem;
-    background-color: #f0f8ff; /* A light blue, consistent with other feedback areas */
-    border-left: 4px solid var(--primary-color);
-    border-radius: 4px;
+.survey-container-final .survey-button:hover {
+  background-color: var(--link-hover-color);
+  color: white;
+  text-decoration: none;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.accordion-panel-inner p {
-    margin-bottom: 0 !important;
+.survey-container-final .survey-button i {
+  margin-right: 0.5rem;
 }
+
+@media (max-width: 768px) {
+  .survey-container-final .survey-buttons {
+    flex-direction: column;
+  }
+
+  .survey-container-final .survey-button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Estilos para el contenedor de conclusión */
+.conclusion-container {
+  background-color: white;
+  border: 2px solid var(--primary-color);
+  border-radius: 8px;
+  padding: 2rem;
+  margin: 2rem 0;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 102, 0.1);
+}
+
+.conclusion-container h3 {
+  color: var(--primary-color);
+  margin-top: 0 !important;
+  margin-bottom: 1.5rem !important;
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.conclusion-container p {
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.conclusion-container .conclusion-icon {
+  font-size: 3rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .conclusion-container {
+    padding: 1.5rem;
+  }
+
+  .conclusion-container .conclusion-icon {
+    font-size: 2.5rem;
+  }
+}
+</css>
