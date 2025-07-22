@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Digital Well-being - Course Conclusion</title>
-<link rel="stylesheet" href="./css/styles.css">
-<!-- VideoJS CSS -->
-<link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
-<!-- Font Awesome para iconos -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
-<style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 5: Sustaining Your Digital Well-being Journey - Digital Well-being Course</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://vjs.zencdn.net/8.6.1/video-js.css" rel="stylesheet">
+    <script src="https://vjs.zencdn.net/8.6.1/video.min.js"></script>
+    <!-- VideoJS CSS -->
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
+    <style>
 /* Estilos para la navegación A-Z del glosario y las secciones */
 .glossary-az-nav {
   padding: 10px 0;
@@ -424,945 +425,922 @@
   position: relative;
   overflow: hidden;
 }
+/* Basic styling for the navbar */
+.navbar {
+    background-color: #f8f9fa;
+    padding: 15px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.nav-logo img {
+    height: 40px;
+}
+
+.nav-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.nav-item {
+    margin-left: 20px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #007bff;
+}
+
+/* Dropdown styles */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-toggle::after {
+    display: inline-block;
+    margin-left: 0.255em;
+    vertical-align: 0.255em;
+    content: "";
+    border-top: 0.3em solid;
+    border-right: 0.3em solid transparent;
+    border-bottom: 0;
+    border-left: 0.3em solid transparent;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 0.25rem;
+    padding: 0.5rem 0;
+    margin-top: 0.125rem;
+    display: none;
+    z-index: 1000;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-link {
+    display: block;
+    padding: 0.5rem 1rem;
+    clear: both;
+    font-weight: 400;
+    color: #212529;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+    text-decoration: none;
+}
+
+.dropdown-link:hover {
+    background-color: #f8f9fa;
+    color: #16181b;
+}
+
+/* Hamburger menu styles */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    margin-bottom: 5px;
+    background-color: #333;
+    border-radius: 3px;
+    transition: transform 0.3s ease;
+}
+
+/* Active class for hamburger menu */
+.hamburger.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Active class for nav menu */
+.nav-menu.active {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background-color: #f8f9fa;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    padding: 10px 0;
+    z-index: 10;
+}
+
+.nav-menu.active .nav-item {
+    margin: 10px 0;
+    text-align: center;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+}
+
+/* Chapter Header Styles */
+.chapter-header {
+    background-color: #e9ecef;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.chapter-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #343a40;
+}
+
+.chapter-header p {
+    font-size: 1.2rem;
+    color: #6c757d;
+}
+
+/* Chapter Content Styles */
+.chapter-content {
+    padding: 30px 0;
+}
+
+/* Video Section Styles */
+.video-section {
+    margin-bottom: 40px;
+}
+
+.video-section h2 {
+    font-size: 1.75rem;
+    margin-bottom: 20px;
+    color: #343a40;
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.video-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.video-description p {
+    font-size: 1rem;
+    color: #495057;
+    line-height: 1.6;
+}
+
+/* Key Points Section Styles */
+.key-points-section {
+    margin-bottom: 40px;
+}
+
+.key-points-section h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #343a40;
+}
+
+.key-points-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.key-point {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    padding: 20px;
+}
+
+.key-point h4 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: #343a40;
+}
+
+.key-point p {
+    font-size: 0.9rem;
+    color: #495057;
+    line-height: 1.5;
+}
+
+/* Activity Section Styles */
+.activity-section {
+    margin-bottom: 40px;
+}
+
+.activity-section h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #343a40;
+}
+
+.activity-content p {
+    font-size: 1rem;
+    color: #495057;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.activity-instructions h4 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: #343a40;
+}
+
+.activity-instructions ol {
+    padding-left: 20px;
+    margin-bottom: 15px;
+}
+
+.activity-instructions li {
+    font-size: 0.9rem;
+    color: #495057;
+    line-height: 1.5;
+}
+
+.download-section {
+    text-align: center;
+}
+
+.download-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s ease;
+}
+
+.download-btn:hover {
+    background-color: #0056b3;
+}
+
+.download-icon {
+    margin-right: 8px;
+}
+
+/* Reflection Section Styles */
+.reflection-section {
+    margin-bottom: 40px;
+}
+
+.reflection-section h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #343a40;
+}
+
+.reflection-content p {
+    font-size: 1rem;
+    color: #495057;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.reflection-questions {
+    margin-bottom: 20px;
+}
+
+.reflection-question {
+    margin-bottom: 15px;
+}
+
+.reflection-question h4 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: #343a40;
+}
+
+.reflection-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    font-size: 0.9rem;
+    color: #495057;
+    line-height: 1.5;
+    resize: vertical;
+}
+
+.save-reflection-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.save-reflection-btn:hover {
+    background-color: #218838;
+}
+
+/* Course Completion Section Styles */
+.completion-section {
+    background-color: #d1e7dd;
+    border: 1px solid #badbcc;
+    border-radius: 0.25rem;
+    padding: 30px;
+    margin-bottom: 40px;
+}
+
+.completion-content h3 {
+    font-size: 1.75rem;
+    margin-bottom: 20px;
+    color: #155724;
+}
+
+.completion-content p {
+    font-size: 1rem;
+    color: #155724;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.next-steps h4 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: #155724;
+}
+
+.next-steps ul {
+    padding-left: 20px;
+    margin-bottom: 15px;
+}
+
+.next-steps li {
+    font-size: 0.9rem;
+    color: #155724;
+    line-height: 1.5;
+}
+
+.completion-actions {
+    text-align: center;
+}
+
+.primary-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 10px;
+}
+
+.primary-btn:hover {
+    background-color: #0056b3;
+}
+
+.secondary-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #6c757d;
+    color: #fff;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.secondary-btn:hover {
+    background-color: #5a6268;
+}
+
+/* Chapter Navigation Styles */
+.chapter-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.nav-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #f8f9fa;
+    color: #343a40;
+    text-decoration: none;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s ease;
+}
+
+.nav-btn:hover {
+    background-color: #e2e6ea;
+}
+
+.nav-arrow {
+    margin-right: 8px;
+}
+
+/* Footer Styles */
+.footer {
+    background-color: #343a40;
+    color: #fff;
+    padding: 40px 0;
+}
+
+.footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.footer-section {
+    margin-bottom: 20px;
+}
+
+.footer-logo {
+    height: 40px;
+    margin-bottom: 15px;
+}
+
+.footer-section p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #adb5bd;
+}
+
+.footer-section h4 {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-section li {
+    margin-bottom: 8px;
+}
+
+.footer-section a {
+    color: #adb5bd;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+    color: #fff;
+}
+
+.footer-bottom {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #adb5bd;
+    padding-top: 20px;
+    border-top: 1px solid #495057;
+}
+
+/* General Container Styles */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Main Content Styles */
+.main-content {
+    flex: 1;
+    padding-top: 20px;
+}
+
+/* Progress Indicator Styles */
+.progress-container {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background-color: #e9ecef;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: #007bff;
+    width: 0; /* Set dynamically with JavaScript */
+    transition: width 0.3s ease;
+}
+
+.progress-text {
+    display: block;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-top: 5px;
+}
 </style>
 </head>
 <body>
-<!-- Añadir el enlace de saltar al contenido principal al inicio del body -->
-<a href="#main-content" class="skip-to-content">Skip to main content</a>
-
-<!-- Modificar la estructura del header para alinear elementos en una línea -->
-<header class="full-width header-full-bottom" role="banner">
-<div class="header-content">
-  <div class="header-left">
-    <div class="logo-container tiny-logo">
-      <a href="https://www.ie.edu" target="_blank" aria-label="IE University website">
-        <img src="assets/images/logo-ie.svg" alt="IE University Logo" class="logo" width="120">
-      </a>
-    </div>
-    <h2 class="header-title">Digital Well-being</h2>
-  </div>
-  <div class="header-controls">
-    <button id="mobile-menu-toggle" class="mobile-menu-toggle always-visible" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
-      <div class="hamburger-icon">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </button>
-  </div>
-</div>
-<nav class="main-nav hamburger-nav" id="main-nav" aria-label="Main navigation">
-  <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="introduction.html">0. Introduction</a></li>
-    <li><a href="chapter1.html">1. Well-being as a Key...</a></li>
-    <li><a href="chapter2.html">2. Digital Habits</a></li>
-    <li><a href="chapter3.html">3. Attention, Cognition, Energy...</a></li>
-    <li><a href="chapter4.html">4. Building Resilience</a></li>
-    <li><a href="chapter5.html" class="active" aria-current="page">5. Course Conclusion</a></li>
-    <li><a href="#" id="glossary-menu-link"><i class="fas fa-book" style="color: #DB0086; margin-right: 0.5rem;" aria-hidden="true"></i>Open Glossary</a></li>
-  </ul>
-</nav>
-</header>
-
-<section class="hero-section">
-<div class="hero-content">
-  <div class="hero-title-container">
-    
-    <h1 class="hero-title">LESSON 5<br>Course Conclusion</h1>
-  </div>
-</div>
-</section>
-
-<main id="main-content" tabindex="-1">
-  <div class="content-aligned-container">
-    
-    
-    <!-- 1. Course Conclusion - Fondo blanco -->
-    <section class="lesson-section no-borders">
-      <h2>Course Conclusion</h2>
-      
-      <p>You've taken an important step toward cultivating a healthier, more intentional 
-      relationship with technology. Throughout this journey, you've explored key concepts, 
-      reflected on your habits, and gained valuable tools to support your digital well-being.</p>
-      
-      <p>Now, just a few final steps remain to complete your learning experience:</p>
-      
-      <div class="learning-objectives-grid-2x2">
-        <div class="learning-objective-card">
-          <div class="objective-icon" aria-hidden="true">
-            <i class="fas fa-clipboard-list"></i>
-          </div>
-          <div class="objective-content">
-            <h4>1. Digital Well-being Action Plan</h4>
-            <p>Develop your personalized guide to help you put your insights into practice</p>
-          </div>
-        </div>
-        
-        <div class="learning-objective-card">
-          <div class="objective-icon" aria-hidden="true">
-            <i class="fas fa-journal-whills"></i>
-          </div>
-          <div class="objective-content">
-            <h4>2. Personal Journal</h4>
-            <p>Review and download your responses throughout the course—these form your Personal Journal, a resource you can revisit anytime</p>
-          </div>
-        </div>
-        
-        <div class="learning-objective-card">
-          <div class="objective-icon" aria-hidden="true">
-            <i class="fas fa-certificate"></i>
-          </div>
-          <div class="objective-content">
-            <h4>3. Final Test</h4>
-            <p>Complete the Final Test to assess your understanding of the course content and unlock your certificate of completion</p>
-          </div>
-        </div>
-        
-        <div class="learning-objective-card">
-          <div class="objective-icon" aria-hidden="true">
-            <i class="fas fa-poll"></i>
-          </div>
-          <div class="objective-content">
-            <h4>4. Final Survey</h4>
-            <p>Fill out the Final Survey to reflect on your progress and share feedback to help us continue improving this experience</p>
-          </div>
-        </div>
-      </div>
-      
-      <p style="margin-top: 2rem;">Thank you for your commitment and here's to a more balanced, mindful, and fulfilling digital life!</p>
-    </section>
-    
-    <!-- 2. Digital Well-being Conclusion Video - Fondo gris -->
-    <section class="lesson-section no-borders">
-      <h2>Digital Well-being Conclusion Video</h2>
-
-      <div class="responsive-video">
-        <video 
-          id="conclusion-video" 
-          class="video-js vjs-ie-skin vjs-big-play-centered" 
-          controls 
-          preload="auto" 
-          poster="assets/images/conclusion-video-poster.png"
-          data-video-id="w05v01"
-          
-          aria-label="Digital Well-being Conclusion video"
-        >
-          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w05v01-digital-well-being-conclusion/hls.m3u8" type="application/x-mpegURL">
-          <p class="vjs-no-js">
-            To view this video please enable JavaScript, and consider upgrading to a
-            web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-          </p>
-          <track kind="captions" src="captions/digital-wellbeing-conclusion.vtt" srclang="en" label="English" default>
-        </video>
-      </div>
-    </section>
-    
-    <!-- 3. Action Plan - Fondo blanco -->
-    <section class="lesson-section no-borders">
-      <div class="values-activity-container">
-        <h2><strong>Activity: Develop Your Own Digital Well-being Action Plan</strong></h2>
-        
-        <h3>Congratulations on completing the Digital Well-being Course!</h3>
-        <p>This is where your learning becomes daily practice. Use this action plan to define your 
-        next steps, stay focused, and build habits that truly serve your life.</p>
-        
-        <p>You can download the editable template to complete your responses. This way, 
-        you can save your answers as a personalized roadmap for your digital well-being.</p>
-        
-        <a href="#" class="download-template-button" onclick="downloadActionPlanTemplate()" aria-label="Download editable template for digital well-being action plan">
-          <i class="fas fa-download" aria-hidden="true"></i>
-          <strong>Download the editable template here</strong>
-        </a>
-      </div>
-    </section>
-
-    <!-- 4. Final Quiz -->
-    <section class="lesson-section no-borders">
-      <div class="quiz-activity-container">
-        <h2>Course Final Quiz</h2>
-        <p>This is the final assessment of the course. Please read the following instructions carefully before starting:</p>
-        <ul>
-          <li>The test consists of multiple choice questions based on the content covered throughout the course.</li>
-          <li>For each question, select the one best answer unless otherwise indicated.</li>
-          <li>There is no time limit, but we recommend completing it in one sitting.</li>
-        </ul>
-        <p>Once submitted, your responses will be recorded and graded. Good luck — and thank you for being part of this learning journey!</p>
-        
-        <form id="final-quiz">
-          <!-- Question 1 -->
-          <fieldset>
-            <legend>1. What is the best definition of digital well-being?</legend>
-            <div class="quiz-options-list">
-              <label class="quiz-option" for="q1a">
-                <input type="radio" id="q1a" name="question1" value="a">
-                <span class="option-text">a) Limiting screen time as much as possible</span>
-              </label>
-              <label class="quiz-option" for="q1b">
-                <input type="radio" id="q1b" name="question1" value="b">
-                <span class="option-text">b) Learning how to use technology only for work purposes</span>
-              </label>
-              <label class="quiz-option" for="q1c">
-                <input type="radio" id="q1c" name="question1" value="c">
-                <span class="option-text">c) Cultivating habits and practices that support a healthy, balanced integration of technology in our lives</span>
-              </label>
-              <label class="quiz-option" for="q1d">
-                <input type="radio" id="q1d" name="question1" value="d">
-                <span class="option-text">d) Avoiding social media completely</span>
-              </label>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <img src="assets/images/logo-ie.svg" alt="IE University" class="logo">
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="introduction.html" class="nav-link">Introduction</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle">Chapters</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="chapter1.html" class="dropdown-link">Chapter 1: Understanding Digital Well-being</a></li>
+                            <li><a href="chapter2.html" class="dropdown-link">Chapter 2: Building Healthy Digital Habits</a></li>
+                            <li><a href="chapter3.html" class="dropdown-link">Chapter 3: The Science of Attention and Focus</a></li>
+                            <li><a href="chapter4.html" class="dropdown-link">Chapter 4: Creating Positive Digital Relationships</a></li>
+                            <li><a href="chapter5.html" class="dropdown-link active">Chapter 5: Sustaining Your Digital Well-being Journey</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
             </div>
-          </fieldset>
+        </nav>
+    </header>
 
-          <!-- Question 2 -->
-          <fieldset>
-            <legend>2. How can we best describe the relationship between digital technology and human well-being?</legend>
-            <div class="quiz-options-list">
-              <label class="quiz-option" for="q2a">
-                <input type="radio" id="q2a" name="question2" value="a">
-                <span class="option-text">a) Technology is mostly harmful and should be minimized</span>
-              </label>
-              <label class="quiz-option" for="q2b">
-                <input type="radio" id="q2b" name="question2" value="b">
-                <span class="option-text">b) The impact of technology is fixed and doesn't change with behavior</span>
-              </label>
-              <label class="quiz-option" for="q2c">
-                <input type="radio" id="q2c" name="question2" value="c">
-                <span class="option-text">c) The effects of technology on well-being depend on how intentionally and mindfully we engage with it</span>
-              </label>
-              <label class="quiz-option" for="q2d">
-                <input type="radio" id="q2d" name="question2" value="d">
-                <span class="option-text">d) Digital well-being is only relevant for people working in tech</span>
-              </label>
+    <main class="main-content">
+        <div class="chapter-header">
+            <div class="container">
+                <h1>Chapter 5: Sustaining Your Digital Well-being Journey</h1>
+                <p class="chapter-description">Learn how to maintain and evolve your digital well-being practices for long-term success and continuous growth.</p>
             </div>
-          </fieldset>
-
-          <!-- Question 3 -->
-          <fieldset>
-            <legend>3. Which of the following is a science-based strategy to improve digital well-being?</legend>
-            <div class="quiz-options-list">
-              <label class="quiz-option" for="q3a">
-                <input type="radio" id="q3a" name="question3" value="a">
-                <span class="option-text">a) Uninstalling all apps from your phone</span>
-              </label>
-              <label class="quiz-option" for="q3b">
-                <input type="radio" id="q3b" name="question3" value="b">
-                <span class="option-text">b) Replacing screen time with productivity tools</span>
-              </label>
-              <label class="quiz-option" for="q3c">
-                <input type="radio" id="q3c" name="question3" value="c">
-                <span class="option-text">c) Identifying triggers and using habit loops to intentionally shape digital behavior</span>
-              </label>
-              <label class="quiz-option" for="q3d">
-                <input type="radio" id="q3d" name="question3" value="d">
-                <span class="option-text">d) Setting daily alarms to remind yourself to go offline</span>
-              </label>
-            </div>
-          </fieldset>
-
-          <!-- Question 4 -->
-          <fieldset>
-            <legend>4. Which of the following is a true statement about digital habits?</legend>
-            <div class="quiz-options-list">
-              <label class="quiz-option" for="q4a">
-                <input type="radio" id="q4a" name="question4" value="a">
-                <span class="option-text">a) They are solely based on willpower</span>
-              </label>
-              <label class="quiz-option" for="q4b">
-                <input type="radio" id="q4b" name="question4" value="b">
-                <span class="option-text">b) Habits cannot be changed once they're formed</span>
-              </label>
-              <label class="quiz-option" for="q4c">
-                <input type="radio" id="q4c" name="question4" value="c">
-                <span class="option-text">c) Habits follow a loop of cue, action, and reward</span>
-              </label>
-              <label class="quiz-option" for="q4d">
-                <input type="radio" id="q4d" name="question4" value="d">
-                <span class="option-text">d) Habits are completely random and untraceable</span>
-              </label>
-            </div>
-          </fieldset>
-
-          <!-- Question 5 -->
-          <fieldset>
-            <legend>5. What is a common trigger that leads to unintentional digital behavior?</legend>
-            <div class="quiz-options-list">
-              <label class="quiz-option" for="q5a">
-                <input type="radio" id="q5a" name="question5" value="a">
-                <span class="option-text">a) Deep reflection on values</span>
-              </label>
-              <label class="quiz-option" for="q5b">
-                <input type="radio" id="q5b" name="question5" value="b">
-                <span class="option-text">b) Scheduled device-free time</span>
-              </label>
-              <label class="quiz-option" for="q5c">
-                <input type="radio" id="q5c" name="question5" value="c">
-                <span class="option-text">c) Environmental cues, like phone notifications</span>
-              </label>
-              <label class="quiz-option" for="q5d">
-                <input type="radio" id="q5d" name="question5" value="d">
-                <span class="option-text">d) Conscious intention</span>
-              </label>
-            </div>
-          </fieldset>
-
-          <!-- Question 6 -->
-          <fieldset>
-            <legend>6. Which of the following statements reflects a positive outcome of mindful digital habits?</legend>
-            <div class="quiz-options-list">
-              <label class="quiz-option" for="q6a">
-                <input type="radio" id="q6a" name="question6" value="a">
-                <span class="option-text">a) They eliminate the need for self-discipline</span>
-              </label>
-              <label class="quiz-option" for="q6b">
-                <input type="radio" id="q6b" name="question6" value="b">
-                <span class="option-text">b) They help reduce decision fatigue and free up mental energy</span>
-              </label>
-              <label class="quiz-option" for="q6c">
-                <input type="radio" id="q6c" name="question6" value="c">
-                <span class="option-text">c) They make you more dependent on routines</span>
-              </label>
-              <label class="quiz-option" for="q6d">
-                <input type="radio" id="q6d" name="question6" value="d">
-                <span class="option-text">d) They require complex tools to be effective</span>
-              </label>
-            </div>
-          </fieldset>
-
-          <!-- Question 7 -->
-          <fieldset>
-            <legend>7. What is the link between attention, energy, and productivity discussed in Lesson 3?</legend>
-            <div class="quiz-options-list">
-              <label class="quiz-option" for="q7a">
-                <input type="radio" id="q7a" name="question7" value="a">
-                <span class="option-text">a) They are unrelated areas of performance</span>
-              </label>
-              <label class="quiz-option" for="q7b">
-                <input type="radio" id="q7b" name="question7" value="b">
-                <span class="option-text">b) Attention management supports better energy levels and productivity</span>
-              </label>
-              <label class="quiz-option" for="q7c">
-                <input type="radio" id="q7c" name="question7" value="c">
-                <span class="option-text">c) Productivity causes attention problems</span>
-              </label>
-              <label class="quiz-option" for="q7d">
-                <input type="radio" id="q7d" name="question7" value="d">
-                <span class="option-text">d) Only energy matters for productivity</span>
-              </label>
-            </div>
-          </fieldset>
-
-          <!-- Question 8 -->
-          <fieldset>
-            <legend>8. What does the term "cognitive load" refer to in the course?</legend>
-            <div class="quiz-options-list">
-              <label class="quiz-option" for="q8a">
-                <input type="radio" id="q8a" name="question8" value="a">
-                <span class="option-text">a) Carrying too many devices at once</span>
-              </label>
-              <label class="quiz-option" for="q8b">
-                <input type="radio" id="q8b" name="question8" value="b">
-                <span class="option-text">b) The total amount of mental effort being used in the working memory</span>
-              </label>
-              <label class="quiz-option" for="q8c">
-                <input type="radio" id="q8c" name="question8" value="c">
-                <span class="option-text">c) How fast we can process information on a screen</span>
-              </label>
-              <label class="quiz-option" for="q8d">
-                <input type="radio" id="q8d" name="question8" value="d">
-                <span class="option-text">d) The weight of psychological pressure from social media</span>
-              </label>
-            </div>
-          </fieldset>
-
-          <!-- Question 9 -->
-          <fieldset>
-            <legend>9. According to the course, how can accountability support digital well-being goals?</legend>
-            <div class="quiz-options-list">
-              <label class="quiz-option" for="q9a">
-                <input type="radio" id="q9a" name="question9" value="a">
-                <span class="option-text">a) By encouraging competition among participants</span>
-              </label>
-              <label class="quiz-option" for="q9b">
-                <input type="radio" id="q9b" name="question9" value="b">
-                <span class="option-text">b) By assigning responsibility for someone else's habits</span>
-              </label>
-              <label class="quiz-option" for="q9c">
-                <input type="radio" id="q9c" name="question9" value="c">
-                <span class="option-text">c) By increasing the likelihood of meeting goals through shared commitment</span>
-              </label>
-              <label class="quiz-option" for="q9d">
-                <input type="radio" id="q9d" name="question9" value="d">
-                <span class="option-text">d) By reducing the need for personal responsibility</span>
-              </label>
-            </div>
-          </fieldset>
-
-          <!-- Question 10 -->
-          <fieldset>
-            <legend>10. What is the most effective way to align your digital habits with your purpose and values?</legend>
-            <div class="quiz-options-list">
-              <label class="quiz-option" for="q10a">
-                <input type="radio" id="q10a" name="question10" value="a">
-                <span class="option-text">a) Download more well-being apps</span>
-              </label>
-              <label class="quiz-option" for="q10b">
-                <input type="radio" id="q10b" name="question10" value="b">
-                <span class="option-text">b) Track screen time with a smartwatch</span>
-              </label>
-              <label class="quiz-option" for="q10c">
-                <input type="radio" id="q10c" name="question10" value="c">
-                <span class="option-text">c) Reflect on your core values and intentionally choose habits that support them</span>
-              </label>
-              <label class="quiz-option" for="q10d">
-                <input type="radio" id="q10d" name="question10" value="d">
-                <span class="option-text">d) Avoid technology in all forms</span>
-              </label>
-            </div>
-          </fieldset>
-
-          <button type="submit" class="quiz-submit-btn">Submit Answers</button>
-        </form>
-
-        <div id="final-quiz-feedback" class="quiz-feedback" style="display: none;">
-          <h4>Thank you for completing the final assessment!</h4>
-          <p><strong>✓ Your answers have been saved successfully.</strong></p>
-          <p>We appreciate the time and thought you've put into this test. We hope it has helped reinforce the key concepts and practical strategies you explored throughout the course.</p>
-          <p>Your responses reflect the knowledge you've gained in your digital well-being journey. Keep reflecting, practicing, and applying what you've learned—and remember, digital well-being is an ongoing process of balance, awareness, and intentional choice.</p>
         </div>
 
-        <!-- Quiz Results Container -->
-        <div id="quiz-results-container" class="quiz-results-container">
-          <div class="quiz-results-grid">
-            <div class="quiz-result-card correct">
-              <div class="quiz-result-icon">
-                <i class="fas fa-check-circle"></i>
-              </div>
-              <div class="quiz-result-number" id="correct-count">0</div>
-              <div class="quiz-result-label">Correct Answers</div>
-              <div class="quiz-result-description">Questions answered correctly</div>
+        <div class="container">
+            <div class="chapter-content">
+                <!-- Progress Indicator -->
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 100%"></div>
+                    </div>
+                    <span class="progress-text">Chapter 5 of 5</span>
+                </div>
+
+                <!-- Video Section 1 -->
+                <section class="video-section">
+                    <h2>5.1 Reviewing and Adjusting Your Digital Goals</h2>
+                    <div class="video-container">
+                        <video
+                            id="video-5-1"
+                            class="video-js vjs-default-skin"
+                            controls
+                            preload="auto"
+                            data-video-id="w05v01"
+                            data-logo="assets/images/logo-ie-small.svg"
+                            poster="assets/images/review-goals-poster.png">
+                            <source src="https://player.vimeo.com/external/123456789.hd.mp4?s=abcdef" type="video/mp4">
+                            <p class="vjs-no-js">
+                                To view this video please enable JavaScript, and consider upgrading to a web browser that
+                                <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>.
+                            </p>
+                        </video>
+                    </div>
+                    <div class="video-description">
+                        <p>Learn how to regularly review and adjust your digital goals to ensure they remain relevant and achievable as your life circumstances change.</p>
+                    </div>
+                </section>
+
+                <!-- Key Points Section -->
+                <section class="key-points-section">
+                    <h3>Key Points: Goal Review and Adjustment</h3>
+                    <div class="key-points-container">
+                        <div class="key-point" data-point="goal-review-1">
+                            <h4>Regular Review Schedule</h4>
+                            <p>Establish a monthly or quarterly review process to assess your digital well-being goals and progress.</p>
+                        </div>
+                        <div class="key-point" data-point="goal-review-2">
+                            <h4>Flexibility and Adaptation</h4>
+                            <p>Be willing to modify your goals based on changing life circumstances, new insights, or evolving priorities.</p>
+                        </div>
+                        <div class="key-point" data-point="goal-review-3">
+                            <h4>Celebrating Progress</h4>
+                            <p>Acknowledge and celebrate your achievements, no matter how small, to maintain motivation and momentum.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Video Section 2 -->
+                <section class="video-section">
+                    <h2>5.2 Staying Accountable and Finding Support</h2>
+                    <div class="video-container">
+                        <video
+                            id="video-5-2"
+                            class="video-js vjs-default-skin"
+                            controls
+                            preload="auto"
+                            data-video-id="w05v02"
+                            data-logo="assets/images/logo-ie-small.svg"
+                            poster="assets/images/stay-accountable-poster.png">
+                            <source src="https://player.vimeo.com/external/123456790.hd.mp4?s=abcdef" type="video/mp4">
+                            <p class="vjs-no-js">
+                                To view this video please enable JavaScript, and consider upgrading to a web browser that
+                                <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>.
+                            </p>
+                        </video>
+                    </div>
+                    <div class="video-description">
+                        <p>Discover strategies for maintaining accountability and building a support network to help sustain your digital well-being practices.</p>
+                    </div>
+                </section>
+
+                <!-- Activity Section -->
+                <section class="activity-section">
+                    <h3>Activity: Develop Your Own Digital Well-being Action Plan</h3>
+                    <div class="activity-content">
+                        <p>Create a comprehensive action plan that will guide your digital well-being journey moving forward. This template will help you consolidate everything you've learned and create a personalized roadmap for success.</p>
+                        
+                        <div class="activity-instructions">
+                            <h4>Instructions:</h4>
+                            <ol>
+                                <li>Download the editable template below</li>
+                                <li>Complete each section based on your learnings from the course</li>
+                                <li>Set specific, measurable goals with timelines</li>
+                                <li>Identify potential challenges and solutions</li>
+                                <li>Create accountability measures and support systems</li>
+                            </ol>
+                        </div>
+
+                        <div class="download-section">
+                            <a href="assets/documents/Lesson5_Develop Your Own Digital Well-being Action Plan.pdf" 
+                               download="Digital_Wellbeing_Action_Plan.pdf" 
+                               class="download-btn">
+                                <span class="download-icon">📄</span>
+                                Download the editable template here
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Video Section 3 -->
+                <section class="video-section">
+                    <h2>5.3 Building Sustainable Digital Rituals for Flourishing</h2>
+                    <div class="video-container">
+                        <video
+                            id="video-5-3"
+                            class="video-js vjs-default-skin"
+                            controls
+                            preload="auto"
+                            data-video-id="w05v03"
+                            data-logo="assets/images/logo-ie-small.svg"
+                            poster="assets/images/rituals-flourishing-poster.png">
+                            <source src="https://player.vimeo.com/external/123456791.hd.mp4?s=abcdef" type="video/mp4">
+                            <p class="vjs-no-js">
+                                To view this video please enable JavaScript, and consider upgrading to a web browser that
+                                <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>.
+                            </p>
+                        </video>
+                    </div>
+                    <div class="video-description">
+                        <p>Learn how to create and maintain digital rituals that support your overall well-being and help you flourish in the digital age.</p>
+                    </div>
+                </section>
+
+                <!-- Reflection Section -->
+                <section class="reflection-section">
+                    <h3>Reflection: Your Digital Well-being Journey</h3>
+                    <div class="reflection-content">
+                        <p>Take a moment to reflect on your learning journey and plan for the future:</p>
+                        
+                        <div class="reflection-questions">
+                            <div class="reflection-question">
+                                <h4>What has been your biggest insight from this course?</h4>
+                                <textarea class="reflection-input" placeholder="Share your key learning or 'aha' moment..."></textarea>
+                            </div>
+                            
+                            <div class="reflection-question">
+                                <h4>Which digital well-being practice will you prioritize first?</h4>
+                                <textarea class="reflection-input" placeholder="Describe the practice you'll focus on and why..."></textarea>
+                            </div>
+                            
+                            <div class="reflection-question">
+                                <h4>How will you maintain accountability for your digital well-being goals?</h4>
+                                <textarea class="reflection-input" placeholder="Outline your accountability strategy..."></textarea>
+                            </div>
+                        </div>
+                        
+                        <button class="save-reflection-btn" onclick="saveReflection('chapter5')">Save My Reflections</button>
+                    </div>
+                </section>
+
+                <!-- Video Section 4 -->
+                <section class="video-section">
+                    <h2>5.4 Course Conclusion and Next Steps</h2>
+                    <div class="video-container">
+                        <video
+                            id="video-5-4"
+                            class="video-js vjs-default-skin"
+                            controls
+                            preload="auto"
+                            data-video-id="w05v04"
+                            data-logo="assets/images/logo-ie-small.svg"
+                            poster="assets/images/conclusion-video-poster.png">
+                            <source src="https://player.vimeo.com/external/123456792.hd.mp4?s=abcdef" type="video/mp4">
+                            <p class="vjs-no-js">
+                                To view this video please enable JavaScript, and consider upgrading to a web browser that
+                                <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>.
+                            </p>
+                        </video>
+                    </div>
+                    <div class="video-description">
+                        <p>A final message of encouragement and guidance for continuing your digital well-being journey beyond this course.</p>
+                    </div>
+                </section>
+
+                <!-- Course Completion Section -->
+                <section class="completion-section">
+                    <div class="completion-content">
+                        <h3>🎉 Congratulations!</h3>
+                        <p>You have completed the Digital Well-being Course. You now have the knowledge and tools to create a healthier, more intentional relationship with technology.</p>
+                        
+                        <div class="next-steps">
+                            <h4>Your Next Steps:</h4>
+                            <ul>
+                                <li>Implement your Digital Well-being Action Plan</li>
+                                <li>Schedule regular check-ins with yourself</li>
+                                <li>Share your learnings with others</li>
+                                <li>Continue exploring resources on digital wellness</li>
+                                <li>Stay connected with the community</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="completion-actions">
+                            <button class="primary-btn" onclick="generateCertificate()">Generate Certificate</button>
+                            <button class="secondary-btn" onclick="shareProgress()">Share Your Achievement</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Navigation -->
+                <div class="chapter-navigation">
+                    <a href="chapter4.html" class="nav-btn prev-btn">
+                        <span class="nav-arrow">←</span>
+                        Previous: Chapter 4
+                    </a>
+                    <a href="index.html" class="nav-btn next-btn">
+                        <span class="nav-arrow">→</span>
+                        Back to Home
+                    </a>
+                </div>
             </div>
-            
-            <div class="quiz-result-card incorrect">
-              <div class="quiz-result-icon">
-                <i class="fas fa-times-circle"></i>
-              </div>
-              <div class="quiz-result-number" id="incorrect-count">0</div>
-              <div class="quiz-result-label">Incorrect Answers</div>
-              <div class="quiz-result-description">Questions answered incorrectly</div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <img src="assets/images/logo-ie.svg" alt="IE University" class="footer-logo">
+                    <p>Empowering individuals to thrive in the digital age through evidence-based well-being practices.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Course Resources</h4>
+                    <ul>
+                        <li><a href="#" onclick="downloadAllResources()">Download All Materials</a></li>
+                        <li><a href="#" onclick="showResourceLibrary()">Resource Library</a></li>
+                        <li><a href="#" onclick="showSupport()">Support & Help</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="#" onclick="joinCommunity()">Join Community</a></li>
+                        <li><a href="#" onclick="shareExperience()">Share Your Experience</a></li>
+                        <li><a href="#" onclick="provideFeedback()">Course Feedback</a></li>
+                    </ul>
+                </div>
             </div>
-            
-            <div class="quiz-result-card percentage">
-              <div class="quiz-result-icon">
-                <i class="fas fa-percentage"></i>
-              </div>
-              <div class="quiz-result-number" id="percentage-score">0%</div>
-              <div class="quiz-result-label">Success Rate</div>
-              <div class="quiz-result-description">Overall quiz performance</div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 IE University. All rights reserved. | Digital Well-being Course</p>
             </div>
-          </div>
         </div>
-      </div>
-    </section>
+    </footer>
 
-    <!-- 5. Well-being Survey - Fondo gris -->
-    <section class="lesson-section no-borders">
-      <div class="survey-section">
-        <h2>Well-being Survey</h2>
-        
-        <p>This follow-up self-assessment invites you to reflect on any shifts you may have experienced since starting the course. While it uses validated well-being measures, the results are not meant to serve as a judgment or final outcome. Instead, the evolution of your results offers another moment of reflection—one that can reveal how your experience and habits are developing in a broader, ever-changing context.</p>
-        
-        <p>Remember, fostering your digital well-being is a gradual, personal process. Be patient with yourself, and notice what changes as you consciously integrate new practices into your life.</p>
-        
-        <div class="survey-note">
-          <p>Be sure to select the <strong>Digital Well-being (Digital Learning)</strong> option when prompted, so we can also measure learning outcomes for this course:</p>
-        </div>
-        
-        <a href="https://ie.co1.qualtrics.com/jfe/form/SV_8cymWir9nTWHN42" target="_blank" class="survey-link-button" aria-label="Open well-being survey in new tab">
-          <i class="fas fa-external-link-alt" aria-hidden="true"></i>
-          Take the Well-being Survey
-        </a>
-      </div>
-    </section>
+    <script src="js/main.js"></script>
+    <script src="js/video-player.js"></script>
+    <script src="js/reflections.js"></script>
+    <script src="js/key-points.js"></script>
+    <script>
+        // Certificate generation function
+        function generateCertificate() {
+            // Implementation for certificate generation
+            alert('Certificate generation feature coming soon!');
+        }
 
-    <!-- 6. Final Survey - Fondo blanco -->
-    <section class="lesson-section no-borders">
-      <div class="survey-section">
-        <h2>Final Survey</h2>
-        
-        <p>We'd love to hear your thoughts! By taking a few minutes to complete this short survey, you'll help us understand how the course content resonated with you and how we can make it even better in the future.</p>
-        
-        <p>Your feedback is incredibly valuable, and we truly appreciate your time and input:</p>
-        
-        <a href="#" class="survey-link-button" onclick="alert('Final survey link will be added here')" aria-label="Open final course survey">
-          <i class="fas fa-comment-dots" aria-hidden="true"></i>
-          Take the Final Survey
-        </a>
-        
-        <div class="survey-note">
-          <p><em>Survey link to be added</em></p>
-        </div>
-      </div>
-    </section>
+        // Share progress function
+        function shareProgress() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Digital Well-being Course Completed!',
+                    text: 'I just completed the Digital Well-being Course and learned how to create a healthier relationship with technology.',
+                    url: window.location.href
+                });
+            } else {
+                // Fallback for browsers that don't support Web Share API
+                const text = 'I just completed the Digital Well-being Course! Check it out: ' + window.location.href;
+                navigator.clipboard.writeText(text).then(() => {
+                    alert('Link copied to clipboard!');
+                });
+            }
+        }
 
-    <!-- 7. Content Sources & References -->
-    <section class="lesson-section no-borders">
-      <h2>Content Sources & References</h2>
-      
-      <div class="references-grid">
-          <!-- Reference 1 -->
-          <div class="reference-card">
-            <div class="reference-number">1</div>
-            <div class="reference-content">
-              <div class="reference-text">
-                American Optometric Association. (n.d.). The cost of unmanaged screen time: Impacts on vision, productivity, and overall well-being.
-              </div>
-              <a href="https://www.aoa.org/AOA/Documents/Eye Deserve More/Cost of Unmanaged Screen Time Report_FINAL.pdf" target="_blank" class="reference-link" rel="noopener noreferrer">
-                https://www.aoa.org/AOA/Documents/Eye Deserve More/Cost of Unmanaged Screen Time Report_FINAL.pdf
-              </a>
-            </div>
-          </div>
+        // Additional footer functions
+        function downloadAllResources() {
+            alert('Downloading all course resources...');
+        }
 
-          <!-- Reference 2 -->
-          <div class="reference-card">
-            <div class="reference-number">2</div>
-            <div class="reference-content">
-              <div class="reference-text">
-                World Health Organization. (2015). <em>Health in 2015: From MDGs to SDGs</em>. World Health Organization.
-              </div>
-              <a href="https://iris.who.int/handle/10665/184264" target="_blank" class="reference-link" rel="noopener noreferrer">
-                https://iris.who.int/handle/10665/184264
-              </a>
-            </div>
-          </div>
+        function showResourceLibrary() {
+            alert('Resource library feature coming soon!');
+        }
 
-          <!-- Reference 3 -->
-          <div class="reference-card">
-            <div class="reference-number">3</div>
-            <div class="reference-content">
-              <div class="reference-text">
-                World Health Organization. (2020). Global status report on preventing violence against children 2020. World Health Organization.
-              </div>
-              <a href="https://iris.who.int/bitstream/handle/10665/337001/9789240014886-eng.pdf" target="_blank" class="reference-link" rel="noopener noreferrer">
-                https://iris.who.int/bitstream/handle/10665/337001/9789240014886-eng.pdf
-              </a>
-            </div>
-          </div>
+        function showSupport() {
+            alert('Support page coming soon!');
+        }
 
-          <!-- Reference 4 -->
-          <div class="reference-card no-link">
-            <div class="reference-number">4</div>
-            <div class="reference-content">
-              <div class="reference-text">
-                Vogels, E. A., & Gelles-Watnick, R. (2023). Teens and social media: Key findings from Pew Research Center surveys. Pew Research Center.
-              </div>
-            </div>
-          </div>
+        function joinCommunity() {
+            alert('Community platform coming soon!');
+        }
 
-          <!-- Reference 5 -->
-          <div class="reference-card">
-            <div class="reference-number">5</div>
-            <div class="reference-content">
-              <div class="reference-text">
-                Brown, B. (2018). <em>Dare to lead: Brave work. Tough conversations. Whole hearts.</em> Random House.
-              </div>
-              <a href="https://brenebrown.com/resources/dare-to-lead-list-of-values/" target="_blank" class="reference-link" rel="noopener noreferrer">
-                https://brenebrown.com/resources/dare-to-lead-list-of-values/
-              </a>
-            </div>
-          </div>
+        function shareExperience() {
+            alert('Experience sharing feature coming soon!');
+        }
 
-          <!-- Reference 6 -->
-          <div class="reference-card">
-            <div class="reference-number">6</div>
-            <div class="reference-content">
-              <div class="reference-text">
-                Smartsheet. (n.d.). <em>The ultimate guide to S.M.A.R.T. goals</em>.
-              </div>
-              <a href="https://www.smartsheet.com/blog/essential-guide-writing-smart-goals" target="_blank" class="reference-link" rel="noopener noreferrer">
-                https://www.smartsheet.com/blog/essential-guide-writing-smart-goals
-              </a>
-            </div>
-          </div>
-
-          <!-- Reference 7 -->
-          <div class="reference-card">
-            <div class="reference-number">7</div>
-            <div class="reference-content">
-              <div class="reference-text">
-                VIA Institute on Character. (n.d.). <em>VIA character strengths survey</em>.
-              </div>
-              <a href="https://www.viacharacter.org" target="_blank" class="reference-link" rel="noopener noreferrer">
-                https://www.viacharacter.org
-              </a>
-            </div>
-          </div>
-
-          <!-- Reference 8 -->
-          <div class="reference-card">
-            <div class="reference-number">8</div>
-            <div class="reference-content">
-              <div class="reference-text">
-                Ryan, R. M., & Deci, E. L. (2000). Self-determination theory and the facilitation of intrinsic motivation, social development, and well-being. <em>American Psychologist</em>, 55(1), 68–78.
-              </div>
-              <a href="https://doi.org/10.1037/0003-066X.55.1.68" target="_blank" class="reference-link" rel="noopener noreferrer">
-                https://doi.org/10.1037/0003-066X.55.1.68
-              </a>
-            </div>
-          </div>
-
-          <!-- Reference 9 -->
-          <div class="reference-card no-link">
-            <div class="reference-number">9</div>
-            <div class="reference-content">
-              <div class="reference-text">
-                Duhigg, C. (2012). The power of habit: Why we do what we do in life and business. Random House.
-              </div>
-            </div>
-          </div>
-
-          <!-- Reference 10 -->
-          <div class="reference-card">
-            <div class="reference-number">10</div>
-            <div class="reference-content">
-              <div class="reference-text">
-                Cherry, K. (2022, November 29). What is attention? Definition and types. <em>Verywell Mind</em>.
-              </div>
-              <a href="https://www.verywellmind.com/what-is-attention-2795009" target="_blank" class="reference-link" rel="noopener noreferrer">
-                https://www.verywellmind.com/what-is-attention-2795009
-              </a>
-            </div>
-          </div>
-
-          <!-- Reference 11 -->
-          <div class="reference-card">
-            <div class="reference-number">11</div>
-            <div class="reference-content">
-              <div class="reference-text">
-                Van Schoor, J. (2022, November 10). <em>Four different types of attention</em>. South African College of Applied Psychology (SACAP).
-              </div>
-              <a href="https://global.sacap.edu.za/blog/applied-psychology/types-of-attention/" target="_blank" class="reference-link" rel="noopener noreferrer">
-                https://global.sacap.edu.za/blog/applied-psychology/types-of-attention/
-              </a>
-            </div>
-          </div>
-
-          <!-- Reference 12 -->
-          <div class="reference-card no-link">
-            <div class="reference-number">12</div>
-            <div class="reference-content">
-              <div class="reference-text">
-                Hari, J. (2022). Stolen focus: Why you can't pay attention. Bloomsbury Publishing.
-              </div>
-            </div>
-          </div>
-
-          <!-- Reference 13 -->
-          <div class="reference-card">
-            <div class="reference-number">13</div>
-            <div class="reference-content">
-              <div class="reference-text">
-                The Berliner. (n.d.). <em>Your focus was stolen from you: Johann Hari on a global crisis</em>.
-              </div>
-              <a href="https://www.the-berliner.com/books/your-focus-was-stolen-from-you-johann-hari-on-a-global-crisis/" target="_blank" class="reference-link" rel="noopener noreferrer">
-                https://www.the-berliner.com/books/your-focus-was-stolen-from-you-johann-hari-on-a-global-crisis/
-              </a>
-            </div>
-          </div>
-
-          <!-- Reference 14 -->
-          <div class="reference-card">
-            <div class="reference-number">14</div>
-            <div class="reference-content">
-              <div class="reference-text">
-                Newland, S. (2018). The power of accountability. <em>The Standard Newsletter</em>.
-              </div>
-              <a href="https://www.afcpe.org/news-and-publications/the-standard/2018-3/the-power-of-accountability/" target="_blank" class="reference-link" rel="noopener noreferrer">
-                https://www.afcpe.org/news-and-publications/the-standard/2018-3/the-power-of-accountability/
-              </a>
-            </div>
-          </div>
-
-          <!-- Reference 15 -->
-          <div class="reference-card no-link">
-            <div class="reference-number">15</div>
-            <div class="reference-content">
-              <div class="reference-text">
-                Brown, B. (2018). Dare to lead: Brave work. Tough conversations. Whole hearts. Random House.
-              </div>
-            </div>
-          </div>
-        </div>
-    </section>
-    
-    <div class="navigation-buttons" role="navigation" aria-label="Lesson navigation">
-      <a href="chapter4.html" class="nav-button prev"><span class="arrow-left" aria-hidden="true">←</span>Previous</a>
-      <a href="index.html" class="nav-button next">Return to Home<span class="arrow-right" aria-hidden="true">→</span></a>
-    </div>
-  </div>
-</main>
-
-<footer role="contentinfo">
-<div class="footer-content">
-  <p class="copyright">&copy; <span id="current-year"></span> IE University. All rights reserved.</p>
-</div>
-</footer>
-
-<!-- Glossary Modal -->
-<div id="glossary-modal" class="modal" role="dialog" aria-labelledby="glossary-modal-title" aria-hidden="true">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h2 id="glossary-modal-title">Glossary of Digital Well-being Concepts</h2>
-      <button class="modal-close" aria-label="Close glossary">&times;</button>
-    </div>
-    <div class="modal-body">
-      <nav class="glossary-az-nav" aria-label="Glossary A-Z Navigation">
-        <a href="#glossary-section-a">A</a>
-        <a href="#glossary-section-b">B</a>
-        <a href="#glossary-section-c">C</a>
-        <a href="#glossary-section-d">D</a>
-        <a href="#glossary-section-e">E</a>
-        <a href="#glossary-section-f">F</a>
-        <a href="#glossary-section-h">H</a>
-        <a href="#glossary-section-m">M</a>
-        <a href="#glossary-section-n">N</a>
-        <a href="#glossary-section-p">P</a>
-        <a href="#glossary-section-r">R</a>
-        <a href="#glossary-section-s">S</a>
-        <a href="#glossary-section-t">T</a>
-        <a href="#glossary-section-w">W</a>
-      </nav>
-      <div class="glossary-terms">
-        <div id="glossary-section-a" class="glossary-section">
-          <h3 class="glossary-letter-header">A</h3>
-          <div class="glossary-term">
-            <strong>Accountability Buddy</strong> – A supportive partner who helps track progress and encourages consistency in digital well-being goals.
-          </div>
-          <div class="glossary-term">
-            <strong>Attention Management</strong> – The practice of consciously directing focus in a digital environment to enhance productivity and cognitive health.
-          </div>
-          <div class="glossary-term">
-            <strong>Autonomy (Self-Determination Theory)</strong> – The ability to make choices about digital engagement that align with personal values and goals.
-          </div>
-        </div>
-        <div id="glossary-section-b" class="glossary-section">
-          <h3 class="glossary-letter-header">B</h3>
-          <div class="glossary-term">
-            <strong>Brain Cognition</strong> – The way the brain processes information, impacted by digital habits such as screen time and multitasking.
-          </div>
-          <div class="glossary-term">
-            <strong>Behavioral Science</strong> – The study of how people form digital habits and how technology influences decision-making.
-          </div>
-        </div>
-        <div id="glossary-section-c" class="glossary-section">
-          <h3 class="glossary-letter-header">C</h3>
-          <div class="glossary-term">
-            <strong>Character Strengths</strong> – Personal strengths (e.g., curiosity, self-regulation) that can be leveraged to cultivate healthy digital habits.
-          </div>
-          <div class="glossary-term">
-            <strong>Cognitive Load</strong> – The mental effort required to process information, which can be impacted by excessive screen time or multitasking.
-          </div>
-          <div class="glossary-term">
-            <strong>Core Values</strong> – Fundamental beliefs that guide digital habits and decision-making.
-          </div>
-        </div>
-        <div id="glossary-section-d" class="glossary-section">
-          <h3 class="glossary-letter-header">D</h3>
-          <div class="glossary-term">
-            <strong>Digital Detox</strong> – A period of time spent without digital devices to reset habits and improve well-being.
-          </div>
-          <div class="glossary-term">
-            <strong>Digital Flourishing</strong> – Thriving in a digital environment by balancing technology use with personal and professional well-being.
-          </div>
-          <div class="glossary-term">
-            <strong>Digital Goals</strong> – Personalized objectives for improving one's digital habits, often using the SMART (Specific, Measurable, Achievable, Relevant, Time-bound) framework.
-          </div>
-          <div class="glossary-term">
-            <strong>Digital Habit Audit</strong> – A self-assessment to track technology use and identify areas for improvement.
-          </div>
-          <div class="glossary-term">
-            <strong>Digital Minimalism</strong> – A philosophy advocating for intentional and purposeful use of technology to enhance well-being.
-          </div>
-        </div>
-        <div id="glossary-section-e" class="glossary-section">
-          <h3 class="glossary-letter-header">E</h3>
-          <div class="glossary-term">
-            <strong>Empathy and Technology</strong> – The relationship between digital interactions and emotional intelligence, including how technology can impact social connections.
-          </div>
-          <div class="glossary-term">
-            <strong>Energy Management</strong> – Strategies to prevent digital fatigue and optimize energy levels in a tech-heavy world.
-          </div>
-        </div>
-        <div id="glossary-section-f" class="glossary-section">
-          <h3 class="glossary-letter-header">F</h3>
-          <div class="glossary-term">
-            <strong>Focus & Productivity</strong> – The ability to maintain attention and effectiveness in work and life, often challenged by digital distractions.
-          </div>
-          <div class="glossary-term">
-            <strong>Flourishing (Well-being Theory)</strong> – The state of thriving in multiple aspects of life, including physical, mental, emotional, and digital well-being.
-          </div>
-        </div>
-        <div id="glossary-section-h" class="glossary-section">
-          <h3 class="glossary-letter-header">H</h3>
-          <div class="glossary-term">
-            <strong>Habit Loop</strong> – A framework for understanding habit formation, consisting of cue, routine, and reward, applicable to digital behaviors.
-          </div>
-        </div>
-        <div id="glossary-section-m" class="glossary-section">
-          <h3 class="glossary-letter-header">M</h3>
-          <div class="glossary-term">
-            <strong>Mindfulness in Technology Use</strong> – Practicing present-moment awareness to create intentional and balanced digital interactions.
-          </div>
-          <div class="glossary-term">
-            <strong>Motivation (Self-Determination Theory)</strong> – Internal and external factors that influence engagement with technology, including autonomy, competence, and relatedness.
-          </div>
-        </div>
-        <div id="glossary-section-n" class="glossary-section">
-          <h3 class="glossary-letter-header">N</h3>
-          <div class="glossary-term">
-            <strong>Notification Management</strong> – Strategies to reduce interruptions and increase focus, such as disabling non-essential alerts.
-          </div>
-        </div>
-        <div id="glossary-section-p" class="glossary-letter-header">
-          <h3 class="glossary-letter-header">P</h3>
-          <div class="glossary-term">
-            <strong>Prefrontal Cortex</strong> – The part of the brain responsible for decision-making and impulse control, which is affected by digital engagement.
-          </div>
-          <div class="glossary-term">
-            <strong>Psychological Safety and Technology</strong> – The impact of digital environments on emotional well-being and security.
-          </div>
-        </div>
-        <div id="glossary-section-r" class="glossary-section">
-          <h3 class="glossary-letter-header">R</h3>
-          <div class="glossary-term">
-            <strong>Reflection Practice</strong> – Periodic self-check-ins to assess digital habits and their alignment with personal values.
-          </div>
-        </div>
-        <div id="glossary-section-s" class="glossary-section">
-          <h3 class="glossary-letter-header">S</h3>
-          <div class="glossary-term">
-            <strong>Screen Time Awareness</strong> – Conscious tracking of time spent on digital devices to maintain a balanced lifestyle.
-          </div>
-          <div class="glossary-term">
-            <strong>Self-Regulation</strong> – The ability to control impulses and make mindful choices in digital interactions.
-          </div>
-          <div class="glossary-term">
-            <strong>Social Media Hygiene</strong> – Practices for maintaining a healthy relationship with social platforms, including curating content and setting boundaries.
-          </div>
-        </div>
-        <div id="glossary-section-t" class="glossary-section">
-          <h3 class="glossary-letter-header">T</h3>
-          <div class="glossary-term">
-            <strong>Tech-Life Balance</strong> – The intentional effort to harmonize technology use with overall well-being.
-          </div>
-          <div class="glossary-term">
-            <strong>Triggers in Digital Use</strong> – Environmental or psychological cues that prompt certain digital habits, such as checking the phone out of boredom.
-          </div>
-          <div class="glossary-term">
-            <strong>Two-Edge Effect of Technology</strong> – The concept that digital tools can both enhance and hinder well-being, depending on usage patterns.
-          </div>
-        </div>
-        <div id="glossary-section-w" class="glossary-section">
-          <h3 class="glossary-letter-header">W</h3>
-          <div class="glossary-term">
-            <strong>Willpower and Digital Use</strong> – The ability to resist distractions and build positive technology habits.
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- VideoJS JavaScript -->
-<script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
-<script src="js/video-player.js"></script>
-<script src="js/key-points.js"></script>
-<script src="js/reflections.js"></script>
-<script src="js/main.js"></script>
-<script src="js/quiz.js"></script>
-<script>
-// Glossary Modal Functionality
-document.addEventListener('DOMContentLoaded', function() {
-  const modal = document.getElementById('glossary-modal');
-  const openBtn = document.getElementById('open-glossary');
-  const menuLink = document.getElementById('glossary-menu-link');
-  const closeBtn = modal.querySelector('.modal-close');
-
-  function openModal() {
-    modal.style.display = 'block';
-    modal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-    const firstFocusableElement = modal.querySelector('.modal-close, .glossary-az-nav a');
-    if (firstFocusableElement) {
-        firstFocusableElement.focus();
-    }
-  }
-
-  function closeModal() {
-    modal.style.display = 'none';
-    modal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = 'auto';
-    if (document.activeElement === closeBtn || modal.contains(document.activeElement)) {
-        if (openBtn && openBtn === document.lastActiveElement) openBtn.focus();
-        else if (menuLink && menuLink === document.lastActiveElement) menuLink.focus();
-    }
-    document.lastActiveElement = null;
-  }
-  
-  document.lastActiveElement = null;
-
-  if (openBtn) {
-    openBtn.addEventListener('click', function() {
-        document.lastActiveElement = this;
-        openModal();
-    });
-  }
-  
-  if (menuLink) {
-    menuLink.addEventListener('click', function(e) {
-      e.preventDefault();
-      document.lastActiveElement = this;
-      openModal();
-      const mainNav = document.getElementById('main-nav');
-      const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-      if (mainNav && mainNav.classList.contains('active')) {
-        mainNav.classList.remove('active');
-        mobileMenuToggle.classList.remove('active');
-        mobileMenuToggle.setAttribute('aria-expanded', 'false');
-      }
-    });
-  }
-
-  if (closeBtn) {
-    closeBtn.addEventListener('click', closeModal);
-  }
-
-  modal.addEventListener('click', function(e) {
-    if (e.target === modal) {
-      closeModal();
-    }
-  });
-
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && modal.style.display === 'block') {
-      closeModal();
-    }
-  });
-});
-
-// Template download function
-function downloadActionPlanTemplate() {
-  // Create a temporary link element to trigger the download
-  const link = document.createElement('a');
-  link.href = 'assets/documents/Lesson5_Develop Your Own Digital Well-being Action Plan.pdf';
-  link.download = 'Lesson5_Develop Your Own Digital Well-being Action Plan.pdf';
-  link.style.display = 'none';
-  
-  // Add to DOM, click, and remove
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-}
-</script>
+        function provideFeedback() {
+            alert('Feedback form coming soon!');
+        }
+    </script>
 </body>
 </html>

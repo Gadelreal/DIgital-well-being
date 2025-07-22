@@ -55,6 +55,8 @@ document.addEventListener("DOMContentLoaded", () => {
           overrideNative: true,
         },
       },
+      // Filter out English CC tracks
+      tracks: [],
     })
 
     // Añadir el player al array global
@@ -62,6 +64,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Plugin para pausar otros videos
     player.ready(() => {
+      // Remove any existing English CC tracks
+      const tracks = player.textTracks()
+      for (let i = tracks.length - 1; i >= 0; i--) {
+        const track = tracks[i]
+        if (track.label === "English CC" || track.language === "en-CC") {
+          player.removeRemoteTextTrack(track)
+        }
+      }
+
       player.on("play", () => {
         pauseOtherVideos(player)
       })
