@@ -656,14 +656,27 @@ document.addEventListener('DOMContentLoaded', function() {
       if (targetElement) {
         const modalBody = document.querySelector('.modal-body');
         const navHeight = document.querySelector('.glossary-az-nav').offsetHeight;
+      
+        // Special handling for section A - it should be at the very top
+        if (targetId === '#glossary-section-a') {
+          modalBody.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        } else {
+          // For other sections, calculate position relative to the glossary-terms container
+          const glossaryTermsContainer = document.querySelector('.glossary-terms');
+          const containerTop = glossaryTermsContainer.offsetTop;
+          const elementTop = targetElement.offsetTop;
         
-        // Calculate the position to scroll to, accounting for the sticky nav
-        const elementPosition = targetElement.offsetTop - navHeight - 20; // 20px extra padding
+          // Calculate the position relative to the modal body, accounting for sticky nav
+          const scrollPosition = containerTop + elementTop - navHeight - 10;
         
-        modalBody.scrollTo({
-          top: elementPosition,
-          behavior: 'smooth'
-        });
+          modalBody.scrollTo({
+            top: Math.max(0, scrollPosition), // Ensure we don't scroll to negative values
+            behavior: 'smooth'
+          });
+        }
       }
     });
   });
