@@ -20,7 +20,7 @@
   padding: 15px 0 20px 0;
   margin-bottom: 0;
   border-bottom: 2px solid #eee;
-  text-align: center; /* Centrar la navegación */
+  text-align: center;
   z-index: 10;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -34,6 +34,7 @@
   border-radius: 4px;
   display: inline-block;
   transition: all 0.3s ease;
+  cursor: pointer;
 }
 
 .glossary-az-nav a:hover,
@@ -45,8 +46,18 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
+.glossary-az-nav a.active {
+  background-color: var(--primary-color);
+  color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
 .glossary-section {
-  scroll-margin-top: 100px; /* Aumentar el margen para compensar la navegación sticky */
+  margin-bottom: 2rem;
+}
+
+.glossary-section.hidden {
+  display: none;
 }
 
 .glossary-letter-header {
@@ -56,21 +67,20 @@
   margin-bottom: 20px;
   padding-bottom: 10px;
   border-bottom: 2px solid var(--primary-color);
-  scroll-margin-top: 100px; /* Aumentar el margen para compensar la navegación sticky */
 }
 
 .glossary-section:first-child .glossary-letter-header {
-  margin-top: 15px; /* Reducir espacio del primer header */
+  margin-top: 15px;
 }
 
 .modal-body {
   max-height: 70vh;
   overflow-y: auto;
-  padding: 0; /* Remover padding para que la navegación sticky funcione correctamente */
+  padding: 0;
 }
 
 .glossary-terms {
-  padding: 0 2rem 2rem 2rem; /* Añadir padding solo al contenido de términos */
+  padding: 0 2rem 2rem 2rem;
   margin-bottom: 10px;
   line-height: 1.6;
 }
@@ -78,7 +88,6 @@
 .glossary-term {
   margin-bottom: 15px;
   line-height: 1.6;
-  scroll-margin-top: 100px; /* Aumentar el margen para compensar la navegación sticky */
 }
 
 .hero-title {
@@ -109,12 +118,6 @@
     font-size: 0.9rem;
   }
   
-  .glossary-section,
-  .glossary-letter-header,
-  .glossary-term {
-    scroll-margin-top: 90px; /* Ajustar para móviles */
-  }
-  
   .glossary-terms {
     padding: 0 1.5rem 1.5rem 1.5rem;
   }
@@ -129,12 +132,6 @@
     margin: 0 3px 3px 0;
     padding: 5px 6px;
     font-size: 0.8rem;
-  }
-  
-  .glossary-section,
-  .glossary-letter-header,
-  .glossary-term {
-    scroll-margin-top: 80px; /* Ajustar para móviles pequeños */
   }
   
   .glossary-terms {
@@ -413,23 +410,24 @@
     </div>
     <div class="modal-body">
       <nav class="glossary-az-nav" aria-label="Glossary A-Z Navigation">
-        <a href="#glossary-section-a">A</a>
-        <a href="#glossary-section-b">B</a>
-        <a href="#glossary-section-c">C</a>
-        <a href="#glossary-section-d">D</a>
-        <a href="#glossary-section-e">E</a>
-        <a href="#glossary-section-f">F</a>
-        <a href="#glossary-section-h">H</a>
-        <a href="#glossary-section-m">M</a>
-        <a href="#glossary-section-n">N</a>
-        <a href="#glossary-section-p">P</a>
-        <a href="#glossary-section-r">R</a>
-        <a href="#glossary-section-s">S</a>
-        <a href="#glossary-section-t">T</a>
-        <a href="#glossary-section-w">W</a>
+        <a href="#" data-filter="all" class="active">ALL</a>
+        <a href="#" data-filter="a">A</a>
+        <a href="#" data-filter="b">B</a>
+        <a href="#" data-filter="c">C</a>
+        <a href="#" data-filter="d">D</a>
+        <a href="#" data-filter="e">E</a>
+        <a href="#" data-filter="f">F</a>
+        <a href="#" data-filter="h">H</a>
+        <a href="#" data-filter="m">M</a>
+        <a href="#" data-filter="n">N</a>
+        <a href="#" data-filter="p">P</a>
+        <a href="#" data-filter="r">R</a>
+        <a href="#" data-filter="s">S</a>
+        <a href="#" data-filter="t">T</a>
+        <a href="#" data-filter="w">W</a>
       </nav>
       <div class="glossary-terms">
-        <div id="glossary-section-a" class="glossary-section">
+        <div id="glossary-section-a" class="glossary-section" data-letter="a">
           <h3 class="glossary-letter-header">A</h3>
           <div class="glossary-term">
             <strong>Accountability Buddy</strong> – A supportive partner who helps track progress and encourages consistency in digital well-being goals.
@@ -441,7 +439,7 @@
             <strong>Autonomy (Self-Determination Theory)</strong> – The ability to make choices about digital engagement that align with personal values and goals.
           </div>
         </div>
-        <div id="glossary-section-b" class="glossary-section">
+        <div id="glossary-section-b" class="glossary-section" data-letter="b">
           <h3 class="glossary-letter-header">B</h3>
           <div class="glossary-term">
             <strong>Brain Cognition</strong> – The way the brain processes information, impacted by digital habits such as screen time and multitasking.
@@ -450,7 +448,7 @@
             <strong>Behavioral Science</strong> – The study of how people form digital habits and how technology influences decision-making.
           </div>
         </div>
-        <div id="glossary-section-c" class="glossary-section">
+        <div id="glossary-section-c" class="glossary-section" data-letter="c">
           <h3 class="glossary-letter-header">C</h3>
           <div class="glossary-term">
             <strong>Character Strengths</strong> – Personal strengths (e.g., curiosity, self-regulation) that can be leveraged to cultivate healthy digital habits.
@@ -462,7 +460,7 @@
             <strong>Core Values</strong> – Fundamental beliefs that guide digital habits and decision-making.
           </div>
         </div>
-        <div id="glossary-section-d" class="glossary-section">
+        <div id="glossary-section-d" class="glossary-section" data-letter="d">
           <h3 class="glossary-letter-header">D</h3>
           <div class="glossary-term">
             <strong>Digital Detox</strong> – A period of time spent without digital devices to reset habits and improve well-being.
@@ -480,7 +478,7 @@
             <strong>Digital Minimalism</strong> – A philosophy advocating for intentional and purposeful use of technology to enhance well-being.
           </div>
         </div>
-        <div id="glossary-section-e" class="glossary-section">
+        <div id="glossary-section-e" class="glossary-section" data-letter="e">
           <h3 class="glossary-letter-header">E</h3>
           <div class="glossary-term">
             <strong>Empathy and Technology</strong> – The relationship between digital interactions and emotional intelligence, including how technology can impact social connections.
@@ -489,7 +487,7 @@
             <strong>Energy Management</strong> – Strategies to prevent digital fatigue and optimize energy levels in a tech-heavy world.
           </div>
         </div>
-        <div id="glossary-section-f" class="glossary-section">
+        <div id="glossary-section-f" class="glossary-section" data-letter="f">
           <h3 class="glossary-letter-header">F</h3>
           <div class="glossary-term">
             <strong>Focus & Productivity</strong> – The ability to maintain attention and effectiveness in work and life, often challenged by digital distractions.
@@ -498,13 +496,13 @@
             <strong>Flourishing (Well-being Theory)</strong> – The state of thriving in multiple aspects of life, including physical, mental, emotional, and digital well-being.
           </div>
         </div>
-        <div id="glossary-section-h" class="glossary-section">
+        <div id="glossary-section-h" class="glossary-section" data-letter="h">
           <h3 class="glossary-letter-header">H</h3>
           <div class="glossary-term">
             <strong>Habit Loop</strong> – A framework for understanding habit formation, consisting of cue, routine, and reward, applicable to digital behaviors.
           </div>
         </div>
-        <div id="glossary-section-m" class="glossary-section">
+        <div id="glossary-section-m" class="glossary-section" data-letter="m">
           <h3 class="glossary-letter-header">M</h3>
           <div class="glossary-term">
             <strong>Mindfulness in Technology Use</strong> – Practicing present-moment awareness to create intentional and balanced digital interactions.
@@ -513,13 +511,13 @@
             <strong>Motivation (Self-Determination Theory)</strong> – Internal and external factors that influence engagement with technology, including autonomy, competence, and relatedness.
           </div>
         </div>
-        <div id="glossary-section-n" class="glossary-section">
+        <div id="glossary-section-n" class="glossary-section" data-letter="n">
           <h3 class="glossary-letter-header">N</h3>
           <div class="glossary-term">
             <strong>Notification Management</strong> – Strategies to reduce interruptions and increase focus, such as disabling non-essential alerts.
           </div>
         </div>
-        <div id="glossary-section-p" class="glossary-section">
+        <div id="glossary-section-p" class="glossary-section" data-letter="p">
           <h3 class="glossary-letter-header">P</h3>
           <div class="glossary-term">
             <strong>Prefrontal Cortex</strong> – The part of the brain responsible for decision-making and impulse control, which is affected by digital engagement.
@@ -528,13 +526,13 @@
             <strong>Psychological Safety and Technology</strong> – The impact of digital environments on emotional well-being and security.
           </div>
         </div>
-        <div id="glossary-section-r" class="glossary-section">
+        <div id="glossary-section-r" class="glossary-section" data-letter="r">
           <h3 class="glossary-letter-header">R</h3>
           <div class="glossary-term">
             <strong>Reflection Practice</strong> – Periodic self-check-ins to assess digital habits and their alignment with personal values.
           </div>
         </div>
-        <div id="glossary-section-s" class="glossary-section">
+        <div id="glossary-section-s" class="glossary-section" data-letter="s">
           <h3 class="glossary-letter-header">S</h3>
           <div class="glossary-term">
             <strong>Screen Time Awareness</strong> – Conscious tracking of time spent on digital devices to maintain a balanced lifestyle.
@@ -546,7 +544,7 @@
             <strong>Social Media Hygiene</strong> – Practices for maintaining a healthy relationship with social platforms, including curating content and setting boundaries.
           </div>
         </div>
-        <div id="glossary-section-t" class="glossary-section">
+        <div id="glossary-section-t" class="glossary-section" data-letter="t">
           <h3 class="glossary-letter-header">T</h3>
           <div class="glossary-term">
             <strong>Tech-Life Balance</strong> – The intentional effort to harmonize technology use with overall well-being.
@@ -558,7 +556,7 @@
             <strong>Two-Edge Effect of Technology</strong> – The concept that digital tools can both enhance and hinder well-being, depending on usage patterns.
           </div>
         </div>
-        <div id="glossary-section-w" class="glossary-section">
+        <div id="glossary-section-w" class="glossary-section" data-letter="w">
           <h3 class="glossary-letter-header">W</h3>
           <div class="glossary-term">
             <strong>Willpower and Digital Use</strong> – The ability to resist distractions and build positive technology habits.
@@ -645,41 +643,57 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // Enhanced smooth scrolling for glossary navigation
-  const glossaryNavLinks = document.querySelectorAll('.glossary-az-nav a');
-  glossaryNavLinks.forEach(link => {
+  // Glossary filtering functionality
+  const filterLinks = document.querySelectorAll('.glossary-az-nav a');
+  const glossarySections = document.querySelectorAll('.glossary-section');
+  const modalBody = document.querySelector('.modal-body');
+
+  function filterGlossary(letter) {
+    // Remove active class from all filter links
+    filterLinks.forEach(link => link.classList.remove('active'));
+    
+    // Add active class to clicked link
+    const activeLink = document.querySelector(`[data-filter="${letter}"]`);
+    if (activeLink) {
+      activeLink.classList.add('active');
+    }
+
+    if (letter === 'all') {
+      // Show all sections
+      glossarySections.forEach(section => {
+        section.classList.remove('hidden');
+      });
+    } else {
+      // Hide all sections first
+      glossarySections.forEach(section => {
+        section.classList.add('hidden');
+      });
+      
+      // Show only the selected letter section
+      const targetSection = document.querySelector(`[data-letter="${letter}"]`);
+      if (targetSection) {
+        targetSection.classList.remove('hidden');
+      }
+    }
+
+    // Scroll to top of modal body
+    modalBody.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
+
+  // Add click event listeners to filter links
+  filterLinks.forEach(link => {
     link.addEventListener('click', function(e) {
       e.preventDefault();
-      const targetId = this.getAttribute('href');
-      const targetElement = document.querySelector(targetId);
-      
-      if (targetElement) {
-        const modalBody = document.querySelector('.modal-body');
-        const navHeight = document.querySelector('.glossary-az-nav').offsetHeight;
-      
-        // Special handling for section A - it should be at the very top
-        if (targetId === '#glossary-section-a') {
-          modalBody.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-          });
-        } else {
-          // For other sections, calculate position relative to the glossary-terms container
-          const glossaryTermsContainer = document.querySelector('.glossary-terms');
-          const containerTop = glossaryTermsContainer.offsetTop;
-          const elementTop = targetElement.offsetTop;
-        
-          // Calculate the position relative to the modal body, accounting for sticky nav
-          const scrollPosition = containerTop + elementTop - navHeight - 10;
-        
-          modalBody.scrollTo({
-            top: Math.max(0, scrollPosition), // Ensure we don't scroll to negative values
-            behavior: 'smooth'
-          });
-        }
-      }
+      const filter = this.getAttribute('data-filter');
+      filterGlossary(filter);
     });
   });
+
+  // Initialize with "ALL" selected
+  filterGlossary('all');
 });
 
 // Template download function
