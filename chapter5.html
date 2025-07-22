@@ -1352,8 +1352,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Template download function
 function downloadActionPlanTemplate() {
-  // Placeholder function for downloading action plan template
-  alert('Digital Well-being Action Plan template download would be implemented here');
+  // Create a temporary link element to trigger the download
+  const link = document.createElement('a');
+  link.href = 'assets/documents/Lesson5_Develop Your Own Digital Well-being Action Plan.pdf';
+  link.download = 'Lesson5_Develop Your Own Digital Well-being Action Plan.pdf';
+  link.style.display = 'none';
+  
+  // Add to DOM, click, and remove
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 }
 </script>
 </body>
