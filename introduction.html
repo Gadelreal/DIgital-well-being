@@ -20,7 +20,7 @@
   padding: 15px 0 20px 0;
   margin-bottom: 0;
   border-bottom: 2px solid #eee;
-  text-align: left;
+  text-align: center; /* Centrar la navegación */
   z-index: 10;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -46,7 +46,7 @@
 }
 
 .glossary-section {
-  scroll-margin-top: 80px; /* Espacio para la navegación fija */
+  scroll-margin-top: 100px; /* Aumentar el margen para compensar la navegación sticky */
 }
 
 .glossary-letter-header {
@@ -56,7 +56,7 @@
   margin-bottom: 20px;
   padding-bottom: 10px;
   border-bottom: 2px solid var(--primary-color);
-  scroll-margin-top: 80px; /* Espacio para la navegación fija */
+  scroll-margin-top: 100px; /* Aumentar el margen para compensar la navegación sticky */
 }
 
 .glossary-section:first-child .glossary-letter-header {
@@ -78,7 +78,7 @@
 .glossary-term {
   margin-bottom: 15px;
   line-height: 1.6;
-  scroll-margin-top: 80px; /* Espacio para la navegación fija */
+  scroll-margin-top: 100px; /* Aumentar el margen para compensar la navegación sticky */
 }
 
 .hero-title {
@@ -112,7 +112,7 @@
   .glossary-section,
   .glossary-letter-header,
   .glossary-term {
-    scroll-margin-top: 70px;
+    scroll-margin-top: 90px; /* Ajustar para móviles */
   }
   
   .glossary-terms {
@@ -134,7 +134,7 @@
   .glossary-section,
   .glossary-letter-header,
   .glossary-term {
-    scroll-margin-top: 60px;
+    scroll-margin-top: 80px; /* Ajustar para móviles pequeños */
   }
   
   .glossary-terms {
@@ -519,7 +519,7 @@
             <strong>Notification Management</strong> – Strategies to reduce interruptions and increase focus, such as disabling non-essential alerts.
           </div>
         </div>
-        <div id="glossary-section-p" class="glossary-letter-header">
+        <div id="glossary-section-p" class="glossary-section">
           <h3 class="glossary-letter-header">P</h3>
           <div class="glossary-term">
             <strong>Prefrontal Cortex</strong> – The part of the brain responsible for decision-making and impulse control, which is affected by digital engagement.
@@ -643,6 +643,29 @@ document.addEventListener('DOMContentLoaded', function() {
     if (e.key === 'Escape' && modal.style.display === 'block') {
       closeModal();
     }
+  });
+
+  // Enhanced smooth scrolling for glossary navigation
+  const glossaryNavLinks = document.querySelectorAll('.glossary-az-nav a');
+  glossaryNavLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href');
+      const targetElement = document.querySelector(targetId);
+      
+      if (targetElement) {
+        const modalBody = document.querySelector('.modal-body');
+        const navHeight = document.querySelector('.glossary-az-nav').offsetHeight;
+        
+        // Calculate the position to scroll to, accounting for the sticky nav
+        const elementPosition = targetElement.offsetTop - navHeight - 20; // 20px extra padding
+        
+        modalBody.scrollTo({
+          top: elementPosition,
+          behavior: 'smooth'
+        });
+      }
+    });
   });
 });
 
