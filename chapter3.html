@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Digital Well-being - Attention, Cognition, Energy and Productivity</title>
+<title>Digital Well-being - Attention, Cognition, Energy and Sleep</title>
 <link rel="stylesheet" href="./css/styles.css">
 <!-- VideoJS CSS -->
 <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
@@ -54,53 +54,35 @@
   margin-bottom: 10px; /* Espacio entre términos */
   line-height: 1.6;
 }
-.hero-title {
-  font-family: 'Rubik', sans-serif;
-  font-weight: 300;
-}
-/* Attention Activity Styles */
-.attention-activity {
-  margin-top: 2rem;
+
+/* Estilos específicos para las actividades del Capítulo 3 */
+.attention-activity-container {
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  padding: 2rem;
+  margin: 2rem 0;
+  border-radius: 0;
 }
 
 .attention-question {
-  display: flex;
-  align-items: flex-start;
-  gap: 2rem;
   margin-bottom: 2rem;
   padding: 1.5rem;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  background-color: #fafafa;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
 }
 
-.definition-text {
-  flex: 1;
-  width: 50%;
-}
-
-.definition-text p {
-  margin: 0;
-  line-height: 1.6;
-}
-
-.dropdown-container {
-  flex: 1;
-  width: 50%;
-  min-width: 250px;
-}
-
-.dropdown-container label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-  color: #333;
+.attention-question h4 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+  font-weight: 600;
 }
 
 .attention-dropdown {
   width: 100%;
   padding: 0.75rem;
-  border: 2px solid #ddd;
+  border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 1rem;
   background-color: white;
@@ -110,266 +92,193 @@
 .attention-dropdown:focus {
   outline: none;
   border-color: var(--primary-color);
-  box-shadow: 0 0 0 2px rgba(0, 0, 102, 0.2);
+  box-shadow: 0 0 0 2px rgba(219, 0, 134, 0.2);
 }
 
-.feedback {
-  margin-top: 0.5rem;
-  padding: 0.5rem;
-  border-radius: 4px;
-  font-weight: bold;
-  min-height: 1.5rem;
-}
-
-.feedback.correct {
-  background-color: #d4edda;
-  color: #155724;
-  border: 1px solid #c3e6cb;
-}
-
-.feedback.incorrect {
-  background-color: #f8d7da;
-  color: #721c24;
-  border: 1px solid #f5c6cb;
-}
-
-.activity-results {
-  text-align: center;
-  margin-top: 2rem;
-}
-
-.check-answers-btn {
+.download-attention-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
   background-color: var(--primary-color);
   color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-top: 1.5rem;
   border: none;
-  padding: 1rem 2rem;
-  font-size: 1.1rem;
-  border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
-.check-answers-btn:hover {
-  background-color: #000055;
+.download-attention-button:hover {
+  background-color: var(--primary-color-dark);
+  color: white;
+  text-decoration: none;
 }
 
-.check-answers-btn:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
+.download-attention-button i {
+  margin-right: 0.5rem;
 }
 
-.overall-feedback {
-  margin-top: 1rem;
-  padding: 1rem;
-  border-radius: 6px;
-  font-weight: bold;
-  font-size: 1.1rem;
-}
-
-.overall-feedback.success {
-  background-color: #d4edda;
-  color: #155724;
-  border: 1px solid #c3e6cb;
-}
-
-.overall-feedback.partial {
-  background-color: #fff3cd;
-  color: #856404;
-  border: 1px solid #ffeaa7;
-}
-
-@media (max-width: 768px) {
-  .attention-question {
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  .dropdown-container {
-    min-width: auto;
-  }
-
-  .infographics-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Multiple Choice Test Styles */
-.multiple-choice-test {
-  margin-top: 2rem;
+/* Estilos para el quiz interactivo */
+.quiz-container {
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  padding: 2rem;
+  margin: 2rem 0;
+  border-radius: 0;
 }
 
 .quiz-question {
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
   padding: 1.5rem;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  background-color: #fafafa;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
 }
 
-.question-text {
-  font-weight: bold;
+.quiz-question h4 {
+  margin-top: 0;
   margin-bottom: 1rem;
-  font-size: 1.1rem;
-  color: #333;
+  color: var(--primary-color);
+  font-weight: 600;
 }
 
 .quiz-options {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
 .quiz-option {
-  margin-bottom: 0.75rem;
-  padding: 0.75rem;
-  border: 1px solid #ddd;
+  padding: 1rem;
+  border: 2px solid #e0e0e0;
   border-radius: 4px;
-  background-color: white;
   cursor: pointer;
   transition: all 0.3s ease;
+  background-color: white;
+  user-select: none;
 }
 
 .quiz-option:hover {
+  border-color: var(--primary-color);
   background-color: #f8f9fa;
-  border-color: #bbb;
 }
 
 .quiz-option.selected {
   border-color: var(--primary-color);
-  background-color: #e8f0fe;
+  background-color: rgba(219, 0, 134, 0.1);
+  font-weight: 600;
 }
 
 .quiz-option.correct {
-  background-color: #d4edda;
-  border-color: #c3e6cb;
+  border-color: #28a745;
+  background-color: rgba(40, 167, 69, 0.1);
 }
 
 .quiz-option.incorrect {
-  background-color: #f8d7da;
-  border-color: #f5c6cb;
+  border-color: #dc3545;
+  background-color: rgba(220, 53, 69, 0.1);
 }
 
-.option-label {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.5rem;
-  cursor: pointer;
-}
-
-.option-letter {
-  font-weight: bold;
-  min-width: 20px;
-}
-
-.option-text {
-  flex: 1;
-}
-
-.option-feedback {
-  margin-top: 0.75rem;
-  padding: 0.75rem;
+.quiz-results {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: white;
+  border: 1px solid #ddd;
   border-radius: 4px;
-  font-size: 0.9rem;
-  line-height: 1.5;
   display: none;
 }
 
-.option-feedback.show {
-  display: block;
-}
-
-.option-feedback.correct-feedback {
-  background-color: #d1f2eb;
-  color: #0c5460;
-  border: 1px solid #b8daff;
-}
-
-.option-feedback.incorrect-feedback {
-  background-color: #f8d7da;
-  color: #721c24;
-  border: 1px solid #f5c6cb;
-}
-
-/* Infographics Styles */
-.infographics-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
-.infographic-card {
-  background-color: #f9fafb; /* Slightly gray background */
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-}
-
-.infographic-card h3 {
-  font-size: 1.25rem;
-  color: var(--primary-color);
-  margin-top: 0;
-  margin-bottom: 1rem;
-  border-bottom: 2px solid var(--primary-color);
-  padding-bottom: 0.5rem;
-}
-
-.infographic-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  flex-grow: 1;
-}
-
-.infographic-item {
-  display: flex;
-  flex-direction: column; /* Change to column layout */
-  align-items: flex-start; /* Align everything to the left */
-  gap: 0.5rem; /* Smaller gap between elements */
-  margin-bottom: 24px;
-  padding: 1.5rem;
-  background-color: white;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.2s ease;
-}
-
-.infographic-item:hover {
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.infographic-item:last-child {
-  margin-bottom: 0;
-}
-
-.infographic-icon {
-  font-size: 1.5rem;
-  color: var(--primary-color);
-  margin-bottom: 0.5rem; /* Add space below icon */
-  align-self: flex-start; /* Ensure icon stays left-aligned */
-}
-
-.infographic-text {
-  width: 100%; /* Take full width */
-  text-align: left; /* Align text to the left */
-}
-
-.infographic-text .stat {
-  font-size: 1.5rem;
+.quiz-score {
+  font-size: 1.2rem;
   font-weight: bold;
-  color: #333;
-  display: block;
-  margin-bottom: 0.25rem; /* Small space between number and description */
+  color: var(--primary-color);
+  margin-bottom: 1rem;
 }
 
-.infographic-text .description {
-  font-size: 0.95rem;
-  color: #555;
-  line-height: 1.4;
-  margin: 0; /* Remove any default margins */
+.quiz-feedback {
+  line-height: 1.6;
+  color: #333;
+}
+
+.submit-quiz-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.submit-quiz-button:hover {
+  background-color: var(--primary-color-dark);
+}
+
+.submit-quiz-button i {
+  margin-right: 0.5rem;
+}
+
+/* Estilos para la reflexión sobre el sueño */
+.sleep-reflection-container {
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  padding: 2rem;
+  margin: 2rem 0;
+  border-radius: 0;
+}
+
+.sleep-reflection-textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 1rem;
+  resize: vertical;
+  margin-top: 1rem;
+}
+
+.sleep-reflection-textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(219, 0, 134, 0.2);
+}
+
+.download-sleep-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--primary-color);
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  border: none;
+  cursor: pointer;
+}
+
+.download-sleep-button:hover {
+  background-color: var(--primary-color-dark);
+  color: white;
+  text-decoration: none;
+}
+
+.download-sleep-button i {
+  margin-right: 0.5rem;
+}
+
+.hero-title {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 300;
 }
 
 .hero-section {
@@ -381,6 +290,17 @@
   padding: 5rem 2rem;
   position: relative;
   overflow: hidden;
+}
+
+/* Glossary filtering styles */
+.glossary-az-nav a.active {
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 3px;
+}
+
+.glossary-section.hidden {
+  display: none;
 }
 </style>
 </head>
@@ -427,8 +347,7 @@
 <section class="hero-section">
 <div class="hero-content">
   <div class="hero-title-container">
-    
-    <h1 class="hero-title">LESSON 3<br>Attention, Cognition, Energy and Productivity</h1>
+    <h1 class="hero-title">LESSON 3<br>Attention, Cognition, Energy and Sleep</h1>
   </div>
 </div>
 </section>
@@ -436,86 +355,78 @@
 <main id="main-content" tabindex="-1">
   <div class="content-aligned-container">
     
-    
-    <!-- 1. Fondo blanco -->
     <section class="lesson-section no-borders">
-      <h2>Lesson 3 Learning Objectives</h2>
-      <p>After this lesson, participants will be able to:</p>
-      
-      <div class="learning-objectives-grid">
-        <div class="learning-objective-card">
-          <div class="objective-icon" aria-hidden="true">
-            <i class="fas fa-brain"></i>
-          </div>
-          <div class="objective-content">
-            <h4>Science of Attention</h4>
-            <p>Explain the science behind attention and how it functions</p>
-          </div>
-        </div>
-        
-        <div class="learning-objective-card">
-          <div class="objective-icon" aria-hidden="true">
-            <i class="fas fa-link"></i>
-          </div>
-          <div class="objective-content">
-            <h4>Attention & Productivity</h4>
-            <p>Recognize the connection between attention, energy, and productivity</p>
-          </div>
-        </div>
-        
-        <div class="learning-objective-card">
-          <div class="objective-icon" aria-hidden="true">
-            <i class="fas fa-mobile-alt"></i>
-          </div>
-          <div class="objective-content">
-            <h4>Technology & Cognition</h4>
-            <p>Analyze the relationship between technology use and cognitive health</p>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <!-- 2. Fondo gris -->
-    <section class="lesson-section no-borders">
-      <h2>The Power of Focus</h2>
+<h2><strong>Lesson 3 Learning Objectives</strong></h2>
+<p>After this lesson, participants will be able to:</p>
 
+<div class="learning-objectives-grid">
+  <div class="learning-objective-card">
+    <div class="objective-icon" aria-hidden="true">
+      <i class="fas fa-brain"></i>
+    </div>
+    <div class="objective-content">
+      <h4>Cognitive Function Understanding</h4>
+      <p>Understand how digital habits affect cognitive functions like attention, memory, and decision-making</p>
+    </div>
+  </div>
+  
+  <div class="learning-objective-card">
+    <div class="objective-icon" aria-hidden="true">
+      <i class="fas fa-eye"></i>
+    </div>
+    <div class="objective-content">
+      <h4>Attention Management</h4>
+      <p>Recognize the science of attention and how digital distractions impact focus and productivity</p>
+    </div>
+  </div>
+  
+  <div class="learning-objective-card">
+    <div class="objective-icon" aria-hidden="true">
+      <i class="fas fa-battery-three-quarters"></i>
+    </div>
+    <div class="objective-content">
+      <h4>Energy Optimization</h4>
+      <p>Learn strategies to manage digital fatigue and optimize energy levels throughout the day</p>
+    </div>
+  </div>
+  
+  <div class="learning-objective-card">
+    <div class="objective-icon" aria-hidden="true">
+      <i class="fas fa-bed"></i>
+    </div>
+    <div class="objective-content">
+      <h4>Sleep Quality Enhancement</h4>
+      <p>Understand the relationship between screen time and sleep quality, and develop healthy bedtime routines</p>
+    </div>
+  </div>
+  
+  <div class="learning-objective-card">
+    <div class="objective-icon" aria-hidden="true">
+      <i class="fas fa-tools"></i>
+    </div>
+    <div class="objective-content">
+      <h4>Practical Implementation</h4>
+      <p>Apply evidence-based techniques to improve cognitive performance and overall digital well-being</p>
+    </div>
+  </div>
+</div>
+</section>
+    
+    <section class="lesson-section no-borders">
+      <h2><strong>The Science of Attention</strong></h2>
+      
       <div class="responsive-video">
         <video 
-          id="power-of-focus-video" 
+          id="science-attention-video" 
           class="video-js vjs-ie-skin vjs-big-play-centered" 
           controls 
           preload="auto" 
+          poster="assets/images/science-of-attention-poster.png"
           data-video-id="w03v00"
           
-          aria-label="The Power of Focus video"
-          poster="assets/images/power-of-focus-poster.png"
-        >
-          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w03v00-the-power-of-focus/hls.m3u8" type="application/x-mpegURL">
-          <p class="vjs-no-js">
-            To view this video please enable JavaScript, and consider upgrading to a
-            web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-          </p>
-          <track kind="captions" src="captions/power-of-focus.vtt" srclang="en" label="English" default>
-        </video>
-      </div>
-    </section>
-    
-    <!-- 3. Fondo blanco -->
-    <section class="lesson-section no-borders">
-      <h2>The Science of Attention</h2>
-      
-      <div class="responsive-video">
-        <video 
-          id="science-of-attention-video" 
-          class="video-js vjs-ie-skin vjs-big-play-centered" 
-          controls 
-          preload="auto" 
-          data-video-id="w03v01"
-          
           aria-label="The Science of Attention video"
-          poster="assets/images/science-of-attention-poster.png"
         >
-          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w03v01-the-science-of-attention/hls.m3u8" type="application/x-mpegURL">
+          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w03v00-the-science-of-attention/hls.m3u8" type="application/x-mpegURL">
           <p class="vjs-no-js">
             To view this video please enable JavaScript, and consider upgrading to a
             web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
@@ -524,727 +435,381 @@
         </video>
       </div>
       
-      <div class="key-point" role="note" aria-label="Key point about attention science">
-        <h3>Key Point</h3>
-        <p>Our attention is a limited, trainable resource that digital environments constantly compete for—by understanding the different types of attention and the impact of the attention economy, we can make more intentional choices that protect our cognitive energy and well-being.</p>
-      
-      <div style="margin-top: 2rem;">
-        <p><strong>Attention is the foundation of our cognitive strength.</strong></p>
+      <div class="key-point" role="note" aria-label="Key point about attention and focus">
+        <h3><strong>Key Point</strong></h3>
+        <p>Our attention is a <strong>limited and precious resource</strong>—by understanding how digital distractions fragment our focus, we can make intentional choices to protect and strengthen our ability to concentrate on what truly matters.</p>
         
-        <p>Digital habits directly affect how we focus, sustain, and shift attention throughout the day. Recognizing the different types of attention—sustained, divided, selective, and alternating—helps us understand how our brain is being trained (or drained) by our habits.</p>
+        <p>Every time we switch between tasks or respond to a notification, our brain needs time to refocus. This "switching cost" adds up throughout the day, leaving us feeling mentally drained and less productive.</p>
         
-        <p>Building awareness of where your attention is going, especially in the attention economy, is the first step toward healthier digital practices and a stronger mind.</p>
+        <p><strong>The good news:</strong> Attention is like a muscle that can be strengthened with practice.</p>
+        <ul>
+          <li>Single-tasking improves both the quality and speed of your work.</li>
+          <li>Reducing interruptions helps maintain deeper focus for longer periods.</li>
+          <li>Mindful technology use can actually support—rather than hinder—your cognitive performance.</li>
+        </ul>
       </div>
     </section>
-    
-    <!-- 4. Fondo gris -->
+
     <section class="lesson-section no-borders">
-  <h2>Reading</h2>
-  <p>Please complete the reading below:</p>
-  
-  <div class="reading-cards">
-    <div class="reading-card">
-      <div class="reading-card-content">
-        <h3>Your focus was stolen: Johann Hari on why you can't pay attention</h3>
-        <p>Explore how our focus has been systematically undermined in the digital age and discover insights into reclaiming our attention in an increasingly distracted world.</p>
-        <div class="reading-card-footer">
-          <a href="https://www.the-berliner.com/books/your-focus-was-stolen-from-you-johann-hari-on-a-global-crisis/" target="_blank" class="reading-link" aria-label="Read article: Your focus was stolen (opens in new tab)">
-            Read Article
-            <span class="reading-arrow" aria-hidden="true">→</span>
-          </a>
+      <div class="attention-activity-container">
+        <h2><strong>Activity: Attention and Focus Self-Assessment</strong></h2>
+        <p>Take a moment to reflect on your current attention and focus patterns. This self-assessment will help you identify areas where digital habits might be impacting your cognitive performance.</p>
+        
+        <p><strong>For each question, select the option that best describes your typical experience.</strong></p>
+        
+        <div class="attention-question">
+          <h4>1. How often do you find yourself checking your phone or other devices while working on important tasks?</h4>
+          <select class="attention-dropdown" id="attention-1" data-question="1">
+            <option value="">Select an option...</option>
+            <option value="rarely">Rarely - I can work for long periods without checking</option>
+            <option value="sometimes">Sometimes - I check a few times during focused work</option>
+            <option value="often">Often - I check every 15-30 minutes</option>
+            <option value="constantly">Constantly - I check every few minutes</option>
+          </select>
         </div>
+        
+        <div class="attention-question">
+          <h4>2. When you're interrupted by a notification or digital distraction, how long does it typically take you to fully refocus on your original task?</h4>
+          <select class="attention-dropdown" id="attention-2" data-question="2">
+            <option value="">Select an option...</option>
+            <option value="immediately">Immediately - I can refocus right away</option>
+            <option value="few-minutes">A few minutes - I need some time to get back on track</option>
+            <option value="longer">Longer - It takes significant effort to regain focus</option>
+            <option value="struggle">I often struggle to return to the original task</option>
+          </select>
+        </div>
+        
+        <div class="attention-question">
+          <h4>3. How would you rate your ability to engage in deep, focused work for extended periods (1-2 hours) without digital distractions?</h4>
+          <select class="attention-dropdown" id="attention-3" data-question="3">
+            <option value="">Select an option...</option>
+            <option value="excellent">Excellent - I can easily focus for hours</option>
+            <option value="good">Good - I can focus well with some effort</option>
+            <option value="fair">Fair - I struggle but can manage short periods</option>
+            <option value="poor">Poor - I find it very difficult to focus deeply</option>
+          </select>
+        </div>
+        
+        <div class="attention-question">
+          <h4>4. At the end of a typical day, how mentally fatigued do you feel from managing digital information and distractions?</h4>
+          <select class="attention-dropdown" id="attention-4" data-question="4">
+            <option value="">Select an option...</option>
+            <option value="not-fatigued">Not fatigued - I feel mentally clear and energized</option>
+            <option value="slightly">Slightly fatigued - Some mental tiredness but manageable</option>
+            <option value="moderately">Moderately fatigued - Noticeable mental exhaustion</option>
+            <option value="very">Very fatigued - Mentally drained and overwhelmed</option>
+          </select>
+        </div>
+        
+        <button class="download-attention-button" onclick="downloadAttentionAssessment()">
+          <i class="fas fa-download" aria-hidden="true"></i>
+          Download my responses
+        </button>
       </div>
-    </div>
-  </div>
-</section>
-    
-    <!-- 5. Fondo blanco -->
-<section class="lesson-section no-borders">
-  <h2>Activity: Types of Attention</h2>
-  <p>Let's explore different types of attention and how they help us manage focus in our daily lives.</p>
-  <p>Read each definition carefully, then select the correct type of attention from the dropdown menu to match each definition. This activity will help you better understand how your attention works — a key step in building healthier and more mindful digital habits.</p>
-  
-  <div class="attention-activity">
-    <div class="attention-question" data-correct="selective">
-      <div class="definition-text">
-        <p><strong>Definition:</strong><br>The ability to concentrate on a specific task or stimulus while ignoring distractions. For example, focusing on reading a book in a noisy environment.</p>
-      </div>
-      <div class="dropdown-container">
-        <label for="attention-1">Type of Attention:</label>
-        <select id="attention-1" class="attention-dropdown">
-          <option value="">Select type...</option>
-          <option value="selective">Selective Attention</option>
-          <option value="sustained">Sustained Attention</option>
-          <option value="divided">Divided Attention</option>
-          <option value="alternating">Alternating Attention</option>
-        </select>
-        <div class="feedback" id="feedback-1"></div>
-      </div>
-    </div>
+    </section>
 
-    <div class="attention-question" data-correct="sustained">
-      <div class="definition-text">
-        <p><strong>Definition:</strong><br>The skill of maintaining focus on a task or activity for an extended period, such as studying, driving, or completing a work project.</p>
-      </div>
-      <div class="dropdown-container">
-        <label for="attention-2">Type of Attention:</label>
-        <select id="attention-2" class="attention-dropdown">
-          <option value="">Select type...</option>
-          <option value="selective">Selective Attention</option>
-          <option value="sustained">Sustained Attention</option>
-          <option value="divided">Divided Attention</option>
-          <option value="alternating">Alternating Attention</option>
-        </select>
-        <div class="feedback" id="feedback-2"></div>
-      </div>
-    </div>
-
-    <div class="attention-question" data-correct="divided">
-      <div class="definition-text">
-        <p><strong>Definition:</strong><br>The capacity to be aware of multiple elements in your surroundings at the same time, staying alert and recognizing relevant stimuli in a situation.</p>
-      </div>
-      <div class="dropdown-container">
-        <label for="attention-3">Type of Attention:</label>
-        <select id="attention-3" class="attention-dropdown">
-          <option value="">Select type...</option>
-          <option value="selective">Selective Attention</option>
-          <option value="sustained">Sustained Attention</option>
-          <option value="divided">Divided Attention</option>
-          <option value="alternating">Alternating Attention</option>
-        </select>
-        <div class="feedback" id="feedback-3"></div>
-      </div>
-    </div>
-
-    <div class="attention-question" data-correct="alternating">
-      <div class="definition-text">
-        <p><strong>Definition:</strong><br>The ability to switch focus between different tasks or activities, also known as multitasking. For example, shifting attention between cooking and texting based on what requires immediate focus.</p>
-      </div>
-      <div class="dropdown-container">
-        <label for="attention-4">Type of Attention:</label>
-        <select id="attention-4" class="attention-dropdown">
-          <option value="">Select type...</option>
-          <option value="selective">Selective Attention</option>
-          <option value="sustained">Sustained Attention</option>
-          <option value="divided">Divided Attention</option>
-          <option value="alternating">Alternating Attention</option>
-        </select>
-        <div class="feedback" id="feedback-4"></div>
-      </div>
-    </div>
-
-    <div class="activity-results">
-      <button id="check-answers" class="check-answers-btn">Check Answers</button>
-      <button id="try-again" class="check-answers-btn" style="display: none; margin-left: 1rem;">Try Again</button>
-      <div id="overall-feedback" class="overall-feedback"></div>
-    </div>
-  </div>
-</section>
-    
-    <!-- 6. Fondo gris -->
     <section class="lesson-section no-borders">
-      <h2>What Cognitive Functions Are Being Impacted By Our Digital Habits?</h2>
-
+      <h2><strong>Cognitive Functions and Digital Habits</strong></h2>
+      
       <div class="responsive-video">
         <video 
           id="cognitive-functions-video" 
           class="video-js vjs-ie-skin vjs-big-play-centered" 
           controls 
           preload="auto" 
-          data-video-id="w03v02"
-          
-          aria-label="What Cognitive Functions Are Being Impacted By Our Digital Habits video"
           poster="assets/images/cognitive-functions-poster.png"
+          data-video-id="w03v01"
+          
+          aria-label="Cognitive Functions and Digital Habits video"
         >
-          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w03v02-what-cognitive-functions-are-being-impacted/hls.m3u8" type="application/x-mpegURL">
+          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w03v01-cognitive-functions-and-digital-habits/hls.m3u8" type="application/x-mpegURL">
           <p class="vjs-no-js">
             To view this video please enable JavaScript, and consider upgrading to a
             web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
           </p>
-          <track kind="captions" src="captions/cognitive-functions-impact.vtt" srclang="en" label="English" default>
+          <track kind="captions" src="captions/cognitive-functions.vtt" srclang="en" label="English" default>
         </video>
       </div>
       
-      <div class="key-point" role="note" aria-label="Key point about cognitive functions and digital habits">
-        <h3>Key Point</h3>
-        <p>Technology impacts critical brain functions like memory, attention, and self-control, but by managing notifications, choosing uplifting content, and taking mindful breaks, we can use tech in ways that protect and strengthen our cognitive health.</p>
-
-        <p style="margin-top: 1rem;">Your brain's ability to focus, remember, and make decisions is deeply influenced by how you interact with technology.</p>
-
-        <p style="margin-top: 1rem;"><strong>To protect and enhance your cognitive functions:</strong></p>
-
-        <ul style="margin-top: 0.5rem; line-height: 1.8;">
-          <li>Turn off unnecessary notifications to regain control of your attention.</li>
-          <li>Choose positive, inspiring content to balance emotional rewards.</li>
-          <li>Take regular breaks to give your brain time to process and recharge.</li>
+      <div class="key-point" role="note" aria-label="Key point about cognitive functions">
+        <h3><strong>Key Point</strong></h3>
+        <p>Digital habits directly impact core cognitive functions—<strong>attention, memory, and decision-making</strong>—but by understanding these effects, we can design our digital environment to support rather than undermine our mental performance.</p>
+        
+        <p>Your brain's executive functions work like a CEO, managing attention, filtering information, and making decisions. When overwhelmed by digital stimulation, these functions become less effective.</p>
+        
+        <p><strong>Here's how to support your cognitive functions:</strong></p>
+        <ul>
+          <li><strong>Attention:</strong> Practice single-tasking and minimize interruptions during focused work.</li>
+          <li><strong>Memory:</strong> Reduce cognitive load by organizing digital information and taking regular breaks.</li>
+          <li><strong>Decision-making:</strong> Limit decision fatigue by streamlining digital choices and automating routine tasks.</li>
         </ul>
-
-        <p style="margin-top: 1rem;">Small changes in digital habits can make a big difference for a sharper, healthier mind.</p>
+        
+        <p>Small changes in how you interact with technology can lead to significant improvements in mental clarity and cognitive performance.</p>
       </div>
-      
-    
     </section>
-    
-    <!-- 7. Fondo blanco -->
-<section class="lesson-section no-borders">
-  <h2>Activity: Check Your Understanding About Cognitive Functions</h2>
-  <p>This short multiple choice test is designed to help you apply what you've learned in a practical way. It's not graded, so don't worry about getting everything right.</p>
-  <p>Use it as a tool to check your understanding and reflect on the key concepts from this lesson. Feel free to go back and review the material as needed — this is part of your learning journey!</p>
-  
-  <div class="multiple-choice-test">
-    <!-- Question 1 -->
-    <div class="quiz-question" data-question="1">
-      <div class="question-text">1. What part of the brain is responsible for automatic reactions, like looking at your phone when it buzzes?</div>
-      <ul class="quiz-options">
-        <li class="quiz-option" data-option="a" data-correct="false">
-          <label class="option-label">
-            <span class="option-letter">a.</span>
-            <span class="option-text">Limbic System</span>
-          </label>
-          <div class="option-feedback incorrect-feedback">
-            Incorrect. Remember that while the limbic system and prefrontal cortex are involved in emotions and decision-making, the brainstem governs reflexive behaviors like these.
-          </div>
-        </li>
-        <li class="quiz-option" data-option="b" data-correct="false">
-          <label class="option-label">
-            <span class="option-letter">b.</span>
-            <span class="option-text">Hippocampus</span>
-          </label>
-          <div class="option-feedback incorrect-feedback">
-            Incorrect. Remember that while the limbic system and prefrontal cortex are involved in emotions and decision-making, the brainstem governs reflexive behaviors like these.
-          </div>
-        </li>
-        <li class="quiz-option" data-option="c" data-correct="true">
-          <label class="option-label">
-            <span class="option-letter">c.</span>
-            <span class="option-text">Brainstem</span>
-          </label>
-          <div class="option-feedback correct-feedback">
-            Correct. The brainstem is responsible for automatic, instinctive reactions, like reflexively looking at your phone when it buzzes. It controls involuntary processes, making it difficult to resist immediate responses to notifications.
-          </div>
-        </li>
-        <li class="quiz-option" data-option="d" data-correct="false">
-          <label class="option-label">
-            <span class="option-letter">d.</span>
-            <span class="option-text">Prefrontal Cortex</span>
-          </label>
-          <div class="option-feedback incorrect-feedback">
-            Incorrect. Remember that while the limbic system and prefrontal cortex are involved in emotions and decision-making, the brainstem governs reflexive behaviors like these.
-          </div>
-        </li>
-      </ul>
-    </div>
 
-    <!-- Question 2 -->
-    <div class="quiz-question" data-question="2">
-      <div class="question-text">2. Which part of the brain releases dopamine when you receive a notification or 'like'?</div>
-      <ul class="quiz-options">
-        <li class="quiz-option" data-option="a" data-correct="false">
-          <label class="option-label">
-            <span class="option-letter">a.</span>
-            <span class="option-text">Brainstem</span>
-          </label>
-          <div class="option-feedback incorrect-feedback">
-            Incorrect. Keep in mind that while other brain regions play important roles in behavior, it's the limbic system that triggers the "feel-good" chemical dopamine in response to social media interactions.
-          </div>
-        </li>
-        <li class="quiz-option" data-option="b" data-correct="true">
-          <label class="option-label">
-            <span class="option-letter">b.</span>
-            <span class="option-text">Limbic System</span>
-          </label>
-          <div class="option-feedback correct-feedback">
-            Correct. The limbic system is responsible for processing rewards and emotions. When you get a like or notification, your brain releases dopamine, reinforcing the urge to check your phone repeatedly.
-          </div>
-        </li>
-        <li class="quiz-option" data-option="c" data-correct="false">
-          <label class="option-label">
-            <span class="option-letter">c.</span>
-            <span class="option-text">Hippocampus</span>
-          </label>
-          <div class="option-feedback incorrect-feedback">
-            Incorrect. Keep in mind that while other brain regions play important roles in behavior, it's the limbic system that triggers the "feel-good" chemical dopamine in response to social media interactions.
-          </div>
-        </li>
-        <li class="quiz-option" data-option="d" data-correct="false">
-          <label class="option-label">
-            <span class="option-letter">d.</span>
-            <span class="option-text">Prefrontal Cortex</span>
-          </label>
-          <div class="option-feedback incorrect-feedback">
-            Incorrect. Keep in mind that while other brain regions play important roles in behavior, it's the limbic system that triggers the "feel-good" chemical dopamine in response to social media interactions.
-          </div>
-        </li>
-      </ul>
-    </div>
-
-    <!-- Question 3 -->
-    <div class="quiz-question" data-question="3">
-      <div class="question-text">3. What happens to the hippocampus when you binge-watch or scroll endlessly?</div>
-      <ul class="quiz-options">
-        <li class="quiz-option" data-option="a" data-correct="false">
-          <label class="option-label">
-            <span class="option-letter">a.</span>
-            <span class="option-text">It releases dopamine.</span>
-          </label>
-          <div class="option-feedback incorrect-feedback">
-            Incorrect. Remember that while dopamine release and decision-making involve different brain areas, the hippocampus struggles with excessive information, leading to poor memory recall.
-          </div>
-        </li>
-        <li class="quiz-option" data-option="b" data-correct="false">
-          <label class="option-label">
-            <span class="option-letter">b.</span>
-            <span class="option-text">It helps you make decisions.</span>
-          </label>
-          <div class="option-feedback incorrect-feedback">
-            Incorrect. Remember that while dopamine release and decision-making involve different brain areas, the hippocampus struggles with excessive information, leading to poor memory recall.
-          </div>
-        </li>
-        <li class="quiz-option" data-option="c" data-correct="true">
-          <label class="option-label">
-            <span class="option-letter">c.</span>
-            <span class="option-text">It gets overloaded, making it hard to remember what you saw.</span>
-          </label>
-          <div class="option-feedback correct-feedback">
-            Correct. The hippocampus is responsible for memory formation. When we binge-watch or scroll for long periods, it gets overloaded, making it harder to retain information.
-          </div>
-        </li>
-        <li class="quiz-option" data-option="d" data-correct="false">
-          <label class="option-label">
-            <span class="option-letter">d.</span>
-            <span class="option-text">It controls automatic reactions.</span>
-          </label>
-          <div class="option-feedback incorrect-feedback">
-            Incorrect. Remember that while dopamine release and decision-making involve different brain areas, the hippocampus struggles with excessive information, leading to poor memory recall.
-          </div>
-        </li>
-      </ul>
-    </div>
-
-    <!-- Question 4 -->
-    <div class="quiz-question" data-question="4">
-      <div class="question-text">4. Which part of the brain is involved in decision-making and self-control?</div>
-      <ul class="quiz-options">
-        <li class="quiz-option" data-option="a" data-correct="false">
-          <label class="option-label">
-            <span class="option-letter">a.</span>
-            <span class="option-text">Brainstem</span>
-          </label>
-          <div class="option-feedback incorrect-feedback">
-            Incorrect. Note that while the limbic system controls emotions and the brainstem handles automatic reactions, the prefrontal cortex is what helps us regulate our technology use consciously.
-          </div>
-        </li>
-        <li class="quiz-option" data-option="b" data-correct="false">
-          <label class="option-label">
-            <span class="option-letter">b.</span>
-            <span class="option-text">Limbic System</span>
-          </label>
-          <div class="option-feedback incorrect-feedback">
-            Incorrect. Note that while the limbic system controls emotions and the brainstem handles automatic reactions, the prefrontal cortex is what helps us regulate our technology use consciously.
-          </div>
-        </li>
-        <li class="quiz-option" data-option="c" data-correct="false">
-          <label class="option-label">
-            <span class="option-letter">c.</span>
-            <span class="option-text">Hippocampus</span>
-          </label>
-          <div class="option-feedback incorrect-feedback">
-            Incorrect. Note that while the limbic system controls emotions and the brainstem handles automatic reactions, the prefrontal cortex is what helps us regulate our technology use consciously.
-          </div>
-        </li>
-        <li class="quiz-option" data-option="d" data-correct="true">
-          <label class="option-label">
-            <span class="option-letter">d.</span>
-            <span class="option-text">Prefrontal Cortex</span>
-          </label>
-          <div class="option-feedback correct-feedback">
-            Correct. The prefrontal cortex helps with rational thinking, impulse control, and decision-making. It allows us to resist urges, like the impulse to check our phones unnecessarily.
-          </div>
-        </li>
-      </ul>
-    </div>
-
-    <!-- Question 5 -->
-    <div class="quiz-question" data-question="5">
-      <div class="question-text">5. What is one strategy to help the prefrontal cortex maintain control over technology use?</div>
-      <ul class="quiz-options">
-        <li class="quiz-option" data-option="a" data-correct="false">
-          <label class="option-label">
-            <span class="option-letter">a.</span>
-            <span class="option-text">Increase screen time.</span>
-          </label>
-          <div class="option-feedback incorrect-feedback">
-            Incorrect. Remember that strategies like increasing screen time or keeping apps easily accessible make it harder for the prefrontal cortex to regulate behavior.
-          </div>
-        </li>
-        <li class="quiz-option" data-option="b" data-correct="true">
-          <label class="option-label">
-            <span class="option-letter">b.</span>
-            <span class="option-text">Turn off notifications.</span>
-          </label>
-          <div class="option-feedback correct-feedback">
-            Correct. Turning off notifications reduces distractions, giving your prefrontal cortex more control over when and how you check your phone. This helps prevent automatic, impulsive checking.
-          </div>
-        </li>
-        <li class="quiz-option" data-option="c" data-correct="false">
-          <label class="option-label">
-            <span class="option-letter">c.</span>
-            <span class="option-text">Follow more social media accounts.</span>
-          </label>
-          <div class="option-feedback incorrect-feedback">
-            Incorrect. Remember that strategies like increasing screen time or keeping apps easily accessible make it harder for the prefrontal cortex to regulate behavior.
-          </div>
-        </li>
-        <li class="quiz-option" data-option="d" data-correct="false">
-          <label class="option-label">
-            <span class="option-letter">d.</span>
-            <span class="option-text">Keep all apps on the home screen.</span>
-          </label>
-          <div class="option-feedback incorrect-feedback">
-            Incorrect. Remember that strategies like increasing screen time or keeping apps easily accessible make it harder for the prefrontal cortex to regulate behavior.
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
-</section>
-    
-    <!-- 8. Fondo gris -->
-<section class="lesson-section no-borders">
-  <h2>Cognitive Load and Decision Fatigue</h2>
-
-  <div class="responsive-video">
-    <video 
-      id="cognitive-load-video" 
-      class="video-js vjs-ie-skin vjs-big-play-centered" 
-      controls 
-      preload="auto" 
-      data-video-id="w03v03"
+    <section class="lesson-section no-borders">
+      <h2><strong>Cognitive Load and Multitasking</strong></h2>
       
-      aria-label="Cognitive Load and Decision Fatigue video"
-      poster="assets/images/cognitive-load-poster.png"
-    >
-      <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w03v03-cognitive-load-and-decision-fatigue/hls.m3u8" type="application/x-mpegURL">
-      <p class="vjs-no-js">
-        To view this video please enable JavaScript, and consider upgrading to a
-        web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-      </p>
-      <track kind="captions" src="captions/cognitive-load-decision-fatigue.vtt" srclang="en" label="English" default>
-    </video>
-  </div>
-  
-  <div class="key-point" role="note" aria-label="Key point about cognitive load and decision fatigue">
-    <h3>Key Point</h3>
-    <p>Decision fatigue drains our mental energy throughout the day, making it harder to sustain focus and change habits—by minimizing distractions and replenishing our cognitive resources through rest, movement, and mindfulness, we can strengthen our ability to maintain new, healthier behaviors.</p>
-
-    <p style="margin-top: 1rem;">Every decision we make—big or small—uses up mental energy.</p>
-
-    <p style="margin-top: 1rem;"><strong>To support lasting behavior change:</strong></p>
-
-    <ul style="margin-top: 0.5rem; line-height: 1.8;">
-      <li>Minimize decision fatigue by reducing distractions and creating simple routines.</li>
-      <li>Fuel your brain with sleep, good nutrition, movement, time in nature, and mindfulness practices.</li>
-    </ul>
-
-    <p style="margin-top: 1rem;">Building supportive habits helps protect your focus, extend your mental stamina, and make positive changes stick over time.</p>
-  </div>
-</section>
-    
-    <!-- 9. Fondo blanco -->
-<section class="lesson-section no-borders">
-  <h2>Infographics About Smartphone Usage Statistics</h2>
-  <p>These metrics illustrate how frequent phone usage and the constant need to check devices can contribute to cognitive overload and decision fatigue, impacting both productivity and emotional well-being.</p>
-  
-  <div class="infographics-grid">
-  <!-- Smartphone User Behavior -->
-  <div class="infographic-card">
-    <h3>Smartphone User Behavior</h3>
-    <ul class="infographic-list">
-      <li class="infographic-item">
-        <i class="fas fa-hand-pointer infographic-icon"></i>
-        <div class="infographic-text">
-          <span class="stat">2,617</span>
-          <span class="description">number of times a user clicks, taps and swipes phone daily.</span>
-        </div>
-      </li>
-      <li class="infographic-item">
-        <i class="fas fa-clock infographic-icon"></i>
-        <div class="infographic-text">
-          <span class="stat">4h 10m</span>
-          <span class="description">is the average that a person spends on a smartphone daily.</span>
-        </div>
-      </li>
-      <li class="infographic-item">
-        <i class="fas fa-frown infographic-icon"></i>
-        <div class="infographic-text">
-          <span class="stat">87.8%</span>
-          <span class="description">feel anxious when they leave their phones at home.</span>
-        </div>
-      </li>
-      <li class="infographic-item">
-        <i class="fas fa-toilet-paper infographic-icon"></i>
-        <div class="infographic-text">
-          <span class="stat">73.4%</span>
-          <span class="description">take their phones to the toilet.</span>
-        </div>
-      </li>
-      <li class="infographic-item">
-        <i class="fas fa-bed infographic-icon"></i>
-        <div class="infographic-text">
-          <span class="stat">69%</span>
-          <span class="description">check their phones within 5 minutes before going to sleep.</span>
-        </div>
-      </li>
-      <li class="infographic-item">
-        <i class="fas fa-mobile-alt infographic-icon"></i>
-        <div class="infographic-text">
-          <span class="stat">66%</span>
-          <span class="description">sleep with their phones.</span>
-        </div>
-      </li>
-      <li class="infographic-item">
-        <i class="fas fa-unlock-alt infographic-icon"></i>
-        <div class="infographic-text">
-          <span class="stat">43.5%</span>
-          <span class="description">unlock their phones between 51 and 100 times daily.</span>
-        </div>
-      </li>
-      <li class="infographic-item">
-        <i class="fas fa-heart-broken infographic-icon"></i>
-        <div class="infographic-text">
-          <span class="stat">32.7%</span>
-          <span class="description">spend more time with their phones than their lovers.</span>
-        </div>
-      </li>
-    </ul>
-  </div>
-
-  <!-- Impact on Daily Life -->
-  <div class="infographic-card">
-    <h3>Impact on Daily Life</h3>
-    <ul class="infographic-list">
-      <li class="infographic-item">
-        <i class="fas fa-bed infographic-icon"></i>
-        <div class="infographic-text">
-          <span class="stat">87%</span>
-          <span class="description">of users check their smartphone within 1 hour before going to sleep and after waking up.</span>
-        </div>
-      </li>
-      <li class="infographic-item">
-        <i class="fas fa-mobile-alt infographic-icon"></i>
-        <div class="infographic-text">
-          <span class="stat">66%</span>
-          <span class="description">of users sleep with their smartphones.</span>
-        </div>
-      </li>
-      <li class="infographic-item">
-        <i class="fas fa-users infographic-icon"></i>
-        <div class="infographic-text">
-          <span class="stat">86%</span>
-          <span class="description">of users check their phones even while talking to friends and family.</span>
-        </div>
-      </li>
-    </ul>
-  </div>
-
-  <!-- Distraction and Productivity -->
-  <div class="infographic-card">
-    <h3>Distraction and Productivity</h3>
-    <ul class="infographic-list">
-      <li class="infographic-item">
-        <i class="fas fa-user-graduate infographic-icon"></i>
-        <div class="infographic-text">
-          <span class="stat">49%</span>
-          <span class="description">of students are distracted by phones and other gadgets in class.</span>
-        </div>
-      </li>
-      <li class="infographic-item">
-        <i class="fas fa-briefcase infographic-icon"></i>
-        <div class="infographic-text">
-          <span class="stat">55%</span>
-          <span class="description">of employees admit that they are often distracted by their smartphones at work.</span>
-        </div>
-      </li>
-    </ul>
-  </div>
-
-  <!-- Emotional and Psychological Effects -->
-  <div class="infographic-card">
-    <h3>Emotional and Psychological Effects</h3>
-    <ul class="infographic-list">
-      <li class="infographic-item">
-        <i class="fas fa-frown infographic-icon"></i>
-        <div class="infographic-text">
-          <span class="stat">87.8%</span>
-          <span class="description">of users feel anxious when they leave their phones at home.</span>
-        </div>
-      </li>
-      <li class="infographic-item">
-        <i class="fas fa-sad-tear infographic-icon"></i>
-        <div class="infographic-text">
-          <span class="stat">56%</span>
-          <span class="description">of teens feel lonely, anxious, or upset when they don't have their phones with them.</span>
-        </div>
-      </li>
-    </ul>
-  </div>
-</div>
-
-</section>
-
-<!-- 10. Fondo gris -->
-<section class="lesson-section no-borders">
-  <h2>Reading</h2>
-  <p>If you would like to learn more about these smartphone addiction statistics, you may read the following article:</p>
-  
-  <div class="reading-cards">
-    <div class="reading-card">
-      <div class="reading-card-content">
-        <h3>90 Smartphone Addiction Statistics You Must See: 2024 Usage and Data Analysis</h3>
-        <p>Explore comprehensive data on smartphone usage patterns, addiction trends, and their impact on daily life and productivity.</p>
-        <div class="reading-card-footer">
-          <a href="https://financesonline.com/smartphone-addiction-statistics/#:~:text=Delving%20deeper%2C%20a%20user%20clicks,up%20(BankMyCell%2C%202021)" target="_blank" class="reading-link" aria-label="Read article: 90 Smartphone Addiction Statistics (opens in new tab)">
-            Read Article
-            <span class="reading-arrow" aria-hidden="true">→</span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 11. Fondo blanco -->
-<section class="lesson-section no-borders">
-  <h2>The Impact of Technology on Our Sleep Health</h2>
-
-  <div class="responsive-video">
-    <video 
-      id="sleep-health-video" 
-      class="video-js vjs-ie-skin vjs-big-play-centered" 
-      controls 
-      preload="auto" 
-      data-video-id="w03v04"
-      
-      aria-label="The Impact of Technology on Our Sleep Health video"
-      poster="assets/images/sleep-health-poster.png"
-    >
-      <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w03v04-the-impact-of-technology-in-our-sleep-health/hls.m3u8" type="application/x-mpegURL">
-      <p class="vjs-no-js">
-        To view this video please enable JavaScript, and consider upgrading to a
-        web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-      </p>
-      <track kind="captions" src="captions/sleep-health.vtt" srclang="en" label="English" default>
-    </video>
-  </div>
-  
-  <div class="key-point" role="note" aria-label="Key point about technology and sleep health">
-    <h3>Key Point</h3>
-    <p>Our digital habits—especially around screen use before bed and upon waking—can disrupt sleep quality and mental restoration; by aligning technology use with our body's natural rhythms, we support deeper rest, better focus, and long-term well-being.</p>
-
-    <p style="margin-top: 1rem;">Sleep is essential to mental clarity, emotional balance, and physical health.</p>
-
-    <p style="margin-top: 1rem;">Digital habits—like late-night scrolling or checking phones first thing in the morning—can interfere with natural melatonin production and sleep cycles.</p>
-
-    <p style="margin-top: 1rem;"><strong>To support better rest:</strong></p>
-
-    <ul style="margin-top: 0.5rem; line-height: 1.8;">
-      <li>Limit screen time at least 30–60 minutes before bed.</li>
-      <li>Use dim or night mode to reduce blue light exposure.</li>
-      <li>Create a calming evening routine—just like an alarm wakes you up, set a signal that helps you wind down.</li>
-      <li>Give yourself a tech-free buffer in the morning to start the day with clarity and intention.</li>
-    </ul>
-  </div>
-</section>
-
-<!-- 12. Fondo gris -->
-<section class="lesson-section no-borders">
-  <div class="reflection-exercise">
-    <h2><strong>Reflection Question</strong></h2>
-    <p><strong>Take a moment to reflect and write your response to the question below.</strong></p>
-    
-    <div class="reflection-question">
-      <h3>What three practices would you like to adopt to enjoy a more peaceful rest?</h3>
-      <textarea 
-        id="sleep-reflection" 
-        class="reflection-textarea" 
-        placeholder="Write your reflection here..."
-        aria-label="Sleep practices reflection"
-        rows="8"
-      ></textarea>
-      <div class="button-container">
-        <button 
-          type="button" 
-          class="save-button" 
-          data-reflection-id="sleep-reflection"
-          aria-describedby="feedback-sleep-reflection"
+      <div class="responsive-video">
+        <video 
+          id="cognitive-load-video" 
+          class="video-js vjs-ie-skin vjs-big-play-centered" 
+          controls 
+          preload="auto" 
+          poster="assets/images/cognitive-load-poster.png"
+          data-video-id="w03v02"
+          
+          aria-label="Cognitive Load and Multitasking video"
         >
-          <i class="fas fa-save" aria-hidden="true"></i> Save Reflection
-        </button>
-        <span id="feedback-sleep-reflection" class="save-feedback" aria-live="polite"></span>
+          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w03v02-cognitive-load-and-multitasking/hls.m3u8" type="application/x-mpegURL">
+          <p class="vjs-no-js">
+            To view this video please enable JavaScript, and consider upgrading to a
+            web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+          </p>
+          <track kind="captions" src="captions/cognitive-load.vtt" srclang="en" label="English" default>
+        </video>
       </div>
-    </div>
-  </div>
-</section>
+      
+      <div class="key-point" role="note" aria-label="Key point about cognitive load">
+        <h3><strong>Key Point</strong></h3>
+        <p>Multitasking is a myth—our brains actually <strong>task-switch</strong>, which creates cognitive load and reduces both performance and well-being. Understanding this can help us make better choices about how we structure our digital work.</p>
+        
+        <p>When you think you're multitasking, your brain is rapidly switching between tasks, and each switch comes with a cost:</p>
+        <ul>
+          <li><strong>Time cost:</strong> It takes time to refocus after each switch</li>
+          <li><strong>Energy cost:</strong> Mental fatigue builds up faster</li>
+          <li><strong>Quality cost:</strong> More errors and reduced creativity</li>
+          <li><strong>Stress cost:</strong> Increased cortisol and mental strain</li>
+        </ul>
+        
+        <p><strong>Instead, try "batching" similar tasks:</strong> Check emails at set times, group similar activities together, and give your full attention to one thing at a time. Your brain—and your work quality—will thank you.</p>
+      </div>
+    </section>
 
-<!-- 13. Fondo blanco -->
-<section class="lesson-section no-borders">
-  <h2>Readings</h2>
-  <p>Explore these resources to deepen your understanding of attention, focus, and the impact of technology on cognitive health:</p>
-  
-  <div class="reading-cards">
-    <div class="reading-card">
-      <div class="reading-card-content">
-        <h3>Attention and Focus Framework</h3>
-        <p>A comprehensive framework for understanding and improving attention and focus in digital environments.</p>
-        <div class="reading-card-footer">
-          <a href="https://www.ie.edu/impactskillstoolkit/tool/attention-and-focus-framework/" target="_blank" class="reading-link" aria-label="Read: Attention and Focus Framework (opens in new tab)">
-            Read Resource
-            <span class="reading-arrow" aria-hidden="true">→</span>
-          </a>
+    <section class="lesson-section no-borders">
+      <div class="quiz-container">
+        <h2><strong>Interactive Quiz: Test Your Knowledge</strong></h2>
+        <p>Let's test your understanding of the concepts we've covered so far. Select the best answer for each question.</p>
+        
+        <div class="quiz-question" data-question="q1">
+          <h4>1. What happens in your brain when you "multitask" between digital devices?</h4>
+          <div class="quiz-options">
+            <div class="quiz-option" data-option="a">
+              <strong>A)</strong> Your brain processes multiple tasks simultaneously with no performance loss
+            </div>
+            <div class="quiz-option" data-option="b">
+              <strong>B)</strong> Your brain rapidly switches between tasks, creating cognitive load and reducing performance
+            </div>
+            <div class="quiz-option" data-option="c">
+              <strong>C)</strong> Your brain becomes more efficient at handling multiple information streams
+            </div>
+            <div class="quiz-option" data-option="d">
+              <strong>D)</strong> Multitasking has no measurable effect on cognitive function
+            </div>
+          </div>
+        </div>
+        
+        <div class="quiz-question" data-question="q2">
+          <h4>2. Which of the following best describes "cognitive load"?</h4>
+          <div class="quiz-options">
+            <div class="quiz-option" data-option="a">
+              <strong>A)</strong> The physical weight of information stored in your brain
+            </div>
+            <div class="quiz-option" data-option="b">
+              <strong>B)</strong> The mental effort required to process information and make decisions
+            </div>
+            <div class="quiz-option" data-option="c">
+              <strong>C)</strong> The number of apps installed on your devices
+            </div>
+            <div class="quiz-option" data-option="d">
+              <strong>D)</strong> The amount of time spent using digital devices
+            </div>
+          </div>
+        </div>
+        
+        <div class="quiz-question" data-question="q3">
+          <h4>3. What is the most effective way to protect your attention while working?</h4>
+          <div class="quiz-options">
+            <div class="quiz-option" data-option="a">
+              <strong>A)</strong> Keep all notifications on to stay informed
+            </div>
+            <div class="quiz-option" data-option="b">
+              <strong>B)</strong> Work on multiple tasks simultaneously to be more productive
+            </div>
+            <div class="quiz-option" data-option="c">
+              <strong>C)</strong> Practice single-tasking and minimize digital interruptions
+            </div>
+            <div class="quiz-option" data-option="d">
+              <strong>D)</strong> Check your phone regularly to prevent missing important information
+            </div>
+          </div>
+        </div>
+        
+        <button class="submit-quiz-button" onclick="submitQuiz()">
+          <i class="fas fa-check-circle" aria-hidden="true"></i>
+          Submit Quiz
+        </button>
+        
+        <div class="quiz-results" id="quiz-results">
+          <div class="quiz-score" id="quiz-score"></div>
+          <div class="quiz-feedback" id="quiz-feedback"></div>
         </div>
       </div>
-    </div>
-    
-    <div class="reading-card">
-      <div class="reading-card-content">
-        <h3>University Freshmen's Excessive Smartphone Use and Psychological Safety</h3>
-        <p>Research study examining the relationship between smartphone usage patterns and psychological well-being during the COVID-19 pandemic.</p>
-        <div class="reading-card-footer">
-          <a href="https://www.frontiersin.org/journals/psychiatry/articles/10.3389/fpsyt.2022.993555/full" target="_blank" class="reading-link" aria-label="Read: University Freshmen's Smartphone Use Study (opens in new tab)">
-            Read Study
-            <span class="reading-arrow" aria-hidden="true">→</span>
-          </a>
-        </div>
+    </section>
+
+    <section class="lesson-section no-borders">
+      <h2><strong>The Power of Focus</strong></h2>
+      
+      <div class="responsive-video">
+        <video 
+          id="power-focus-video" 
+          class="video-js vjs-ie-skin vjs-big-play-centered" 
+          controls 
+          preload="auto" 
+          poster="assets/images/power-of-focus-poster.png"
+          data-video-id="w03v03"
+          
+          aria-label="The Power of Focus video"
+        >
+          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w03v03-the-power-of-focus/hls.m3u8" type="application/x-mpegURL">
+          <p class="vjs-no-js">
+            To view this video please enable JavaScript, and consider upgrading to a
+            web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+          </p>
+          <track kind="captions" src="captions/power-of-focus.vtt" srclang="en" label="English" default>
+        </video>
       </div>
-    </div>
-    
-    <div class="reading-card">
-      <div class="reading-card-content">
-        <h3>The Cost of Interrupted Work: More Speed and Stress</h3>
-        <p>Academic research exploring how digital interruptions affect work performance, speed, and stress levels.</p>
-        <div class="reading-card-footer">
-          <a href="https://ics.uci.edu/~gmark/chi08-mark.pdf" target="_blank" class="reading-link" aria-label="Read: Cost of Interrupted Work Research (opens in new tab)">
-            Read Paper
-            <span class="reading-arrow" aria-hidden="true">→</span>
-          </a>
-        </div>
+      
+      <div class="key-point" role="note" aria-label="Key point about focus">
+        <h3><strong>Key Point</strong></h3>
+        <p>Deep focus is a <strong>superpower in our distracted world</strong>—by cultivating the ability to concentrate deeply, you can achieve higher quality work, greater creativity, and more meaningful engagement with your goals and relationships.</p>
+        
+        <p>In a world full of digital distractions, the ability to focus deeply has become increasingly rare—and increasingly valuable.</p>
+        
+        <p><strong>Benefits of deep focus include:</strong></p>
+        <ul>
+          <li><strong>Higher quality output:</strong> Better work with fewer errors</li>
+          <li><strong>Increased creativity:</strong> Space for innovative thinking and problem-solving</li>
+          <li><strong>Greater satisfaction:</strong> More fulfilling and meaningful work experiences</li>
+          <li><strong>Reduced stress:</strong> Less mental fatigue from constant task-switching</li>
+        </ul>
+        
+        <p>Start small: Try focusing on one task for just 25 minutes without any digital interruptions. Notice how it feels, and gradually build your focus stamina over time.</p>
       </div>
-    </div>
-    
-    <div class="reading-card">
-      <div class="reading-card-content">
-        <h3>Sleep and Social Media</h3>
-        <p>Comprehensive guide on how social media and screen time affect sleep quality and recommendations for better sleep hygiene.</p>
-        <div class="reading-card-footer">
-          <a href="https://www.sleepfoundation.org/how-sleep-works/sleep-and-social-media" target="_blank" class="reading-link" aria-label="Read: Sleep and Social Media Guide (opens in new tab)">
-            Read Guide
-            <span class="reading-arrow" aria-hidden="true">→</span>
-          </a>
-        </div>
+    </section>
+
+    <section class="lesson-section no-borders">
+      <h2><strong>Sleep and Health</strong></h2>
+      
+      <div class="responsive-video">
+        <video 
+          id="sleep-health-video" 
+          class="video-js vjs-ie-skin vjs-big-play-centered" 
+          controls 
+          preload="auto" 
+          poster="assets/images/sleep-health-poster.png"
+          data-video-id="w03v04"
+          
+          aria-label="Sleep and Health video"
+        >
+          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w03v04-sleep-and-health/hls.m3u8" type="application/x-mpegURL">
+          <p class="vjs-no-js">
+            To view this video please enable JavaScript, and consider upgrading to a
+            web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+          </p>
+          <track kind="captions" src="captions/sleep-health.vtt" srclang="en" label="English" default>
+        </video>
       </div>
-    </div>
-  </div>
-</section>
+      
+      <div class="key-point" role="note" aria-label="Key point about sleep and digital habits">
+        <h3><strong>Key Point</strong></h3>
+        <p>Quality sleep is the foundation of cognitive performance, emotional regulation, and overall well-being—and our digital habits, especially screen exposure before bed, can significantly impact our sleep quality and recovery.</p>
+        
+        <p>Sleep isn't just rest—it's when your brain consolidates memories, clears toxins, and prepares for the next day. Digital habits can interfere with this crucial process.</p>
+        
+        <p><strong>How screens affect sleep:</strong></p>
+        <ul>
+          <li><strong>Blue light exposure:</strong> Suppresses melatonin production, making it harder to fall asleep</li>
+          <li><strong>Mental stimulation:</strong> Engaging content keeps your mind active when it should be winding down</li>
+          <li><strong>Sleep anxiety:</strong> Late-night scrolling can increase stress and worry</li>
+        </ul>
+        
+        <p><strong>Simple sleep hygiene tips:</strong> Create a "digital sunset" 1-2 hours before bed, keep devices out of the bedroom, and establish a calming bedtime routine that doesn't involve screens.</p>
+      </div>
+    </section>
+
+    <section class="lesson-section no-borders">
+      <div class="sleep-reflection-container">
+        <h2><strong>Reflection: Sleep and Digital Habits</strong></h2>
+        <p>Take a moment to reflect on your current sleep habits and how your digital device usage might be affecting your sleep quality.</p>
+        
+        <p><strong>Consider the following questions as you write your reflection:</strong></p>
+        <ul>
+          <li>What is your typical bedtime routine? Do you use digital devices before sleep?</li>
+          <li>How do you feel your screen time affects your sleep quality?</li>
+          <li>What changes could you make to improve your sleep hygiene?</li>
+          <li>How might better sleep impact your overall digital well-being?</li>
+        </ul>
+        
+        <textarea 
+          class="sleep-reflection-textarea" 
+          id="sleep-reflection" 
+          placeholder="Write your reflection here..."
+          aria-label="Sleep and digital habits reflection"
+        ></textarea>
+        
+        <button class="download-sleep-button" onclick="downloadSleepReflection()">
+          <i class="fas fa-download" aria-hidden="true"></i>
+          Download my reflection
+        </button>
+      </div>
+    </section>
+
+    <section class="lesson-section no-borders">
+      <h2><strong>Readings</strong></h2>
+      
+      <div class="reading-cards">
+        <a href="https://www.ie.edu/impactskillstoolkit/tool/improve-your-focus/" target="_blank" class="reading-card reading-card-clickable" aria-label="Visit Improve Your Focus resource (opens in new tab)">
+          <div class="reading-card-content">
+            <h3><strong>Improve Your Focus!</strong></h3>
+            <p>Discover practical strategies to enhance your concentration and attention span in our digital age. Learn evidence-based techniques to minimize distractions and maximize your cognitive performance.</p>
+            <div class="reading-card-footer">
+              <span class="reading-link">
+                Visit Resource
+                <span class="reading-arrow" aria-hidden="true">→</span>
+              </span>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://www.ie.edu/impactskillstoolkit/tool/manage-your-energy/" target="_blank" class="reading-card reading-card-clickable" aria-label="Visit Manage Your Energy resource (opens in new tab)">
+          <div class="reading-card-content">
+            <h3><strong>Manage Your Energy!</strong></h3>
+            <p>Learn how to optimize your energy levels throughout the day. Understand the relationship between digital habits, cognitive load, and energy management for better productivity and well-being.</p>
+            <div class="reading-card-footer">
+              <span class="reading-link">
+                Visit Resource
+                <span class="reading-arrow" aria-hidden="true">→</span>
+              </span>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://www.ie.edu/impactskillstoolkit/tool/improve-your-sleep/" target="_blank" class="reading-card reading-card-clickable" aria-label="Visit Improve Your Sleep resource (opens in new tab)">
+          <div class="reading-card-content">
+            <h3><strong>Improve Your Sleep!</strong></h3>
+            <p>Explore the science of sleep and discover how to create better sleep habits. Learn about the impact of screens on sleep quality and practical tips for digital sleep hygiene.</p>
+            <div class="reading-card-footer">
+              <span class="reading-link">
+                Visit Resource
+                <span class="reading-arrow" aria-hidden="true">→</span>
+              </span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
     
     <div class="navigation-buttons" role="navigation" aria-label="Lesson navigation">
       <a href="chapter2.html" class="nav-button prev"><span class="arrow-left" aria-hidden="true">←</span>Previous</a>
@@ -1268,23 +833,24 @@
     </div>
     <div class="modal-body">
       <nav class="glossary-az-nav" aria-label="Glossary A-Z Navigation">
-        <a href="#glossary-section-a">A</a>
-        <a href="#glossary-section-b">B</a>
-        <a href="#glossary-section-c">C</a>
-        <a href="#glossary-section-d">D</a>
-        <a href="#glossary-section-e">E</a>
-        <a href="#glossary-section-f">F</a>
-        <a href="#glossary-section-h">H</a>
-        <a href="#glossary-section-m">M</a>
-        <a href="#glossary-section-n">N</a>
-        <a href="#glossary-section-p">P</a>
-        <a href="#glossary-section-r">R</a>
-        <a href="#glossary-section-s">S</a>
-        <a href="#glossary-section-t">T</a>
-        <a href="#glossary-section-w">W</a>
+        <a href="#" data-filter="all" class="active">ALL</a>
+        <a href="#" data-filter="a">A</a>
+        <a href="#" data-filter="b">B</a>
+        <a href="#" data-filter="c">C</a>
+        <a href="#" data-filter="d">D</a>
+        <a href="#" data-filter="e">E</a>
+        <a href="#" data-filter="f">F</a>
+        <a href="#" data-filter="h">H</a>
+        <a href="#" data-filter="m">M</a>
+        <a href="#" data-filter="n">N</a>
+        <a href="#" data-filter="p">P</a>
+        <a href="#" data-filter="r">R</a>
+        <a href="#" data-filter="s">S</a>
+        <a href="#" data-filter="t">T</a>
+        <a href="#" data-filter="w">W</a>
       </nav>
       <div class="glossary-terms">
-        <div id="glossary-section-a" class="glossary-section">
+        <div id="glossary-section-a" class="glossary-section" data-letter="a">
           <h3 class="glossary-letter-header">A</h3>
           <div class="glossary-term">
             <strong>Accountability Buddy</strong> – A supportive partner who helps track progress and encourages consistency in digital well-being goals.
@@ -1296,7 +862,7 @@
             <strong>Autonomy (Self-Determination Theory)</strong> – The ability to make choices about digital engagement that align with personal values and goals.
           </div>
         </div>
-        <div id="glossary-section-b" class="glossary-section">
+        <div id="glossary-section-b" class="glossary-section" data-letter="b">
           <h3 class="glossary-letter-header">B</h3>
           <div class="glossary-term">
             <strong>Brain Cognition</strong> – The way the brain processes information, impacted by digital habits such as screen time and multitasking.
@@ -1305,7 +871,7 @@
             <strong>Behavioral Science</strong> – The study of how people form digital habits and how technology influences decision-making.
           </div>
         </div>
-        <div id="glossary-section-c" class="glossary-section">
+        <div id="glossary-section-c" class="glossary-section" data-letter="c">
           <h3 class="glossary-letter-header">C</h3>
           <div class="glossary-term">
             <strong>Character Strengths</strong> – Personal strengths (e.g., curiosity, self-regulation) that can be leveraged to cultivate healthy digital habits.
@@ -1317,7 +883,7 @@
             <strong>Core Values</strong> – Fundamental beliefs that guide digital habits and decision-making.
           </div>
         </div>
-        <div id="glossary-section-d" class="glossary-section">
+        <div id="glossary-section-d" class="glossary-section" data-letter="d">
           <h3 class="glossary-letter-header">D</h3>
           <div class="glossary-term">
             <strong>Digital Detox</strong> – A period of time spent without digital devices to reset habits and improve well-being.
@@ -1335,7 +901,7 @@
             <strong>Digital Minimalism</strong> – A philosophy advocating for intentional and purposeful use of technology to enhance well-being.
           </div>
         </div>
-        <div id="glossary-section-e" class="glossary-section">
+        <div id="glossary-section-e" class="glossary-section" data-letter="e">
           <h3 class="glossary-letter-header">E</h3>
           <div class="glossary-term">
             <strong>Empathy and Technology</strong> – The relationship between digital interactions and emotional intelligence, including how technology can impact social connections.
@@ -1344,7 +910,7 @@
             <strong>Energy Management</strong> – Strategies to prevent digital fatigue and optimize energy levels in a tech-heavy world.
           </div>
         </div>
-        <div id="glossary-section-f" class="glossary-section">
+        <div id="glossary-section-f" class="glossary-section" data-letter="f">
           <h3 class="glossary-letter-header">F</h3>
           <div class="glossary-term">
             <strong>Focus & Productivity</strong> – The ability to maintain attention and effectiveness in work and life, often challenged by digital distractions.
@@ -1353,13 +919,13 @@
             <strong>Flourishing (Well-being Theory)</strong> – The state of thriving in multiple aspects of life, including physical, mental, emotional, and digital well-being.
           </div>
         </div>
-        <div id="glossary-section-h" class="glossary-section">
+        <div id="glossary-section-h" class="glossary-section" data-letter="h">
           <h3 class="glossary-letter-header">H</h3>
           <div class="glossary-term">
             <strong>Habit Loop</strong> – A framework for understanding habit formation, consisting of cue, routine, and reward, applicable to digital behaviors.
           </div>
         </div>
-        <div id="glossary-section-m" class="glossary-section">
+        <div id="glossary-section-m" class="glossary-section" data-letter="m">
           <h3 class="glossary-letter-header">M</h3>
           <div class="glossary-term">
             <strong>Mindfulness in Technology Use</strong> – Practicing present-moment awareness to create intentional and balanced digital interactions.
@@ -1368,13 +934,13 @@
             <strong>Motivation (Self-Determination Theory)</strong> – Internal and external factors that influence engagement with technology, including autonomy, competence, and relatedness.
           </div>
         </div>
-        <div id="glossary-section-n" class="glossary-section">
+        <div id="glossary-section-n" class="glossary-section" data-letter="n">
           <h3 class="glossary-letter-header">N</h3>
           <div class="glossary-term">
             <strong>Notification Management</strong> – Strategies to reduce interruptions and increase focus, such as disabling non-essential alerts.
           </div>
         </div>
-        <div id="glossary-section-p" class="glossary-section">
+        <div id="glossary-section-p" class="glossary-section" data-letter="p">
           <h3 class="glossary-letter-header">P</h3>
           <div class="glossary-term">
             <strong>Prefrontal Cortex</strong> – The part of the brain responsible for decision-making and impulse control, which is affected by digital engagement.
@@ -1383,13 +949,13 @@
             <strong>Psychological Safety and Technology</strong> – The impact of digital environments on emotional well-being and security.
           </div>
         </div>
-        <div id="glossary-section-r" class="glossary-section">
+        <div id="glossary-section-r" class="glossary-section" data-letter="r">
           <h3 class="glossary-letter-header">R</h3>
           <div class="glossary-term">
             <strong>Reflection Practice</strong> – Periodic self-check-ins to assess digital habits and their alignment with personal values.
           </div>
         </div>
-        <div id="glossary-section-s" class="glossary-section">
+        <div id="glossary-section-s" class="glossary-section" data-letter="s">
           <h3 class="glossary-letter-header">S</h3>
           <div class="glossary-term">
             <strong>Screen Time Awareness</strong> – Conscious tracking of time spent on digital devices to maintain a balanced lifestyle.
@@ -1401,7 +967,7 @@
             <strong>Social Media Hygiene</strong> – Practices for maintaining a healthy relationship with social platforms, including curating content and setting boundaries.
           </div>
         </div>
-        <div id="glossary-section-t" class="glossary-section">
+        <div id="glossary-section-t" class="glossary-section" data-letter="t">
           <h3 class="glossary-letter-header">T</h3>
           <div class="glossary-term">
             <strong>Tech-Life Balance</strong> – The intentional effort to harmonize technology use with overall well-being.
@@ -1413,7 +979,7 @@
             <strong>Two-Edge Effect of Technology</strong> – The concept that digital tools can both enhance and hinder well-being, depending on usage patterns.
           </div>
         </div>
-        <div id="glossary-section-w" class="glossary-section">
+        <div id="glossary-section-w" class="glossary-section" data-letter="w">
           <h3 class="glossary-letter-header">W</h3>
           <div class="glossary-term">
             <strong>Willpower and Digital Use</strong> – The ability to resist distractions and build positive technology habits.
@@ -1428,7 +994,6 @@
 <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
 <script src="js/video-player.js"></script>
 <script src="js/key-points.js"></script>
-<script src="js/reflections.js"></script>
 <script src="js/main.js"></script>
 <script>
 // Session Storage Functions for Chapter 3 Activities
@@ -1485,11 +1050,190 @@ function loadSavedResponses() {
   }
 }
 
-// Glossary Modal Functionality
+// Attention Assessment Functions
+function downloadAttentionAssessment() {
+  const responses = {};
+  
+  for (let i = 1; i <= 4; i++) {
+    const dropdown = document.getElementById(`attention-${i}`);
+    if (dropdown && dropdown.value) {
+      responses[`attention_${i}`] = dropdown.value;
+      saveToSession(`attention_${i}`, dropdown.value);
+    }
+  }
+  
+  // Create downloadable content
+  let content = "Attention and Focus Self-Assessment\n";
+  content += "=====================================\n\n";
+  content += `Date: ${new Date().toLocaleDateString()}\n\n`;
+  
+  const questions = [
+    "How often do you find yourself checking your phone or other devices while working on important tasks?",
+    "When you're interrupted by a notification or digital distraction, how long does it typically take you to fully refocus on your original task?",
+    "How would you rate your ability to engage in deep, focused work for extended periods (1-2 hours) without digital distractions?",
+    "At the end of a typical day, how mentally fatigued do you feel from managing digital information and distractions?"
+  ];
+  
+  questions.forEach((question, index) => {
+    const responseKey = `attention_${index + 1}`;
+    const response = responses[responseKey] || 'No response provided';
+    content += `${index + 1}. ${question}\n`;
+    content += `Response: ${response}\n\n`;
+  });
+  
+  // Create and download file
+  const blob = new Blob([content], { type: 'text/plain' });
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'attention-assessment-responses.txt';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  window.URL.revokeObjectURL(url);
+}
+
+// Quiz Functions
+let quizResponses = {};
+
+function selectQuizOption(questionElement, selectedOption) {
+  // Remove previous selections
+  const options = questionElement.querySelectorAll('.quiz-option');
+  options.forEach(option => option.classList.remove('selected'));
+  
+  // Add selection to clicked option
+  selectedOption.classList.add('selected');
+  
+  // Store response
+  const questionId = questionElement.getAttribute('data-question');
+  const optionValue = selectedOption.getAttribute('data-option');
+  quizResponses[questionId] = optionValue;
+  
+  // Save to session storage
+  saveToSession('quiz_responses', quizResponses);
+}
+
+function submitQuiz() {
+  const correctAnswers = {
+    'q1': 'b',
+    'q2': 'b', 
+    'q3': 'c'
+  };
+  
+  let correctCount = 0;
+  const totalQuestions = Object.keys(correctAnswers).length;
+  
+  // Check answers and provide visual feedback
+  Object.keys(correctAnswers).forEach(questionId => {
+    const questionElement = document.querySelector(`[data-question="${questionId}"]`);
+    const options = questionElement.querySelectorAll('.quiz-option');
+    const correctAnswer = correctAnswers[questionId];
+    const userAnswer = quizResponses[questionId];
+    
+    options.forEach(option => {
+      const optionValue = option.getAttribute('data-option');
+      if (optionValue === correctAnswer) {
+        option.classList.add('correct');
+      } else if (optionValue === userAnswer && optionValue !== correctAnswer) {
+        option.classList.add('incorrect');
+      }
+    });
+    
+    if (userAnswer === correctAnswer) {
+      correctCount++;
+    }
+  });
+  
+  // Show results
+  const percentage = Math.round((correctCount / totalQuestions) * 100);
+  const resultsDiv = document.getElementById('quiz-results');
+  const scoreDiv = document.getElementById('quiz-score');
+  const feedbackDiv = document.getElementById('quiz-feedback');
+  
+  scoreDiv.textContent = `Your Score: ${correctCount}/${totalQuestions} (${percentage}%)`;
+  
+  let feedback = '';
+  if (percentage >= 80) {
+    feedback = 'Excellent! You have a strong understanding of attention and cognitive load concepts.';
+  } else if (percentage >= 60) {
+    feedback = 'Good work! You grasp the key concepts. Consider reviewing the areas where you missed questions.';
+  } else {
+    feedback = 'Keep learning! Review the video content and key points to strengthen your understanding.';
+  }
+  
+  feedbackDiv.textContent = feedback;
+  resultsDiv.style.display = 'block';
+  
+  // Scroll to results
+  resultsDiv.scrollIntoView({ behavior: 'smooth' });
+}
+
+// Sleep Reflection Functions
+function downloadSleepReflection() {
+  const reflectionText = document.getElementById('sleep-reflection').value;
+  
+  // Save to session storage
+  saveToSession('sleep_reflection', reflectionText);
+  
+  let content = "Sleep and Digital Habits Reflection\n";
+  content += "===================================\n\n";
+  content += `Date: ${new Date().toLocaleDateString()}\n\n`;
+  content += "Reflection Questions:\n";
+  content += "• What is your typical bedtime routine? Do you use digital devices before sleep?\n";
+  content += "• How do you feel your screen time affects your sleep quality?\n";
+  content += "• What changes could you make to improve your sleep hygiene?\n";
+  content += "• How might better sleep impact your overall digital well-being?\n\n";
+  content += "My Reflection:\n";
+  content += reflectionText || 'No reflection provided';
+  
+  // Create and download file
+  const blob = new Blob([content], { type: 'text/plain' });
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'sleep-reflection.txt';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  window.URL.revokeObjectURL(url);
+}
+
+// Event Listeners
 document.addEventListener('DOMContentLoaded', function() {
   // Load saved responses
   loadSavedResponses();
-
+  
+  // Add quiz option click handlers
+  const quizOptions = document.querySelectorAll('.quiz-option');
+  quizOptions.forEach(option => {
+    option.addEventListener('click', function() {
+      const questionElement = this.closest('.quiz-question');
+      selectQuizOption(questionElement, this);
+    });
+  });
+  
+  // Save attention responses when changed
+  for (let i = 1; i <= 4; i++) {
+    const dropdown = document.getElementById(`attention-${i}`);
+    if (dropdown) {
+      dropdown.addEventListener('change', function() {
+        saveToSession(`attention_${i}`, this.value);
+      });
+    }
+  }
+  
+  // Save reflection text as user types
+  const reflectionTextarea = document.getElementById('sleep-reflection');
+  if (reflectionTextarea) {
+    reflectionTextarea.addEventListener('input', function() {
+      saveToSession('sleep_reflection', this.value);
+    });
+  }
+});
+</script>
+<!-- Glossary Modal functionality -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
   const modal = document.getElementById('glossary-modal');
   const openBtn = document.getElementById('open-glossary');
   const menuLink = document.getElementById('glossary-menu-link');
@@ -1515,7 +1259,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     document.lastActiveElement = null;
   }
-  
+
   document.lastActiveElement = null;
 
   if (openBtn) {
@@ -1524,7 +1268,7 @@ document.addEventListener('DOMContentLoaded', function() {
         openModal();
     });
   }
-  
+
   if (menuLink) {
     menuLink.addEventListener('click', function(e) {
       e.preventDefault();
@@ -1555,230 +1299,52 @@ document.addEventListener('DOMContentLoaded', function() {
       closeModal();
     }
   });
-});
 
-// Attention Activity Functionality
-document.addEventListener('DOMContentLoaded', function() {
-  const checkAnswersBtn = document.getElementById('check-answers');
-  const overallFeedback = document.getElementById('overall-feedback');
-  
-  // Add event listeners to dropdowns to save responses
-  for (let i = 1; i <= 4; i++) {
-    const dropdown = document.getElementById(`attention-${i}`);
-    if (dropdown) {
-      dropdown.addEventListener('change', function() {
-        saveToSession(`attention_${i}`, this.value);
+  // Glossary filtering functionality
+  function filterGlossary(letter) {
+    const sections = document.querySelectorAll('.glossary-section');
+    const navLinks = document.querySelectorAll('.glossary-az-nav a');
+    
+    // Remove active class from all nav links
+    navLinks.forEach(link => link.classList.remove('active'));
+    
+    if (letter === 'all') {
+      // Show all sections
+      sections.forEach(section => {
+        section.classList.remove('hidden');
       });
-    }
-  }
-  
-  if (checkAnswersBtn) {
-    checkAnswersBtn.addEventListener('click', function() {
-      checkAttentionAnswers();
-    });
-  }
-  
-  function checkAttentionAnswers() {
-    const questions = document.querySelectorAll('.attention-question');
-    let correctCount = 0;
-    let totalQuestions = questions.length;
-    
-    questions.forEach((question, index) => {
-      const correctAnswer = question.dataset.correct;
-      const dropdown = question.querySelector('.attention-dropdown');
-      const feedback = question.querySelector('.feedback');
-      const selectedValue = dropdown.value;
-      
-      if (selectedValue === correctAnswer) {
-        feedback.textContent = '✓ Correct!';
-        feedback.className = 'feedback correct';
-        correctCount++;
-      } else if (selectedValue === '') {
-        feedback.textContent = 'Please select an answer';
-        feedback.className = 'feedback incorrect';
-      } else {
-        feedback.textContent = '✗ Incorrect. Try again!';
-        feedback.className = 'feedback incorrect';
-      }
-    });
-    
-    // Show overall feedback
-    if (correctCount === totalQuestions) {
-      overallFeedback.textContent = `Excellent! You got all ${totalQuestions} questions correct! 🎉`;
-      overallFeedback.className = 'overall-feedback success';
+      // Add active class to ALL button
+      document.querySelector('[data-filter="all"]').classList.add('active');
     } else {
-      overallFeedback.textContent = `You got ${correctCount} out of ${totalQuestions} correct. Review the incorrect answers and try again.`;
-      overallFeedback.className = 'overall-feedback partial';
-    }
-    
-    // Show Try Again button
-    const tryAgainBtn = document.getElementById('try-again');
-    if (tryAgainBtn) {
-      tryAgainBtn.style.display = 'inline-block';
-    }
-    
-    // Save completion status
-    saveToSession('attention_activity_completed', {
-      score: correctCount,
-      total: totalQuestions,
-      timestamp: new Date().toISOString()
-    });
-    
-    // Scroll to feedback
-    overallFeedback.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }
-});
-
-// Try Again functionality for attention activity
-document.addEventListener('DOMContentLoaded', function() {
-  const tryAgainBtn = document.getElementById('try-again');
-  
-  if (tryAgainBtn) {
-    tryAgainBtn.addEventListener('click', function() {
-      // Reset all dropdowns
-      for (let i = 1; i <= 4; i++) {
-        const dropdown = document.getElementById(`attention-${i}`);
-        const feedback = document.getElementById(`feedback-${i}`);
-        if (dropdown) {
-          dropdown.value = '';
-          dropdown.selectedIndex = 0;
-        }
-        if (feedback) {
-          feedback.textContent = '';
-          feedback.className = 'feedback';
-        }
-      }
-      
-      // Clear overall feedback
-      const overallFeedback = document.getElementById('overall-feedback');
-      if (overallFeedback) {
-        overallFeedback.textContent = '';
-        overallFeedback.className = 'overall-feedback';
-      }
-      
-      // Hide Try Again button
-      this.style.display = 'none';
-      
-      // Clear saved responses
-      for (let i = 1; i <= 4; i++) {
-        sessionStorage.removeItem(`chapter3_attention_${i}`);
-      }
-      sessionStorage.removeItem('chapter3_attention_activity_completed');
-      
-      // Focus on first dropdown
-      const firstDropdown = document.getElementById('attention-1');
-      if (firstDropdown) {
-        firstDropdown.focus();
-      }
-    });
-  }
-});
-
-// Multiple Choice Test Functionality
-document.addEventListener('DOMContentLoaded', function() {
-  const quizOptions = document.querySelectorAll('.quiz-option');
-  let quizResponses = loadFromSession('quiz_responses') || {};
-  
-  quizOptions.forEach(option => {
-    option.addEventListener('click', function() {
-      const question = this.closest('.quiz-question');
-      const questionNumber = question.dataset.question;
-      const selectedOption = this.dataset.option;
-      const isCorrect = this.dataset.correct === 'true';
-      
-      // Save the response
-      quizResponses[questionNumber] = selectedOption;
-      saveToSession('quiz_responses', quizResponses);
-      
-      // Remove previous selections and feedback in this question
-      const allOptionsInQuestion = question.querySelectorAll('.quiz-option');
-      allOptionsInQuestion.forEach(opt => {
-        opt.classList.remove('selected', 'correct', 'incorrect');
-        const feedback = opt.querySelector('.option-feedback');
-        feedback.classList.remove('show');
+      // Hide all sections first
+      sections.forEach(section => {
+        section.classList.add('hidden');
       });
       
-      // Mark this option as selected
-      this.classList.add('selected');
-      
-      // Show appropriate styling and feedback
-      if (isCorrect) {
-        this.classList.add('correct');
-      } else {
-        this.classList.add('incorrect');
+      // Show only the selected section
+      const targetSection = document.querySelector(`[data-letter="${letter}"]`);
+      if (targetSection) {
+        targetSection.classList.remove('hidden');
       }
       
-      // Show feedback for the selected option
-      const feedback = this.querySelector('.option-feedback');
-      feedback.classList.add('show');
+      // Add active class to clicked letter
+      document.querySelector(`[data-filter="${letter}"]`).classList.add('active');
+    }
+  }
+
+  // Add event listeners to glossary navigation
+  const glossaryNavLinks = document.querySelectorAll('.glossary-az-nav a');
+  
+  glossaryNavLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const filter = this.getAttribute('data-filter');
+      filterGlossary(filter);
     });
   });
-});
-
-// Reflection Question Functionality
-document.addEventListener('DOMContentLoaded', function() {
-  const reflectionTextarea = document.getElementById('sleep-reflection');
-  const saveButton = document.querySelector('[data-reflection-id="sleep-reflection"]');
-  const feedbackElement = document.getElementById('feedback-sleep-reflection');
-
-  if (reflectionTextarea) {
-    // Auto-save as user types (with debounce)
-    let saveTimeout;
-    reflectionTextarea.addEventListener('input', function() {
-      clearTimeout(saveTimeout);
-      saveTimeout = setTimeout(() => {
-        saveToSession('sleep_reflection', this.value);
-      }, 1000); // Save after 1 second of no typing
-    });
-  }
-
-  if (saveButton) {
-    saveButton.addEventListener('click', function() {
-      const reflectionText = reflectionTextarea.value.trim();
-      
-      if (!reflectionText) {
-        feedbackElement.textContent = "Please enter some text before saving";
-        feedbackElement.classList.add('show');
-        feedbackElement.style.color = '#d32f2f';
-        
-        setTimeout(() => {
-          feedbackElement.classList.remove('show');
-        }, 3000);
-        
-        reflectionTextarea.focus();
-        return;
-      }
-
-      // Save to session storage
-      saveToSession('sleep_reflection', reflectionText);
-      saveToSession('sleep_reflection_saved', {
-        timestamp: new Date().toISOString(),
-        wordCount: reflectionText.split(/\s+/).length
-      });
-
-      // Show success feedback
-      feedbackElement.textContent = "Reflection saved successfully!";
-      feedbackElement.classList.add('show');
-      feedbackElement.style.color = '';
-      
-      setTimeout(() => {
-        feedbackElement.classList.remove('show');
-      }, 3000);
-
-      // Announce for screen readers
-      const ariaLiveRegion = document.createElement('div');
-      ariaLiveRegion.setAttribute('aria-live', 'polite');
-      ariaLiveRegion.className = 'sr-only';
-      ariaLiveRegion.textContent = 'Your reflection has been saved successfully.';
-      document.body.appendChild(ariaLiveRegion);
-
-      setTimeout(() => {
-        if (ariaLiveRegion.parentNode) {
-          ariaLiveRegion.parentNode.removeChild(ariaLiveRegion);
-        }
-      }, 3000);
-    });
-  }
+  
+  // Initialize with "ALL" selected
+  filterGlossary('all');
 });
 </script>
 </body>

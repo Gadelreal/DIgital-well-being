@@ -457,6 +457,17 @@
   position: relative;
   overflow: hidden;
 }
+
+/* Glossary filtering styles */
+.glossary-az-nav a.active {
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 3px;
+}
+
+.glossary-section.hidden {
+  display: none;
+}
 </style>
 </head>
 <body>
@@ -490,9 +501,9 @@
     <li><a href="index.html">Home</a></li>
     <li><a href="introduction.html">0. Introduction</a></li>
     <li><a href="chapter1.html">1. Well-being as a Key...</a></li>
-    <li><a href="chapter2.html">2. Digital Habits</a></li>
+    <li><a href="chapter2.html" class="active" aria-current="page">2. Digital Habits</a></li>
     <li><a href="chapter3.html">3. Attention, Cognition, Energy...</a></li>
-    <li><a href="chapter4.html" class="active" aria-current="page">4. Digital Well-being Vision and Practice</a></li>
+    <li><a href="chapter4.html">4. Digital Well-being Vision and Practice</a></li>
     <li><a href="chapter5.html">5. Course Conclusion</a></li>
     <li><a href="#" id="glossary-menu-link"><i class="fas fa-book" style="color: #DB0086; margin-right: 0.5rem;" aria-hidden="true"></i>Open Glossary</a></li>
   </ul>
@@ -722,7 +733,7 @@
           <li><strong>Reflect regularly</strong> on your digital behaviors.</li>
           <li><strong>Adjust mindfully</strong>—experiment with settings, habits, or routines.</li>
           <li><strong>Own your relationship with tech</strong>—you get to choose how and when it serves you best.</li>
-        </ul>
+          <li></ul>
         <p>Stay curious, stay committed, and keep learning.</p>
       </div>
     </section>
@@ -1035,7 +1046,7 @@
           <li>Mindfulness and reflection.</li>
           <li>Digital boundaries (e.g., screen-free meals or wind-down time).</li>
           <li>Reward systems and offline hobbies that restore your energy.</li>
-        </ul>
+          </ul>
         <p>And remember—being someone else's accountability buddy can also deepen your own commitment to digital well-being.</p>
       </div>
     </section>
@@ -1067,9 +1078,8 @@
             <p>Explore seven practical habits that can help you develop mindfulness in your daily life and improve your relationship with technology.</p>
             <div class="reading-card-footer">
               <a href="https://www.ie.edu/insights/infographics/seven-habits-of-mindfulness/" target="_blank" class="reading-link" aria-label="Read Seven Habits of Mindfulness (opens in new tab)">
-                Read Article
-                <span class="reading-arrow" aria-hidden="true">→</span>
-              </a>
+              Read Article
+              <span class="reading-arrow" aria-hidden="true">→</span>
             </div>
           </div>
         </div>
@@ -1174,19 +1184,19 @@
         <label for="q4-1">1-Completely disagree</label>
       </div>
       <div class="scale-option">
-        <input type="radio" id="q4-2" name="conscious-use" value="2">
+        <input type="radio" id="q4-2" name="question4" value="2">
         <label for="q4-2">2</label>
       </div>
       <div class="scale-option">
-        <input type="radio" id="q4-3" name="conscious-use" value="3">
+        <input type="radio" id="q4-3" name="question4" value="3">
         <label for="q4-3">3</label>
       </div>
       <div class="scale-option">
-        <input type="radio" id="q4-4" name="conscious-use" value="4">
+        <input type="radio" id="q4-4" name="question4" value="4">
         <label for="q4-4">4</label>
       </div>
       <div class="scale-option">
-        <input type="radio" id="q4-5" name="conscious-use" value="5">
+        <input type="radio" id="q4-5" name="question4" value="5">
         <label for="q4-5">5-Completely agree</label>
       </div>
     </div>
@@ -1196,23 +1206,23 @@
     <p><strong>I feel better about my use of digital devices.</strong></p>
     <div class="scale-options">
       <div class="scale-option">
-        <input type="radio" id="q5-1" name="feel-better" value="1">
+        <input type="radio" id="q5-1" name="question5" value="1">
         <label for="q5-1">1-Completely disagree</label>
       </div>
       <div class="scale-option">
-        <input type="radio" id="q5-2" name="feel-better" value="2">
+        <input type="radio" id="q5-2" name="question5" value="2">
         <label for="q5-2">2</label>
       </div>
       <div class="scale-option">
-        <input type="radio" id="q5-3" name="feel-better" value="3">
+        <input type="radio" id="q5-3" name="question5" value="3">
         <label for="q5-3">3</label>
       </div>
       <div class="scale-option">
-        <input type="radio" id="q5-4" name="feel-better" value="4">
-        <label for="q5-4">4</label>
+        <input type="radio" id="q5-4" name="question4" value="4">
+        <label for="q4-4">4</label>
       </div>
       <div class="scale-option">
-        <input type="radio" id="q5-5" name="feel-better" value="5">
+        <input type="radio" id="q5-5" name="question5" value="5">
         <label for="q5-5">5-Completely agree</label>
       </div>
     </div>
@@ -1246,14 +1256,14 @@
   <i class="fas fa-download" aria-hidden="true"></i>
   Download my response
 </button>
-      </div>
-    </section>
-    
-    <div class="navigation-buttons" role="navigation" aria-label="Lesson navigation">
-      <a href="chapter3.html" class="nav-button prev"><span class="arrow-left" aria-hidden="true">←</span>Previous</a>
-      <a href="chapter5.html" class="nav-button next">Next<span class="arrow-right" aria-hidden="true">→</span></a>
-    </div>
-  </div>
+     </div>
+   </section>
+   
+   <div class="navigation-buttons" role="navigation" aria-label="Lesson navigation">
+     <a href="chapter3.html" class="nav-button prev"><span class="arrow-left" aria-hidden="true">←</span>Previous</a>
+     <a href="chapter5.html" class="nav-button next">Next<span class="arrow-right" aria-hidden="true">→</span></a>
+   </div>
+ </div>
 </main>
 
 <footer role="contentinfo">
@@ -1752,7 +1762,6 @@ function initializeDownloadButtons() {
       if (yPosition > 270) { doc.addPage(); yPosition = 20; }
       doc.setFont("helvetica", "italic");
       doc.text("No reflection provided", 20, yPosition);
-      yPosition += 6;
     }
     
     yPosition += 15;
@@ -1787,59 +1796,6 @@ function initializeDownloadButtons() {
     
     doc.save('Chapter4_Rituals_Digital_Flourishing_Response.pdf');
   });
-
-  document.getElementById('download-assessment-response').addEventListener('click', async function() {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
-    
-    const startY = await addPDFHeader(doc);
-    let yPosition = startY;
-    
-    doc.setFontSize(18);
-    doc.setFont(undefined, 'bold');
-    doc.text('End of Lesson Assessment: Touchpoint II - My Response', 20, yPosition);
-    yPosition += 15;
-    
-    doc.setFontSize(10);
-    doc.setFont(undefined, 'normal');
-    doc.text(`Generated on: ${new Date().toLocaleDateString()}`, 20, yPosition);
-    yPosition += 15;
-    
-    const questions = [
-      { name: 'screen-time', text: 'I have decreased my screen time.' },
-      { name: 'digital-goals', text: 'I have stuck to my Digital Goals.' },
-      { name: 'progress', text: 'I am closer to where I want to be.' },
-      { name: 'conscious-use', text: 'I have made more conscious use of my digital devices.' },
-      { name: 'feel-better', text: 'I feel better about my use of digital devices.' }
-    ];
-    
-    doc.setFontSize(12);
-    doc.setFont(undefined, 'bold');
-    doc.text('Assessment Responses (1 = completely disagree, 5 = completely agree):', 20, yPosition);
-    yPosition += 10;
-    
-    doc.setFont(undefined, 'normal');
-    questions.forEach(question => {
-      const selectedValue = document.querySelector(`input[name="${question.name}"]:checked`)?.value || 'Not answered';
-      doc.text(`${question.text} - ${selectedValue}`, 25, yPosition);
-      yPosition += 6;
-    });
-    yPosition += 10;
-    
-    const wellbeingReflection = document.getElementById('wellbeing-reflection').value;
-    if (wellbeingReflection) {
-      doc.setFont(undefined, 'bold');
-      doc.text('Well-being Reflection:', 20, yPosition);
-      yPosition += 8;
-      
-      doc.setFont(undefined, 'normal');
-      const reflectionLines = doc.splitTextToSize(wellbeingReflection, 170);
-      doc.text(reflectionLines, 20, yPosition);
-      yPosition += reflectionLines.length * 5;
-    }
-    
-    doc.save('touchpoint-ii-assessment.pdf');
-  });
 }
 // Chart functionality
 let balanceChart = null;
@@ -1847,175 +1803,167 @@ let chartData = {};
 let chartSegments = [];
 
 const chartColors = {
-  sleep: '#FF6384',
-  work: '#36A2EB',
-  family: '#FFCE56',
-  hobbies: '#4BC0C0',
-  digital: '#9966FF',
-  exercise: '#FF9F40',
-  social: '#FF6B9D',
-  other: '#C9CBCF'
+sleep: '#FF6384',
+work: '#36A2EB',
+family: '#FFCE56',
+hobbies: '#4BC0C0',
+digital: '#9966FF',
+exercise: '#FF9F40',
+social: '#FF6B9D',
+other: '#C9CBCF'
 };
 
 const chartLabels = {
-  sleep: 'Sleep',
-  work: 'Work',
-  family: 'Family',
-  hobbies: 'Hobbies',
-  digital: 'Digital Use',
-  exercise: 'Exercise',
-  social: 'Social',
-  other: 'Other'
+sleep: 'Sleep',
+work: 'Work',
+family: 'Family',
+hobbies: 'Hobbies',
+digital: 'Digital Use',
+exercise: 'Exercise',
+social: 'Social',
+other: 'Other'
 };
 
 function initializeChart() {
-  const canvas = document.getElementById('balance-chart-canvas');
-  const ctx = canvas.getContext('2d');
-  
-  canvas.width = 400;
-  canvas.height = 400;
-  
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  
-  ctx.fillStyle = '#666';
-  ctx.font = '16px Arial';
-  ctx.textAlign = 'center';
-  ctx.fillText('Enter your hours to see your life balance chart', canvas.width / 2, canvas.height / 2);
+const canvas = document.getElementById('balance-chart-canvas');
+const ctx = canvas.getContext('2d');
+
+canvas.width = 400;
+canvas.height = 400;
+
+ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+ctx.fillStyle = '#666';
+ctx.font = '16px Arial';
+ctx.textAlign = 'center';
+ctx.fillText('Enter your hours to see your life balance chart', canvas.width / 2, canvas.height / 2);
 }
 
 function updateChart() {
-  const inputs = {
-    sleep: parseFloat(document.getElementById('sleep-hours').value) || 0,
-    work: parseFloat(document.getElementById('work-hours').value) || 0,
-    family: parseFloat(document.getElementById('family-hours').value) || 0,
-    hobbies: parseFloat(document.getElementById('hobbies-hours').value) || 0,
-    digital: parseFloat(document.getElementById('digital-hours').value) || 0,
-    exercise: parseFloat(document.getElementById('exercise-hours').value) || 0,
-    social: parseFloat(document.getElementById('social-hours').value) || 0,
-    other: parseFloat(document.getElementById('other-hours').value) || 0
-  };
-  
-  const total = Object.values(inputs).reduce((sum, val) => sum + val, 0);
-  const totalHoursSpan = document.getElementById('total-hours');
-  const validationMessage = document.getElementById('validation-message');
-  
-  totalHoursSpan.textContent = total;
-  
-  chartData = inputs;
-  
-  if (total > 168) {
-    validationMessage.textContent = 'Total hours exceed 168 hours per week. Please adjust your entries.';
-    validationMessage.className = 'validation-error';
-    validationMessage.style.display = 'block';
-  } else {
-    validationMessage.style.display = 'none';
-  }
-  
-  if (total > 0) {
-    drawPieChart(inputs, total);
-  } else {
-    initializeChart();
-  }
+const inputs = {
+  sleep: parseFloat(document.getElementById('sleep-hours').value) || 0,
+  work: parseFloat(document.getElementById('work-hours').value) || 0,
+  family: parseFloat(document.getElementById('family-hours').value) || 0,
+  hobbies: parseFloat(document.getElementById('hobbies-hours').value) || 0,
+  digital: parseFloat(document.getElementById('digital-hours').value) || 0,
+  exercise: parseFloat(document.getElementById('exercise-hours').value) || 0,
+  social: parseFloat(document.getElementById('social-hours').value) || 0,
+  other: parseFloat(document.getElementById('other-hours').value) || 0
+};
+
+const total = Object.values(inputs).reduce((sum, val) => sum + val, 0);
+const totalHoursSpan = document.getElementById('total-hours');
+const validationMessage = document.getElementById('validation-message');
+
+totalHoursSpan.textContent = total;
+
+chartData = inputs;
+
+if (total > 168) {
+  validationMessage.textContent = 'Total hours exceed 168 hours per week. Please adjust your entries.';
+  validationMessage.className = 'validation-error';
+  validationMessage.style.display = 'block';
+} else {
+  validationMessage.style.display = 'none';
+}
+
+if (total > 0) {
+  drawPieChart(inputs, total);
+} else {
+  initializeChart();
+}
 }
 
 function drawPieChart(data, total) {
-  const canvas = document.getElementById('balance-chart-canvas');
-  const ctx = canvas.getContext('2d');
+const canvas = document.getElementById('balance-chart-canvas');
+const ctx = canvas.getContext('2d');
+const centerX = canvas.width / 2;
+const centerY = canvas.height / 2;
+const radius = Math.min(centerX, centerY) - 20;
+
+ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+let currentAngle = -Math.PI / 2;
+chartSegments = [];
+
+Object.entries(data).forEach(([key, value]) => {
+  if (value > 0) {
+    const sliceAngle = (value / total) * 2 * Math.PI;
+    
+    chartSegments.push({
+      key: key,
+      label: chartLabels[key],
+      value: value,
+      startAngle: currentAngle,
+      endAngle: currentAngle + sliceAngle,
+      color: chartColors[key]
+    });
+    
+    ctx.beginPath();
+    ctx.moveTo(centerX, centerY);
+    ctx.arc(centerX, centerY, radius, currentAngle, currentAngle + sliceAngle);
+    ctx.closePath();
+    ctx.fillStyle = chartColors[key];
+    ctx.fill();
+    ctx.strokeStyle = '#fff';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+    
+    currentAngle += sliceAngle;
+  }
+});
+}
+
+function setupTooltip() {
+const canvas = document.getElementById('balance-chart-canvas');
+const tooltip = document.getElementById('chart-tooltip');
+
+canvas.addEventListener('mousemove', function(event) {
+  if (chartSegments.length === 0) {
+    tooltip.style.display = 'none';
+    return;
+  }
+  
+  const rect = canvas.getBoundingClientRect();
+  const x = event.clientX - rect.left;
+  const y = event.clientY - rect.top;
+  
   const centerX = canvas.width / 2;
   const centerY = canvas.height / 2;
   const radius = Math.min(centerX, centerY) - 20;
   
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const distance = Math.sqrt((x - centerX) ** 2 + (y - centerY) ** 2);
   
-  let currentAngle = -Math.PI / 2;
-  chartSegments = [];
-  
-  Object.entries(data).forEach(([key, value]) => {
-    if (value > 0) {
-      const sliceAngle = (value / total) * 2 * Math.PI;
-      
-      chartSegments.push({
-        key: key,
-        label: chartLabels[key],
-        value: value,
-        startAngle: currentAngle,
-        endAngle: currentAngle + sliceAngle,
-        color: chartColors[key]
-      });
-      
-      ctx.beginPath();
-      ctx.moveTo(centerX, centerY);
-      ctx.arc(centerX, centerY, radius, currentAngle, currentAngle + sliceAngle);
-      ctx.closePath();
-      ctx.fillStyle = chartColors[key];
-      ctx.fill();
-      ctx.strokeStyle = '#fff';
-      ctx.lineWidth = 2;
-      ctx.stroke();
-      
-      currentAngle += sliceAngle;
-    }
-  });
-}
-
-function setupTooltip() {
-  const canvas = document.getElementById('balance-chart-canvas');
-  const tooltip = document.getElementById('chart-tooltip');
-  
-  canvas.addEventListener('mousemove', function(event) {
-    if (chartSegments.length === 0) {
-      tooltip.style.display = 'none';
-      return;
+  if (distance <= radius) {
+    let angle = Math.atan2(y - centerY, x - centerX);
+    if (angle < -Math.PI / 2) {
+      angle += 2 * Math.PI;
     }
     
-    const rect = canvas.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
-    
-    const centerX = canvas.width / 2;
-    const centerY = canvas.height / 2;
-    const radius = Math.min(centerX, centerY) - 20;
-    
-    const distance = Math.sqrt((x - centerX) ** 2 + (y - centerY) ** 2);
-    
-    if (distance <= radius) {
-      let angle = Math.atan2(y - centerY, x - centerX);
-      if (angle < -Math.PI / 2) {
-        angle += 2 * Math.PI;
-      }
-      
-      for (const segment of chartSegments) {
-        if (angle >= segment.startAngle && angle <= segment.endAngle) {
-          showTooltip(event, segment, rect);
-          return;
-        }
+    for (const segment of chartSegments) {
+      if (angle >= segment.startAngle && angle <= segment.endAngle) {
+        showTooltip(event, segment, rect);
+        return;
       }
     }
-    
-    tooltip.style.display = 'none';
-  });
+  }
   
-  canvas.addEventListener('mouseleave', function() {
-    tooltip.style.display = 'none';
-  });
-}
+  tooltip.style.display = 'none';
+});
 
-function showTooltip(event, segment, rect) {
-  const tooltip = document.getElementById('chart-tooltip');
-  tooltip.style.display = 'block';
-  tooltip.style.left = (event.clientX - rect.left + 10) + 'px';
-  tooltip.style.top = (event.clientY - rect.top - 30) + 'px';
-  tooltip.textContent = `${segment.label}: ${segment.value} hours`;
+canvas.addEventListener('mouseleave', function() {
+  tooltip.style.display = 'none';
+});
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  initializeChart();
-  setupTooltip();
-  
-  const timeInputs = document.querySelectorAll('.time-input-item input');
-  timeInputs.forEach(input => {
-    input.addEventListener('input', updateChart);
-  });
+initializeChart();
+setupTooltip();
+
+const timeInputs = document.querySelectorAll('.time-input-item input');
+timeInputs.forEach(input => {
+  input.addEventListener('input', updateChart);
+});
 });
 </script>
 <script>
