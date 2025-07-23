@@ -14,129 +14,450 @@
 <style>
 /* Estilos para la navegación A-Z del glosario y las secciones */
 .glossary-az-nav {
- position: sticky;
- top: 0;
- background-color: white;
- padding: 15px 0 20px 0;
- margin-bottom: 0;
- border-bottom: 2px solid #eee;
- text-align: center;
- z-index: 10;
- box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px 0;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
 }
-
 .glossary-az-nav a {
- margin: 0 8px 5px 0;
- text-decoration: none;
- color: var(--primary-color);
- font-weight: bold;
- padding: 8px 12px;
- border-radius: 4px;
- display: inline-block;
- transition: all 0.3s ease;
- cursor: pointer;
+  margin: 0 5px;
+  text-decoration: none;
+  color: var(--primary-color);
+  font-weight: bold;
+  padding: 5px;
 }
-
 .glossary-az-nav a:hover,
 .glossary-az-nav a:focus {
- text-decoration: none;
- background-color: var(--primary-color);
- color: white;
- transform: translateY(-2px);
- box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  text-decoration: underline;
+  background-color: #f0f0f0;
+  border-radius: 3px;
 }
-
-.glossary-az-nav a.active {
- background-color: var(--primary-color);
- color: white;
- box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-}
-
 .glossary-section {
- margin-bottom: 2rem;
+  /* No se necesita margin-top aquí si el H3 lo maneja */
 }
-
-.glossary-section.hidden {
- display: none;
-}
-
 .glossary-letter-header {
- font-size: 1.6em;
- color: #333;
- margin-top: 30px;
- margin-bottom: 20px;
- padding-bottom: 10px;
- border-bottom: 2px solid var(--primary-color);
+  font-size: 1.6em;
+  color: #333;
+  margin-top: 25px;
+  margin-bottom: 15px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #ccc;
 }
-
 .glossary-section:first-child .glossary-letter-header {
- margin-top: 15px;
+    margin-top: 0; /* El primer header no necesita tanto espacio arriba */
 }
-
 .modal-body {
- max-height: 70vh;
- overflow-y: auto;
- padding: 0;
+  max-height: 70vh;
+  overflow-y: auto;
 }
-
-.glossary-terms {
- padding: 0 2rem 2rem 2rem;
- margin-bottom: 10px;
- line-height: 1.6;
-}
-
 .glossary-term {
- margin-bottom: 15px;
- line-height: 1.6;
+  margin-bottom: 10px; /* Espacio entre términos */
+  line-height: 1.6;
+}
+/* Margen para el contenedor de la actividad del quiz */
+.quiz-activity-container {
+  margin-bottom: 3rem;
+  padding-bottom: 3rem; /* Add extra bottom padding */
+}
+/* Estilos para el feedback dinámico en cada opción */
+.quiz-option {
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 2px solid transparent;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.option-feedback {
+  margin-left: auto;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  padding-left: 1rem;
+}
+.correct-answer .option-feedback {
+  color: #155724;
+}
+.incorrect-answer .option-feedback {
+  color: #721c24;
+}
+.missed-answer .option-feedback {
+  color: #856404;
 }
 
-.hero-title {
- font-family: 'Rubik', sans-serif;
- font-weight: 300;
+/* Add margin below submit button */
+.quiz-submit-btn {
+  margin-bottom: 1.5rem;
 }
 
-.hero-section {
- background-image: url('assets/images/hero-wellbeing-final.png');
- background-size: cover;
- background-position: center;
- color: white;
- text-align: center;
- padding: 5rem 2rem;
- position: relative;
- overflow: hidden;
+/* Estilos para la actividad de valores */
+.values-activity-container {
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  padding: 2rem;
+  margin: 2rem 0;
+  padding-bottom: 3rem; /* Add extra bottom padding */
 }
 
-/* Responsive adjustments for the sticky navigation */
+.values-activity-container h2 {
+  margin-top: 0 !important;
+  margin-bottom: 1rem !important;
+}
+
+.values-activity-container p {
+  margin-bottom: 1.5rem;
+  line-height: 1.7;
+}
+
+.download-template-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--primary-color);
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem; /* Add bottom margin */
+  border: none;
+  cursor: pointer;
+}
+
+.download-template-button:hover {
+  background-color: var(--primary-color-dark);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  text-decoration: none;
+}
+
+.download-template-button i {
+  margin-right: 0.5rem;
+}
+
+/* Estilos para la actividad de metas digitales */
+.digital-goals-activity-container {
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  padding: 2rem;
+  margin: 2rem 0;
+  padding-bottom: 3rem;
+}
+
+.digital-goals-activity-container h2 {
+  margin-top: 0 !important;
+  margin-bottom: 1rem !important;
+}
+
+.digital-goals-activity-container p {
+  margin-bottom: 1.5rem;
+  line-height: 1.7;
+}
+
 @media (max-width: 768px) {
-  .glossary-az-nav {
-    padding: 12px 0 15px 0;
+  .quiz-activity-container {
+    padding: 1.5rem;
+    margin: 1rem;
+    padding-bottom: 2.5rem; /* Maintain extra bottom padding on mobile */
+  }
+
+  .values-activity-container {
+    padding: 1.5rem;
+    margin: 1rem;
+    padding-bottom: 2.5rem; /* Maintain extra bottom padding on mobile */
+  }
+
+  .digital-goals-activity-container {
+    padding: 1.5rem;
+    margin: 1rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .download-template-button {
+    width: 100%;
+    justify-content: center;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem; /* Maintain bottom margin on mobile */
+  }
+}
+
+/* Estilos para los acordeones - Diseño mejorado con animaciones */
+.accordion-container {
+  margin: 2rem 0;
+}
+
+.accordion-item {
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  margin-bottom: 0.5rem;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+
+.accordion-item:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.accordion-header {
+  margin: 0;
+}
+
+.accordion-trigger {
+  width: 100%;
+  background-color: #f8f9fa;
+  border: none;
+  padding: 1.2rem 1.5rem;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.accordion-trigger:hover {
+  background-color: #e9ecef;
+  color: var(--primary-color-dark);
+  text-decoration: none;
+}
+
+.accordion-trigger:focus {
+  outline: var(--focus-outline-width) solid var(--focus-outline-color);
+  outline-offset: 2px;
+  text-decoration: none;
+}
+
+.accordion-trigger[aria-expanded="true"] {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.accordion-trigger[aria-expanded="true"]:hover {
+  background-color: var(--primary-color-dark);
+  text-decoration: none;
+}
+
+.accordion-title {
+  flex: 1;
+  text-align: left;
+}
+
+.accordion-icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+  margin-left: 1rem;
+  font-family: monospace;
+}
+
+/* Animación suave para el panel del acordeón */
+.accordion-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out;
+}
+
+.accordion-panel.expanded {
+  max-height: 500px; /* Altura máxima suficiente para el contenido */
+  transition: max-height 0.4s ease-in;
+}
+
+.accordion-panel-inner {
+  padding: 1.5rem;
+  background-color: #f0f8ff;
+  border-top: 1px solid #e0e0e0;
+  line-height: 1.6;
+}
+
+.accordion-panel-inner p {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.accordion-panel-inner p:last-child {
+  margin-bottom: 0;
+}
+
+.accordion-panel-inner strong {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .accordion-trigger {
+    padding: 1rem;
+    font-size: 0.95rem;
   }
   
-  .glossary-az-nav a {
-    margin: 0 4px 4px 0;
-    padding: 6px 8px;
-    font-size: 0.9rem;
+  .accordion-panel-inner {
+    padding: 1rem;
   }
   
-  .glossary-terms {
-    padding: 0 1.5rem 1.5rem 1.5rem;
+  .accordion-icon {
+    margin-left: 0.5rem;
+  }
+  
+  .accordion-panel.expanded {
+    max-height: 400px; /* Altura reducida para móviles */
   }
 }
 
 @media (max-width: 480px) {
-  .glossary-az-nav {
-    padding: 10px 0 12px 0;
+  .accordion-trigger {
+    padding: 0.8rem;
+    font-size: 0.9rem;
   }
   
-  .glossary-az-nav a {
-    margin: 0 3px 3px 0;
-    padding: 5px 6px;
-    font-size: 0.8rem;
+  .accordion-panel-inner {
+    padding: 0.8rem;
   }
   
-  .glossary-terms {
-    padding: 0 1rem 1rem 1rem;
+  .accordion-panel.expanded {
+    max-height: 350px; /* Altura aún más reducida para móviles pequeños */
   }
+}
+
+/* Mejorar la interactividad de las opciones del quiz */
+.quiz-option label {
+  cursor: pointer;
+  user-select: none;
+  flex: 1;
+  line-height: 1.5;
+}
+
+.quiz-option:hover {
+  background-color: #f8f9fa !important;
+  border-color: #dee2e6;
+  transform: translateY(-1px);
+}
+
+.quiz-option input[type="checkbox"] {
+  cursor: pointer;
+  transform: scale(1.2);
+  margin-right: 1rem;
+  margin-top: 0.25rem;
+}
+
+/* Estados del quiz después del envío */
+.quiz-option.correct-answer {
+  background-color: #d4edda !important;
+  border-color: #c3e6cb !important;
+  color: #155724 !important;
+}
+
+.quiz-option.incorrect-answer {
+  background-color: #f8d7da !important;
+  border-color: #f5c6cb !important;
+  color: #721c24 !important;
+}
+
+.quiz-option.missed-answer {
+  background-color: #fff3cd !important;
+  border-color: #ffeaa7 !important;
+  color: #856404 !important;
+}
+
+.quiz-option.correct-answer:hover,
+.quiz-option.incorrect-answer:hover,
+.quiz-option.missed-answer:hover {
+  transform: none;
+  background-color: inherit !important;
+}
+
+/* Feedback de opciones */
+
+.option-feedback i {
+  font-size: 1.1rem;
+}
+
+/* Botón de reset */
+.quiz-reset-btn {
+  background-color: #007bff !important;
+  border: none;
+}
+
+.quiz-reset-btn:hover {
+  background-color: #0056b3 !important;
+}
+
+/* Checkboxes deshabilitados */
+.quiz-option input[type="checkbox"]:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.quiz-option input[type="checkbox"]:disabled + label {
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+.hero-title {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 300;
+}
+
+.quiz-option {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 0.8rem;
+}
+
+.quiz-option:hover {
+  background-color: #f8f9fa;
+  border-color: #dee2e6;
+  transform: translateY(-1px);
+}
+
+.quiz-option input[type="checkbox"] {
+  margin-right: 1rem;
+  margin-top: 0;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.quiz-option span {
+  cursor: pointer;
+  flex: 1;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.hero-section {
+  background-image: url('assets/images/hero-wellbeing-final.png');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-align: center;
+  padding: 5rem 2rem;
+  position: relative;
+  overflow: hidden;
 }
 </style>
 </head>
@@ -943,32 +1264,40 @@
         </div>
         <div id="glossary-section-s" class="glossary-section">
           <h3 class="glossary-letter-header">S</h3>
+        <div id="glossary-section-s" class="glossary-section">
+          <h3 class="glossary-letter-header">S</h3>
           <div class="glossary-term">
-            <strong>Screen Time Awareness</strong> – Conscious tracking of time spent on digital devices to maintain a balanced lifestyle.
+            <strong>Screen Time</strong> – The amount of time spent using digital devices, which can impact physical and mental health.
           </div>
           <div class="glossary-term">
-            <strong>Self-Regulation</strong> – The ability to control impulses and make mindful choices in digital interactions.
+            <strong>Self-Compassion</strong> – Treating oneself with kindness and understanding, especially when facing challenges in digital well-being.
           </div>
           <div class="glossary-term">
-            <strong>Social Media Hygiene</strong> – Practices for maintaining a healthy relationship with social platforms, including curating content and setting boundaries.
+            <strong>Self-Determination Theory</strong> – A psychological framework that emphasizes the importance of autonomy, competence, and relatedness in motivation and well-being.
+          </div>
+          <div class="glossary-term">
+            <strong>SMART Goals</strong> – Specific, Measurable, Achievable, Relevant, and Time-bound objectives for improving digital habits.
+          </div>
+          <div class="glossary-term">
+            <strong>Social Media Literacy</strong> – The ability to critically evaluate and engage with social media content in a healthy and informed manner.
+          </div>
+          <div class="glossary-term">
+            <strong>Soul (Well-being Theory)</strong> – The aspect of well-being related to purpose, values, and meaning in life, influenced by digital habits.
           </div>
         </div>
         <div id="glossary-section-t" class="glossary-section">
           <h3 class="glossary-letter-header">T</h3>
           <div class="glossary-term">
-            <strong>Tech-Life Balance</strong> – The intentional effort to harmonize technology use with overall well-being.
+            <strong>Technology Addiction</strong> – A behavioral pattern characterized by excessive and compulsive use of digital devices, leading to negative consequences.
           </div>
           <div class="glossary-term">
-            <strong>Triggers in Digital Use</strong> – Environmental or psychological cues that prompt certain digital habits, such as checking the phone out of boredom.
-          </div>
-          <div class="glossary-term">
-            <strong>Two-Edge Effect of Technology</strong> – The concept that digital tools can both enhance and hinder well-being, depending on usage patterns.
+            <strong>Time Management</strong> – Strategies to balance digital activities with other important aspects of life, such as work, relationships, and self-care.
           </div>
         </div>
         <div id="glossary-section-w" class="glossary-section">
           <h3 class="glossary-letter-header">W</h3>
           <div class="glossary-term">
-            <strong>Willpower and Digital Use</strong> – The ability to resist distractions and build positive technology habits.
+            <strong>Well-being Theory</strong> – A framework that encompasses various dimensions of well-being, including physical, mental, emotional, social, and digital aspects.
           </div>
         </div>
       </div>
@@ -1408,6 +1737,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
-    </script>
+  </script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Digital Well-being - Digital Well-being Vision and Practice</title>
+<title>Digital Well-being - Vision and Practice</title>
 <link rel="stylesheet" href="./css/styles.css">
 <!-- VideoJS CSS -->
 <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
@@ -14,80 +14,432 @@
 <style>
 /* Estilos para la navegación A-Z del glosario y las secciones */
 .glossary-az-nav {
-  position: sticky;
-  top: 0;
-  background-color: white;
-  padding: 15px 0 20px 0;
-  margin-bottom: 0;
-  border-bottom: 2px solid #eee;
-  text-align: center;
-  z-index: 10;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px 0;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
 }
-
 .glossary-az-nav a {
-  margin: 0 8px 5px 0;
+  margin: 0 5px;
   text-decoration: none;
   color: var(--primary-color);
   font-weight: bold;
-  padding: 8px 12px;
-  border-radius: 4px;
-  display: inline-block;
-  transition: all 0.3s ease;
-  cursor: pointer;
+  padding: 5px;
 }
-
 .glossary-az-nav a:hover,
 .glossary-az-nav a:focus {
-  text-decoration: none;
-  background-color: var(--primary-color);
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  text-decoration: underline;
+  background-color: #f0f0f0;
+  border-radius: 3px;
 }
-
-.glossary-az-nav a.active {
-  background-color: var(--primary-color);
-  color: white;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-}
-
 .glossary-section {
-  margin-bottom: 2rem;
+  /* No se necesita margin-top aquí si el H3 lo maneja */
 }
-
-.glossary-section.hidden {
-  display: none;
-}
-
 .glossary-letter-header {
   font-size: 1.6em;
   color: #333;
-  margin-top: 30px;
-  margin-bottom: 20px;
-  padding-bottom: 10px;
-  border-bottom: 2px solid var(--primary-color);
+  margin-top: 25px;
+  margin-bottom: 15px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #ccc;
 }
-
 .glossary-section:first-child .glossary-letter-header {
-  margin-top: 15px;
+    margin-top: 0; /* El primer header no necesita tanto espacio arriba */
 }
-
 .modal-body {
   max-height: 70vh;
   overflow-y: auto;
-  padding: 0;
 }
-
-.glossary-terms {
-  padding: 0 2rem 2rem 2rem;
-  margin-bottom: 10px;
-  line-height: 1.6;
-}
-
 .glossary-term {
-  margin-bottom: 15px;
+  margin-bottom: 10px; /* Espacio entre términos */
   line-height: 1.6;
+}
+.hero-title {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 300;
+}
+
+/* Additional styles for Chapter 4 activities */
+.time-input-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.time-input-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.time-input-item label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.time-input-item input {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.chart-container {
+  margin: 2rem 0;
+  text-align: center;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 2rem;
+  position: relative;
+}
+
+.chart-wrapper {
+  width: 100%;
+  max-width: 500px;
+  height: 400px;
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.legend-color {
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+}
+
+.chart-placeholder {
+  color: #666;
+  font-style: italic;
+  padding: 2rem;
+}
+
+.chart-tooltip {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  pointer-events: none;
+  z-index: 1000;
+  display: none;
+  white-space: nowrap;
+}
+
+.download-btn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.download-btn:hover {
+  background-color: var(--link-hover-color);
+  transform: translateY(-2px);
+}
+
+.download-btn:active {
+  transform: scale(0.98);
+}
+
+.template-download {
+  text-align: left;
+  margin: 2rem 0;
+}
+
+.assessment-container {
+  margin: 2rem 0;
+}
+
+.assessment-question {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 0;
+}
+
+.question-text {
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.radio-group label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.radio-group label:hover {
+  background-color: #f0f0f0;
+}
+
+.radio-group input[type="radio"] {
+  margin-right: 0.8rem;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .time-input-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+  }
+  
+  .chart-legend {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .chart-wrapper {
+    height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .time-input-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(8, 1fr);
+  }
+}
+
+.assessment-step {
+  margin-bottom: 2rem;
+}
+
+.assessment-step h4 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.scale-question {
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+}
+
+.scale-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.scale-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-width: 80px;
+}
+
+.scale-option input[type="radio"] {
+  margin-bottom: 0.5rem;
+  width: 20px;
+  height: 20px;
+}
+
+.scale-option label {
+  font-size: 0.8rem;
+  color: #666;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .scale-options {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .scale-option {
+    flex-direction: row;
+    min-width: auto;
+    width: 100%;
+    justify-content: flex-start;
+  }
+  
+  .scale-option input[type="radio"] {
+    margin-right: 1rem;
+    margin-bottom: 0;
+  }
+}
+
+.chart-validation {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.validation-error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+  padding: 0.75rem;
+  margin: 0.5rem 0;
+  font-weight: 600;
+}
+
+.validation-success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+  border-radius: 4px;
+  padding: 0.75rem;
+  margin: 0.5rem 0;
+  font-weight: 600;
+}
+
+.hours-counter {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 0.5rem;
+}
+
+/* Modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 10000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow: auto;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 2% auto;
+  padding: 0;
+  border: none;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+  background-color: #f8f9fa;
+  color: #333;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.modal-close {
+  background: none;
+  border: 2px solid transparent;
+  color: #666;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+  background-color: rgba(219, 0, 134, 0.1);
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+  outline: none;
+  transform: scale(1.05);
+}
+
+.modal-body {
+  padding: 1.5rem;
+  max-height: calc(90vh - 120px);
+  overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+  .modal-content {
+    width: 95%;
+    margin: 5% auto;
+    max-height: 85vh;
+  }
+  
+  .modal-header {
+    padding: 1rem;
+  }
+  
+  .modal-header h2 {
+    font-size: 1.3rem;
+  }
+  
+  .modal-body {
+    padding: 1rem;
+    max-height: calc(85vh - 100px);
+  }
 }
 
 .hero-title {
@@ -104,39 +456,6 @@
   padding: 5rem 2rem;
   position: relative;
   overflow: hidden;
-}
-
-/* Responsive adjustments for the sticky navigation */
-@media (max-width: 768px) {
-  .glossary-az-nav {
-    padding: 12px 0 15px 0;
-  }
-  
-  .glossary-az-nav a {
-    margin: 0 4px 4px 0;
-    padding: 6px 8px;
-    font-size: 0.9rem;
-  }
-  
-  .glossary-terms {
-    padding: 0 1.5rem 1.5rem 1.5rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .glossary-az-nav {
-    padding: 10px 0 12px 0;
-  }
-  
-  .glossary-az-nav a {
-    margin: 0 3px 3px 0;
-    padding: 5px 6px;
-    font-size: 0.8rem;
-  }
-  
-  .glossary-terms {
-    padding: 0 1rem 1rem 1rem;
-  }
 }
 </style>
 </head>
@@ -167,22 +486,23 @@
   </div>
 </div>
 <nav class="main-nav hamburger-nav" id="main-nav" aria-label="Main navigation">
-<ul>
-  <li><a href="index.html">Home</a></li>
-  <li><a href="introduction.html">0. Introduction</a></li>
-  <li><a href="chapter1.html">1. Well-being as a Key...</a></li>
-  <li><a href="chapter2.html">2. Digital Habits</a></li>
-  <li><a href="chapter3.html">3. Attention, Cognition, Energy...</a></li>
-  <li><a href="chapter4.html" class="active" aria-current="page">4. Digital Well-being Vision and Practice</a></li>
-  <li><a href="chapter5.html">5. Course Conclusion</a></li>
-  <li><a href="#" id="glossary-menu-link"><i class="fas fa-book" style="color: #DB0086; margin-right: 0.5rem;" aria-hidden="true"></i>Open Glossary</a></li>
-</ul>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="introduction.html">0. Introduction</a></li>
+    <li><a href="chapter1.html">1. Well-being as a Key...</a></li>
+    <li><a href="chapter2.html">2. Digital Habits</a></li>
+    <li><a href="chapter3.html">3. Attention, Cognition, Energy...</a></li>
+    <li><a href="chapter4.html" class="active" aria-current="page">4. Digital Well-being Vision and Practice</a></li>
+    <li><a href="chapter5.html">5. Course Conclusion</a></li>
+    <li><a href="#" id="glossary-menu-link"><i class="fas fa-book" style="color: #DB0086; margin-right: 0.5rem;" aria-hidden="true"></i>Open Glossary</a></li>
+  </ul>
 </nav>
 </header>
 
 <section class="hero-section">
 <div class="hero-content">
   <div class="hero-title-container">
+    
     <h1 class="hero-title">LESSON 4<br>Digital Well-being Vision and Practice</h1>
   </div>
 </div>
@@ -191,55 +511,187 @@
 <main id="main-content" tabindex="-1">
   <div class="content-aligned-container">
     
-    <section class="lesson-section no-borders">
-<h2><strong>Lesson 4 Learning Objectives</strong></h2>
-<p>After this lesson, participants will be able to:</p>
-
-<div class="learning-objectives-grid-2x2">
-  <div class="learning-objective-card">
-    <div class="objective-icon" aria-hidden="true">
-      <i class="fas fa-eye"></i>
-    </div>
-    <div class="objective-content">
-      <h4>Personal Vision</h4>
-      <p>Create a personal vision for digital well-being that aligns with their values and goals</p>
-    </div>
-  </div>
-  
-  <div class="learning-objective-card">
-    <div class="objective-icon" aria-hidden="true">
-      <i class="fas fa-users"></i>
-    </div>
-    <div class="objective-content">
-      <h4>Social Support</h4>
-      <p>Understand the importance of social support and accountability in maintaining digital well-being</p>
-    </div>
-  </div>
-  
-  <div class="learning-objective-card">
-    <div class="objective-icon" aria-hidden="true">
-      <i class="fas fa-calendar-check"></i>
-    </div>
-    <div class="objective-content">
-      <h4>Sustainable Practices</h4>
-      <p>Develop sustainable practices and routines that support long-term digital well-being</p>
-    </div>
-  </div>
-  
-  <div class="learning-objective-card">
-    <div class="objective-icon" aria-hidden="true">
-      <i class="fas fa-chart-line"></i>
-    </div>
-    <div class="objective-content">
-      <h4>Progress Tracking</h4>
-      <p>Learn strategies for tracking progress and making adjustments to their digital well-being journey</p>
-    </div>
-  </div>
-</div>
-</section>
     
+    <!-- Learning Objectives -->
     <section class="lesson-section no-borders">
-      <h2><strong>Building a Positive Relationship with Technology</strong></h2>
+      <h2>Lesson 4 Learning Objectives</h2>
+      <p>After this lesson, participants will be able to:</p>
+      
+      <div class="learning-objectives-grid">
+        <div class="learning-objective-card">
+          <div class="objective-icon" aria-hidden="true">
+            <i class="fas fa-globe-americas"></i>
+          </div>
+          <div class="objective-content">
+            <h4>Digital Context Understanding</h4>
+            <p>Understand the broader digital context of life and work, and develop a personal approach to digital well-being.</p>
+          </div>
+        </div>
+        
+        <div class="learning-objective-card">
+          <div class="objective-icon" aria-hidden="true">
+            <i class="fas fa-eye"></i>
+          </div>
+          <div class="objective-content">
+            <h4>Science-Informed Vision</h4>
+            <p>Create a science-informed vision for their own digital well-being.</p>
+          </div>
+        </div>
+        
+        <div class="learning-objective-card">
+          <div class="objective-icon" aria-hidden="true">
+            <i class="fas fa-map-marked-alt"></i>
+          </div>
+          <div class="objective-content">
+            <h4>Holistic Roadmap</h4>
+            <p>Design a holistic roadmap—integrating body, mind, and soul—to align digital habits with cognitive health and personal flourishing.</p>
+          </div>
+        </div>
+        
+        <div class="learning-objective-card">
+          <div class="objective-icon" aria-hidden="true">
+            <i class="fas fa-lightbulb"></i>
+          </div>
+          <div class="objective-content">
+            <h4>Awareness and Motivation</h4>
+            <p>Cultivate awareness and motivation to align digital engagement with purpose and values.</p>
+          </div>
+        </div>
+        
+        <div class="learning-objective-card">
+          <div class="objective-icon" aria-hidden="true">
+            <i class="fas fa-user-check"></i>
+          </div>
+          <div class="objective-content">
+            <h4>Personal Accountability</h4>
+            <p>Reflect on strategies for personal accountability in the ongoing journey of digital well-being.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- The New Routine -->
+    <section class="lesson-section no-borders">
+      <h2>The New Routine</h2>
+      
+      <div class="responsive-video">
+        <video 
+          id="new-routine-video" 
+          class="video-js vjs-ie-skin vjs-big-play-centered" 
+          controls 
+          preload="auto" 
+          poster="assets/images/new-routine-poster.png"
+          data-video-id="w04v00"
+          
+          aria-label="The New Routine video"
+        >
+          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w04v00-the-new-routine/hls.m3u8" type="application/x-mpegURL">
+          <p class="vjs-no-js">
+            To view this video please enable JavaScript, and consider upgrading to a
+            web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+          </p>
+        </video>
+      </div>
+    </section>
+    
+    <!-- Review Your Digital Goals -->
+    <section class="lesson-section no-borders">
+      <h2>Review Your Digital Goals</h2>
+      
+      <div class="responsive-video">
+        <video 
+          id="review-goals-video" 
+          class="video-js vjs-ie-skin vjs-big-play-centered" 
+          controls 
+          preload="auto" 
+          poster="assets/images/review-goals-poster.png"
+          data-video-id="w04v01"
+          
+          aria-label="Review Your Digital Goals video"
+        >
+          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w04v01-review-your-digital-goals/hls.m3u8" type="application/x-mpegURL">
+          <p class="vjs-no-js">
+            To view this video please enable JavaScript, and consider upgrading to a
+            web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+          </p>
+        </video>
+      </div>
+      
+      <div class="key-point" role="note" aria-label="Key point about sustainable digital well-being">
+        <h3>Key Point</h3>
+        <p>Sustainable digital well-being is built through ongoing self-reflection, small adjustments, and an understanding that meaningful change is a lifelong journey—not a quick fix.</p>
+        <p>As you reflect on your digital habits, remember that change takes time and intention. You've explored your values, strengths, goals, and triggers—and you've likely seen how even one small change can lead to powerful ripple effects.</p>
+        <p>This isn't about being perfect. It's about <strong>learning, adjusting, and continuing</strong> to align your habits with what helps you be your best.</p>
+        <p>Keep asking:</p>
+        <ul>
+          <li>What's working well?</li>
+          <li>What continues to challenge me?</li>
+          <li>How can I evolve my habits to better support my energy, focus, and relationships?</li>
+        </ul>
+      </div>
+    </section>
+    
+    <!-- Activity: Review Your Digital Goals -->
+    <section class="lesson-section no-borders">
+      <div class="reflection-exercise">
+        <h2>Activity: Review Your Digital Goals</h2>
+        <p>Take a moment to reflect on your journey. This activity is not graded — it's an opportunity for you to check in with yourself and recognize your progress.</p>
+        <p><strong>Re-read your Digital Goals and answer the reflection questions below</strong>. Think about what's worked, what hasn't, and how your habits have evolved.</p>
+        
+        <div class="reflection-question">
+          <h3>How would you rate your progress and effort? Where are you now, compared to where you were then? Are you closer to consolidating Digital Habits that serve you?</h3>
+          <textarea 
+            id="progress-reflection" 
+            class="reflection-textarea"
+            rows="4" 
+            placeholder="Write your reflection here..."
+            aria-label="Progress reflection"
+          ></textarea>
+          <div class="button-container">
+            <button 
+              type="button" 
+              class="save-button" 
+              data-reflection-id="progress-reflection"
+              aria-describedby="feedback-progress-reflection"
+            >
+              <i class="fas fa-save" aria-hidden="true"></i> Save Reflection
+            </button>
+            <span id="feedback-progress-reflection" class="save-feedback" aria-live="polite"></span>
+          </div>
+        </div>
+        
+        <div class="reflection-question">
+          <h3>Consider the insights from this journey, were your Digital Goals suitable? What habits worked for you, and which ones didn't? How could you make adjustments to your habits to suit your routine, day-to-day activities, and values?</h3>
+          <textarea 
+            id="insights-reflection" 
+            class="reflection-textarea"
+            rows="4" 
+            placeholder="Write your reflection here..."
+            aria-label="Insights reflection"
+          ></textarea>
+          <div class="button-container">
+            <button 
+              type="button" 
+              class="save-button" 
+              data-reflection-id="insights-reflection"
+              aria-describedby="feedback-insights-reflection"
+            >
+              <i class="fas fa-save" aria-hidden="true"></i> Save Reflection
+            </button>
+            <span id="feedback-insights-reflection" class="save-feedback" aria-live="polite"></span>
+          </div>
+        </div>
+        
+        <button id="download-goals-review" class="download-btn">
+          <i class="fas fa-download" aria-hidden="true"></i>
+          Download my response
+        </button>
+      </div>
+    </section>
+    
+    <!-- Building a Positive Relationship With Technology -->
+    <section class="lesson-section no-borders">
+      <h2>Building a Positive Relationship With Technology</h2>
       
       <div class="responsive-video">
         <video 
@@ -248,354 +700,552 @@
           controls 
           preload="auto" 
           poster="assets/images/positive-relationship-poster.png"
-          data-video-id="w04v00"
+          data-video-id="w04v02"
           
           aria-label="Building a Positive Relationship with Technology video"
         >
-          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w04v00-building-a-positive-relationship-with-technology/hls.m3u8" type="application/x-mpegURL">
+          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w04v02-building-a-positive-relationship-with-technology/hls.m3u8" type="application/x-mpegURL">
           <p class="vjs-no-js">
             To view this video please enable JavaScript, and consider upgrading to a
             web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
           </p>
-          <track kind="captions" src="captions/positive-relationship.vtt" srclang="en" label="English" default>
         </video>
       </div>
       
       <div class="key-point" role="note" aria-label="Key point about building positive relationship with technology">
-        <h3><strong>Key Point</strong></h3>
-        <p>Building a positive relationship with technology requires <strong>intentional design of your digital environment, regular self-reflection, and ongoing adjustments</strong> that align with your evolving values and life circumstances.</p>
-        
-        <p>A healthy relationship with technology isn't about perfection—it's about <em>awareness and intentionality</em>.</p>
-        
-        <p><strong>Key strategies include:</strong></p>
+        <h3>Key Point</h3>
+        <p>Digital well-being is a lifelong, personal journey—by experimenting, reflecting, and choosing what truly supports your values and focus, you can build a positive and empowered relationship with technology.</p>
+        <p>Your relationship with technology should feel <strong>intentional and empowering</strong>—not controlling or overwhelming.</p>
+        <p>As you finish this course, remember that there's no one-size-fits-all solution. It's about finding what works for <em>you</em> and making small, meaningful changes over time.</p>
+        <p>A few takeaways to guide your continued journey:</p>
         <ul>
-          <li><strong>Design your environment:</strong> Curate your digital spaces to support your well-being goals.</li>
-          <li><strong>Practice regular reflection:</strong> Check in with yourself about how technology is serving you.</li>
-          <li><strong>Stay flexible:</strong> Adjust your approach as your needs and circumstances change.</li>
-          <li><strong>Focus on progress, not perfection:</strong> Celebrate small wins and learn from setbacks.</li>
+          <li><strong>Reflect regularly</strong> on your digital behaviors.</li>
+          <li><strong>Adjust mindfully</strong>—experiment with settings, habits, or routines.</li>
+          <li><strong>Own your relationship with tech</strong>—you get to choose how and when it serves you best.</li>
         </ul>
+        <p>Stay curious, stay committed, and keep learning.</p>
       </div>
     </section>
-
-    <section class="lesson-section no-borders">
-      <h2><strong>Staying Accountable</strong></h2>
-      
-      <div class="responsive-video">
-        <video 
-          id="staying-accountable-video" 
-          class="video-js vjs-ie-skin vjs-big-play-centered" 
-          controls 
-          preload="auto" 
-          poster="assets/images/stay-accountable-poster.png"
-          data-video-id="w04v01"
-          
-          aria-label="Staying Accountable video"
-        >
-          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w04v01-staying-accountable/hls.m3u8" type="application/x-mpegURL">
-          <p class="vjs-no-js">
-            To view this video please enable JavaScript, and consider upgrading to a
-            web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-          </p>
-          <track kind="captions" src="captions/staying-accountable.vtt" srclang="en" label="English" default>
-        </video>
-      </div>
-      
-      <div class="key-point" role="note" aria-label="Key point about staying accountable">
-        <h3><strong>Key Point</strong></h3>
-        <p>Sustainable digital well-being thrives with <strong>accountability systems that include regular self-check-ins, trusted support partners, and structured reflection practices</strong> that help you stay aligned with your goals and values over time.</p>
-        
-        <p>Accountability isn't about judgment—it's about <em>support and consistency</em>.</p>
-        
-        <p><strong>Effective accountability strategies:</strong></p>
-        <ul>
-          <li><strong>Find an accountability partner:</strong> Share your goals with someone who will support your journey.</li>
-          <li><strong>Schedule regular check-ins:</strong> Set aside time weekly or monthly to reflect on your progress.</li>
-          <li><strong>Track your habits:</strong> Use simple tools to monitor your digital behaviors and patterns.</li>
-          <li><strong>Celebrate progress:</strong> Acknowledge your successes, no matter how small.</li>
-          <li><strong>Adjust when needed:</strong> Be willing to modify your approach based on what you learn.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="lesson-section no-borders">
-      <div class="values-activity-container">
-        <h2><strong>Activity: Accountability Buddy Planning</strong></h2>
-        <p>Accountability is one of the most powerful tools for creating lasting change. Having someone to share your journey with—whether it's a friend, family member, colleague, or mentor—can provide the support, encouragement, and gentle reminders you need to stay on track.</p>
-        
-        <p>This activity will help you identify potential accountability partners and create a plan for working together toward your digital well-being goals.</p>
-        
-        <p><strong>You can download the editable template to complete your responses.</strong> Use this to structure your accountability partnership and set clear expectations for both of you.</p>
-        
-        <a href="assets/documents/Lesson4_Accountability Buddy Planning.pdf" class="download-template-button" download aria-label="Download editable template for accountability buddy planning activity">
-          <i class="fas fa-download" aria-hidden="true"></i>
-          <strong>Download the editable template here</strong>
-        </a>
-      </div>
-    </section>
-
-    <section class="lesson-section no-borders">
-      <h2><strong>Reviewing Your Digital Goals</strong></h2>
-      
-      <div class="responsive-video">
-        <video 
-          id="reviewing-goals-video" 
-          class="video-js vjs-ie-skin vjs-big-play-centered" 
-          controls 
-          preload="auto" 
-          poster="assets/images/review-goals-poster.png"
-          data-video-id="w04v02"
-          
-          aria-label="Reviewing Your Digital Goals video"
-        >
-          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w04v02-reviewing-your-digital-goals/hls.m3u8" type="application/x-mpegURL">
-          <p class="vjs-no-js">
-            To view this video please enable JavaScript, and consider upgrading to a
-            web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-          </p>
-          <track kind="captions" src="captions/reviewing-goals.vtt" srclang="en" label="English" default>
-        </video>
-      </div>
-      
-      <div class="key-point" role="note" aria-label="Key point about reviewing digital goals">
-        <h3><strong>Key Point</strong></h3>
-        <p>Regular goal review is essential for maintaining momentum in your digital well-being journey. <strong>Celebrate your progress, learn from challenges, and adjust your goals</strong> to reflect your evolving needs and circumstances.</p>
-        
-        <p>Goal review isn't about perfection—it's about <em>learning and growth</em>.</p>
-        
-        <p><strong>When reviewing your goals:</strong></p>
-        <ul>
-          <li><strong>Acknowledge progress:</strong> Recognize what you've accomplished, even small steps.</li>
-          <li><strong>Identify challenges:</strong> What obstacles have you encountered? What can you learn from them?</li>
-          <li><strong>Assess relevance:</strong> Do your goals still align with your current values and priorities?</li>
-          <li><strong>Make adjustments:</strong> Modify your goals based on what you've learned about yourself.</li>
-          <li><strong>Set new intentions:</strong> What do you want to focus on moving forward?</li>
-        </ul>
-      </div>
-    </section>
-
+    
+    <!-- Activity: Building a Positive Relationship With Technology -->
     <section class="lesson-section no-borders">
       <div class="reflection-exercise">
-        <h2><strong>Reflection Question</strong></h2>
-        <p><strong>Take a moment to reflect and write your response to the question below.</strong></p>
+        <h2>Activity: Building a Positive Relationship With Technology</h2>
+        <p>As you wrap up this experience, take a quiet moment to reflect on your progress.</p>
+        <p>This is your chance to think about the tools, habits, and insights that supported you — and how you might carry them forward. Your reflections will help strengthen your commitment to a more mindful and balanced digital life.</p>
+        <p><strong>Remember: there are no right or wrong answers here.</strong> Your journey is personal, and your responses will be saved and available for download at the end of the course.</p>
         
         <div class="reflection-question">
-          <h3>Looking back at the digital goals you set in Lesson 1, what progress have you made? What challenges have you faced, and how might you adjust your approach moving forward?</h3>
+          <h3>What tools worked best for you? Which ones were the most challenging? How will you keep them apart of your daily routine?</h3>
           <textarea 
-            id="goals-review-reflection" 
-            class="reflection-textarea" 
+            id="tools-reflection" 
+            class="reflection-textarea"
+            rows="4" 
             placeholder="Write your reflection here..."
-            aria-label="Digital goals review reflection"
-            rows="8"
+            aria-label="Tools reflection"
           ></textarea>
           <div class="button-container">
             <button 
               type="button" 
               class="save-button" 
-              data-reflection-id="goals-review-reflection"
-              aria-describedby="feedback-goals-review-reflection"
+              data-reflection-id="tools-reflection"
+              aria-describedby="feedback-tools-reflection"
             >
               <i class="fas fa-save" aria-hidden="true"></i> Save Reflection
             </button>
-            <span id="feedback-goals-review-reflection" class="save-feedback" aria-live="polite"></span>
+            <span id="feedback-tools-reflection" class="save-feedback" aria-live="polite"></span>
           </div>
         </div>
+        
+        <div class="reflection-question">
+          <h3>How will these exercises help your tech-life balance in the future?</h3>
+          <textarea 
+            id="balance-reflection" 
+            class="reflection-textarea"
+            rows="4" 
+            placeholder="Write your reflection here..."
+            aria-label="Balance reflection"
+          ></textarea>
+          <div class="button-container">
+            <button 
+              type="button" 
+              class="save-button" 
+              data-reflection-id="balance-reflection"
+              aria-describedby="feedback-balance-reflection"
+            >
+              <i class="fas fa-save" aria-hidden="true"></i> Save Reflection
+            </button>
+            <span id="feedback-balance-reflection" class="save-feedback" aria-live="polite"></span>
+          </div>
+        </div>
+        
+        <div class="reflection-question">
+          <h3>Which practices can you implement to have a better relationship with your devices, considering your own unique journey?</h3>
+          <textarea 
+            id="practices-reflection" 
+            class="reflection-textarea"
+            rows="4" 
+            placeholder="Write your reflection here..."
+            aria-label="Practices reflection"
+          ></textarea>
+          <div class="button-container">
+            <button 
+              type="button" 
+              class="save-button" 
+              data-reflection-id="practices-reflection"
+              aria-describedby="feedback-practices-reflection"
+            >
+              <i class="fas fa-save" aria-hidden="true"></i> Save Reflection
+            </button>
+            <span id="feedback-practices-reflection" class="save-feedback" aria-live="polite"></span>
+          </div>
+        </div>
+        
+        <button id="download-relationship-response" class="download-btn">
+          <i class="fas fa-download" aria-hidden="true"></i>
+          Download my response
+        </button>
       </div>
     </section>
-
+    
+    <!-- Rituals for Digital Flourishing -->
     <section class="lesson-section no-borders">
-      <h2><strong>Creating New Routines for Digital Flourishing</strong></h2>
+      <h2>Rituals for Digital Flourishing</h2>
       
       <div class="responsive-video">
         <video 
-          id="new-routines-video" 
-          class="video-js vjs-ie-skin vjs-big-play-centered" 
-          controls 
-          preload="auto" 
-          poster="assets/images/new-routine-poster.png"
-          data-video-id="w04v03"
-          
-          aria-label="Creating New Routines for Digital Flourishing video"
-        >
-          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w04v03-creating-new-routines-for-digital-flourishing/hls.m3u8" type="application/x-mpegURL">
-          <p class="vjs-no-js">
-            To view this video please enable JavaScript, and consider upgrading to a
-            web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-          </p>
-          <track kind="captions" src="captions/new-routines.vtt" srclang="en" label="English" default>
-        </video>
-      </div>
-      
-      <div class="key-point" role="note" aria-label="Key point about creating new routines">
-        <h3><strong>Key Point</strong></h3>
-        <p>Digital flourishing happens when you <strong>intentionally design daily routines that support your well-being goals</strong>, starting small with sustainable changes that gradually become natural parts of your life.</p>
-        
-        <p>Sustainable routines are built on <em>consistency, not perfection</em>.</p>
-        
-        <p><strong>Keys to successful routine building:</strong></p>
-        <ul>
-          <li><strong>Start small:</strong> Begin with one or two simple changes you can maintain consistently.</li>
-          <li><strong>Link to existing habits:</strong> Attach new digital habits to routines you already have.</li>
-          <li><strong>Design your environment:</strong> Make healthy choices easier and unhealthy ones harder.</li>
-          <li><strong>Be patient:</strong> Allow time for new routines to become automatic.</li>
-          <li><strong>Stay flexible:</strong> Adjust your routines as your life circumstances change.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="lesson-section no-borders">
-      <h2><strong>Rituals for Flourishing</strong></h2>
-      
-      <div class="responsive-video">
-        <video 
-          id="rituals-flourishing-video" 
+          id="rituals-video" 
           class="video-js vjs-ie-skin vjs-big-play-centered" 
           controls 
           preload="auto" 
           poster="assets/images/rituals-flourishing-poster.png"
-          data-video-id="w04v04"
+          data-video-id="w04v03"
           
-          aria-label="Rituals for Flourishing video"
+          aria-label="Rituals for Digital Flourishing video"
         >
-          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w04v04-rituals-for-flourishing/hls.m3u8" type="application/x-mpegURL">
+          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w04v03-rituals-for-digital-flourishing/hls.m3u8" type="application/x-mpegURL">
           <p class="vjs-no-js">
             To view this video please enable JavaScript, and consider upgrading to a
             web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
           </p>
-          <track kind="captions" src="captions/rituals-flourishing.vtt" srclang="en" label="English" default>
         </video>
       </div>
       
-      <div class="key-point" role="note" aria-label="Key point about rituals for flourishing">
-        <h3><strong>Key Point</strong></h3>
-        <p>Meaningful rituals create <strong>intentional transitions and moments of presence</strong> in your day, helping you maintain balance and connection with what matters most, even in a digitally connected world.</p>
-        
-        <p>Rituals are different from habits—they carry <em>meaning and intention</em>.</p>
-        
-        <p><strong>Powerful digital well-being rituals:</strong></p>
+      <div class="key-point" role="note" aria-label="Key point about behavior change strategies">
+        <h3>Key Point</h3>
+        <p>Lasting behavior change is hard, but strategies like practice, social accountability, and modifying your environment can significantly improve your chances of success.</p>
+        <p>Change takes more than willpower—it takes strategy.</p>
+        <p>Try these proven behavior change techniques:</p>
         <ul>
-          <li><strong>Morning intention setting:</strong> Begin your day with purpose before checking devices.</li>
-          <li><strong>Transition rituals:</strong> Create boundaries between work and personal time.</li>
-          <li><strong>Evening wind-down:</strong> Establish tech-free time before sleep.</li>
-          <li><strong>Weekly digital sabbath:</strong> Set aside regular time for offline activities.</li>
-          <li><strong>Mindful check-ins:</strong> Pause regularly to assess how technology is serving you.</li>
+          <li><strong>Practice</strong> in real or simulated situations to reinforce the new behavior.</li>
+          <li><strong>Tell someone</strong>—sharing your goal publicly boosts accountability.</li>
+          <li><strong>Hack your cues</strong>—remove or adjust triggers that lead to unwanted habits.</li>
+          <li><strong>Fake it 'til you make it</strong>—acting the part can help build the habit.</li>
+          <li><strong>Practice mindfulness</strong> to catch yourself in the moment of choice.</li>
+          <li><strong>Gamify the process</strong>—friendly challenges and rewards help keep you motivated.</li>
         </ul>
+        <p>Start small, stay consistent, and adapt what works best for you.</p>
       </div>
     </section>
-
+    
+    <!-- Activity: Rituals for Digital Flourishing -->
     <section class="lesson-section no-borders">
       <div class="reflection-exercise">
-        <h2><strong>Reflection Question</strong></h2>
-        <p><strong>Take a moment to reflect and write your response to the question below.</strong></p>
+        <h2>Activity: Rituals for Digital Flourishing</h2>
+        <p>Let's visualize how you spend your time by creating a "life balance cake." Your reflections will be saved and can be downloaded at the end of the course.</p>
+        
+        <h3>Instructions:</h3>
+        <p>Take a moment to reflect on how you currently spend your time during a typical week.</p>
+        <ol>
+          <li><strong>Enter the number of hours</strong> you spend on each activity listed (e.g., sleep, work, family, hobbies, digital use, etc.).</li>
+          <li>As you fill in the fields, a <strong>colorful "life balance cake" (pie chart)</strong> will generate automatically to show how your time is distributed.</li>
+          <li>Observe the chart, reflect, and <strong>answer the questions below:</strong></li>
+        </ol>
+        
+        <div class="time-input-grid">
+          <div class="time-input-item">
+            <label for="sleep-hours">Sleep:</label>
+            <input type="number" id="sleep-hours" min="0" max="168" placeholder="Hours per week">
+          </div>
+          <div class="time-input-item">
+            <label for="work-hours">Work:</label>
+            <input type="number" id="work-hours" min="0" max="168" placeholder="Hours per week">
+          </div>
+          <div class="time-input-item">
+            <label for="family-hours">Family:</label>
+            <input type="number" id="family-hours" min="0" max="168" placeholder="Hours per week">
+          </div>
+          <div class="time-input-item">
+            <label for="hobbies-hours">Hobbies:</label>
+            <input type="number" id="hobbies-hours" min="0" max="168" placeholder="Hours per week">
+          </div>
+          <div class="time-input-item">
+            <label for="digital-hours">Digital Use:</label>
+            <input type="number" id="digital-hours" min="0" max="168" placeholder="Hours per week">
+          </div>
+          <div class="time-input-item">
+            <label for="exercise-hours">Exercise:</label>
+            <input type="number" id="exercise-hours" min="0" max="168" placeholder="Hours per week">
+          </div>
+          <div class="time-input-item">
+            <label for="social-hours">Social:</label>
+            <input type="number" id="social-hours" min="0" max="168" placeholder="Hours per week">
+          </div>
+          <div class="time-input-item">
+            <label for="other-hours">Other:</label>
+            <input type="number" id="other-hours" min="0" max="168" placeholder="Hours per week">
+          </div>
+        </div>
+        
+        <div id="life-balance-chart" class="chart-container">
+          <div class="chart-wrapper">
+            <canvas id="balance-chart-canvas"></canvas>
+            <div id="chart-tooltip" class="chart-tooltip"></div>
+          </div>
+          <div class="chart-legend" id="chart-legend">
+            <div class="legend-item">
+              <div class="legend-color" style="background-color: #FF6384;"></div>
+              <span>Sleep</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background-color: #36A2EB;"></div>
+              <span>Work</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background-color: #FFCE56;"></div>
+              <span>Family</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background-color: #4BC0C0;"></div>
+              <span>Hobbies</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background-color: #9966FF;"></div>
+              <span>Digital Use</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background-color: #FF9F40;"></div>
+              <span>Exercise</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background-color: #FF6B9D;"></div>
+              <span>Social</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background-color: #C9CBCF;"></div>
+              <span>Other</span>
+            </div>
+          </div>
+          <div class="chart-validation">
+            <div id="hours-counter" class="hours-counter">
+              Total hours: <span id="total-hours">0</span> / 168
+            </div>
+            <div id="validation-message" style="display: none;"></div>
+          </div>
+        </div>
         
         <div class="reflection-question">
-          <h3>What daily or weekly rituals could you create to support your digital well-being? How might these rituals help you stay connected to your values and goals?</h3>
+          <h3>Are some slices larger than you expected? Does the balance reflect your values and priorities? Is your digital use taking more space than you'd like?</h3>
           <textarea 
-            id="rituals-reflection" 
-            class="reflection-textarea" 
+            id="balance-observation" 
+            class="reflection-textarea"
+            rows="4" 
             placeholder="Write your reflection here..."
-            aria-label="Rituals for digital well-being reflection"
-            rows="8"
+            aria-label="Balance observation reflection"
           ></textarea>
           <div class="button-container">
             <button 
               type="button" 
               class="save-button" 
-              data-reflection-id="rituals-reflection"
-              aria-describedby="feedback-rituals-reflection"
+              data-reflection-id="balance-observation"
+              aria-describedby="feedback-balance-observation"
             >
               <i class="fas fa-save" aria-hidden="true"></i> Save Reflection
             </button>
-            <span id="feedback-rituals-reflection" class="save-feedback" aria-live="polite"></span>
+            <span id="feedback-balance-observation" class="save-feedback" aria-live="polite"></span>
           </div>
         </div>
+        
+        <div class="reflection-question">
+          <h3>Think about one or two digital habits you could reduce and write your reflection below. What could you do instead with that reclaimed time?</h3>
+          <textarea 
+            id="habit-reduction" 
+            class="reflection-textarea"
+            rows="4" 
+            placeholder="Write your reflection here..."
+            aria-label="Habit reduction reflection"
+          ></textarea>
+          <div class="button-container">
+            <button 
+              type="button" 
+              class="save-button" 
+              data-reflection-id="habit-reduction"
+              aria-describedby="feedback-habit-reduction"
+            >
+              <i class="fas fa-save" aria-hidden="true"></i> Save Reflection
+            </button>
+            <span id="feedback-habit-reduction" class="save-feedback" aria-live="polite"></span>
+          </div>
+        </div>
+        
+        <button id="download-balance-response" class="download-btn">
+          <i class="fas fa-download" aria-hidden="true"></i>
+          Download my response
+        </button>
       </div>
     </section>
-
+    
+    <!-- How to Stay Accountable -->
     <section class="lesson-section no-borders">
-      <h2><strong>Sleep and Digital Health</strong></h2>
+      <h2>How to Stay Accountable?: Choose Your Buddy!</h2>
       
       <div class="responsive-video">
         <video 
-          id="sleep-health-video" 
+          id="accountability-video" 
           class="video-js vjs-ie-skin vjs-big-play-centered" 
           controls 
           preload="auto" 
-          poster="assets/images/sleep-health-poster.png"
-          data-video-id="w04v05"
+          poster="assets/images/stay-accountable-poster.png"
+          data-video-id="w04v04"
           
-          aria-label="Sleep and Digital Health video"
+          aria-label="How to Stay Accountable video"
         >
-          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w04v05-sleep-and-digital-health/hls.m3u8" type="application/x-mpegURL">
+          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w04v04-how-to-stay-accountable/hls.m3u8" type="application/x-mpegURL">
           <p class="vjs-no-js">
             To view this video please enable JavaScript, and consider upgrading to a
             web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
           </p>
-          <track kind="captions" src="captions/sleep-health.vtt" srclang="en" label="English" default>
         </video>
       </div>
       
-      <div class="key-point" role="note" aria-label="Key point about sleep and digital health">
-        <h3><strong>Key Point</strong></h3>
-        <p>Quality sleep is fundamental to digital well-being. <strong>Protecting your sleep from digital disruption</strong> through evening routines, bedroom boundaries, and mindful device use supports both physical health and emotional resilience.</p>
-        
-        <p>Sleep and technology have a complex relationship that requires <em>intentional management</em>.</p>
-        
-        <p><strong>Essential sleep and digital health practices:</strong></p>
+      <div class="key-point" role="note" aria-label="Key point about accountability">
+        <h3>Key Point</h3>
+        <p>Staying accountable to your digital goals is easier and more sustainable when you involve a trusted accountability partner, celebrate progress, set boundaries, and regularly reflect on your habits.</p>
+        <p><strong>Behavior change is hard—but you don't have to do it alone.</strong></p>
+        <p>Partnering with someone you trust can help you stay motivated, focused, and honest with yourself.</p>
+        <p>Here are a few <strong>tips to make the most of your accountability partner:</strong></p>
         <ul>
-          <li><strong>Create a digital sunset:</strong> Stop using screens 1-2 hours before bedtime.</li>
-          <li><strong>Keep devices out of the bedroom:</strong> Use an analog alarm clock instead of your phone.</li>
-          <li><strong>Use blue light filters:</strong> Reduce screen brightness and blue light in the evening.</li>
-          <li><strong>Establish a wind-down routine:</strong> Replace screen time with calming activities.</li>
-          <li><strong>Be mindful of content:</strong> Avoid stimulating or stressful content before sleep.</li>
+          <li>Be clear and honest about your goals.</li>
+          <li>Check in regularly—remotely or in person.</li>
+          <li>Celebrate small wins together and adjust goals as needed.</li>
+          <li>Track your progress in a journal and learn from your setbacks.</li>
         </ul>
+        <p>You can also <strong>support your progress with habits like</strong>:</p>
+        <ul>
+          <li>Mindfulness and reflection.</li>
+          <li>Digital boundaries (e.g., screen-free meals or wind-down time).</li>
+          <li>Reward systems and offline hobbies that restore your energy.</li>
+        </ul>
+        <p>And remember—being someone else's accountability buddy can also deepen your own commitment to digital well-being.</p>
       </div>
     </section>
-
+    
+    <!-- Activity: Accountability Buddy Planning -->
     <section class="lesson-section no-borders">
-      <div class="reflection-exercise">
-        <h2><strong>Reflection Question</strong></h2>
-        <p><strong>Take a moment to reflect and write your response to the question below.</strong></p>
-        
-        <div class="reflection-question">
-          <h3>How do your current digital habits affect your sleep quality? What changes could you make to create a more sleep-friendly digital environment?</h3>
-          <textarea 
-            id="sleep-reflection" 
-            class="reflection-textarea" 
-            placeholder="Write your reflection here..."
-            aria-label="Sleep and digital health reflection"
-            rows="8"
-          ></textarea>
-          <div class="button-container">
-            <button 
-              type="button" 
-              class="save-button" 
-              data-reflection-id="sleep-reflection"
-              aria-describedby="feedback-sleep-reflection"
-            >
-              <i class="fas fa-save" aria-hidden="true"></i> Save Reflection
-            </button>
-            <span id="feedback-sleep-reflection" class="save-feedback" aria-live="polite"></span>
+      <h2>Activity: Accountability Buddy Planning</h2>
+      <p>Having someone support you throughout your digital well-being journey can make all the difference. This activity helps you think through how to choose an accountability buddy and how to work with them effectively.</p>
+      <p>Take a few moments to reflect on the questions below. <strong>Think practically — who in your life could support you, and how could you stay connected and motivated?</strong></p>
+      <p><strong>You can download the editable template to complete your responses.</strong> This way, you can track your ideas.</p>
+      
+      <div class="template-download">
+        <a href="assets/documents/Lesson4_Accountability Buddy Planning.pdf" class="download-btn" download>
+          <i class="fas fa-download" aria-hidden="true"></i>
+          Download the editable template here
+        </a>
+      </div>
+    </section>
+    
+    <!-- Reading -->
+    <section class="lesson-section no-borders">
+      <h2>Reading</h2>
+      <p>Please complete the following reading: <em>"Seven Habits of Mindfulness"</em></p>
+      
+      <div class="reading-cards">
+        <div class="reading-card">
+          <div class="reading-card-content">
+            <h3>Seven Habits of Mindfulness</h3>
+            <p>Explore seven practical habits that can help you develop mindfulness in your daily life and improve your relationship with technology.</p>
+            <div class="reading-card-footer">
+              <a href="https://www.ie.edu/insights/infographics/seven-habits-of-mindfulness/" target="_blank" class="reading-link" aria-label="Read Seven Habits of Mindfulness (opens in new tab)">
+                Read Article
+                <span class="reading-arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </section>
-
+    
+    <!-- End of Lesson Assessment -->
     <section class="lesson-section no-borders">
-      <h2><strong>Reading</strong></h2>
-      
-      <div class="reading-cards">
-        <a href="https://www.sleepfoundation.org/how-sleep-works/why-do-we-need-sleep" target="_blank" class="reading-card reading-card-clickable" aria-label="Visit Why Do We Need Sleep? resource (opens in new tab)">
-          <div class="reading-card-content">
-            <h3><strong>Why Do We Need Sleep?</strong></h3>
-            <p>Sleep is essential for physical health, cognitive function, and emotional well-being. Learn about the science of sleep and why quality rest is crucial for overall health and digital well-being.</p>
-            <div class="reading-card-footer">
-              <span class="reading-link">
-                Read Article
-                <span class="reading-arrow" aria-hidden="true">→</span>
-              </span>
-            </div>
-          </div>
-        </a>
+      <div class="reflection-exercise">
+        <h2>End of Lesson Assessment: Touchpoint II</h2>
+        <p><strong>Let's pause and reflect on your journey so far.</strong></p>
+        <p>This quick check-in is designed to help you measure your progress and notice any positive changes. Measuring your progress periodically and journaling about it can promote consistency, beneficial insights, and a greater sense of self-efficacy. Use the scale from 1 to 5 to indicate how much you agree with each statement (1 = completely disagree, 5 = completely agree).</p>
+        <p>After completing the scale, take a moment to reflect in writing. Your responses will be saved and available for download so you can see how far you've come.</p>
+        
+        
+<div class="assessment-step">
+  <h4><strong>Step 1:</strong> <strong>Indicate how much you agree with each statement</strong> <em>(1 = completely disagree, 5 = completely agree).</em></h4>
+  
+  <div class="scale-question">
+    <p><strong>I have decreased my screen time.</strong></p>
+    <div class="scale-options">
+      <div class="scale-option">
+        <input type="radio" id="q1-1" name="screen-time" value="1">
+        <label for="q1-1">1-Completely disagree</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q1-2" name="screen-time" value="2">
+        <label for="q1-2">2</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q1-3" name="screen-time" value="3">
+        <label for="q1-3">3</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q1-4" name="screen-time" value="4">
+        <label for="q1-4">4</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q1-5" name="screen-time" value="5">
+        <label for="q1-5">5-Completely agree</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="scale-question">
+    <p><strong>I have stuck to my Digital Goals.</strong></p>
+    <div class="scale-options">
+      <div class="scale-option">
+        <input type="radio" id="q2-1" name="digital-goals" value="1">
+        <label for="q2-1">1-Completely disagree</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q2-2" name="digital-goals" value="2">
+        <label for="q2-2">2</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q2-3" name="digital-goals" value="3">
+        <label for="q2-3">3</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q2-4" name="digital-goals" value="4">
+        <label for="q2-4">4</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q2-5" name="digital-goals" value="5">
+        <label for="q2-5">5-Completely agree</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="scale-question">
+    <p><strong>I am closer to where I want to be.</strong></p>
+    <div class="scale-options">
+      <div class="scale-option">
+        <input type="radio" id="q3-1" name="progress" value="1">
+        <label for="q3-1">1-Completely disagree</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q3-2" name="progress" value="2">
+        <label for="q3-2">2</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q3-3" name="progress" value="3">
+        <label for="q3-3">3</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q3-4" name="progress" value="4">
+        <label for="q3-4">4</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q3-5" name="progress" value="5">
+        <label for="q3-5">5-Completely agree</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="scale-question">
+    <p><strong>I have made more conscious use of my digital devices.</strong></p>
+    <div class="scale-options">
+      <div class="scale-option">
+        <input type="radio" id="q4-1" name="conscious-use" value="1">
+        <label for="q4-1">1-Completely disagree</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q4-2" name="conscious-use" value="2">
+        <label for="q4-2">2</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q4-3" name="conscious-use" value="3">
+        <label for="q4-3">3</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q4-4" name="conscious-use" value="4">
+        <label for="q4-4">4</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q4-5" name="conscious-use" value="5">
+        <label for="q4-5">5-Completely agree</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="scale-question">
+    <p><strong>I feel better about my use of digital devices.</strong></p>
+    <div class="scale-options">
+      <div class="scale-option">
+        <input type="radio" id="q5-1" name="feel-better" value="1">
+        <label for="q5-1">1-Completely disagree</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q5-2" name="feel-better" value="2">
+        <label for="q5-2">2</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q5-3" name="feel-better" value="3">
+        <label for="q5-3">3</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q5-4" name="feel-better" value="4">
+        <label for="q5-4">4</label>
+      </div>
+      <div class="scale-option">
+        <input type="radio" id="q5-5" name="feel-better" value="5">
+        <label for="q5-5">5-Completely agree</label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="assessment-step">
+  <h4><strong>Step 2:</strong> <strong>Take a moment to reflect by responding to the question below</strong></h4>
+  <p>How do you feel after completing the third and fourth lesson of this course? Have you noticed any differences in your general well-being?</p>
+  <textarea 
+    id="wellbeing-reflection" 
+    class="reflection-textarea"
+    rows="6" 
+    placeholder="Please write a short description..."
+    aria-label="Well-being reflection"
+  ></textarea>
+  <div class="button-container">
+    <button 
+      type="button" 
+      class="save-button" 
+      data-reflection-id="wellbeing-reflection"
+      aria-describedby="feedback-wellbeing-reflection"
+    >
+      <i class="fas fa-save" aria-hidden="true"></i> Save Reflection
+    </button>
+    <span id="feedback-wellbeing-reflection" class="save-feedback" aria-live="polite"></span>
+  </div>
+</div>
+
+<button id="download-assessment-response" class="download-btn">
+  <i class="fas fa-download" aria-hidden="true"></i>
+  Download my response
+</button>
       </div>
     </section>
     
@@ -777,83 +1427,650 @@
   </div>
 </div>
 
-  <!-- VideoJS JavaScript -->
-  <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
-  <script src="js/video-player.js"></script>
-  <script src="js/key-points.js"></script>
-  <script src="js/quiz.js"></script>
-  <script src="js/main.js"></script>
-  <script src="js/reflections.js"></script>
-  <script src="js/logo-checker.js"></script>
-  <script>
-// Glossary Modal Functionality
+<!-- VideoJS JavaScript -->
+<script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
+<script src="js/video-player.js"></script>
+<script src="js/key-points.js"></script>
+<script src="js/reflections.js"></script>
+<script src="js/main.js"></script>
+<!-- jsPDF Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+// Wait for jsPDF to load
 document.addEventListener('DOMContentLoaded', function() {
-  const modal = document.getElementById('glossary-modal');
-  const openBtn = document.getElementById('open-glossary');
-  const menuLink = document.getElementById('glossary-menu-link');
-  const closeBtn = modal.querySelector('.modal-close');
+  // Load jsPDF if not already loaded
+  if (typeof window.jspdf === 'undefined') {
+    const script = document.createElement('script');
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+    script.onload = function() {
+      initializeDownloadButtons();
+    };
+    document.head.appendChild(script);
+  } else {
+    initializeDownloadButtons();
+  }
+});
 
-  function openModal() {
-    modal.style.display = 'block';
-    modal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-    const firstFocusableElement = modal.querySelector('.modal-close, .glossary-az-nav a');
-    if (firstFocusableElement) {
-        firstFocusableElement.focus();
+function initializeDownloadButtons() {
+  // Enhanced PDF generation function with header image
+  async function addPDFHeader(doc) {
+    try {
+      // Load the header image
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      
+      return new Promise((resolve, reject) => {
+        img.onload = function() {
+          try {
+            // Create a canvas to process the image
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Set canvas dimensions to match the image aspect ratio
+            const pdfWidth = 210; // A4 width in mm (jsPDF default)
+            const imgWidth = pdfWidth; // 100% of PDF width
+            const imgHeight = (img.height / img.width) * imgWidth;
+            
+            canvas.width = img.width;
+            canvas.height = img.height;
+            
+            // Draw the image on canvas
+            ctx.drawImage(img, 0, 0);
+            
+            // Convert to base64
+            const imgData = canvas.toDataURL('image/jpeg', 0.8);
+            
+            // Add image to PDF at top corner, full width
+            doc.addImage(imgData, 'JPEG', 0, 0, imgWidth, imgHeight);
+            
+            resolve(imgHeight + 10); // Return the Y position after the header with small margin
+          } catch (error) {
+            console.warn('Error processing header image:', error);
+            resolve(20); // Return default Y position if image fails
+          }
+        };
+        
+        img.onerror = function() {
+          console.warn('Could not load header image');
+          resolve(20); // Return default Y position if image fails to load
+        };
+        
+        // Load the image
+        img.src = 'assets/images/hero-wellbeing-final.png';
+      });
+    } catch (error) {
+      console.warn('Error loading header image:', error);
+      return 20; // Return default Y position if there's an error
     }
   }
 
-  function closeModal() {
-    modal.style.display = 'none';
-    modal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = 'auto';
-    if (document.activeElement === closeBtn || modal.contains(document.activeElement)) {
-        if (openBtn && openBtn === document.lastActiveElement) openBtn.focus();
-        else if (menuLink && menuLink === document.lastActiveElement) menuLink.focus();
+  // Download functions for Chapter 4 activities
+  document.getElementById('download-goals-review').addEventListener('click', async function() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    
+    // Add header image and get Y position
+    const startY = await addPDFHeader(doc);
+    let yPosition = startY;
+    
+    // Title
+    doc.setFontSize(18);
+    doc.setFont(undefined, 'bold');
+    doc.text('Review Your Digital Goals - My Response', 20, yPosition);
+    yPosition += 15;
+    
+    // Date
+    doc.setFontSize(10);
+    doc.setFont(undefined, 'normal');
+    doc.text(`Generated on: ${new Date().toLocaleDateString()}`, 20, yPosition);
+    yPosition += 15;
+    
+    // Progress reflection
+    const progressText = document.getElementById('progress-reflection').value;
+    if (progressText) {
+      doc.setFontSize(12);
+      doc.setFont(undefined, 'bold');
+      doc.text('Progress and Effort Reflection:', 20, yPosition);
+      yPosition += 8;
+      
+      doc.setFont(undefined, 'normal');
+      const progressLines = doc.splitTextToSize(progressText, 170);
+      doc.text(progressLines, 20, yPosition);
+      yPosition += progressLines.length * 5 + 10;
     }
-    document.lastActiveElement = null;
-  }
-  
-  document.lastActiveElement = null;
+    
+    // Insights reflection
+    const insightsText = document.getElementById('insights-reflection').value;
+    if (insightsText) {
+      doc.setFontSize(12);
+      doc.setFont(undefined, 'bold');
+      doc.text('Insights and Adjustments:', 20, yPosition);
+      yPosition += 8;
+      
+      doc.setFont(undefined, 'normal');
+      const insightsLines = doc.splitTextToSize(insightsText, 170);
+      doc.text(insightsLines, 20, yPosition);
+      yPosition += insightsLines.length * 5;
+    }
+    
+    doc.save('digital-goals-review.pdf');
+  });
 
-  if (openBtn) {
-    openBtn.addEventListener('click', function() {
-        document.lastActiveElement = this;
-        openModal();
+  document.getElementById('download-relationship-response').addEventListener('click', async function() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    
+    // Add header image and get Y position
+    const startY = await addPDFHeader(doc);
+    let yPosition = startY;
+    
+    // Title
+    doc.setFontSize(18);
+    doc.setFont(undefined, 'bold');
+    doc.text('Building a Positive Relationship With Technology - My Response', 20, yPosition);
+    yPosition += 15;
+    
+    // Date
+    doc.setFontSize(10);
+    doc.setFont(undefined, 'normal');
+    doc.text(`Generated on: ${new Date().toLocaleDateString()}`, 20, yPosition);
+    yPosition += 15;
+    
+    // Tools reflection
+    const toolsText = document.getElementById('tools-reflection').value;
+    if (toolsText) {
+      doc.setFontSize(12);
+      doc.setFont(undefined, 'bold');
+      doc.text('Tools and Daily Routine:', 20, yPosition);
+      yPosition += 8;
+      
+      doc.setFont(undefined, 'normal');
+      const toolsLines = doc.splitTextToSize(toolsText, 170);
+      doc.text(toolsLines, 20, yPosition);
+      yPosition += toolsLines.length * 5 + 10;
+    }
+    
+    // Balance reflection
+    const balanceText = document.getElementById('balance-reflection').value;
+    if (balanceText) {
+      doc.setFontSize(12);
+      doc.setFont(undefined, 'bold');
+      doc.text('Tech-Life Balance in the Future:', 20, yPosition);
+      yPosition += 8;
+      
+      doc.setFont(undefined, 'normal');
+      const balanceLines = doc.splitTextToSize(balanceText, 170);
+      doc.text(balanceLines, 20, yPosition);
+      yPosition += balanceLines.length * 5 + 10;
+    }
+    
+    // Practices reflection
+    const practicesText = document.getElementById('practices-reflection').value;
+    if (practicesText) {
+      doc.setFontSize(12);
+      doc.setFont(undefined, 'bold');
+      doc.text('Practices for Better Device Relationship:', 20, yPosition);
+      yPosition += 8;
+      
+      doc.setFont(undefined, 'normal');
+      const practicesLines = doc.splitTextToSize(practicesText, 170);
+      doc.text(practicesLines, 20, yPosition);
+      yPosition += practicesLines.length * 5;
+    }
+    
+    doc.save('positive-relationship-technology.pdf');
+  });
+
+  document.getElementById('download-balance-response').addEventListener('click', async function() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    
+    // Add header image and get Y position
+    const startY = await addPDFHeader(doc);
+    let yPosition = startY + 10;
+    
+    // Set font
+    doc.setFont("helvetica");
+    
+    // Title
+    doc.setFontSize(16);
+    doc.setFont("helvetica", "bold");
+    doc.text("Digital Well-being - Rituals for Digital Flourishing", 20, yPosition);
+    
+    // Date
+    doc.setFontSize(12);
+    doc.setFont("helvetica", "normal");
+    doc.text(`Date: ${new Date().toLocaleDateString()}`, 20, yPosition + 15);
+    yPosition += 25;
+
+    // Get data and calculate total
+    const timeData = chartData;
+    const totalHours = Object.values(timeData).reduce((sum, val) => sum + val, 0);
+    
+    // Add the pie chart image and legend if it exists
+    const canvas = document.getElementById('balance-chart-canvas');
+    if (totalHours > 0 && canvas) {
+        const chartHeight = 80; // mm
+        if (yPosition + chartHeight > 280) { doc.addPage(); yPosition = 20; }
+        
+        try {
+            const chartImage = canvas.toDataURL('image/png');
+            const chartWidth = 80; // mm
+            const xOffset = (doc.internal.pageSize.getWidth() - chartWidth) / 2;
+            doc.addImage(chartImage, 'PNG', xOffset, yPosition, chartWidth, chartHeight);
+            yPosition += chartHeight + 5;
+        } catch (e) {
+            console.error("Could not add chart to PDF:", e);
+            doc.text("Chart could not be generated in the PDF.", 20, yPosition);
+            yPosition += 10;
+        }
+
+        // Add unified allocation/legend section
+        if (yPosition > 250) { doc.addPage(); yPosition = 20; }
+        doc.setFontSize(12);
+        doc.setFont("helvetica", "bold");
+        doc.text("My Weekly Time Allocation", 20, yPosition);
+        yPosition += 8;
+
+        doc.setFontSize(10);
+        doc.setFont("helvetica", "normal");
+
+        const legendXStart = 20;
+        const legendYStart = yPosition;
+        const legendItemHeight = 7;
+        const legendColorBoxSize = 5;
+        let legendColumn = 0;
+        const maxItemsPerColumn = 4;
+        let itemCount = 0;
+
+        const activeCategories = Object.entries(timeData).filter(([key, value]) => value > 0);
+
+        activeCategories.forEach(([key, value]) => {
+            if (itemCount > 0 && itemCount % maxItemsPerColumn === 0) {
+                legendColumn++;
+                yPosition = legendYStart;
+            }
+
+            const xPos = legendXStart + (legendColumn * 95);
+            if (yPosition + legendItemHeight > 280) { doc.addPage(); yPosition = 20; }
+
+            doc.setFillColor(chartColors[key]);
+            doc.rect(xPos, yPosition, legendColorBoxSize, legendColorBoxSize, 'F');
+
+            const percentage = totalHours > 0 ? ((value / totalHours) * 100).toFixed(1) : 0;
+            const legendText = `${chartLabels[key]}: ${value} hrs (${percentage}%)`;
+            doc.text(legendText, xPos + legendColorBoxSize + 3, yPosition + legendColorBoxSize - 1);
+
+            yPosition += legendItemHeight;
+            itemCount++;
+        });
+        const numRows = Math.ceil(activeCategories.length / (legendColumn + 1));
+        yPosition = legendYStart + (numRows * legendItemHeight) + 5;
+
+        if (yPosition > 270) { doc.addPage(); yPosition = 20; }
+        doc.setFont("helvetica", "bold");
+        doc.text(`Total hours: ${totalHours} / 168`, 20, yPosition);
+        yPosition += 15;
+
+    } else {
+        // If no data, just show a message
+        doc.text("No time allocation data entered.", 20, yPosition);
+        yPosition += 15;
+    }
+    
+    // Reflection sections
+    if (yPosition > 250) { doc.addPage(); yPosition = 20; }
+    
+    doc.setFontSize(14);
+    doc.setFont("helvetica", "bold");
+    doc.text("REFLECTIONS", 20, yPosition);
+    
+    yPosition += 15;
+    doc.setFontSize(11);
+    doc.setFont("helvetica", "normal");
+    
+    const balanceObservationQuestion = "Are some slices larger than you expected? Does the balance reflect your values and priorities? Is your digital use taking more space than you'd like?";
+    const splitQuestion1 = doc.splitTextToSize(balanceObservationQuestion, 170);
+    if (yPosition + (splitQuestion1.length * 6) > 270) { doc.addPage(); yPosition = 20; }
+    doc.text(splitQuestion1, 20, yPosition);
+    yPosition += splitQuestion1.length * 6 + 10;
+    
+    const balanceObservationText = document.getElementById('balance-observation').value;
+    if (balanceObservationText) {
+      const splitReflection1 = doc.splitTextToSize(balanceObservationText, 170);
+      let remainingLines1 = [...splitReflection1];
+      while (remainingLines1.length > 0) {
+        const availableSpace = 280 - yPosition;
+        const linesPerPage = Math.floor(availableSpace / 6);
+        if (linesPerPage <= 0) { doc.addPage(); yPosition = 20; continue; }
+        const linesToAdd = remainingLines1.splice(0, linesPerPage);
+        doc.text(linesToAdd, 20, yPosition);
+        yPosition += linesToAdd.length * 6;
+        if (remainingLines1.length > 0) { doc.addPage(); yPosition = 20; }
+      }
+    } else {
+      if (yPosition > 270) { doc.addPage(); yPosition = 20; }
+      doc.setFont("helvetica", "italic");
+      doc.text("No reflection provided", 20, yPosition);
+      yPosition += 6;
+    }
+    
+    yPosition += 15;
+    
+    if (yPosition > 250) { doc.addPage(); yPosition = 20; }
+    
+    doc.setFont("helvetica", "normal");
+    const habitReductionQuestion = "Think about one or two digital habits you could reduce and write your reflection below. What could you do instead with that reclaimed time?";
+    const splitQuestion2 = doc.splitTextToSize(habitReductionQuestion, 170);
+    if (yPosition + (splitQuestion2.length * 6) > 270) { doc.addPage(); yPosition = 20; }
+    doc.text(splitQuestion2, 20, yPosition);
+    yPosition += splitQuestion2.length * 6 + 10;
+    
+    const habitReductionText = document.getElementById('habit-reduction').value;
+    if (habitReductionText) {
+      const splitReflection2 = doc.splitTextToSize(habitReductionText, 170);
+      let remainingLines2 = [...splitReflection2];
+      while (remainingLines2.length > 0) {
+        const availableSpace = 280 - yPosition;
+        const linesPerPage = Math.floor(availableSpace / 6);
+        if (linesPerPage <= 0) { doc.addPage(); yPosition = 20; continue; }
+        const linesToAdd = remainingLines2.splice(0, linesPerPage);
+        doc.text(linesToAdd, 20, yPosition);
+        yPosition += linesToAdd.length * 6;
+        if (remainingLines2.length > 0) { doc.addPage(); yPosition = 20; }
+      }
+    } else {
+      if (yPosition > 270) { doc.addPage(); yPosition = 20; }
+      doc.setFont("helvetica", "italic");
+      doc.text("No reflection provided", 20, yPosition);
+    }
+    
+    doc.save('Chapter4_Rituals_Digital_Flourishing_Response.pdf');
+  });
+
+  document.getElementById('download-assessment-response').addEventListener('click', async function() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    
+    const startY = await addPDFHeader(doc);
+    let yPosition = startY;
+    
+    doc.setFontSize(18);
+    doc.setFont(undefined, 'bold');
+    doc.text('End of Lesson Assessment: Touchpoint II - My Response', 20, yPosition);
+    yPosition += 15;
+    
+    doc.setFontSize(10);
+    doc.setFont(undefined, 'normal');
+    doc.text(`Generated on: ${new Date().toLocaleDateString()}`, 20, yPosition);
+    yPosition += 15;
+    
+    const questions = [
+      { name: 'screen-time', text: 'I have decreased my screen time.' },
+      { name: 'digital-goals', text: 'I have stuck to my Digital Goals.' },
+      { name: 'progress', text: 'I am closer to where I want to be.' },
+      { name: 'conscious-use', text: 'I have made more conscious use of my digital devices.' },
+      { name: 'feel-better', text: 'I feel better about my use of digital devices.' }
+    ];
+    
+    doc.setFontSize(12);
+    doc.setFont(undefined, 'bold');
+    doc.text('Assessment Responses (1 = completely disagree, 5 = completely agree):', 20, yPosition);
+    yPosition += 10;
+    
+    doc.setFont(undefined, 'normal');
+    questions.forEach(question => {
+      const selectedValue = document.querySelector(`input[name="${question.name}"]:checked`)?.value || 'Not answered';
+      doc.text(`${question.text} - ${selectedValue}`, 25, yPosition);
+      yPosition += 6;
     });
+    yPosition += 10;
+    
+    const wellbeingReflection = document.getElementById('wellbeing-reflection').value;
+    if (wellbeingReflection) {
+      doc.setFont(undefined, 'bold');
+      doc.text('Well-being Reflection:', 20, yPosition);
+      yPosition += 8;
+      
+      doc.setFont(undefined, 'normal');
+      const reflectionLines = doc.splitTextToSize(wellbeingReflection, 170);
+      doc.text(reflectionLines, 20, yPosition);
+      yPosition += reflectionLines.length * 5;
+    }
+    
+    doc.save('touchpoint-ii-assessment.pdf');
+  });
+}
+// Chart functionality
+let balanceChart = null;
+let chartData = {};
+let chartSegments = [];
+
+const chartColors = {
+  sleep: '#FF6384',
+  work: '#36A2EB',
+  family: '#FFCE56',
+  hobbies: '#4BC0C0',
+  digital: '#9966FF',
+  exercise: '#FF9F40',
+  social: '#FF6B9D',
+  other: '#C9CBCF'
+};
+
+const chartLabels = {
+  sleep: 'Sleep',
+  work: 'Work',
+  family: 'Family',
+  hobbies: 'Hobbies',
+  digital: 'Digital Use',
+  exercise: 'Exercise',
+  social: 'Social',
+  other: 'Other'
+};
+
+function initializeChart() {
+  const canvas = document.getElementById('balance-chart-canvas');
+  const ctx = canvas.getContext('2d');
+  
+  canvas.width = 400;
+  canvas.height = 400;
+  
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  
+  ctx.fillStyle = '#666';
+  ctx.font = '16px Arial';
+  ctx.textAlign = 'center';
+  ctx.fillText('Enter your hours to see your life balance chart', canvas.width / 2, canvas.height / 2);
+}
+
+function updateChart() {
+  const inputs = {
+    sleep: parseFloat(document.getElementById('sleep-hours').value) || 0,
+    work: parseFloat(document.getElementById('work-hours').value) || 0,
+    family: parseFloat(document.getElementById('family-hours').value) || 0,
+    hobbies: parseFloat(document.getElementById('hobbies-hours').value) || 0,
+    digital: parseFloat(document.getElementById('digital-hours').value) || 0,
+    exercise: parseFloat(document.getElementById('exercise-hours').value) || 0,
+    social: parseFloat(document.getElementById('social-hours').value) || 0,
+    other: parseFloat(document.getElementById('other-hours').value) || 0
+  };
+  
+  const total = Object.values(inputs).reduce((sum, val) => sum + val, 0);
+  const totalHoursSpan = document.getElementById('total-hours');
+  const validationMessage = document.getElementById('validation-message');
+  
+  totalHoursSpan.textContent = total;
+  
+  chartData = inputs;
+  
+  if (total > 168) {
+    validationMessage.textContent = 'Total hours exceed 168 hours per week. Please adjust your entries.';
+    validationMessage.className = 'validation-error';
+    validationMessage.style.display = 'block';
+  } else {
+    validationMessage.style.display = 'none';
   }
   
-  if (menuLink) {
-    menuLink.addEventListener('click', function(e) {
+  if (total > 0) {
+    drawPieChart(inputs, total);
+  } else {
+    initializeChart();
+  }
+}
+
+function drawPieChart(data, total) {
+  const canvas = document.getElementById('balance-chart-canvas');
+  const ctx = canvas.getContext('2d');
+  const centerX = canvas.width / 2;
+  const centerY = canvas.height / 2;
+  const radius = Math.min(centerX, centerY) - 20;
+  
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  
+  let currentAngle = -Math.PI / 2;
+  chartSegments = [];
+  
+  Object.entries(data).forEach(([key, value]) => {
+    if (value > 0) {
+      const sliceAngle = (value / total) * 2 * Math.PI;
+      
+      chartSegments.push({
+        key: key,
+        label: chartLabels[key],
+        value: value,
+        startAngle: currentAngle,
+        endAngle: currentAngle + sliceAngle,
+        color: chartColors[key]
+      });
+      
+      ctx.beginPath();
+      ctx.moveTo(centerX, centerY);
+      ctx.arc(centerX, centerY, radius, currentAngle, currentAngle + sliceAngle);
+      ctx.closePath();
+      ctx.fillStyle = chartColors[key];
+      ctx.fill();
+      ctx.strokeStyle = '#fff';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      
+      currentAngle += sliceAngle;
+    }
+  });
+}
+
+function setupTooltip() {
+  const canvas = document.getElementById('balance-chart-canvas');
+  const tooltip = document.getElementById('chart-tooltip');
+  
+  canvas.addEventListener('mousemove', function(event) {
+    if (chartSegments.length === 0) {
+      tooltip.style.display = 'none';
+      return;
+    }
+    
+    const rect = canvas.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+    
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+    const radius = Math.min(centerX, centerY) - 20;
+    
+    const distance = Math.sqrt((x - centerX) ** 2 + (y - centerY) ** 2);
+    
+    if (distance <= radius) {
+      let angle = Math.atan2(y - centerY, x - centerX);
+      if (angle < -Math.PI / 2) {
+        angle += 2 * Math.PI;
+      }
+      
+      for (const segment of chartSegments) {
+        if (angle >= segment.startAngle && angle <= segment.endAngle) {
+          showTooltip(event, segment, rect);
+          return;
+        }
+      }
+    }
+    
+    tooltip.style.display = 'none';
+  });
+  
+  canvas.addEventListener('mouseleave', function() {
+    tooltip.style.display = 'none';
+  });
+}
+
+function showTooltip(event, segment, rect) {
+  const tooltip = document.getElementById('chart-tooltip');
+  tooltip.style.display = 'block';
+  tooltip.style.left = (event.clientX - rect.left + 10) + 'px';
+  tooltip.style.top = (event.clientY - rect.top - 30) + 'px';
+  tooltip.textContent = `${segment.label}: ${segment.value} hours`;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  initializeChart();
+  setupTooltip();
+  
+  const timeInputs = document.querySelectorAll('.time-input-item input');
+  timeInputs.forEach(input => {
+    input.addEventListener('input', updateChart);
+  });
+});
+</script>
+<script>
+// Glossary Modal functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const glossaryLink = document.getElementById('glossary-menu-link');
+  const glossaryModal = document.getElementById('glossary-modal');
+  const modalClose = document.querySelector('.modal-close');
+  const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+  const mainNav = document.getElementById('main-nav');
+
+  if (glossaryLink && glossaryModal) {
+    glossaryLink.addEventListener('click', function(e) {
       e.preventDefault();
-      document.lastActiveElement = this;
-      openModal();
-      const mainNav = document.getElementById('main-nav');
-      const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-      if (mainNav && mainNav.classList.contains('active')) {
+      e.stopPropagation();
+      
+      if (mainNav && mobileMenuToggle) {
         mainNav.classList.remove('active');
         mobileMenuToggle.classList.remove('active');
         mobileMenuToggle.setAttribute('aria-expanded', 'false');
       }
+      
+      glossaryModal.style.display = 'block';
+      glossaryModal.setAttribute('aria-hidden', 'false');
+      glossaryModal.focus();
+      document.body.style.overflow = 'hidden';
     });
   }
 
-  if (closeBtn) {
-    closeBtn.addEventListener('click', closeModal);
+  function closeModal() {
+    if (glossaryModal) {
+      glossaryModal.style.display = 'none';
+      glossaryModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
   }
 
-  modal.addEventListener('click', function(e) {
-    if (e.target === modal) {
-      closeModal();
-    }
-  });
+  if (modalClose) {
+    modalClose.addEventListener('click', closeModal);
+  }
+
+  if (glossaryModal) {
+    glossaryModal.addEventListener('click', function(e) {
+      if (e.target === glossaryModal) {
+        closeModal();
+      }
+    });
+  }
 
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && modal.style.display === 'block') {
+    if (e.key === 'Escape' && glossaryModal && glossaryModal.style.display === 'block') {
       closeModal();
     }
   });
 });
-    </script>
+</script>
 </body>
 </html>
