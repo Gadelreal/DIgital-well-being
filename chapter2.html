@@ -16,263 +16,80 @@
 <style>
 /* Estilos para la navegación A-Z del glosario y las secciones */
 .glossary-az-nav {
-  padding: 10px 0;
-  margin-bottom: 15px;
-  border-bottom: 1px solid #eee;
-  text-align: left;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  padding: 15px 0 20px 0;
+  margin-bottom: 0;
+  border-bottom: 2px solid #eee;
+  text-align: center;
+  z-index: 10;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
 .glossary-az-nav a {
-  margin: 0 5px;
+  margin: 0 8px 5px 0;
   text-decoration: none;
   color: var(--primary-color);
   font-weight: bold;
-  padding: 5px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  display: inline-block;
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
+
 .glossary-az-nav a:hover,
 .glossary-az-nav a:focus {
-  text-decoration: underline;
-  background-color: #f0f0f0;
-  border-radius: 3px;
-}
-.glossary-section {
-  /* No se necesita margin-top aquí si el H3 lo maneja */
-}
-.glossary-letter-header {
-  font-size: 1.6em;
-  color: #333;
-  margin-top: 25px;
-  margin-bottom: 15px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid #ccc;
-}
-.glossary-section:first-child .glossary-letter-header {
-    margin-top: 0; /* El primer header no necesita tanto espacio arriba */
-}
-.modal-body {
-  max-height: 70vh;
-  overflow-y: auto;
-}
-.glossary-term {
-  margin-bottom: 10px; /* Espacio entre términos */
-  line-height: 1.6;
-}
-
-/* Estilos para las actividades con plantillas descargables */
-.values-activity-container {
-  background-color: #f9f9f9;
-  border: 1px solid #e0e0e0;
-  padding: 2rem;
-  padding-bottom: 3rem; /* Increased from 2.5rem to 3rem to match Lesson 1 */
-  margin: 2rem 0;
-  border-radius: 0;
-}
-
-.download-template-button {
-  display: inline-flex;
-  align-items: center;
-  padding: 1rem 2rem;
-  background-color: var(--primary-color);
-  color: white;
   text-decoration: none;
-  border-radius: 4px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem; /* Increased from 0.5rem to 1.5rem to match Lesson 1 */
-}
-
-.download-template-button:hover {
-  background-color: var(--primary-color-dark);
+  background-color: var(--primary-color);
   color: white;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-.download-template-button i {
-  margin-right: 0.5rem;
-}
-
-/* Estilos para las herramientas numeradas */
-.tools-list {
-  counter-reset: tool-counter;
-  margin: 2rem 0;
-}
-
-.tool-item {
-  counter-increment: tool-counter;
-  background-color: white;
-  border: 1px solid #e0e0e0;
-  padding: 2rem;
-  padding-top: 3.5rem;
-  margin-bottom: 1.5rem;
-  position: relative;
-  border-left: 4px solid var(--primary-color);
-  pointer-events: none;
-}
-
-.tool-item:hover {
-  background-color: white;
-  cursor: default;
-}
-
-.tool-item * {
-  pointer-events: none;
-}
-
-.tool-item::before {
-  content: counter(tool-counter);
-  position: absolute;
-  top: 20px;
-  left: 2rem; /* Changed from 0px to 2rem to align with content padding */
+.glossary-az-nav a.active {
   background-color: var(--primary-color);
   color: white;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 1rem;
-  z-index: 1;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-.tool-item h4 {
-  margin-top: 0;
-  margin-bottom: 1rem;
-  color: var(--primary-color);
-  font-weight: 600;
-}
-
-.tool-description {
-  margin-bottom: 1rem;
-  font-style: italic;
-  color: #666;
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-}
-
-.tool-description .tool-icon {
-  font-size: 2rem;
-  color: var(--primary-color);
-  margin-top: 2px;
-  flex-shrink: 0;
-}
-
-.tool-description .tool-text {
-  flex: 1;
-  line-height: 1.6;
-}
-
-/* Estilos para la evaluación */
-.assessment-container {
-  background-color: #f0f8ff;
-  border: 2px solid var(--primary-color);
-  padding: 2rem;
-  padding-bottom: 3rem; /* Increased from 2.5rem to 3rem to match Lesson 1 */
-  margin: 2rem 0;
-  border-radius: 8px;
-}
-
-.assessment-step {
+.glossary-section {
   margin-bottom: 2rem;
 }
 
-.assessment-step h4 {
-  color: var(--primary-color);
-  margin-bottom: 1rem;
+.glossary-section.hidden {
+  display: none;
 }
 
-.scale-question {
-  background-color: white;
-  border: 1px solid #ddd;
-  padding: 1.5rem;
-  margin-bottom: 1rem;
-  border-radius: 4px;
+.glossary-letter-header {
+  font-size: 1.6em;
+  color: #333;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--primary-color);
 }
 
-.scale-options {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 1rem;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+.glossary-section:first-child .glossary-letter-header {
+  margin-top: 15px;
 }
 
-.scale-option {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  min-width: 80px;
+.modal-body {
+  max-height: 70vh;
+  overflow-y: auto;
+  padding: 0;
 }
 
-.scale-option input[type="radio"] {
-  margin-bottom: 0.5rem;
-  width: 20px;
-  height: 20px;
+.glossary-terms {
+  padding: 0 2rem 2rem 2rem;
+  margin-bottom: 10px;
+  line-height: 1.6;
 }
 
-.scale-option label {
-  font-size: 0.8rem;
-  color: #666;
-  cursor: pointer;
-}
-
-.reflection-textarea {
-  width: 100%;
-  min-height: 120px;
-  padding: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-family: inherit;
-  font-size: 1rem;
-  resize: vertical;
-  margin-top: 1rem;
-}
-
-.download-response-button {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.75rem 1.5rem;
-  background-color: var(--primary-color);
-  color: white;
-  text-decoration: none;
-  border-radius: 4px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  margin-top: 1rem;
-  margin-bottom: 1.5rem; /* Increased from 0.5rem to 1.5rem to match Lesson 1 */
-  border: none;
-  cursor: pointer;
-}
-
-.download-response-button:hover {
-  background-color: var(--primary-color-dark);
-  color: white;
-  text-decoration: none;
-}
-
-@media (max-width: 768px) {
-  .scale-options {
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  .scale-option {
-    flex-direction: row;
-    min-width: auto;
-    width: 100%;
-    justify-content: flex-start;
-  }
-  
-  .scale-option input[type="radio"] {
-    margin-right: 1rem;
-    margin-bottom: 0;
-  }
+.glossary-term {
+  margin-bottom: 15px;
+  line-height: 1.6;
 }
 
 .hero-title {
@@ -291,15 +108,37 @@
   overflow: hidden;
 }
 
-/* Glossary filtering styles */
-.glossary-az-nav a.active {
-  background-color: var(--primary-color);
-  color: white;
-  border-radius: 3px;
+/* Responsive adjustments for the sticky navigation */
+@media (max-width: 768px) {
+  .glossary-az-nav {
+    padding: 12px 0 15px 0;
+  }
+  
+  .glossary-az-nav a {
+    margin: 0 4px 4px 0;
+    padding: 6px 8px;
+    font-size: 0.9rem;
+  }
+  
+  .glossary-terms {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+  }
 }
 
-.glossary-section.hidden {
-  display: none;
+@media (max-width: 480px) {
+  .glossary-az-nav {
+    padding: 10px 0 12px 0;
+  }
+  
+  .glossary-az-nav a {
+    margin: 0 3px 3px 0;
+    padding: 5px 6px;
+    font-size: 0.8rem;
+  }
+  
+  .glossary-terms {
+    padding: 0 1rem 1rem 1rem;
+  }
 }
 </style>
 </head>
@@ -904,24 +743,23 @@
     </div>
     <div class="modal-body">
       <nav class="glossary-az-nav" aria-label="Glossary A-Z Navigation">
-        <a href="#" data-filter="all" class="active">ALL</a>
-        <a href="#" data-filter="a">A</a>
-        <a href="#" data-filter="b">B</a>
-        <a href="#" data-filter="c">C</a>
-        <a href="#" data-filter="d">D</a>
-        <a href="#" data-filter="e">E</a>
-        <a href="#" data-filter="f">F</a>
-        <a href="#" data-filter="h">H</a>
-        <a href="#" data-filter="m">M</a>
-        <a href="#" data-filter="n">N</a>
-        <a href="#" data-filter="p">P</a>
-        <a href="#" data-filter="r">R</a>
-        <a href="#" data-filter="s">S</a>
-        <a href="#" data-filter="t">T</a>
-        <a href="#" data-filter="w">W</a>
+        <a href="#glossary-section-a">A</a>
+        <a href="#glossary-section-b">B</a>
+        <a href="#glossary-section-c">C</a>
+        <a href="#glossary-section-d">D</a>
+        <a href="#glossary-section-e">E</a>
+        <a href="#glossary-section-f">F</a>
+        <a href="#glossary-section-h">H</a>
+        <a href="#glossary-section-m">M</a>
+        <a href="#glossary-section-n">N</a>
+        <a href="#glossary-section-p">P</a>
+        <a href="#glossary-section-r">R</a>
+        <a href="#glossary-section-s">S</a>
+        <a href="#glossary-section-t">T</a>
+        <a href="#glossary-section-w">W</a>
       </nav>
       <div class="glossary-terms">
-        <div id="glossary-section-a" class="glossary-section" data-letter="a">
+        <div id="glossary-section-a" class="glossary-section">
           <h3 class="glossary-letter-header">A</h3>
           <div class="glossary-term">
             <strong>Accountability Buddy</strong> – A supportive partner who helps track progress and encourages consistency in digital well-being goals.
@@ -933,7 +771,7 @@
             <strong>Autonomy (Self-Determination Theory)</strong> – The ability to make choices about digital engagement that align with personal values and goals.
           </div>
         </div>
-        <div id="glossary-section-b" class="glossary-section" data-letter="b">
+        <div id="glossary-section-b" class="glossary-section">
           <h3 class="glossary-letter-header">B</h3>
           <div class="glossary-term">
             <strong>Brain Cognition</strong> – The way the brain processes information, impacted by digital habits such as screen time and multitasking.
@@ -1061,125 +899,438 @@
   </div>
 </div>
 
-<!-- VideoJS JavaScript -->
-<script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
-<script src="js/video-player.js"></script>
-<script src="js/key-points.js"></script>
-<script src="js/reflections.js"></script>
-<script src="js/main.js"></script>
-<script>
-// Session Storage Functions for Chapter 3 Activities
-function saveToSession(key, value) {
-  try {
-    sessionStorage.setItem(`chapter3_${key}`, JSON.stringify(value));
-  } catch (error) {
-    console.warn('Could not save to session storage:', error);
-  }
-}
+  <!-- VideoJS JavaScript -->
+  <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
+  <script src="js/video-player.js"></script>
+  <script src="js/key-points.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/reflections.js"></script>
+  <script src="js/logo-checker.js"></script>
+  <script>
+    // Función para descargar el template de metas digitales
+    function downloadDigitalGoalsTemplate() {
+      const content = `DIGITAL GOALS SETTING TEMPLATE
 
-function loadFromSession(key) {
-  try {
-    const value = sessionStorage.getItem(`chapter3_${key}`);
-    return value ? JSON.parse(value) : null;
-  } catch (error) {
-    console.warn('Could not load from session storage:', error);
-    return null;
-  }
-}
+Instructions: Use this template to set meaningful digital goals that align with your values and motivations. Remember to use the SMART framework (Specific, Measurable, Achievable, Relevant, Time-bound).
 
-// Load saved responses on page load
-function loadSavedResponses() {
-  // Load attention activity responses
-  for (let i = 1; i <= 4; i++) {
-    const savedValue = loadFromSession(`attention_${i}`);
-    if (savedValue) {
-      const dropdown = document.getElementById(`attention-${i}`);
-      if (dropdown) {
-        dropdown.value = savedValue;
-      }
+1. CURRENT DIGITAL HABITS ASSESSMENT
+
+What are your current digital habits that you'd like to change or improve?
+_________________________________________________________________
+_________________________________________________________________
+_________________________________________________________________
+
+Which digital behaviors are supporting your well-being?
+_________________________________________________________________
+_________________________________________________________________
+_________________________________________________________________
+
+Which digital behaviors are detracting from your well-being?
+_________________________________________________________________
+_________________________________________________________________
+_________________________________________________________________
+
+2. VALUES AND MOTIVATION CONNECTION
+
+How do your core values relate to your desired digital changes?
+_________________________________________________________________
+_________________________________________________________________
+_________________________________________________________________
+
+What motivates you most to improve your digital well-being? (Consider autonomy, competence, and relatedness)
+_________________________________________________________________
+_________________________________________________________________
+_________________________________________________________________
+
+3. SMART DIGITAL GOALS
+
+Goal 1:
+Specific: What exactly do you want to achieve?
+_________________________________________________________________
+
+Measurable: How will you track progress?
+_________________________________________________________________
+
+Achievable: Is this goal realistic for you?
+_________________________________________________________________
+
+Relevant: How does this align with your values and motivations?
+_________________________________________________________________
+
+Time-bound: What's your timeline?
+_________________________________________________________________
+
+SMART Goal Statement:
+_________________________________________________________________
+_________________________________________________________________
+
+Goal 2:
+Specific: What exactly do you want to achieve?
+_________________________________________________________________
+
+Measurable: How will you track progress?
+_________________________________________________________________
+
+Achievable: Is this goal realistic for you?
+_________________________________________________________________
+
+Relevant: How does this align with your values and motivations?
+_________________________________________________________________
+
+Time-bound: What's your timeline?
+_________________________________________________________________
+
+SMART Goal Statement:
+_________________________________________________________________
+_________________________________________________________________
+
+Goal 3:
+Specific: What exactly do you want to achieve?
+_________________________________________________________________
+
+Measurable: How will you track progress?
+_________________________________________________________________
+
+Achievable: Is this goal realistic for you?
+_________________________________________________________________
+
+Relevant: How does this align with your values and motivations?
+_________________________________________________________________
+
+Time-bound: What's your timeline?
+_________________________________________________________________
+
+SMART Goal Statement:
+_________________________________________________________________
+_________________________________________________________________
+
+4. ACTION PLANNING
+
+What specific steps will you take to achieve Goal 1?
+Step 1: ________________________________________________________
+Step 2: ________________________________________________________
+Step 3: ________________________________________________________
+
+What potential obstacles might you face, and how will you overcome them?
+Obstacle: _____________________________________________________
+Solution: _____________________________________________________
+
+Obstacle: _____________________________________________________
+Solution: _____________________________________________________
+
+5. SUPPORT AND ACCOUNTABILITY
+
+Who can support you in achieving these goals?
+_________________________________________________________________
+
+How will you track your progress?
+_________________________________________________________________
+
+How will you celebrate your successes?
+_________________________________________________________________
+
+6. REFLECTION AND ADJUSTMENT
+
+How often will you review and adjust your goals?
+_________________________________________________________________
+
+What will you do if you don't meet a goal by the deadline?
+_________________________________________________________________
+
+COMMITMENT STATEMENT:
+I commit to working toward these digital well-being goals because they align with my values and will help me live more intentionally. I understand that change takes time and I will be patient and kind with myself throughout this journey.
+
+Signature: _________________________ Date: _________________
+
+---
+Review this template regularly and adjust your goals as needed. Remember, digital well-being is a journey, not a destination.`;
+
+      const blob = new Blob([content], { type: 'text/plain' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'Digital_Goals_Setting_Template.txt';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
     }
-  }
 
-  // Load quiz responses
-  const savedQuizResponses = loadFromSession('quiz_responses');
-  if (savedQuizResponses) {
-    Object.keys(savedQuizResponses).forEach(questionId => {
-      const selectedOption = savedQuizResponses[questionId];
-      const optionElement = document.querySelector(`[data-question="${questionId}"] [data-option="${selectedOption}"]`);
-      if (optionElement) {
-        optionElement.classList.add('selected');
-      }
-    });
-  }
+    // Función para descargar el template de fortalezas de carácter
+    function downloadCharacterStrengthsTemplate() {
+      const content = `CHARACTER STRENGTHS FOR DIGITAL WELL-BEING TEMPLATE
 
-  // Load reflection response
-  const savedReflection = loadFromSession('sleep_reflection');
-  if (savedReflection) {
-    const reflectionTextarea = document.getElementById('sleep-reflection');
-    if (reflectionTextarea) {
-      reflectionTextarea.value = savedReflection;
+Instructions: After completing the VIA Character Strengths survey, use this template to explore how your top strengths can support your digital well-being journey.
+
+1. YOUR VIA SURVEY RESULTS
+
+List your top 5 character strengths from the VIA survey:
+
+1. ________________________
+2. ________________________
+3. ________________________
+4. ________________________
+5. ________________________
+
+2. STRENGTHS REFLECTION
+
+For each of your top 5 strengths, reflect on the following:
+
+STRENGTH 1: ________________________
+
+How does this strength show up in your daily life?
+_________________________________________________________________
+_________________________________________________________________
+
+How could you use this strength to improve your digital habits?
+_________________________________________________________________
+_________________________________________________________________
+
+Specific example of applying this strength to digital well-being:
+_________________________________________________________________
+_________________________________________________________________
+
+STRENGTH 2: ________________________
+
+How does this strength show up in your daily life?
+_________________________________________________________________
+_________________________________________________________________
+
+How could you use this strength to improve your digital habits?
+_________________________________________________________________
+_________________________________________________________________
+
+Specific example of applying this strength to digital well-being:
+_________________________________________________________________
+_________________________________________________________________
+
+STRENGTH 3: ________________________
+
+How does this strength show up in your daily life?
+_________________________________________________________________
+_________________________________________________________________
+
+How could you use this strength to improve your digital habits?
+_________________________________________________________________
+_________________________________________________________________
+
+Specific example of applying this strength to digital well-being:
+_________________________________________________________________
+_________________________________________________________________
+
+STRENGTH 4: ________________________
+
+How does this strength show up in your daily life?
+_________________________________________________________________
+_________________________________________________________________
+
+How could you use this strength to improve your digital habits?
+_________________________________________________________________
+_________________________________________________________________
+
+Specific example of applying this strength to digital well-being:
+_________________________________________________________________
+_________________________________________________________________
+
+STRENGTH 5: ________________________
+
+How does this strength show up in your daily life?
+_________________________________________________________________
+_________________________________________________________________
+
+How could you use this strength to improve your digital habits?
+_________________________________________________________________
+_________________________________________________________________
+
+Specific example of applying this strength to digital well-being:
+_________________________________________________________________
+_________________________________________________________________
+
+3. CONNECTING STRENGTHS TO YOUR DIGITAL GOALS
+
+Review your digital goals from the previous activity. How can your character strengths help you achieve these goals?
+
+Goal 1: ________________________________________________________
+Supporting strengths: __________________________________________
+How they'll help: ______________________________________________
+_________________________________________________________________
+
+Goal 2: ________________________________________________________
+Supporting strengths: __________________________________________
+How they'll help: ______________________________________________
+_________________________________________________________________
+
+Goal 3: ________________________________________________________
+Supporting strengths: __________________________________________
+How they'll help: ______________________________________________
+_________________________________________________________________
+
+4. OVERCOMING CHALLENGES WITH STRENGTHS
+
+What challenges do you anticipate in your digital well-being journey?
+Challenge 1: ___________________________________________________
+Which strength(s) can help: ____________________________________
+How: __________________________________________________________
+
+Challenge 2: ___________________________________________________
+Which strength(s) can help: ____________________________________
+How: __________________________________________________________
+
+Challenge 3: ___________________________________________________
+Which strength(s) can help: ____________________________________
+How: __________________________________________________________
+
+5. STRENGTHS-BASED ACTION PLAN
+
+Based on your character strengths, create specific actions you can take this week:
+
+This week, I will use my strength of _________________________ to:
+_________________________________________________________________
+
+This week, I will use my strength of _________________________ to:
+_________________________________________________________________
+
+This week, I will use my strength of _________________________ to:
+_________________________________________________________________
+
+6. SELF-COMPASSION AND GROWTH
+
+How will you practice self-kindness when facing setbacks in your digital well-being journey?
+_________________________________________________________________
+_________________________________________________________________
+
+How can your strengths help you maintain a growth mindset?
+_________________________________________________________________
+_________________________________________________________________
+
+REFLECTION:
+What insights have you gained about how your character strengths can support your digital well-being?
+_________________________________________________________________
+_________________________________________________________________
+_________________________________________________________________
+
+---
+Remember: Your character strengths are your superpowers. Use them wisely and compassionately as you work toward healthier digital habits.`;
+
+      const blob = new Blob([content], { type: 'text/plain' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'Character_Strengths_Digital_Wellbeing_Template.txt';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
     }
-  }
-}
-</script>
-<!-- Glossary Modal functionality -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const glossaryModal = document.getElementById('glossary-modal');
-  const glossaryMenuLink = document.getElementById('glossary-menu-link');
-  const modalClose = document.querySelector('.modal-close');
-  const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-  const mainNav = document.getElementById('main-nav');
 
-  if (glossaryMenuLink) {
-    glossaryMenuLink.addEventListener('click', function(e) {
-      e.preventDefault();
-      if (glossaryModal) {
-        glossaryModal.style.display = 'block';
-        glossaryModal.setAttribute('aria-hidden', 'false');
-        
-        // Close mobile menu if open
-        if (mainNav && mainNav.classList.contains('active')) {
-          mainNav.classList.remove('active');
-          if (mobileMenuToggle) {
-            mobileMenuToggle.setAttribute('aria-expanded', 'false');
+    // Accordion functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const accordionTriggers = document.querySelectorAll('.accordion-trigger');
+      
+      accordionTriggers.forEach(trigger => {
+        trigger.addEventListener('click', function() {
+          const panel = this.parentElement.nextElementSibling;
+          const icon = this.querySelector('.accordion-icon');
+          const isExpanded = this.getAttribute('aria-expanded') === 'true';
+          
+          // Close all other panels
+          accordionTriggers.forEach(otherTrigger => {
+            if (otherTrigger !== this) {
+              const otherPanel = otherTrigger.parentElement.nextElementSibling;
+              const otherIcon = otherTrigger.querySelector('.accordion-icon');
+              otherTrigger.setAttribute('aria-expanded', 'false');
+              otherPanel.classList.remove('expanded');
+              otherIcon.textContent = '+';
+            }
+          });
+          
+          // Toggle current panel
+          if (isExpanded) {
+            this.setAttribute('aria-expanded', 'false');
+            panel.classList.remove('expanded');
+            icon.textContent = '+';
+          } else {
+            this.setAttribute('aria-expanded', 'true');
+            panel.classList.add('expanded');
+            icon.textContent = '−';
           }
-        }
+        });
         
-        // Focus on modal for accessibility
-        glossaryModal.focus();
+        // Initialize icon
+        const icon = trigger.querySelector('.accordion-icon');
+        icon.textContent = '+';
+      });
+    });
+
+// Glossary Modal Functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const modal = document.getElementById('glossary-modal');
+  const openBtn = document.getElementById('open-glossary');
+  const menuLink = document.getElementById('glossary-menu-link');
+  const closeBtn = modal.querySelector('.modal-close');
+
+  function openModal() {
+    modal.style.display = 'block';
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    const firstFocusableElement = modal.querySelector('.modal-close, .glossary-az-nav a');
+    if (firstFocusableElement) {
+        firstFocusableElement.focus();
+    }
+  }
+
+  function closeModal() {
+    modal.style.display = 'none';
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = 'auto';
+    if (document.activeElement === closeBtn || modal.contains(document.activeElement)) {
+        if (openBtn && openBtn === document.lastActiveElement) openBtn.focus();
+        else if (menuLink && menuLink === document.lastActiveElement) menuLink.focus();
+    }
+    document.lastActiveElement = null;
+  }
+  
+  document.lastActiveElement = null;
+
+  if (openBtn) {
+    openBtn.addEventListener('click', function() {
+        document.lastActiveElement = this;
+        openModal();
+    });
+  }
+  
+  if (menuLink) {
+    menuLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.lastActiveElement = this;
+      openModal();
+      const mainNav = document.getElementById('main-nav');
+      const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+      if (mainNav && mainNav.classList.contains('active')) {
+        mainNav.classList.remove('active');
+        mobileMenuToggle.classList.remove('active');
+        mobileMenuToggle.setAttribute('aria-expanded', 'false');
       }
     });
   }
 
-  // Close modal functionality
-  if (modalClose) {
-    modalClose.addEventListener('click', function() {
-      if (glossaryModal) {
-        glossaryModal.style.display = 'none';
-        glossaryModal.setAttribute('aria-hidden', 'true');
-      }
-    });
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeModal);
   }
 
-  // Close modal when clicking outside
-  if (glossaryModal) {
-    glossaryModal.addEventListener('click', function(e) {
-      if (e.target === glossaryModal) {
-        glossaryModal.style.display = 'none';
-        glossaryModal.setAttribute('aria-hidden', 'true');
-      }
-    });
-  }
+  modal.addEventListener('click', function(e) {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
 
-  // Close modal with Escape key
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && glossaryModal && glossaryModal.style.display === 'block') {
-      glossaryModal.style.display = 'none';
-      glossaryModal.setAttribute('aria-hidden', 'true');
+    if (e.key === 'Escape' && modal.style.display === 'block') {
+      closeModal();
     }
   });
 });
-</script>
+    </script>
 </body>
 </html>
