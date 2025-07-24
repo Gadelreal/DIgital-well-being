@@ -12,7 +12,48 @@
 <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
 <style>
-
+/* Estilos para la navegación A-Z del glosario y las secciones */
+.glossary-az-nav {
+  padding: 10px 0;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+.glossary-az-nav a {
+  margin: 0 5px;
+  text-decoration: none;
+  color: var(--primary-color);
+  font-weight: bold;
+  padding: 5px;
+}
+.glossary-az-nav a:hover,
+.glossary-az-nav a:focus {
+  text-decoration: underline;
+  background-color: #f0f0f0;
+  border-radius: 3px;
+}
+.glossary-section {
+  /* No se necesita margin-top aquí si el H3 lo maneja */
+}
+.glossary-letter-header {
+  font-size: 1.6em;
+  color: #333;
+  margin-top: 25px;
+  margin-bottom: 15px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #ccc;
+}
+.glossary-section:first-child .glossary-letter-header {
+    margin-top: 0; /* El primer header no necesita tanto espacio arriba */
+}
+.modal-body {
+  max-height: 70vh;
+  overflow-y: auto;
+}
+.glossary-term {
+  margin-bottom: 10px; /* Espacio entre términos */
+  line-height: 1.6;
+}
 /* Margen para el contenedor de la actividad del quiz */
 .quiz-activity-container {
   margin-bottom: 3rem;
@@ -538,6 +579,7 @@
             To view this video please enable JavaScript, and consider upgrading to a
             web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
           </p>
+          <track kind="captions" src="captions/the-wake-up-call.vtt" srclang="en" label="English" default>
         </video>
       </div>
     </section>
@@ -561,6 +603,7 @@
             To view this video please enable JavaScript, and consider upgrading to a
             web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
           </p>
+          <track kind="captions" src="captions/what-is-digital-wellbeing.vtt" srclang="en" label="English" default>
         </video>
       </div>
       
@@ -685,6 +728,7 @@
             To view this video please enable JavaScript, and consider upgrading to a
             web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
           </p>
+          <track kind="captions" src="captions/raising-awareness.vtt" srclang="en" label="English" default>
         </video>
       </div>
       
@@ -714,6 +758,7 @@
             To view this video please enable JavaScript, and consider upgrading to a
             web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
           </p>
+          <track kind="captions" src="captions/what-motivates-you.vtt" srclang="en" label="English" default>
         </video>
       </div>
       
@@ -773,6 +818,7 @@
             To view this video please enable JavaScript, and consider upgrading to a
             web browser that <a href="https://videojs.js.com/html5-video-support/" target="_blank">supports HTML5 video</a>
           </p>
+          <track kind="captions" src="captions/aligning-values.vtt" srclang="en" label="English" default>
         </video>
       </div>
       
@@ -861,6 +907,7 @@
             To view this video please enable JavaScript, and consider upgrading to a
             web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
           </p>
+          <track kind="captions" src="captions/using-character-strengths.vtt" srclang="en" label="English" default>
         </video>
       </div>
       
@@ -1087,6 +1134,7 @@
 </div>
 </footer>
 
+<!-- Glossary Modal -->
 <div id="glossary-modal" class="modal" role="dialog" aria-labelledby="glossary-modal-title" aria-hidden="true">
   <div class="modal-content">
     <div class="modal-header">
@@ -1095,24 +1143,23 @@
     </div>
     <div class="modal-body">
       <nav class="glossary-az-nav" aria-label="Glossary A-Z Navigation">
-        <a href="#" data-filter="all" class="active">ALL</a>
-        <a href="#" data-filter="a">A</a>
-        <a href="#" data-filter="b">B</a>
-        <a href="#" data-filter="c">C</a>
-        <a href="#" data-filter="d">D</a>
-        <a href="#" data-filter="e">E</a>
-        <a href="#" data-filter="f">F</a>
-        <a href="#" data-filter="h">H</a>
-        <a href="#" data-filter="m">M</a>
-        <a href="#" data-filter="n">N</a>
-        <a href="#" data-filter="p">P</a>
-        <a href="#" data-filter="r">R</a>
-        <a href="#" data-filter="s">S</a>
-        <a href="#" data-filter="t">T</a>
-        <a href="#" data-filter="w">W</a>
+        <a href="#glossary-section-a">A</a>
+        <a href="#glossary-section-b">B</a>
+        <a href="#glossary-section-c">C</a>
+        <a href="#glossary-section-d">D</a>
+        <a href="#glossary-section-e">E</a>
+        <a href="#glossary-section-f">F</a>
+        <a href="#glossary-section-h">H</a>
+        <a href="#glossary-section-m">M</a>
+        <a href="#glossary-section-n">N</a>
+        <a href="#glossary-section-p">P</a>
+        <a href="#glossary-section-r">R</a>
+        <a href="#glossary-section-s">S</a>
+        <a href="#glossary-section-t">T</a>
+        <a href="#glossary-section-w">W</a>
       </nav>
       <div class="glossary-terms">
-        <div id="glossary-section-a" class="glossary-section" data-letter="a">
+        <div id="glossary-section-a" class="glossary-section">
           <h3 class="glossary-letter-header">A</h3>
           <div class="glossary-term">
             <strong>Accountability Buddy</strong> – A supportive partner who helps track progress and encourages consistency in digital well-being goals.
@@ -1124,7 +1171,7 @@
             <strong>Autonomy (Self-Determination Theory)</strong> – The ability to make choices about digital engagement that align with personal values and goals.
           </div>
         </div>
-        <div id="glossary-section-b" class="glossary-section" data-letter="b">
+        <div id="glossary-section-b" class="glossary-section">
           <h3 class="glossary-letter-header">B</h3>
           <div class="glossary-term">
             <strong>Brain Cognition</strong> – The way the brain processes information, impacted by digital habits such as screen time and multitasking.
@@ -1133,7 +1180,7 @@
             <strong>Behavioral Science</strong> – The study of how people form digital habits and how technology influences decision-making.
           </div>
         </div>
-        <div id="glossary-section-c" class="glossary-section" data-letter="c">
+        <div id="glossary-section-c" class="glossary-section">
           <h3 class="glossary-letter-header">C</h3>
           <div class="glossary-term">
             <strong>Character Strengths</strong> – Personal strengths (e.g., curiosity, self-regulation) that can be leveraged to cultivate healthy digital habits.
@@ -1145,7 +1192,7 @@
             <strong>Core Values</strong> – Fundamental beliefs that guide digital habits and decision-making.
           </div>
         </div>
-        <div id="glossary-section-d" class="glossary-section" data-letter="d">
+        <div id="glossary-section-d" class="glossary-section">
           <h3 class="glossary-letter-header">D</h3>
           <div class="glossary-term">
             <strong>Digital Detox</strong> – A period of time spent without digital devices to reset habits and improve well-being.
@@ -1163,7 +1210,7 @@
             <strong>Digital Minimalism</strong> – A philosophy advocating for intentional and purposeful use of technology to enhance well-being.
           </div>
         </div>
-        <div id="glossary-section-e" class="glossary-section" data-letter="e">
+        <div id="glossary-section-e" class="glossary-section">
           <h3 class="glossary-letter-header">E</h3>
           <div class="glossary-term">
             <strong>Empathy and Technology</strong> – The relationship between digital interactions and emotional intelligence, including how technology can impact social connections.
@@ -1172,7 +1219,7 @@
             <strong>Energy Management</strong> – Strategies to prevent digital fatigue and optimize energy levels in a tech-heavy world.
           </div>
         </div>
-        <div id="glossary-section-f" class="glossary-section" data-letter="f">
+        <div id="glossary-section-f" class="glossary-section">
           <h3 class="glossary-letter-header">F</h3>
           <div class="glossary-term">
             <strong>Focus & Productivity</strong> – The ability to maintain attention and effectiveness in work and life, often challenged by digital distractions.
@@ -1181,13 +1228,13 @@
             <strong>Flourishing (Well-being Theory)</strong> – The state of thriving in multiple aspects of life, including physical, mental, emotional, and digital well-being.
           </div>
         </div>
-        <div id="glossary-section-h" class="glossary-section" data-letter="h">
+        <div id="glossary-section-h" class="glossary-section">
           <h3 class="glossary-letter-header">H</h3>
           <div class="glossary-term">
             <strong>Habit Loop</strong> – A framework for understanding habit formation, consisting of cue, routine, and reward, applicable to digital behaviors.
           </div>
         </div>
-        <div id="glossary-section-m" class="glossary-section" data-letter="m">
+        <div id="glossary-section-m" class="glossary-section">
           <h3 class="glossary-letter-header">M</h3>
           <div class="glossary-term">
             <strong>Mindfulness in Technology Use</strong> – Practicing present-moment awareness to create intentional and balanced digital interactions.
@@ -1196,13 +1243,13 @@
             <strong>Motivation (Self-Determination Theory)</strong> – Internal and external factors that influence engagement with technology, including autonomy, competence, and relatedness.
           </div>
         </div>
-        <div id="glossary-section-n" class="glossary-section" data-letter="n">
+        <div id="glossary-section-n" class="glossary-section">
           <h3 class="glossary-letter-header">N</h3>
           <div class="glossary-term">
             <strong>Notification Management</strong> – Strategies to reduce interruptions and increase focus, such as disabling non-essential alerts.
           </div>
         </div>
-        <div id="glossary-section-p" class="glossary-section" data-letter="p">
+        <div id="glossary-section-p" class="glossary-section">
           <h3 class="glossary-letter-header">P</h3>
           <div class="glossary-term">
             <strong>Prefrontal Cortex</strong> – The part of the brain responsible for decision-making and impulse control, which is affected by digital engagement.
@@ -1211,40 +1258,48 @@
             <strong>Psychological Safety and Technology</strong> – The impact of digital environments on emotional well-being and security.
           </div>
         </div>
-        <div id="glossary-section-r" class="glossary-section" data-letter="r">
+        <div id="glossary-section-r" class="glossary-section">
           <h3 class="glossary-letter-header">R</h3>
           <div class="glossary-term">
             <strong>Reflection Practice</strong> – Periodic self-check-ins to assess digital habits and their alignment with personal values.
           </div>
         </div>
-        <div id="glossary-section-s" class="glossary-section" data-letter="s">
+        <div id="glossary-section-s" class="glossary-section">
+          <h3 class="glossary-letter-header">S</h3>
+        <div id="glossary-section-s" class="glossary-section">
           <h3 class="glossary-letter-header">S</h3>
           <div class="glossary-term">
-            <strong>Screen Time Awareness</strong> – Conscious tracking of time spent on digital devices to maintain a balanced lifestyle.
+            <strong>Screen Time</strong> – The amount of time spent using digital devices, which can impact physical and mental health.
           </div>
           <div class="glossary-term">
-            <strong>Self-Regulation</strong> – The ability to control impulses and make mindful choices in digital interactions.
+            <strong>Self-Compassion</strong> – Treating oneself with kindness and understanding, especially when facing challenges in digital well-being.
           </div>
           <div class="glossary-term">
-            <strong>Social Media Hygiene</strong> – Practices for maintaining a healthy relationship with social platforms, including curating content and setting boundaries.
+            <strong>Self-Determination Theory</strong> – A psychological framework that emphasizes the importance of autonomy, competence, and relatedness in motivation and well-being.
+          </div>
+          <div class="glossary-term">
+            <strong>SMART Goals</strong> – Specific, Measurable, Achievable, Relevant, and Time-bound objectives for improving digital habits.
+          </div>
+          <div class="glossary-term">
+            <strong>Social Media Literacy</strong> – The ability to critically evaluate and engage with social media content in a healthy and informed manner.
+          </div>
+          <div class="glossary-term">
+            <strong>Soul (Well-being Theory)</strong> – The aspect of well-being related to purpose, values, and meaning in life, influenced by digital habits.
           </div>
         </div>
-        <div id="glossary-section-t" class="glossary-section" data-letter="t">
+        <div id="glossary-section-t" class="glossary-section">
           <h3 class="glossary-letter-header">T</h3>
           <div class="glossary-term">
-            <strong>Tech-Life Balance</strong> – The intentional effort to harmonize technology use with overall well-being.
+            <strong>Technology Addiction</strong> – A behavioral pattern characterized by excessive and compulsive use of digital devices, leading to negative consequences.
           </div>
           <div class="glossary-term">
-            <strong>Triggers in Digital Use</strong> – Environmental or psychological cues that prompt certain digital habits, such as checking the phone out of boredom.
-          </div>
-          <div class="glossary-term">
-            <strong>Two-Edge Effect of Technology</strong> – The concept that digital tools can both enhance and hinder well-being, depending on usage patterns.
+            <strong>Time Management</strong> – Strategies to balance digital activities with other important aspects of life, such as work, relationships, and self-care.
           </div>
         </div>
-        <div id="glossary-section-w" class="glossary-section" data-letter="w">
+        <div id="glossary-section-w" class="glossary-section">
           <h3 class="glossary-letter-header">W</h3>
           <div class="glossary-term">
-            <strong>Willpower and Digital Use</strong> – The ability to resist distractions and build positive technology habits.
+            <strong>Well-being Theory</strong> – A framework that encompasses various dimensions of well-being, including physical, mental, emotional, social, and digital aspects.
           </div>
         </div>
       </div>
@@ -1260,8 +1315,6 @@
   <script src="js/main.js"></script>
   <script src="js/reflections.js"></script>
   <script src="js/logo-checker.js"></script>
-  <script src="js/glossary.js"></script>
-
   <script>
     // Función para descargar el template de metas digitales
     function downloadDigitalGoalsTemplate() {
@@ -1618,7 +1671,74 @@ Remember: Your character strengths are your superpowers. Use them wisely and com
       });
     });
 
+// Glossary Modal Functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const modal = document.getElementById('glossary-modal');
+  const openBtn = document.getElementById('open-glossary');
+  const menuLink = document.getElementById('glossary-menu-link');
+  const closeBtn = modal.querySelector('.modal-close');
 
+  function openModal() {
+    modal.style.display = 'block';
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    const firstFocusableElement = modal.querySelector('.modal-close, .glossary-az-nav a');
+    if (firstFocusableElement) {
+        firstFocusableElement.focus();
+    }
+  }
+
+  function closeModal() {
+    modal.style.display = 'none';
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = 'auto';
+    if (document.activeElement === closeBtn || modal.contains(document.activeElement)) {
+        if (openBtn && openBtn === document.lastActiveElement) openBtn.focus();
+        else if (menuLink && menuLink === document.lastActiveElement) menuLink.focus();
+    }
+    document.lastActiveElement = null;
+  }
+  
+  document.lastActiveElement = null;
+
+  if (openBtn) {
+    openBtn.addEventListener('click', function() {
+        document.lastActiveElement = this;
+        openModal();
+    });
+  }
+  
+  if (menuLink) {
+    menuLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.lastActiveElement = this;
+      openModal();
+      const mainNav = document.getElementById('main-nav');
+      const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+      if (mainNav && mainNav.classList.contains('active')) {
+        mainNav.classList.remove('active');
+        mobileMenuToggle.classList.remove('active');
+        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeModal);
+  }
+
+  modal.addEventListener('click', function(e) {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && modal.style.display === 'block') {
+      closeModal();
+    }
+  });
+});
   </script>
 </body>
 </html>
