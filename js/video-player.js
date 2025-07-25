@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
         player.el().appendChild(logoOverlay)
       }
 
-      // Remove English CC tracks
+/*      // Remove English CC tracks
       const removeEnglishCC = (player) => {
         const tracks = player.textTracks()
 
@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
         })
       }
 
-      removeEnglishCC(player)
+      removeEnglishCC(player)*/
     })
 
     // Marcar video como visto cuando termine
