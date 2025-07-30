@@ -3514,7 +3514,8 @@ html:focus,
 .quiz-submit,
 .survey-submit,
 .quiz-submit-btn,
-.final-quiz-submit {
+.final-quiz-submit,
+.check-answers-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -3541,7 +3542,8 @@ html:focus,
 .quiz-submit:hover,
 .survey-submit:hover,
 .quiz-submit-btn:hover,
-.final-quiz-submit:hover {
+.final-quiz-submit:hover,
+.check-answers-btn:hover {
   background-color: var(--primary-color-dark) !important;
   color: white !important;
   transform: translateY(-2px);
@@ -3561,7 +3563,8 @@ html:focus,
 .quiz-submit i,
 .survey-submit i,
 .quiz-submit-btn i,
-.final-quiz-submit i {
+.final-quiz-submit i,
+.check-answers-btn i {
   margin-right: 0.5rem;
 }
 
