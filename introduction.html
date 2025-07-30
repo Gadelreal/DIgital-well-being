@@ -62,6 +62,88 @@
     padding: 0 1rem 1rem 1rem;
   }
 }
+
+/* Survey Section Styles */
+.survey-section {
+  background-color: #f8f9fa;
+  padding: 2rem;
+  border-radius: 8px;
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.survey-note {
+  background-color: #e3f2fd;
+  border-left: 4px solid #2196f3;
+  padding: 1rem;
+  margin: 1.5rem 0;
+  border-radius: 4px;
+}
+
+.survey-note p {
+  margin: 0;
+  font-style: italic;
+  color: #1565c0;
+}
+
+.survey-link-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #DB0086;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  border: none;
+  cursor: pointer;
+}
+
+.survey-link-button:hover {
+  background-color: #b8006b;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(219, 0, 134, 0.3);
+  color: white;
+  text-decoration: none;
+}
+
+.survey-link-button:focus {
+  outline: 2px solid #DB0086;
+  outline-offset: 2px;
+}
+
+.survey-link-button i {
+  font-size: 1rem;
+}
+
+/* Responsive adjustments for survey section */
+@media (max-width: 768px) {
+  .survey-section {
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+  }
+  
+  .survey-link-button {
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .survey-section {
+    padding: 1rem;
+    margin: 1rem 0;
+  }
+  
+  .survey-link-button {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.95rem;
+  }
+}
 </style>
 </head>
 <body>
