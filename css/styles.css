@@ -4932,3 +4932,80 @@ button[onclick*="download"] i,
  margin-bottom: 15px;
  line-height: 1.6;
 }
+
+/* Estilos para las referencias */
+.reference-card {
+ background-color: #f9f9f9;
+ border: 1px solid #e0e0e0;
+ padding: 1.5rem;
+ margin: 1.5rem 0;
+ border-radius: 0;
+}
+
+.reference-card h3 {
+ margin-top: 0;
+ margin-bottom: 1rem;
+ font-size: 1.1rem;
+ font-weight: 600;
+ color: var(--primary-color);
+}
+
+.reference-card p {
+ margin-bottom: 0.5rem;
+ line-height: 1.6;
+}
+
+.reference-card ul {
+ margin-bottom: 0;
+ padding-left: 1.5rem;
+}
+
+.reference-card li {
+ margin-bottom: 0.5rem;
+ line-height: 1.6;
+}
+
+.reference-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-size: 0.85rem;
+  word-break: break-all;
+  margin-top: auto;
+  padding-top: 0.5rem;
+  border-top: 1px solid #f0f0f0;
+  /* Eliminar cualquier estilo de fondo */
+  background: none !important;
+  padding: 0.5rem 0 0 0 !important;
+  border-radius: 0 !important;
+  display: block;
+  line-height: 1.4;
+}
+
+.reference-link:hover {
+  color: var(--link-hover-color);
+  text-decoration: underline;
+  /* Eliminar cualquier estilo de fondo en hover */
+  background: none !important;
+}
+
+/* Asegurar que los enlaces de referencia no tengan estilos de botón */
+.reference-card .reference-link {
+  background: none !important;
+  color: var(--primary-color) !important;
+  padding: 0.5rem 0 0 0 !important;
+  border-radius: 0 !important;
+  font-weight: normal !important;
+  text-transform: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  transform: none !important;
+  transition: color 0.2s ease !important;
+}
+
+.reference-card .reference-link:hover {
+  background: none !important;
+  color: var(--link-hover-color) !important;
+  text-decoration: underline !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
