@@ -3710,7 +3710,7 @@ a i.fab {
 
 /* Estilos para botones de descarga de plantillas - Aplicar a todos los botones de descarga */
 .download-template-button,
-a[href*=".pdf"]:not(.reading-link),
+a[href*=".pdf"]:not(.reading-link):not(.reference-link),
 button[onclick*="download"],
 .download-button {
  display: inline-flex;
@@ -3730,7 +3730,7 @@ button[onclick*="download"],
 }
 
 .download-template-button:hover,
-a[href*=".pdf"]:not(.reading-link):hover,
+a[href*=".pdf"]:not(.reading-link):not(.reference-link):hover,
 button[onclick*="download"]:hover,
 .download-button:hover {
  background-color: var(--link-hover-color) !important;
@@ -3741,7 +3741,7 @@ button[onclick*="download"]:hover,
 }
 
 .download-template-button i,
-a[href*=".pdf"]:not(.reading-link) i,
+a[href*=".pdf"]:not(.reading-link):not(.reference-link) i,
 button[onclick*="download"] i,
 .download-button i {
  margin-right: 0.5rem;
@@ -4976,10 +4976,9 @@ button[onclick*="download"] i,
   margin-top: auto;
   padding-top: 0.5rem;
   border-top: 1px solid #f0f0f0;
-  /* Eliminar cualquier estilo de fondo */
-  background: none !important;
-  padding: 0.5rem 0 0 0 !important;
-  border-radius: 0 !important;
+  background: none;
+  padding: 0.5rem 0 0 0;
+  border-radius: 0;
   display: block;
   line-height: 1.4;
 }
@@ -4987,28 +4986,27 @@ button[onclick*="download"] i,
 .reference-link:hover {
   color: var(--link-hover-color);
   text-decoration: underline;
-  /* Eliminar cualquier estilo de fondo en hover */
-  background: none !important;
+  background: none;
 }
 
 /* Asegurar que los enlaces de referencia no tengan estilos de botón */
 .reference-card .reference-link {
-  background: none !important;
-  color: var(--primary-color) !important;
-  padding: 0.5rem 0 0 0 !important;
-  border-radius: 0 !important;
-  font-weight: normal !important;
-  text-transform: none !important;
-  border: none !important;
-  box-shadow: none !important;
-  transform: none !important;
-  transition: color 0.2s ease !important;
+  background: none;
+  color: var(--primary-color);
+  padding: 0.5rem 0 0 0;
+  border-radius: 0;
+  font-weight: normal;
+  text-transform: none;
+  border: none;
+  box-shadow: none;
+  transform: none;
+  transition: color 0.2s ease;
 }
 
 .reference-card .reference-link:hover {
-  background: none !important;
-  color: var(--link-hover-color) !important;
-  text-decoration: underline !important;
-  transform: none !important;
-  box-shadow: none !important;
+  background: none;
+  color: var(--link-hover-color);
+  text-decoration: underline;
+  transform: none;
+  box-shadow: none;
 }
