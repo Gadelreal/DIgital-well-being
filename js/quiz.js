@@ -240,10 +240,6 @@ function handleFinalQuizSubmit() {
     console.error("Error saving quiz answers to session storage:", error)
   }
 
-  // Calculate results
-  let correctCount = 0
-  let incorrectCount = 0
-
   // Disable all inputs
   const allInputs = form.querySelectorAll('input[type="radio"]')
   allInputs.forEach((input) => {
@@ -251,38 +247,33 @@ function handleFinalQuizSubmit() {
     input.closest(".quiz-option").style.cursor = "default"
   })
 
+  // Calculate results and apply visual feedback
+  let correctCount = 0
+  let incorrectCount = 0
+
   // Process each question for visual feedback and counting
   fieldsets.forEach((fieldset) => {
     const questionName = fieldset.querySelector('input[type="radio"]').name
-    const selectedOption = form.querySelector(`input[name="${questionName}"]:checked`)
+    const selectedOptionInput = form.querySelector(`input[name="${questionName}"]:checked`)
     const correctAnswerValue = correctAnswers[questionName]
 
-    if (selectedOption) {
-      const userSelectedValue = selectedOption.value
-      const userOptionElement = selectedOption.closest(".quiz-option")
+    if (selectedOptionInput) {
+      const selectedValue = selectedOptionInput.value
+      const selectedOptionElement = selectedOptionInput.closest(".quiz-option")
 
-      if (userSelectedValue === correctAnswerValue) {
-        // Correct answer
+      if (selectedValue === correctAnswerValue) {
         correctCount++
-        userOptionElement.classList.add("correct-answer") // Green
+        selectedOptionElement.classList.add("correct-answer") // Green
       } else {
-        // Incorrect answer
         incorrectCount++
-        userOptionElement.classList.add("incorrect-answer") // Red
+        selectedOptionElement.classList.add("incorrect-answer") // Red
 
-        // Highlight the correct answer as missed
-        const correctOption = fieldset.querySelector(`input[value="${correctAnswerValue}"]`)
-        if (correctOption) {
-          correctOption.closest(".quiz-option").classList.add("missed-answer") // Yellow
+        // Also highlight the correct answer as 'missed'
+        const correctOptionInput = form.querySelector(`input[name="${questionName}"][value="${correctAnswerValue}"]`)
+        if (correctOptionInput) {
+          const correctOptionElement = correctOptionInput.closest(".quiz-option")
+          correctOptionElement.classList.add("missed-answer") // Yellow
         }
-      }
-    } else {
-      // This case should not happen due to the check before, but as a fallback:
-      incorrectCount++
-      // Highlight the correct answer as missed
-      const correctOption = fieldset.querySelector(`input[value="${correctAnswerValue}"]`)
-      if (correctOption) {
-        correctOption.closest(".quiz-option").classList.add("missed-answer") // Yellow
       }
     }
   })
