@@ -255,25 +255,36 @@ function handleFinalQuizSubmit() {
   fieldsets.forEach((fieldset) => {
     const questionName = fieldset.querySelector('input[type="radio"]').name
     const selectedOption = form.querySelector(`input[name="${questionName}"]:checked`)
-    const correctAnswer = correctAnswers[questionName]
-    const options = fieldset.querySelectorAll(".quiz-option")
+    const correctAnswerValue = correctAnswers[questionName]
 
-    // Check if answer is correct
-    if (selectedOption && selectedOption.value === correctAnswer) {
-      correctCount++
+    if (selectedOption) {
+      const userSelectedValue = selectedOption.value
+      const userOptionElement = selectedOption.closest(".quiz-option")
+
+      if (userSelectedValue === correctAnswerValue) {
+        // Correct answer
+        correctCount++
+        userOptionElement.classList.add("correct-answer") // Green
+      } else {
+        // Incorrect answer
+        incorrectCount++
+        userOptionElement.classList.add("incorrect-answer") // Red
+
+        // Highlight the correct answer as missed
+        const correctOption = fieldset.querySelector(`input[value="${correctAnswerValue}"]`)
+        if (correctOption) {
+          correctOption.closest(".quiz-option").classList.add("missed-answer") // Yellow
+        }
+      }
     } else {
+      // This case should not happen due to the check before, but as a fallback:
       incorrectCount++
+      // Highlight the correct answer as missed
+      const correctOption = fieldset.querySelector(`input[value="${correctAnswerValue}"]`)
+      if (correctOption) {
+        correctOption.closest(".quiz-option").classList.add("missed-answer") // Yellow
+      }
     }
-
-    options.forEach((option) => {
-      const input = option.querySelector("input")
-      if (input.value === correctAnswer) {
-        option.classList.add("correct-answer") // Mark correct answer
-      }
-      if (selectedOption && input.id === selectedOption.id && selectedOption.value !== correctAnswer) {
-        option.classList.add("incorrect-answer") // Mark user's incorrect answer
-      }
-    })
   })
 
   // Calculate percentage
@@ -305,11 +316,11 @@ function handleFinalQuizSubmit() {
   // Show feedback with save confirmation
   const feedbackElement = document.getElementById("final-quiz-feedback")
   feedbackElement.innerHTML = `
-    <h4>Thank you for completing the final assessment!</h4>
-    <p><strong>✓ Your answers have been saved successfully.</strong></p>
-    <p>We appreciate the time and thought you've put into this test. We hope it has helped reinforce the key concepts and practical strategies you explored throughout the course.</p>
-    <p>Your responses reflect the knowledge you've gained in your digital well-being journey. Keep reflecting, practicing, and applying what you've learned—and remember, digital well-being is an ongoing process of balance, awareness, and intentional choice.</p>
-  `
+  <h4>Thank you for completing the final assessment!</h4>
+  <p><strong>✓ Your answers have been saved successfully.</strong></p>
+  <p>We appreciate the time and thought you've put into this test. We hope it has helped reinforce the key concepts and practical strategies you explored throughout the course.</p>
+  <p>Your responses reflect the knowledge you've gained in your digital well-being journey. Keep reflecting, practicing, and applying what you've learned—and remember, digital well-being is an ongoing process of balance, awareness, and intentional choice.</p>
+`
 
   feedback.style.display = "block"
   feedback.scrollIntoView({ behavior: "smooth", block: "center" })
@@ -347,7 +358,7 @@ function resetFinalQuiz() {
   // Remove feedback classes and selected classes
   const allOptions = form.querySelectorAll(".quiz-option")
   allOptions.forEach((option) => {
-    option.classList.remove("correct-answer", "incorrect-answer", "selected")
+    option.classList.remove("correct-answer", "incorrect-answer", "missed-answer", "selected")
   })
 
   // Hide feedback and results
