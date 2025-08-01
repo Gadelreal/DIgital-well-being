@@ -1,48 +1,1210 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Curso Online - Capítulo 2</title>
-  <link rel="stylesheet" href="css/styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bienestar Digital - Hábitos Digitales</title>
+<link rel="stylesheet" href="./css/styles.css">
+<!-- VideoJS CSS -->
+<link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
+<!-- jsPDF Library for PDF generation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<!-- Font Awesome para iconos -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
+<style>
+
+
+/* Estilos para las actividades con plantillas descargables */
+.values-activity-container {
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  padding: 2rem;
+  padding-bottom: 3rem; /* Increased from 2.5rem to 3rem to match Lesson 1 */
+  margin: 2rem 0;
+  border-radius: 0;
+}
+
+.download-template-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--primary-color);
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem; /* Increased from 0.5rem to 1.5rem to match Lesson 1 */
+}
+
+.download-template-button:hover {
+  background-color: var(--primary-color-dark);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  text-decoration: none;
+}
+
+.download-template-button i {
+  margin-right: 0.5rem;
+}
+
+/* Estilos para las herramientas numeradas */
+.tools-list {
+  counter-reset: tool-counter;
+  margin: 2rem 0;
+}
+
+.tool-item {
+  counter-increment: tool-counter;
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  padding: 2rem;
+  padding-top: 3.5rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  border-left: 4px solid var(--primary-color);
+  pointer-events: none;
+}
+
+.tool-item:hover {
+  background-color: white;
+  cursor: default;
+}
+
+.tool-item * {
+  pointer-events: none;
+}
+
+.tool-item::before {
+  content: counter(tool-counter);
+  position: absolute;
+  top: 20px;
+  left: 2rem; /* Changed from 0px to 2rem to align with content padding */
+  background-color: var(--primary-color);
+  color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1rem;
+  z-index: 1;
+}
+
+.tool-item h4 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.tool-description {
+  margin-bottom: 1rem;
+  font-style: italic;
+  color: #666;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.tool-description .tool-icon {
+  font-size: 2rem;
+  color: var(--primary-color);
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.tool-description .tool-text {
+  flex: 1;
+  line-height: 1.6;
+}
+
+/* Estilos para la evaluación */
+.assessment-container {
+  background-color: #f0f8ff;
+  border: 2px solid var(--primary-color);
+  padding: 2rem;
+  padding-bottom: 3rem; /* Increased from 2.5rem to 3rem to match Lesson 1 */
+  margin: 2rem 0;
+  border-radius: 8px;
+}
+
+.assessment-step {
+  margin-bottom: 2rem;
+}
+
+.assessment-step h4 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.scale-question {
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+}
+
+.scale-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.scale-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-width: 80px;
+}
+
+.scale-option input[type="radio"] {
+  margin-bottom: 0.5rem;
+  width: 20px;
+  height: 20px;
+}
+
+.scale-option label {
+  font-size: 0.8rem;
+  color: #666;
+  cursor: pointer;
+}
+
+.reflection-textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 1rem;
+  resize: vertical;
+  margin-top: 1rem;
+}
+
+.download-response-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--primary-color);
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem; /* Increased from 0.5rem to 1.5rem to match Lesson 1 */
+  border: none;
+  cursor: pointer;
+}
+
+.download-response-button:hover {
+  background-color: var(--primary-color-dark);
+  color: white;
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .scale-options {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .scale-option {
+    flex-direction: row;
+    min-width: auto;
+    width: 100%;
+    justify-content: flex-start;
+  }
+  
+  .scale-option input[type="radio"] {
+    margin-right: 1rem;
+    margin-bottom: 0;
+  }
+}
+
+.hero-title {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 300;
+}
+
+.hero-section {
+  background-image: url('assets/images/hero-wellbeing-final.png');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-align: center;
+  padding: 5rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+</style>
 </head>
 <body>
-  <header>
-    <div class="logo-container">
-      <a href="https://www.ie.edu" target="_blank">
-        <img src="assets/images/logo-ie.svg" alt="IE University Logo" class="logo" width="120">
+<!-- Añadir el enlace de saltar al contenido principal al inicio del body -->
+<a href="#main-content" class="skip-to-content">Saltar al contenido principal</a>
+
+<!-- Modificar la estructura del header para alinear elementos en una línea -->
+<header class="full-width header-full-bottom" role="banner">
+<div class="header-content">
+  <div class="header-left">
+    <div class="logo-container tiny-logo">
+      <a href="https://www.ie.edu" target="_blank" aria-label="Sitio web de IE University">
+        <img src="assets/images/logo-ie.svg" alt="Logo de IE University" class="logo" width="120">
       </a>
     </div>
-    <nav class="main-nav">
-      <ul>
-        <li><a href="index.html">Portada</a></li>
-        <li><a href="introduccion.html">Introducción</a></li>
-        <li><a href="capitulo1.html">Capítulo 1</a></li>
-        <li><a href="capitulo2.html" class="active">Capítulo 2</a></li>
-        <li><a href="capitulo3.html">Capítulo 3</a></li>
-        <li><a href="capitulo4.html">Capítulo 4</a></li>
-        <li><a href="capitulo5.html">Capítulo 5</a></li>
-      </ul>
-    </nav>
-  </header>
+    <h2 class="header-title">Bienestar Digital</h2>
+  </div>
+  <div class="header-controls">
+    <button id="mobile-menu-toggle" class="mobile-menu-toggle always-visible" aria-label="Abrir menú" aria-expanded="false" aria-controls="main-nav">
+      <div class="hamburger-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </button>
+  </div>
+</div>
+<nav class="main-nav hamburger-nav" id="main-nav" aria-label="Navegación principal">
+<ul>
+  <li><a href="index.html">Portada</a></li>
+  <li><a href="introduccion.html">0. Introducción</a></li>
+  <li><a href="capitulo1.html">1. El Bienestar como Clave...</a></li>
+  <li><a href="capitulo2.html" class="active" aria-current="page">2. Hábitos Digitales</a></li>
+  <li><a href="capitulo3.html">3. Atención, Cognición, Energía...</a></li>
+  <li><a href="capitulo4.html">4. Visión y Práctica del Bienestar Digital</a></li>
+  <li><a href="capitulo5.html">5. Propiedad y Práctica</a></li>
+  <li><a href="#" id="glossary-menu-link"><i class="fas fa-book" style="color: #DB0086; margin-right: 0.5rem;" aria-hidden="true"></i>Abrir Glosario</a></li>
+</ul>
+</nav>
+</header>
 
-  <main>
-    <div class="content-container">
-      <h1>Capítulo 2</h1>
+<section class="hero-section">
+<div class="hero-content">
+  <div class="hero-title-container">
+    <h1 class="hero-title">LECCIÓN 2<br>Hábitos Digitales</h1>
+  </div>
+</div>
+</section>
+
+<main id="main-content" tabindex="-1">
+  <div class="content-aligned-container">
     
-      <!-- Aquí irá el contenido del capítulo 2 -->
+    <section class="lesson-section no-borders">
+<h2><strong>Objetivos de Aprendizaje de la Lección 2</strong></h2>
+<p>Después de esta lección, los participantes podrán:</p>
+
+<div class="learning-objectives-grid-2x2">
+  <div class="learning-objective-card">
+    <div class="objective-icon" aria-hidden="true">
+      <i class="fas fa-sync-alt"></i>
+    </div>
+    <div class="objective-content">
+      <h4>Comprensión del Bucle del Hábito</h4>
+      <p>Explicar el bucle del hábito y el proceso de formación de hábitos</p>
+    </div>
+  </div>
+  
+  <div class="learning-objective-card">
+    <div class="objective-icon" aria-hidden="true">
+      <i class="fas fa-heart-pulse"></i>
+    </div>
+    <div class="objective-content">
+      <h4>Evaluación del Impacto Digital</h4>
+      <p>Identificar el impacto de los hábitos digitales en el bienestar general</p>
+    </div>
+  </div>
+  
+  <div class="learning-objective-card">
+    <div class="objective-icon" aria-hidden="true">
+      <i class="fas fa-balance-scale"></i>
+    </div>
+    <div class="objective-content">
+      <h4>Principios Basados en la Ciencia</h4>
+      <p>Aplicar principios de la ciencia de los hábitos para promover el equilibrio y el bienestar digital</p>
+    </div>
+  </div>
+  
+  <div class="learning-objective-card">
+    <div class="objective-icon" aria-hidden="true">
+      <i class="fas fa-compass"></i>
+    </div>
+    <div class="objective-content">
+      <h4>Conexión entre Valores y Comportamiento</h4>
+      <p>Comprender cómo los comportamientos reflejan los valores personales e influyen en las experiencias diarias</p>
+    </div>
+  </div>
+</div>
+</section>
     
-      <div class="navigation-buttons">
-        <a href="chapter1.html" class="nav-button prev"><span class="arrow-left">←</span>Previous</a>
-        <a href="chapter3.html" class="nav-button next">Next<span class="arrow-right">→</span></a>
+    <section class="lesson-section no-borders">
+      <h2><strong>Rompiendo el Bucle</strong></h2>
+      
+      <div class="responsive-video">
+        <video 
+          id="breaking-loop-video" 
+          class="video-js vjs-ie-skin vjs-big-play-centered" 
+          controls 
+          preload="auto" 
+          poster="assets/images/breaking-loop-poster.png"
+          data-video-id="w02v00"
+          
+          aria-label="Video Rompiendo el Bucle"
+        >
+          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w02v00-breaking-the-loop/hls.m3u8" type="application/x-mpegURL">
+          <p class="vjs-no-js">
+            Para ver este video, por favor, activa JavaScript y considera actualizar a un
+            navegador que <a href="https://videojs.com/html5-video-support/" target="_blank">soporte video HTML5</a>
+          </p>
+        </video>
+      </div>
+    </section>
+    
+    <section class="lesson-section no-borders">
+      <h2><strong>Hábitos Digitales</strong></h2>
+      
+      <div class="responsive-video">
+        <video 
+          id="digital-habits-video" 
+          class="video-js vjs-ie-skin vjs-big-play-centered" 
+          controls 
+          preload="auto" 
+          poster="assets/images/digital-habits-poster.png"
+          data-video-id="w02v01"
+          
+          aria-label="Video Hábitos Digitales"
+        >
+          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w02v01-digital-habits/hls.m3u8" type="application/x-mpegURL">
+          <p class="vjs-no-js">
+            Para ver este video, por favor, activa JavaScript y considera actualizar a un
+            navegador que <a href="https://videojs.com/html5-video-support/" target="_blank">soporte video HTML5</a>
+          </p>
+        </video>
+      </div>
+      
+      <div class="key-point" role="note" aria-label="Punto clave sobre hábitos digitales">
+        <h3><strong>Punto Clave</strong></h3>
+        <p>Comprender el bucle del hábito —<strong>señal, acción y recompensa</strong>— nos permite reconocer los patrones subconscientes que impulsan nuestros comportamientos digitales y nos da las herramientas para realizar pequeños cambios intencionados que mejoran nuestro bienestar emocional, mental y físico.</p>
+        
+        <p>Cada comportamiento digital sigue un patrón: una <em>señal</em> desencadena una <em>acción</em>, que conduce a una <em>recompensa</em>. Al analizar tus hábitos digitales a través de esta lente, puedes descubrir los impulsores emocionales detrás de tus acciones y hacer ajustes reflexivos que apoyen mejor tu bienestar.</p>
+        
+        <p><strong>Comienza por observar:</strong></p>
+        <ul>
+          <li>¿Qué desencadena tu comportamiento?</li>
+          <li>¿Qué acción realizas?</li>
+          <li>¿Qué recompensa buscas?</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="lesson-section no-borders">
+      <div class="values-activity-container">
+        <h2><strong>Actividad: Auditoría de Hábitos Digitales</strong></h2>
+        <p>Echemos un vistazo más de cerca a tus hábitos digitales actuales. Esta <strong>Auditoría de Hábitos Digitales</strong> te ayudará a reflexionar sobre cuánto tiempo pasas en tu teléfono y qué aplicaciones usas con más frecuencia.</p>
+        
+        <p><strong>Responde cada pregunta con honestidad</strong> utilizando los datos de tiempo de pantalla de tu teléfono. Luego, clasifica las aplicaciones que más usas y reflexiona sobre tus patrones.</p>
+        
+        <p><strong>Puedes descargar la plantilla editable para completar tus respuestas.</strong> De esta manera, podrás hacer un seguimiento de tu conciencia y progreso a lo largo del tiempo.</p>
+        
+        <a href="assets/documents/Lesson2_Digital Habits Audit.pdf" class="download-template-button" download aria-label="Descargar plantilla editable para la actividad de auditoría de hábitos digitales">
+          <i class="fas fa-download" aria-hidden="true"></i>
+          <strong>Descarga la plantilla editable aquí</strong>
+        </a>
+      </div>
+    </section>
+
+    <section class="lesson-section no-borders">
+      <h2><strong>Ciencia del Comportamiento Aplicada al Bienestar</strong></h2>
+      
+      <div class="responsive-video">
+        <video 
+          id="behavioural-science-video" 
+          class="video-js vjs-ie-skin vjs-big-play-centered" 
+          controls 
+          preload="auto" 
+          poster="assets/images/behavioural-science-poster.png"
+          data-video-id="w02v02"
+          
+          aria-label="Video Ciencia del Comportamiento Aplicada al Bienestar"
+        >
+          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w02v02-behavioural-science-applied-to-well-being/hls.m3u8" type="application/x-mpegURL">
+          <p class="vjs-no-js">
+            Para ver este video, por favor, activa JavaScript y considera actualizar a un
+            navegador que <a href="https://videojs.com/html5-video-support/" target="_blank">soporte video HTML5</a>
+          </p>
+        </video>
+      </div>
+      
+      <div class="key-point" role="note" aria-label="Punto clave sobre la ciencia del comportamiento">
+        <h3><strong>Punto Clave</strong></h3>
+        <p>El cambio de comportamiento efectivo ocurre cuando <strong>defines claramente el hábito específico que quieres cambiar</strong>, identificas sus desencadenantes y recompensas, y reemplazas el comportamiento antiguo por uno más productivo, apoyado por un refuerzo positivo.</p>
+        
+        <p>Cambiar el comportamiento no es solo una cuestión de fuerza de voluntad, es entender el <em>bucle del hábito</em>.</p>
+        <ul>
+          <li><strong>Sé específico:</strong> Identifica el comportamiento exacto que quieres cambiar.</li>
+          <li><strong>Reconoce los desencadenantes:</strong> ¿Qué situaciones, personas o sentimientos provocan el comportamiento?</li>
+          <li><strong>Identifica las recompensas:</strong> ¿Qué satisfacción o alivio obtienes de él?</li>
+        </ul>
+        
+        <p>Al reemplazar un comportamiento improductivo por una mejor alternativa y recompensar tu progreso, te preparas para un cambio duradero.</p>
+      </div>
+    </section>
+
+    <section class="lesson-section no-borders">
+      <h2><strong>Entendiendo tu Entorno e Identificando Disparadores Digitales</strong></h2>
+      
+      <div class="responsive-video">
+        <video 
+          id="environment-triggers-video" 
+          class="video-js vjs-ie-skin vjs-big-play-centered" 
+          controls 
+          preload="auto" 
+          poster="assets/images/environment-triggers-poster.png"
+          data-video-id="w02v03"
+          
+          aria-label="Video Entendiendo tu Entorno e Identificando Disparadores Digitales"
+        >
+          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w02v03-understanding-your-environment/hls.m3u8" type="application/x-mpegURL">
+          <p class="vjs-no-js">
+            Para ver este video, por favor, activa JavaScript y considera actualizar a un
+            navegador que <a href="https://videojs.com/html5-video-support/" target="_blank">soporte video HTML5</a>
+          </p>
+        </video>
+      </div>
+      
+      <div class="key-point" role="note" aria-label="Punto clave sobre el entorno y los disparadores">
+        <h3><strong>Punto Clave</strong></h3>
+        <p>Al tomar conciencia de cómo nuestro entorno, los contextos sociales y los niveles de energía desencadenan hábitos digitales a lo largo del día, podemos diseñar proactivamente prácticas más saludables que protejan nuestra concentración, equilibrio emocional y bienestar general.</p>
+        
+        <p>Nuestro entorno, sentimientos y niveles de energía influyen profundamente en nuestros hábitos digitales, a menudo sin que nos demos cuenta.</p>
+        
+        <p><strong>Para apoyar mejor tu bienestar:</strong></p>
+        <ul>
+          <li>Observa cómo los diferentes entornos (como los espacios de trabajo o las reuniones sociales) y las horas del día impactan en tu uso de la tecnología.</li>
+          <li>Reconoce cuándo disminuye tu energía y cómo eso podría llevar a un uso no intencionado de los dispositivos.</li>
+          <li>Reemplaza los hábitos digitales que te agotan con actividades reparadoras, como un breve paseo, conectar con alguien cara a cara o simplemente hacer una pausa para respirar y reiniciar.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="lesson-section no-borders">
+      <div class="values-activity-container">
+        <h2><strong>Actividad: Entendiendo tu Entorno e Identificando tus Disparadores Digitales</strong></h2>
+        <p>Ahora es el momento de hacer un inventario completo de tu entorno digital. Esta actividad te ayudará a identificar posibles distracciones y áreas de mejora en cuatro áreas clave: tu teléfono, tu ordenador, tu espacio de trabajo y tus hábitos en las redes sociales.</p>
+        
+        <p>Sigue cada sección con atención y toma notas sobre lo que descubras. Usa esto como una oportunidad para reflexionar sobre cómo tus espacios digitales están apoyando —o distrayendo de— tu bienestar y tus objetivos.</p>
+        
+        <p><strong>Puedes descargar la plantilla editable para completar tus respuestas.</strong> De esta manera, podrás hacer un seguimiento de tus ideas y progreso.</p>
+        
+        <a href="assets/documents/Lesson2_Understanding Your Environment and Identifying Your Digital Triggers.pdf" class="download-template-button" download aria-label="Descargar plantilla editable para la actividad de disparadores digitales">
+          <i class="fas fa-download" aria-hidden="true"></i>
+          <strong>Descarga la plantilla editable aquí</strong>
+        </a>
+      </div>
+    </section>
+
+    <section class="lesson-section no-borders">
+      <h2><strong>Prácticas Basadas en Evidencia para Construir Hábitos Digitales Saludables</strong></h2>
+      
+      <div class="responsive-video">
+        <video 
+          id="evidence-practices-video" 
+          class="video-js vjs-ie-skin vjs-big-play-centered" 
+          controls 
+          preload="auto" 
+          poster="assets/images/evidence-practices-poster.png"
+          data-video-id="w02v04"
+          
+          aria-label="Video Prácticas Basadas en Evidencia para Construir Hábitos Digitales Saludables"
+        >
+          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w02v04-evidence-based-practices/hls.m3u8" type="application/x-mpegURL">
+          <p class="vjs-no-js">
+            Para ver este video, por favor, activa JavaScript y considera actualizar a un
+            navegador que <a href="https://videojs.com/html5-video-support/" target="_blank">soporte video HTML5</a>
+          </p>
+        </video>
+      </div>
+      
+      <div class="key-point" role="note" aria-label="Punto clave sobre prácticas basadas en evidencia">
+        <h3><strong>Punto Clave</strong></h3>
+        <p>Puedes recuperar la concentración, reducir el estrés y construir una relación más saludable con la tecnología aplicando estrategias simples y respaldadas por la ciencia como <strong>gestionar las notificaciones, crear zonas libres de tecnología, ordenar tus aplicaciones, programar descansos digitales y mantener tu teléfono fuera de la vista</strong> cuando más importa.</p>
+        
+        <p>Pequeños cambios intencionados en cómo interactuamos con nuestros dispositivos pueden llevar a grandes mejoras en la concentración, el bienestar y la conexión.</p>
+        
+        <p><strong>Aquí hay 5 estrategias poderosas para empezar hoy:</strong></p>
+        <ul>
+          <li><strong>Domina las notificaciones:</strong> Limita las interrupciones controlando las alertas.</li>
+          <li><strong>Crea zonas libres de tecnología:</strong> Protege espacios como tu comedor y dormitorio.</li>
+          <li><strong>Ordena tus aplicaciones:</strong> Quédate solo con lo que te energiza y te sirve.</li>
+          <li><strong>Programa descansos digitales:</strong> Refresca tu cuerpo y mente regularmente.</li>
+          <li><strong>Gestiona la presencia del smartphone:</strong> Mantén tu dispositivo fuera de la vista durante el tiempo de concentración.</li>
+        </ul>
+        
+        <p>Cada pequeño paso ayuda a construir una vida digital más equilibrada e intencionada.</p>
+      </div>
+    </section>
+
+    <section class="lesson-section no-borders">
+      <h2><strong>Herramientas y Prácticas Basadas en Evidencia que te Ayudarán a Construir Hábitos Digitales Saludables</strong></h2>
+      
+      <div class="tools-list">
+        <div class="tool-item">
+          <h4><strong>Definir Horarios Específicos para Revisar el Correo y las Redes Sociales</strong></h4>
+          <p>Abrir tu bandeja de entrada o tus cuentas de redes sociales consume tiempo y energía. Hacerlo constantemente influye mucho en tu productividad, atención y bienestar general. Al revisar si hay nuevos mensajes, cambias tu foco de atención, te sientes abrumado por toda la nueva información, aumentas los niveles de estrés y te distraes mentalmente.</p>
+          <p class="tool-description">
+            <i class="fas fa-stopwatch tool-icon" aria-hidden="true"></i>
+            <span class="tool-text"><strong>La Herramienta:</strong> Programa un número limitado de veces al día para revisar tu correo electrónico y tus cuentas de redes sociales. Establece horarios específicos a lo largo del día para abrir tus bandejas de entrada y revisar tus notificaciones de redes sociales. De esta manera, haces un uso más intencionado de tu tiempo y evitas distracciones constantes.</span>
+          </p>
+        </div>
+
+        <div class="tool-item">
+          <h4><strong>Controlar el Uso de la Tecnología con un Cajón o Funda para el Teléfono</strong></h4>
+          <p>El entorno que nos rodea afecta directamente a nuestros comportamientos y hábitos. Solo con tener nuestros teléfonos a la vista, perdemos la concentración y nuestra disponibilidad cognitiva empeora. Automáticamente, tendemos a distraernos.</p>
+          <p class="tool-description">
+  <i class="fas fa-mobile-alt tool-icon" aria-hidden="true"></i>
+  <span class="tool-text"><strong>La Herramienta:</strong> Usa una funda para el teléfono o elige un cajón para dejar tu teléfono mientras trabajas o estudias. De esta manera, coger el teléfono se convierte en una decisión activa e intencionada, obligándote a pensarlo dos veces. Esta herramienta te ayudará a ahorrar tiempo de distracción y a comprometerte con un trabajo más significativo. Es un recordatorio visual para centrarte en lo que realmente importa y escapar del impulso de distraerte.</span>
+</p>
+        </div>
+
+        <div class="tool-item">
+          <h4><strong>Cambiar la Pantalla de tus Dispositivos a Escala de Grises</strong></h4>
+          <p>Los diseñadores conciben los smartphones para optimizar la experiencia del usuario. Dentro de ese marco, los colores juegan un papel principal en hacer la experiencia altamente satisfactoria y adictiva. Nuestros cerebros se sienten atraídos por las cosas brillantes y llamativas, haciendo que los colores jueguen un papel importante en hacer que te quedes pegado a tus pantallas.</p>
+          <p class="tool-description">
+  <i class="fas fa-palette tool-icon" aria-hidden="true"></i>
+  <span class="tool-text"><strong>La Herramienta:</strong> Durante la próxima semana, activa el modo de escala de grises en tu teléfono. Forzarás a tu smartphone a mostrar todo en tonos de gris, bloqueando los elementos visuales que generan adicción. Hará que tu teléfono sea menos atractivo de usar, fomentando un uso más significativo.</span>
+</p>
+        </div>
+
+        <div class="tool-item">
+          <h4><strong>Desactivar las Notificaciones del Teléfono</strong></h4>
+          <p>El trabajo de las notificaciones es captar tu atención e informarte de la información entrante. Su propósito principal es llamar tu atención, independientemente de lo que estés haciendo. Sin embargo, saber todo en todo momento tiene un coste. Las notificaciones te hacen perder la concentración, te distraen y generan adicción.</p>
+          <p class="tool-description">
+  <i class="fas fa-bell-slash tool-icon" aria-hidden="true"></i>
+  <span class="tool-text"><strong>La Herramienta:</strong> Abre la configuración de tu teléfono y desactiva tus notificaciones durante la semana. Verás cómo ganas control sobre tu teléfono en lugar de viceversa. Te ayudará a disminuir tus niveles de estrés y ansiedad, la sensación de estar abrumado, y a aumentar tu productividad y concentración. Te sentirás más tranquilo, en control, presente y consciente de tus Hábitos Digitales.</span>
+</p>
+        </div>
+
+        <div class="tool-item">
+          <h4><strong>Establecer Zonas Libres de Teléfono</strong></h4>
+          <p>Es nuestra nueva realidad: nuestros teléfonos se han convertido en parte de nuestras rutinas y son uno de nuestros mayores consumidores de tiempo diario. Estar constantemente en línea puede aumentar el estrés, la ansiedad, la soledad y la privación del sueño. Usar tus dispositivos para asuntos insignificantes disminuye nuestra conexión con nosotros mismos, con los demás, con el mundo y con la realidad.</p>
+          <p class="tool-description">
+  <i class="fas fa-ban tool-icon" aria-hidden="true"></i>
+  <span class="tool-text"><strong>La Herramienta:</strong> Elige lugares en tu casa u oficina para desconectar de la tecnología. Puedes elegir un dormitorio, la cocina, el área de almuerzo o una terraza. No lleves tus dispositivos allí. Permítete reconectar y estar presente en las actividades y el mundo que te rodea.</span>
+</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="lesson-section no-borders">
+      <div class="values-activity-container">
+        <h2><strong>Actividad: Herramientas y Prácticas para Construir Hábitos Digitales Saludables</strong></h2>
+        
+        <p><strong>¡Es hora de poner en práctica tus objetivos digitales!</strong></p>
+        
+        <p>Después de explorar las herramientas anteriores, elige al menos dos para probar esta semana. Estos pequeños cambios pueden tener un gran impacto. Se anima a experimentar: encuentra lo que funciona mejor para ti.</p>
+        
+        <p>Una vez que hayas seleccionado tus herramientas, reflexiona brevemente sobre por qué las elegiste.</p>
+        
+        <p>Luego, usa el Rastreador Diario para marcar cada día que usaste con éxito cada herramienta. ¡Esta simple práctica puede ayudar a generar impulso y mantenerte motivado!</p>
+        
+        <a href="assets/documents/Lesson2_Tools and Practices to Build Healthy Digital Habits.pdf" class="download-template-button" download aria-label="Descargar plantilla editable para la actividad de herramientas y prácticas">
+          <i class="fas fa-download" aria-hidden="true"></i>
+          <strong>Descarga la plantilla editable aquí</strong>
+        </a>
+      </div>
+    </section>
+
+    <section class="lesson-section no-borders">
+      <h2><strong>Lecturas</strong></h2>
+      
+      <div class="reading-cards">
+        <a href="https://www.ie.edu/impactskillstoolkit/tool/strengthen-your-willpower/" target="_blank" class="reading-card reading-card-clickable" aria-label="Visitar el recurso ¡Fortalece tu Fuerza de Voluntad! (se abre en una nueva pestaña)">
+          <div class="reading-card-content">
+            <h3><strong>¡Fortalece tu Fuerza de Voluntad!</strong></h3>
+            <p>Como todos los músculos del cuerpo, la fuerza de voluntad se puede fortalecer con la práctica adecuada. Prueba 10 formas prácticas y efectivas de fortalecer tu autocontrol, concentración y perseverancia.</p>
+            <div class="reading-card-footer">
+              <span class="reading-link">
+                Visitar Recurso
+                <span class="reading-arrow" aria-hidden="true">→</span>
+              </span>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://www.idrlabs.com/willpower/test.php" target="_blank" class="reading-card reading-card-clickable" aria-label="Visitar Test de Fuerza de Voluntad (se abre en una nueva pestaña)">
+          <div class="reading-card-content">
+            <h3><strong>¡Test de Fuerza de Voluntad!</strong></h3>
+            <p>Aunque la investigación moderna sobre la personalidad sugiere que algunas personas nacen con una fuerza de voluntad más fuerte, autocontrol, fortaleza, resiliencia y la capacidad de posponer la gratificación, no significa que la fuerza de voluntad de uno no se pueda desarrollar. ¿Cómo es tu fuerza de voluntad? ¡Prueba este test y descubre más sobre ti!</p>
+            <div class="reading-card-footer">
+              <span class="reading-link">
+                Hacer Test
+                <span class="reading-arrow" aria-hidden="true">→</span>
+              </span>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://www.ie.edu/impactskillstoolkit/tool/habit-hacking/" target="_blank" class="reading-card reading-card-clickable" aria-label="Visitar el recurso Habit Hacking (se abre en una nueva pestaña)">
+          <div class="reading-card-content">
+            <h3><strong>¡Habit Hacking!</strong></h3>
+            <p>Comprender la ciencia de los comportamientos y cómo se vinculan con el significado y la emoción es clave. Considera la recompensa que obtenemos de los comportamientos y cómo esto se vincula con la emoción y el significado. Aplica el bucle del hábito para analizar los tres elementos siempre presentes: señal, rutina y recompensa.</p>
+            <div class="reading-card-footer">
+              <span class="reading-link">
+                Visitar Recurso
+                <span class="reading-arrow" aria-hidden="true">→</span>
+              </span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="lesson-section no-borders">
+  <h2><strong>Evaluación Final de la Lección: Punto de Control I</strong></h2>
+  
+  <p><strong>Hagamos una pausa y reflexionemos sobre tu viaje hasta ahora.</strong></p>
+  
+  <p>Este rápido chequeo está diseñado para ayudarte a medir tu progreso y notar cualquier cambio positivo. Usa la escala del 1 al 5 para indicar cuánto estás de acuerdo con cada afirmación (1 = totalmente en desacuerdo, 5 = totalmente de acuerdo).</p>
+  
+  <p>Después de completar la escala, tómate un momento para reflexionar por escrito. Tus respuestas se guardarán y estarán disponibles para descargar al final del curso para que puedas ver cuánto has avanzado.</p>
+  
+  <div class="assessment-step">
+    <h4><strong>Paso 1:</strong> <strong>Indica cuánto estás de acuerdo con cada afirmación</strong> <em>(1 = totalmente en desacuerdo, 5 = totalmente de acuerdo).</em></h4>
+    
+    <div class="scale-question">
+      <p><strong>He disminuido mi tiempo de pantalla.</strong></p>
+      <div class="scale-options">
+        <div class="scale-option">
+          <input type="radio" id="q1-1" name="question1" value="1">
+          <label for="q1-1">1-Totalmente en desacuerdo</label>
+        </div>
+        <div class="scale-option">
+          <input type="radio" id="q1-2" name="question1" value="2">
+          <label for="q1-2">2</label>
+        </div>
+        <div class="scale-option">
+          <input type="radio" id="q1-3" name="question1" value="3">
+          <label for="q1-3">3</label>
+        </div>
+        <div class="scale-option">
+          <input type="radio" id="q1-4" name="question1" value="4">
+          <label for="q1-4">4</label>
+        </div>
+        <div class="scale-option">
+          <input type="radio" id="q1-5" name="question1" value="5">
+          <label for="q1-5">5-Totalmente de acuerdo</label>
+        </div>
       </div>
     </div>
-  </main>
 
-  <footer>
-    <p class="copyright">&copy; <span id="current-year"></span> IE University. Todos los derechos reservados.</p>
-  </footer>
+    <div class="scale-question">
+      <p><strong>Me he mantenido fiel a mis Metas Digitales.</strong></p>
+      <div class="scale-options">
+        <div class="scale-option">
+          <input type="radio" id="q2-1" name="question2" value="1">
+          <label for="q2-1">1-Totalmente en desacuerdo</label>
+        </div>
+        <div class="scale-option">
+          <input type="radio" id="q2-2" name="question2" value="2">
+          <label for="q2-2">2</label>
+        </div>
+        <div class="scale-option">
+          <input type="radio" id="q2-3" name="question2" value="3">
+          <label for="q2-3">3</label>
+        </div>
+        <div class="scale-option">
+          <input type="radio" id="q2-4" name="question2" value="4">
+          <label for="q2-4">4</label>
+        </div>
+        <div class="scale-option">
+          <input type="radio" id="q2-5" name="question2" value="5">
+          <label for="q2-5">5-Totalmente de acuerdo</label>
+        </div>
+      </div>
+    </div>
 
+    <div class="scale-question">
+      <p><strong>Estoy más cerca de donde quiero estar.</strong></p>
+      <div class="scale-options">
+        <div class="scale-option">
+          <input type="radio" id="q3-1" name="question3" value="1">
+          <label for="q3-1">1-Totalmente en desacuerdo</label>
+        </div>
+        <div class="scale-option">
+          <input type="radio" id="q3-2" name="question3" value="2">
+          <label for="q3-2">2</label>
+        </div>
+        <div class="scale-option">
+          <input type="radio" id="q3-3" name="question3" value="3">
+          <label for="q3-3">3</label>
+        </div>
+        <div class="scale-option">
+          <input type="radio" id="q3-4" name="question3" value="4">
+          <label for="q3-4">4</label>
+        </div>
+        <div class="scale-option">
+          <input type="radio" id="q3-5" name="question3" value="5">
+          <label for="q3-5">5-Totalmente de acuerdo</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="scale-question">
+      <p><strong>He hecho un uso más consciente de mis dispositivos digitales.</strong></p>
+      <div class="scale-options">
+        <div class="scale-option">
+          <input type="radio" id="q4-1" name="question4" value="1">
+          <label for="q4-1">1-Totalmente en desacuerdo</label>
+        </div>
+        <div class="scale-option">
+          <input type="radio" id="q4-2" name="question4" value="2">
+          <label for="q4-2">2</label>
+        </div>
+        <div class="scale-option">
+          <input type="radio" id="q4-3" name="question4" value="3">
+          <label for="q4-3">3</label>
+        </div>
+        <div class="scale-option">
+          <input type="radio" id="q4-4" name="question4" value="4">
+          <label for="q4-4">4</label>
+        </div>
+        <div class="scale-option">
+          <input type="radio" id="q4-5" name="question4" value="5">
+          <label for="q4-5">5-Totalmente de acuerdo</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="scale-question">
+      <p><strong>Me siento mejor con el uso que hago de mis dispositivos digitales.</strong></p>
+      <div class="scale-options">
+        <div class="scale-option">
+          <input type="radio" id="q5-1" name="question5" value="1">
+          <label for="q5-1">1-Totalmente en desacuerdo</label>
+        </div>
+        <div class="scale-option">
+          <input type="radio" id="q5-2" name="question5" value="2">
+          <label for="q5-2">2</label>
+        </div>
+        <div class="scale-option">
+          <input type="radio" id="q5-3" name="question5" value="3">
+          <label for="q5-3">3</label>
+        </div>
+        <div class="scale-option">
+          <input type="radio" id="q5-4" name="question4" value="4">
+          <label for="q5-4">4</label>
+        </div>
+        <div class="scale-option">
+          <input type="radio" id="q5-5" name="question5" value="5">
+          <label for="q5-5">5-Totalmente de acuerdo</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="assessment-step">
+    <h4><strong>Paso 2:</strong> <strong>Tómate un momento para reflexionar respondiendo a la pregunta siguiente</strong></h4>
+    <p>¿Cómo te sientes después de completar las dos primeras lecciones de este curso? ¿Has notado alguna diferencia en tu bienestar general?</p>
+    <textarea class="reflection-textarea" id="reflection-response" placeholder="Escribe tu reflexión aquí..."></textarea>
+    
+    <button class="download-response-button" onclick="downloadAssessmentResponseES()">
+      <i class="fas fa-download" aria-hidden="true"></i>
+      Descargar mi respuesta
+    </button>
+  </div>
+</section>
+    
+    <div class="navigation-buttons" role="navigation" aria-label="Navegación de la lección">
+      <a href="capitulo1.html" class="nav-button prev"><span class="arrow-left" aria-hidden="true">←</span>Anterior</a>
+      <a href="capitulo3.html" class="nav-button next">Siguiente<span class="arrow-right" aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</main>
+
+<footer role="contentinfo">
+<div class="footer-content">
+  <p class="copyright">&copy; <span id="current-year"></span> IE University. Todos los derechos reservados.</p>
+</div>
+</footer>
+
+<div id="glossary-modal" class="modal" role="dialog" aria-labelledby="glossary-modal-title" aria-hidden="true">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 id="glossary-modal-title">Glosario de Conceptos de Bienestar Digital</h2>
+      <button class="modal-close" aria-label="Cerrar glosario">&times;</button>
+    </div>
+    <div class="modal-body">
+      <nav class="glossary-az-nav" aria-label="Navegación Alfabética del Glosario">
+        <a href="#" data-filter="all" class="active">TODOS</a>
+        <a href="#" data-filter="a">A</a>
+        <a href="#" data-filter="b">B</a>
+        <a href="#" data-filter="c">C</a>
+        <a href="#" data-filter="d">D</a>
+        <a href="#" data-filter="e">E</a>
+        <a href="#" data-filter="f">F</a>
+        <a href="#" data-filter="h">H</a>
+        <a href="#" data-filter="m">M</a>
+        <a href="#" data-filter="n">N</a>
+        <a href="#" data-filter="p">P</a>
+        <a href="#" data-filter="r">R</a>
+        <a href="#" data-filter="s">S</a>
+        <a href="#" data-filter="t">T</a>
+        <a href="#" data-filter="v">V</a>
+      </nav>
+      <div class="glossary-terms">
+        <div id="glossary-section-a" class="glossary-section" data-letter="a">
+          <h3 class="glossary-letter-header">A</h3>
+          <div class="glossary-term">
+            <strong>Atención Plena en el Uso de la Tecnología</strong> – Practicar la conciencia del momento presente para crear interacciones digitales intencionadas y equilibradas.
+          </div>
+          <div class="glossary-term">
+            <strong>Auditoría de Hábitos Digitales</strong> – Una autoevaluación para rastrear el uso de la tecnología e identificar áreas de mejora.
+          </div>
+          <div class="glossary-term">
+            <strong>Autonomía (Teoría de la Autodeterminación)</strong> – La capacidad de tomar decisiones sobre la participación digital que se alineen con los valores y objetivos personales.
+          </div>
+        </div>
+        <div id="glossary-section-b" class="glossary-section" data-letter="b">
+          <h3 class="glossary-letter-header">B</h3>
+          <div class="glossary-term">
+            <strong>Bucle del Hábito</strong> – Un marco para entender la formación de hábitos, que consiste en señal, rutina y recompensa, aplicable a los comportamientos digitales.
+          </div>
+        </div>
+        <div id="glossary-section-c" class="glossary-section" data-letter="c">
+          <h3 class="glossary-letter-header">C</h3>
+          <div class="glossary-term">
+            <strong>Carga Cognitiva</strong> – El esfuerzo mental requerido para procesar información, que puede ser afectado por el tiempo excesivo frente a la pantalla o la multitarea.
+          </div>
+          <div class="glossary-term">
+            <strong>Ciencia del Comportamiento</strong> – El estudio de cómo las personas forman hábitos digitales y cómo la tecnología influye en la toma de decisiones.
+          </div>
+          <div class="glossary-term">
+            <strong>Cognición Cerebral</strong> – La forma en que el cerebro procesa la información, impactada por hábitos digitales como el tiempo de pantalla y la multitarea.
+          </div>
+          <div class="glossary-term">
+            <strong>Compañero de Responsabilidad (Accountability Buddy)</strong> – Un compañero de apoyo que ayuda a seguir el progreso y fomenta la consistencia en los objetivos de bienestar digital.
+          </div>
+          <div class="glossary-term">
+            <strong>Corteza Prefrontal</strong> – La parte del cerebro responsable de la toma de decisiones y el control de impulsos, que se ve afectada por la participación digital.
+          </div>
+        </div>
+        <div id="glossary-section-d" class="glossary-section" data-letter="d">
+          <h3 class="glossary-letter-header">D</h3>
+          <div class="glossary-term">
+            <strong>Desintoxicación Digital</strong> – Un período de tiempo que se pasa sin dispositivos digitales para restablecer hábitos y mejorar el bienestar.
+          </div>
+          <div class="glossary-term">
+            <strong>Disparadores en el Uso Digital</strong> – Señales ambientales o psicológicas que incitan a ciertos hábitos digitales, como revisar el teléfono por aburrimiento.
+          </div>
+        </div>
+        <div id="glossary-section-e" class="glossary-section" data-letter="e">
+          <h3 class="glossary-letter-header">E</h3>
+          <div class="glossary-term">
+            <strong>Efecto de Doble Filo de la Tecnología</strong> – El concepto de que las herramientas digitales pueden tanto mejorar como obstaculizar el bienestar, dependiendo de los patrones de uso.
+          </div>
+          <div class="glossary-term">
+            <strong>Empatía y Tecnología</strong> – La relación entre las interacciones digitales y la inteligencia emocional, incluyendo cómo la tecnología puede impactar las conexiones sociales.
+          </div>
+          <div class="glossary-term">
+            <strong>Equilibrio entre Tecnología y Vida</strong> – El esfuerzo intencionado por armonizar el uso de la tecnología con el bienestar general.
+          </div>
+        </div>
+        <div id="glossary-section-f" class="glossary-section" data-letter="f">
+          <h3 class="glossary-letter-header">F</h3>
+          <div class="glossary-term">
+            <strong>Florecimiento (Teoría del Bienestar)</strong> – El estado de prosperar en múltiples aspectos de la vida, incluyendo el bienestar físico, mental, emocional y digital.
+          </div>
+          <div class="glossary-term">
+            <strong>Florecimiento Digital</strong> – Prosperar en un entorno digital equilibrando el uso de la tecnología con el bienestar personal y profesional.
+          </div>
+          <div class="glossary-term">
+            <strong>Fortalezas del Carácter</strong> – Fortalezas personales (p. ej., curiosidad, autorregulación) que se pueden aprovechar para cultivar hábitos digitales saludables.
+          </div>
+          <div class="glossary-term">
+            <strong>Fuerza de Voluntad y Uso Digital</strong> – La capacidad de resistir las distracciones y construir hábitos tecnológicos positivos.
+          </div>
+        </div>
+        <div id="glossary-section-h" class="glossary-section" data-letter="h">
+          <h3 class="glossary-letter-header">H</h3>
+          <div class="glossary-term">
+            <strong>Higiene en las Redes Sociales</strong> – Prácticas para mantener una relación saludable con las plataformas sociales, incluyendo la curación de contenido y el establecimiento de límites.
+          </div>
+        </div>
+        <div id="glossary-section-m" class="glossary-section" data-letter="m">
+          <h3 class="glossary-letter-header">M</h3>
+          <div class="glossary-term">
+            <strong>Metas Digitales</strong> – Objetivos personalizados para mejorar los hábitos digitales, a menudo utilizando el marco SMART (Específico, Medible, Alcanzable, Relevante, con Plazo).
+          </div>
+          <div class="glossary-term">
+            <strong>Minimalismo Digital</strong> – Una filosofía que aboga por el uso intencionado y con propósito de la tecnología para mejorar el bienestar.
+          </div>
+          <div class="glossary-term">
+            <strong>Motivación (Teoría de la Autodeterminación)</strong> – Factores internos y externos que influyen en el compromiso con la tecnología, incluyendo la autonomía, la competencia y la relación.
+          </div>
+        </div>
+        <div id="glossary-section-p" class="glossary-section" data-letter="p">
+          <h3 class="glossary-letter-header">P</h3>
+          <div class="glossary-term">
+            <strong>Práctica de Reflexión</strong> – Autoevaluaciones periódicas para valorar los hábitos digitales y su alineación con los valores personales.
+          </div>
+        </div>
+        <div id="glossary-section-s" class="glossary-section" data-letter="s">
+          <h3 class="glossary-letter-header">S</h3>
+          <div class="glossary-term">
+            <strong>Seguridad Psicológica y Tecnología</strong> – El impacto de los entornos digitales en el bienestar emocional y la seguridad.
+          </div>
+          <div class="glossary-term">
+            <strong>Sensibilización sobre el Tiempo de Pantalla</strong> – Seguimiento consciente del tiempo que se pasa en dispositivos digitales para mantener un estilo de vida equilibrado.
+          </div>
+        </div>
+        <div id="glossary-section-v" class="glossary-section" data-letter="v">
+          <h3 class="glossary-letter-header">V</h3>
+          <div class="glossary-term">
+            <strong>Valores Fundamentales</strong> – Creencias fundamentales que guían los hábitos y la toma de decisiones digitales.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- VideoJS JavaScript -->
+  <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
+  <script src="js/video-player.js"></script>
+  <script src="js/key-points.js"></script>
+  <script src="js/quiz.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/logo-checker.js"></script>
+  <script src="js/glossary.js"></script>
+  <script>
+// Enhanced PDF generation function with header image
+async function addPDFHeaderES(doc) {
+  try {
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    
+    return new Promise((resolve, reject) => {
+      img.onload = function() {
+        try {
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d');
+          
+          const pdfWidth = 210;
+          const imgWidth = pdfWidth;
+          const imgHeight = (img.height / img.width) * imgWidth;
+          
+          canvas.width = img.width;
+          canvas.height = img.height;
+          
+          ctx.drawImage(img, 0, 0);
+          
+          const imgData = canvas.toDataURL('image/jpeg', 0.8);
+          
+          doc.addImage(imgData, 'JPEG', 0, 0, imgWidth, imgHeight);
+          
+          resolve(imgHeight + 10);
+        } catch (error) {
+          console.warn('Error al procesar la imagen de cabecera:', error);
+          resolve(20);
+        }
+      };
+      
+      img.onerror = function() {
+        console.warn('No se pudo cargar la imagen de cabecera');
+        resolve(20);
+      };
+      
+      img.src = 'assets/images/hero-wellbeing-final.png';
+    });
+  } catch (error) {
+    console.warn('Error al cargar la imagen de cabecera:', error);
+    return 20;
+  }
+}
+
+// Session storage functions for assessment responses
+function saveResponseToSessionES() {
+  const responses = {
+    screenTime: document.querySelector('input[name="question1"]:checked')?.value || '',
+    digitalGoals: document.querySelector('input[name="question2"]:checked')?.value || '',
+    closerToGoal: document.querySelector('input[name="question3"]:checked')?.value || '',
+    consciousUse: document.querySelector('input[name="question4"]:checked')?.value || '',
+    feelBetter: document.querySelector('input[name="question5"]:checked')?.value || '',
+    reflection: document.getElementById('reflection-response').value || '',
+    timestamp: new Date().toISOString()
+  };
+  
+  sessionStorage.setItem('capitulo2_assessment', JSON.stringify(responses));
+}
+
+function loadResponseFromSessionES() {
+  const savedData = sessionStorage.getItem('capitulo2_assessment');
+  if (savedData) {
+    const responses = JSON.parse(savedData);
+    
+    if (responses.screenTime) {
+      const radio1 = document.querySelector(`input[name="question1"][value="${responses.screenTime}"]`);
+      if (radio1) radio1.checked = true;
+    }
+    if (responses.digitalGoals) {
+      const radio2 = document.querySelector(`input[name="question2"][value="${responses.digitalGoals}"]`);
+      if (radio2) radio2.checked = true;
+    }
+    if (responses.closerToGoal) {
+      const radio3 = document.querySelector(`input[name="question3"][value="${responses.closerToGoal}"]`);
+      if (radio3) radio3.checked = true;
+    }
+    if (responses.consciousUse) {
+      const radio4 = document.querySelector(`input[name="question4"][value="${responses.consciousUse}"]`);
+      if (radio4) radio4.checked = true;
+    }
+    if (responses.feelBetter) {
+      const radio5 = document.querySelector(`input[name="question5"][value="${responses.feelBetter}"]`);
+      if (radio5) radio5.checked = true;
+    }
+    
+    if (responses.reflection) {
+      document.getElementById('reflection-response').value = responses.reflection;
+    }
+  }
+}
+
+async function downloadAssessmentResponseES() {
+  saveResponseToSessionES();
+  
+  const responses = {
+    screenTime: document.querySelector('input[name="question1"]:checked')?.value || '',
+    digitalGoals: document.querySelector('input[name="question2"]:checked')?.value || '',
+    closerToGoal: document.querySelector('input[name="question3"]:checked')?.value || '',
+    consciousUse: document.querySelector('input[name="question4"]:checked')?.value || '',
+    feelBetter: document.querySelector('input[name="question5"]:checked')?.value || '',
+    reflection: document.getElementById('reflection-response').value || ''
+  };
+  
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  
+  const startY = await addPDFHeaderES(doc);
+  
+  doc.setFont("helvetica");
+  
+  doc.setFontSize(16);
+  doc.setFont("helvetica", "bold");
+  doc.text("Evaluación de Bienestar Digital - Capítulo 2 Punto de Control I", 20, startY + 10);
+  
+  doc.setFontSize(12);
+  doc.setFont("helvetica", "normal");
+  doc.text(`Fecha: ${new Date().toLocaleDateString()}`, 20, startY + 25);
+  
+  doc.setFontSize(14);
+  doc.setFont("helvetica", "bold");
+  let yPosition = startY + 45;
+  
+  if (yPosition > 270) {
+    doc.addPage();
+    yPosition = 20;
+  }
+  
+  doc.text("RESPUESTAS DE LA ESCALA", 20, yPosition);
+  yPosition += 10;
+  
+  doc.setFontSize(10);
+  doc.setFont("helvetica", "italic");
+  doc.text("(1 = totalmente en desacuerdo, 5 = totalmente de acuerdo)", 20, yPosition);
+  yPosition += 15;
+  
+  doc.setFontSize(11);
+  doc.setFont("helvetica", "normal");
+  
+  const questions = [
+    { label: "1. He disminuido mi tiempo de pantalla:", value: responses.screenTime },
+    { label: "2. Me he mantenido fiel a mis Metas Digitales:", value: responses.digitalGoals },
+    { label: "3. Estoy más cerca de donde quiero estar:", value: responses.closerToGoal },
+    { label: "4. He hecho un uso más consciente de mis dispositivos digitales:", value: responses.consciousUse },
+    { label: "5. Me siento mejor con el uso que hago de mis dispositivos digitales:", value: responses.feelBetter }
+  ];
+  
+  questions.forEach(question => {
+    if (yPosition > 270) {
+      doc.addPage();
+      yPosition = 20;
+    }
+    
+    doc.text(question.label, 20, yPosition);
+    doc.setFont("helvetica", "bold");
+    doc.text(question.value || "No respondido", 180, yPosition);
+    doc.setFont("helvetica", "normal");
+    yPosition += 12;
+  });
+  
+  yPosition += 10;
+  
+  if (yPosition > 250) {
+    doc.addPage();
+    yPosition = 20;
+  }
+  
+  doc.setFontSize(14);
+  doc.setFont("helvetica", "bold");
+  doc.text("REFLEXIÓN", 20, yPosition);
+  
+  yPosition += 15;
+  doc.setFontSize(11);
+  doc.setFont("helvetica", "italic");
+  const reflectionQuestion = "¿Cómo te sientes después de completar las dos primeras lecciones de este curso? ¿Has notado alguna diferencia en tu bienestar general?";
+  const splitQuestion = doc.splitTextToSize(reflectionQuestion, 170);
+  
+  if (yPosition + (splitQuestion.length * 5) > 270) {
+    doc.addPage();
+    yPosition = 20;
+  }
+  
+  doc.text(splitQuestion, 20, yPosition);
+  yPosition += splitQuestion.length * 5 + 10;
+  
+  doc.setFont("helvetica", "normal");
+  if (responses.reflection) {
+    const splitReflection = doc.splitTextToSize(responses.reflection, 170);
+    
+    if (yPosition + (splitReflection.length * 5) > 270) {
+      doc.addPage();
+      yPosition = 20;
+    }
+    
+    doc.text(splitReflection, 20, yPosition);
+  } else {
+    doc.text("No se proporcionó reflexión", 20, yPosition);
+  }
+  
+  doc.save('Bienestar_Digital_Capitulo2_Evaluacion.pdf');
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  loadResponseFromSessionES();
+  
+  const radioButtons = document.querySelectorAll('input[type="radio"]');
+  radioButtons.forEach(radio => {
+    radio.addEventListener('change', saveResponseToSessionES);
+  });
+  
+  const reflectionTextarea = document.getElementById('reflection-response');
+  if (reflectionTextarea) {
+    reflectionTextarea.addEventListener('input', saveResponseToSessionES);
+  }
+});
+  
+  </script>
 </body>
 </html>
