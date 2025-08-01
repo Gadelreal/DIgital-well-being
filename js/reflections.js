@@ -39,27 +39,53 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 
 /**
+ * Obtiene el idioma de la página actual.
+ * @returns {string} El código del idioma ('es' o 'en').
+ */
+function getReflectionsLang() {
+  return document.documentElement.lang || "en"
+}
+
+/**
+ * Obtiene los textos de feedback en el idioma correspondiente.
+ * @param {string} lang - El código del idioma.
+ * @returns {object} Un objeto con los textos.
+ */
+function getReflectionsFeedbackStrings(lang) {
+  if (lang === "es") {
+    return {
+      loaded: "Se ha cargado una reflexión guardada previamente",
+      error: "Por favor, escribe algo antes de guardar",
+      success: "¡Reflexión guardada con éxito!",
+      aria_success: "Tu reflexión ha sido guardada con éxito.",
+    }
+  }
+  return {
+    loaded: "Previously saved reflection loaded",
+    error: "Please enter some text before saving",
+    success: "Reflection saved successfully!",
+    aria_success: "Your reflection has been saved successfully.",
+  }
+}
+
+/**
  * Carga las reflexiones guardadas previamente del localStorage
  */
 function loadSavedReflections() {
-  // Buscar todos los textareas de reflexión
+  const lang = getReflectionsLang()
+  const strings = getReflectionsFeedbackStrings(lang)
   const textareas = document.querySelectorAll(".reflection-textarea")
 
-  // Para cada textarea, cargar el contenido guardado si existe
   textareas.forEach((textarea) => {
     const reflectionId = textarea.id
     const savedReflection = localStorage.getItem(`reflection_${reflectionId}`)
 
     if (savedReflection) {
       textarea.value = savedReflection
-
-      // Añadir indicador visual de contenido guardado
       const feedbackElement = document.getElementById(`feedback-${reflectionId}`)
       if (feedbackElement) {
-        feedbackElement.textContent = "Previously saved reflection loaded"
+        feedbackElement.textContent = strings.loaded
         feedbackElement.classList.add("show")
-
-        // Eliminar la clase después de la animación
         setTimeout(() => {
           feedbackElement.classList.remove("show")
         }, 3000)
@@ -72,17 +98,23 @@ function loadSavedReflections() {
  * Guarda la reflexión en localStorage y muestra feedback
  */
 function saveReflection(event) {
+  const lang = getReflectionsLang()
+  const strings = getReflectionsFeedbackStrings(lang)
+
   // Obtener el ID de la reflexión desde el atributo data
-  const reflectionId = event.target.getAttribute("data-reflection-id")
+  const button = event.target.closest(".save-button")
+  if (!button) return
+
+  const reflectionId = button.getAttribute("data-reflection-id")
   const textarea = document.getElementById(reflectionId)
+  const feedbackElement = document.getElementById(`feedback-${reflectionId}`)
 
   // Obtener el valor del textarea
   const reflectionText = textarea.value
 
   // Validar que haya contenido
   if (!reflectionText.trim()) {
-    const feedbackElement = document.getElementById(`feedback-${reflectionId}`)
-    feedbackElement.textContent = "Please enter some text before saving"
+    feedbackElement.textContent = strings.error
     feedbackElement.classList.add("show")
     feedbackElement.style.color = "#d32f2f" // Color de error
 
@@ -100,8 +132,7 @@ function saveReflection(event) {
   localStorage.setItem(`reflection_${reflectionId}`, reflectionText)
 
   // Mostrar feedback al usuario
-  const feedbackElement = document.getElementById(`feedback-${reflectionId}`)
-  feedbackElement.textContent = "Reflection saved successfully!"
+  feedbackElement.textContent = strings.success
   feedbackElement.classList.add("show")
   feedbackElement.style.color = "" // Restablecer al color predeterminado
 
@@ -114,7 +145,7 @@ function saveReflection(event) {
   const ariaLiveRegion = document.createElement("div")
   ariaLiveRegion.setAttribute("aria-live", "polite")
   ariaLiveRegion.className = "sr-only"
-  ariaLiveRegion.textContent = "Your reflection has been saved successfully."
+  ariaLiveRegion.textContent = strings.aria_success
   document.body.appendChild(ariaLiveRegion)
 
   // Eliminar después de que se haya anunciado

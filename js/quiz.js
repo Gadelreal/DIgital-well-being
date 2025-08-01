@@ -10,10 +10,7 @@ function initializeQuizzes() {
   // Digital Well-being Quiz (Chapter 2)
   const wellbeingQuiz = document.getElementById("wellbeing-quiz")
   if (wellbeingQuiz) {
-    wellbeingQuiz.addEventListener("submit", (e) => {
-      e.preventDefault()
-      handleWellbeingQuizSubmit()
-    })
+    wellbeingQuiz.addEventListener("submit", handleQuizSubmit)
   }
 
   // Final Quiz (Chapter 5)
@@ -67,125 +64,113 @@ function initializeQuizzes() {
   }
 }
 
-function handleWellbeingQuizSubmit() {
-  const form = document.getElementById("wellbeing-quiz")
-  const feedback = document.getElementById("wellbeing-quiz-feedback")
-  const submitBtn = form.querySelector(".quiz-submit-btn")
-
-  // Get all checked answers
-  const checkedAnswers = Array.from(form.querySelectorAll('input[type="checkbox"]:checked')).map((input) => input.value)
-
-  // Correct answers for the digital well-being quiz
-  const correctAnswers = ["a", "e"]
-
-  // Disable all inputs and submit button
-  const allInputs = form.querySelectorAll('input[type="checkbox"]')
-  allInputs.forEach((input) => {
-    input.disabled = true
-  })
-  submitBtn.disabled = true
-
-  // Clear any existing feedback classes
-  const allOptions = form.querySelectorAll(".quiz-option")
-  allOptions.forEach((option) => {
-    option.classList.remove("correct-answer", "incorrect-answer", "missed-answer")
-  })
-
-  // Process each option
-  allOptions.forEach((option) => {
-    const input = option.querySelector('input[type="checkbox"]')
-    const value = input.value
-    const isChecked = input.checked
-    const isCorrect = correctAnswers.includes(value)
-
-    if (isChecked && isCorrect) {
-      // User selected correct answer
-      option.classList.add("correct-answer")
-    } else if (isChecked && !isCorrect) {
-      // User selected incorrect answer
-      option.classList.add("incorrect-answer")
-    } else if (!isChecked && isCorrect) {
-      // User missed correct answer
-      option.classList.add("missed-answer")
-    }
-  })
-
-  // Show feedback
-  feedback.style.display = "block"
-  feedback.scrollIntoView({ behavior: "smooth", block: "nearest" })
-
-  // Add Try Again button
-  if (!submitBtn.nextElementSibling || !submitBtn.nextElementSibling.classList.contains("quiz-reset-btn")) {
-    const resetBtn = document.createElement("button")
-    resetBtn.type = "button"
-    resetBtn.className = "quiz-submit-btn quiz-reset-btn"
-    resetBtn.textContent = "Try Again"
-    resetBtn.style.marginLeft = "1rem"
-    resetBtn.addEventListener("click", () => {
-      resetWellbeingQuiz()
-    })
-    submitBtn.parentNode.insertBefore(resetBtn, submitBtn.nextSibling)
-  }
-
-  // Announce to screen readers
-  const announcement = document.createElement("div")
-  announcement.className = "sr-only"
-  announcement.setAttribute("aria-live", "polite")
-  announcement.textContent = "Quiz completed. Results are now displayed below."
-  form.appendChild(announcement)
-
-  setTimeout(() => {
-    if (announcement.parentNode) {
-      announcement.parentNode.removeChild(announcement)
-    }
-  }, 1000)
+/**
+ * Obtiene el idioma de la página actual.
+ * @returns {string} El código del idioma ('es' o 'en').
+ */
+function getQuizLang() {
+  return document.documentElement.lang || "en"
 }
 
-function resetWellbeingQuiz() {
-  const form = document.getElementById("wellbeing-quiz")
-  const feedback = document.getElementById("wellbeing-quiz-feedback")
-  const submitBtn = form.querySelector(".quiz-submit-btn")
-  const resetBtn = form.querySelector(".quiz-reset-btn")
+/**
+ * Obtiene los textos del quiz en el idioma correspondiente.
+ * @param {string} lang - El código del idioma.
+ * @returns {object} Un objeto con los textos.
+ */
+function getQuizStrings(lang) {
+  if (lang === "es") {
+    return {
+      tryAgain: "Intentar de nuevo",
+    }
+  }
+  return {
+    tryAgain: "Try Again",
+  }
+}
 
-  // Reset form
-  form.reset()
+/**
+ * Maneja el envío del formulario del quiz.
+ * @param {Event} event - El evento de envío del formulario.
+ */
+function handleQuizSubmit(event) {
+  event.preventDefault()
+  const form = event.target
+  const feedbackElement = document.getElementById("wellbeing-quiz-feedback")
+  const submitButton = form.querySelector(".quiz-submit-btn")
+  const checkboxes = form.querySelectorAll('input[type="checkbox"]')
+  const correctAnswers = ["a", "e"]
 
-  // Enable all inputs and submit button
-  const allInputs = form.querySelectorAll('input[type="checkbox"]')
-  allInputs.forEach((input) => {
-    input.disabled = false
+  checkboxes.forEach((checkbox) => {
+    const optionLabel = checkbox.closest(".quiz-option")
+    const isCorrect = correctAnswers.includes(checkbox.value)
+    const isChecked = checkbox.checked
+
+    // Limpiar clases previas
+    optionLabel.classList.remove("correct-answer", "incorrect-answer", "missed-answer")
+
+    if (isChecked && isCorrect) {
+      optionLabel.classList.add("correct-answer")
+    } else if (isChecked && !isCorrect) {
+      optionLabel.classList.add("incorrect-answer")
+    } else if (!isChecked && isCorrect) {
+      optionLabel.classList.add("missed-answer")
+    }
+    checkbox.disabled = true
   })
-  submitBtn.disabled = false
 
-  // Remove feedback classes
-  const allOptions = form.querySelectorAll(".quiz-option")
-  allOptions.forEach((option) => {
-    option.classList.remove("correct-answer", "incorrect-answer", "missed-answer")
-  })
-
-  // Hide feedback
-  feedback.style.display = "none"
-
-  // Remove reset button
-  if (resetBtn) {
-    resetBtn.remove()
+  if (feedbackElement) {
+    feedbackElement.style.display = "block"
+  }
+  if (submitButton) {
+    submitButton.style.display = "none"
   }
 
-  // Scroll back to quiz
-  form.scrollIntoView({ behavior: "smooth", block: "start" })
-
-  // Announce to screen readers
-  const announcement = document.createElement("div")
-  announcement.className = "sr-only"
-  announcement.setAttribute("aria-live", "polite")
-  announcement.textContent = "Quiz has been reset. You can now try again."
-  form.appendChild(announcement)
-
-  setTimeout(() => {
-    if (announcement.parentNode) {
-      announcement.parentNode.removeChild(announcement)
+  // Añadir botón "Intentar de nuevo" si no existe
+  let tryAgainButton = form.querySelector(".quiz-reset-btn")
+  if (!tryAgainButton) {
+    const lang = getQuizLang()
+    const strings = getQuizStrings(lang)
+    tryAgainButton = document.createElement("button")
+    tryAgainButton.type = "button"
+    tryAgainButton.className = "quiz-submit-btn quiz-reset-btn"
+    tryAgainButton.textContent = strings.tryAgain
+    // Insertar después del fieldset
+    const fieldset = form.querySelector("fieldset")
+    if (fieldset) {
+      fieldset.parentNode.insertBefore(tryAgainButton, fieldset.nextSibling)
+    } else {
+      form.appendChild(tryAgainButton)
     }
-  }, 1000)
+    tryAgainButton.addEventListener("click", resetQuiz)
+  }
+}
+
+/**
+ * Reinicia el quiz a su estado inicial.
+ */
+function resetQuiz() {
+  const form = document.getElementById("wellbeing-quiz")
+  const feedbackElement = document.getElementById("wellbeing-quiz-feedback")
+  const submitButton = form.querySelector(".quiz-submit-btn")
+  const checkboxes = form.querySelectorAll('input[type="checkbox"]')
+  const tryAgainButton = form.querySelector(".quiz-reset-btn")
+
+  checkboxes.forEach((checkbox) => {
+    const optionLabel = checkbox.closest(".quiz-option")
+    checkbox.checked = false
+    checkbox.disabled = false
+    optionLabel.classList.remove("correct-answer", "incorrect-answer", "missed-answer")
+  })
+
+  if (feedbackElement) {
+    feedbackElement.style.display = "none"
+  }
+  if (submitButton) {
+    submitButton.style.display = "block"
+  }
+  if (tryAgainButton) {
+    tryAgainButton.remove()
+  }
 }
 
 function handleFinalQuizSubmit() {
