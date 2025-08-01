@@ -1,47 +1,618 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Curso Online - Introducción</title>
-  <link rel="stylesheet" href="./css/styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bienestar Digital - Introducción</title>
+<link rel="stylesheet" href="./css/styles.css">
+<!-- VideoJS CSS -->
+<link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
+<!-- Font Awesome para iconos -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
+<style>
+
+
+.hero-title {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 300;
+}
+
+.hero-section {
+  background-image: url('assets/images/hero-wellbeing-final.png');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-align: center;
+  padding: 5rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Responsive adjustments for the sticky navigation */
+@media (max-width: 768px) {
+  .glossary-az-nav {
+    padding: 12px 0 15px 0;
+  }
+  
+  .glossary-az-nav a {
+    margin: 0 4px 4px 0;
+    padding: 6px 8px;
+    font-size: 0.9rem;
+  }
+  
+  .glossary-terms {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .glossary-az-nav {
+    padding: 10px 0 12px 0;
+  }
+  
+  .glossary-az-nav a {
+    margin: 0 3px 3px 0;
+    padding: 5px 6px;
+    font-size: 0.8rem;
+  }
+  
+  .glossary-terms {
+    padding: 0 1rem 1rem 1rem;
+  }
+}
+
+/* Survey Section Styles */
+.survey-section {
+  background-color: #f8f9fa !important;
+  padding: 4rem 2rem !important;
+  border-radius: 8px;
+  margin: 2rem 0;
+  text-align: left;
+  border: 1px solid #e9ecef;
+}
+
+.survey-section h2 {
+  margin-top: 0 !important;
+  margin-bottom: 1.5rem !important;
+}
+
+.survey-note {
+  background-color: #e3f2fd;
+  border-left: 4px solid #2196f3;
+  padding: 1rem;
+  margin: 1.5rem 0;
+  border-radius: 4px;
+}
+
+.survey-note p {
+  margin: 0;
+  font-style: italic;
+  color: #1565c0;
+}
+
+.survey-link-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #DB0086;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  border: none;
+  cursor: pointer;
+}
+
+.survey-link-button:hover {
+  background-color: #b8006b;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(219, 0, 134, 0.3);
+  color: white;
+  text-decoration: none;
+}
+
+.survey-link-button:focus {
+  outline: 2px solid #DB0086;
+  outline-offset: 2px;
+}
+
+.survey-link-button i {
+  font-size: 1rem;
+}
+
+/* Responsive adjustments for survey section */
+@media (max-width: 768px) {
+  .survey-section {
+    padding: 3rem 1.5rem !important;
+    margin: 1.5rem 0;
+  }
+  
+  .survey-link-button {
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .survey-section {
+    padding: 2.5rem 1rem !important;
+    margin: 1rem 0;
+  }
+  
+  .survey-link-button {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* Espaciado para iconos en botones */
+.save-button i,
+button i {
+  margin-right: 0.5rem;
+}
+
+/* Asegurar espaciado consistente en todos los botones con iconos */
+.nav-button i,
+.start-button i,
+.blue-button i,
+.survey-button i,
+.take-survey-button i,
+.download-button i,
+.download-template-button i,
+.quiz-submit i,
+.survey-submit i {
+  margin-right: 0.5rem;
+}
+</style>
 </head>
 <body>
-  <header>
-    <div class="logo-container">
-      <a href="https://www.ie.edu" target="_blank">
-        <img src="assets/images/logo-ie.svg" alt="IE University Logo" class="logo" width="120">
+<!-- Añadir el enlace de saltar al contenido principal al inicio del body -->
+<a href="#main-content" class="skip-to-content">Saltar al contenido principal</a>
+
+<!-- Modificar la estructura del header para alinear elementos en una línea -->
+<header class="full-width header-full-bottom" role="banner">
+<div class="header-content">
+  <div class="header-left">
+    <div class="logo-container tiny-logo">
+      <a href="https://www.ie.edu" target="_blank" aria-label="Sitio web de IE University">
+        <img src="assets/images/logo-ie.svg" alt="Logo de IE University" class="logo" width="120">
       </a>
     </div>
-    <nav class="main-nav">
-      <ul>
-        <li><a href="index.html">Portada</a></li>
-        <li><a href="introduccion.html" class="active">Introducción</a></li>
-        <li><a href="capitulo1.html">Capítulo 1</a></li>
-        <li><a href="capitulo2.html">Capítulo 2</a></li>
-        <li><a href="capitulo3.html">Capítulo 3</a></li>
-        <li><a href="capitulo4.html">Capítulo 4</a></li>
-        <li><a href="capitulo5.html">Capítulo 5</a></li>
-      </ul>
-    </nav>
-  </header>
+    <h2 class="header-title">Bienestar Digital</h2>
+  </div>
+  <div class="header-controls">
+    <button id="mobile-menu-toggle" class="mobile-menu-toggle always-visible" aria-label="Abrir menú" aria-expanded="false" aria-controls="main-nav">
+      <div class="hamburger-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </button>
+  </div>
+</div>
+<nav class="main-nav hamburger-nav" id="main-nav" aria-label="Navegación principal">
+  <ul>
+    <li><a href="index.html">Portada</a></li>
+    <li><a href="introduccion.html" class="active" aria-current="page">0. Introducción</a></li>
+    <li><a href="capitulo1.html">1. El Bienestar como Clave...</a></li>
+    <li><a href="capitulo2.html">2. Hábitos Digitales</a></li>
+    <li><a href="capitulo3.html">3. Atención, Cognición, Energía...</a></li>
+    <li><a href="capitulo4.html">4. Visión y Práctica del Bienestar Digital</a></li>
+    <li><a href="capitulo5.html">5. Conclusión del Curso</a></li>
+    <li><a href="#" id="glossary-menu-link"><i class="fas fa-book" style="color: #DB0086; margin-right: 0.5rem;" aria-hidden="true"></i>Abrir Glosario</a></li>
+  </ul>
+</nav>
+</header>
 
-  <main>
-    <div class="content-container">
-      <h1>Introducción</h1>
-      <!-- Aquí irá el contenido de la introducción -->
+<section class="hero-section">
+<div class="hero-content">
+  <div class="hero-title-container">
+    <h1 class="hero-title">INTRODUCCIÓN<br>Bienestar Digital</h1>
+  </div>
+</div>
+</section>
+
+<main id="main-content" tabindex="-1">
+<div class="content-aligned-container">
+  
+  <section class="lesson-section no-borders">
+    <h2>Descripción del Curso y Objetivos de Aprendizaje</h2>
+    
+    
+    <h3>Descripción del Curso</h3>
+    <p><strong>Bienestar Digital</strong> es un curso diseñado para desarrollar la conciencia y las prácticas que nos ayudan a aprovechar la tecnología para mejorar nuestras vidas, al tiempo que fomentamos el florecimiento humano, la conexión, la innovación y la productividad.</p>
+
+    <p>Los avances tecnológicos han transformado la forma en que vivimos, trabajamos y nos comunicamos, volviéndose omnipresentes en nuestra vida diaria. Estos cambios han hecho que el movimiento, la conexión y la comunicación sean más accesibles. Sin embargo, los datos muestran que nuestros hábitos personales, tanto en el trabajo como en la vida, pueden contribuir a un mayor aislamiento, una menor empatía y una autoconciencia disminuida.</p>
+
+    <p>Este curso, desarrollado por el <strong>Centro de Salud y Bienestar de IE University</strong>, adopta un enfoque proactivo para cultivar la conciencia y aplicar conocimientos científicos para desarrollar prácticas saludables que apoyen la función cerebral, las relaciones y la productividad a través de un uso equilibrado de la tecnología. Exploraremos el aprendizaje a nivel individual mientras reflexionamos sobre la cultura digital que estamos moldeando colectivamente.</p>
+
+    <p><strong>En el Centro de Salud y Bienestar, adoptamos un enfoque holístico para el florecimiento y el bienestar</strong>. A medida que la tecnología se vuelve cada vez más integral en la vida, nuestro objetivo es fomentar una mayor apreciación, aprendizaje, perspectiva y <strong>equilibrio en nuestro bienestar digital.</strong></p>
+    
+    
+    <h3>Objetivos de Aprendizaje del Curso</h3>
+
+    <div class="learning-objectives-grid">
+      <div class="learning-objective-card">
+        <div class="objective-icon" aria-hidden="true">
+          <i class="fas fa-lightbulb"></i>
+        </div>
+        <div class="objective-content">
+          <h4>Apreciación del Bienestar Digital</h4>
+          <p>Desarrollar una apreciación por el bienestar digital y comprender su importancia.</p>
+        </div>
+      </div>
       
-      <div class="navigation-buttons">
-        <a href="index.html" class="nav-button prev">Anterior</a>
-        <a href="capitulo1.html" class="nav-button next">Siguiente</a>
+      <div class="learning-objective-card">
+        <div class="objective-icon" aria-hidden="true">
+          <i class="fas fa-brain"></i>
+        </div>
+        <div class="objective-content">
+          <h4>Impacto Holístico de la Tecnología</h4>
+          <p>Reconocer las formas en que la tecnología influye en nuestro bienestar físico, mental, emocional y espiritual.</p>
+        </div>
+      </div>
+      
+      <div class="learning-objective-card">
+        <div class="objective-icon" aria-hidden="true">
+          <i class="fas fa-cogs"></i>
+        </div>
+        <div class="objective-content">
+          <h4>Comprensión Cognitiva y Conductual</h4>
+          <p>Entender cómo los comportamientos y hábitos relacionados con la tecnología afectan el funcionamiento cognitivo, la productividad y las relaciones.</p>
+        </div>
+      </div>
+      
+      <div class="learning-objective-card">
+        <div class="objective-icon" aria-hidden="true">
+          <i class="fas fa-balance-scale"></i>
+        </div>
+        <div class="objective-content">
+          <h4>Desarrollo de Prácticas Holísticas</h4>
+          <p>Cultivar un enfoque holístico y proactivo para establecer prácticas que apoyen la cognición, la productividad y el equilibrio en el uso de la tecnología.</p>
+        </div>
+      </div>
+      
+      <div class="learning-objective-card">
+        <div class="objective-icon" aria-hidden="true">
+          <i class="fas fa-rocket"></i>
+        </div>
+        <div class="objective-content">
+          <h4>Prosperar en un Entorno Digital</h4>
+          <p>Fortalecer la capacidad de prosperar tanto personal como profesionalmente en un entorno digital.</p>
+        </div>
+      </div>
+      
+      <div class="learning-objective-card">
+        <div class="objective-icon" aria-hidden="true">
+          <i class="fas fa-clipboard-list"></i>
+        </div>
+        <div class="objective-content">
+          <h4>Plan de Acción Personal</h4>
+          <p>Crear un plan de acción personalizado de bienestar digital.</p>
+        </div>
       </div>
     </div>
-  </main>
+  </section>
+  
+  <section class="lesson-section no-borders">
+    <h2>Conoce a las Mentes Detrás del Curso</h2>
+    <p>Este curso fue creado con esmero y experiencia por profesores de la comunidad de <strong>IE University</strong>, en colaboración con el <strong>IE Center for Health and Well-being</strong>. Cada colaborador aporta una profunda pasión por ayudar a las personas a llevar vidas más equilibradas, intencionadas y plenas, tanto en línea como fuera de ella.</p>
+    
+    <p>Sus conocimientos están arraigados en la ciencia, moldeados por la experiencia y guiados por un compromiso compartido con el bienestar personal y profesional.</p>
+    
+    <p><strong>Esperamos que disfrutes del contenido y aproveches al máximo este viaje.</strong> Que inspire una reflexión significativa, despierte nuevos hábitos y apoye tu crecimiento continuo en el bienestar digital.</p>
+  </section>
+  
+  <section class="lesson-section no-borders">
+    <div class="survey-section">
+      <h2>Encuesta de Bienestar</h2>
+      
+      <p>Esta breve autoevaluación utiliza medidas validadas científicamente para ayudarte a reflexionar sobre aspectos clave del bienestar al comenzar el curso. Estos <strong>resultados de referencia</strong> son un punto de partida, diseñados para aumentar la conciencia de tu estado actual en diferentes áreas de la vida y para ayudarte a identificar qué podrías querer apoyar más intencionadamente mientras exploras prácticas que fomentan el <strong>bienestar digital</strong>.</p>
+      
+      <div class="survey-note">
+        <p>Asegúrate de seleccionar la opción <strong>Digital Well-being (Digital Learning)</strong> cuando se te solicite, para que también podamos medir los resultados de aprendizaje de este curso:</p>
+      </div>
+      
+      
+        <a href="https://ie.co1.qualtrics.com/jfe/form/SV_8cymWir9nTWHN42" target="_blank" class="survey-link-button" aria-label="Abrir encuesta de bienestar en una nueva pestaña">
+          <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+          Realizar la Encuesta de Bienestar
+        </a>
+      
+    </div>
+  </section>
+  
+  <section class="lesson-section no-borders">
+    <h2>Bienvenido/a al Curso</h2>
+    
+    <div class="responsive-video">
+      <video 
+        id="welcome-video" 
+        class="video-js vjs-ie-skin vjs-big-play-centered" 
+        controls 
+        preload="auto" 
+        poster="assets/images/welcome-to-course-poster.jpg"
+        data-video-id="w00v01"
+        
+        aria-label="Video 0.1: Bienvenido a Bienestar Digital: Explorando el Marco de Cuerpo, Mente y Alma"
+      >
+        <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w00v01-welcome-to-digital-wellbeing/hls.m3u8" type="application/x-mpegURL">
+        <p class="vjs-no-js">
+          Para ver este video, por favor activa JavaScript y considera actualizar a un
+          navegador web que <a href="https://videojs.com/html5-video-support/" target="_blank">soporte video HTML5</a>
+        </p>
+      </video>
+    </div>
+  </section>
+  
+  <section class="lesson-section no-borders">
+    <h2>Lectura</h2>
+    <p>Lee más sobre el Centro de Salud y Bienestar de IE, su misión y el Marco de Cuerpo, Mente y Alma a continuación:</p>
+    
+    <div class="reading-cards">
+      <a href="https://www.ie.edu/center-for-health-and-well-being/" target="_blank" class="reading-card-clickable">
+        <div class="reading-card">
+          <div class="reading-card-content">
+            <h3>IE Center for Health and Well-being</h3>
+            <p>Descubre la misión, visión y el marco holístico de Cuerpo, Mente y Alma que guía nuestro enfoque hacia el bienestar en IE University.</p>
+            <div class="reading-card-footer">
+              <div class="reading-link">
+                Visitar el Centro
+                <span class="reading-arrow" aria-hidden="true">→</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+  
+  <section class="lesson-section no-borders">
+    <h2>Una Nota sobre el Diseño Visual de este Curso</h2>
+    
+    <div class="responsive-video">
+      <video 
+        id="visual-design-video" 
+        class="video-js vjs-ie-skin vjs-big-play-centered" 
+        controls 
+        preload="auto" 
+        poster="assets/images/visual-design-poster.jpg"
+        data-video-id="w00v02"
+        
+        aria-label="Video 0.2: La Identidad Visual de Nuestro Curso"
+      >
+        <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w00v02-the-visual-identity-of-the-course/hls.m3u8" type="application/x-mpegURL">
+        <p class="vjs-no-js">
+          Para ver este video, por favor activa JavaScript y considera actualizar a un
+          navegador web que <a href="https://videojs.com/html5-video-support/" target="_blank">soporte video HTML5</a>
+        </p>
+      </video>
+    </div>
+  </section>
+  
+  <section class="lesson-section no-borders">
+    <h2>Glosario de Conceptos de Bienestar Digital</h2>
+    <p>A lo largo de este curso, encontrarás una variedad de términos relacionados con el bienestar digital. Para apoyar tu aprendizaje, hemos compilado un Glosario de Conceptos de Bienestar Digital.</p>
+    
+    <p>Este glosario incluye definiciones clave que aparecerán a lo largo del curso, y está disponible para que lo consultes en cualquier momento si tienes preguntas o necesitas aclaraciones. Te animamos a que vuelvas a él siempre que necesites profundizar tu comprensión o refrescar un concepto.</p>
+    
+    <div class="button-container">
+      <button 
+        id="open-glossary" 
+        class="save-button" 
+        aria-label="Abrir glosario de conceptos de bienestar digital"
+      >
+        <i class="fas fa-book" aria-hidden="true"></i> Abrir Glosario
+      </button>
+    </div>
+  </section>
+  
+  <div class="navigation-buttons" role="navigation" aria-label="Navegación del curso">
+    <a href="index.html" class="nav-button prev"><span class="arrow-left" aria-hidden="true">←</span>Portada</a>
+    <a href="capitulo1.html" class="nav-button next">Siguiente<span class="arrow-right" aria-hidden="true">→</span></a>
+  </div>
+</div>
+</main>
 
-  <footer>
-    <p class="copyright">&copy; <span id="current-year"></span> IE University. Todos los derechos reservados.</p>
-  </footer>
+<footer role="contentinfo">
+<div class="footer-content">
+  <p class="copyright">&copy; <span id="current-year"></span> IE University. Todos los derechos reservados.</p>
+</div>
+</footer>
 
-  <script src="js/main.js"></script>
+<!-- Modal del Glosario -->
+<div id="glossary-modal" class="modal" role="dialog" aria-labelledby="glossary-modal-title" aria-hidden="true">
+<div class="modal-content">
+  <div class="modal-header">
+    <h2 id="glossary-modal-title">Glosario de Conceptos de Bienestar Digital</h2>
+    <button class="modal-close" aria-label="Cerrar glosario">&times;</button>
+  </div>
+  <div class="modal-body">
+    <nav class="glossary-az-nav" aria-label="Navegación Alfabética del Glosario">
+      <a href="#" data-filter="all" class="active">TODOS</a>
+      <a href="#" data-filter="a">A</a>
+      <a href="#" data-filter="b">B</a>
+      <a href="#" data-filter="c">C</a>
+      <a href="#" data-filter="d">D</a>
+      <a href="#" data-filter="e">E</a>
+      <a href="#" data-filter="f">F</a>
+      <a href="#" data-filter="g">G</a>
+      <a href="#" data-filter="h">H</a>
+      <a href="#" data-filter="m">M</a>
+      <a href="#" data-filter="o">O</a>
+      <a href="#" data-filter="p">P</a>
+      <a href="#" data-filter="s">S</a>
+      <a href="#" data-filter="v">V</a>
+    </nav>
+    <div class="glossary-terms">
+      <div id="glossary-section-a" class="glossary-section" data-letter="a">
+        <h3 class="glossary-letter-header">A</h3>
+        <div class="glossary-term">
+          <strong>Auditoría de Hábitos Digitales</strong> – Una autoevaluación para rastrear el uso de la tecnología e identificar áreas de mejora.
+        </div>
+        <div class="glossary-term">
+          <strong>Autonomía (Teoría de la Autodeterminación)</strong> – La capacidad de tomar decisiones sobre la participación digital que se alineen con los valores y objetivos personales.
+        </div>
+        <div class="glossary-term">
+          <strong>Autorregulación</strong> – La capacidad de controlar los impulsos y tomar decisiones conscientes en las interacciones digitales.
+        </div>
+      </div>
+      <div id="glossary-section-b" class="glossary-section" data-letter="b">
+        <h3 class="glossary-letter-header">B</h3>
+        <div class="glossary-term">
+          <strong>Bucle de Hábitos</strong> – Un marco para entender la formación de hábitos, que consiste en señal, rutina y recompensa, aplicable a los comportamientos digitales.
+        </div>
+      </div>
+      <div id="glossary-section-c" class="glossary-section" data-letter="c">
+        <h3 class="glossary-letter-header">C</h3>
+        <div class="glossary-term">
+          <strong>Carga Cognitiva</strong> – El esfuerzo mental requerido para procesar información, que puede verse afectado por el tiempo excesivo frente a la pantalla o la multitarea.
+        </div>
+        <div class="glossary-term">
+          <strong>Ciencia del Comportamiento</strong> – El estudio de cómo las personas forman hábitos digitales y cómo la tecnología influye en la toma de decisiones.
+        </div>
+        <div class="glossary-term">
+          <strong>Cognición Cerebral</strong> – La forma en que el cerebro procesa la información, impactada por hábitos digitales como el tiempo de pantalla y la multitarea.
+        </div>
+        <div class="glossary-term">
+          <strong>Compañero de Responsabilidad</strong> – Un compañero de apoyo que ayuda a seguir el progreso y fomenta la constancia en los objetivos de bienestar digital.
+        </div>
+        <div class="glossary-term">
+          <strong>Conciencia del Tiempo de Pantalla</strong> – Seguimiento consciente del tiempo que se pasa en dispositivos digitales para mantener un estilo de vida equilibrado.
+        </div>
+        <div class="glossary-term">
+          <strong>Corteza Prefrontal</strong> – La parte del cerebro responsable de la toma de decisiones y el control de impulsos, que se ve afectada por la interacción digital.
+        </div>
+      </div>
+      <div id="glossary-section-d" class="glossary-section" data-letter="d">
+        <h3 class="glossary-letter-header">D</h3>
+        <div class="glossary-term">
+          <strong>Desencadenantes en el Uso Digital</strong> – Señales ambientales o psicológicas que provocan ciertos hábitos digitales, como revisar el teléfono por aburrimiento.
+        </div>
+        <div class="glossary-term">
+          <strong>Detox Digital</strong> – Un período de tiempo sin dispositivos digitales para restablecer hábitos y mejorar el bienestar.
+        </div>
+      </div>
+      <div id="glossary-section-e" class="glossary-section" data-letter="e">
+        <h3 class="glossary-letter-header">E</h3>
+        <div class="glossary-term">
+          <strong>Efecto de Doble Filo de la Tecnología</strong> – El concepto de que las herramientas digitales pueden tanto mejorar como obstaculizar el bienestar, dependiendo de los patrones de uso.
+        </div>
+        <div class="glossary-term">
+          <strong>Empatía y Tecnología</strong> – La relación entre las interacciones digitales y la inteligencia emocional, incluyendo cómo la tecnología puede impactar las conexiones sociales.
+        </div>
+        <div class="glossary-term">
+          <strong>Enfoque y Productividad</strong> – La capacidad de mantener la atención y la eficacia en el trabajo y la vida, a menudo desafiada por las distracciones digitales.
+        </div>
+        <div class="glossary-term">
+          <strong>Equilibrio Tecnológico-Vital</strong> – El esfuerzo intencional por armonizar el uso de la tecnología con el bienestar general.
+        </div>
+      </div>
+      <div id="glossary-section-f" class="glossary-section" data-letter="f">
+        <h3 class="glossary-letter-header">F</h3>
+        <div class="glossary-term">
+          <strong>Florecimiento (Teoría del Bienestar)</strong> – El estado de prosperar en múltiples aspectos de la vida, incluyendo el bienestar físico, mental, emocional y digital.
+        </div>
+        <div class="glossary-term">
+          <strong>Florecimiento Digital</strong> – Prosperar en un entorno digital equilibrando el uso de la tecnología con el bienestar personal y profesional.
+        </div>
+        <div class="glossary-term">
+          <strong>Fortalezas del Carácter</strong> – Fortalezas personales (p. ej., curiosidad, autorregulación) que se pueden aprovechar para cultivar hábitos digitales saludables.
+        </div>
+        <div class="glossary-term">
+          <strong>Fuerza de Voluntad y Uso Digital</strong> – La capacidad de resistir las distracciones y construir hábitos tecnológicos positivos.
+        </div>
+      </div>
+      <div id="glossary-section-g" class="glossary-section" data-letter="g">
+        <h3 class="glossary-letter-header">G</h3>
+        <div class="glossary-term">
+          <strong>Gestión de la Atención</strong> – La práctica de dirigir conscientemente el enfoque en un entorno digital para mejorar la productividad y la salud cognitiva.
+        </div>
+        <div class="glossary-term">
+          <strong>Gestión de la Energía</strong> – Estrategias para prevenir la fatiga digital y optimizar los niveles de energía en un mundo con mucha tecnología.
+        </div>
+        <div class="glossary-term">
+          <strong>Gestión de Notificaciones</strong> – Estrategias para reducir las interrupciones y aumentar el enfoque, como desactivar alertas no esenciales.
+        </div>
+      </div>
+      <div id="glossary-section-h" class="glossary-section" data-letter="h">
+        <h3 class="glossary-letter-header">H</h3>
+        <div class="glossary-term">
+          <strong>Higiene en Redes Sociales</strong> – Prácticas para mantener una relación saludable con las plataformas sociales, incluyendo la curación de contenido y el establecimiento de límites.
+        </div>
+      </div>
+      <div id="glossary-section-m" class="glossary-section" data-letter="m">
+        <h3 class="glossary-letter-header">M</h3>
+        <div class="glossary-term">
+          <strong>Minimalismo Digital</strong> – Una filosofía que aboga por un uso intencional y con propósito de la tecnología para mejorar el bienestar.
+        </div>
+        <div class="glossary-term">
+          <strong>Mindfulness en el Uso de la Tecnología</strong> – Practicar la conciencia del momento presente para crear interacciones digitales intencionadas y equilibradas.
+        </div>
+        <div class="glossary-term">
+          <strong>Motivación (Teoría de la Autodeterminación)</strong> – Factores internos y externos que influyen en la interacción con la tecnología, incluyendo la autonomía, la competencia y la relación.
+        </div>
+      </div>
+      <div id="glossary-section-o" class="glossary-section" data-letter="o">
+        <h3 class="glossary-letter-header">O</h3>
+        <div class="glossary-term">
+          <strong>Objetivos Digitales</strong> – Objetivos personalizados para mejorar los hábitos digitales, a menudo utilizando el marco SMART (Específico, Medible, Alcanzable, Relevante, con Plazo).
+        </div>
+      </div>
+      <div id="glossary-section-p" class="glossary-section" data-letter="p">
+        <h3 class="glossary-letter-header">P</h3>
+        <div class="glossary-term">
+          <strong>Práctica de Reflexión</strong> – Autoevaluaciones periódicas para valorar los hábitos digitales y su alineación con los valores personales.
+        </div>
+      </div>
+      <div id="glossary-section-s" class="glossary-section" data-letter="s">
+        <h3 class="glossary-letter-header">S</h3>
+        <div class="glossary-term">
+          <strong>Seguridad Psicológica y Tecnología</strong> – El impacto de los entornos digitales en el bienestar emocional y la seguridad.
+        </div>
+      </div>
+      <div id="glossary-section-v" class="glossary-section" data-letter="v">
+        <h3 class="glossary-letter-header">V</h3>
+        <div class="glossary-term">
+          <strong>Valores Fundamentales</strong> – Creencias fundamentales que guían los hábitos digitales y la toma de decisiones.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- VideoJS JavaScript -->
+<script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
+<script src="js/video-player.js"></script>
+<script src="js/key-points.js"></script>
+<script src="js/reflections.js"></script>
+<script src="js/main.js"></script>
+<script src="js/quiz.js"></script>
+<script src="js/glossary.js"></script>
+<script>
+
+// Template download function
+function downloadActionPlanTemplate() {
+// Create a temporary link element to trigger the download
+const link = document.createElement('a');
+link.href = 'assets/documents/Lesson5_Develop Your Own Digital Well-being Action Plan.pdf';
+link.download = 'Lesson5_Develop Your Own Digital Well-being Action Plan.pdf';
+link.style.display = 'none';
+
+// Add to DOM, click, and remove
+document.body.appendChild(link);
+link.click();
+document.body.removeChild(link);
+}
+</script>
 </body>
 </html>
