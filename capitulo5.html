@@ -1,50 +1,1253 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
+  <html lang="es">
+  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Curso Online - Capítulo 5</title>
-  <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-  <header>
-    <div class="logo-container">
-      <a href="https://www.ie.edu" target="_blank">
-        <img src="assets/images/logo-ie.svg" alt="IE University Logo" class="logo" width="120">
-      </a>
+  <title>Bienestar Digital - Conclusión del Curso</title>
+  <link rel="stylesheet" href="./css/styles.css">
+  <!-- VideoJS CSS -->
+  <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
+  <!-- Font Awesome para iconos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
+  <style>
+  
+  .hero-title {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 300;
+  }
+  
+  .learning-objectives-grid-2x2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 800px;
+  }
+  
+  @media (max-width: 768px) {
+    .learning-objectives-grid-2x2 {
+      grid-template-columns: 1fr; /* Stack on smaller screens */
+    }
+  }
+  
+  /* Estilos para las actividades con plantillas descargables */
+  .values-activity-container {
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    padding: 2rem;
+    padding-bottom: 3rem; /* Increased from 2.5rem to 3rem to match Lesson 1 */
+    margin: 2rem 0;
+    border-radius: 0;
+  }
+  
+  .download-template-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem; /* Increased from 0.5rem to 1.5rem to match Lesson 1 */
+  }
+  
+  .download-template-button:hover {
+    background-color: var(--primary-color-dark);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    text-decoration: none;
+  }
+  
+  .download-template-button i {
+    margin-right: 0.5rem;
+  }
+  
+  /* Estilos para las encuestas de seguimiento */
+  .survey-section {
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    padding: 2rem;
+    margin: 2rem 0;
+    border-radius: 0;
+  }
+  
+  .survey-section h2 {
+    margin-top: 0 !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  .survey-section p {
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+  }
+  
+  .survey-link-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .survey-link-button:hover {
+    background-color: var(--primary-color-dark);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    text-decoration: none;
+  }
+  
+  .survey-link-button i {
+    margin-right: 0.5rem;
+  }
+  
+  .survey-note {
+    background-color: #e8f4fd;
+    border-left: 4px solid var(--primary-color);
+    padding: 1rem;
+    margin: 1.5rem 0;
+    border-radius: 0 4px 4px 0;
+  }
+  
+  .survey-note p {
+    margin-bottom: 0 !important;
+    font-style: italic;
+    color: #333;
+  }
+  
+  .quiz-option {
+    display: flex;
+    align-items: flex-start;
+    cursor: pointer;
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+    user-select: none;
+  }
+  
+  .quiz-option:hover {
+    background-color: #f8f9fa;
+  }
+  
+  .quiz-option input[type="radio"] {
+    margin-right: 0.75rem;
+    margin-top: 0.1rem;
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+  
+  .option-text {
+    flex: 1;
+    line-height: 1.5;
+    cursor: pointer;
+  }
+  
+  .quiz-option input[type="radio"]:checked + .option-text {
+    font-weight: 500;
+  }
+  
+  /* Quiz Results Cards */
+  .quiz-results-container {
+    margin-top: 2rem;
+    display: none;
+  }
+  
+  .quiz-results-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+  
+  @media (max-width: 768px) {
+    .quiz-results-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+  
+  .quiz-result-card {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+  }
+  
+  .quiz-result-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  }
+  
+  .quiz-result-card.correct {
+    border-color: #28a745;
+  }
+  
+  .quiz-result-card.incorrect {
+    border-color: #dc3545;
+  }
+  
+  .quiz-result-card.percentage {
+    border-color: var(--primary-color);
+  }
+  
+  .quiz-result-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .quiz-result-card.correct .quiz-result-icon {
+    color: #28a745;
+  }
+  
+  .quiz-result-card.incorrect .quiz-result-icon {
+    color: #dc3545;
+  }
+  
+  .quiz-result-card.percentage .quiz-result-icon {
+    color: var(--primary-color);
+  }
+  
+  .quiz-result-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    line-height: 1;
+  }
+  
+  .quiz-result-card.correct .quiz-result-number {
+    color: #28a745;
+  }
+  
+  .quiz-result-card.incorrect .quiz-result-number {
+    color: #dc3545;
+  }
+  
+  .quiz-result-card.percentage .quiz-result-number {
+    color: var(--primary-color);
+  }
+  
+  .quiz-result-label {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.25rem;
+  }
+  
+  .quiz-result-description {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.4;
+  }
+  
+  /* Estilos para las referencias */
+  .references-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  
+  @media (max-width: 1024px) {
+    .references-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .references-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+  
+  .reference-card {
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .reference-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-color: var(--primary-color);
+  }
+  
+  .reference-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    flex-shrink: 0;
+  }
+  
+  .reference-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .reference-text {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #333;
+    margin-bottom: 1rem;
+    flex: 1;
+  }
+  
+  .reference-text em {
+    font-style: italic;
+  }
+  
+  .reference-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 0.85rem;
+    word-break: break-all;
+    margin-top: auto;
+    padding-top: 0.5rem;
+    border-top: 1px solid #f0f0f0;
+  }
+  
+  .reference-link:hover {
+    color: var(--link-hover-color);
+    text-decoration: underline;
+  }
+  
+  @media (max-width: 480px) {
+    .references-section {
+      padding: 1.5rem;
+    }
+    
+    .reference-card {
+      padding: 1.25rem;
+    }
+    
+    .reference-text {
+      font-size: 0.85rem;
+    }
+    
+    .reference-link {
+      font-size: 0.8rem;
+    }
+  }
+  
+  /* Estilos para referencias sin enlaces (no interactivas) */
+  .reference-card.no-link {
+    cursor: default;
+  }
+  
+  .reference-card.no-link:hover {
+    transform: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border-color: #e0e0e0;
+  }
+  
+  .hero-title {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 300;
+  }
+  
+  .hero-section {
+    background-image: url('assets/images/hero-wellbeing-final.png');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 5rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  </style>
+  </head>
+  <body>
+  <!-- Añadir el enlace de saltar al contenido principal al inicio del body -->
+  <a href="#main-content" class="skip-to-content">Saltar al contenido principal</a>
+  
+  <!-- Modificar la estructura del header para alinear elementos en una línea -->
+  <header class="full-width header-full-bottom" role="banner">
+  <div class="header-content">
+    <div class="header-left">
+      <div class="logo-container tiny-logo">
+        <a href="https://www.ie.edu" target="_blank" aria-label="Sitio web de IE University">
+          <img src="assets/images/logo-ie.svg" alt="Logo de IE University" class="logo" width="120">
+        </a>
+      </div>
+      <h2 class="header-title">Bienestar Digital</h2>
     </div>
-    <nav class="main-nav">
-      <ul>
-        <li><a href="index.html">Portada</a></li>
-        <li><a href="introduccion.html">Introducción</a></li>
-        <li><a href="capitulo1.html">Capítulo 1</a></li>
-        <li><a href="capitulo2.html">Capítulo 2</a></li>
-        <li><a href="capitulo3.html">Capítulo 3</a></li>
-        <li><a href="capitulo4.html">Capítulo 4</a></li>
-        <li><a href="capitulo5.html" class="active">Capítulo 5</a></li>
-      </ul>
-    </nav>
+    <div class="header-controls">
+      <button id="mobile-menu-toggle" class="mobile-menu-toggle always-visible" aria-label="Abrir menú" aria-expanded="false" aria-controls="main-nav">
+        <div class="hamburger-icon">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+    </div>
+  </div>
+  <nav class="main-nav hamburger-nav" id="main-nav" aria-label="Navegación principal">
+    <ul>
+      <li><a href="portada.html">Portada</a></li>
+      <li><a href="introduccion.html">0. Introducción</a></li>
+      <li><a href="capitulo1.html">1. El Bienestar como Clave...</a></li>
+      <li><a href="capitulo2.html">2. Hábitos Digitales</a></li>
+      <li><a href="capitulo3.html">3. Atención, Cognición, Energía...</a></li>
+      <li><a href="capitulo4.html">4. Visión y Práctica del Bienestar Digital</a></li>
+      <li><a href="capitulo5.html" class="active" aria-current="page">5. Conclusión del Curso</a></li>
+      <li><a href="#" id="glossary-menu-link"><i class="fas fa-book" style="color: #DB0086; margin-right: 0.5rem;" aria-hidden="true"></i>Abrir Glosario</a></li>
+    </ul>
+  </nav>
   </header>
-
-  <main>
-    <div class="content-container">
-      <h1>Capítulo 5</h1>
+  
+  <section class="hero-section">
+  <div class="hero-content">
+    <div class="hero-title-container">
       
-      <!-- Aquí irá el contenido del capítulo 5 -->
+      <h1 class="hero-title">LECCIÓN 5<br>Conclusión del Curso</h1>
+    </div>
+  </div>
+  </section>
+  
+  <main id="main-content" tabindex="-1">
+    <div class="content-aligned-container">
       
-      <div class="navigation-buttons">
-        <a href="chapter4.html" class="nav-button prev"><span class="arrow-left">←</span>Previous</a>
-        <a href="index.html" class="nav-button next">Back to Cover<span class="arrow-right">→</span></a>
+      
+      <!-- 1. Conclusión del Curso - Fondo blanco -->
+      <section class="lesson-section no-borders">
+        <h2>Conclusión del Curso</h2>
+        
+        <p>Has dado un paso importante hacia el cultivo de una relación más saludable e intencional con la tecnología. A lo largo de este viaje, has explorado conceptos clave, reflexionado sobre tus hábitos y adquirido herramientas valiosas para apoyar tu bienestar digital.</p>
+        
+        <p>Ahora, solo quedan unos pocos pasos finales para completar tu experiencia de aprendizaje:</p>
+        
+        <div class="learning-objectives-grid-2x2">
+          <div class="learning-objective-card">
+            <div class="objective-icon" aria-hidden="true">
+              <i class="fas fa-clipboard-list"></i>
+            </div>
+            <div class="objective-content">
+              <h4>1. Plan de Acción de Bienestar Digital</h4>
+              <p>Desarrolla tu guía personalizada para ayudarte a poner en práctica tus conocimientos.</p>
+            </div>
+          </div>
+          
+          <div class="learning-objective-card">
+            <div class="objective-icon" aria-hidden="true">
+              <i class="fas fa-journal-whills"></i>
+            </div>
+            <div class="objective-content">
+              <h4>2. Diario Personal</h4>
+              <p>Revisa y descarga tus respuestas a lo largo del curso; estas forman tu Diario Personal, un recurso que puedes volver a consultar en cualquier momento.</p>
+            </div>
+          </div>
+          
+          <div class="learning-objective-card">
+            <div class="objective-icon" aria-hidden="true">
+              <i class="fas fa-certificate"></i>
+            </div>
+            <div class="objective-content">
+              <h4>3. Examen Final</h4>
+              <p>Completa el Examen Final para evaluar tu comprensión del contenido del curso y desbloquear tu certificado de finalización.</p>
+            </div>
+          </div>
+          
+          <div class="learning-objective-card">
+            <div class="objective-icon" aria-hidden="true">
+              <i class="fas fa-poll"></i>
+            </div>
+            <div class="objective-content">
+              <h4>4. Encuesta Final</h4>
+              <p>Completa la Encuesta Final para reflexionar sobre tu progreso y compartir tus comentarios para ayudarnos a seguir mejorando esta experiencia.</p>
+            </div>
+          </div>
+        </div>
+        
+        <p style="margin-top: 2rem;">¡Gracias por tu compromiso y por una vida digital más equilibrada, consciente y plena!</p>
+      </section>
+      
+      <!-- 2. Video de Conclusión sobre Bienestar Digital - Fondo gris -->
+      <section class="lesson-section no-borders">
+        <h2>Video de Conclusión sobre Bienestar Digital</h2>
+  
+        <div class="responsive-video">
+          <video 
+            id="conclusion-video" 
+            class="video-js vjs-ie-skin vjs-big-play-centered" 
+            controls 
+            preload="auto" 
+            poster="assets/images/conclusion-video-poster.png"
+            data-video-id="w05v01"
+            
+            aria-label="Video de Conclusión sobre Bienestar Digital"
+          >
+            <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w05v01-digital-well-being-conclusion/hls.m3u8" type="application/x-mpegURL">
+            <p class="vjs-no-js">
+              Para ver este video, por favor activa JavaScript y considera actualizar a un
+              navegador web que <a href="https://videojs.com/html5-video-support/" target="_blank">soporte video HTML5</a>.
+            </p>
+          </video>
+        </div>
+      </section>
+      
+      <!-- 3. Plan de Acción - Fondo blanco -->
+      <section class="lesson-section no-borders">
+        <div class="values-activity-container">
+          <h2><strong>Actividad: Desarrolla tu Propio Plan de Acción de Bienestar Digital</strong></h2>
+          
+          <h3>¡Felicitaciones por completar el Curso de Bienestar Digital!</h3>
+          <p>Aquí es donde tu aprendizaje se convierte en práctica diaria. Usa este plan de acción para definir tus próximos pasos, mantenerte enfocado y construir hábitos que realmente sirvan a tu vida.</p>
+          
+          <p>Puedes descargar la plantilla editable para completar tus respuestas. De esta manera, puedes guardar tus respuestas como una hoja de ruta personalizada para tu bienestar digital.</p>
+          
+          <a href="#" class="download-template-button" onclick="downloadActionPlanTemplate()" aria-label="Descargar plantilla editable para el plan de acción de bienestar digital">
+            <i class="fas fa-download" aria-hidden="true"></i>
+            <strong>Descarga la plantilla editable aquí</strong>
+          </a>
+        </div>
+      </section>
+  
+      <!-- 4. Cuestionario Final -->
+      <section class="lesson-section no-borders">
+        <div class="quiz-activity-container">
+          <h2>Cuestionario Final del Curso</h2>
+          <p>Esta es la evaluación final del curso. Por favor, lee atentamente las siguientes instrucciones antes de comenzar:</p>
+          <ul>
+            <li>El examen consta de preguntas de opción múltiple basadas en el contenido cubierto a lo largo del curso.</li>
+            <li>Para cada pregunta, selecciona la mejor respuesta, a menos que se indique lo contrario.</li>
+            <li>No hay límite de tiempo, pero recomendamos completarlo de una sola vez.</li>
+          </ul>
+          <p>Una vez enviadas, tus respuestas serán registradas y calificadas. ¡Buena suerte y gracias por ser parte de este viaje de aprendizaje!</p>
+          
+          <form id="final-quiz">
+            <!-- Pregunta 1 -->
+            <fieldset>
+              <legend>1. ¿Cuál es la mejor definición de bienestar digital?</legend>
+              <div class="quiz-options-list">
+                <label class="quiz-option" for="q1a">
+                  <input type="radio" id="q1a" name="question1" value="a">
+                  <span class="option-text">a) Limitar el tiempo de pantalla tanto como sea posible</span>
+                </label>
+                <label class="quiz-option" for="q1b">
+                  <input type="radio" id="q1b" name="question1" value="b">
+                  <span class="option-text">b) Aprender a usar la tecnología solo para fines laborales</span>
+                </label>
+                <label class="quiz-option" for="q1c">
+                  <input type="radio" id="q1c" name="question1" value="c">
+                  <span class="option-text">c) Cultivar hábitos y prácticas que apoyen una integración saludable y equilibrada de la tecnología en nuestras vidas</span>
+                </label>
+                <label class="quiz-option" for="q1d">
+                  <input type="radio" id="q1d" name="question1" value="d">
+                  <span class="option-text">d) Evitar las redes sociales por completo</span>
+                </label>
+              </div>
+            </fieldset>
+  
+            <!-- Pregunta 2 -->
+            <fieldset>
+              <legend>2. ¿Cómo podemos describir mejor la relación entre la tecnología digital y el bienestar humano?</legend>
+              <div class="quiz-options-list">
+                <label class="quiz-option" for="q2a">
+                  <input type="radio" id="q2a" name="question2" value="a">
+                  <span class="option-text">a) La tecnología es mayormente dañina y debe minimizarse</span>
+                </label>
+                <label class="quiz-option" for="q2b">
+                  <input type="radio" id="q2b" name="question2" value="b">
+                  <span class="option-text">b) El impacto de la tecnología es fijo y no cambia con el comportamiento</span>
+                </label>
+                <label class="quiz-option" for="q2c">
+                  <input type="radio" id="q2c" name="question2" value="c">
+                  <span class="option-text">c) Los efectos de la tecnología en el bienestar dependen de cuán intencional y conscientemente nos relacionamos con ella</span>
+                </label>
+                <label class="quiz-option" for="q2d">
+                  <input type="radio" id="q2d" name="question2" value="d">
+                  <span class="option-text">d) El bienestar digital solo es relevante para las personas que trabajan en tecnología</span>
+                </label>
+              </div>
+            </fieldset>
+  
+            <!-- Pregunta 3 -->
+            <fieldset>
+              <legend>3. ¿Cuál de las siguientes es una estrategia basada en la ciencia para mejorar el bienestar digital?</legend>
+              <div class="quiz-options-list">
+                <label class="quiz-option" for="q3a">
+                  <input type="radio" id="q3a" name="question3" value="a">
+                  <span class="option-text">a) Desinstalar todas las aplicaciones de tu teléfono</span>
+                </label>
+                <label class="quiz-option" for="q3b">
+                  <input type="radio" id="q3b" name="question3" value="b">
+                  <span class="option-text">b) Reemplazar el tiempo de pantalla con herramientas de productividad</span>
+                </label>
+                <label class="quiz-option" for="q3c">
+                  <input type="radio" id="q3c" name="question3" value="c">
+                  <span class="option-text">c) Identificar desencadenantes y usar bucles de hábitos para moldear intencionalmente el comportamiento digital</span>
+                </label>
+                <label class="quiz-option" for="q3d">
+                  <input type="radio" id="q3d" name="question3" value="d">
+                  <span class="option-text">d) Poner alarmas diarias para recordarte que te desconectes</span>
+                </label>
+              </div>
+            </fieldset>
+  
+            <!-- Pregunta 4 -->
+            <fieldset>
+              <legend>4. ¿Cuál de las siguientes afirmaciones sobre los hábitos digitales es verdadera?</legend>
+              <div class="quiz-options-list">
+                <label class="quiz-option" for="q4a">
+                  <input type="radio" id="q4a" name="question4" value="a">
+                  <span class="option-text">a) Se basan únicamente en la fuerza de voluntad</span>
+                </label>
+                <label class="quiz-option" for="q4b">
+                  <input type="radio" id="q4b" name="question4" value="b">
+                  <span class="option-text">b) Los hábitos no se pueden cambiar una vez que se forman</span>
+                </label>
+                <label class="quiz-option" for="q4c">
+                  <input type="radio" id="q4c" name="question4" value="c">
+                  <span class="option-text">c) Los hábitos siguen un bucle de señal, acción y recompensa</span>
+                </label>
+                <label class="quiz-option" for="q4d">
+                  <input type="radio" id="q4d" name="question4" value="d">
+                  <span class="option-text">d) Los hábitos son completamente aleatorios e imposibles de rastrear</span>
+                </label>
+              </div>
+            </fieldset>
+  
+            <!-- Pregunta 5 -->
+            <fieldset>
+              <legend>5. ¿Cuál es un desencadenante común que conduce a un comportamiento digital no intencional?</legend>
+              <div class="quiz-options-list">
+                <label class="quiz-option" for="q5a">
+                  <input type="radio" id="q5a" name="question5" value="a">
+                  <span class="option-text">a) Reflexión profunda sobre los valores</span>
+                </label>
+                <label class="quiz-option" for="q5b">
+                  <input type="radio" id="q5b" name="question5" value="b">
+                  <span class="option-text">b) Tiempo programado sin dispositivos</span>
+                </label>
+                <label class="quiz-option" for="q5c">
+                  <input type="radio" id="q5c" name="question5" value="c">
+                  <span class="option-text">c) Señales ambientales, como las notificaciones del teléfono</span>
+                </label>
+                <label class="quiz-option" for="q5d">
+                  <input type="radio" id="q5d" name="question5" value="d">
+                  <span class="option-text">d) Intención consciente</span>
+                </label>
+              </div>
+            </fieldset>
+  
+            <!-- Pregunta 6 -->
+            <fieldset>
+              <legend>6. ¿Cuál de las siguientes afirmaciones refleja un resultado positivo de los hábitos digitales conscientes?</legend>
+              <div class="quiz-options-list">
+                <label class="quiz-option" for="q6a">
+                  <input type="radio" id="q6a" name="question6" value="a">
+                  <span class="option-text">a) Eliminan la necesidad de autodisciplina</span>
+                </label>
+                <label class="quiz-option" for="q6b">
+                  <input type="radio" id="q6b" name="question6" value="b">
+                  <span class="option-text">b) Ayudan a reducir la fatiga por decisiones y liberan energía mental</span>
+                </label>
+                <label class="quiz-option" for="q6c">
+                  <input type="radio" id="q6c" name="question6" value="c">
+                  <span class="option-text">c) Te hacen más dependiente de las rutinas</span>
+                </label>
+                <label class="quiz-option" for="q6d">
+                  <input type="radio" id="q6d" name="question6" value="d">
+                  <span class="option-text">d) Requieren herramientas complejas para ser efectivos</span>
+                </label>
+              </div>
+            </fieldset>
+  
+            <!-- Pregunta 7 -->
+            <fieldset>
+              <legend>7. ¿Cuál es el vínculo entre atención, energía y productividad discutido en la Lección 3?</legend>
+              <div class="quiz-options-list">
+                <label class="quiz-option" for="q7a">
+                  <input type="radio" id="q7a" name="question7" value="a">
+                  <span class="option-text">a) Son áreas de rendimiento no relacionadas</span>
+                </label>
+                <label class="quiz-option" for="q7b">
+                  <input type="radio" id="q7b" name="question7" value="b">
+                  <span class="option-text">b) La gestión de la atención apoya mejores niveles de energía y productividad</span>
+                </label>
+                <label class="quiz-option" for="q7c">
+                  <input type="radio" id="q7c" name="question7" value="c">
+                  <span class="option-text">c) La productividad causa problemas de atención</span>
+                </label>
+                <label class="quiz-option" for="q7d">
+                  <input type="radio" id="q7d" name="question7" value="d">
+                  <span class="option-text">d) Solo la energía importa para la productividad</span>
+                </label>
+              </div>
+            </fieldset>
+  
+            <!-- Pregunta 8 -->
+            <fieldset>
+              <legend>8. ¿A qué se refiere el término "carga cognitiva" en el curso?</legend>
+              <div class="quiz-options-list">
+                <label class="quiz-option" for="q8a">
+                  <input type="radio" id="q8a" name="question8" value="a">
+                  <span class="option-text">a) Llevar demasiados dispositivos a la vez</span>
+                </label>
+                <label class="quiz-option" for="q8b">
+                  <input type="radio" id="q8b" name="question8" value="b">
+                  <span class="option-text">b) La cantidad total de esfuerzo mental que se utiliza en la memoria de trabajo</span>
+                </label>
+                <label class="quiz-option" for="q8c">
+                  <input type="radio" id="q8c" name="question8" value="c">
+                  <span class="option-text">c) Qué tan rápido podemos procesar información en una pantalla</span>
+                </label>
+                <label class="quiz-option" for="q8d">
+                  <input type="radio" id="q8d" name="question8" value="d">
+                  <span class="option-text">d) El peso de la presión psicológica de las redes sociales</span>
+                </label>
+              </div>
+            </fieldset>
+  
+            <!-- Pregunta 9 -->
+            <fieldset>
+              <legend>9. Según el curso, ¿cómo puede la responsabilidad (accountability) apoyar los objetivos de bienestar digital?</legend>
+              <div class="quiz-options-list">
+                <label class="quiz-option" for="q9a">
+                  <input type="radio" id="q9a" name="question9" value="a">
+                  <span class="option-text">a) Fomentando la competencia entre los participantes</span>
+                </label>
+                <label class="quiz-option" for="q9b">
+                  <input type="radio" id="q9b" name="question9" value="b">
+                  <span class="option-text">b) Asignando la responsabilidad de los hábitos de otra persona</span>
+                </label>
+                <label class="quiz-option" for="q9c">
+                  <input type="radio" id="q9c" name="question9" value="c">
+                  <span class="option-text">c) Aumentando la probabilidad de cumplir los objetivos a través del compromiso compartido</span>
+                </label>
+                <label class="quiz-option" for="q9d">
+                  <input type="radio" id="q9d" name="question9" value="d">
+                  <span class="option-text">d) Reduciendo la necesidad de responsabilidad personal</span>
+                </label>
+              </div>
+            </fieldset>
+  
+            <!-- Pregunta 10 -->
+            <fieldset>
+              <legend>10. ¿Cuál es la forma más efectiva de alinear tus hábitos digitales con tu propósito y valores?</legend>
+              <div class="quiz-options-list">
+                <label class="quiz-option" for="q10a">
+                  <input type="radio" id="q10a" name="question10" value="a">
+                  <span class="option-text">a) Descargar más aplicaciones de bienestar</span>
+                </label>
+                <label class="quiz-option" for="q10b">
+                  <input type="radio" id="q10b" name="question10" value="b">
+                  <span class="option-text">b) Rastrear el tiempo de pantalla con un reloj inteligente</span>
+                </label>
+                <label class="quiz-option" for="q10c">
+                  <input type="radio" id="q10c" name="question10" value="c">
+                  <span class="option-text">c) Reflexionar sobre tus valores fundamentales y elegir intencionalmente hábitos que los apoyen</span>
+                </label>
+                <label class="quiz-option" for="q10d">
+                  <input type="radio" id="q10d" name="question10" value="d">
+                  <span class="option-text">d) Evitar la tecnología en todas sus formas</span>
+                </label>
+              </div>
+            </fieldset>
+  
+            <button type="submit" class="quiz-submit-btn">Enviar Respuestas</button>
+          </form>
+  
+          <div id="final-quiz-feedback" class="quiz-feedback" style="display: none;">
+            <h4>¡Gracias por completar la evaluación final!</h4>
+            <p><strong>✓ Tus respuestas se han guardado correctamente.</strong></p>
+            <p>Apreciamos el tiempo y la reflexión que has dedicado a este examen. Esperamos que te haya ayudado a reforzar los conceptos clave y las estrategias prácticas que exploraste a lo largo del curso.</p>
+            <p>Tus respuestas reflejan el conocimiento que has adquirido en tu viaje de bienestar digital. Sigue reflexionando, practicando y aplicando lo que has aprendido, y recuerda que el bienestar digital es un proceso continuo de equilibrio, conciencia y elección intencional.</p>
+          </div>
+  
+          <!-- Contenedor de Resultados del Cuestionario -->
+          <div id="quiz-results-container" class="quiz-results-container">
+            <div class="quiz-results-grid">
+              <div class="quiz-result-card correct">
+                <div class="quiz-result-icon">
+                  <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="quiz-result-number" id="correct-count">0</div>
+                <div class="quiz-result-label">Respuestas Correctas</div>
+                <div class="quiz-result-description">Preguntas respondidas correctamente</div>
+              </div>
+              
+              <div class="quiz-result-card incorrect">
+                <div class="quiz-result-icon">
+                  <i class="fas fa-times-circle"></i>
+                </div>
+                <div class="quiz-result-number" id="incorrect-count">0</div>
+                <div class="quiz-result-label">Respuestas Incorrectas</div>
+                <div class="quiz-result-description">Preguntas respondidas incorrectamente</div>
+              </div>
+              
+              <div class="quiz-result-card percentage">
+                <div class="quiz-result-icon">
+                  <i class="fas fa-percentage"></i>
+                </div>
+                <div class="quiz-result-number" id="percentage-score">0%</div>
+                <div class="quiz-result-label">Tasa de Éxito</div>
+                <div class="quiz-result-description">Rendimiento general del cuestionario</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+  
+      <!-- 5. Encuesta de Bienestar - Fondo gris -->
+      <section class="lesson-section no-borders">
+        <div class="survey-section">
+          <h2>Encuesta de Bienestar</h2>
+          
+          <p>Esta autoevaluación de seguimiento te invita a reflexionar sobre cualquier cambio que hayas experimentado desde que comenzaste el curso. Si bien utiliza medidas de bienestar validadas, los resultados no pretenden servir como un juicio o resultado final. En cambio, la evolución de tus resultados ofrece otro momento de reflexión, uno que puede revelar cómo tu experiencia y tus hábitos se están desarrollando en un contexto más amplio y en constante cambio.</p>
+          
+          <p>Recuerda, fomentar tu bienestar digital es un proceso gradual y personal. Sé paciente contigo mismo y observa qué cambia a medida que integras conscientemente nuevas prácticas en tu vida.</p>
+          
+          <div class="survey-note">
+            <p>Asegúrate de seleccionar la opción <strong>Digital Well-being (Digital Learning)</strong> cuando se te solicite, para que también podamos medir los resultados de aprendizaje de este curso:</p>
+          </div>
+          
+          <a href="https://ie.co1.qualtrics.com/jfe/form/SV_8cymWir9nTWHN42" target="_blank" class="survey-link-button" aria-label="Abrir encuesta de bienestar en una nueva pestaña">
+            <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+            Realizar la Encuesta de Bienestar
+          </a>
+        </div>
+      </section>
+  
+      <!-- 6. Encuesta Final - Fondo blanco -->
+      <section class="lesson-section no-borders">
+        <div class="survey-section">
+          <h2>Encuesta Final</h2>
+          
+          <p>¡Nos encantaría conocer tu opinión! Al tomarte unos minutos para completar esta breve encuesta, nos ayudarás a comprender cómo resonó contigo el contenido del curso y cómo podemos mejorarlo aún más en el futuro.</p>
+          
+          <p>Tus comentarios son increíblemente valiosos, y realmente apreciamos tu tiempo y tu aporte:</p>
+          
+          <a href="#" class="survey-link-button" onclick="alert('El enlace de la encuesta final se añadirá aquí')" aria-label="Abrir encuesta final del curso">
+            <i class="fas fa-comment-dots" aria-hidden="true"></i>
+            Realizar la Encuesta Final
+          </a>
+          
+          <div class="survey-note">
+            <p><em>Enlace de la encuesta por añadir</em></p>
+          </div>
+        </div>
+      </section>
+  
+      <!-- 7. Fuentes de Contenido y Referencias -->
+      <section class="lesson-section no-borders">
+        <h2>Fuentes de Contenido y Referencias</h2>
+        
+        <div class="references-grid">
+            <!-- Reference 1 -->
+            <div class="reference-card">
+              <div class="reference-number">1</div>
+              <div class="reference-content">
+                <div class="reference-text">
+                  American Optometric Association. (n.d.). The cost of unmanaged screen time: Impacts on vision, productivity, and overall well-being.
+                </div>
+                <a href="https://www.aoa.org/AOA/Documents/Eye Deserve More/Cost of Unmanaged Screen Time Report_FINAL.pdf" target="_blank" class="reference-link" rel="noopener noreferrer">
+                  https://www.aoa.org/AOA/Documents/Eye Deserve More/Cost of Unmanaged Screen Time Report_FINAL.pdf
+                </a>
+              </div>
+            </div>
+  
+            <!-- Reference 2 -->
+            <div class="reference-card">
+              <div class="reference-number">2</div>
+              <div class="reference-content">
+                <div class="reference-text">
+                  World Health Organization. (2015). <em>Health in 2015: From MDGs to SDGs</em>. World Health Organization.
+                </div>
+                <a href="https://iris.who.int/handle/10665/184264" target="_blank" class="reference-link" rel="noopener noreferrer">
+                  https://iris.who.int/handle/10665/184264
+                </a>
+              </div>
+            </div>
+  
+            <!-- Reference 3 -->
+            <div class="reference-card">
+              <div class="reference-number">3</div>
+              <div class="reference-content">
+                <div class="reference-text">
+                  World Health Organization. (2020). Global status report on preventing violence against children 2020. World Health Organization.
+                </div>
+                <a href="https://iris.who.int/bitstream/handle/10665/337001/9789240014886-eng.pdf" target="_blank" class="reference-link" rel="noopener noreferrer">
+                  https://iris.who.int/bitstream/handle/10665/337001/9789240014886-eng.pdf
+                </a>
+              </div>
+            </div>
+  
+            <!-- Reference 4 -->
+            <div class="reference-card no-link">
+              <div class="reference-number">4</div>
+              <div class="reference-content">
+                <div class="reference-text">
+                  Vogels, E. A., & Gelles-Watnick, R. (2023). Teens and social media: Key findings from Pew Research Center surveys. Pew Research Center.
+                </div>
+              </div>
+            </div>
+  
+            <!-- Reference 5 -->
+            <div class="reference-card">
+              <div class="reference-number">5</div>
+              <div class="reference-content">
+                <div class="reference-text">
+                  Brown, B. (2018). <em>Dare to lead: Brave work. Tough conversations. Whole hearts.</em> Random House.
+                </div>
+                <a href="https://brenebrown.com/resources/dare-to-lead-list-of-values/" target="_blank" class="reference-link" rel="noopener noreferrer">
+                  https://brenebrown.com/resources/dare-to-lead-list-of-values/
+                </a>
+              </div>
+            </div>
+  
+            <!-- Reference 6 -->
+            <div class="reference-card">
+              <div class="reference-number">6</div>
+              <div class="reference-content">
+                <div class="reference-text">
+                  Smartsheet. (n.d.). <em>The ultimate guide to S.M.A.R.T. goals</em>.
+                </div>
+                <a href="https://www.smartsheet.com/blog/essential-guide-writing-smart-goals" target="_blank" class="reference-link" rel="noopener noreferrer">
+                  https://www.smartsheet.com/blog/essential-guide-writing-smart-goals
+                </a>
+              </div>
+            </div>
+  
+            <!-- Reference 7 -->
+            <div class="reference-card">
+              <div class="reference-number">7</div>
+              <div class="reference-content">
+                <div class="reference-text">
+                  VIA Institute on Character. (n.d.). <em>VIA character strengths survey</em>.
+                </div>
+                <a href="https://www.viacharacter.org" target="_blank" class="reference-link" rel="noopener noreferrer">
+                  https://www.viacharacter.org
+                </a>
+              </div>
+            </div>
+  
+            <!-- Reference 8 -->
+            <div class="reference-card">
+              <div class="reference-number">8</div>
+              <div class="reference-content">
+                <div class="reference-text">
+                  Ryan, R. M., & Deci, E. L. (2000). Self-determination theory and the facilitation of intrinsic motivation, social development, and well-being. <em>American Psychologist</em>, 55(1), 68–78.
+                </div>
+                <a href="https://doi.org/10.1037/0003-066X.55.1.68" target="_blank" class="reference-link" rel="noopener noreferrer">
+                  https://doi.org/10.1037/0003-066X.55.1.68
+                </a>
+              </div>
+            </div>
+  
+            <!-- Reference 9 -->
+            <div class="reference-card no-link">
+              <div class="reference-number">9</div>
+              <div class="reference-content">
+                <div class="reference-text">
+                  Duhigg, C. (2012). The power of habit: Why we do what we do in life and business. Random House.
+                </div>
+              </div>
+            </div>
+  
+            <!-- Reference 10 -->
+            <div class="reference-card">
+              <div class="reference-number">10</div>
+              <div class="reference-content">
+                <div class="reference-text">
+                  Cherry, K. (2022, November 29). What is attention? Definition and types. <em>Verywell Mind</em>.
+                </div>
+                <a href="https://www.verywellmind.com/what-is-attention-2795009" target="_blank" class="reference-link" rel="noopener noreferrer">
+                  https://www.verywellmind.com/what-is-attention-2795009
+                </a>
+              </div>
+            </div>
+  
+            <!-- Reference 11 -->
+            <div class="reference-card">
+              <div class="reference-number">11</div>
+              <div class="reference-content">
+                <div class="reference-text">
+                  Van Schoor, J. (2022, November 10). <em>Four different types of attention</em>. South African College of Applied Psychology (SACAP).
+                </div>
+                <a href="https://global.sacap.edu.za/blog/applied-psychology/types-of-attention/" target="_blank" class="reference-link" rel="noopener noreferrer">
+                  https://global.sacap.edu.za/blog/applied-psychology/types-of-attention/
+                </a>
+              </div>
+            </div>
+  
+            <!-- Reference 12 -->
+            <div class="reference-card no-link">
+              <div class="reference-number">12</div>
+              <div class="reference-content">
+                <div class="reference-text">
+                  Hari, J. (2022). Stolen focus: Why you can't pay attention. Bloomsbury Publishing.
+                </div>
+              </div>
+            </div>
+  
+            <!-- Reference 13 -->
+            <div class="reference-card">
+              <div class="reference-number">13</div>
+              <div class="reference-content">
+                <div class="reference-text">
+                  The Berliner. (n.d.). <em>Your focus was stolen from you: Johann Hari on a global crisis</em>.
+                </div>
+                <a href="https://www.the-berliner.com/books/your-focus-was-stolen-from-you-johann-hari-on-a-global-crisis/" target="_blank" class="reference-link" rel="noopener noreferrer">
+                  https://www.the-berliner.com/books/your-focus-was-stolen-from-you-johann-hari-on-a-global-crisis/
+                </a>
+              </div>
+            </div>
+  
+            <!-- Reference 14 -->
+            <div class="reference-card">
+              <div class="reference-number">14</div>
+              <div class="reference-content">
+                <div class="reference-text">
+                  Newland, S. (2018). The power of accountability. <em>The Standard Newsletter</em>.
+                </div>
+                <a href="https://www.afcpe.org/news-and-publications/the-standard/2018-3/the-power-of-accountability/" target="_blank" class="reference-link" rel="noopener noreferrer">
+                  https://www.afcpe.org/news-and-publications/the-standard/2018-3/the-power-of-accountability/
+                </a>
+              </div>
+            </div>
+  
+            <!-- Reference 15 -->
+            <div class="reference-card no-link">
+              <div class="reference-number">15</div>
+              <div class="reference-content">
+                <div class="reference-text">
+                  Brown, B. (2018). Dare to lead: Brave work. Tough conversations. Whole hearts. Random House.
+                </div>
+              </div>
+            </div>
+          </div>
+      </section>
+      
+      <div class="navigation-buttons" role="navigation" aria-label="Navegación de la lección">
+        <a href="capitulo4.html" class="nav-button prev"><span class="arrow-left" aria-hidden="true">←</span>Anterior</a>
+        <a href="portada.html" class="nav-button next">Volver a la Portada<span class="arrow-right" aria-hidden="true">→</span></a>
       </div>
     </div>
   </main>
-
-  <footer>
+  
+  <footer role="contentinfo">
+  <div class="footer-content">
     <p class="copyright">&copy; <span id="current-year"></span> IE University. Todos los derechos reservados.</p>
-    <!-- Trigger para el feedback al finalizar el curso -->
-    <div id="course-completed" class="hidden"></div>
+  </div>
   </footer>
-
+  
+  <div id="glossary-modal" class="modal" role="dialog" aria-labelledby="glossary-modal-title" aria-hidden="true">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="glossary-modal-title">Glosario de Conceptos de Bienestar Digital</h2>
+        <button class="modal-close" aria-label="Cerrar glosario">&times;</button>
+      </div>
+      <div class="modal-body">
+        <nav class="glossary-az-nav" aria-label="Navegación Alfabética del Glosario">
+          <a href="#" data-filter="all" class="active">TODOS</a>
+          <a href="#" data-filter="a">A</a>
+          <a href="#" data-filter="b">B</a>
+          <a href="#" data-filter="c">C</a>
+          <a href="#" data-filter="d">D</a>
+          <a href="#" data-filter="e">E</a>
+          <a href="#" data-filter="f">F</a>
+          <a href="#" data-filter="g">G</a>
+          <a href="#" data-filter="h">H</a>
+          <a href="#" data-filter="m">M</a>
+          <a href="#" data-filter="o">O</a>
+          <a href="#" data-filter="p">P</a>
+          <a href="#" data-filter="s">S</a>
+          <a href="#" data-filter="v">V</a>
+        </nav>
+        <div class="glossary-terms">
+          <div id="glossary-section-a" class="glossary-section" data-letter="a">
+            <h3 class="glossary-letter-header">A</h3>
+            <div class="glossary-term">
+              <strong>Auditoría de Hábitos Digitales</strong> – Una autoevaluación para rastrear el uso de la tecnología e identificar áreas de mejora.
+            </div>
+            <div class="glossary-term">
+              <strong>Autonomía (Teoría de la Autodeterminación)</strong> – La capacidad de tomar decisiones sobre la participación digital que se alineen con los valores y objetivos personales.
+            </div>
+            <div class="glossary-term">
+              <strong>Autorregulación</strong> – La capacidad de controlar los impulsos y tomar decisiones conscientes en las interacciones digitales.
+            </div>
+          </div>
+          <div id="glossary-section-b" class="glossary-section" data-letter="b">
+            <h3 class="glossary-letter-header">B</h3>
+            <div class="glossary-term">
+              <strong>Bucle de Hábitos</strong> – Un marco para entender la formación de hábitos, que consiste en señal, rutina y recompensa, aplicable a los comportamientos digitales.
+            </div>
+          </div>
+          <div id="glossary-section-c" class="glossary-section" data-letter="c">
+            <h3 class="glossary-letter-header">C</h3>
+            <div class="glossary-term">
+              <strong>Carga Cognitiva</strong> – El esfuerzo mental requerido para procesar información, que puede verse afectado por el tiempo excesivo frente a la pantalla o la multitarea.
+            </div>
+            <div class="glossary-term">
+              <strong>Ciencia del Comportamiento</strong> – El estudio de cómo las personas forman hábitos digitales y cómo la tecnología influye en la toma de decisiones.
+            </div>
+            <div class="glossary-term">
+              <strong>Cognición Cerebral</strong> – La forma en que el cerebro procesa la información, impactada por hábitos digitales como el tiempo de pantalla y la multitarea.
+            </div>
+            <div class="glossary-term">
+              <strong>Compañero de Responsabilidad</strong> – Un compañero de apoyo que ayuda a seguir el progreso y fomenta la constancia en los objetivos de bienestar digital.
+            </div>
+            <div class="glossary-term">
+              <strong>Conciencia del Tiempo de Pantalla</strong> – Seguimiento consciente del tiempo que se pasa en dispositivos digitales para mantener un estilo de vida equilibrado.
+            </div>
+            <div class="glossary-term">
+              <strong>Corteza Prefrontal</strong> – La parte del cerebro responsable de la toma de decisiones y el control de impulsos, que se ve afectada por la interacción digital.
+            </div>
+          </div>
+          <div id="glossary-section-d" class="glossary-section" data-letter="d">
+            <h3 class="glossary-letter-header">D</h3>
+            <div class="glossary-term">
+              <strong>Desencadenantes en el Uso Digital</strong> – Señales ambientales o psicológicas que provocan ciertos hábitos digitales, como revisar el teléfono por aburrimiento.
+            </div>
+            <div class="glossary-term">
+              <strong>Detox Digital</strong> – Un período de tiempo sin dispositivos digitales para restablecer hábitos y mejorar el bienestar.
+            </div>
+          </div>
+          <div id="glossary-section-e" class="glossary-section" data-letter="e">
+            <h3 class="glossary-letter-header">E</h3>
+            <div class="glossary-term">
+              <strong>Efecto de Doble Filo de la Tecnología</strong> – El concepto de que las herramientas digitales pueden tanto mejorar como obstaculizar el bienestar, dependiendo de los patrones de uso.
+            </div>
+            <div class="glossary-term">
+              <strong>Empatía y Tecnología</strong> – La relación entre las interacciones digitales y la inteligencia emocional, incluyendo cómo la tecnología puede impactar las conexiones sociales.
+            </div>
+            <div class="glossary-term">
+              <strong>Enfoque y Productividad</strong> – La capacidad de mantener la atención y la eficacia en el trabajo y la vida, a menudo desafiada por las distracciones digitales.
+            </div>
+            <div class="glossary-term">
+              <strong>Equilibrio Tecnológico-Vital</strong> – El esfuerzo intencional por armonizar el uso de la tecnología con el bienestar general.
+            </div>
+          </div>
+          <div id="glossary-section-f" class="glossary-section" data-letter="f">
+            <h3 class="glossary-letter-header">F</h3>
+            <div class="glossary-term">
+              <strong>Florecimiento (Teoría del Bienestar)</strong> – El estado de prosperar en múltiples aspectos de la vida, incluyendo el bienestar físico, mental, emocional y digital.
+            </div>
+            <div class="glossary-term">
+              <strong>Florecimiento Digital</strong> – Prosperar en un entorno digital equilibrando el uso de la tecnología con el bienestar personal y profesional.
+            </div>
+            <div class="glossary-term">
+              <strong>Fortalezas del Carácter</strong> – Fortalezas personales (p. ej., curiosidad, autorregulación) que se pueden aprovechar para cultivar hábitos digitales saludables.
+            </div>
+            <div class="glossary-term">
+              <strong>Fuerza de Voluntad y Uso Digital</strong> – La capacidad de resistir las distracciones y construir hábitos tecnológicos positivos.
+            </div>
+          </div>
+          <div id="glossary-section-g" class="glossary-section" data-letter="g">
+            <h3 class="glossary-letter-header">G</h3>
+            <div class="glossary-term">
+              <strong>Gestión de la Atención</strong> – La práctica de dirigir conscientemente el enfoque en un entorno digital para mejorar la productividad y la salud cognitiva.
+            </div>
+            <div class="glossary-term">
+              <strong>Gestión de la Energía</strong> – Estrategias para prevenir la fatiga digital y optimizar los niveles de energía en un mundo con mucha tecnología.
+            </div>
+            <div class="glossary-term">
+              <strong>Gestión de Notificaciones</strong> – Estrategias para reducir las interrupciones y aumentar el enfoque, como desactivar alertas no esenciales.
+            </div>
+          </div>
+          <div id="glossary-section-h" class="glossary-section" data-letter="h">
+            <h3 class="glossary-letter-header">H</h3>
+            <div class="glossary-term">
+              <strong>Higiene en Redes Sociales</strong> – Prácticas para mantener una relación saludable con las plataformas sociales, incluyendo la curación de contenido y el establecimiento de límites.
+            </div>
+          </div>
+          <div id="glossary-section-m" class="glossary-section" data-letter="m">
+            <h3 class="glossary-letter-header">M</h3>
+            <div class="glossary-term">
+              <strong>Minimalismo Digital</strong> – Una filosofía que aboga por un uso intencional y con propósito de la tecnología para mejorar el bienestar.
+            </div>
+            <div class="glossary-term">
+              <strong>Mindfulness en el Uso de la Tecnología</strong> – Practicar la conciencia del momento presente para crear interacciones digitales intencionadas y equilibradas.
+            </div>
+            <div class="glossary-term">
+              <strong>Motivación (Teoría de la Autodeterminación)</strong> – Factores internos y externos que influyen en la interacción con la tecnología, incluyendo la autonomía, la competencia y la relación.
+            </div>
+          </div>
+          <div id="glossary-section-o" class="glossary-section" data-letter="o">
+            <h3 class="glossary-letter-header">O</h3>
+            <div class="glossary-term">
+              <strong>Objetivos Digitales</strong> – Objetivos personalizados para mejorar los hábitos digitales, a menudo utilizando el marco SMART (Específico, Medible, Alcanzable, Relevante, con Plazo).
+            </div>
+          </div>
+          <div id="glossary-section-p" class="glossary-section" data-letter="p">
+            <h3 class="glossary-letter-header">P</h3>
+            <div class="glossary-term">
+              <strong>Práctica de Reflexión</strong> – Autoevaluaciones periódicas para valorar los hábitos digitales y su alineación con los valores personales.
+            </div>
+          </div>
+          <div id="glossary-section-s" class="glossary-section" data-letter="s">
+            <h3 class="glossary-letter-header">S</h3>
+            <div class="glossary-term">
+              <strong>Seguridad Psicológica y Tecnología</strong> – El impacto de los entornos digitales en el bienestar emocional y la seguridad.
+            </div>
+          </div>
+          <div id="glossary-section-v" class="glossary-section" data-letter="v">
+            <h3 class="glossary-letter-header">V</h3>
+            <div class="glossary-term">
+              <strong>Valores Fundamentales</strong> – Creencias fundamentales que guían los hábitos digitales y la toma de decisiones.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- VideoJS JavaScript -->
+  <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
+  <script src="js/video-player.js"></script>
+  <script src="js/key-points.js"></script>
+  <script src="js/reflections.js"></script>
   <script src="js/main.js"></script>
-</body>
-</html>
+  <script src="js/quiz.js"></script>
+  <script src="js/glossary.js"></script>
+  
+  <script>
+  
+  // Función de descarga de plantilla
+  function downloadActionPlanTemplate() {
+    // Crear un elemento de enlace temporal para activar la descarga
+    const link = document.createElement('a');
+    link.href = 'assets/documents/Lesson5_Develop Your Own Digital Well-being Action Plan.pdf';
+    link.download = 'Lesson5_Develop Your Own Digital Well-being Action Plan.pdf';
+    link.style.display = 'none';
+    
+    // Añadir al DOM, hacer clic y eliminar
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+  </script>
+  </body>
+  </html>
