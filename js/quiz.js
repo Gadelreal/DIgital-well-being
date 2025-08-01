@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 
 function initializeQuizzes() {
-  // Digital Well-being Quiz (Chapter 2)
+  // Digital Well-being Quiz (Chapter 1 & 2)
   const wellbeingQuiz = document.getElementById("wellbeing-quiz")
   if (wellbeingQuiz) {
     wellbeingQuiz.addEventListener("submit", handleQuizSubmit)
@@ -96,7 +96,7 @@ function handleQuizSubmit(event) {
   event.preventDefault()
   const form = event.target
   const feedbackElement = document.getElementById("wellbeing-quiz-feedback")
-  const submitButton = form.querySelector(".quiz-submit-btn")
+  const submitButton = form.querySelector(".quiz-submit-btn:not(.quiz-reset-btn)")
   const checkboxes = form.querySelectorAll('input[type="checkbox"]')
   const correctAnswers = ["a", "e"]
 
@@ -134,13 +134,14 @@ function handleQuizSubmit(event) {
     tryAgainButton.type = "button"
     tryAgainButton.className = "quiz-submit-btn quiz-reset-btn"
     tryAgainButton.textContent = strings.tryAgain
-    // Insertar después del fieldset
-    const fieldset = form.querySelector("fieldset")
-    if (fieldset) {
-      fieldset.parentNode.insertBefore(tryAgainButton, fieldset.nextSibling)
+
+    // Insertar después del botón de envío original para mantener la posición
+    if (submitButton && submitButton.parentNode) {
+      submitButton.parentNode.insertBefore(tryAgainButton, submitButton.nextSibling)
     } else {
       form.appendChild(tryAgainButton)
     }
+
     tryAgainButton.addEventListener("click", resetQuiz)
   }
 }
@@ -151,7 +152,7 @@ function handleQuizSubmit(event) {
 function resetQuiz() {
   const form = document.getElementById("wellbeing-quiz")
   const feedbackElement = document.getElementById("wellbeing-quiz-feedback")
-  const submitButton = form.querySelector(".quiz-submit-btn")
+  const submitButton = form.querySelector(".quiz-submit-btn:not(.quiz-reset-btn)")
   const checkboxes = form.querySelectorAll('input[type="checkbox"]')
   const tryAgainButton = form.querySelector(".quiz-reset-btn")
 
