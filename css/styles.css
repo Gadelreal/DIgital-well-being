@@ -4891,10 +4891,10 @@ button[onclick*="download"] i,
  position: sticky;
  top: 0;
  background-color: white;
- padding: 15px 0 20px 0;
+ padding: 15px 2rem 20px 2rem;
  margin-bottom: 0;
  border-bottom: 2px solid #eee;
- text-align: center;
+ text-align: left;
  z-index: 10;
  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
