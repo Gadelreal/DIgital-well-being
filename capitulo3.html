@@ -1,48 +1,1659 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Curso Online - Capítulo 3</title>
-  <link rel="stylesheet" href="css/styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bienestar Digital - Atención, Cognición, Energía y Productividad</title>
+<link rel="stylesheet" href="./css/styles.css">
+<!-- VideoJS CSS -->
+<link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
+<!-- Font Awesome para iconos -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
+<style>
+
+.hero-title {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 300;
+}
+/* Attention Activity Styles */
+.attention-activity {
+  margin-top: 2rem;
+}
+
+.attention-question {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #fafafa;
+}
+
+.definition-text {
+  flex: 1;
+  width: 50%;
+}
+
+.definition-text p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.dropdown-container {
+  flex: 1;
+  width: 50%;
+  min-width: 250px;
+}
+
+.dropdown-container label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.attention-dropdown {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  background-color: white;
+  cursor: pointer;
+}
+
+.attention-dropdown:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(0, 0, 102, 0.2);
+}
+
+.feedback {
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 4px;
+  font-weight: bold;
+  min-height: 1.5rem;
+}
+
+.feedback.correct {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.feedback.incorrect {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.activity-results {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.check-answers-btn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.check-answers-btn:hover {
+  background-color: #000055;
+}
+
+.check-answers-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.overall-feedback {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.overall-feedback.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.overall-feedback.partial {
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeaa7;
+}
+
+@media (max-width: 768px) {
+  .attention-question {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .dropdown-container {
+    min-width: auto;
+  }
+
+  .infographics-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Multiple Choice Test Styles */
+.multiple-choice-test {
+  margin-top: 2rem;
+}
+
+.quiz-question {
+  margin-bottom: 2.5rem;
+  padding: 1.5rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #fafafa;
+}
+
+.question-text {
+  font-weight: bold;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.quiz-options {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.quiz-option {
+  margin-bottom: 0.75rem;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.quiz-option:hover {
+  background-color: #f8f9fa;
+  border-color: #bbb;
+}
+
+.quiz-option.selected {
+  border-color: var(--primary-color);
+  background-color: #e8f0fe;
+}
+
+.quiz-option.correct {
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
+
+.quiz-option.incorrect {
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+
+.option-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.option-letter {
+  font-weight: bold;
+  min-width: 20px;
+}
+
+.option-text {
+  flex: 1;
+}
+
+.option-feedback {
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  display: none;
+}
+
+.option-feedback.show {
+  display: block;
+}
+
+.option-feedback.correct-feedback {
+  background-color: #d1f2eb;
+  color: #0c5460;
+  border: 1px solid #b8daff;
+}
+
+.option-feedback.incorrect-feedback {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+/* Infographics Styles */
+.infographics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.infographic-card {
+  background-color: #f9fafb; /* Slightly gray background */
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.infographic-card h3 {
+  font-size: 1.25rem;
+  color: var(--primary-color);
+  margin-top: 0;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 0.5rem;
+}
+
+.infographic-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.infographic-item {
+  display: flex;
+  flex-direction: column; /* Change to column layout */
+  align-items: flex-start; /* Align everything to the left */
+  gap: 0.5rem; /* Smaller gap between elements */
+  margin-bottom: 24px;
+  padding: 1.5rem;
+  background-color: white;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease;
+}
+
+.infographic-item:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.infographic-item:last-child {
+  margin-bottom: 0;
+}
+
+.infographic-icon {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem; /* Add space below icon */
+  align-self: flex-start; /* Ensure icon stays left-aligned */
+}
+
+.infographic-text {
+  width: 100%; /* Take full width */
+  text-align: left; /* Align text to the left */
+}
+
+.infographic-text .stat {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  display: block;
+  margin-bottom: 0.25rem; /* Small space between number and description */
+}
+
+.infographic-text .description {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.4;
+  margin: 0; /* Remove any default margins */
+}
+
+.hero-section {
+  background-image: url('assets/images/hero-wellbeing-final.png');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-align: center;
+  padding: 5rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+</style>
 </head>
 <body>
-  <header>
-    <div class="logo-container">
-      <a href="https://www.ie.edu" target="_blank">
-        <img src="assets/images/logo-ie.svg" alt="IE University Logo" class="logo" width="120">
+<!-- Añadir el enlace de saltar al contenido principal al inicio del body -->
+<a href="#main-content" class="skip-to-content">Saltar al contenido principal</a>
+
+<!-- Modificar la estructura del header para alinear elementos en una línea -->
+<header class="full-width header-full-bottom" role="banner">
+<div class="header-content">
+  <div class="header-left">
+    <div class="logo-container tiny-logo">
+      <a href="https://www.ie.edu" target="_blank" aria-label="Sitio web de IE University">
+        <img src="assets/images/logo-ie.svg" alt="Logo de IE University" class="logo" width="120">
       </a>
     </div>
-    <nav class="main-nav">
-      <ul>
-        <li><a href="index.html">Portada</a></li>
-        <li><a href="introduccion.html">Introducción</a></li>
-        <li><a href="capitulo1.html">Capítulo 1</a></li>
-        <li><a href="capitulo2.html">Capítulo 2</a></li>
-        <li><a href="capitulo3.html" class="active">Capítulo 3</a></li>
-        <li><a href="capitulo4.html">Capítulo 4</a></li>
-        <li><a href="capitulo5.html">Capítulo 5</a></li>
-      </ul>
-    </nav>
-  </header>
+    <h2 class="header-title">Bienestar Digital</h2>
+  </div>
+  <div class="header-controls">
+    <button id="mobile-menu-toggle" class="mobile-menu-toggle always-visible" aria-label="Abrir menú" aria-expanded="false" aria-controls="main-nav">
+      <div class="hamburger-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </button>
+  </div>
+</div>
+<nav class="main-nav hamburger-nav" id="main-nav" aria-label="Navegación principal">
+  <ul>
+    <li><a href="portada.html">Portada</a></li>
+    <li><a href="introduccion.html">0. Introducción</a></li>
+    <li><a href="capitulo1.html">1. El Bienestar como Clave...</a></li>
+    <li><a href="capitulo2.html">2. Hábitos Digitales</a></li>
+    <li><a href="capitulo3.html" class="active" aria-current="page">3. Atención, Cognición, Energía...</a></li>
+    <li><a href="capitulo4.html">4. Visión y Práctica del Bienestar Digital</a></li>
+    <li><a href="capitulo5.html">5. Conclusión del Curso</a></li>
+    <li><a href="#" id="glossary-menu-link"><i class="fas fa-book" style="color: #DB0086; margin-right: 0.5rem;" aria-hidden="true"></i>Abrir Glosario</a></li>
+  </ul>
+</nav>
+</header>
 
-  <main>
-    <div class="content-container">
-      <h1>Capítulo 3</h1>
+<section class="hero-section">
+<div class="hero-content">
+  <div class="hero-title-container">
+    
+    <h1 class="hero-title">LECCIÓN 3<br>Atención, Cognición, Energía y Productividad</h1>
+  </div>
+</div>
+</section>
+
+<main id="main-content" tabindex="-1">
+  <div class="content-aligned-container">
+    
+    
+    <!-- 1. Fondo blanco -->
+    <section class="lesson-section no-borders">
+      <h2>Objetivos de Aprendizaje de la Lección 3</h2>
+      <p>Después de esta lección, los participantes podrán:</p>
       
-      <!-- Aquí irá el contenido del capítulo 3 -->
+      <div class="learning-objectives-grid">
+        <div class="learning-objective-card">
+          <div class="objective-icon" aria-hidden="true">
+            <i class="fas fa-brain"></i>
+          </div>
+          <div class="objective-content">
+            <h4>La Ciencia de la Atención</h4>
+            <p>Explicar la ciencia detrás de la atención y cómo funciona</p>
+          </div>
+        </div>
+        
+        <div class="learning-objective-card">
+          <div class="objective-icon" aria-hidden="true">
+            <i class="fas fa-link"></i>
+          </div>
+          <div class="objective-content">
+            <h4>Atención y Productividad</h4>
+            <p>Reconocer la conexión entre atención, energía y productividad</p>
+          </div>
+        </div>
+        
+        <div class="learning-objective-card">
+          <div class="objective-icon" aria-hidden="true">
+            <i class="fas fa-mobile-alt"></i>
+          </div>
+          <div class="objective-content">
+            <h4>Tecnología y Cognición</h4>
+            <p>Analizar la relación entre el uso de la tecnología y la salud cognitiva</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- 2. Fondo gris -->
+    <section class="lesson-section no-borders">
+      <h2>El Poder del Enfoque</h2>
+
+      <div class="responsive-video">
+        <video 
+          id="power-of-focus-video" 
+          class="video-js vjs-ie-skin vjs-big-play-centered" 
+          controls 
+          preload="auto" 
+          data-video-id="w03v00"
+          
+          aria-label="Video El Poder del Enfoque"
+          poster="assets/images/power-of-focus-poster.png"
+        >
+          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w03v00-the-power-of-focus/hls.m3u8" type="application/x-mpegURL">
+          <p class="vjs-no-js">
+            Para ver este video, por favor activa JavaScript y considera actualizar a un
+            navegador web que <a href="https://videojs.com/html5-video-support/" target="_blank">soporte video HTML5</a>
+          </p>
+        </video>
+      </div>
+    </section>
+    
+    <!-- 3. Fondo blanco -->
+    <section class="lesson-section no-borders">
+      <h2>La Ciencia de la Atención</h2>
       
-      <div class="navigation-buttons">
-        <a href="capitulo2.html" class="nav-button prev"><span class="arrow-left">←</span>Previous</a>
-        <a href="capitulo4.html" class="nav-button next">Next<span class="arrow-right">→</span></a>
+      <div class="responsive-video">
+        <video 
+          id="science-of-attention-video" 
+          class="video-js vjs-ie-skin vjs-big-play-centered" 
+          controls 
+          preload="auto" 
+          data-video-id="w03v01"
+          
+          aria-label="Video La Ciencia de la Atención"
+          poster="assets/images/science-of-attention-poster.png"
+        >
+          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w03v01-the-science-of-attention/hls.m3u8" type="application/x-mpegURL">
+          <p class="vjs-no-js">
+            Para ver este video, por favor activa JavaScript y considera actualizar a un
+            navegador web que <a href="https://videojs.com/html5-video-support/" target="_blank">soporte video HTML5</a>
+          </p>
+        </video>
+      </div>
+      
+      <div class="key-point" role="note" aria-label="Punto clave sobre la ciencia de la atención">
+        <h3>Punto Clave</h3>
+        <p>Nuestra atención es un recurso limitado y entrenable por el que los entornos digitales compiten constantemente. Al comprender los diferentes tipos de atención y el impacto de la economía de la atención, podemos tomar decisiones más intencionadas que protejan nuestra energía cognitiva y nuestro bienestar.</p>
+      
+      <div style="margin-top: 2rem;">
+        <p><strong>La atención es la base de nuestra fortaleza cognitiva.</strong></p>
+        
+        <p>Los hábitos digitales afectan directamente cómo enfocamos, mantenemos y cambiamos la atención a lo largo del día. Reconocer los diferentes tipos de atención —sostenida, dividida, selectiva y alternante— nos ayuda a comprender cómo nuestro cerebro está siendo entrenado (o agotado) por nuestros hábitos.</p>
+        
+        <p>Tomar conciencia de hacia dónde se dirige tu atención, especialmente en la economía de la atención, es el primer paso hacia prácticas digitales más saludables y una mente más fuerte.</p>
+      </div>
+    </section>
+    
+    <!-- 4. Fondo gris -->
+    <section class="lesson-section no-borders">
+  <h2>Lectura</h2>
+  <p>Por favor, completa la siguiente lectura:</p>
+  
+  <div class="reading-cards">
+    <div class="reading-card">
+      <div class="reading-card-content">
+        <h3>Te robaron la atención: Johann Hari sobre por qué no puedes prestar atención</h3>
+        <p>Explora cómo nuestra capacidad de concentración ha sido sistemáticamente socavada en la era digital y descubre ideas para recuperar nuestra atención en un mundo cada vez más distraído.</p>
+        <div class="reading-card-footer">
+          <a href="https://www.the-berliner.com/books/your-focus-was-stolen-from-you-johann-hari-on-a-global-crisis/" target="_blank" class="reading-link" aria-label="Leer artículo: Te robaron la atención (se abre en una nueva pestaña)">
+            Leer Artículo
+            <span class="reading-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
       </div>
     </div>
-  </main>
+  </div>
+</section>
+    
+    <!-- 5. Fondo blanco -->
+<section class="lesson-section no-borders">
+  <h2>Actividad: Tipos de Atención</h2>
+  <p>Exploremos los diferentes tipos de atención y cómo nos ayudan a gestionar el enfoque en nuestra vida diaria.</p>
+  <p>Lee cada definición con atención y luego selecciona el tipo de atención correcto en el menú desplegable para que coincida con cada definición. Esta actividad te ayudará a comprender mejor cómo funciona tu atención, un paso clave para desarrollar hábitos digitales más saludables y conscientes.</p>
+  
+  <div class="attention-activity">
+    <div class="attention-question" data-correct="selective">
+      <div class="definition-text">
+        <p><strong>Definición:</strong><br>La capacidad de concentrarse en una tarea o estímulo específico ignorando las distracciones. Por ejemplo, centrarse en leer un libro en un entorno ruidoso.</p>
+      </div>
+      <div class="dropdown-container">
+        <label for="attention-1">Tipo de Atención:</label>
+        <select id="attention-1" class="attention-dropdown">
+          <option value="">Selecciona un tipo...</option>
+          <option value="sustained">Atención Sostenida</option>
+          <option value="alternating">Atención Alternante</option>
+          <option value="selective">Atención Selectiva</option>
+          <option value="divided">Atención Dividida</option>
+        </select>
+        <div class="feedback" id="feedback-1"></div>
+      </div>
+    </div>
 
-  <footer>
-    <p class="copyright">&copy; <span id="current-year"></span> IE University. Todos los derechos reservados.</p>
-  </footer>
+    <div class="attention-question" data-correct="sustained">
+      <div class="definition-text">
+        <p><strong>Definición:</strong><br>La habilidad de mantener el enfoque en una tarea o actividad durante un período prolongado, como estudiar, conducir o completar un proyecto de trabajo.</p>
+      </div>
+      <div class="dropdown-container">
+        <label for="attention-2">Tipo de Atención:</label>
+        <select id="attention-2" class="attention-dropdown">
+          <option value="">Selecciona un tipo...</option>
+          <option value="divided">Atención Dividida</option>
+          <option value="sustained">Atención Sostenida</option>
+          <option value="selective">Atención Selectiva</option>
+          <option value="alternating">Atención Alternante</option>
+        </select>
+        <div class="feedback" id="feedback-2"></div>
+      </div>
+    </div>
 
-  <script src="js/main.js"></script>
+    <div class="attention-question" data-correct="divided">
+      <div class="definition-text">
+        <p><strong>Definición:</strong><br>La capacidad de ser consciente de múltiples elementos en tu entorno al mismo tiempo, manteniéndote alerta y reconociendo estímulos relevantes en una situación.</p>
+      </div>
+      <div class="dropdown-container">
+        <label for="attention-3">Tipo de Atención:</label>
+        <select id="attention-3" class="attention-dropdown">
+          <option value="">Selecciona un tipo...</option>
+          <option value="alternating">Atención Alternante</option>
+          <option value="selective">Atención Selectiva</option>
+          <option value="divided">Atención Dividida</option>
+          <option value="sustained">Atención Sostenida</option>
+        </select>
+        <div class="feedback" id="feedback-3"></div>
+      </div>
+    </div>
+
+    <div class="attention-question" data-correct="alternating">
+      <div class="definition-text">
+        <p><strong>Definición:</strong><br>La habilidad de cambiar el enfoque entre diferentes tareas o actividades, también conocida como multitarea. Por ejemplo, cambiar la atención entre cocinar y enviar mensajes de texto según lo que requiera un enfoque inmediato.</p>
+      </div>
+      <div class="dropdown-container">
+        <label for="attention-4">Tipo de Atención:</label>
+        <select id="attention-4" class="attention-dropdown">
+          <option value="">Selecciona un tipo...</option>
+          <option value="selective">Atención Selectiva</option>
+          <option value="divided">Atención Dividida</option>
+          <option value="alternating">Atención Alternante</option>
+          <option value="sustained">Atención Sostenida</option>
+        </select>
+        <div class="feedback" id="feedback-4"></div>
+      </div>
+    </div>
+
+    <div class="activity-results">
+      <button id="check-answers" class="check-answers-btn">Comprobar Respuestas</button>
+      <button id="try-again" class="check-answers-btn" style="display: none; margin-left: 1rem;">Intentar de Nuevo</button>
+      <div id="overall-feedback" class="overall-feedback"></div>
+    </div>
+  </div>
+</section>
+    
+    <!-- 6. Fondo gris -->
+    <section class="lesson-section no-borders">
+      <h2>¿Qué Funciones Cognitivas se Ven Afectadas por Nuestros Hábitos Digitales?</h2>
+
+      <div class="responsive-video">
+        <video 
+          id="cognitive-functions-video" 
+          class="video-js vjs-ie-skin vjs-big-play-centered" 
+          controls 
+          preload="auto" 
+          data-video-id="w03v02"
+          
+          aria-label="Video ¿Qué Funciones Cognitivas se Ven Afectadas por Nuestros Hábitos Digitales?"
+          poster="assets/images/cognitive-functions-poster.png"
+        >
+          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w03v02-what-cognitive-functions-are-being-impacted/hls.m3u8" type="application/x-mpegURL">
+          <p class="vjs-no-js">
+            Para ver este video, por favor activa JavaScript y considera actualizar a un
+            navegador web que <a href="https://videojs.com/html5-video-support/" target="_blank">soporte video HTML5</a>
+          </p>
+        </video>
+      </div>
+      
+      <div class="key-point" role="note" aria-label="Punto clave sobre funciones cognitivas y hábitos digitales">
+        <h3>Punto Clave</h3>
+        <p>La tecnología afecta funciones cerebrales críticas como la memoria, la atención y el autocontrol, pero al gestionar las notificaciones, elegir contenido edificante y tomar descansos conscientes, podemos usar la tecnología de maneras que protejan y fortalezcan nuestra salud cognitiva.</p>
+
+        <p style="margin-top: 1rem;">La capacidad de tu cerebro para concentrarse, recordar y tomar decisiones está profundamente influenciada por cómo interactúas con la tecnología.</p>
+
+        <p style="margin-top: 1rem;"><strong>Para proteger y mejorar tus funciones cognitivas:</strong></p>
+
+        <ul style="margin-top: 0.5rem; line-height: 1.8;">
+          <li>Desactiva las notificaciones innecesarias para recuperar el control de tu atención.</li>
+          <li>Elige contenido positivo e inspirador para equilibrar las recompensas emocionales.</li>
+          <li>Toma descansos regulares para darle a tu cerebro tiempo para procesar y recargarse.</li>
+        </ul>
+
+        <p style="margin-top: 1rem;">Pequeños cambios en los hábitos digitales pueden marcar una gran diferencia para una mente más aguda y saludable.</p>
+      </div>
+      
+    
+    </section>
+    
+    <!-- 7. Fondo blanco -->
+<section class="lesson-section no-borders">
+  <h2>Actividad: Comprueba tu Comprensión sobre las Funciones Cognitivas</h2>
+  <p>Este breve test de opción múltiple está diseñado para ayudarte a aplicar lo que has aprendido de manera práctica. No tiene calificación, así que no te preocupes por acertar todo.</p>
+  <p>Úsalo como una herramienta para verificar tu comprensión y reflexionar sobre los conceptos clave de esta lección. Siéntete libre de volver y revisar el material según sea necesario: ¡esto es parte de tu viaje de aprendizaje!</p>
+  
+  <div class="multiple-choice-test">
+    <!-- Pregunta 1 -->
+    <div class="quiz-question" data-question="1">
+      <div class="question-text">1. ¿Qué parte del cerebro es responsable de las reacciones automáticas, como mirar el teléfono cuando vibra?</div>
+      <ul class="quiz-options">
+        <li class="quiz-option" data-option="a" data-correct="false">
+          <label class="option-label">
+            <span class="option-letter">a.</span>
+            <span class="option-text">Sistema Límbico</span>
+          </label>
+          <div class="option-feedback incorrect-feedback">
+            Incorrecto. Recuerda que, si bien el sistema límbico y la corteza prefrontal están involucrados en las emociones y la toma de decisiones, el tronco encefálico gobierna comportamientos reflexivos como estos.
+          </div>
+        </li>
+        <li class="quiz-option" data-option="b" data-correct="false">
+          <label class="option-label">
+            <span class="option-letter">b.</span>
+            <span class="option-text">Hipocampo</span>
+          </label>
+          <div class="option-feedback incorrect-feedback">
+            Incorrecto. Recuerda que, si bien el sistema límbico y la corteza prefrontal están involucrados en las emociones y la toma de decisiones, el tronco encefálico gobierna comportamientos reflexivos como estos.
+          </div>
+        </li>
+        <li class="quiz-option" data-option="c" data-correct="true">
+          <label class="option-label">
+            <span class="option-letter">c.</span>
+            <span class="option-text">Tronco Encefálico</span>
+          </label>
+          <div class="option-feedback correct-feedback">
+            Correcto. El tronco encefálico es responsable de las reacciones automáticas e instintivas, como mirar reflexivamente el teléfono cuando vibra. Controla los procesos involuntarios, lo que dificulta resistir las respuestas inmediatas a las notificaciones.
+          </div>
+        </li>
+        <li class="quiz-option" data-option="d" data-correct="false">
+          <label class="option-label">
+            <span class="option-letter">d.</span>
+            <span class="option-text">Corteza Prefrontal</span>
+          </label>
+          <div class="option-feedback incorrect-feedback">
+            Incorrecto. Recuerda que, si bien el sistema límbico y la corteza prefrontal están involucrados en las emociones y la toma de decisiones, el tronco encefálico gobierna comportamientos reflexivos como estos.
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Pregunta 2 -->
+    <div class="quiz-question" data-question="2">
+      <div class="question-text">2. ¿Qué parte del cerebro libera dopamina cuando recibes una notificación o un 'me gusta'?</div>
+      <ul class="quiz-options">
+        <li class="quiz-option" data-option="a" data-correct="false">
+          <label class="option-label">
+            <span class="option-letter">a.</span>
+            <span class="option-text">Tronco Encefálico</span>
+          </label>
+          <div class="option-feedback incorrect-feedback">
+            Incorrecto. Ten en cuenta que, si bien otras regiones del cerebro desempeñan un papel importante en el comportamiento, es el sistema límbico el que desencadena la dopamina, la sustancia química del "bienestar", en respuesta a las interacciones en las redes sociales.
+          </div>
+        </li>
+        <li class="quiz-option" data-option="b" data-correct="true">
+          <label class="option-label">
+            <span class="option-letter">b.</span>
+            <span class="option-text">Sistema Límbico</span>
+          </label>
+          <div class="option-feedback correct-feedback">
+            Correcto. El sistema límbico es responsable de procesar recompensas y emociones. Cuando recibes un "me gusta" o una notificación, tu cerebro libera dopamina, lo que refuerza el impulso de revisar el teléfono repetidamente.
+          </div>
+        </li>
+        <li class="quiz-option" data-option="c" data-correct="false">
+          <label class="option-label">
+            <span class="option-letter">c.</span>
+            <span class="option-text">Hipocampo</span>
+          </label>
+          <div class="option-feedback incorrect-feedback">
+            Incorrecto. Ten en cuenta que, si bien otras regiones del cerebro desempeñan un papel importante en el comportamiento, es el sistema límbico el que desencadena la dopamina, la sustancia química del "bienestar", en respuesta a las interacciones en las redes sociales.
+          </div>
+        </li>
+        <li class="quiz-option" data-option="d" data-correct="false">
+          <label class="option-label">
+            <span class="option-letter">d.</span>
+            <span class="option-text">Corteza Prefrontal</span>
+          </label>
+          <div class="option-feedback incorrect-feedback">
+            Incorrecto. Ten en cuenta que, si bien otras regiones del cerebro desempeñan un papel importante en el comportamiento, es el sistema límbico el que desencadena la dopamina, la sustancia química del "bienestar", en respuesta a las interacciones en las redes sociales.
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Pregunta 3 -->
+    <div class="quiz-question" data-question="3">
+      <div class="question-text">3. ¿Qué le sucede al hipocampo cuando haces maratones de series o te desplazas sin parar por las redes sociales?</div>
+      <ul class="quiz-options">
+        <li class="quiz-option" data-option="a" data-correct="false">
+          <label class="option-label">
+            <span class="option-letter">a.</span>
+            <span class="option-text">Libera dopamina.</span>
+          </label>
+          <div class="option-feedback incorrect-feedback">
+            Incorrecto. Recuerda que, si bien la liberación de dopamina y la toma de decisiones involucran diferentes áreas del cerebro, el hipocampo tiene dificultades con el exceso de información, lo que lleva a una mala retención de la memoria.
+          </div>
+        </li>
+        <li class="quiz-option" data-option="b" data-correct="false">
+          <label class="option-label">
+            <span class="option-letter">b.</span>
+            <span class="option-text">Te ayuda a tomar decisiones.</span>
+          </label>
+          <div class="option-feedback incorrect-feedback">
+            Incorrecto. Recuerda que, si bien la liberación de dopamina y la toma de decisiones involucran diferentes áreas del cerebro, el hipocampo tiene dificultades con el exceso de información, lo que lleva a una mala retención de la memoria.
+          </div>
+        </li>
+        <li class="quiz-option" data-option="c" data-correct="true">
+          <label class="option-label">
+            <span class="option-letter">c.</span>
+            <span class="option-text">Se sobrecarga, lo que dificulta recordar lo que viste.</span>
+          </label>
+          <div class="option-feedback correct-feedback">
+            Correcto. El hipocampo es responsable de la formación de la memoria. Cuando hacemos maratones de series o nos desplazamos por las redes durante largos períodos, se sobrecarga, lo que dificulta la retención de información.
+          </div>
+        </li>
+        <li class="quiz-option" data-option="d" data-correct="false">
+          <label class="option-label">
+            <span class="option-letter">d.</span>
+            <span class="option-text">Controla las reacciones automáticas.</span>
+          </label>
+          <div class="option-feedback incorrect-feedback">
+            Incorrecto. Recuerda que, si bien la liberación de dopamina y la toma de decisiones involucran diferentes áreas del cerebro, el hipocampo tiene dificultades con el exceso de información, lo que lleva a una mala retención de la memoria.
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Pregunta 4 -->
+    <div class="quiz-question" data-question="4">
+      <div class="question-text">4. ¿Qué parte del cerebro está involucrada en la toma de decisiones y el autocontrol?</div>
+      <ul class="quiz-options">
+        <li class="quiz-option" data-option="a" data-correct="false">
+          <label class="option-label">
+            <span class="option-letter">a.</span>
+            <span class="option-text">Tronco Encefálico</span>
+          </label>
+          <div class="option-feedback incorrect-feedback">
+            Incorrecto. Ten en cuenta que, si bien el sistema límbico controla las emociones y el tronco encefálico maneja las reacciones automáticas, la corteza prefrontal es la que nos ayuda a regular conscientemente nuestro uso de la tecnología.
+          </div>
+        </li>
+        <li class="quiz-option" data-option="b" data-correct="false">
+          <label class="option-label">
+            <span class="option-letter">b.</span>
+            <span class="option-text">Sistema Límbico</span>
+          </label>
+          <div class="option-feedback incorrect-feedback">
+            Incorrecto. Ten en cuenta que, si bien el sistema límbico controla las emociones y el tronco encefálico maneja las reacciones automáticas, la corteza prefrontal es la que nos ayuda a regular conscientemente nuestro uso de la tecnología.
+          </div>
+        </li>
+        <li class="quiz-option" data-option="c" data-correct="false">
+          <label class="option-label">
+            <span class="option-letter">c.</span>
+            <span class="option-text">Hipocampo</span>
+          </label>
+          <div class="option-feedback incorrect-feedback">
+            Incorrecto. Ten en cuenta que, si bien el sistema límbico controla las emociones y el tronco encefálico maneja las reacciones automáticas, la corteza prefrontal es la que nos ayuda a regular conscientemente nuestro uso de la tecnología.
+          </div>
+        </li>
+        <li class="quiz-option" data-option="d" data-correct="true">
+          <label class="option-label">
+            <span class="option-letter">d.</span>
+            <span class="option-text">Corteza Prefrontal</span>
+          </label>
+          <div class="option-feedback correct-feedback">
+            Correcto. La corteza prefrontal ayuda con el pensamiento racional, el control de impulsos y la toma de decisiones. Nos permite resistir impulsos, como el de revisar nuestros teléfonos innecesariamente.
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Pregunta 5 -->
+    <div class="quiz-question" data-question="5">
+      <div class="question-text">5. ¿Cuál es una estrategia para ayudar a la corteza prefrontal a mantener el control sobre el uso de la tecnología?</div>
+      <ul class="quiz-options">
+        <li class="quiz-option" data-option="a" data-correct="false">
+          <label class="option-label">
+            <span class="option-letter">a.</span>
+            <span class="option-text">Aumentar el tiempo de pantalla.</span>
+          </label>
+          <div class="option-feedback incorrect-feedback">
+            Incorrecto. Recuerda que estrategias como aumentar el tiempo de pantalla o mantener las aplicaciones fácilmente accesibles dificultan que la corteza prefrontal regule el comportamiento.
+          </div>
+        </li>
+        <li class="quiz-option" data-option="b" data-correct="true">
+          <label class="option-label">
+            <span class="option-letter">b.</span>
+            <span class="option-text">Desactivar las notificaciones.</span>
+          </label>
+          <div class="option-feedback correct-feedback">
+            Correcto. Desactivar las notificaciones reduce las distracciones, dando a tu corteza prefrontal más control sobre cuándo y cómo revisas tu teléfono. Esto ayuda a prevenir la revisión automática e impulsiva.
+          </div>
+        </li>
+        <li class="quiz-option" data-option="c" data-correct="false">
+          <label class="option-label">
+            <span class="option-letter">c.</span>
+            <span class="option-text">Seguir más cuentas en redes sociales.</span>
+          </label>
+          <div class="option-feedback incorrect-feedback">
+            Incorrecto. Recuerda que estrategias como aumentar el tiempo de pantalla o mantener las aplicaciones fácilmente accesibles dificultan que la corteza prefrontal regule el comportamiento.
+          </div>
+        </li>
+        <li class="quiz-option" data-option="d" data-correct="false">
+          <label class="option-label">
+            <span class="option-letter">d.</span>
+            <span class="option-text">Mantener todas las aplicaciones en la pantalla de inicio.</span>
+          </label>
+          <div class="option-feedback incorrect-feedback">
+            Incorrecto. Recuerda que estrategias como aumentar el tiempo de pantalla o mantener las aplicaciones fácilmente accesibles dificultan que la corteza prefrontal regule el comportamiento.
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+    
+    <!-- 8. Fondo gris -->
+<section class="lesson-section no-borders">
+  <h2>Carga Cognitiva y Fatiga por Decisión</h2>
+
+  <div class="responsive-video">
+    <video 
+      id="cognitive-load-video" 
+      class="video-js vjs-ie-skin vjs-big-play-centered" 
+      controls 
+      preload="auto" 
+      data-video-id="w03v03"
+      
+      aria-label="Video Carga Cognitiva y Fatiga por Decisión"
+      poster="assets/images/cognitive-load-poster.png"
+    >
+      <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w03v03-cognitive-load-and-decision-fatigue/hls.m3u8" type="application/x-mpegURL">
+      <p class="vjs-no-js">
+        Para ver este video, por favor activa JavaScript y considera actualizar a un
+        navegador web que <a href="https://videojs.com/html5-video-support/" target="_blank">soporte video HTML5</a>
+      </p>
+    </video>
+  </div>
+  
+  <div class="key-point" role="note" aria-label="Punto clave sobre carga cognitiva y fatiga por decisión">
+    <h3>Punto Clave</h3>
+    <p>La fatiga por decisión agota nuestra energía mental a lo largo del día, lo que dificulta mantener el enfoque y cambiar hábitos. Al minimizar las distracciones y reponer nuestros recursos cognitivos a través del descanso, el movimiento y la atención plena, podemos fortalecer nuestra capacidad para mantener nuevos comportamientos más saludables.</p>
+
+    <p style="margin-top: 1rem;">Cada decisión que tomamos, grande o pequeña, consume energía mental.</p>
+
+    <p style="margin-top: 1rem;"><strong>Para apoyar un cambio de comportamiento duradero:</strong></p>
+
+    <ul style="margin-top: 0.5rem; line-height: 1.8;">
+      <li>Minimiza la fatiga por decisión reduciendo las distracciones y creando rutinas simples.</li>
+      <li>Alimenta tu cerebro con sueño, buena nutrición, movimiento, tiempo en la naturaleza y prácticas de atención plena.</li>
+    </ul>
+
+    <p style="margin-top: 1rem;">Construir hábitos de apoyo ayuda a proteger tu enfoque, extender tu resistencia mental y hacer que los cambios positivos se mantengan en el tiempo.</p>
+  </div>
+</section>
+    
+    <!-- 9. Fondo blanco -->
+<section class="lesson-section no-borders">
+  <h2>Infografías sobre Estadísticas de Uso de Smartphones</h2>
+  <p>Estas métricas ilustran cómo el uso frecuente del teléfono y la necesidad constante de revisar los dispositivos pueden contribuir a la sobrecarga cognitiva y la fatiga por decisión, afectando tanto la productividad como el bienestar emocional.</p>
+  
+  <div class="infographics-grid">
+  <!-- Comportamiento del Usuario de Smartphone -->
+  <div class="infographic-card">
+    <h3>Comportamiento del Usuario de Smartphone</h3>
+    <ul class="infographic-list">
+      <li class="infographic-item">
+        <i class="fas fa-hand-pointer infographic-icon"></i>
+        <div class="infographic-text">
+          <span class="stat">2,617</span>
+          <span class="description">veces que un usuario hace clic, toca y desliza el teléfono diariamente.</span>
+        </div>
+      </li>
+      <li class="infographic-item">
+        <i class="fas fa-clock infographic-icon"></i>
+        <div class="infographic-text">
+          <span class="stat">4h 10m</span>
+          <span class="description">es el promedio que una persona pasa en un smartphone diariamente.</span>
+        </div>
+      </li>
+      
+      <li class="infographic-item">
+        <i class="fas fa-toilet-paper infographic-icon"></i>
+        <div class="infographic-text">
+          <span class="stat">73.4%</span>
+          <span class="description">llevan sus teléfonos al baño.</span>
+        </div>
+      </li>
+      <li class="infographic-item">
+        <i class="fas fa-bed infographic-icon"></i>
+        <div class="infographic-text">
+          <span class="stat">69%</span>
+          <span class="description">revisan sus teléfonos 5 minutos antes de irse a dormir.</span>
+        </div>
+      </li>
+      <li class="infographic-item">
+        <i class="fas fa-mobile-alt infographic-icon"></i>
+        <div class="infographic-text">
+          <span class="stat">66%</span>
+          <span class="description">duermen con sus teléfonos.</span>
+        </div>
+      </li>
+      <li class="infographic-item">
+        <i class="fas fa-unlock-alt infographic-icon"></i>
+        <div class="infographic-text">
+          <span class="stat">43.5%</span>
+          <span class="description">desbloquean sus teléfonos entre 51 y 100 veces al día.</span>
+        </div>
+      </li>
+      <li class="infographic-item">
+        <i class="fas fa-heart-broken infographic-icon"></i>
+        <div class="infographic-text">
+          <span class="stat">32.7%</span>
+          <span class="description">pasan más tiempo con sus teléfonos que con sus parejas.</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Impacto en la Vida Diaria -->
+  <div class="infographic-card">
+    <h3>Impacto en la Vida Diaria</h3>
+    <ul class="infographic-list">
+      <li class="infographic-item">
+        <i class="fas fa-bed infographic-icon"></i>
+        <div class="infographic-text">
+          <span class="stat">87%</span>
+          <span class="description">de los usuarios revisan su smartphone 1 hora antes de dormir y después de despertar.</span>
+        </div>
+      </li>
+      <li class="infographic-item">
+        <i class="fas fa-mobile-alt infographic-icon"></i>
+        <div class="infographic-text">
+          <span class="stat">66%</span>
+          <span class="description">de los usuarios duermen con sus smartphones.</span>
+        </div>
+      </li>
+      <li class="infographic-item">
+        <i class="fas fa-users infographic-icon"></i>
+        <div class="infographic-text">
+          <span class="stat">86%</span>
+          <span class="description">de los usuarios revisan sus teléfonos incluso mientras hablan con amigos y familiares.</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Distracción y Productividad -->
+  <div class="infographic-card">
+    <h3>Distracción y Productividad</h3>
+    <ul class="infographic-list">
+      <li class="infographic-item">
+        <i class="fas fa-user-graduate infographic-icon"></i>
+        <div class="infographic-text">
+          <span class="stat">49%</span>
+          <span class="description">de los estudiantes se distraen con teléfonos y otros gadgets en clase.</span>
+        </div>
+      </li>
+      <li class="infographic-item">
+        <i class="fas fa-briefcase infographic-icon"></i>
+        <div class="infographic-text">
+          <span class="stat">55%</span>
+          <span class="description">de los empleados admiten que a menudo se distraen con sus smartphones en el trabajo.</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Efectos Emocionales y Psicológicos -->
+  <div class="infographic-card">
+    <h3>Efectos Emocionales y Psicológicos</h3>
+    <ul class="infographic-list">
+      <li class="infographic-item">
+        <i class="fas fa-frown infographic-icon"></i>
+        <div class="infographic-text">
+          <span class="stat">87.8%</span>
+          <span class="description">de los usuarios sienten ansiedad cuando dejan sus teléfonos en casa.</span>
+        </div>
+      </li>
+      <li class="infographic-item">
+        <i class="fas fa-sad-tear infographic-icon"></i>
+        <div class="infographic-text">
+          <span class="stat">56%</span>
+          <span class="description">de los adolescentes se sienten solos, ansiosos o molestos cuando no tienen sus teléfonos con ellos.</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+</section>
+
+<!-- 10. Fondo gris -->
+<section class="lesson-section no-borders">
+  <h2>Lectura</h2>
+  <p>Si deseas obtener más información sobre estas estadísticas de adicción a los smartphones, puedes leer el siguiente artículo:</p>
+  
+  <div class="reading-cards">
+    <div class="reading-card">
+      <div class="reading-card-content">
+        <h3>90 Estadísticas de Adicción a los Smartphones que Debes Ver: Análisis de Uso y Datos de 2024</h3>
+        <p>Explora datos completos sobre patrones de uso de smartphones, tendencias de adicción y su impacto en la vida diaria y la productividad.</p>
+        <div class="reading-card-footer">
+          <a href="https://financesonline.com/smartphone-addiction-statistics/#:~:text=Delving%20deeper%2C%20a%20user%20clicks,up%20(BankMyCell%2C%202021)" target="_blank" class="reading-link" aria-label="Leer artículo: 90 Estadísticas de Adicción a los Smartphones (se abre en una nueva pestaña)">
+            Leer Artículo
+            <span class="reading-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 11. Fondo blanco -->
+<section class="lesson-section no-borders">
+  <h2>El Impacto de la Tecnología en Nuestra Salud del Sueño</h2>
+
+  <div class="responsive-video">
+    <video 
+      id="sleep-health-video" 
+      class="video-js vjs-ie-skin vjs-big-play-centered" 
+      controls 
+      preload="auto" 
+      data-video-id="w03v04"
+      
+      aria-label="Video El Impacto de la Tecnología en Nuestra Salud del Sueño"
+      poster="assets/images/sleep-health-poster.png"
+    >
+      <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w03v04-the-impact-of-technology-in-our-sleep-health/hls.m3u8" type="application/x-mpegURL">
+      <p class="vjs-no-js">
+        Para ver este video, por favor activa JavaScript y considera actualizar a un
+        navegador web que <a href="https://videojs.com/html5-video-support/" target="_blank">soporte video HTML5</a>
+      </p>
+    </video>
+  </div>
+  
+  <div class="key-point" role="note" aria-label="Punto clave sobre tecnología y salud del sueño">
+    <h3>Punto Clave</h3>
+    <p>Nuestros hábitos digitales, especialmente el uso de pantallas antes de dormir y al despertar, pueden alterar la calidad del sueño y la restauración mental. Al alinear el uso de la tecnología con los ritmos naturales de nuestro cuerpo, apoyamos un descanso más profundo, una mejor concentración y un bienestar a largo plazo.</p>
+
+    <p style="margin-top: 1rem;">El sueño es esencial para la claridad mental, el equilibrio emocional y la salud física.</p>
+
+    <p style="margin-top: 1rem;">Los hábitos digitales, como desplazarse por las redes sociales tarde en la noche o revisar el teléfono a primera hora de la mañana, pueden interferir con la producción natural de melatonina y los ciclos de sueño.</p>
+
+    <p style="margin-top: 1rem;"><strong>Para apoyar un mejor descanso:</strong></p>
+
+    <ul style="margin-top: 0.5rem; line-height: 1.8;">
+      <li>Limita el tiempo de pantalla al menos 30-60 minutos antes de acostarte.</li>
+      <li>Usa el modo oscuro o nocturno para reducir la exposición a la luz azul.</li>
+      <li>Crea una rutina nocturna relajante: así como una alarma te despierta, establece una señal que te ayude a relajarte.</li>
+      <li>Date un margen sin tecnología por la mañana para comenzar el día con claridad e intención.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 12. Fondo gris -->
+<section class="lesson-section no-borders">
+  <div class="reflection-exercise">
+    <h2><strong>Pregunta de Reflexión</strong></h2>
+    <p><strong>Tómate un momento para reflexionar y escribir tu respuesta a la pregunta a continuación.</strong></p>
+    
+    <div class="reflection-question">
+      <h3>¿Qué tres prácticas te gustaría adoptar para disfrutar de un descanso más tranquilo?</h3>
+      <textarea 
+        id="sleep-reflection" 
+        class="reflection-textarea" 
+        placeholder="Escribe tu reflexión aquí..."
+        aria-label="Reflexión sobre prácticas de sueño"
+        rows="8"
+      ></textarea>
+      <div class="button-container">
+        <button 
+          type="button" 
+          class="save-button" 
+          data-reflection-id="sleep-reflection"
+          aria-describedby="feedback-sleep-reflection"
+        >
+          <i class="fas fa-save" aria-hidden="true"></i> Guardar Reflexión
+        </button>
+        <span id="feedback-sleep-reflection" class="save-feedback" aria-live="polite"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 13. Fondo blanco -->
+<section class="lesson-section no-borders">
+  <h2>Lecturas</h2>
+  <p>Explora estos recursos para profundizar tu comprensión sobre la atención, el enfoque y el impacto de la tecnología en la salud cognitiva:</p>
+  
+  <div class="reading-cards">
+    <div class="reading-card">
+      <div class="reading-card-content">
+        <h3>Marco de Atención y Enfoque</h3>
+        <p>Un marco integral para comprender y mejorar la atención y el enfoque en entornos digitales.</p>
+        <div class="reading-card-footer">
+          <a href="https://www.ie.edu/impactskillstoolkit/tool/attention-and-focus-framework/" target="_blank" class="reading-link" aria-label="Leer: Marco de Atención y Enfoque (se abre en una nueva pestaña)">
+            Leer Recurso
+            <span class="reading-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="reading-card">
+      <div class="reading-card-content">
+        <h3>Uso Excesivo de Smartphones y Seguridad Psicológica en Estudiantes Universitarios</h3>
+        <p>Estudio de investigación que examina la relación entre los patrones de uso de smartphones y el bienestar psicológico durante la pandemia de COVID-19.</p>
+        <div class="reading-card-footer">
+          <a href="https://www.frontiersin.org/journals/psychiatry/articles/10.3389/fpsyt.2022.993555/full" target="_blank" class="reading-link" aria-label="Leer: Estudio sobre el Uso de Smartphones en Estudiantes Universitarios (se abre en una nueva pestaña)">
+            Leer Estudio
+            <span class="reading-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="reading-card">
+      <div class="reading-card-content">
+        <h3>El Costo del Trabajo Interrumpido: Más Velocidad y Estrés</h3>
+        <p>Investigación académica que explora cómo las interrupciones digitales afectan el rendimiento laboral, la velocidad y los niveles de estrés.</p>
+        <div class="reading-card-footer">
+          <a href="https://ics.uci.edu/~gmark/chi08-mark.pdf" target="_blank" class="reading-link" aria-label="Leer: Investigación sobre el Costo del Trabajo Interrumpido (se abre en una nueva pestaña)">
+            Leer Artículo
+            <span class="reading-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="reading-card">
+      <div class="reading-card-content">
+        <h3>Sueño y Redes Sociales</h3>
+        <p>Guía completa sobre cómo las redes sociales y el tiempo de pantalla afectan la calidad del sueño y recomendaciones para una mejor higiene del sueño.</p>
+        <div class="reading-card-footer">
+          <a href="https://www.sleepfoundation.org/how-sleep-works/sleep-and-social-media" target="_blank" class="reading-link" aria-label="Leer: Guía sobre Sueño y Redes Sociales (se abre en una nueva pestaña)">
+            Leer Guía
+            <span class="reading-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+    
+    <div class="navigation-buttons" role="navigation" aria-label="Navegación de la lección">
+      <a href="capitulo2.html" class="nav-button prev"><span class="arrow-left" aria-hidden="true">←</span>Anterior</a>
+      <a href="capitulo4.html" class="nav-button next">Siguiente<span class="arrow-right" aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</main>
+
+<footer role="contentinfo">
+<div class="footer-content">
+  <p class="copyright">&copy; <span id="current-year"></span> IE University. Todos los derechos reservados.</p>
+</div>
+</footer>
+
+<div id="glossary-modal" class="modal" role="dialog" aria-labelledby="glossary-modal-title" aria-hidden="true">
+<div class="modal-content">
+  <div class="modal-header">
+    <h2 id="glossary-modal-title">Glosario de Conceptos de Bienestar Digital</h2>
+    <button class="modal-close" aria-label="Cerrar glosario">&times;</button>
+  </div>
+  <div class="modal-body">
+    <nav class="glossary-az-nav" aria-label="Navegación Alfabética del Glosario">
+      <a href="#" data-filter="all" class="active">TODOS</a>
+      <a href="#" data-filter="a">A</a>
+      <a href="#" data-filter="b">B</a>
+      <a href="#" data-filter="c">C</a>
+      <a href="#" data-filter="d">D</a>
+      <a href="#" data-filter="e">E</a>
+      <a href="#" data-filter="f">F</a>
+      <a href="#" data-filter="g">G</a>
+      <a href="#" data-filter="h">H</a>
+      <a href="#" data-filter="m">M</a>
+      <a href="#" data-filter="o">O</a>
+      <a href="#" data-filter="p">P</a>
+      <a href="#" data-filter="s">S</a>
+      <a href="#" data-filter="v">V</a>
+    </nav>
+    <div class="glossary-terms">
+      <div id="glossary-section-a" class="glossary-section" data-letter="a">
+        <h3 class="glossary-letter-header">A</h3>
+        <div class="glossary-term">
+          <strong>Auditoría de Hábitos Digitales</strong> – Una autoevaluación para rastrear el uso de la tecnología e identificar áreas de mejora.
+        </div>
+        <div class="glossary-term">
+          <strong>Autonomía (Teoría de la Autodeterminación)</strong> – La capacidad de tomar decisiones sobre la participación digital que se alineen con los valores y objetivos personales.
+        </div>
+        <div class="glossary-term">
+          <strong>Autorregulación</strong> – La capacidad de controlar los impulsos y tomar decisiones conscientes en las interacciones digitales.
+        </div>
+      </div>
+      <div id="glossary-section-b" class="glossary-section" data-letter="b">
+        <h3 class="glossary-letter-header">B</h3>
+        <div class="glossary-term">
+          <strong>Bucle de Hábitos</strong> – Un marco para entender la formación de hábitos, que consiste en señal, rutina y recompensa, aplicable a los comportamientos digitales.
+        </div>
+      </div>
+      <div id="glossary-section-c" class="glossary-section" data-letter="c">
+        <h3 class="glossary-letter-header">C</h3>
+        <div class="glossary-term">
+          <strong>Carga Cognitiva</strong> – El esfuerzo mental requerido para procesar información, que puede verse afectado por el tiempo excesivo frente a la pantalla o la multitarea.
+        </div>
+        <div class="glossary-term">
+          <strong>Ciencia del Comportamiento</strong> – El estudio de cómo las personas forman hábitos digitales y cómo la tecnología influye en la toma de decisiones.
+        </div>
+        <div class="glossary-term">
+          <strong>Cognición Cerebral</strong> – La forma en que el cerebro procesa la información, impactada por hábitos digitales como el tiempo de pantalla y la multitarea.
+        </div>
+        <div class="glossary-term">
+          <strong>Compañero de Responsabilidad</strong> – Un compañero de apoyo que ayuda a seguir el progreso y fomenta la constancia en los objetivos de bienestar digital.
+        </div>
+        <div class="glossary-term">
+          <strong>Conciencia del Tiempo de Pantalla</strong> – Seguimiento consciente del tiempo que se pasa en dispositivos digitales para mantener un estilo de vida equilibrado.
+        </div>
+        <div class="glossary-term">
+          <strong>Corteza Prefrontal</strong> – La parte del cerebro responsable de la toma de decisiones y el control de impulsos, que se ve afectada por la interacción digital.
+        </div>
+      </div>
+      <div id="glossary-section-d" class="glossary-section" data-letter="d">
+        <h3 class="glossary-letter-header">D</h3>
+        <div class="glossary-term">
+          <strong>Desencadenantes en el Uso Digital</strong> – Señales ambientales o psicológicas que provocan ciertos hábitos digitales, como revisar el teléfono por aburrimiento.
+        </div>
+        <div class="glossary-term">
+          <strong>Detox Digital</strong> – Un período de tiempo sin dispositivos digitales para restablecer hábitos y mejorar el bienestar.
+        </div>
+      </div>
+      <div id="glossary-section-e" class="glossary-section" data-letter="e">
+        <h3 class="glossary-letter-header">E</h3>
+        <div class="glossary-term">
+          <strong>Efecto de Doble Filo de la Tecnología</strong> – El concepto de que las herramientas digitales pueden tanto mejorar como obstaculizar el bienestar, dependiendo de los patrones de uso.
+        </div>
+        <div class="glossary-term">
+          <strong>Empatía y Tecnología</strong> – La relación entre las interacciones digitales y la inteligencia emocional, incluyendo cómo la tecnología puede impactar las conexiones sociales.
+        </div>
+        <div class="glossary-term">
+          <strong>Enfoque y Productividad</strong> – La capacidad de mantener la atención y la eficacia en el trabajo y la vida, a menudo desafiada por las distracciones digitales.
+        </div>
+        <div class="glossary-term">
+          <strong>Equilibrio Tecnológico-Vital</strong> – El esfuerzo intencional por armonizar el uso de la tecnología con el bienestar general.
+        </div>
+      </div>
+      <div id="glossary-section-f" class="glossary-section" data-letter="f">
+        <h3 class="glossary-letter-header">F</h3>
+        <div class="glossary-term">
+          <strong>Florecimiento (Teoría del Bienestar)</strong> – El estado de prosperar en múltiples aspectos de la vida, incluyendo el bienestar físico, mental, emocional y digital.
+        </div>
+        <div class="glossary-term">
+          <strong>Florecimiento Digital</strong> – Prosperar en un entorno digital equilibrando el uso de la tecnología con el bienestar personal y profesional.
+        </div>
+        <div class="glossary-term">
+          <strong>Fortalezas del Carácter</strong> – Fortalezas personales (p. ej., curiosidad, autorregulación) que se pueden aprovechar para cultivar hábitos digitales saludables.
+        </div>
+        <div class="glossary-term">
+          <strong>Fuerza de Voluntad y Uso Digital</strong> – La capacidad de resistir las distracciones y construir hábitos tecnológicos positivos.
+        </div>
+      </div>
+      <div id="glossary-section-g" class="glossary-section" data-letter="g">
+        <h3 class="glossary-letter-header">G</h3>
+        <div class="glossary-term">
+          <strong>Gestión de la Atención</strong> – La práctica de dirigir conscientemente el enfoque en un entorno digital para mejorar la productividad y la salud cognitiva.
+        </div>
+        <div class="glossary-term">
+          <strong>Gestión de la Energía</strong> – Estrategias para prevenir la fatiga digital y optimizar los niveles de energía en un mundo con mucha tecnología.
+        </div>
+        <div class="glossary-term">
+          <strong>Gestión de Notificaciones</strong> – Estrategias para reducir las interrupciones y aumentar el enfoque, como desactivar alertas no esenciales.
+        </div>
+      </div>
+      <div id="glossary-section-h" class="glossary-section" data-letter="h">
+        <h3 class="glossary-letter-header">H</h3>
+        <div class="glossary-term">
+          <strong>Higiene en Redes Sociales</strong> – Prácticas para mantener una relación saludable con las plataformas sociales, incluyendo la curación de contenido y el establecimiento de límites.
+        </div>
+      </div>
+      <div id="glossary-section-m" class="glossary-section" data-letter="m">
+        <h3 class="glossary-letter-header">M</h3>
+        <div class="glossary-term">
+          <strong>Minimalismo Digital</strong> – Una filosofía que aboga por un uso intencional y con propósito de la tecnología para mejorar el bienestar.
+        </div>
+        <div class="glossary-term">
+          <strong>Mindfulness en el Uso de la Tecnología</strong> – Practicar la conciencia del momento presente para crear interacciones digitales intencionadas y equilibradas.
+        </div>
+        <div class="glossary-term">
+          <strong>Motivación (Teoría de la Autodeterminación)</strong> – Factores internos y externos que influyen en la interacción con la tecnología, incluyendo la autonomía, la competencia y la relación.
+        </div>
+      </div>
+      <div id="glossary-section-o" class="glossary-section" data-letter="o">
+        <h3 class="glossary-letter-header">O</h3>
+        <div class="glossary-term">
+          <strong>Objetivos Digitales</strong> – Objetivos personalizados para mejorar los hábitos digitales, a menudo utilizando el marco SMART (Específico, Medible, Alcanzable, Relevante, con Plazo).
+        </div>
+      </div>
+      <div id="glossary-section-p" class="glossary-section" data-letter="p">
+        <h3 class="glossary-letter-header">P</h3>
+        <div class="glossary-term">
+          <strong>Práctica de Reflexión</strong> – Autoevaluaciones periódicas para valorar los hábitos digitales y su alineación con los valores personales.
+        </div>
+      </div>
+      <div id="glossary-section-s" class="glossary-section" data-letter="s">
+        <h3 class="glossary-letter-header">S</h3>
+        <div class="glossary-term">
+          <strong>Seguridad Psicológica y Tecnología</strong> – El impacto de los entornos digitales en el bienestar emocional y la seguridad.
+        </div>
+      </div>
+      <div id="glossary-section-v" class="glossary-section" data-letter="v">
+        <h3 class="glossary-letter-header">V</h3>
+        <div class="glossary-term">
+          <strong>Valores Fundamentales</strong> – Creencias fundamentales que guían los hábitos digitales y la toma de decisiones.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- VideoJS JavaScript -->
+<script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
+<script src="js/video-player.js"></script>
+<script src="js/key-points.js"></script>
+<script src="js/reflections.js"></script>
+<script src="js/main.js"></script>
+<script src="js/glossary.js"></script>
+<script>
+// Funciones de Session Storage para las Actividades del Capítulo 3
+function saveToSession(key, value) {
+  try {
+    sessionStorage.setItem(`chapter3_${key}`, JSON.stringify(value));
+  } catch (error) {
+    console.warn('No se pudo guardar en session storage:', error);
+  }
+}
+
+function loadFromSession(key) {
+  try {
+    const value = sessionStorage.getItem(`chapter3_${key}`);
+    return value ? JSON.parse(value) : null;
+  } catch (error) {
+    console.warn('No se pudo cargar desde session storage:', error);
+    return null;
+  }
+}
+
+// Cargar respuestas guardadas al cargar la página
+function loadSavedResponses() {
+  // Cargar respuestas de la actividad de atención
+  for (let i = 1; i <= 4; i++) {
+    const savedValue = loadFromSession(`attention_${i}`);
+    if (savedValue) {
+      const dropdown = document.getElementById(`attention-${i}`);
+      if (dropdown) {
+        dropdown.value = savedValue;
+      }
+    }
+  }
+
+  // Cargar respuestas del cuestionario
+  const savedQuizResponses = loadFromSession('quiz_responses');
+  if (savedQuizResponses) {
+    Object.keys(savedQuizResponses).forEach(questionId => {
+      const selectedOption = savedQuizResponses[questionId];
+      const optionElement = document.querySelector(`[data-question="${questionId}"] [data-option="${selectedOption}"]`);
+      if (optionElement) {
+        optionElement.classList.add('selected');
+      }
+    });
+  }
+
+  // Cargar respuesta de la reflexión
+  const savedReflection = loadFromSession('sleep_reflection');
+  if (savedReflection) {
+    const reflectionTextarea = document.getElementById('sleep-reflection');
+    if (reflectionTextarea) {
+      reflectionTextarea.value = savedReflection;
+    }
+  }
+}
+
+
+// Funcionalidad de la Actividad de Atención
+document.addEventListener('DOMContentLoaded', function() {
+  const checkAnswersBtn = document.getElementById('check-answers');
+  const overallFeedback = document.getElementById('overall-feedback');
+  
+  // Añadir event listeners a los desplegables para guardar respuestas
+  for (let i = 1; i <= 4; i++) {
+    const dropdown = document.getElementById(`attention-${i}`);
+    if (dropdown) {
+      dropdown.addEventListener('change', function() {
+        saveToSession(`attention_${i}`, this.value);
+      });
+    }
+  }
+  
+  if (checkAnswersBtn) {
+    checkAnswersBtn.addEventListener('click', function() {
+      checkAttentionAnswers();
+    });
+  }
+  
+  function checkAttentionAnswers() {
+    const questions = document.querySelectorAll('.attention-question');
+    let correctCount = 0;
+    let totalQuestions = questions.length;
+    
+    questions.forEach((question, index) => {
+      const correctAnswer = question.dataset.correct;
+      const dropdown = question.querySelector('.attention-dropdown');
+      const feedback = question.querySelector('.feedback');
+      const selectedValue = dropdown.value;
+      
+      if (selectedValue === correctAnswer) {
+        feedback.textContent = '✓ ¡Correcto!';
+        feedback.className = 'feedback correct';
+        correctCount++;
+      } else if (selectedValue === '') {
+        feedback.textContent = 'Por favor, selecciona una respuesta';
+        feedback.className = 'feedback incorrect';
+      } else {
+        feedback.textContent = '✗ Incorrecto. ¡Inténtalo de nuevo!';
+        feedback.className = 'feedback incorrect';
+      }
+    });
+    
+    // Mostrar feedback general
+    if (correctCount === totalQuestions) {
+      overallFeedback.textContent = `¡Excelente! ¡Has acertado las ${totalQuestions} preguntas! 🎉`;
+      overallFeedback.className = 'overall-feedback success';
+    } else {
+      overallFeedback.textContent = `Has acertado ${correctCount} de ${totalQuestions}. Revisa las respuestas incorrectas e inténtalo de nuevo.`;
+      overallFeedback.className = 'overall-feedback partial';
+    }
+    
+    // Mostrar botón de Intentar de Nuevo
+    const tryAgainBtn = document.getElementById('try-again');
+    if (tryAgainBtn) {
+      tryAgainBtn.style.display = 'inline-block';
+    }
+    
+    // Guardar estado de finalización
+    saveToSession('attention_activity_completed', {
+      score: correctCount,
+      total: totalQuestions,
+      timestamp: new Date().toISOString()
+    });
+    
+    // Desplazarse al feedback
+    overallFeedback.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+});
+
+// Funcionalidad de Intentar de Nuevo para la actividad de atención
+document.addEventListener('DOMContentLoaded', function() {
+  const tryAgainBtn = document.getElementById('try-again');
+  
+  if (tryAgainBtn) {
+    tryAgainBtn.addEventListener('click', function() {
+      // Reiniciar todos los desplegables
+      for (let i = 1; i <= 4; i++) {
+        const dropdown = document.getElementById(`attention-${i}`);
+        const feedback = document.getElementById(`feedback-${i}`);
+        if (dropdown) {
+          dropdown.value = '';
+          dropdown.selectedIndex = 0;
+        }
+        if (feedback) {
+          feedback.textContent = '';
+          feedback.className = 'feedback';
+        }
+      }
+      
+      // Limpiar feedback general
+      const overallFeedback = document.getElementById('overall-feedback');
+      if (overallFeedback) {
+        overallFeedback.textContent = '';
+        overallFeedback.className = 'overall-feedback';
+      }
+      
+      // Ocultar botón de Intentar de Nuevo
+      this.style.display = 'none';
+      
+      // Limpiar respuestas guardadas
+      for (let i = 1; i <= 4; i++) {
+        sessionStorage.removeItem(`chapter3_attention_${i}`);
+      }
+      sessionStorage.removeItem('chapter3_attention_activity_completed');
+      
+      // Enfocar en el primer desplegable
+      const firstDropdown = document.getElementById('attention-1');
+      if (firstDropdown) {
+        firstDropdown.focus();
+      }
+    });
+  }
+});
+
+// Funcionalidad del Test de Opción Múltiple
+document.addEventListener('DOMContentLoaded', function() {
+  const quizOptions = document.querySelectorAll('.quiz-option');
+  let quizResponses = loadFromSession('quiz_responses') || {};
+  
+  quizOptions.forEach(option => {
+    option.addEventListener('click', function() {
+      const question = this.closest('.quiz-question');
+      const questionNumber = question.dataset.question;
+      const selectedOption = this.dataset.option;
+      const isCorrect = this.dataset.correct === 'true';
+      
+      // Guardar la respuesta
+      quizResponses[questionNumber] = selectedOption;
+      saveToSession('quiz_responses', quizResponses);
+      
+      // Eliminar selecciones y feedback previos en esta pregunta
+      const allOptionsInQuestion = question.querySelectorAll('.quiz-option');
+      allOptionsInQuestion.forEach(opt => {
+        opt.classList.remove('selected', 'correct', 'incorrect');
+        const feedback = opt.querySelector('.option-feedback');
+        feedback.classList.remove('show');
+      });
+      
+      // Marcar esta opción como seleccionada
+      this.classList.add('selected');
+      
+      // Mostrar estilo y feedback apropiados
+      if (isCorrect) {
+        this.classList.add('correct');
+      } else {
+        this.classList.add('incorrect');
+      }
+      
+      // Mostrar feedback para la opción seleccionada
+      const feedback = this.querySelector('.option-feedback');
+      feedback.classList.add('show');
+    });
+  });
+});
+
+// Funcionalidad de la Pregunta de Reflexión
+document.addEventListener('DOMContentLoaded', function() {
+  const reflectionTextarea = document.getElementById('sleep-reflection');
+  const saveButton = document.querySelector('[data-reflection-id="sleep-reflection"]');
+  const feedbackElement = document.getElementById('feedback-sleep-reflection');
+
+  if (reflectionTextarea) {
+    // Autoguardado mientras el usuario escribe (con debounce)
+    let saveTimeout;
+    reflectionTextarea.addEventListener('input', function() {
+      clearTimeout(saveTimeout);
+      saveTimeout = setTimeout(() => {
+        saveToSession('sleep_reflection', this.value);
+      }, 1000); // Guardar después de 1 segundo sin escribir
+    });
+  }
+
+  if (saveButton) {
+    saveButton.addEventListener('click', function() {
+      const reflectionText = reflectionTextarea.value.trim();
+      
+      if (!reflectionText) {
+        feedbackElement.textContent = "Por favor, escribe algo antes de guardar";
+        feedbackElement.classList.add('show');
+        feedbackElement.style.color = '#d32f2f';
+        
+        setTimeout(() => {
+          feedbackElement.classList.remove('show');
+        }, 3000);
+        
+        reflectionTextarea.focus();
+        return;
+      }
+
+      // Guardar en session storage
+      saveToSession('sleep_reflection', reflectionText);
+      saveToSession('sleep_reflection_saved', {
+        timestamp: new Date().toISOString(),
+        wordCount: reflectionText.split(/\s+/).length
+      });
+
+      // Mostrar feedback de éxito
+      feedbackElement.textContent = "¡Reflexión guardada correctamente!";
+      feedbackElement.classList.add('show');
+      feedbackElement.style.color = '';
+      
+      setTimeout(() => {
+        feedbackElement.classList.remove('show');
+      }, 3000);
+
+      // Anunciar para lectores de pantalla
+      const ariaLiveRegion = document.createElement('div');
+      ariaLiveRegion.setAttribute('aria-live', 'polite');
+      ariaLiveRegion.className = 'sr-only';
+      ariaLiveRegion.textContent = 'Tu reflexión ha sido guardada correctamente.';
+      document.body.appendChild(ariaLiveRegion);
+
+      setTimeout(() => {
+        if (ariaLiveRegion.parentNode) {
+          ariaLiveRegion.parentNode.removeChild(ariaLiveRegion);
+        }
+      }, 3000);
+    });
+  }
+});
+</script>
 </body>
 </html>
