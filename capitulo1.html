@@ -234,11 +234,6 @@
  transition: max-height 0.4s ease-out;
 }
 
-.accordion-panel.expanded {
- max-height: 500px; /* Altura máxima suficiente para el contenido */
- transition: max-height 0.4s ease-in;
-}
-
 .accordion-panel-inner {
  padding: 1.5rem;
  background-color: #f0f8ff;
@@ -274,10 +269,6 @@
  .accordion-icon {
    margin-left: 0.5rem;
  }
- 
- .accordion-panel.expanded {
-   max-height: 400px; /* Altura reducida para móviles */
- }
 }
 
 @media (max-width: 480px) {
@@ -288,10 +279,6 @@
  
  .accordion-panel-inner {
    padding: 0.8rem;
- }
- 
- .accordion-panel.expanded {
-   max-height: 350px; /* Altura aún más reducida para móviles pequeños */
  }
 }
 
@@ -880,13 +867,13 @@
  
  <div class="accordion-container">
    <div class="accordion-item">
-     <div class="accordion-header">
+     <h3 class="accordion-header">
        <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-perspective">
          <span class="accordion-title">Perspectiva</span>
          <span class="accordion-icon" aria-hidden="true"></span>
        </button>
-     </div>
-     <div class="accordion-panel" id="accordion-panel-perspective">
+     </h3>
+     <div class="accordion-panel" id="accordion-panel-perspective" role="region" aria-labelledby="accordion-trigger-perspective">
        <div class="accordion-panel-inner">
          <p><strong>Aplicación:</strong> Reflexiona sobre cómo la tecnología moldea tu vida de manera holística (mente, cuerpo y alma).</p>
          <p><strong>Práctica:</strong> Usa la <strong>Perspectiva</strong> para reflexionar si tus hábitos digitales se alinean con tus valores.</p>
@@ -895,13 +882,13 @@
    </div>
 
    <div class="accordion-item">
-     <div class="accordion-header">
+     <h3 class="accordion-header">
        <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-judgment">
          <span class="accordion-title">Juicio/Pensamiento Crítico</span>
          <span class="accordion-icon" aria-hidden="true"></span>
        </button>
-     </div>
-     <div class="accordion-panel" id="accordion-panel-judgment">
+     </h3>
+     <div class="accordion-panel" id="accordion-panel-judgment" role="region" aria-labelledby="accordion-trigger-judgment">
        <div class="accordion-panel-inner">
          <p><strong>Aplicación:</strong> Evalúa cómo los hábitos digitales impactan tu bienestar.</p>
          <p><strong>Práctica:</strong> Aplica el <strong>Juicio</strong> para reconocer qué comportamientos digitales apoyan o dificultan tu bienestar.</p>
@@ -910,13 +897,13 @@
    </div>
 
    <div class="accordion-item">
-     <div class="accordion-header">
+     <h3 class="accordion-header">
        <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-curiosity">
          <span class="accordion-title">Curiosidad</span>
          <span class="accordion-icon" aria-hidden="true"></span>
        </button>
-     </div>
-     <div class="accordion-panel" id="accordion-panel-curiosity">
+     </h3>
+     <div class="accordion-panel" id="accordion-panel-curiosity" role="region" aria-labelledby="accordion-trigger-curiosity">
        <div class="accordion-panel-inner">
          <p><strong>Aplicación:</strong> Explora nuevas formas de interactuar con la tecnología que se alineen con tu propósito.</p>
          <p><strong>Práctica:</strong> Aprovecha la <strong>Curiosidad</strong> para explorar nuevos hábitos tecnológicos conscientes, como usar aplicaciones de enfoque o programar tiempo sin dispositivos.</p>
@@ -925,13 +912,13 @@
    </div>
 
    <div class="accordion-item">
-     <div class="accordion-header">
+     <h3 class="accordion-header">
        <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-self-regulation">
          <span class="accordion-title">Autorregulación</span>
          <span class="accordion-icon" aria-hidden="true"></span>
        </button>
-     </div>
-     <div class="accordion-panel" id="accordion-panel-self-regulation">
+     </h3>
+     <div class="accordion-panel" id="accordion-panel-self-regulation" role="region" aria-labelledby="accordion-trigger-self-regulation">
        <div class="accordion-panel-inner">
          <p><strong>Aplicación:</strong> Crea una estructura en torno al uso digital, como establecer límites de tiempo de pantalla.</p>
          <p><strong>Práctica:</strong> Usa la <strong>Autorregulación</strong> para configurar un seguimiento de hábitos para la reducción del tiempo de pantalla.</p>
@@ -940,13 +927,13 @@
    </div>
 
    <div class="accordion-item">
-     <div class="accordion-header">
+     <h3 class="accordion-header">
        <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-prudence">
          <span class="accordion-title">Prudencia</span>
          <span class="accordion-icon" aria-hidden="true"></span>
        </button>
-     </div>
-     <div class="accordion-panel" id="accordion-panel-prudence">
+     </h3>
+     <div class="accordion-panel" id="accordion-panel-prudence" role="region" aria-labelledby="accordion-trigger-prudence">
        <div class="accordion-panel-inner">
          <p><strong>Aplicación:</strong> Planifica el uso intencional de la tecnología para mejorar la productividad en lugar de la distracción.</p>
          <p><strong>Práctica:</strong> Aplica la <strong>Prudencia</strong> para diseñar intencionalmente tu entorno digital (p. ej., reorganizar los iconos de las aplicaciones para reducir las distracciones).</p>
@@ -955,13 +942,13 @@
    </div>
 
    <div class="accordion-item">
-     <div class="accordion-header">
+     <h3 class="accordion-header">
        <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-perseverance">
          <span class="accordion-title">Perseverancia</span>
          <span class="accordion-icon" aria-hidden="true"></span>
        </button>
-     </div>
-     <div class="accordion-panel" id="accordion-panel-perseverance">
+     </h3>
+     <div class="accordion-panel" id="accordion-panel-perseverance" role="region" aria-labelledby="accordion-trigger-perseverance">
        <div class="accordion-panel-inner">
          <p><strong>Aplicación:</strong> Mantén los cambios de hábitos, como reducir el tiempo en redes sociales o mejorar la higiene del sueño.</p>
          <p><strong>Práctica:</strong> Usa la <strong>Perseverancia</strong> al implementar nuevos hábitos como las mañanas sin dispositivos.</p>
@@ -970,13 +957,13 @@
    </div>
 
    <div class="accordion-item">
-     <div class="accordion-header">
+     <h3 class="accordion-header">
        <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-love-learning">
          <span class="accordion-title">Amor por el Aprendizaje</span>
          <span class="accordion-icon" aria-hidden="true"></span>
        </button>
-     </div>
-     <div class="accordion-panel" id="accordion-panel-love-learning">
+     </h3>
+     <div class="accordion-panel" id="accordion-panel-love-learning" role="region" aria-labelledby="accordion-trigger-love-learning">
        <div class="accordion-panel-inner">
          <p><strong>Aplicación:</strong> Comprende la neurociencia de la atención y cómo los comportamientos digitales impactan la cognición.</p>
          <p><strong>Práctica:</strong> Usa el <strong>Amor por el Aprendizaje</strong> para comprender cómo los hábitos digitales moldean la función cognitiva.</p>
@@ -985,13 +972,13 @@
    </div>
 
    <div class="accordion-item">
-     <div class="accordion-header">
+     <h3 class="accordion-header">
        <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-gratitude">
          <span class="accordion-title">Gratitud</span>
          <span class="accordion-icon" aria-hidden="true"></span>
        </button>
-     </div>
-     <div class="accordion-panel" id="accordion-panel-gratitude">
+     </h3>
+     <div class="accordion-panel" id="accordion-panel-gratitude" role="region" aria-labelledby="accordion-trigger-gratitude">
        <div class="accordion-panel-inner">
          <p><strong>Aplicación:</strong> Reconoce los beneficios de las herramientas digitales mientras buscas el equilibrio.</p>
          <p><strong>Práctica:</strong> Usa la <strong>Gratitud</strong> para reflexionar sobre cómo la tecnología enriquece tu vida.</p>
@@ -1000,13 +987,13 @@
    </div>
 
    <div class="accordion-item">
-     <div class="accordion-header">
+     <h3 class="accordion-header">
        <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-leadership">
          <span class="accordion-title">Liderazgo</span>
          <span class="accordion-icon" aria-hidden="true"></span>
        </button>
-     </div>
-     <div class="accordion-panel" id="accordion-panel-leadership">
+     </h3>
+     <div class="accordion-panel" id="accordion-panel-leadership" role="region" aria-labelledby="accordion-trigger-leadership">
        <div class="accordion-panel-inner">
          <p><strong>Aplicación:</strong> Comparte ideas con otros y promueve hábitos digitales conscientes en tu comunidad.</p>
          <p><strong>Práctica:</strong> Usa el <strong>Liderazgo</strong> para guiar a otros en estrategias de bienestar digital.</p>
@@ -1015,13 +1002,13 @@
    </div>
 
    <div class="accordion-item">
-     <div class="accordion-header">
+     <h3 class="accordion-header">
        <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-bravery">
          <span class="accordion-title">Valentía</span>
          <span class="accordion-icon" aria-hidden="true"></span>
        </button>
-     </div>
-     <div class="accordion-panel" id="accordion-panel-bravery">
+     </h3>
+     <div class="accordion-panel" id="accordion-panel-bravery" role="region" aria-labelledby="accordion-trigger-bravery">
        <div class="accordion-panel-inner">
          <p><strong>Aplicación:</strong> Sé abierto sobre los desafíos en la gestión del uso digital y busca soluciones.</p>
          <p><strong>Práctica:</strong> Usa la <strong>Valentía</strong> para discutir abiertamente las dificultades y celebrar el progreso.</p>
@@ -1257,6 +1244,7 @@
  <script src="js/reflections.js"></script>
  <script src="js/logo-checker.js"></script>
  <script src="js/glossary.js"></script>
+ <script src="js/accordion.js"></script>
 
  <script>
    // Función para descargar el template de metas digitales
