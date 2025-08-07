@@ -74,33 +74,43 @@ document.addEventListener("DOMContentLoaded", () => {
         player.el().appendChild(logoOverlay)
       }
 
-/*      // Remove English CC tracks
-      const removeEnglishCC = (player) => {
+      // Set Spanish subtitles as default
+      const setSpanishSubtitlesDefault = (player) => {
         const tracks = player.textTracks()
 
-        // Function to remove "English CC" tracks
-        const removeTracks = () => {
+        // Function to set Spanish subtitles as default
+        const setDefaultTrack = () => {
           for (let i = 0; i < tracks.length; i++) {
             const track = tracks[i]
-            if (track.label === "English CC" || track.language === "en-CC") {
-              player.removeRemoteTextTrack(track)
-              i-- // Adjust index after removing an element
+            
+            // Disable all tracks first
+            if (track.mode !== 'disabled') {
+              track.mode = 'disabled'
+            }
+            
+            // Enable Spanish track if found
+            if (track.language === 'es' || track.label === 'Spanish' || track.label === 'Español') {
+              track.mode = 'showing'
+              console.log('Spanish subtitles enabled by default')
             }
           }
         }
 
-        // Initial cleanup
-        removeTracks()
+        // Initial setup
+        setDefaultTrack()
 
-        // Listen for changes and clean up dynamically
+        // Listen for track changes and maintain Spanish as default
         tracks.addEventListener("addtrack", () => {
-          removeTracks()
-          // Refresh the captions button to update the menu
-          player.controlBar.getChild("CaptionsButton").update()
+          setTimeout(setDefaultTrack, 100) // Small delay to ensure tracks are loaded
+        })
+
+        // Also listen for loadedmetadata to ensure tracks are available
+        player.on('loadedmetadata', () => {
+          setTimeout(setDefaultTrack, 100)
         })
       }
 
-      removeEnglishCC(player)*/
+      setSpanishSubtitlesDefault(player)
     })
 
     // Marcar video como visto cuando termine
