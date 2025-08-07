@@ -1,0 +1,6 @@
+{
+  "buildCommand": "mkdir -p public && cp -r *.html css js assets public/",
+  "outputDirectory": "public",
+  "cleanUrls": true,
+  "trailingSlash": false
+}
