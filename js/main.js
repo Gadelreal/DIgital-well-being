@@ -12,9 +12,15 @@ document.addEventListener("DOMContentLoaded", () => {
     (window.location.pathname.includes("chapter5.html") || window.location.pathname.includes("capitulo5.html"))
   ) {
     document.addEventListener("scroll", () => {
-      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
+
+      if (courseCompletedElement && (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100)) {
+        document.dispatchEvent(new CustomEvent('ie-feedback-widget-openModal'))
         console.log("Usuario ha completado el curso - se activaría el widget de feedback")
+        // Descomentar cuando se implemente la funcionalidad completa
+        // document.dispatchEvent(new CustomEvent('ie-feedback-widget-openModal'));
       }
+
+
     })
   }
 

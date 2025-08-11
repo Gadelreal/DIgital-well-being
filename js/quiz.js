@@ -276,6 +276,8 @@ function handleFinalQuizSubmit() {
   // Show results container
   const resultsContainer = document.getElementById("quiz-results-container")
   resultsContainer.style.display = "block"
+  resultsContainer.id = "course-completed"
+
 
   // Change submit button to "Try Again" button
   submitBtn.textContent = "Try Again"

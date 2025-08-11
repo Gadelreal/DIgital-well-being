@@ -3710,7 +3710,7 @@ a i.fab {
 
 /* Estilos para botones de descarga de plantillas - Aplicar a todos los botones de descarga */
 .download-template-button,
-a[href*=".pdf"]:not(.reading-link):not(.reference-link),
+a[href*=".pdf"]:not(.reading-link):not(.reference-link):not(.normal-link),
 button[onclick*="download"],
 .download-button {
  display: inline-flex;
@@ -3730,7 +3730,7 @@ button[onclick*="download"],
 }
 
 .download-template-button:hover,
-a[href*=".pdf"]:not(.reading-link):not(.reference-link):hover,
+a[href*=".pdf"]:not(.reading-link):not(.reference-link):not(.normal-link):hover,
 button[onclick*="download"]:hover,
 .download-button:hover {
  background-color: var(--link-hover-color) !important;
@@ -4994,6 +4994,10 @@ button[onclick*="download"] i,
 .reference-card li {
  margin-bottom: 0.5rem;
  line-height: 1.6;
+}
+
+.normal-link:hover {
+  background-color: none;
 }
 
 .reference-link {

@@ -5,6 +5,9 @@ const videojs = window.videojs
 
 // Array global para almacenar todas las instancias de Video.js
 const allPlayers = []
+const language = document.documentElement.lang || 'en'; // por defecto inglés
+const language_tracks = (language === 'en') ? 'eng' : 'spa';
+
 
 // Función para pausar todos los otros videos excepto el actual
 function pauseOtherVideos(currentPlayer) {
@@ -74,44 +77,43 @@ document.addEventListener("DOMContentLoaded", () => {
         player.el().appendChild(logoOverlay)
       }
 
-      // Set Spanish subtitles as default
-      const setSpanishSubtitlesDefault = (player) => {
-        const tracks = player.textTracks()
-
-        // Function to set Spanish subtitles as default
-        const setDefaultTrack = () => {
-          for (let i = 0; i < tracks.length; i++) {
-            const track = tracks[i]
-            
-            // Disable all tracks first
-            if (track.mode !== 'disabled') {
-              track.mode = 'disabled'
+      // Activar subtítulos después de que los tracks estén cargados
+      player.on('loadedmetadata', () => {
+        const tracks = player.textTracks();
+  
+        if (tracks && tracks.length >= 2) {
+          for (let i = 1; i < tracks.length; i++) {
+            tracks[i].mode = 'disabled';
+          }
+  
+          if (language === 'es') {
+            if (tracks[2]) {
+              tracks[2].mode = 'showing';
             }
-            
-            // Enable Spanish track if found
-            if (track.language === 'es' || track.label === 'Spanish' || track.label === 'Español') {
-              track.mode = 'showing'
-              console.log('Spanish subtitles enabled by default')
+          } else {
+            if (tracks[1]) {
+              tracks[1].mode = 'showing';
             }
           }
+  
+          player.trigger('texttrackchange');
+        } 
+      });
+  
+        // Ajustar texto del botón de reproducción según idioma
+        const playButton = player.el().querySelector('.vjs-big-play-button');
+        const playButtonText = playButton?.querySelector('.vjs-control-text');
+  
+        if (playButton && playButtonText) {
+          const label = language === 'es' ? 'Reproducir vídeo' : 'Play video';
+          playButtonText.textContent = label;
+          playButton.setAttribute('title', label);
+          playButton.setAttribute('aria-label', label);
         }
 
-        // Initial setup
-        setDefaultTrack()
 
-        // Listen for track changes and maintain Spanish as default
-        tracks.addEventListener("addtrack", () => {
-          setTimeout(setDefaultTrack, 100) // Small delay to ensure tracks are loaded
-        })
-
-        // Also listen for loadedmetadata to ensure tracks are available
-        player.on('loadedmetadata', () => {
-          setTimeout(setDefaultTrack, 100)
-        })
-      }
-
-      setSpanishSubtitlesDefault(player)
     })
+
 
     // Marcar video como visto cuando termine
     player.on("ended", () => {
