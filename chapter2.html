@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Digital Well-being - Digital Habits</title>
 <link rel="stylesheet" href="./css/styles.css">
+<link rel="stylesheet" href="./css/cap2.css">
+
 <!-- VideoJS CSS -->
 <link href="https://vjs.zencdn.net/8.6.1/video-js.css" rel="stylesheet" />
 <!-- jsPDF Library for PDF generation -->
@@ -13,243 +15,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
-<style>
-
-
-/* Estilos para las actividades con plantillas descargables */
-.values-activity-container {
-  background-color: #f9f9f9;
-  border: 1px solid #e0e0e0;
-  padding: 2rem;
-  padding-bottom: 3rem; /* Increased from 2.5rem to 3rem to match Lesson 1 */
-  margin: 2rem 0;
-  border-radius: 0;
-}
-
-.download-template-button {
-  display: inline-flex;
-  align-items: center;
-  padding: 1rem 2rem;
-  background-color: var(--primary-color);
-  color: white;
-  text-decoration: none;
-  border-radius: 4px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem; /* Increased from 0.5rem to 1.5rem to match Lesson 1 */
-}
-
-.download-template-button:hover {
-  background-color: var(--primary-color-dark);
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  text-decoration: none;
-}
-
-.download-template-button i {
-  margin-right: 0.5rem;
-}
-
-/* Estilos para las herramientas numeradas */
-.tools-list {
-  counter-reset: tool-counter;
-  margin: 2rem 0;
-}
-
-.tool-item {
-  counter-increment: tool-counter;
-  background-color: white;
-  border: 1px solid #e0e0e0;
-  padding: 2rem;
-  padding-top: 3.5rem;
-  margin-bottom: 1.5rem;
-  position: relative;
-  border-left: 4px solid var(--primary-color);
-  pointer-events: none;
-}
-
-.tool-item:hover {
-  background-color: white;
-  cursor: default;
-}
-
-.tool-item * {
-  pointer-events: none;
-}
-
-.tool-item::before {
-  content: counter(tool-counter);
-  position: absolute;
-  top: 20px;
-  left: 2rem; /* Changed from 0px to 2rem to align with content padding */
-  background-color: var(--primary-color);
-  color: white;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 1rem;
-  z-index: 1;
-}
-
-.tool-item h4 {
-  margin-top: 0;
-  margin-bottom: 1rem;
-  color: var(--primary-color);
-  font-weight: 600;
-}
-
-.tool-description {
-  margin-bottom: 1rem;
-  font-style: italic;
-  color: #666;
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-}
-
-.tool-description .tool-icon {
-  font-size: 2rem;
-  color: var(--primary-color);
-  margin-top: 2px;
-  flex-shrink: 0;
-}
-
-.tool-description .tool-text {
-  flex: 1;
-  line-height: 1.6;
-}
-
-/* Estilos para la evaluación */
-.assessment-container {
-  background-color: #f0f8ff;
-  border: 2px solid var(--primary-color);
-  padding: 2rem;
-  padding-bottom: 3rem; /* Increased from 2.5rem to 3rem to match Lesson 1 */
-  margin: 2rem 0;
-  border-radius: 8px;
-}
-
-.assessment-step {
-  margin-bottom: 2rem;
-}
-
-.assessment-step h4 {
-  color: var(--primary-color);
-  margin-bottom: 1rem;
-}
-
-.scale-question {
-  background-color: white;
-  border: 1px solid #ddd;
-  padding: 1.5rem;
-  margin-bottom: 1rem;
-  border-radius: 4px;
-}
-
-.scale-options {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 1rem;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.scale-option {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  min-width: 80px;
-}
-
-.scale-option input[type="radio"] {
-  margin-bottom: 0.5rem;
-  width: 20px;
-  height: 20px;
-}
-
-.scale-option label {
-  font-size: 0.8rem;
-  color: #666;
-  cursor: pointer;
-}
-
-.reflection-textarea {
-  width: 100%;
-  min-height: 120px;
-  padding: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-family: inherit;
-  font-size: 1rem;
-  resize: vertical;
-  margin-top: 1rem;
-}
-
-.download-response-button {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.75rem 1.5rem;
-  background-color: var(--primary-color);
-  color: white;
-  text-decoration: none;
-  border-radius: 4px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  margin-top: 1rem;
-  margin-bottom: 1.5rem; /* Increased from 0.5rem to 1.5rem to match Lesson 1 */
-  border: none;
-  cursor: pointer;
-}
-
-.download-response-button:hover {
-  background-color: var(--primary-color-dark);
-  color: white;
-  text-decoration: none;
-}
-
-@media (max-width: 768px) {
-  .scale-options {
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  .scale-option {
-    flex-direction: row;
-    min-width: auto;
-    width: 100%;
-    justify-content: flex-start;
-  }
-  
-  .scale-option input[type="radio"] {
-    margin-right: 1rem;
-    margin-bottom: 0;
-  }
-}
-
-.hero-title {
-  font-family: 'Rubik', sans-serif;
-  font-weight: 300;
-}
-
-.hero-section {
-  background-image: url('assets/images/hero-wellbeing-final.png');
-  background-size: cover;
-  background-position: center;
-  color: white;
-  text-align: center;
-  padding: 5rem 2rem;
-  position: relative;
-  overflow: hidden;
-}
-</style>
 </head>
 <body>
 <!-- Añadir el enlace de saltar al contenido principal al inicio del body -->
@@ -312,7 +77,7 @@
       <i class="fas fa-sync-alt"></i>
     </div>
     <div class="objective-content">
-      <h4>Habit Loop Understanding</h4>
+      <h3>Habit Loop Understanding</h3>
       <p>Explain the habit loop and the process of habit formation</p>
     </div>
   </div>
@@ -322,7 +87,7 @@
       <i class="fas fa-heart-pulse"></i>
     </div>
     <div class="objective-content">
-      <h4>Digital Impact Assessment</h4>
+      <h3>Digital Impact Assessment</h3>
       <p>Identify the impact of digital habits on overall well-being</p>
     </div>
   </div>
@@ -332,7 +97,7 @@
       <i class="fas fa-balance-scale"></i>
     </div>
     <div class="objective-content">
-      <h4>Science-Based Principles</h4>
+      <h3>Science-Based Principles</h3>
       <p>Apply principles from habit science to promote balance and digital well-being</p>
     </div>
   </div>
@@ -342,7 +107,7 @@
       <i class="fas fa-compass"></i>
     </div>
     <div class="objective-content">
-      <h4>Values-Behavior Connection</h4>
+      <h3>Values-Behavior Connection</h3>
       <p>Understand how behaviors reflect personal values and influence daily experiences</p>
     </div>
   </div>
@@ -561,16 +326,16 @@
       
       <div class="tools-list">
         <div class="tool-item">
-          <h4><strong>Defining Specific Email and Social Media Checking Times</strong></h4>
+          <h3><strong>Defining Specific Email and Social Media Checking Times</strong></h3>
           <p>Opening your email inbox or social media accounts is time and energy-consuming. Doing it constantly highly influences your productivity, attention, and general well-being. When checking for new messages, you shift your focus, get overwhelmed by all the new information, increase stress levels, and get mentally distracted.</p>
           <p class="tool-description">
             <i class="fas fa-stopwatch tool-icon" aria-hidden="true"></i>
-            <span class="tool-text"><strong>The Tool:</strong> Schedule a daily limited number of times to check your email & social media accounts. Set specific times throughout the day to open your inboxes and check your social media notifications. That way, you make more intentional use of your time and avoid constant distractions.</span>
+            <span class="tool-text"><strong>The Tool:</strong> Schedule a daily limited number of times to check your email &amp; social media accounts. Set specific times throughout the day to open your inboxes and check your social media notifications. That way, you make more intentional use of your time and avoid constant distractions.</span>
           </p>
         </div>
 
         <div class="tool-item">
-          <h4><strong>Controlling Technology Usage with a Phone Drawer or Pouch</strong></h4>
+          <h3><strong>Controlling Technology Usage with a Phone Drawer or Pouch</strong></h3>
           <p>The environment surrounding us directly affects our behaviors and habits. Just from having our phones in sight, we lose focus, and our cognitive availability worsens. Automatically, we tend to get distracted.</p>
           <p class="tool-description">
   <i class="fas fa-mobile-alt tool-icon" aria-hidden="true"></i>
@@ -579,7 +344,7 @@
         </div>
 
         <div class="tool-item">
-          <h4><strong>Changing your Devices Screen to Grayscale</strong></h4>
+          <h3><strong>Changing your Devices Screen to Grayscale</strong></h3>
           <p>Designers conceive smartphones that optimize the user experience. Within that framework, colors play a major role in making the experience highly satisfying and addictive. Our brains are attracted to bright and shiny things, making colors play an important role in making you stick to your screens.</p>
           <p class="tool-description">
   <i class="fas fa-palette tool-icon" aria-hidden="true"></i>
@@ -588,7 +353,7 @@
         </div>
 
         <div class="tool-item">
-          <h4><strong>Turning off Phone Notifications</strong></h4>
+          <h3><strong>Turning off Phone Notifications</strong></h3>
           <p>Notifications' job is to grab your attention and inform you of incoming information. Their core purpose is to catch your attention, independent of what you are doing. However, knowing everything at all times comes with a cost. Notifications make you lose focus, get distracted, and generate addiction.</p>
           <p class="tool-description">
   <i class="fas fa-bell-slash tool-icon" aria-hidden="true"></i>
@@ -597,7 +362,7 @@
         </div>
 
         <div class="tool-item">
-          <h4><strong>Establishing No-Phone Zones</strong></h4>
+          <h3><strong>Establishing No-Phone Zones</strong></h3>
           <p>It is our new reality - our phones have become part of our routines and are one of our major daily time-consumers. Being constantly online can increase stress, anxiety, loneliness, and sleep deprivation. Using your devices for insignificant matters decreases our connection to ourselves, others, the world, and reality.</p>
           <p class="tool-description">
   <i class="fas fa-ban tool-icon" aria-hidden="true"></i>
@@ -682,10 +447,11 @@
   <p>After completing the scale, take a moment to reflect in writing. Your responses will be saved and available for download at the end of the course so you can see how far you've come.</p>
   
   <div class="assessment-step">
-    <h4><strong>Step 1:</strong> <strong>Indicate how much you agree with each statement</strong> <em>(1 = completely disagree, 5 = completely agree).</em></h4>
+    <h3><strong>Step 1:</strong> <strong>Indicate how much you agree with each statement</strong> <em>(1 = completely disagree, 5 = completely agree).</em></h3>
     
-    <div class="scale-question">
+    <fieldset class="scale-question">
       <p><strong>I have decreased my screen time.</strong></p>
+      <legend>I have decreased my screen time.</legend>
       <div class="scale-options">
         <div class="scale-option">
           <input type="radio" id="q1-1" name="question1" value="1">
@@ -708,10 +474,11 @@
           <label for="q1-5">5-Completely agree</label>
         </div>
       </div>
-    </div>
+    </fieldset>
 
-    <div class="scale-question">
+    <fieldset class="scale-question">
       <p><strong>I have stuck to my Digital Goals.</strong></p>
+      <legend>I have stuck to my Digital Goals.</legend>
       <div class="scale-options">
         <div class="scale-option">
           <input type="radio" id="q2-1" name="question2" value="1">
@@ -734,10 +501,11 @@
           <label for="q2-5">5-Completely agree</label>
         </div>
       </div>
-    </div>
+    </fieldset>
 
-    <div class="scale-question">
+    <fieldset class="scale-question">
       <p><strong>I am closer to where I want to be.</strong></p>
+      <legend>I am closer to where I want to be.</legend>
       <div class="scale-options">
         <div class="scale-option">
           <input type="radio" id="q3-1" name="question3" value="1">
@@ -760,10 +528,11 @@
           <label for="q3-5">5-Completely agree</label>
         </div>
       </div>
-    </div>
+    </fieldset>
 
-    <div class="scale-question">
+    <fieldset class="scale-question">
       <p><strong>I have made more conscious use of my digital devices.</strong></p>
+      <legend>I have made more conscious use of my digital devices.</legend>
       <div class="scale-options">
         <div class="scale-option">
           <input type="radio" id="q4-1" name="question4" value="1">
@@ -786,10 +555,11 @@
           <label for="q4-5">5-Completely agree</label>
         </div>
       </div>
-    </div>
+    </fieldset>
 
-    <div class="scale-question">
+    <fieldset class="scale-question">
       <p><strong>I feel better about my use of digital devices.</strong></p>
+      <legend>I feel better about my use of digital devices.</legend>
       <div class="scale-options">
         <div class="scale-option">
           <input type="radio" id="q5-1" name="question5" value="1">
@@ -805,20 +575,20 @@
         </div>
         <div class="scale-option">
           <input type="radio" id="q5-4" name="question4" value="4">
-          <label for="q4-4">4</label>
+          <label for="q5-4">4</label>
         </div>
         <div class="scale-option">
           <input type="radio" id="q5-5" name="question5" value="5">
           <label for="q5-5">5-Completely agree</label>
         </div>
       </div>
-    </div>
+    </fieldset>
   </div>
 
   <div class="assessment-step">
     <h4><strong>Step 2:</strong> <strong>Take a moment to reflect by responding the question below</strong></h4>
     <p>How do you feel after completing the first two lessons of this course? Have you noticed any differences in your general well-being?</p>
-    <textarea class="reflection-textarea" id="reflection-response" placeholder="Write your reflection here..."></textarea>
+    <textarea class="reflection-textarea" id="reflection-response" placeholder="Write your reflection here..." aria-label="Reflection response to the question about digital habits"></textarea>
     
     <button class="download-response-button" onclick="downloadAssessmentResponse()">
       <i class="fas fa-download" aria-hidden="true"></i>
@@ -928,7 +698,7 @@
         <div id="glossary-section-f" class="glossary-section" data-letter="f">
           <h3 class="glossary-letter-header">F</h3>
           <div class="glossary-term">
-            <strong>Focus & Productivity</strong> – The ability to maintain attention and effectiveness in work and life, often challenged by digital distractions.
+            <strong>Focus &amp; Productivity</strong> – The ability to maintain attention and effectiveness in work and life, often challenged by digital distractions.
           </div>
           <div class="glossary-term">
             <strong>Flourishing (Well-being Theory)</strong> – The state of thriving in multiple aspects of life, including physical, mental, emotional, and digital well-being.

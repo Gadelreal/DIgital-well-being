@@ -5,386 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Digital Well-being - Course Conclusion</title>
 <link rel="stylesheet" href="./css/styles.css">
+<link rel="stylesheet" href="./css/cap5.css">
+
 <!-- VideoJS CSS -->
 <link href="https://vjs.zencdn.net/8.6.1/video-js.css" rel="stylesheet" />
 <!-- Font Awesome para iconos -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
-<style>
-
-.hero-title {
-  font-family: 'Rubik', sans-serif;
-  font-weight: 300;
-}
-
-.learning-objectives-grid-2x2 {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  max-width: 800px;
-}
-
-@media (max-width: 768px) {
-  .learning-objectives-grid-2x2 {
-    grid-template-columns: 1fr; /* Stack on smaller screens */
-  }
-}
-
-/* Estilos para las actividades con plantillas descargables */
-.values-activity-container {
-  background-color: #f9f9f9;
-  border: 1px solid #e0e0e0;
-  padding: 2rem;
-  padding-bottom: 3rem; /* Increased from 2.5rem to 3rem to match Lesson 1 */
-  margin: 2rem 0;
-  border-radius: 0;
-}
-
-.download-template-button {
-  display: inline-flex;
-  align-items: center;
-  padding: 1rem 2rem;
-  background-color: var(--primary-color);
-  color: white;
-  text-decoration: none;
-  border-radius: 4px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem; /* Increased from 0.5rem to 1.5rem to match Lesson 1 */
-}
-
-.download-template-button:hover {
-  background-color: var(--primary-color-dark);
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  text-decoration: none;
-}
-
-.download-template-button i {
-  margin-right: 0.5rem;
-}
-
-/* Estilos para las encuestas de seguimiento */
-.survey-section {
-  background-color: #f9f9f9;
-  border: 1px solid #e0e0e0;
-  padding: 2rem;
-  margin: 2rem 0;
-  border-radius: 0;
-}
-
-.survey-section h2 {
-  margin-top: 0 !important;
-  margin-bottom: 1rem !important;
-}
-
-.survey-section p {
-  margin-bottom: 1.5rem;
-  line-height: 1.7;
-}
-
-.survey-link-button {
-  display: inline-flex;
-  align-items: center;
-  padding: 1rem 2rem;
-  background-color: var(--primary-color);
-  color: white;
-  text-decoration: none;
-  border-radius: 4px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
-.survey-link-button:hover {
-  background-color: var(--primary-color-dark);
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  text-decoration: none;
-}
-
-.survey-link-button i {
-  margin-right: 0.5rem;
-}
-
-.survey-note {
-  background-color: #e8f4fd;
-  border-left: 4px solid var(--primary-color);
-  padding: 1rem;
-  margin: 1.5rem 0;
-  border-radius: 0 4px 4px 0;
-}
-
-.survey-note p {
-  margin-bottom: 0 !important;
-  font-style: italic;
-  color: #333;
-}
-
-.quiz-option {
-  display: flex;
-  align-items: flex-start;
-  cursor: pointer;
-  padding: 0.75rem;
-  margin-bottom: 0.5rem;
-  border-radius: 4px;
-  transition: background-color 0.2s ease;
-  user-select: none;
-}
-
-.quiz-option:hover {
-  background-color: #f8f9fa;
-}
-
-.quiz-option input[type="radio"] {
-  margin-right: 0.75rem;
-  margin-top: 0.1rem;
-  flex-shrink: 0;
-  cursor: pointer;
-}
-
-.option-text {
-  flex: 1;
-  line-height: 1.5;
-  cursor: pointer;
-}
-
-.quiz-option input[type="radio"]:checked + .option-text {
-  font-weight: 500;
-}
-
-/* Quiz Results Cards */
-.quiz-results-container {
-  margin-top: 2rem;
-  display: none;
-}
-
-.quiz-results-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  margin-top: 1rem;
-}
-
-@media (max-width: 768px) {
-  .quiz-results-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-}
-
-.quiz-result-card {
-  background: white;
-  border-radius: 8px;
-  padding: 1.5rem;
-  text-align: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  border: 2px solid transparent;
-  transition: all 0.3s ease;
-}
-
-.quiz-result-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-}
-
-.quiz-result-card.correct {
-  border-color: #28a745;
-}
-
-.quiz-result-card.incorrect {
-  border-color: #dc3545;
-}
-
-.quiz-result-card.percentage {
-  border-color: var(--primary-color);
-}
-
-.quiz-result-icon {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-.quiz-result-card.correct .quiz-result-icon {
-  color: #28a745;
-}
-
-.quiz-result-card.incorrect .quiz-result-icon {
-  color: #dc3545;
-}
-
-.quiz-result-card.percentage .quiz-result-icon {
-  color: var(--primary-color);
-}
-
-.quiz-result-number {
-  font-size: 2.5rem;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-  line-height: 1;
-}
-
-.quiz-result-card.correct .quiz-result-number {
-  color: #28a745;
-}
-
-.quiz-result-card.incorrect .quiz-result-number {
-  color: #dc3545;
-}
-
-.quiz-result-card.percentage .quiz-result-number {
-  color: var(--primary-color);
-}
-
-.quiz-result-label {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 0.25rem;
-}
-
-.quiz-result-description {
-  font-size: 0.9rem;
-  color: #666;
-  line-height: 1.4;
-}
-
-/* Estilos para las referencias */
-.references-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  margin-top: 1.5rem;
-}
-
-@media (max-width: 1024px) {
-  .references-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .references-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-}
-
-.reference-card {
-  background-color: white;
-  border: 1px solid #e0e0e0;
-  border-radius: 4px;
-  padding: 1.5rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-.reference-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border-color: var(--primary-color);
-}
-
-.reference-number {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 30px;
-  height: 30px;
-  background-color: var(--primary-color);
-  color: white;
-  border-radius: 50%;
-  font-weight: bold;
-  font-size: 0.9rem;
-  margin-bottom: 1rem;
-  flex-shrink: 0;
-}
-
-.reference-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.reference-text {
-  font-size: 0.9rem;
-  line-height: 1.5;
-  color: #333;
-  margin-bottom: 1rem;
-  flex: 1;
-}
-
-.reference-text em {
-  font-style: italic;
-}
-
-.reference-link {
-  color: var(--primary-color);
-  text-decoration: none;
-  font-size: 0.85rem;
-  word-break: break-all;
-  margin-top: auto;
-  padding-top: 0.5rem;
-  border-top: 1px solid #f0f0f0;
-}
-
-.reference-link:hover {
-  color: var(--link-hover-color);
-  text-decoration: underline;
-}
-
-@media (max-width: 480px) {
-  .references-section {
-    padding: 1.5rem;
-  }
-  
-  .reference-card {
-    padding: 1.25rem;
-  }
-  
-  .reference-text {
-    font-size: 0.85rem;
-  }
-  
-  .reference-link {
-    font-size: 0.8rem;
-  }
-}
-
-/* Estilos para referencias sin enlaces (no interactivas) */
-.reference-card.no-link {
-  cursor: default;
-}
-
-.reference-card.no-link:hover {
-  transform: none;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  border-color: #e0e0e0;
-}
-
-.hero-title {
-  font-family: 'Rubik', sans-serif;
-  font-weight: 300;
-}
-
-.hero-section {
-  background-image: url('assets/images/hero-wellbeing-final.png');
-  background-size: cover;
-  background-position: center;
-  color: white;
-  text-align: center;
-  padding: 5rem 2rem;
-  position: relative;
-  overflow: hidden;
-}
-</style>
 </head>
 <body>
 <!-- Añadir el enlace de saltar al contenido principal al inicio del body -->
@@ -455,7 +83,7 @@
             <i class="fas fa-clipboard-list"></i>
           </div>
           <div class="objective-content">
-            <h4>1. Digital Well-being Action Plan</h4>
+            <h3>1. Digital Well-being Action Plan</h3>
             <p>Develop your personalized guide to help you put your insights into practice</p>
           </div>
         </div>
@@ -465,7 +93,7 @@
             <i class="fas fa-journal-whills"></i>
           </div>
           <div class="objective-content">
-            <h4>2. Personal Journal</h4>
+            <h3>2. Personal Journal</h3>
             <p>Review and download your responses throughout the course—these form your Personal Journal, a resource you can revisit anytime</p>
           </div>
         </div>
@@ -475,7 +103,7 @@
             <i class="fas fa-certificate"></i>
           </div>
           <div class="objective-content">
-            <h4>3. Final Test</h4>
+            <h3>3. Final Test</h3>
             <p>Complete the Final Test to assess your understanding of the course content and unlock your certificate of completion</p>
           </div>
         </div>
@@ -485,7 +113,7 @@
             <i class="fas fa-poll"></i>
           </div>
           <div class="objective-content">
-            <h4>4. Final Survey</h4>
+            <h3>4. Final Survey</h3>
             <p>Fill out the Final Survey to reflect on your progress and share feedback to help us continue improving this experience</p>
           </div>
         </div>
@@ -784,7 +412,7 @@
         </form>
 
         <div id="final-quiz-feedback" class="quiz-feedback" style="display: none;">
-          <h4>Thank you for completing the final assessment!</h4>
+          <h3>Thank you for completing the final assessment!</h3>
           <p><strong>✓ Your answers have been saved successfully.</strong></p>
           <p>We appreciate the time and thought you've put into this test. We hope it has helped reinforce the key concepts and practical strategies you explored throughout the course.</p>
           <p>Your responses reflect the knowledge you've gained in your digital well-being journey. Keep reflecting, practicing, and applying what you've learned—and remember, digital well-being is an ongoing process of balance, awareness, and intentional choice.</p>
@@ -866,7 +494,7 @@
 
     <!-- 7. Content Sources & References -->
     <section class="lesson-section no-borders">
-      <h2>Content Sources & References</h2>
+      <h2>Content Sources &amp; References</h2>
       
       <div class="references-grid">
           <!-- Reference 1 -->
@@ -913,7 +541,7 @@
             <div class="reference-number">4</div>
             <div class="reference-content">
               <div class="reference-text">
-                Vogels, E. A., & Gelles-Watnick, R. (2023). Teens and social media: Key findings from Pew Research Center surveys. Pew Research Center.
+                Vogels, E. A., &amp; Gelles-Watnick, R. (2023). Teens and social media: Key findings from Pew Research Center surveys. Pew Research Center.
               </div>
             </div>
           </div>
@@ -962,7 +590,7 @@
             <div class="reference-number">8</div>
             <div class="reference-content">
               <div class="reference-text">
-                Ryan, R. M., & Deci, E. L. (2000). Self-determination theory and the facilitation of intrinsic motivation, social development, and well-being. <em>American Psychologist</em>, 55(1), 68–78.
+                Ryan, R. M., &amp; Deci, E. L. (2000). Self-determination theory and the facilitation of intrinsic motivation, social development, and well-being. <em>American Psychologist</em>, 55(1), 68–78.
               </div>
               <a href="https://doi.org/10.1037/0003-066X.55.1.68" target="_blank" class="reference-link" rel="noopener noreferrer">
                 https://doi.org/10.1037/0003-066X.55.1.68
@@ -1155,7 +783,7 @@
         <div id="glossary-section-f" class="glossary-section" data-letter="f">
           <h3 class="glossary-letter-header">F</h3>
           <div class="glossary-term">
-            <strong>Focus & Productivity</strong> – The ability to maintain attention and effectiveness in work and life, often challenged by digital distractions.
+            <strong>Focus &amp; Productivity</strong> – The ability to maintain attention and effectiveness in work and life, often challenged by digital distractions.
           </div>
           <div class="glossary-term">
             <strong>Flourishing (Well-being Theory)</strong> – The state of thriving in multiple aspects of life, including physical, mental, emotional, and digital well-being.

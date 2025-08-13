@@ -5,418 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Digital Well-being - Vision and Practice</title>
 <link rel="stylesheet" href="./css/styles.css">
+<link rel="stylesheet" href="./css/cap4.css">
+
 <!-- VideoJS CSS -->
 <link href="https://vjs.zencdn.net/8.6.1/video-js.css" rel="stylesheet" />
 <!-- Font Awesome para iconos -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
-<style>
-
-.hero-title {
-  font-family: 'Rubik', sans-serif;
-  font-weight: 300;
-}
-
-/* Additional styles for Chapter 4 activities */
-.time-input-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: 1rem;
-  margin: 2rem 0;
-}
-
-.time-input-item {
-  display: flex;
-  flex-direction: column;
-}
-
-.time-input-item label {
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  color: #333;
-}
-
-.time-input-item input {
-  padding: 0.75rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1rem;
-}
-
-.chart-container {
-  margin: 2rem 0;
-  text-align: center;
-  min-height: 400px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #f9f9f9;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  padding: 2rem;
-  position: relative;
-}
-
-.chart-wrapper {
-  width: 100%;
-  max-width: 500px;
-  height: 400px;
-  position: relative;
-  margin-bottom: 1rem;
-}
-
-.chart-legend {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 1rem;
-  padding: 1rem;
-  background-color: white;
-  border-radius: 4px;
-  border: 1px solid #ddd;
-}
-
-.legend-item {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.9rem;
-}
-
-.legend-color {
-  width: 16px;
-  height: 16px;
-  border-radius: 3px;
-  border: 1px solid #ccc;
-}
-
-.chart-placeholder {
-  color: #666;
-  font-style: italic;
-  padding: 2rem;
-}
-
-.chart-tooltip {
-  position: absolute;
-  background-color: rgba(0, 0, 0, 0.8);
-  color: white;
-  padding: 8px 12px;
-  border-radius: 4px;
-  font-size: 14px;
-  pointer-events: none;
-  z-index: 1000;
-  display: none;
-  white-space: nowrap;
-}
-
-.download-btn {
-  background-color: var(--primary-color);
-  color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.download-btn:hover {
-  background-color: var(--link-hover-color);
-  transform: translateY(-2px);
-}
-
-.download-btn:active {
-  transform: scale(0.98);
-}
-
-.template-download {
-  text-align: left;
-  margin: 2rem 0;
-}
-
-.assessment-container {
-  margin: 2rem 0;
-}
-
-.assessment-question {
-  margin-bottom: 2rem;
-  padding: 1.5rem;
-  background-color: #f9f9f9;
-  border: 1px solid #e0e0e0;
-  border-radius: 0;
-}
-
-.question-text {
-  font-weight: 600;
-  margin-bottom: 1rem;
-  color: #333;
-}
-
-.radio-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.radio-group label {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  padding: 0.5rem;
-  border-radius: 4px;
-  transition: background-color 0.2s;
-}
-
-.radio-group label:hover {
-  background-color: #f0f0f0;
-}
-
-.radio-group input[type="radio"] {
-  margin-right: 0.8rem;
-  width: 18px;
-  height: 18px;
-  cursor: pointer;
-}
-
-@media (max-width: 768px) {
-  .time-input-grid {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(4, 1fr);
-  }
-  
-  .chart-legend {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  .chart-wrapper {
-    height: 300px;
-  }
-}
-
-@media (max-width: 480px) {
-  .time-input-grid {
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(8, 1fr);
-  }
-}
-
-.assessment-step {
-  margin-bottom: 2rem;
-}
-
-.assessment-step h4 {
-  color: var(--primary-color);
-  margin-bottom: 1rem;
-}
-
-.scale-question {
-  background-color: white;
-  border: 1px solid #ddd;
-  padding: 1.5rem;
-  margin-bottom: 1rem;
-  border-radius: 4px;
-}
-
-.scale-options {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 1rem;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.scale-option {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  min-width: 80px;
-}
-
-.scale-option input[type="radio"] {
-  margin-bottom: 0.5rem;
-  width: 20px;
-  height: 20px;
-}
-
-.scale-option label {
-  font-size: 0.8rem;
-  color: #666;
-  cursor: pointer;
-}
-
-@media (max-width: 768px) {
-  .scale-options {
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  .scale-option {
-    flex-direction: row;
-    min-width: auto;
-    width: 100%;
-    justify-content: flex-start;
-  }
-  
-  .scale-option input[type="radio"] {
-    margin-right: 1rem;
-    margin-bottom: 0;
-  }
-}
-
-.chart-validation {
-  margin-top: 1rem;
-  text-align: center;
-}
-
-.validation-error {
-  background-color: #f8d7da;
-  color: #721c24;
-  border: 1px solid #f5c6cb;
-  border-radius: 4px;
-  padding: 0.75rem;
-  margin: 0.5rem 0;
-  font-weight: 600;
-}
-
-.validation-success {
-  background-color: #d4edda;
-  color: #155724;
-  border: 1px solid #c3e6cb;
-  border-radius: 4px;
-  padding: 0.75rem;
-  margin: 0.5rem 0;
-  font-weight: 600;
-}
-
-.hours-counter {
-  font-size: 0.9rem;
-  color: #666;
-  margin-top: 0.5rem;
-}
-
-/* Modal styles */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 10000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  overflow: auto;
-}
-
-.modal-content {
-  background-color: #fefefe;
-  margin: 2% auto;
-  padding: 0;
-  border: none;
-  border-radius: 8px;
-  width: 90%;
-  max-width: 800px;
-  max-height: 90vh;
-  overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-.modal-header {
-  background-color: #f8f9fa;
-  color: #333;
-  padding: 1rem 1.5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #ddd;
-}
-
-.modal-header h2 {
-  margin: 0;
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--primary-color);
-}
-
-.modal-close {
-  background: none;
-  border: 2px solid transparent;
-  color: #666;
-  font-size: 1.5rem;
-  font-weight: bold;
-  cursor: pointer;
-  padding: 0;
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  transition: all 0.2s ease;
-}
-
-.modal-close:hover,
-.modal-close:focus {
-  background-color: rgba(219, 0, 134, 0.1);
-  color: var(--primary-color);
-  border: 2px solid var(--primary-color);
-  outline: none;
-  transform: scale(1.05);
-}
-
-.modal-body {
-  padding: 1.5rem;
-  max-height: calc(90vh - 120px);
-  overflow-y: auto;
-}
-
-@media (max-width: 768px) {
-  .modal-content {
-    width: 95%;
-    margin: 5% auto;
-    max-height: 85vh;
-  }
-  
-  .modal-header {
-    padding: 1rem;
-  }
-  
-  .modal-header h2 {
-    font-size: 1.3rem;
-  }
-  
-  .modal-body {
-    padding: 1rem;
-    max-height: calc(85vh - 100px);
-  }
-}
-
-.hero-title {
-  font-family: 'Rubik', sans-serif;
-  font-weight: 300;
-}
-
-.hero-section {
-  background-image: url('assets/images/hero-wellbeing-final.png');
-  background-size: cover;
-  background-position: center;
-  color: white;
-  text-align: center;
-  padding: 5rem 2rem;
-  position: relative;
-  overflow: hidden;
-}
-</style>
 </head>
 <body>
 <!-- Añadir el enlace de saltar al contenido principal al inicio del body -->
@@ -482,7 +78,7 @@
             <i class="fas fa-globe-americas"></i>
           </div>
           <div class="objective-content">
-            <h4>Digital Context Understanding</h4>
+            <h3>Digital Context Understanding</h3>
             <p>Understand the broader digital context of life and work, and develop a personal approach to digital well-being.</p>
           </div>
         </div>
@@ -492,7 +88,7 @@
             <i class="fas fa-eye"></i>
           </div>
           <div class="objective-content">
-            <h4>Science-Informed Vision</h4>
+            <h3>Science-Informed Vision</h3>
             <p>Create a science-informed vision for their own digital well-being.</p>
           </div>
         </div>
@@ -502,7 +98,7 @@
             <i class="fas fa-map-marked-alt"></i>
           </div>
           <div class="objective-content">
-            <h4>Holistic Roadmap</h4>
+            <h3>Holistic Roadmap</h3>
             <p>Design a holistic roadmap—integrating body, mind, and soul—to align digital habits with cognitive health and personal flourishing.</p>
           </div>
         </div>
@@ -512,7 +108,7 @@
             <i class="fas fa-lightbulb"></i>
           </div>
           <div class="objective-content">
-            <h4>Awareness and Motivation</h4>
+            <h3>Awareness and Motivation</h3>
             <p>Cultivate awareness and motivation to align digital engagement with purpose and values.</p>
           </div>
         </div>
@@ -522,7 +118,7 @@
             <i class="fas fa-user-check"></i>
           </div>
           <div class="objective-content">
-            <h4>Personal Accountability</h4>
+            <h3>Personal Accountability</h3>
             <p>Reflect on strategies for personal accountability in the ongoing journey of digital well-being.</p>
           </div>
         </div>
@@ -1045,10 +641,11 @@
         
         
 <div class="assessment-step">
-  <h4><strong>Step 1:</strong> <strong>Indicate how much you agree with each statement</strong> <em>(1 = completely disagree, 5 = completely agree).</em></h4>
+  <h3><strong>Step 1:</strong> <strong>Indicate how much you agree with each statement</strong> <em>(1 = completely disagree, 5 = completely agree).</em></h3>
   
-  <div class="scale-question">
+  <fieldset class="scale-question">
     <p><strong>I have decreased my screen time.</strong></p>
+    <legend>I have decreased my screen time.</legend>
     <div class="scale-options">
       <div class="scale-option">
         <input type="radio" id="q1-1" name="screen-time" value="1">
@@ -1071,10 +668,11 @@
         <label for="q1-5">5-Completely agree</label>
       </div>
     </div>
-  </div>
+  </fieldset>
 
-  <div class="scale-question">
+  <fieldset class="scale-question">
     <p><strong>I have stuck to my Digital Goals.</strong></p>
+    <legend>I have stuck to my Digital Goals.</legend>
     <div class="scale-options">
       <div class="scale-option">
         <input type="radio" id="q2-1" name="digital-goals" value="1">
@@ -1097,10 +695,11 @@
         <label for="q2-5">5-Completely agree</label>
       </div>
     </div>
-  </div>
+  </fieldset>
 
-  <div class="scale-question">
+  <fieldset class="scale-question">
     <p><strong>I am closer to where I want to be.</strong></p>
+    <legend>I am closer to where I want to be.</legend>
     <div class="scale-options">
       <div class="scale-option">
         <input type="radio" id="q3-1" name="progress" value="1">
@@ -1123,10 +722,11 @@
         <label for="q3-5">5-Completely agree</label>
       </div>
     </div>
-  </div>
+  </fieldset>
 
-  <div class="scale-question">
+  <fieldset class="scale-question">
     <p><strong>I have made more conscious use of my digital devices.</strong></p>
+    <legend>I have made more conscious use of my digital devices.</legend>
     <div class="scale-options">
       <div class="scale-option">
         <input type="radio" id="q4-1" name="conscious-use" value="1">
@@ -1149,10 +749,11 @@
         <label for="q4-5">5-Completely agree</label>
       </div>
     </div>
-  </div>
+  </fieldset>
 
-  <div class="scale-question">
+  <fieldset class="scale-question">
     <p><strong>I feel better about my use of digital devices.</strong></p>
+    <legend>I feel better about my use of digital devices.</legend>
     <div class="scale-options">
       <div class="scale-option">
         <input type="radio" id="q5-1" name="feel-better" value="1">
@@ -1175,7 +776,7 @@
         <label for="q5-5">5-Completely agree</label>
       </div>
     </div>
-  </div>
+  </fieldset>
 </div>
 
 <div class="assessment-step">
@@ -1309,7 +910,7 @@
         <div id="glossary-section-f" class="glossary-section" data-letter="f">
           <h3 class="glossary-letter-header">F</h3>
           <div class="glossary-term">
-            <strong>Focus & Productivity</strong> – The ability to maintain attention and effectiveness in work and life, often challenged by digital distractions.
+            <strong>Focus &amp; Productivity</strong> – The ability to maintain attention and effectiveness in work and life, often challenged by digital distractions.
           </div>
           <div class="glossary-term">
             <strong>Flourishing (Well-being Theory)</strong> – The state of thriving in multiple aspects of life, including physical, mental, emotional, and digital well-being.

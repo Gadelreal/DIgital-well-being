@@ -5,407 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bienestar Digital como Clave para el Florecimiento Humano</title>
 <link rel="stylesheet" href="./css/styles.css">
+<link rel="stylesheet" href="./css/cap1.css">
 <!-- VideoJS CSS -->
 <link href="https://vjs.zencdn.net/8.6.1/video-js.css" rel="stylesheet" />
 <!-- Font Awesome para iconos -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
-<style>
 
-/* Margen para el contenedor de la actividad del quiz */
-.quiz-activity-container {
- margin-bottom: 3rem;
- padding-bottom: 3rem; /* Add extra bottom padding */
-}
-/* Estilos para el feedback dinámico en cada opción */
-.quiz-option {
- cursor: pointer;
- transition: all 0.2s ease;
- border: 2px solid transparent;
- display: flex;
- align-items: center;
- position: relative;
-}
-.option-feedback {
- margin-left: auto;
- font-weight: bold;
- display: flex;
- align-items: center;
- gap: 0.5rem;
- font-size: 0.9rem;
- flex-shrink: 0;
- padding-left: 1rem;
-}
-.correct-answer .option-feedback {
- color: #155724;
-}
-.incorrect-answer .option-feedback {
- color: #721c24;
-}
-.missed-answer .option-feedback {
- color: #856404;
-}
-
-/* Add margin below submit button */
-.quiz-submit-btn {
- margin-bottom: 1.5rem;
-}
-
-/* Estilos para la actividad de valores */
-.values-activity-container {
- background-color: #f9f9f9;
- border: 1px solid #e0e0e0;
- padding: 2rem;
- margin: 2rem 0;
- padding-bottom: 3rem; /* Add extra bottom padding */
-}
-
-.values-activity-container h2 {
- margin-top: 0 !important;
- margin-bottom: 1rem !important;
-}
-
-.values-activity-container p {
- margin-bottom: 1.5rem;
- line-height: 1.7;
-}
-
-.download-template-button {
- display: inline-flex;
- align-items: center;
- padding: 1rem 2rem;
- background-color: var(--primary-color);
- color: white;
- text-decoration: none;
- border-radius: 4px;
- font-weight: 600;
- font-size: 1rem;
- transition: all 0.3s ease;
- margin-top: 1rem;
- margin-bottom: 1.5rem; /* Add bottom margin */
- border: none;
- cursor: pointer;
-}
-
-.download-template-button:hover {
- background-color: var(--primary-color-dark);
- color: white;
- transform: translateY(-2px);
- box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
- text-decoration: none;
-}
-
-.download-template-button i {
- margin-right: 0.5rem;
-}
-
-/* Estilos para la actividad de metas digitales */
-.digital-goals-activity-container {
- background-color: #f9f9f9;
- border: 1px solid #e0e0e0;
- padding: 2rem;
- margin: 2rem 0;
- padding-bottom: 3rem;
-}
-
-.digital-goals-activity-container h2 {
- margin-top: 0 !important;
- margin-bottom: 1rem !important;
-}
-
-.digital-goals-activity-container p {
- margin-bottom: 1.5rem;
- line-height: 1.7;
-}
-
-@media (max-width: 768px) {
- .quiz-activity-container {
-   padding: 1.5rem;
-   margin: 1rem;
-   padding-bottom: 2.5rem; /* Maintain extra bottom padding on mobile */
- }
-
- .values-activity-container {
-   padding: 1.5rem;
-   margin: 1rem;
-   padding-bottom: 2.5rem; /* Maintain extra bottom padding on mobile */
- }
-
- .digital-goals-activity-container {
-   padding: 1.5rem;
-   margin: 1rem;
-   padding-bottom: 2.5rem;
- }
-
- .download-template-button {
-   width: 100%;
-   justify-content: center;
-   margin-top: 1.5rem;
-   margin-bottom: 1.5rem; /* Maintain bottom margin on mobile */
- }
-}
-
-/* Estilos para los acordeones - Diseño mejorado con animaciones */
-.accordion-container {
- margin: 2rem 0;
-}
-
-.accordion-item {
- background-color: white;
- border: 1px solid #e0e0e0;
- margin-bottom: 0.5rem;
- border-radius: 4px;
- overflow: hidden;
- transition: box-shadow 0.3s ease;
-}
-
-.accordion-item:hover {
- box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.accordion-header {
- margin: 0;
-}
-
-.accordion-trigger {
- width: 100%;
- background-color: #f8f9fa;
- border: none;
- padding: 1.2rem 1.5rem;
- text-align: left;
- cursor: pointer;
- display: flex;
- justify-content: space-between;
- align-items: center;
- font-family: inherit;
- font-size: 1rem;
- font-weight: 600;
- color: var(--primary-color);
- transition: all 0.3s ease;
- outline: none;
-}
-
-.accordion-trigger:hover {
- background-color: #e9ecef;
- color: var(--primary-color-dark);
- text-decoration: none;
-}
-
-.accordion-trigger:focus {
- outline: var(--focus-outline-width) solid var(--focus-outline-color);
- outline-offset: 2px;
- text-decoration: none;
-}
-
-.accordion-trigger[aria-expanded="true"] {
- background-color: var(--primary-color);
- color: white;
-}
-
-.accordion-trigger[aria-expanded="true"]:hover {
- background-color: var(--primary-color-dark);
- text-decoration: none;
-}
-
-.accordion-title {
- flex: 1;
- text-align: left;
-}
-
-.accordion-icon {
- width: 24px;
- height: 24px;
- display: flex;
- align-items: center;
- justify-content: center;
- font-size: 1.4rem;
- font-weight: bold;
- transition: transform 0.3s ease;
- flex-shrink: 0;
- margin-left: 1rem;
- font-family: monospace;
-}
-
-/* Animación suave para el panel del acordeón */
-.accordion-panel {
- max-height: 0;
- overflow: hidden;
- transition: max-height 0.4s ease-out;
-}
-
-.accordion-panel-inner {
- padding: 1.5rem;
- background-color: #f0f8ff;
- border-top: 1px solid #e0e0e0;
- line-height: 1.6;
-}
-
-.accordion-panel-inner p {
- margin-bottom: 1rem;
- color: #333;
-}
-
-.accordion-panel-inner p:last-child {
- margin-bottom: 0;
-}
-
-.accordion-panel-inner strong {
- color: var(--primary-color);
- font-weight: 600;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
- .accordion-trigger {
-   padding: 1rem;
-   font-size: 0.95rem;
- }
- 
- .accordion-panel-inner {
-   padding: 1rem;
- }
- 
- .accordion-icon {
-   margin-left: 0.5rem;
- }
-}
-
-@media (max-width: 480px) {
- .accordion-trigger {
-   padding: 0.8rem;
-   font-size: 0.9rem;
- }
- 
- .accordion-panel-inner {
-   padding: 0.8rem;
- }
-}
-
-/* Mejorar la interactividad de las opciones del quiz */
-.quiz-option label {
- cursor: pointer;
- user-select: none;
- flex: 1;
- line-height: 1.5;
-}
-
-.quiz-option:hover {
- background-color: #f8f9fa !important;
- border-color: #dee2e6;
- transform: translateY(-1px);
-}
-
-.quiz-option input[type="checkbox"] {
- cursor: pointer;
- transform: scale(1.2);
- margin-right: 1rem;
- margin-top: 0.25rem;
-}
-
-/* Estados del quiz después del envío */
-.quiz-option.correct-answer {
- background-color: #d4edda !important;
- border-color: #c3e6cb !important;
- color: #155724 !important;
-}
-
-.quiz-option.incorrect-answer {
- background-color: #f8d7da !important;
- border-color: #f5c6cb !important;
- color: #721c24 !important;
-}
-
-.quiz-option.missed-answer {
- background-color: #fff3cd !important;
- border-color: #ffeaa7 !important;
- color: #856404 !important;
-}
-
-.quiz-option.correct-answer:hover,
-.quiz-option.incorrect-answer:hover,
-.quiz-option.missed-answer:hover {
- transform: none;
- background-color: inherit !important;
-}
-
-/* Feedback de opciones */
-
-.option-feedback i {
- font-size: 1.1rem;
-}
-
-/* Botón de reset */
-.quiz-reset-btn {
- background-color: #007bff !important;
- border: none;
-}
-
-.quiz-reset-btn:hover {
- background-color: #0056b3 !important;
-}
-
-/* Checkboxes deshabilitados */
-.quiz-option input[type="checkbox"]:disabled {
- opacity: 0.6;
- cursor: not-allowed;
-}
-
-.quiz-option input[type="checkbox"]:disabled + label {
- cursor: not-allowed;
- opacity: 0.8;
-}
-
-.hero-title {
- font-family: 'Rubik', sans-serif;
- font-weight: 300;
-}
-
-.quiz-option {
- display: flex;
- align-items: center;
- padding: 1rem;
- background-color: white;
- border: 1px solid #ddd;
- border-radius: 4px;
- cursor: pointer;
- transition: all 0.2s ease;
- margin-bottom: 0.8rem;
-}
-
-.quiz-option:hover {
- background-color: #f8f9fa;
- border-color: #dee2e6;
- transform: translateY(-1px);
-}
-
-.quiz-option input[type="checkbox"] {
- margin-right: 1rem;
- margin-top: 0;
- width: 18px;
- height: 18px;
- cursor: pointer;
- flex-shrink: 0;
-}
-
-.quiz-option span {
- cursor: pointer;
- flex: 1;
- line-height: 1.5;
- font-weight: 500;
-}
-
-.hero-section {
- background-image: url('assets/images/hero-wellbeing-final.png');
- background-size: cover;
- background-position: center;
- color: white;
- text-align: center;
- padding: 5rem 2rem;
- position: relative;
- overflow: hidden;
-}
-</style>
 </head>
 <body>
 <!-- Añadir el enlace de saltar al contenido principal al inicio del body -->
@@ -442,7 +49,7 @@
  <li><a href="capitulo3.html">3. Atención, Cognición, Energía...</a></li>
  <li><a href="capitulo4.html">4. Visión y Práctica del Bienestar Digital</a></li>
  <li><a href="capitulo5.html">5. Conclusión del Curso</a></li>
- <li><a href="#" id="glossary-menu-link"><i class="fas fa-book" style="color: #DB0086; margin-right: 0.5rem;" aria-hidden="true"></i>Abrir Glosario</a></li>
+ <li><a href="#" id="glossary-menu-link"><i class="fas fa-book" style="color: #DB0086; margin-right: 0.5rem;" aria-hidden="true"></i>Abrir glosario</a></li>
 </ul>
 </nav>
 </header>
@@ -469,7 +76,7 @@
      <i class="fas fa-lightbulb"></i>
    </div>
    <div class="objective-content">
-     <h4>Definir el Bienestar Digital</h4>
+     <h3>Definir el Bienestar Digital</h3>
      <p>Definir el bienestar digital y explicar su importancia</p>
    </div>
  </div>
@@ -479,7 +86,7 @@
      <i class="fas fa-brain"></i>
    </div>
    <div class="objective-content">
-     <h4>Comprensión Holística</h4>
+     <h3>Comprensión Holística</h3>
      <p>Desarrollar una comprensión holística de cómo la tecnología impacta el cuerpo, la mente y el alma, considerando los roles de la conciencia, la ciencia y la práctica en el viaje de aprendizaje</p>
    </div>
  </div>
@@ -489,7 +96,7 @@
      <i class="fas fa-bullseye"></i>
    </div>
    <div class="objective-content">
-     <h4>Motivaciones Personales</h4>
+     <h3>Motivaciones Personales</h3>
      <p>Identificar motivaciones personales y establecer intenciones para cultivar activamente el bienestar digital</p>
    </div>
  </div>
@@ -499,7 +106,7 @@
      <i class="fas fa-compass"></i>
    </div>
    <div class="objective-content">
-     <h4>Propósito y Valores</h4>
+     <h3>Propósito y Valores</h3>
      <p>Reflexionar sobre el propósito y los valores, y reconocer cómo los comportamientos digitales pueden alinearse con ellos o desviarse de ellos</p>
    </div>
  </div>
@@ -596,7 +203,7 @@
    </form>
    <div id="wellbeing-quiz-feedback" class="quiz-feedback" style="display: none;" aria-live="polite">
      <p>El bienestar digital no consiste en rechazar por completo la tecnología ni en sentirse culpable por usarla. Más bien, se trata de ser conscientes de cómo nos relacionamos con los espacios digitales.</p>
-     <h4>Las respuestas correctas son:</h4>
+     <h3>Las respuestas correctas son:</h3>
      <ul>
        <li>a. ... un conjunto de prácticas y hábitos que puedes cultivar cada día.</li>
        <li>e. ... cómo nos sentimos con el tiempo que pasamos en línea.</li>
@@ -671,7 +278,6 @@
          <source src="https://iep-media.ie.edu/olj/digital-wellbeing/w01v02-raising-awareness/hls.m3u8" type="application/x-mpegURL">
            Para ver este video, por favor activa JavaScript y considera actualizar a un
            navegador web que <a href="https://videojs.com/html5-video-support/" target="_blank">soporte video HTML5</a>
-         </p>
        </video>
      </div>
      
@@ -802,9 +408,9 @@
        
        <p><strong>Puedes descargar la plantilla editable para completar tus respuestas.</strong> De esta manera, tendrás un registro personal que podrás revisar a lo largo de tu viaje de aprendizaje y más allá.</p>
        
-       <p>Una vez que hayas respondido las preguntas, <a href="https://eliminatestigma.org/wp-content/uploads/Values-list-S1_ES.pdf" target="_blank" class="normal-link">revisa la lista de valores de Brené Brown</a>. Reflexiona sobre <strong>por qué estos valores te importan y cómo tus hábitos digitales pueden apoyarlos</strong>. Resalta los 10 que más resuenen contigo y redúcelos a tus 5 principales. Esto te ayudará a seguir tu crecimiento y a reflexionar sobre cómo tus valores se alinean con tu bienestar digital.</p>
+       <p>Una vez que hayas respondido las preguntas, <a href="assets/documents/lista_valores.pdf" target="_blank" class="normal-link">revisa la lista de valores de Brené Brown</a>. Reflexiona sobre <strong>por qué estos valores te importan y cómo tus hábitos digitales pueden apoyarlos</strong>. Resalta los 10 que más resuenen contigo y redúcelos a tus 5 principales. Esto te ayudará a seguir tu crecimiento y a reflexionar sobre cómo tus valores se alinean con tu bienestar digital.</p>
        
-       <a href="assets/documents/Lesson1_Identifying Your Core Values.pdf" class="download-template-button" download="Lesson1_Identifying Your Core Values.pdf" target="_blank" aria-label="Descargar plantilla editable para la actividad de valores fundamentales">
+       <a href="assets/documents/Leccion1_identificacion_valores_fundamentales.pdf" class="download-template-button" download="Leccion1_identificacion_valores_fundamentales.pdf" target="_blank" aria-label="Descargar plantilla editable para la actividad de valores fundamentales">
          <i class="fas fa-download" aria-hidden="true"></i>
          <strong>Descarga la plantilla editable aquí</strong>
        </a>
@@ -822,7 +428,7 @@
        
        <p>Recomendamos usar <a href="https://asana.com/es/resources/smart-goals" target="_blank" rel="noopener noreferrer">el marco de metas SMART</a> para que tus metas sean específicas, medibles, alcanzables, relevantes y con un plazo determinado. Aquí tienes un ejemplo de una meta digital SMART: <strong>"Reducir mi tiempo de pantalla entre semana en al menos una hora".</strong></p>
        
-       <a href="assets/documents/Lesson1_Set Your Digital Goals.pdf" class="download-template-button" download="Lesson1_Set Your Digital Goals.pdf" target="_blank" aria-label="Descargar plantilla editable para la actividad de metas digitales">
+       <a href="assets/documents/Leccion1_define_tus_objetivos-digitales.pdf" class="download-template-button" download="Leccion1_define_tus_objetivos-digitales.pdf" target="_blank" aria-label="Descargar plantilla editable para la actividad de metas digitales">
          <i class="fas fa-download" aria-hidden="true"></i>
          <strong>Descarga la plantilla editable aquí</strong>
        </a>
@@ -868,7 +474,7 @@
  <div class="accordion-container">
    <div class="accordion-item">
      <h3 class="accordion-header">
-       <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-perspective">
+       <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-perspective" id="accordion-trigger-perspective">
          <span class="accordion-title">Perspectiva</span>
          <span class="accordion-icon" aria-hidden="true"></span>
        </button>
@@ -883,7 +489,7 @@
 
    <div class="accordion-item">
      <h3 class="accordion-header">
-       <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-judgment">
+       <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-judgment" id="accordion-trigger-judgment">
          <span class="accordion-title">Juicio/Pensamiento Crítico</span>
          <span class="accordion-icon" aria-hidden="true"></span>
        </button>
@@ -898,7 +504,7 @@
 
    <div class="accordion-item">
      <h3 class="accordion-header">
-       <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-curiosity">
+       <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-curiosity" id="accordion-trigger-curiosity">
          <span class="accordion-title">Curiosidad</span>
          <span class="accordion-icon" aria-hidden="true"></span>
        </button>
@@ -913,7 +519,7 @@
 
    <div class="accordion-item">
      <h3 class="accordion-header">
-       <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-self-regulation">
+       <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-self-regulation" id="accordion-trigger-self-regulation">
          <span class="accordion-title">Autorregulación</span>
          <span class="accordion-icon" aria-hidden="true"></span>
        </button>
@@ -928,7 +534,7 @@
 
    <div class="accordion-item">
      <h3 class="accordion-header">
-       <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-prudence">
+       <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-prudence" id="accordion-trigger-prudence">
          <span class="accordion-title">Prudencia</span>
          <span class="accordion-icon" aria-hidden="true"></span>
        </button>
@@ -943,7 +549,7 @@
 
    <div class="accordion-item">
      <h3 class="accordion-header">
-       <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-perseverance">
+       <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-perseverance" id="accordion-trigger-perseverance">
          <span class="accordion-title">Perseverancia</span>
          <span class="accordion-icon" aria-hidden="true"></span>
        </button>
@@ -958,7 +564,7 @@
 
    <div class="accordion-item">
      <h3 class="accordion-header">
-       <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-love-learning">
+       <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-love-learning" id="accordion-trigger-love-learning">
          <span class="accordion-title">Amor por el Aprendizaje</span>
          <span class="accordion-icon" aria-hidden="true"></span>
        </button>
@@ -973,7 +579,7 @@
 
    <div class="accordion-item">
      <h3 class="accordion-header">
-       <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-gratitude">
+       <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-gratitude" id="accordion-trigger-gratitude">
          <span class="accordion-title">Gratitud</span>
          <span class="accordion-icon" aria-hidden="true"></span>
        </button>
@@ -988,7 +594,7 @@
 
    <div class="accordion-item">
      <h3 class="accordion-header">
-       <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-leadership">
+       <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-leadership" id="accordion-trigger-leadership">
          <span class="accordion-title">Liderazgo</span>
          <span class="accordion-icon" aria-hidden="true"></span>
        </button>
@@ -1003,7 +609,7 @@
 
    <div class="accordion-item">
      <h3 class="accordion-header">
-       <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-bravery">
+       <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-bravery" id="accordion-trigger-bravery">
          <span class="accordion-title">Valentía</span>
          <span class="accordion-icon" aria-hidden="true"></span>
        </button>
@@ -1033,7 +639,7 @@
      <li style="margin-bottom: 0.5rem;"><a href="https://www.viacharacter.org/character-strengths" target="_blank" rel="noopener noreferrer">Aprende más sobre tus fortalezas</a></li>
    </ul>
    
-   <a href="assets/documents/Lesson1_Discover Your Character Strengths.pdf" class="download-template-button" download="Lesson1_Discover Your Character Strengths.pdf" target="_blank" aria-label="Descargar plantilla editable para la actividad de fortalezas de carácter">
+   <a href="assets/documents/Leccion1_descubre_tus_fortalezas_de_caracter.pdf" class="download-template-button" download="Leccion1_descubre_tus_fortalezas_de_caracter.pdf" target="_blank" aria-label="Descargar plantilla editable para la actividad de fortalezas de carácter">
      <i class="fas fa-download" aria-hidden="true"></i>
      <strong>Descarga la plantilla editable aquí</strong>
    </a>

@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   ) {
     document.addEventListener("scroll", () => {
 
-      if (courseCompletedElement && (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100)) {
+      if ((window.innerHeight + window.scrollY >= document.body.offsetHeight - 100)) {
         document.dispatchEvent(new CustomEvent('ie-feedback-widget-openModal'))
         console.log("Usuario ha completado el curso - se activaría el widget de feedback")
         // Descomentar cuando se implemente la funcionalidad completa
@@ -200,7 +200,7 @@ document.addEventListener("DOMContentLoaded", () => {
           behavior: "smooth",
         })
       }
-    }, 100) // Pequeño retraso para asegurar que todo esté cargado
+    }, 100) // Pequeño retraso para asegurar que esté cargado
   }
 })
 
