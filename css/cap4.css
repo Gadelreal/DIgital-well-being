@@ -1,5 +1,4 @@
-  
-  /* Additional styles for Chapter 4 activities */
+/* Additional styles for Chapter 4 activities */
   .time-input-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -429,4 +428,3 @@
     font-size: 0.9rem;
     white-space: nowrap;
   }
-
